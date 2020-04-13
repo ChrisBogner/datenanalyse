@@ -1,7 +1,9 @@
 # Aufgabensammlung
 
 ## Erste Schritte
+
 ### Ars Haushaltsbuch
+
 Der angehende Datenanalyst Ar Stat möchte dem Rat seiner Mutter folgen und ein Haushaltsbuch anlegen. Als erstes möchte er sich einen Überblick über seine Ausgaben in der Uni-Mensa verschaffen und erstellt die folgende Tabelle:
 
 <br>
@@ -26,13 +28,102 @@ Leider hat Ar sich beim übertragen der Daten vertippt. Er hat am Dienstag seine
 
 ## Laden und Speichern von Daten
 
+### Bestandesaufnahme
+
 Ar Stat arbeitet als HiWi in der AG Ökosystemforschung und soll im Nationalpark Eifel eine Bestandsaufnahme durchführen. Er notiert den BHD (Brusthöhendurchmesser) und die Art der Bäume.
 
 
-1.  Laden Sie den Datensatz BHD.txt und ordnen Sie ihn der Variable `BHD` zu.
+1.  Laden Sie den Datensatz `r file.name("BHD.txt")` und ordnen Sie ihn der Variable `BHD` zu.
 2. Erstellen Sie einen Vektor `a` mit Baumnummern. Von welcher Art sind die Elemente des Vektors `a`?
-3. Fügen Sie die Datensätze `BHD` und `a` zu einem \texttt{data.frame} zusammen und benennen Sie die Spalten sinnvoll.
+3. Fügen Sie die Datensätze `BHD` und `a` zu einem `data.frame` zusammen und benennen Sie die Spalten sinnvoll.
 4. Löschen Sie den Vektor `a`.
+Laden Sie den Datensatz `r file.name("Art.txt")`.
+5. Fügen Sie die Art in den `data.frame` ein.
+6. Erstellen Sie eine Tabelle mit der Anzahl der jeweiligen Arten. Nutzen Sie die Funktion `table'.
+7. Speichern Sie die Tabelle mit `write.table`.
+8. Welche Baumart hat im Mittel einen größeren Brusthöhendurchmesser?
 
 
 ## Automatisieren: Skripte & Funktionen
+
+### R-Hausaufgaben
+
+An dem Kurs "Einführung in R" nehmen 49 Studierende teil. Der Leistungsnachweis besteht aus Hausaufgaben, die insgesamt mit 100 Punkten bewertet werden. Ab 50 Punkten gilt der Kurs als bestanden. 
+
+1. Lesen Sie den Datensatz `r file.name("R-HAs.txt")`, der die Endpunkte enthält, ein.
+2. Ermitteln Sie, wie viele Teilnehmer bestanden und wie viele nicht bestanden haben.
+
+
+### Fledermäuse, die Zweite
+
+Wir beschäftigen uns erneut mit den Fledermäusen.
+
+1. Lesen Sie den korrigierten(!) Datensatz  `r file.name("Fledermaus_cor.txt")` ein.
+2. Schreiben Sie eine Funktion, die den Entwicklungsstand der Tiere klassifiziert. Nutzen Sie dazu die ad hoc Regel: Individuum < 5 cm ist ein Jungtier, sonst erwachsen.
+3. Erstellen Sie eine ordinal-skalierte Variable `alter` mit dem Entwicklungsstand der Tiere.
+4. Schreiben Sie eine Funktion, die die Mittelwerte der Größe für weibliche und männliche Individuen berechnet.
+5. Berechnen Sie die Mittelwerte der Größe und runden Sie auf 2 Nachkommastellen.
+
+
+### Unfaire Klausur?
+
+Ar belegt im 4. Semester die Veranstaltung "Spaß mit R". Bei der Klausur gibt es 2 Aufgabengruppen mit jeweils 60 Punkten. Aufgabengruppe 1 wird an Studierende auf ungeraden Sitzplätzen und  Aufgabengruppe 2 an Studierende auf geraden Sitzplätzen ausgegeben. 
+
+1. Lesen Sie den Datensatz `r file.name("Klausurpunkte.txt")` ein.
+1. Überprüfen Sie Ars Vermutung, dass die Aufgabengruppe 1 im Schnitt leichter war als Aufgabengruppe 2 (d.h. in der Gruppe 1 im Schnitt mehr Punkte erzielt wurden).
+
+
+## Daten visualisieren
+
+### Lange Bramke (Harz)
+
+Im Harz wurden über eine längere Zeit Niederschlag, Abfluss und Temperatur gemessen.
+
+1. Laden Sie den Datensatz `r file.name("Data.dat")`.
+2. Stellen Sie die Temperatur in einem Scatterplot dar. Welche Darstellungsart (Argument `type` in `plot`) erscheint Ihnen am sinnvollsten? 
+3. Beschriften Sie die Graphik und fügen Sie einen Titel hinzu.
+4. Speichern Sie die Graphik als pdf ab.
+5. Stellen Sie die Niederschläge in einem Diagramm dar. Wählen Sie einen geeigneten Darstellungstyp mit `type` (Tipp: geben Sie für die Hilfe `?plot` in die Console ein).
+
+### Temperatur-Datensatz
+
+1. Laden Sie den Temperatur-Datensatz aus @Zuur2009a.
+1. Berechnen Sie die Monatsmittelwerte für alle Stationen, sowie die Standardabweichungen.
+1. Stellen Sie die Monatsmittel der Temperatur in einem Barplot dar.
+1. Beschriften Sie die Graphik sinnvoll.
+1. Fügen Sie die Standardabweichungen zu den einzelnen Balken hinzu.
+
+
+### Artenvielfalt in Grasländern
+Sie erhalten Daten aus dem Grasland-Monitoring im Yellowstone Nationalpark und dem National Bison Range (USA). Das Ziel des Monitorings ist die Untersuchung möglicher Änderungen der Biodiversität und des Zusammenhang mit Umweltfaktoren. Biodiversität wurde durch die Anzahl unterschiedlicher Arten quantifiziert. Insgesamt haben die Forscher ca. 90 Arten in 8 Transekten kartiert. Die Aufnahmen wurden alle 4 bis 10 Jahre wiederholt. Insgesamt liegen 58 Beobachtungen vor. Die Daten sind in der Datei `r file.name("Vegetation2.xls")` gespeichert.
+
+1. Laden Sie den Datensatz in R und sehen Sie sich das Ergebnis genau mit  `str`, `head` und `tail` an. Diese Aufgabe dient dazu, das Einlesen von Excel-Dateien zu erarbeiten. Tipp: eine mögliche Bibliothek, die dabei helfen kann, wäre `xlsx`.
+
+1. Berechnen Sie den Mittelwert und die Standardabweichung der Artenzahl (Variable  `R`) pro Transekt. 
+
+1. Plotten Sie die Artenzahl gegen die Variable `BARESOIL` (Anteil von unbewachsenem Boden).
+
+1. Benutzen Sie unterschiedliche Symbole pro Transekt, erstellen Sie eine Legende.
+
+1. Beschriften Sie die Graphik sinnvoll und speichern Sie sie als pdf ab, ohne die Maus zu benutzen. 
+
+
+### Tracerversuche
+Im Waldstein wurden Tracerversuche mit dem Farbstoff Brilliant Blue durchgeführt und die gefärbten Bodenprofile *binärisiert* (d.h. in ein schwarz-weiß Bild umgewandelt). Schwarze Pixels stellen gefärbten Boden und weiße ungefärbten dar. Aus diesen Binärbildern wurde anschließend eine Reihe von Kenngrößen berechnet.
+
+1. Lesen Sie die Datei `r file.name("Waldstein2005_ind.txt")` ein.  Die Tiefe eines Profils ist 579 Pixel und es liegen 6 Profile untereinander in der Spalte d.
+1. Berechnen Sie die 5%, 50% und 95% Quantile des Färbeanteils (Index d) der 6 Profile.
+1.  Stellen Sie den Median des Anteils der Färbung mit der Tiefe dar und fügen Sie die Quantile als transparente Fläche hinzu (Tipp: `polygon`).
+
+## Effizientes Programmieren
+
+### Lagerungsdichten
+Auf 10 verschiedenen landwirtschaftlichen Feldern wurden im Oberboden je 25 Stechzylinder entnommen.
+
+1. Lesen Sie den Datensatz  r file.name("Bodendaten.txt")` ein.
+1. Bestimmen Sie die mittlere Lagerungsdichte pro Feld.
+
+### Temperatur-Datensatz, revisited
+
+1. Laden Sie den Temperatur-Datensatz aus @Zuur2009a, Datei `r file.name("Temperatur.csv")`.
+1.  Berechnen Sie die Jahresmittelwerte je Station. (Tipp: Hilfe von `tapply` genau lesen!)

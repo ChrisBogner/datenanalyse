@@ -1,0 +1,8 @@
+book_filename: "datenanalyse"
+language:
+  ui:
+    chapter_name: "Kapitel "
+  label:
+        tab: 'Tabelle '
+        fig: 'Abbildung '
+delete_merged_file: true

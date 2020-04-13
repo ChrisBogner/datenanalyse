@@ -1,0 +1,29 @@
+# Erste Schritte {#erste_schritte}
+
+```{block, type = 'rmdoutcomes'}
+- Layout und Bedeutung einzelner Fenster in RStudio kennen
+- R als Taschenrechner benutzen
+- erste Funktionen aufrufen
+- Anweisungen aus dem Skript an die Console schicken
+```
+
+
+## Was ist R?
+R ist eine Programmiersprache für Datenanalyse und statistische Modellierung. Es ist frei verfügbar (*open source software*) und neben Python einer der am meisten benutzten Programmiersprachen zur Datenanalyse und -visualisierung. R wurde von Ross Ihaka und Robert Gentleman 1996 veröffentlicht @Ihaka1996. Es gibt für R eine Vielzahl von Zusatzpaketen, die die Funktionalität und die Einsatzmöglichkeiten enorm erweitern.
+
+Sie können R für Ihren Computer auf der offiziellen R-Seite https://www.r-project.org/ herunter laden und installieren. Auch die Pakete finden Sie dort unter CRAN (*The Comprehensive R Archive Network*).
+
+Zu Beginn des Kurses, werden wir jedoch nicht auf Ihren lokalen Rechnern arbeiten, sondern in einer Cloud (s. unten). Das ermöglicht einen schnellern Einstieg in R und bietet eine live Unterstützung durch den Dozenten beim Programmieren. Daher biete ich zu diesem frühen Zeitpunkt im Kurs keine Unterstützung bei der Installation. Für die ganz Ungeduldigen, gibt es hier eine kurze *Einleitung zur Installation*
+
+<iframe width="640" height="360" src="https://www.youtube.com/embed/kygOqp_zijk?list=PLG4WP9jv27SeMbBjhVcyXrGKQgnaex-0o" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+
+## Was ist RStudio?
+RStudio Desktop ist eine Entwicklungsumgebung für R. Sie können die *open source* Version kostenlos für Ihren Rechner [hier](https://rstudio.com/products/rstudio/#rstudio-desktop) herunterladen.
+
+Es gibt eine live Einführung in RStudio im Kurs. Zusätzlich können Sie hier  ein Video dazu ansehen.
+
+<iframe width="640" height="360" src="https://www.youtube.com/embed/r5wOhFVWXUE?list=PLG4WP9jv27SeMbBjhVcyXrGKQgnaex-0o" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+
+## RStudio Cloud

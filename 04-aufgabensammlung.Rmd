@@ -1,0 +1,38 @@
+# Aufgabensammlung
+
+## Erste Schritte
+### Ars Haushaltsbuch
+Der angehende Datenanalyst Ar Stat möchte dem Rat seiner Mutter folgen und ein Haushaltsbuch anlegen. Als erstes möchte er sich einen Überblick über seine Ausgaben in der Uni-Mensa verschaffen und erstellt die folgende Tabelle:
+
+<br>
+
+```{r, results='asis', echo = F}
+
+tab = data.frame(Wochentag = c('Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag'), Ausgaben = c(2.57, 2.90, 2.73, 3.23, 3.90))
+knitr::kable(tab, caption = 'Ars Mensaausgaben', booktabs = T,
+             format.args = list(decimal.mark = ','))
+```
+
+
+1. Wie viel hat Ar insgesamt in der Woche ausgegeben?
+2. Wie viel hat er im Schnitt pro Tag ausgegeben?
+3. Wie stark schwanken seine Ausgaben?
+
+Leider hat Ar sich beim übertragen der Daten vertippt. Er hat am Dienstag seine Freundin zum Essen eingeladen und 7,95 € statt 2,90 € ausgegeben.
+
+4. Korrigieren Sie Ars Fehler.
+5. Wie verändern sich die Ergebnisse aus den Teilaufgaben 1 bis 3 Warum?
+
+
+## Laden und Speichern von Daten
+
+Ar Stat arbeitet als HiWi in der AG Ökosystemforschung und soll im Nationalpark Eifel eine Bestandsaufnahme durchführen. Er notiert den BHD (Brusthöhendurchmesser) und die Art der Bäume.
+
+
+1.  Laden Sie den Datensatz BHD.txt und ordnen Sie ihn der Variable `BHD` zu.
+2. Erstellen Sie einen Vektor `a` mit Baumnummern. Von welcher Art sind die Elemente des Vektors `a`?
+3. Fügen Sie die Datensätze `BHD` und `a` zu einem \texttt{data.frame} zusammen und benennen Sie die Spalten sinnvoll.
+4. Löschen Sie den Vektor `a`.
+
+
+## Automatisieren: Skripte & Funktionen

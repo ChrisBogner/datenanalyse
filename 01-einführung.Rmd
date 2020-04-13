@@ -1,0 +1,29 @@
+# Einführung {#einführung}
+## Zuordnung zum Modul und Leistungsnachweis
+
+Dieser Kurs gehört zum Modul *Fachmethodik I* or *Fachmethodik II*. Er besteht aus 6 SWS Praktikum und 2 SWS Seminar. Das wichtigste Ziel besteht darin, Ihnen einen sicheren Umgang mit `R` beizubringen.
+
+Der Leistungsnachweis besteht aus einem benoteten Praktikumsbericht.
+
+
+
+## Lernziele des Kurses
+
+- Apply structural reading (SQ4R) to scientific literature.
+- Present professionally and discuss a topic in the scope of the seminar.
+- Write a critical literature review on a topic in the scope of the seminar.
+- Apply methods of scientific writing to your seminar paper
+	- systematic literature search using data bases
+	- selection of relevant literature
+	- summary of research results avoiding plagiarism
+	- critical evaluation
+- Give peer feedback to your peers' work professionally in written form.
+
+## Was mir im Umgang miteinander wichtig ist
+
+- Pünktlichkeit bei live und Präsenzsitzungen
+- Gute Vorbereitung durch erledigen der blenden learning Einheiten und Hausaufgaben
+- Respektieren anderer Meinungen
+- Offenheit gegenüber neuen Sichtweisen, Themen und Methoden
+- Geduld mit sich selbst und den anderen `r emo::ji('smile')`
+

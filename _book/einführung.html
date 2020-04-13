@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Kapitel 2 Einführung | Datenanalyse mit R</title>
+  <meta name="description" content="Begleitskript zur Veranstaltung Datenanalyse mit R" />
+  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Kapitel 2 Einführung | Datenanalyse mit R" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Begleitskript zur Veranstaltung Datenanalyse mit R" />
+  <meta name="github-repo" content="https://github.com/ChrisBogner/datenanalyse.git" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Kapitel 2 Einführung | Datenanalyse mit R" />
+  
+  <meta name="twitter:description" content="Begleitskript zur Veranstaltung Datenanalyse mit R" />
+  
+
+<meta name="author" content="Christina Bogner" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+<link rel="next" href="erste-schritte.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="stylesheet" href="css/all.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Seminar Companion</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Vorwort</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#organisatorisches"><i class="fa fa-check"></i><b>1.1</b> Organisatorisches</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#sinn-und-unsinn-dieses-skripts"><i class="fa fa-check"></i><b>1.2</b> Sinn und Unsinn dieses Skripts</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="einführung.html"><a href="einführung.html"><i class="fa fa-check"></i><b>2</b> Einführung</a><ul>
+<li class="chapter" data-level="2.1" data-path="einführung.html"><a href="einführung.html#zuordnung-zum-modul-und-leistungsnachweis"><i class="fa fa-check"></i><b>2.1</b> Zuordnung zum Modul und Leistungsnachweis</a></li>
+<li class="chapter" data-level="2.2" data-path="einführung.html"><a href="einführung.html#lernziele-des-kurses"><i class="fa fa-check"></i><b>2.2</b> Lernziele des Kurses</a></li>
+<li class="chapter" data-level="2.3" data-path="einführung.html"><a href="einführung.html#was-mir-im-umgang-miteinander-wichtig-ist"><i class="fa fa-check"></i><b>2.3</b> Was mir im Umgang miteinander wichtig ist</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="erste-schritte.html"><a href="erste-schritte.html"><i class="fa fa-check"></i><b>3</b> Erste Schritte</a><ul>
+<li class="chapter" data-level="3.1" data-path="erste-schritte.html"><a href="erste-schritte.html#was-ist-r"><i class="fa fa-check"></i><b>3.1</b> Was ist R?</a></li>
+<li class="chapter" data-level="3.2" data-path="erste-schritte.html"><a href="erste-schritte.html#was-ist-rstudio"><i class="fa fa-check"></i><b>3.2</b> Was ist RStudio?</a></li>
+<li class="chapter" data-level="3.3" data-path="erste-schritte.html"><a href="erste-schritte.html#rstudio-cloud"><i class="fa fa-check"></i><b>3.3</b> RStudio Cloud</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html"><i class="fa fa-check"></i><b>4</b> Aufgabensammlung</a><ul>
+<li class="chapter" data-level="4.1" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#erste-schritte"><i class="fa fa-check"></i><b>4.1</b> Erste Schritte</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#ars-haushaltsbuch"><i class="fa fa-check"></i><b>4.1.1</b> Ars Haushaltsbuch</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#laden-und-speichern-von-daten"><i class="fa fa-check"></i><b>4.2</b> Laden und Speichern von Daten</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Datenanalyse mit R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="einführung" class="section level1">
+<h1><span class="header-section-number">Kapitel 2</span> Einführung</h1>
+<div id="zuordnung-zum-modul-und-leistungsnachweis" class="section level2">
+<h2><span class="header-section-number">2.1</span> Zuordnung zum Modul und Leistungsnachweis</h2>
+<p>Dieser Kurs gehört zum Modul <em>Fachmethodik I</em> or <em>Fachmethodik II</em>. Er besteht aus 6 SWS Praktikum und 2 SWS Seminar. Das wichtigste Ziel besteht darin, Ihnen einen sicheren Umgang mit <code>R</code> beizubringen.</p>
+<p>Der Leistungsnachweis besteht aus einem benoteten Praktikumsbericht.</p>
+</div>
+<div id="lernziele-des-kurses" class="section level2">
+<h2><span class="header-section-number">2.2</span> Lernziele des Kurses</h2>
+<ul>
+<li>Apply structural reading (SQ4R) to scientific literature.</li>
+<li>Present professionally and discuss a topic in the scope of the seminar.</li>
+<li>Write a critical literature review on a topic in the scope of the seminar.</li>
+<li>Apply methods of scientific writing to your seminar paper
+<ul>
+<li>systematic literature search using data bases</li>
+<li>selection of relevant literature</li>
+<li>summary of research results avoiding plagiarism</li>
+<li>critical evaluation</li>
+</ul></li>
+<li>Give peer feedback to your peers’ work professionally in written form.</li>
+</ul>
+</div>
+<div id="was-mir-im-umgang-miteinander-wichtig-ist" class="section level2">
+<h2><span class="header-section-number">2.3</span> Was mir im Umgang miteinander wichtig ist</h2>
+<ul>
+<li>Pünktlichkeit bei live und Präsenzsitzungen</li>
+<li>Gute Vorbereitung durch erledigen der blenden learning Einheiten und Hausaufgaben</li>
+<li>Respektieren anderer Meinungen</li>
+<li>Offenheit gegenüber neuen Sichtweisen, Themen und Methoden</li>
+<li>Geduld mit sich selbst und den anderen 😄</li>
+</ul>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="erste-schritte.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/ChrisBogner/datenanalyse.git 01-einführung.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

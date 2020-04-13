@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Kapitel 4 Aufgabensammlung | Datenanalyse mit R</title>
+  <meta name="description" content="Begleitskript zur Veranstaltung Datenanalyse mit R" />
+  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Kapitel 4 Aufgabensammlung | Datenanalyse mit R" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Begleitskript zur Veranstaltung Datenanalyse mit R" />
+  <meta name="github-repo" content="https://github.com/ChrisBogner/datenanalyse.git" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Kapitel 4 Aufgabensammlung | Datenanalyse mit R" />
+  
+  <meta name="twitter:description" content="Begleitskript zur Veranstaltung Datenanalyse mit R" />
+  
+
+<meta name="author" content="Christina Bogner" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="erste-schritte.html"/>
+<link rel="next" href="references.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="stylesheet" href="css/all.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Seminar Companion</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Vorwort</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#organisatorisches"><i class="fa fa-check"></i><b>1.1</b> Organisatorisches</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#sinn-und-unsinn-dieses-skripts"><i class="fa fa-check"></i><b>1.2</b> Sinn und Unsinn dieses Skripts</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="einführung.html"><a href="einführung.html"><i class="fa fa-check"></i><b>2</b> Einführung</a><ul>
+<li class="chapter" data-level="2.1" data-path="einführung.html"><a href="einführung.html#zuordnung-zum-modul-und-leistungsnachweis"><i class="fa fa-check"></i><b>2.1</b> Zuordnung zum Modul und Leistungsnachweis</a></li>
+<li class="chapter" data-level="2.2" data-path="einführung.html"><a href="einführung.html#lernziele-des-kurses"><i class="fa fa-check"></i><b>2.2</b> Lernziele des Kurses</a></li>
+<li class="chapter" data-level="2.3" data-path="einführung.html"><a href="einführung.html#was-mir-im-umgang-miteinander-wichtig-ist"><i class="fa fa-check"></i><b>2.3</b> Was mir im Umgang miteinander wichtig ist</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="erste-schritte.html"><a href="erste-schritte.html"><i class="fa fa-check"></i><b>3</b> Erste Schritte</a><ul>
+<li class="chapter" data-level="3.1" data-path="erste-schritte.html"><a href="erste-schritte.html#was-ist-r"><i class="fa fa-check"></i><b>3.1</b> Was ist R?</a></li>
+<li class="chapter" data-level="3.2" data-path="erste-schritte.html"><a href="erste-schritte.html#was-ist-rstudio"><i class="fa fa-check"></i><b>3.2</b> Was ist RStudio?</a></li>
+<li class="chapter" data-level="3.3" data-path="erste-schritte.html"><a href="erste-schritte.html#rstudio-cloud"><i class="fa fa-check"></i><b>3.3</b> RStudio Cloud</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html"><i class="fa fa-check"></i><b>4</b> Aufgabensammlung</a><ul>
+<li class="chapter" data-level="4.1" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#erste-schritte"><i class="fa fa-check"></i><b>4.1</b> Erste Schritte</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#ars-haushaltsbuch"><i class="fa fa-check"></i><b>4.1.1</b> Ars Haushaltsbuch</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#laden-und-speichern-von-daten"><i class="fa fa-check"></i><b>4.2</b> Laden und Speichern von Daten</a></li>
+<li class="chapter" data-level="4.3" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#automatisieren-skripte-funktionen"><i class="fa fa-check"></i><b>4.3</b> Automatisieren: Skripte &amp; Funktionen</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Datenanalyse mit R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="aufgabensammlung" class="section level1">
+<h1><span class="header-section-number">Kapitel 4</span> Aufgabensammlung</h1>
+<div id="erste-schritte" class="section level2">
+<h2><span class="header-section-number">4.1</span> Erste Schritte</h2>
+<div id="ars-haushaltsbuch" class="section level3">
+<h3><span class="header-section-number">4.1.1</span> Ars Haushaltsbuch</h3>
+<p>Der angehende Datenanalyst Ar Stat möchte dem Rat seiner Mutter folgen und ein Haushaltsbuch anlegen. Als erstes möchte er sich einen Überblick über seine Ausgaben in der Uni-Mensa verschaffen und erstellt die folgende Tabelle:</p>
+<p><br></p>
+<table>
+<caption><span id="tab:unnamed-chunk-2">Tabelle 4.1: </span>Ars Mensaausgaben</caption>
+<thead>
+<tr class="header">
+<th align="left">Wochentag</th>
+<th align="right">Ausgaben</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Montag</td>
+<td align="right">2,57</td>
+</tr>
+<tr class="even">
+<td align="left">Dienstag</td>
+<td align="right">2,90</td>
+</tr>
+<tr class="odd">
+<td align="left">Mittwoch</td>
+<td align="right">2,73</td>
+</tr>
+<tr class="even">
+<td align="left">Donnerstag</td>
+<td align="right">3,23</td>
+</tr>
+<tr class="odd">
+<td align="left">Freitag</td>
+<td align="right">3,90</td>
+</tr>
+</tbody>
+</table>
+<ol style="list-style-type: decimal">
+<li>Wie viel hat Ar insgesamt in der Woche ausgegeben?</li>
+<li>Wie viel hat er im Schnitt pro Tag ausgegeben?</li>
+<li>Wie stark schwanken seine Ausgaben?</li>
+</ol>
+<p>Leider hat Ar sich beim übertragen der Daten vertippt. Er hat am Dienstag seine Freundin zum Essen eingeladen und 7,95 € statt 2,90 € ausgegeben.</p>
+<ol start="4" style="list-style-type: decimal">
+<li>Korrigieren Sie Ars Fehler.</li>
+<li>Wie verändern sich die Ergebnisse aus den Teilaufgaben 1 bis 3 Warum?</li>
+</ol>
+</div>
+</div>
+<div id="laden-und-speichern-von-daten" class="section level2">
+<h2><span class="header-section-number">4.2</span> Laden und Speichern von Daten</h2>
+<p>Ar Stat arbeitet als HiWi in der AG Ökosystemforschung und soll im Nationalpark Eifel eine Bestandsaufnahme durchführen. Er notiert den BHD (Brusthöhendurchmesser) und die Art der Bäume.</p>
+<ol style="list-style-type: decimal">
+<li>Laden Sie den Datensatz BHD.txt und ordnen Sie ihn der Variable <code>BHD</code> zu.</li>
+<li>Erstellen Sie einen Vektor <code>a</code> mit Baumnummern. Von welcher Art sind die Elemente des Vektors <code>a</code>?</li>
+<li>Fügen Sie die Datensätze <code>BHD</code> und <code>a</code> zu einem  zusammen und benennen Sie die Spalten sinnvoll.</li>
+<li>Löschen Sie den Vektor <code>a</code>.</li>
+</ol>
+</div>
+<div id="automatisieren-skripte-funktionen" class="section level2">
+<h2><span class="header-section-number">4.3</span> Automatisieren: Skripte &amp; Funktionen</h2>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="erste-schritte.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/ChrisBogner/datenanalyse.git 04-aufgabensammlung.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

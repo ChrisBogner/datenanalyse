@@ -1,4 +1,4 @@
-# Der Kurs {#einführung}
+# Der Kurs {#einfuehrung}
 ## Zuordnung zum Modul und Leistungsnachweis
 
 Dieser Kurs gehört zum Modul *Fachmethodik I* oder *Fachmethodik II* und ist aus 4 SWS Praktikum und 2 SWS Seminar aufgebaut. Das wichtigste Ziel besteht darin, Ihnen einen sicheren Umgang mit `R` beizubringen.

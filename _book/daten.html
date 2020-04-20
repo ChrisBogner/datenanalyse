@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Kapitel 4 Daten in R | Datenanalyse mit R</title>
+  <meta name="description" content="Begleitskript zur Veranstaltung Datenanalyse mit R" />
+  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Kapitel 4 Daten in R | Datenanalyse mit R" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Begleitskript zur Veranstaltung Datenanalyse mit R" />
+  <meta name="github-repo" content="https://github.com/ChrisBogner/datenanalyse.git" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Kapitel 4 Daten in R | Datenanalyse mit R" />
+  
+  <meta name="twitter:description" content="Begleitskript zur Veranstaltung Datenanalyse mit R" />
+  
+
+<meta name="author" content="Christina Bogner" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="erste-schritte.html"/>
+<link rel="next" href="aufgabensammlung.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="stylesheet" href="css/all.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Datenanalyse mit R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Vorwort</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#organisatorisches"><i class="fa fa-check"></i><b>1.1</b> Organisatorisches</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#sinn-und-unsinn-dieses-skripts"><i class="fa fa-check"></i><b>1.2</b> Sinn und Unsinn dieses Skripts</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="einfuehrung.html"><a href="einfuehrung.html"><i class="fa fa-check"></i><b>2</b> Der Kurs</a><ul>
+<li class="chapter" data-level="2.1" data-path="einfuehrung.html"><a href="einfuehrung.html#zuordnung-zum-modul-und-leistungsnachweis"><i class="fa fa-check"></i><b>2.1</b> Zuordnung zum Modul und Leistungsnachweis</a></li>
+<li class="chapter" data-level="2.2" data-path="einfuehrung.html"><a href="einfuehrung.html#lernziele-des-kurses"><i class="fa fa-check"></i><b>2.2</b> Lernziele des Kurses</a></li>
+<li class="chapter" data-level="2.3" data-path="einfuehrung.html"><a href="einfuehrung.html#was-mir-im-umgang-miteinander-wichtig-ist"><i class="fa fa-check"></i><b>2.3</b> Was mir im Umgang miteinander wichtig ist</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="erste-schritte.html"><a href="erste-schritte.html"><i class="fa fa-check"></i><b>3</b> Erste Schritte in <svg style="height:0.8em;top:.04em;position:relative;fill:steelblue;" viewBox="0 0 581 512"><path d="M581 226.6C581 119.1 450.9 32 290.5 32S0 119.1 0 226.6C0 322.4 103.3 402 239.4 418.1V480h99.1v-61.5c24.3-2.7 47.6-7.4 69.4-13.9L448 480h112l-67.4-113.7c54.5-35.4 88.4-84.9 88.4-139.7zm-466.8 14.5c0-73.5 98.9-133 220.8-133s211.9 40.7 211.9 133c0 50.1-26.5 85-70.3 106.4-2.4-1.6-4.7-2.9-6.4-3.7-10.2-5.2-27.8-10.5-27.8-10.5s86.6-6.4 86.6-92.7-90.6-87.9-90.6-87.9h-199V361c-74.1-21.5-125.2-67.1-125.2-119.9zm225.1 38.3v-55.6c57.8 0 87.8-6.8 87.8 27.3 0 36.5-38.2 28.3-87.8 28.3zm-.9 72.5H365c10.8 0 18.9 11.7 24 19.2-16.1 1.9-33 2.8-50.6 2.9v-22.1z"/></svg></a><ul>
+<li class="chapter" data-level="3.1" data-path="erste-schritte.html"><a href="erste-schritte.html#was-ist-r"><i class="fa fa-check"></i><b>3.1</b> Was ist R?</a></li>
+<li class="chapter" data-level="3.2" data-path="erste-schritte.html"><a href="erste-schritte.html#was-ist-rstudio"><i class="fa fa-check"></i><b>3.2</b> Was ist RStudio?</a></li>
+<li class="chapter" data-level="3.3" data-path="erste-schritte.html"><a href="erste-schritte.html#rstudio-cloud"><i class="fa fa-check"></i><b>3.3</b> RStudio Cloud</a></li>
+<li class="chapter" data-level="3.4" data-path="erste-schritte.html"><a href="erste-schritte.html#inhalt-der-live-einführung-und-der-übungen"><i class="fa fa-check"></i><b>3.4</b> Inhalt der live Einführung und der Übungen</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="daten.html"><a href="daten.html"><i class="fa fa-check"></i><b>4</b> Daten in R</a><ul>
+<li class="chapter" data-level="4.1" data-path="daten.html"><a href="daten.html#datenstrukturen-erzeugen"><i class="fa fa-check"></i><b>4.1</b> Datenstrukturen erzeugen</a></li>
+<li class="chapter" data-level="4.2" data-path="daten.html"><a href="daten.html#arten-von-daten-in-r"><i class="fa fa-check"></i><b>4.2</b> Arten von Daten in R</a></li>
+<li class="chapter" data-level="4.3" data-path="daten.html"><a href="daten.html#objekt-sag-mir-wer-du-bist"><i class="fa fa-check"></i><b>4.3</b> Objekt, sag mir wer du bist</a></li>
+<li class="chapter" data-level="4.4" data-path="daten.html"><a href="daten.html#datenlücken-fehlschläge-etc."><i class="fa fa-check"></i><b>4.4</b> Datenlücken, Fehlschläge etc.</a></li>
+<li class="chapter" data-level="4.5" data-path="daten.html"><a href="daten.html#inhalt-der-live-einführung-und-der-übungen-1"><i class="fa fa-check"></i><b>4.5</b> Inhalt der live Einführung und der Übungen</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html"><i class="fa fa-check"></i><b>5</b> Aufgabensammlung</a><ul>
+<li class="chapter" data-level="5.1" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#erste-schritte"><i class="fa fa-check"></i><b>5.1</b> Erste Schritte</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#ars-haushaltsbuch"><i class="fa fa-check"></i><b>5.1.1</b> Ars Haushaltsbuch</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#laden-und-speichern-von-daten"><i class="fa fa-check"></i><b>5.2</b> Laden und Speichern von Daten</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#bestandesaufnahme"><i class="fa fa-check"></i><b>5.2.1</b> Bestandesaufnahme</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#automatisieren-skripte-funktionen"><i class="fa fa-check"></i><b>5.3</b> Automatisieren: Skripte &amp; Funktionen</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#r-hausaufgaben"><i class="fa fa-check"></i><b>5.3.1</b> R-Hausaufgaben</a></li>
+<li class="chapter" data-level="5.3.2" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#fledermäuse-die-zweite"><i class="fa fa-check"></i><b>5.3.2</b> Fledermäuse, die Zweite</a></li>
+<li class="chapter" data-level="5.3.3" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#unfaire-klausur"><i class="fa fa-check"></i><b>5.3.3</b> Unfaire Klausur?</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#daten-visualisieren"><i class="fa fa-check"></i><b>5.4</b> Daten visualisieren</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#lange-bramke-harz"><i class="fa fa-check"></i><b>5.4.1</b> Lange Bramke (Harz)</a></li>
+<li class="chapter" data-level="5.4.2" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#temperatur-datensatz"><i class="fa fa-check"></i><b>5.4.2</b> Temperatur-Datensatz</a></li>
+<li class="chapter" data-level="5.4.3" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#artenvielfalt-in-grasländern"><i class="fa fa-check"></i><b>5.4.3</b> Artenvielfalt in Grasländern</a></li>
+<li class="chapter" data-level="5.4.4" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#tracerversuche"><i class="fa fa-check"></i><b>5.4.4</b> Tracerversuche</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#effizientes-programmieren"><i class="fa fa-check"></i><b>5.5</b> Effizientes Programmieren</a><ul>
+<li class="chapter" data-level="5.5.1" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#lagerungsdichten"><i class="fa fa-check"></i><b>5.5.1</b> Lagerungsdichten</a></li>
+<li class="chapter" data-level="5.5.2" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#temperatur-datensatz-revisited"><i class="fa fa-check"></i><b>5.5.2</b> Temperatur-Datensatz, revisited</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="literatur.html"><a href="literatur.html"><i class="fa fa-check"></i>Literatur</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Datenanalyse mit R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="daten" class="section level1">
+<h1><span class="header-section-number">Kapitel 4</span> Daten in R</h1>
+<div class="rmdoutcomes">
+<ul>
+<li>
+Daten einlesen mit <code>read.table</code>
+</li>
+<li>
+Datenstrukturen erstellen
+</li>
+<li>
+Typen von Daten in R abfragen
+</li>
+<li>
+Daten speichern mit <code>write.table</code>
+</li>
+</ul>
+</div>
+<div id="datenstrukturen-erzeugen" class="section level2">
+<h2><span class="header-section-number">4.1</span> Datenstrukturen erzeugen</h2>
+<p>In R gibt es unterschiedliche Datenobjekte. Es ist wichtig, sich über die Struktur (oder Typ) des Datenobjekts Gedanken zu machen. Denn diese bestimmt, was mit einem Objekt gemacht werden kann und ob Funktionen damit richtig umgehen können. Schließlich ist es nicht egal, ob es sich bei einem Objekt um ein numerisches Objekt oder einfach Text (<em>character</em>) handelt.</p>
+<p>Die wichtigsten Datentypen sind</p>
+<ul>
+<li><strong>Vektoren</strong>: hier gruppiert man gleichartige Elemente, z.B. Zahlen. Auch eine einzelne Zahl (ein Skalar) wird von R wie ein Vektor behandelt.</li>
+<li><strong>Matrizen</strong>: zweidimensionale (Zeilen und Spalten) Datentabellen mit gleichartigen Elementen.</li>
+<li><strong>Listen</strong>: können beliebige Elemente beliebiger Länge enthalten.</li>
+<li><strong>Dataframes</strong>: zweidimensionale Datentabellen, die beliebige Elemente enthalten können. Die Spalten der Dataframes müssen allerdings gleichartige Elemente enthalten. Dataframes sind eine Unterart von Listen.</li>
+</ul>
+<p>Neben diesen Hauptstrukturen gibt es</p>
+<ul>
+<li><strong>Factor</strong>: ein besonderer Vektor für kategorielle Variablen</li>
+</ul>
+<p>Um diese Datenstrukturen zu erzeugen, gibt es jeweils eine Funktion mit gleichlautendem Namen.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="co"># Vektor erzeugen</span></a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">my_vect =<span class="st"> </span><span class="kw">vector</span>(<span class="dt">length =</span> <span class="dv">3</span>, <span class="dt">mode =</span> <span class="st">&#39;numeric&#39;</span>)</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3">my_vect</a></code></pre></div>
+<pre><code>## [1] 0 0 0</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="co"># Matrix erzeugen</span></a>
+<a class="sourceLine" id="cb3-2" data-line-number="2">my_matrix =<span class="st"> </span><span class="kw">matrix</span>(<span class="dt">data =</span> <span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span>(<span class="dv">3</span><span class="op">*</span><span class="dv">4</span>)), <span class="dt">nrow =</span> <span class="dv">3</span>, <span class="dt">ncol =</span> <span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb3-3" data-line-number="3">my_matrix</a></code></pre></div>
+<pre><code>##      [,1] [,2] [,3] [,4]
+## [1,]    1    4    7   10
+## [2,]    2    5    8   11
+## [3,]    3    6    9   12</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="co"># Dataframe erzeugen</span></a>
+<a class="sourceLine" id="cb5-2" data-line-number="2">my_dataframe =<span class="st"> </span><span class="kw">data.frame</span>(<span class="st">&#39;Spalte_1&#39;</span> =<span class="st"> </span><span class="kw">rep</span>(<span class="st">&#39;Text&#39;</span>, <span class="dv">10</span>),</a>
+<a class="sourceLine" id="cb5-3" data-line-number="3">                          <span class="st">&#39;Spalte_2&#39;</span> =<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)</a>
+<a class="sourceLine" id="cb5-4" data-line-number="4">my_dataframe</a></code></pre></div>
+<pre><code>##    Spalte_1 Spalte_2
+## 1      Text        1
+## 2      Text        2
+## 3      Text        3
+## 4      Text        4
+## 5      Text        5
+## 6      Text        6
+## 7      Text        7
+## 8      Text        8
+## 9      Text        9
+## 10     Text       10</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="co"># Liste erzeugen</span></a>
+<a class="sourceLine" id="cb7-2" data-line-number="2">my_list =<span class="st"> </span><span class="kw">list</span>(<span class="st">&#39;Schachtel_1&#39;</span> =<span class="st"> </span><span class="dv">3</span>, <span class="st">&#39;Schachtel_2&#39;</span> =<span class="st"> </span>my_dataframe,</a>
+<a class="sourceLine" id="cb7-3" data-line-number="3">               <span class="st">&#39;Schachtel_3&#39;</span> =<span class="st"> &#39;Noch mehr Text&#39;</span>)</a>
+<a class="sourceLine" id="cb7-4" data-line-number="4">my_list</a></code></pre></div>
+<pre><code>## $Schachtel_1
+## [1] 3
+## 
+## $Schachtel_2
+##    Spalte_1 Spalte_2
+## 1      Text        1
+## 2      Text        2
+## 3      Text        3
+## 4      Text        4
+## 5      Text        5
+## 6      Text        6
+## 7      Text        7
+## 8      Text        8
+## 9      Text        9
+## 10     Text       10
+## 
+## $Schachtel_3
+## [1] &quot;Noch mehr Text&quot;</code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="co"># Factor erzeugen</span></a>
+<a class="sourceLine" id="cb9-2" data-line-number="2">my_factor =<span class="st"> </span><span class="kw">factor</span>(<span class="kw">c</span>(<span class="st">&#39;R&#39;</span>, <span class="st">&#39;RStudio&#39;</span>, <span class="st">&#39;Cloud&#39;</span>, <span class="st">&#39;Cloud&#39;</span>, <span class="st">&#39;R&#39;</span>, <span class="st">&#39;R&#39;</span>))</a>
+<a class="sourceLine" id="cb9-3" data-line-number="3">my_factor</a></code></pre></div>
+<pre><code>## [1] R       RStudio Cloud   Cloud   R       R      
+## Levels: Cloud R RStudio</code></pre>
+</div>
+<div id="arten-von-daten-in-r" class="section level2">
+<h2><span class="header-section-number">4.2</span> Arten von Daten in R</h2>
+<p>Die Datenstrukturen <code>vector</code>, <code>data.frame</code> usw. können unterschiedliche Arten von Daten enthalten.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Name</th>
+<th align="left">Beispiele</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">raw</td>
+<td align="left">3A, FE</td>
+</tr>
+<tr class="even">
+<td align="left">logical</td>
+<td align="left">TRUE, FALSE</td>
+</tr>
+<tr class="odd">
+<td align="left">integer</td>
+<td align="left">1, 42, -3</td>
+</tr>
+<tr class="even">
+<td align="left">numeric/double</td>
+<td align="left">3, 2.81, 6.032e23</td>
+</tr>
+<tr class="odd">
+<td align="left">complex</td>
+<td align="left">1.2+2.2i</td>
+</tr>
+<tr class="even">
+<td align="left">character</td>
+<td align="left">“foo”</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="objekt-sag-mir-wer-du-bist" class="section level2">
+<h2><span class="header-section-number">4.3</span> Objekt, sag mir wer du bist</h2>
+<p>Um die Struktur und/oder Datenart abzufragen, verwendet man <code>class</code>, <code>typeof</code>, <code>mode</code> und <code>storage.mode</code>.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="kw">class</span>(my_vect)</a></code></pre></div>
+<pre><code>## [1] &quot;numeric&quot;</code></pre>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="kw">typeof</span>(my_vect)</a></code></pre></div>
+<pre><code>## [1] &quot;double&quot;</code></pre>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="kw">class</span>(my_dataframe)</a></code></pre></div>
+<pre><code>## [1] &quot;data.frame&quot;</code></pre>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="kw">typeof</span>(my_dataframe)</a></code></pre></div>
+<pre><code>## [1] &quot;list&quot;</code></pre>
+<p><br>
+Mit <code>str</code> kann man das Innenleben eines Objekts anzeigen. Das ist besonders wichtig nach dem Einlesen von Daten, um das Ergebnis des Einlesens zu kontrollieren. Dabei kontrolliert man, dass z.B. alle numerischen Spalten auch als Zahlen eingelesen wurden und nichts schief gegangen ist.</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1"><span class="kw">str</span>(my_dataframe)</a></code></pre></div>
+<pre><code>## &#39;data.frame&#39;:    10 obs. of  2 variables:
+##  $ Spalte_1: Factor w/ 1 level &quot;Text&quot;: 1 1 1 1 1 1 1 1 1 1
+##  $ Spalte_2: int  1 2 3 4 5 6 7 8 9 10</code></pre>
+<p>Weiter Funktionen, die Auskunft über Objekte geben sind <code>length</code>, sinnvoll auf nur Vektoren und Listen, und <code>dim</code>, sinnvoll auf zweidimensionalen Datenobjekten. Wenn Sie versuchen, <code>dim</code> auf einem Vektor aufzurufen, gibt es <code>NULL</code> (s.u.), weil Vektoren keine Dimensionen haben. Wenn Sie <code>length</code> auf einem <code>data.frame</code> aufrufen, bekommen Sie die Anzahl der Dimensionen, nämlich 2. Das sind keine besonders spannenden Informationen 😄.</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1"><span class="kw">length</span>(my_vect)</a></code></pre></div>
+<pre><code>## [1] 3</code></pre>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1"><span class="kw">dim</span>(my_vect)</a></code></pre></div>
+<pre><code>## NULL</code></pre>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1"><span class="kw">length</span>(my_dataframe)</a></code></pre></div>
+<pre><code>## [1] 2</code></pre>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1"><span class="kw">dim</span>(my_dataframe)</a></code></pre></div>
+<pre><code>## [1] 10  2</code></pre>
+</div>
+<div id="datenlücken-fehlschläge-etc." class="section level2">
+<h2><span class="header-section-number">4.4</span> Datenlücken, Fehlschläge etc.</h2>
+<p>Datenlücken werden in R mit <code>NA</code> kodiert, Fehlschläge bei Berechnungen mit <code>NaN</code> (not a number) und Vektoren der Länge 0 mit <code>NULL</code>. Letzteres wird häufig beim Aufruf von Funktionen benutzt, wenn man bestimmte Parameter ausschalten möchte. Die Benutzung muss aber immer in der Hilfe zur jeweiligen Funktion nachgeschlagen werden.</p>
+</div>
+<div id="inhalt-der-live-einführung-und-der-übungen-1" class="section level2">
+<h2><span class="header-section-number">4.5</span> Inhalt der live Einführung und der Übungen</h2>
+<ul>
+<li>Daten einlesen und <code>data.frame</code> erstellen: Aufgabe <a href="aufgabensammlung.html#bestandesaufnahme">5.2.1</a></li>
+</ul>
+<p>Funktionen, die wir in der Session nutzen werden:</p>
+<table>
+<colgroup>
+<col width="33%" />
+<col width="30%" />
+<col width="36%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Funktion</th>
+<th align="left">Bedeutung</th>
+<th align="left">Beispielaufruf</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>read.table</code></td>
+<td align="left">Liest Daten aus einer Datei ein.</td>
+<td align="left"><code>read.table(file= 'Daten.txt', header=TRUE)</code></td>
+</tr>
+<tr class="even">
+<td align="left"><code>ls</code></td>
+<td align="left">Zeigt den Inhalt des Workspaces.</td>
+<td align="left"><code>ls</code></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>head</code></td>
+<td align="left">Zeigt den ersten Teil eines Objekts.</td>
+<td align="left"><code>head(x)</code></td>
+</tr>
+<tr class="even">
+<td align="left"><code>tail</code></td>
+<td align="left">Zeigt den letzten Teil eines Objekts.</td>
+<td align="left"><code>tail(x)</code></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>str</code></td>
+<td align="left">Zeigt die Struktur (Innenleben) eines Objekts an</td>
+<td align="left"><code>str(my_dataframe)</code></td>
+</tr>
+<tr class="even">
+<td align="left"><code>length</code></td>
+<td align="left">Gibt die Länge eines Objekts.</td>
+<td align="left"><code>length(x)</code></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>dim</code></td>
+<td align="left">Gibt die Dimension eines Objekts (Reihenfolge: Zeilen, Spalten)</td>
+<td align="left"><code>dim(x)</code></td>
+</tr>
+<tr class="even">
+<td align="left"><code>seq</code></td>
+<td align="left">Erstellt eine regelmäßige Reihe.</td>
+<td align="left"><code>seq(from=-2, to=4, by=0.1)</code></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>data.frame</code></td>
+<td align="left">Erstellt eine Datentabelle.</td>
+<td align="left"><code>data.frame(x,y,z)</code></td>
+</tr>
+<tr class="even">
+<td align="left"><code>colnames</code>, <code>rownames</code></td>
+<td align="left">Benennt Spalten bzw. Zeilen eines Datenobjekts.</td>
+<td align="left"><code>colnames(x)</code></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>rm</code></td>
+<td align="left">Löscht Objekte aus dem Workspace.</td>
+<td align="left"><code>rm(x)</code></td>
+</tr>
+<tr class="even">
+<td align="left"><code>summary</code></td>
+<td align="left">Fasst ein Objekt zusammen.</td>
+<td align="left"><code>summary(x)</code></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>table</code></td>
+<td align="left">Erstellt eine Häufigkeitstabelle.</td>
+<td align="left"><code>table(x)</code></td>
+</tr>
+<tr class="even">
+<td align="left"><code>which</code></td>
+<td align="left">Gibt die TRUE-Indices eines logischen Objekts.</td>
+<td align="left"><code>which(LETTERS == 'R')</code></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>history</code></td>
+<td align="left">Zeigt die Liste mit ausgeführten Befehlen der Session.</td>
+<td align="left"><code>history</code></td>
+</tr>
+<tr class="even">
+<td align="left"><code>write.table</code></td>
+<td align="left">Speichert Datenobjekte als Tabelle ab.</td>
+<td align="left"><code>write.table(x, file='Tabelle.txt')</code></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>save.image</code></td>
+<td align="left">Speichert den Workspace.</td>
+<td align="left"><code>save.image(file= 'RSession.Rdata')</code></td>
+</tr>
+<tr class="even">
+<td align="left"><code>savehistory</code></td>
+<td align="left">Speichert die History.</td>
+<td align="left"><code>savehistory(file= 'Myhistory.Rhistory')</code></td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="erste-schritte.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="aufgabensammlung.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": false,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+},
+"toolbar": {
+"position": "fixed"
+},
+"search": true
+});
+});
+</script>
+
+</body>
+
+</html>

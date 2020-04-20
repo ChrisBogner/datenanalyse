@@ -28,16 +28,16 @@ Leider hat Ar sich beim übertragen der Daten vertippt. Er hat am Dienstag seine
 
 ## Laden und Speichern von Daten
 
-### Bestandesaufnahme
+### Bestandesaufnahme {#bestandesaufnahme}
 
 Ar Stat arbeitet als HiWi in der AG Ökosystemforschung und soll im Nationalpark Eifel eine Bestandsaufnahme durchführen. Er notiert den BHD (Brusthöhendurchmesser) und die Art der Bäume.
 
 
-1.  Laden Sie den Datensatz `r file.name("BHD.txt")` und ordnen Sie ihn der Variable `BHD` zu.
+1.  Lesen Sie den Datensatz `r file.name("BHD.txt")` ein und ordnen Sie ihn der Variable `BHD` zu.
 2. Erstellen Sie einen Vektor `a` mit Baumnummern. Von welcher Art sind die Elemente des Vektors `a`?
 3. Fügen Sie die Datensätze `BHD` und `a` zu einem `data.frame` zusammen und benennen Sie die Spalten sinnvoll.
 4. Löschen Sie den Vektor `a`.
-Laden Sie den Datensatz `r file.name("Art.txt")`.
+4. Lesen Sie den Datensatz `r file.name("Art.txt")` ein und ordnen Sie ihn der Variablen `art` zu.
 5. Fügen Sie die Art in den `data.frame` ein.
 6. Erstellen Sie eine Tabelle mit der Anzahl der jeweiligen Arten. Nutzen Sie die Funktion `table'.
 7. Speichern Sie die Tabelle mit `write.table`.

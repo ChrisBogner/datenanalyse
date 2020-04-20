@@ -1,0 +1,122 @@
+# Daten in R {#daten}
+
+```{block, type = 'rmdoutcomes'}
+- Daten einlesen mit `read.table`
+- Datenstrukturen erstellen
+- Typen von Daten in R abfragen
+- Daten speichern mit `write.table`
+```
+
+## Datenstrukturen erzeugen
+
+In R gibt es unterschiedliche Datenobjekte. Es ist wichtig, sich über die Struktur (oder Typ) des Datenobjekts Gedanken zu machen. Denn diese bestimmt, was mit einem Objekt gemacht werden kann und ob Funktionen damit richtig umgehen können. Schließlich ist es nicht egal, ob es sich bei einem Objekt um ein numerisches Objekt oder einfach Text (*character*) handelt.
+
+Die wichtigsten Datentypen sind
+
+- **Vektoren**: hier gruppiert man gleichartige Elemente, z.B. Zahlen. Auch eine einzelne Zahl (ein Skalar) wird von R wie ein Vektor behandelt.
+- **Matrizen**: zweidimensionale (Zeilen und Spalten) Datentabellen mit gleichartigen Elementen.
+- **Listen**: können beliebige Elemente beliebiger Länge enthalten.
+- **Dataframes**: zweidimensionale Datentabellen, die beliebige Elemente enthalten können. Die Spalten der Dataframes müssen allerdings gleichartige Elemente enthalten. Dataframes sind eine Unterart von Listen.
+
+Neben diesen Hauptstrukturen gibt es
+
+- **Factor**: ein besonderer Vektor für kategorielle Variablen 
+
+Um diese Datenstrukturen zu erzeugen, gibt es jeweils eine Funktion mit gleichlautendem Namen.
+
+```{r}
+# Vektor erzeugen
+my_vect = vector(length = 3, mode = 'numeric')
+my_vect
+# Matrix erzeugen
+my_matrix = matrix(data = c(1:(3*4)), nrow = 3, ncol = 4)
+my_matrix
+# Dataframe erzeugen
+my_dataframe = data.frame('Spalte_1' = rep('Text', 10),
+                          'Spalte_2' = 1:10)
+my_dataframe
+# Liste erzeugen
+my_list = list('Schachtel_1' = 3, 'Schachtel_2' = my_dataframe,
+               'Schachtel_3' = 'Noch mehr Text')
+my_list
+# Factor erzeugen
+my_factor = factor(c('R', 'RStudio', 'Cloud', 'Cloud', 'R', 'R'))
+my_factor
+```
+
+
+## Arten von Daten in R
+
+Die Datenstrukturen `vector`, `data.frame` usw. können unterschiedliche Arten von Daten enthalten.
+
+Name | Beispiele |
+:-----------|:----------|
+raw | 3A, FE |
+logical | TRUE, FALSE |
+integer | 1, 42, -3
+numeric/double | 3, 2.81, 6.032e23 |
+complex | 1.2+2.2i |
+character | "foo"|
+
+
+## Objekt, sag mir wer du bist
+
+Um die Struktur und/oder Datenart abzufragen, verwendet man `class`, `typeof`, `mode` und `storage.mode`.
+
+```{r}
+class(my_vect)
+typeof(my_vect)
+class(my_dataframe)
+typeof(my_dataframe)
+```
+
+<br> 
+Mit `str` kann man das Innenleben eines Objekts anzeigen. Das ist besonders wichtig nach dem Einlesen von Daten, um das Ergebnis des Einlesens zu kontrollieren. Dabei kontrolliert man, dass z.B. alle numerischen Spalten auch als Zahlen eingelesen wurden und nichts schief gegangen ist.
+
+```{r}
+str(my_dataframe)
+```
+
+
+Weiter Funktionen, die Auskunft über Objekte geben sind `length`, sinnvoll auf nur Vektoren und Listen, und `dim`, sinnvoll auf zweidimensionalen Datenobjekten. Wenn Sie versuchen, `dim` auf einem Vektor aufzurufen, gibt es `NULL` (s.u.), weil Vektoren keine Dimensionen haben. Wenn Sie `length` auf einem `data.frame` aufrufen, bekommen Sie die Anzahl der Dimensionen, nämlich 2. Das sind keine besonders spannenden Informationen `r emo::ji('smile')`.
+
+```{r}
+length(my_vect)
+dim(my_vect)
+length(my_dataframe)
+dim(my_dataframe)
+```
+
+
+## Datenlücken, Fehlschläge etc.
+
+Datenlücken werden in R mit `NA` kodiert, Fehlschläge bei Berechnungen mit `NaN` (not a number) und Vektoren der Länge 0 mit `NULL`. Letzteres wird häufig beim Aufruf von Funktionen benutzt, wenn man bestimmte Parameter ausschalten möchte. Die Benutzung muss aber immer in der Hilfe zur jeweiligen Funktion nachgeschlagen werden.
+
+
+## Inhalt der live Einführung und der Übungen
+
+- Daten einlesen und `data.frame` erstellen: Aufgabe \@ref(bestandesaufnahme)
+
+
+Funktionen, die wir in der Session nutzen werden:
+
+| Funktion | Bedeutung | Beispielaufruf |
+:-----------|:----------|:------------|
+`read.table` | Liest Daten aus einer Datei ein. | `read.table(file= 'Daten.txt', header=TRUE)`|
+`ls` | Zeigt den Inhalt des Workspaces. | `ls`|
+`head` | Zeigt den ersten Teil eines Objekts. | `head(x)`|
+`tail` | Zeigt den letzten Teil eines Objekts. | `tail(x)`|
+`str` | Zeigt die Struktur (Innenleben) eines Objekts an | `str(my_dataframe)` |
+`length` | Gibt die Länge eines Objekts.	| `length(x)`|
+`dim` | Gibt die Dimension eines Objekts (Reihenfolge: Zeilen, Spalten) | `dim(x)`|
+`seq` | Erstellt eine regelmäßige Reihe. | `seq(from=-2, to=4, by=0.1)`|
+`data.frame` | Erstellt eine Datentabelle. | `data.frame(x,y,z)`|
+`colnames`, `rownames` | Benennt Spalten bzw. Zeilen eines Datenobjekts. | `colnames(x)`|
+`rm` | Löscht Objekte aus dem Workspace. | `rm(x)` 
+`summary` | Fasst ein Objekt zusammen. | `summary(x)`|
+`table` | Erstellt eine Häufigkeitstabelle. | `table(x)`|
+`which` | Gibt die TRUE-Indices eines logischen Objekts. | `which(LETTERS == 'R')`|
+`history` | Zeigt die Liste mit ausgeführten Befehlen der Session. | `history`|
+`write.table` | Speichert Datenobjekte als Tabelle ab. | `write.table(x, file='Tabelle.txt')`|
+`save.image` | Speichert den Workspace. | `save.image(file= 'RSession.Rdata')`|
+`savehistory` | Speichert die History. | `savehistory(file= 'Myhistory.Rhistory')`

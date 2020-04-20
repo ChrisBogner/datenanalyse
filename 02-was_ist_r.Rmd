@@ -1,24 +1,26 @@
-# Erste Schritte {#erste_schritte}
+
+# Erste Schritte in `r fa("r-project", fill = "steelblue")` {#erste_schritte}   
 
 ```{block, type = 'rmdoutcomes'}
 - Layout und Bedeutung einzelner Fenster in RStudio kennen
-- Anweisungen aus dem Skript an die Console schicken
+- Anweisungen aus dem Skript an die Konsole schicken
 - R als Taschenrechner benutzen
 - erste Funktionen aufrufen
+- Objekte mit eckigen Klammern [ ] ansprechen
 ```
 
 
 ## Was ist R?
 R ist eine Programmiersprache für Datenanalyse und statistische Modellierung. Es ist frei verfügbar (*open source software*) und neben Python einer der am meisten benutzten Programmiersprachen zur Datenanalyse und -visualisierung. R wurde von Ross Ihaka und Robert Gentleman 1996 veröffentlicht @Ihaka1996. Es gibt für R eine Vielzahl von Zusatzpaketen, die die Funktionalität und die Einsatzmöglichkeiten enorm erweitern.
 
-Sie können R für Ihren Computer auf der offiziellen R-Seite https://www.r-project.org/ herunter laden und installieren. Auch die Pakete finden Sie dort unter CRAN (*The Comprehensive R Archive Network*). Auf den CRAN-Seiten finden Sie sogen. [CRAN Task Views](http://cran.r-project.org/web/views/), eine Übersicht über Pakete in verschiedenen Themenbereichen. Für den Umweltbereich sind folgende Paketsammmlungen besonders relevant:
+Sie können R für Ihren Computer auf der offiziellen R-Seite https://www.r-project.org/ herunter laden und installieren. Auch die Pakete finden Sie dort unter CRAN (*The Comprehensive R Archive Network*). Auf den CRAN-Seiten finden Sie sogen. [CRAN Task Views](http://cran.r-project.org/web/views/), eine Übersicht über Pakete in verschiedenen Themenbereichen. Für den Umweltbereich sind folgende Paketsammlungen besonders relevant:
 
 - Environmetrics: Analyse von Umweltdaten
 - Multivariate: Multivariate Statistik
 - Spatial: Analyse von räumlichen Daten
 - TimeSeries: Zeitreihenanalyse
 
-Zu Beginn des Kurses, werden wir jedoch nicht auf Ihren lokalen Rechnern arbeiten, sondern in einer Cloud (s. unten). Das ermöglicht einen schnelleren Einstieg in R und bietet eine live Unterstützung durch den Dozenten beim Programmieren. Daher biete ich zu diesem frühen Zeitpunkt im Kurs keine Unterstützung bei der Installation. Für die ganz Ungeduldigen, gibt es hier eine kurze *Einleitung zur Installation*
+Zu Beginn des Kurses, werden wir jedoch nicht auf Ihren lokalen Rechnern arbeiten, sondern in einer Cloud (s.u.). Das ermöglicht einen schnelleren Einstieg in R und bietet eine live Unterstützung durch den Dozenten beim Programmieren. Daher biete ich zu diesem frühen Zeitpunkt im Kurs keine Unterstützung bei der Installation. Für die ganz Ungeduldigen, gibt es hier eine kurze *Einleitung zur Installation*
 
 <iframe width="640" height="360" src="https://www.youtube.com/embed/kygOqp_zijk?list=PLG4WP9jv27SeMbBjhVcyXrGKQgnaex-0o" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
@@ -26,7 +28,7 @@ Zu Beginn des Kurses, werden wir jedoch nicht auf Ihren lokalen Rechnern arbeite
 ## Was ist RStudio?
 RStudio Desktop ist eine Entwicklungsumgebung für R. Sie können die *open source* Version kostenlos für Ihren Rechner [hier](https://rstudio.com/products/rstudio/#rstudio-desktop) herunterladen.
 
-Es gibt eine live Einführung in RStudio im Kurs. Zusätzlich können Sie hier  ein Video dazu ansehen.
+Es gibt eine live Einführung in RStudio im Kurs. Zusätzlich können Sie hier ein Video dazu ansehen.
 
 <iframe width="640" height="360" src="https://www.youtube.com/embed/r5wOhFVWXUE?list=PLG4WP9jv27SeMbBjhVcyXrGKQgnaex-0o" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
@@ -35,6 +37,15 @@ Es gibt eine live Einführung in RStudio im Kurs. Zusätzlich können Sie hier  
 Zu Beginn des Kurses werden wir in der [RStudio Cloud](https://rstudio.cloud/) arbeiten. Sie sollten eine Einladungsmail zu unserem Kurs in der Cloud bekommen haben. Ich werde in der Cloud Projekte für Sie anlegen (*assignment*), die Skripte, Arbeitsanweisungen etc. beinhalten. Wenn Sie auf so ein Assignment klicken, wird für Sie automatische ein Kopie des Projekts erstellt, in der Sie dann arbeiten können.
 
 Der große Vorteil der Cloud ist, dass ich direkt in Ihre Projekte eingreifen kann, wenn es mal zu Fehlern kommt. Während ich in Ihrem Projekt arbeite, werden Sie kurz aus der R-Sitzung ausgeloggt, da die Cloud kein gleichzeitiges Arbeiten unterstützt. Nehmen Sie sich etwas Zeit, um die Cloud und die darin enthaltenen [Tutorials](https://rstudio.cloud/learn/primers) kennen zu lernen.
+
+Sowohl in der RStudio Cloud als auch in einer lokalen Installation, ist Ihr RStudio so aufgebaut wie in Abbildung \@ref(fig:rstudio).
+
+```{r rstudio, echo = F, fig.cap = 'Aufbau von RStudio'}
+knitr::include_graphics('RStudio.png')
+```
+
+
+
 
 ## Inhalt der live Einführung und der Übungen
 
@@ -45,7 +56,7 @@ Der große Vorteil der Cloud ist, dass ich direkt in Ihre Projekte eingreifen ka
 - Notation mit eckigen Klammern [ ] (*array*-Notation)
 - Hilfeseiten aufrufen
 
-Funktionen, die wir in der Einführung nutzen werden:
+Funktionen, die wir in der Session nutzen werden:
 
 | Funktion | Bedeutung | Beispielaufruf |
 :-----------|:----------|:------------|

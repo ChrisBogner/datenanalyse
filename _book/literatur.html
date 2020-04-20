@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Kapitel 3 Erste Schritte in  | Datenanalyse mit R</title>
+  <title>Literatur | Datenanalyse mit R</title>
   <meta name="description" content="Begleitskript zur Veranstaltung Datenanalyse mit R" />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Kapitel 3 Erste Schritte in  | Datenanalyse mit R" />
+  <meta property="og:title" content="Literatur | Datenanalyse mit R" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="https://github.com/ChrisBogner/datenanalyse.git" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Kapitel 3 Erste Schritte in  | Datenanalyse mit R" />
+  <meta name="twitter:title" content="Literatur | Datenanalyse mit R" />
   
   <meta name="twitter:description" content="Begleitskript zur Veranstaltung Datenanalyse mit R" />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="einfuehrung.html"/>
-<link rel="next" href="daten.html"/>
+<link rel="prev" href="aufgabensammlung.html"/>
+
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -197,172 +197,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="erste_schritte" class="section level1">
-<h1><span class="header-section-number">Kapitel 3</span> Erste Schritte in <svg style="height:0.8em;top:.04em;position:relative;fill:steelblue;" viewBox="0 0 581 512"><path d="M581 226.6C581 119.1 450.9 32 290.5 32S0 119.1 0 226.6C0 322.4 103.3 402 239.4 418.1V480h99.1v-61.5c24.3-2.7 47.6-7.4 69.4-13.9L448 480h112l-67.4-113.7c54.5-35.4 88.4-84.9 88.4-139.7zm-466.8 14.5c0-73.5 98.9-133 220.8-133s211.9 40.7 211.9 133c0 50.1-26.5 85-70.3 106.4-2.4-1.6-4.7-2.9-6.4-3.7-10.2-5.2-27.8-10.5-27.8-10.5s86.6-6.4 86.6-92.7-90.6-87.9-90.6-87.9h-199V361c-74.1-21.5-125.2-67.1-125.2-119.9zm225.1 38.3v-55.6c57.8 0 87.8-6.8 87.8 27.3 0 36.5-38.2 28.3-87.8 28.3zm-.9 72.5H365c10.8 0 18.9 11.7 24 19.2-16.1 1.9-33 2.8-50.6 2.9v-22.1z"/></svg></h1>
-<div class="rmdoutcomes">
-<ul>
-<li>
-Layout und Bedeutung einzelner Fenster in RStudio kennen
-</li>
-<li>
-Anweisungen aus dem Skript an die Konsole schicken
-</li>
-<li>
-R als Taschenrechner benutzen
-</li>
-<li>
-erste Funktionen aufrufen
-</li>
-<li>
-Objekte mit eckigen Klammern [ ] ansprechen
-</li>
-</ul>
+<div id="literatur" class="section level1 unnumbered">
+<h1>Literatur</h1>
+<!-- --- -->
+<!-- nocite: '@Beinke2016' -->
+<!-- ... -->
+<div id="refs">
+<div id="ref-Ihaka1996">
+<p>Ihaka, Ross, and Robert Gentleman. 1996. “R: A Language for Data Analysis and Graphics.” <em>Journal of Computational and Graphical Statistics</em> 5 (3). Taylor &amp; Francis: 299–314. <a href="https://doi.org/10.1080/10618600.1996.10474713">https://doi.org/10.1080/10618600.1996.10474713</a>.</p>
 </div>
-<div id="was-ist-r" class="section level2">
-<h2><span class="header-section-number">3.1</span> Was ist R?</h2>
-<p>R ist eine Programmiersprache für Datenanalyse und statistische Modellierung. Es ist frei verfügbar (<em>open source software</em>) und neben Python einer der am meisten benutzten Programmiersprachen zur Datenanalyse und -visualisierung. R wurde von Ross Ihaka und Robert Gentleman 1996 veröffentlicht <span class="citation">Ihaka and Gentleman (<a href="literatur.html#ref-Ihaka1996">1996</a>)</span>. Es gibt für R eine Vielzahl von Zusatzpaketen, die die Funktionalität und die Einsatzmöglichkeiten enorm erweitern.</p>
-<p>Sie können R für Ihren Computer auf der offiziellen R-Seite <a href="https://www.r-project.org/" class="uri">https://www.r-project.org/</a> herunter laden und installieren. Auch die Pakete finden Sie dort unter CRAN (<em>The Comprehensive R Archive Network</em>). Auf den CRAN-Seiten finden Sie sogen. <a href="http://cran.r-project.org/web/views/">CRAN Task Views</a>, eine Übersicht über Pakete in verschiedenen Themenbereichen. Für den Umweltbereich sind folgende Paketsammlungen besonders relevant:</p>
-<ul>
-<li>Environmetrics: Analyse von Umweltdaten</li>
-<li>Multivariate: Multivariate Statistik</li>
-<li>Spatial: Analyse von räumlichen Daten</li>
-<li>TimeSeries: Zeitreihenanalyse</li>
-</ul>
-<p>Zu Beginn des Kurses, werden wir jedoch nicht auf Ihren lokalen Rechnern arbeiten, sondern in einer Cloud (s.u.). Das ermöglicht einen schnelleren Einstieg in R und bietet eine live Unterstützung durch den Dozenten beim Programmieren. Daher biete ich zu diesem frühen Zeitpunkt im Kurs keine Unterstützung bei der Installation. Für die ganz Ungeduldigen, gibt es hier eine kurze <em>Einleitung zur Installation</em></p>
-<iframe width="640" height="360" src="https://www.youtube.com/embed/kygOqp_zijk?list=PLG4WP9jv27SeMbBjhVcyXrGKQgnaex-0o" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-</iframe>
-</div>
-<div id="was-ist-rstudio" class="section level2">
-<h2><span class="header-section-number">3.2</span> Was ist RStudio?</h2>
-<p>RStudio Desktop ist eine Entwicklungsumgebung für R. Sie können die <em>open source</em> Version kostenlos für Ihren Rechner <a href="https://rstudio.com/products/rstudio/#rstudio-desktop">hier</a> herunterladen.</p>
-<p>Es gibt eine live Einführung in RStudio im Kurs. Zusätzlich können Sie hier ein Video dazu ansehen.</p>
-<iframe width="640" height="360" src="https://www.youtube.com/embed/r5wOhFVWXUE?list=PLG4WP9jv27SeMbBjhVcyXrGKQgnaex-0o" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-</iframe>
-</div>
-<div id="rstudio-cloud" class="section level2">
-<h2><span class="header-section-number">3.3</span> RStudio Cloud</h2>
-<p>Zu Beginn des Kurses werden wir in der <a href="https://rstudio.cloud/">RStudio Cloud</a> arbeiten. Sie sollten eine Einladungsmail zu unserem Kurs in der Cloud bekommen haben. Ich werde in der Cloud Projekte für Sie anlegen (<em>assignment</em>), die Skripte, Arbeitsanweisungen etc. beinhalten. Wenn Sie auf so ein Assignment klicken, wird für Sie automatische ein Kopie des Projekts erstellt, in der Sie dann arbeiten können.</p>
-<p>Der große Vorteil der Cloud ist, dass ich direkt in Ihre Projekte eingreifen kann, wenn es mal zu Fehlern kommt. Während ich in Ihrem Projekt arbeite, werden Sie kurz aus der R-Sitzung ausgeloggt, da die Cloud kein gleichzeitiges Arbeiten unterstützt. Nehmen Sie sich etwas Zeit, um die Cloud und die darin enthaltenen <a href="https://rstudio.cloud/learn/primers">Tutorials</a> kennen zu lernen.</p>
-<p>Sowohl in der RStudio Cloud als auch in einer lokalen Installation, ist Ihr RStudio so aufgebaut wie in Abbildung <a href="erste-schritte.html#fig:rstudio">3.1</a>.</p>
-<div class="figure"><span id="fig:rstudio"></span>
-<img src="RStudio.png" alt="Aufbau von RStudio" width="930" />
-<p class="caption">
-Abbildung 3.1: Aufbau von RStudio
-</p>
+<div id="ref-Zuur2009a">
+<p>Zuur, A. F., E. Ieno, and E. Meesters. 2009. <em>A Beginner’s Guide to R</em>. Springer.</p>
 </div>
 </div>
-<div id="inhalt-der-live-einführung-und-der-übungen" class="section level2">
-<h2><span class="header-section-number">3.4</span> Inhalt der live Einführung und der Übungen</h2>
-<ul>
-<li>Überblick über RStudio</li>
-<li>R als Taschenrechner</li>
-<li>einfache Funktionen aufrufen</li>
-<li>Zuordnungen (<em>assignments</em>)</li>
-<li>Notation mit eckigen Klammern [ ] (<em>array</em>-Notation)</li>
-<li>Hilfeseiten aufrufen</li>
-</ul>
-<p>Funktionen, die wir in der Session nutzen werden:</p>
-<table>
-<colgroup>
-<col width="33%" />
-<col width="30%" />
-<col width="36%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th align="left">Funktion</th>
-<th align="left">Bedeutung</th>
-<th align="left">Beispielaufruf</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left"><code>pi</code></td>
-<td align="left">Zahl pi</td>
-<td align="left"><code>pi</code></td>
-</tr>
-<tr class="even">
-<td align="left"><code>sin</code></td>
-<td align="left">Sinus</td>
-<td align="left"><code>sin(2)</code></td>
-</tr>
-<tr class="odd">
-<td align="left"><code>cos</code></td>
-<td align="left">Cosinus</td>
-<td align="left"><code>cos(2)</code></td>
-</tr>
-<tr class="even">
-<td align="left"><code>sqrt</code></td>
-<td align="left">Quadratwurzel</td>
-<td align="left"><code>sqrt(2)</code></td>
-</tr>
-<tr class="odd">
-<td align="left"><code>c</code></td>
-<td align="left">(<em>concatenate</em>) Fügt Daten zu einem Vektor zusammen</td>
-<td align="left"><code>c(1,2,3,4)</code></td>
-</tr>
-<tr class="even">
-<td align="left"><code>help.start</code></td>
-<td align="left">Öffnet ein Browser-Fenster mit diversen Handbüchern</td>
-<td align="left"><code>help.start()</code></td>
-</tr>
-<tr class="odd">
-<td align="left"><code>help.search</code></td>
-<td align="left">Sucht nach einem Begriff in Hilfe-Dateien</td>
-<td align="left"><code>help.search('time')</code></td>
-</tr>
-<tr class="even">
-<td align="left"><code>??</code></td>
-<td align="left">alias <code>help.search</code></td>
-<td align="left"><code>??time</code></td>
-</tr>
-<tr class="odd">
-<td align="left"><code>help</code></td>
-<td align="left">Sucht nach einer Funktion</td>
-<td align="left"><code>?mean</code></td>
-</tr>
-<tr class="even">
-<td align="left"><code>?</code></td>
-<td align="left">alias <code>help()</code></td>
-<td align="left"><code>?mean</code></td>
-</tr>
-<tr class="odd">
-<td align="left"><code>mean</code></td>
-<td align="left">Mittelwert</td>
-<td align="left"><code>mean(c(1,2,3,4))</code></td>
-</tr>
-<tr class="even">
-<td align="left"><code>var</code></td>
-<td align="left">Varianz</td>
-<td align="left"><code>var(c(1,2,3,4))</code></td>
-</tr>
-<tr class="odd">
-<td align="left"><code>sd</code></td>
-<td align="left">Standardabweichung</td>
-<td align="left"><code>sd(c(1,2,3,4))</code></td>
-</tr>
-<tr class="even">
-<td align="left"><code>sum</code></td>
-<td align="left">Summe</td>
-<td align="left"><code>sum(c(1,2,3,4))</code></td>
-</tr>
-<tr class="odd">
-<td align="left"><code>vector</code></td>
-<td align="left">Generiert einen Vektor</td>
-<td align="left"><code>vector(length=3, mode='numeric')</code></td>
-</tr>
-</tbody>
-</table>
 
-</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="einfuehrung.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="daten.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="aufgabensammlung.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

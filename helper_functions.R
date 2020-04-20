@@ -1,3 +1,7 @@
+# Load libraries
+
+library(fontawesome)
+
 # These are different helper functions for the book
 
 colorize <- function(x, color) {

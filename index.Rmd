@@ -4,7 +4,15 @@ subtitle: "SoSe 2020"
 author: "Christina Bogner"
 date: "Version vom: `r format(Sys.time(), '%d. %B %Y')`"
 site: bookdown::bookdown_site
-output: bookdown::gitbook
+output: 
+  bookdown::gitbook:
+    config:
+      toolbar:
+        position: fixed
+      edit : null
+      download: null
+      search: yes
+      sharing: no
 documentclass: book
 bibliography: [book.bib, packages.bib]
 biblio-style: apalike
@@ -14,6 +22,10 @@ description: "Begleitskript zur Veranstaltung Datenanalyse mit R"
 ---
 
 # Vorwort
+
+> "And honey, we're gonna do it in style"
+
+`r tufte::quote_footer('--- Fools Garden')`
 
 ## Organisatorisches
 

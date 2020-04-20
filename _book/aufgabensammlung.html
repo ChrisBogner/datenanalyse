@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Kapitel 4 Aufgabensammlung | Datenanalyse mit R</title>
+  <title>Kapitel 5 Aufgabensammlung | Datenanalyse mit R</title>
   <meta name="description" content="Begleitskript zur Veranstaltung Datenanalyse mit R" />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Kapitel 4 Aufgabensammlung | Datenanalyse mit R" />
+  <meta property="og:title" content="Kapitel 5 Aufgabensammlung | Datenanalyse mit R" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="https://github.com/ChrisBogner/datenanalyse.git" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Kapitel 4 Aufgabensammlung | Datenanalyse mit R" />
+  <meta name="twitter:title" content="Kapitel 5 Aufgabensammlung | Datenanalyse mit R" />
   
   <meta name="twitter:description" content="Begleitskript zur Veranstaltung Datenanalyse mit R" />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="erste-schritte.html"/>
-<link rel="next" href="references.html"/>
+<link rel="prev" href="daten.html"/>
+<link rel="next" href="literatur.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -51,6 +51,68 @@
 
 
 
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 <link rel="stylesheet" href="css/all.css" type="text/css" />
@@ -73,41 +135,48 @@
 <li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#organisatorisches"><i class="fa fa-check"></i><b>1.1</b> Organisatorisches</a></li>
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#sinn-und-unsinn-dieses-skripts"><i class="fa fa-check"></i><b>1.2</b> Sinn und Unsinn dieses Skripts</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="einführung.html"><a href="einführung.html"><i class="fa fa-check"></i><b>2</b> Der Kurs</a><ul>
-<li class="chapter" data-level="2.1" data-path="einführung.html"><a href="einführung.html#zuordnung-zum-modul-und-leistungsnachweis"><i class="fa fa-check"></i><b>2.1</b> Zuordnung zum Modul und Leistungsnachweis</a></li>
-<li class="chapter" data-level="2.2" data-path="einführung.html"><a href="einführung.html#lernziele-des-kurses"><i class="fa fa-check"></i><b>2.2</b> Lernziele des Kurses</a></li>
-<li class="chapter" data-level="2.3" data-path="einführung.html"><a href="einführung.html#was-mir-im-umgang-miteinander-wichtig-ist"><i class="fa fa-check"></i><b>2.3</b> Was mir im Umgang miteinander wichtig ist</a></li>
+<li class="chapter" data-level="2" data-path="einfuehrung.html"><a href="einfuehrung.html"><i class="fa fa-check"></i><b>2</b> Der Kurs</a><ul>
+<li class="chapter" data-level="2.1" data-path="einfuehrung.html"><a href="einfuehrung.html#zuordnung-zum-modul-und-leistungsnachweis"><i class="fa fa-check"></i><b>2.1</b> Zuordnung zum Modul und Leistungsnachweis</a></li>
+<li class="chapter" data-level="2.2" data-path="einfuehrung.html"><a href="einfuehrung.html#lernziele-des-kurses"><i class="fa fa-check"></i><b>2.2</b> Lernziele des Kurses</a></li>
+<li class="chapter" data-level="2.3" data-path="einfuehrung.html"><a href="einfuehrung.html#was-mir-im-umgang-miteinander-wichtig-ist"><i class="fa fa-check"></i><b>2.3</b> Was mir im Umgang miteinander wichtig ist</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="erste-schritte.html"><a href="erste-schritte.html"><i class="fa fa-check"></i><b>3</b> Erste Schritte</a><ul>
+<li class="chapter" data-level="3" data-path="erste-schritte.html"><a href="erste-schritte.html"><i class="fa fa-check"></i><b>3</b> Erste Schritte in <svg style="height:0.8em;top:.04em;position:relative;fill:steelblue;" viewBox="0 0 581 512"><path d="M581 226.6C581 119.1 450.9 32 290.5 32S0 119.1 0 226.6C0 322.4 103.3 402 239.4 418.1V480h99.1v-61.5c24.3-2.7 47.6-7.4 69.4-13.9L448 480h112l-67.4-113.7c54.5-35.4 88.4-84.9 88.4-139.7zm-466.8 14.5c0-73.5 98.9-133 220.8-133s211.9 40.7 211.9 133c0 50.1-26.5 85-70.3 106.4-2.4-1.6-4.7-2.9-6.4-3.7-10.2-5.2-27.8-10.5-27.8-10.5s86.6-6.4 86.6-92.7-90.6-87.9-90.6-87.9h-199V361c-74.1-21.5-125.2-67.1-125.2-119.9zm225.1 38.3v-55.6c57.8 0 87.8-6.8 87.8 27.3 0 36.5-38.2 28.3-87.8 28.3zm-.9 72.5H365c10.8 0 18.9 11.7 24 19.2-16.1 1.9-33 2.8-50.6 2.9v-22.1z"/></svg></a><ul>
 <li class="chapter" data-level="3.1" data-path="erste-schritte.html"><a href="erste-schritte.html#was-ist-r"><i class="fa fa-check"></i><b>3.1</b> Was ist R?</a></li>
 <li class="chapter" data-level="3.2" data-path="erste-schritte.html"><a href="erste-schritte.html#was-ist-rstudio"><i class="fa fa-check"></i><b>3.2</b> Was ist RStudio?</a></li>
 <li class="chapter" data-level="3.3" data-path="erste-schritte.html"><a href="erste-schritte.html#rstudio-cloud"><i class="fa fa-check"></i><b>3.3</b> RStudio Cloud</a></li>
 <li class="chapter" data-level="3.4" data-path="erste-schritte.html"><a href="erste-schritte.html#inhalt-der-live-einführung-und-der-übungen"><i class="fa fa-check"></i><b>3.4</b> Inhalt der live Einführung und der Übungen</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html"><i class="fa fa-check"></i><b>4</b> Aufgabensammlung</a><ul>
-<li class="chapter" data-level="4.1" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#erste-schritte"><i class="fa fa-check"></i><b>4.1</b> Erste Schritte</a><ul>
-<li class="chapter" data-level="4.1.1" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#ars-haushaltsbuch"><i class="fa fa-check"></i><b>4.1.1</b> Ars Haushaltsbuch</a></li>
+<li class="chapter" data-level="4" data-path="daten.html"><a href="daten.html"><i class="fa fa-check"></i><b>4</b> Daten in R</a><ul>
+<li class="chapter" data-level="4.1" data-path="daten.html"><a href="daten.html#datenstrukturen-erzeugen"><i class="fa fa-check"></i><b>4.1</b> Datenstrukturen erzeugen</a></li>
+<li class="chapter" data-level="4.2" data-path="daten.html"><a href="daten.html#arten-von-daten-in-r"><i class="fa fa-check"></i><b>4.2</b> Arten von Daten in R</a></li>
+<li class="chapter" data-level="4.3" data-path="daten.html"><a href="daten.html#objekt-sag-mir-wer-du-bist"><i class="fa fa-check"></i><b>4.3</b> Objekt, sag mir wer du bist</a></li>
+<li class="chapter" data-level="4.4" data-path="daten.html"><a href="daten.html#datenlücken-fehlschläge-etc."><i class="fa fa-check"></i><b>4.4</b> Datenlücken, Fehlschläge etc.</a></li>
+<li class="chapter" data-level="4.5" data-path="daten.html"><a href="daten.html#inhalt-der-live-einführung-und-der-übungen-1"><i class="fa fa-check"></i><b>4.5</b> Inhalt der live Einführung und der Übungen</a></li>
 </ul></li>
-<li class="chapter" data-level="4.2" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#laden-und-speichern-von-daten"><i class="fa fa-check"></i><b>4.2</b> Laden und Speichern von Daten</a><ul>
-<li class="chapter" data-level="4.2.1" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#bestandesaufnahme"><i class="fa fa-check"></i><b>4.2.1</b> Bestandesaufnahme</a></li>
+<li class="chapter" data-level="5" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html"><i class="fa fa-check"></i><b>5</b> Aufgabensammlung</a><ul>
+<li class="chapter" data-level="5.1" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#erste-schritte"><i class="fa fa-check"></i><b>5.1</b> Erste Schritte</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#ars-haushaltsbuch"><i class="fa fa-check"></i><b>5.1.1</b> Ars Haushaltsbuch</a></li>
 </ul></li>
-<li class="chapter" data-level="4.3" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#automatisieren-skripte-funktionen"><i class="fa fa-check"></i><b>4.3</b> Automatisieren: Skripte &amp; Funktionen</a><ul>
-<li class="chapter" data-level="4.3.1" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#r-hausaufgaben"><i class="fa fa-check"></i><b>4.3.1</b> R-Hausaufgaben</a></li>
-<li class="chapter" data-level="4.3.2" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#fledermäuse-die-zweite"><i class="fa fa-check"></i><b>4.3.2</b> Fledermäuse, die Zweite</a></li>
-<li class="chapter" data-level="4.3.3" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#unfaire-klausur"><i class="fa fa-check"></i><b>4.3.3</b> Unfaire Klausur?</a></li>
+<li class="chapter" data-level="5.2" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#laden-und-speichern-von-daten"><i class="fa fa-check"></i><b>5.2</b> Laden und Speichern von Daten</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#bestandesaufnahme"><i class="fa fa-check"></i><b>5.2.1</b> Bestandesaufnahme</a></li>
 </ul></li>
-<li class="chapter" data-level="4.4" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#daten-visualisieren"><i class="fa fa-check"></i><b>4.4</b> Daten visualisieren</a><ul>
-<li class="chapter" data-level="4.4.1" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#lange-bramke-harz"><i class="fa fa-check"></i><b>4.4.1</b> Lange Bramke (Harz)</a></li>
-<li class="chapter" data-level="4.4.2" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#temperatur-datensatz"><i class="fa fa-check"></i><b>4.4.2</b> Temperatur-Datensatz</a></li>
-<li class="chapter" data-level="4.4.3" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#artenvielfalt-in-grasländern"><i class="fa fa-check"></i><b>4.4.3</b> Artenvielfalt in Grasländern</a></li>
-<li class="chapter" data-level="4.4.4" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#tracerversuche"><i class="fa fa-check"></i><b>4.4.4</b> Tracerversuche</a></li>
+<li class="chapter" data-level="5.3" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#automatisieren-skripte-funktionen"><i class="fa fa-check"></i><b>5.3</b> Automatisieren: Skripte &amp; Funktionen</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#r-hausaufgaben"><i class="fa fa-check"></i><b>5.3.1</b> R-Hausaufgaben</a></li>
+<li class="chapter" data-level="5.3.2" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#fledermäuse-die-zweite"><i class="fa fa-check"></i><b>5.3.2</b> Fledermäuse, die Zweite</a></li>
+<li class="chapter" data-level="5.3.3" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#unfaire-klausur"><i class="fa fa-check"></i><b>5.3.3</b> Unfaire Klausur?</a></li>
 </ul></li>
-<li class="chapter" data-level="4.5" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#effizientes-programmieren"><i class="fa fa-check"></i><b>4.5</b> Effizientes Programmieren</a><ul>
-<li class="chapter" data-level="4.5.1" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#lagerungsdichten"><i class="fa fa-check"></i><b>4.5.1</b> Lagerungsdichten</a></li>
-<li class="chapter" data-level="4.5.2" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#temperatur-datensatz-revisited"><i class="fa fa-check"></i><b>4.5.2</b> Temperatur-Datensatz, revisited</a></li>
+<li class="chapter" data-level="5.4" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#daten-visualisieren"><i class="fa fa-check"></i><b>5.4</b> Daten visualisieren</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#lange-bramke-harz"><i class="fa fa-check"></i><b>5.4.1</b> Lange Bramke (Harz)</a></li>
+<li class="chapter" data-level="5.4.2" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#temperatur-datensatz"><i class="fa fa-check"></i><b>5.4.2</b> Temperatur-Datensatz</a></li>
+<li class="chapter" data-level="5.4.3" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#artenvielfalt-in-grasländern"><i class="fa fa-check"></i><b>5.4.3</b> Artenvielfalt in Grasländern</a></li>
+<li class="chapter" data-level="5.4.4" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#tracerversuche"><i class="fa fa-check"></i><b>5.4.4</b> Tracerversuche</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#effizientes-programmieren"><i class="fa fa-check"></i><b>5.5</b> Effizientes Programmieren</a><ul>
+<li class="chapter" data-level="5.5.1" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#lagerungsdichten"><i class="fa fa-check"></i><b>5.5.1</b> Lagerungsdichten</a></li>
+<li class="chapter" data-level="5.5.2" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#temperatur-datensatz-revisited"><i class="fa fa-check"></i><b>5.5.2</b> Temperatur-Datensatz, revisited</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="chapter" data-level="" data-path="literatur.html"><a href="literatur.html"><i class="fa fa-check"></i>Literatur</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -129,15 +198,15 @@
 
             <section class="normal" id="section-">
 <div id="aufgabensammlung" class="section level1">
-<h1><span class="header-section-number">Kapitel 4</span> Aufgabensammlung</h1>
+<h1><span class="header-section-number">Kapitel 5</span> Aufgabensammlung</h1>
 <div id="erste-schritte" class="section level2">
-<h2><span class="header-section-number">4.1</span> Erste Schritte</h2>
+<h2><span class="header-section-number">5.1</span> Erste Schritte</h2>
 <div id="ars-haushaltsbuch" class="section level3">
-<h3><span class="header-section-number">4.1.1</span> Ars Haushaltsbuch</h3>
+<h3><span class="header-section-number">5.1.1</span> Ars Haushaltsbuch</h3>
 <p>Der angehende Datenanalyst Ar Stat möchte dem Rat seiner Mutter folgen und ein Haushaltsbuch anlegen. Als erstes möchte er sich einen Überblick über seine Ausgaben in der Uni-Mensa verschaffen und erstellt die folgende Tabelle:</p>
 <p><br></p>
 <table>
-<caption><span id="tab:unnamed-chunk-13">Tabelle 4.1: </span>Ars Mensaausgaben</caption>
+<caption><span id="tab:unnamed-chunk-19">Tabelle 5.1: </span>Ars Mensaausgaben</caption>
 <thead>
 <tr class="header">
 <th align="left">Wochentag</th>
@@ -180,16 +249,16 @@
 </div>
 </div>
 <div id="laden-und-speichern-von-daten" class="section level2">
-<h2><span class="header-section-number">4.2</span> Laden und Speichern von Daten</h2>
+<h2><span class="header-section-number">5.2</span> Laden und Speichern von Daten</h2>
 <div id="bestandesaufnahme" class="section level3">
-<h3><span class="header-section-number">4.2.1</span> Bestandesaufnahme</h3>
+<h3><span class="header-section-number">5.2.1</span> Bestandesaufnahme</h3>
 <p>Ar Stat arbeitet als HiWi in der AG Ökosystemforschung und soll im Nationalpark Eifel eine Bestandsaufnahme durchführen. Er notiert den BHD (Brusthöhendurchmesser) und die Art der Bäume.</p>
 <ol style="list-style-type: decimal">
-<li>Laden Sie den Datensatz <span style="font-family: sans-serif; font-size: medium">BHD.txt</span> und ordnen Sie ihn der Variable <code>BHD</code> zu.</li>
+<li>Lesen Sie den Datensatz <span style="font-family: sans-serif; font-size: medium">BHD.txt</span> ein und ordnen Sie ihn der Variable <code>BHD</code> zu.</li>
 <li>Erstellen Sie einen Vektor <code>a</code> mit Baumnummern. Von welcher Art sind die Elemente des Vektors <code>a</code>?</li>
 <li>Fügen Sie die Datensätze <code>BHD</code> und <code>a</code> zu einem <code>data.frame</code> zusammen und benennen Sie die Spalten sinnvoll.</li>
-<li>Löschen Sie den Vektor <code>a</code>.
-Laden Sie den Datensatz <span style="font-family: sans-serif; font-size: medium">Art.txt</span>.</li>
+<li>Löschen Sie den Vektor <code>a</code>.</li>
+<li>Lesen Sie den Datensatz <span style="font-family: sans-serif; font-size: medium">Art.txt</span> ein und ordnen Sie ihn der Variablen <code>art</code> zu.</li>
 <li>Fügen Sie die Art in den <code>data.frame</code> ein.</li>
 <li>Erstellen Sie eine Tabelle mit der Anzahl der jeweiligen Arten. Nutzen Sie die Funktion `table’.</li>
 <li>Speichern Sie die Tabelle mit <code>write.table</code>.</li>
@@ -198,9 +267,9 @@ Laden Sie den Datensatz <span style="font-family: sans-serif; font-size: medium"
 </div>
 </div>
 <div id="automatisieren-skripte-funktionen" class="section level2">
-<h2><span class="header-section-number">4.3</span> Automatisieren: Skripte &amp; Funktionen</h2>
+<h2><span class="header-section-number">5.3</span> Automatisieren: Skripte &amp; Funktionen</h2>
 <div id="r-hausaufgaben" class="section level3">
-<h3><span class="header-section-number">4.3.1</span> R-Hausaufgaben</h3>
+<h3><span class="header-section-number">5.3.1</span> R-Hausaufgaben</h3>
 <p>An dem Kurs “Einführung in R” nehmen 49 Studierende teil. Der Leistungsnachweis besteht aus Hausaufgaben, die insgesamt mit 100 Punkten bewertet werden. Ab 50 Punkten gilt der Kurs als bestanden.</p>
 <ol style="list-style-type: decimal">
 <li>Lesen Sie den Datensatz <span style="font-family: sans-serif; font-size: medium">R-HAs.txt</span>, der die Endpunkte enthält, ein.</li>
@@ -208,7 +277,7 @@ Laden Sie den Datensatz <span style="font-family: sans-serif; font-size: medium"
 </ol>
 </div>
 <div id="fledermäuse-die-zweite" class="section level3">
-<h3><span class="header-section-number">4.3.2</span> Fledermäuse, die Zweite</h3>
+<h3><span class="header-section-number">5.3.2</span> Fledermäuse, die Zweite</h3>
 <p>Wir beschäftigen uns erneut mit den Fledermäusen.</p>
 <ol style="list-style-type: decimal">
 <li>Lesen Sie den korrigierten(!) Datensatz <span style="font-family: sans-serif; font-size: medium">Fledermaus_cor.txt</span> ein.</li>
@@ -219,7 +288,7 @@ Laden Sie den Datensatz <span style="font-family: sans-serif; font-size: medium"
 </ol>
 </div>
 <div id="unfaire-klausur" class="section level3">
-<h3><span class="header-section-number">4.3.3</span> Unfaire Klausur?</h3>
+<h3><span class="header-section-number">5.3.3</span> Unfaire Klausur?</h3>
 <p>Ar belegt im 4. Semester die Veranstaltung “Spaß mit R”. Bei der Klausur gibt es 2 Aufgabengruppen mit jeweils 60 Punkten. Aufgabengruppe 1 wird an Studierende auf ungeraden Sitzplätzen und Aufgabengruppe 2 an Studierende auf geraden Sitzplätzen ausgegeben.</p>
 <ol style="list-style-type: decimal">
 <li>Lesen Sie den Datensatz <span style="font-family: sans-serif; font-size: medium">Klausurpunkte.txt</span> ein.</li>
@@ -228,9 +297,9 @@ Laden Sie den Datensatz <span style="font-family: sans-serif; font-size: medium"
 </div>
 </div>
 <div id="daten-visualisieren" class="section level2">
-<h2><span class="header-section-number">4.4</span> Daten visualisieren</h2>
+<h2><span class="header-section-number">5.4</span> Daten visualisieren</h2>
 <div id="lange-bramke-harz" class="section level3">
-<h3><span class="header-section-number">4.4.1</span> Lange Bramke (Harz)</h3>
+<h3><span class="header-section-number">5.4.1</span> Lange Bramke (Harz)</h3>
 <p>Im Harz wurden über eine längere Zeit Niederschlag, Abfluss und Temperatur gemessen.</p>
 <ol style="list-style-type: decimal">
 <li>Laden Sie den Datensatz <span style="font-family: sans-serif; font-size: medium">Data.dat</span>.</li>
@@ -241,9 +310,9 @@ Laden Sie den Datensatz <span style="font-family: sans-serif; font-size: medium"
 </ol>
 </div>
 <div id="temperatur-datensatz" class="section level3">
-<h3><span class="header-section-number">4.4.2</span> Temperatur-Datensatz</h3>
+<h3><span class="header-section-number">5.4.2</span> Temperatur-Datensatz</h3>
 <ol style="list-style-type: decimal">
-<li>Laden Sie den Temperatur-Datensatz aus <span class="citation">Zuur, Ieno, and Meesters (<a href="references.html#ref-Zuur2009a">2009</a>)</span>.</li>
+<li>Laden Sie den Temperatur-Datensatz aus <span class="citation">Zuur, Ieno, and Meesters (<a href="literatur.html#ref-Zuur2009a">2009</a>)</span>.</li>
 <li>Berechnen Sie die Monatsmittelwerte für alle Stationen, sowie die Standardabweichungen.</li>
 <li>Stellen Sie die Monatsmittel der Temperatur in einem Barplot dar.</li>
 <li>Beschriften Sie die Graphik sinnvoll.</li>
@@ -251,7 +320,7 @@ Laden Sie den Datensatz <span style="font-family: sans-serif; font-size: medium"
 </ol>
 </div>
 <div id="artenvielfalt-in-grasländern" class="section level3">
-<h3><span class="header-section-number">4.4.3</span> Artenvielfalt in Grasländern</h3>
+<h3><span class="header-section-number">5.4.3</span> Artenvielfalt in Grasländern</h3>
 <p>Sie erhalten Daten aus dem Grasland-Monitoring im Yellowstone Nationalpark und dem National Bison Range (USA). Das Ziel des Monitorings ist die Untersuchung möglicher Änderungen der Biodiversität und des Zusammenhang mit Umweltfaktoren. Biodiversität wurde durch die Anzahl unterschiedlicher Arten quantifiziert. Insgesamt haben die Forscher ca. 90 Arten in 8 Transekten kartiert. Die Aufnahmen wurden alle 4 bis 10 Jahre wiederholt. Insgesamt liegen 58 Beobachtungen vor. Die Daten sind in der Datei <span style="font-family: sans-serif; font-size: medium">Vegetation2.xls</span> gespeichert.</p>
 <ol style="list-style-type: decimal">
 <li><p>Laden Sie den Datensatz in R und sehen Sie sich das Ergebnis genau mit <code>str</code>, <code>head</code> und <code>tail</code> an. Diese Aufgabe dient dazu, das Einlesen von Excel-Dateien zu erarbeiten. Tipp: eine mögliche Bibliothek, die dabei helfen kann, wäre <code>xlsx</code>.</p></li>
@@ -262,7 +331,7 @@ Laden Sie den Datensatz <span style="font-family: sans-serif; font-size: medium"
 </ol>
 </div>
 <div id="tracerversuche" class="section level3">
-<h3><span class="header-section-number">4.4.4</span> Tracerversuche</h3>
+<h3><span class="header-section-number">5.4.4</span> Tracerversuche</h3>
 <p>Im Waldstein wurden Tracerversuche mit dem Farbstoff Brilliant Blue durchgeführt und die gefärbten Bodenprofile <em>binärisiert</em> (d.h. in ein schwarz-weiß Bild umgewandelt). Schwarze Pixels stellen gefärbten Boden und weiße ungefärbten dar. Aus diesen Binärbildern wurde anschließend eine Reihe von Kenngrößen berechnet.</p>
 <ol style="list-style-type: decimal">
 <li>Lesen Sie die Datei <span style="font-family: sans-serif; font-size: medium">Waldstein2005_ind.txt</span> ein. Die Tiefe eines Profils ist 579 Pixel und es liegen 6 Profile untereinander in der Spalte d.</li>
@@ -272,9 +341,9 @@ Laden Sie den Datensatz <span style="font-family: sans-serif; font-size: medium"
 </div>
 </div>
 <div id="effizientes-programmieren" class="section level2">
-<h2><span class="header-section-number">4.5</span> Effizientes Programmieren</h2>
+<h2><span class="header-section-number">5.5</span> Effizientes Programmieren</h2>
 <div id="lagerungsdichten" class="section level3">
-<h3><span class="header-section-number">4.5.1</span> Lagerungsdichten</h3>
+<h3><span class="header-section-number">5.5.1</span> Lagerungsdichten</h3>
 <p>Auf 10 verschiedenen landwirtschaftlichen Feldern wurden im Oberboden je 25 Stechzylinder entnommen.</p>
 <ol style="list-style-type: decimal">
 <li>Lesen Sie den Datensatz r file.name(“Bodendaten.txt”)` ein.</li>
@@ -282,9 +351,9 @@ Laden Sie den Datensatz <span style="font-family: sans-serif; font-size: medium"
 </ol>
 </div>
 <div id="temperatur-datensatz-revisited" class="section level3">
-<h3><span class="header-section-number">4.5.2</span> Temperatur-Datensatz, revisited</h3>
+<h3><span class="header-section-number">5.5.2</span> Temperatur-Datensatz, revisited</h3>
 <ol style="list-style-type: decimal">
-<li>Laden Sie den Temperatur-Datensatz aus <span class="citation">Zuur, Ieno, and Meesters (<a href="references.html#ref-Zuur2009a">2009</a>)</span>, Datei <span style="font-family: sans-serif; font-size: medium">Temperatur.csv</span>.</li>
+<li>Laden Sie den Temperatur-Datensatz aus <span class="citation">Zuur, Ieno, and Meesters (<a href="literatur.html#ref-Zuur2009a">2009</a>)</span>, Datei <span style="font-family: sans-serif; font-size: medium">Temperatur.csv</span>.</li>
 <li>Berechnen Sie die Jahresmittelwerte je Station. (Tipp: Hilfe von <code>tapply</code> genau lesen!)</li>
 </ol>
 
@@ -296,8 +365,8 @@ Laden Sie den Datensatz <span style="font-family: sans-serif; font-size: medium"
           </div>
         </div>
       </div>
-<a href="erste-schritte.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="daten.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="literatur.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -312,25 +381,13 @@ Laden Sie den Datensatz <span style="font-family: sans-serif; font-size: medium"
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": {
-"github": false,
-"facebook": true,
-"twitter": true,
-"linkedin": false,
-"weibo": false,
-"instapaper": false,
-"vk": false,
-"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
-},
+"sharing": false,
 "fontsettings": {
 "theme": "white",
 "family": "sans",
 "size": 2
 },
-"edit": {
-"link": "https://github.com/ChrisBogner/datenanalyse.git 04-aufgabensammlung.Rmd",
-"text": "Edit"
-},
+"edit": null,
 "history": {
 "link": null,
 "text": null
@@ -342,7 +399,11 @@ gitbook.start({
 "download": null,
 "toc": {
 "collapse": "subsection"
-}
+},
+"toolbar": {
+"position": "fixed"
+},
+"search": true
 });
 });
 </script>

@@ -1,0 +1,13 @@
+# Daten visualisieren {#visualisieren}
+
+```{block, type = 'rmdoutcomes'}
+- Einfache Graphiken erstellen
+- Graphiken beschriften und speichern
+- Die Arbeitsweise der Funktion `par` beschreiben
+- Die grafischen Parameter für Randgröße, Farbe, Schrift- und Symbolgröße einstellen
+- Unterschiede zwischen high- und low-level Plotfunktionen erklären
+- Grafiken mit mehreren Plots erstellen
+- Grafiken mit einer Sekundärachse erstellen
+```
+
+## Datenstrukturen erzeugen

@@ -26,11 +26,11 @@ Leider hat Ar sich beim übertragen der Daten vertippt. Er hat am Dienstag seine
 5. Wie verändern sich die Ergebnisse aus den Teilaufgaben 1 bis 3 Warum?
 
 
-## Laden und Speichern von Daten
+## Daten in R
 
-### Bestandesaufnahme {#bestandesaufnahme}
+### Bestandesaufnahme im Wald {#bestandesaufnahme}
 
-Ar Stat arbeitet als HiWi in der AG Ökosystemforschung und soll im Nationalpark Eifel eine Bestandsaufnahme durchführen. Er notiert den BHD (Brusthöhendurchmesser) und die Art der Bäume.
+Ar Stat arbeitet als HiWi in der AG Ökosystemforschung und soll im Nationalpark Eifel eine Bestandsaufnahme durchführen (d.h. Baumhöhen und -durchmesser vermessen). Er notiert den BHD (Brusthöhendurchmesser) und die Art der Bäume.
 
 
 1.  Lesen Sie den Datensatz `r file.name("BHD.txt")` ein und ordnen Sie ihn der Variable `BHD` zu.
@@ -44,7 +44,11 @@ Ar Stat arbeitet als HiWi in der AG Ökosystemforschung und soll im Nationalpark
 8. Welche Baumart hat im Mittel einen größeren Brusthöhendurchmesser?
 
 
-## Automatisieren: Skripte & Funktionen
+## Daten visualisieren, Teil I: Fokus auf R
+
+plot, barplot, boxplot etc., par
+
+## Eigene Funktionen schreiben
 
 ### R-Hausaufgaben
 
@@ -73,9 +77,9 @@ Ar belegt im 4. Semester die Veranstaltung "Spaß mit R". Bei der Klausur gibt e
 1. Überprüfen Sie Ars Vermutung, dass die Aufgabengruppe 1 im Schnitt leichter war als Aufgabengruppe 2 (d.h. in der Gruppe 1 im Schnitt mehr Punkte erzielt wurden).
 
 
-## Daten visualisieren
+## Daten visualisieren, Teil II: Fokus auf Daten
 
-### Lange Bramke (Harz)
+### Zeitreihen aus der Langen Bramke (Harz)
 
 Im Harz wurden über eine längere Zeit Niederschlag, Abfluss und Temperatur gemessen.
 

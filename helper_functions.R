@@ -1,5 +1,10 @@
 # Load libraries
 
+knitr::knit_hooks$set(document = function(x) {
+  sub('\\usepackage{graphicx, color}',
+      '\\usepackage{graphicx,xcolor}', x, fixed = TRUE)
+}) 
+
 library(fontawesome)
 
 # These are different helper functions for the book

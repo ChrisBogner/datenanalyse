@@ -7,6 +7,7 @@
 - R als Taschenrechner benutzen
 - erste Funktionen aufrufen
 - Objekte mit eckigen Klammern [ ] ansprechen
+- R-Hilfeseiten aufrufen
 ```
 
 
@@ -40,7 +41,7 @@ Der große Vorteil der Cloud ist, dass ich direkt in Ihre Projekte eingreifen ka
 
 Sowohl in der RStudio Cloud als auch in einer lokalen Installation, ist Ihr RStudio so aufgebaut wie in Abbildung \@ref(fig:rstudio).
 
-```{r rstudio, echo = F, fig.cap = 'Aufbau von RStudio'}
+```{r rstudio, echo = F, fig.cap = 'Aufbau von RStudio', fig.width = 6, out.width = "100%"}
 knitr::include_graphics('RStudio.png')
 ```
 

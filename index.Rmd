@@ -2,7 +2,7 @@
 title: "Datenanalyse mit R"
 subtitle: "SoSe 2020"
 author: "Christina Bogner"
-date: "Version vom: `r format(Sys.time(), '%d. %B %Y')`"
+date: "Version vom `r format(Sys.time(), '%d. %B %Y')`"
 site: bookdown::bookdown_site
 output: 
   bookdown::gitbook:

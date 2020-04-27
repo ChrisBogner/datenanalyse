@@ -1,0 +1,20 @@
+# Reproduzierbare Forschung {#reproduzieren}
+
+```{block, type = 'rmdoutcomes'}
+- Wichtigkeit der Reproduzierbarkeit erklären
+- Begriff *literate programming* definieren
+- Aufbau einer RMarkdown-Datei erklären
+- Einen einfachen ersten reproduzierbaren Bericht schreiben
+```
+
+## Warum Reproduzierbarkeit in der Forschung wichtig ist
+
+
+## *Literate Programming* Idee von Donald Knuth
+@Knuth1984
+
+## Reproduzierbare Berichte mit R Markdown
+R hat sein eigenes System von reproduzierbaren Berichten, genannt R Markdown [@Xie2018]. Es ist benutzerfreundlich und ermöglicht unterschiedliche Formate von Berichten, wie HTML-Dokumente, PDF-Dateien, Präsentationsfolien usw.
+
+Es wird Sie vielleicht überraschen, aber das Skript, das Sie gerade lesen ist nichts anderes als ein "literarisch" programmierter Bericht in R Bookdown [@Xie2016], einem R-Paket speziell für lange R Markdown-Dokumente.
+

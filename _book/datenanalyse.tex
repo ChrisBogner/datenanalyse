@@ -165,7 +165,7 @@
 \providecommand{\subtitle}[1]{}
 \subtitle{SoSe 2020}
 \author{Christina Bogner}
-\date{Version vom 24. April 2020}
+\date{Version vom 03. Mai 2020}
 
 \begin{document}
 \maketitle
@@ -571,19 +571,49 @@ Um diese Datenstrukturen zu erzeugen, gibt es jeweils eine Funktion mit gleichla
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-##    Spalte_1 Spalte_2
-## 1      Text        1
-## 2      Text        2
-## 3      Text        3
-## 4      Text        4
-## 5      Text        5
-## 6      Text        6
-## 7      Text        7
-## 8      Text        8
-## 9      Text        9
-## 10     Text       10
-\end{verbatim}
+Spalte\_1
+
+Spalte\_2
+
+Text
+
+1
+
+Text
+
+2
+
+Text
+
+3
+
+Text
+
+4
+
+Text
+
+5
+
+Text
+
+6
+
+Text
+
+7
+
+Text
+
+8
+
+Text
+
+9
+
+Text
+
+10
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -904,6 +934,326 @@ Speichert die History.\strut
 \bottomrule
 \end{longtable}
 
+\hypertarget{visualisieren}{%
+\chapter{Daten visualisieren}\label{visualisieren}}
+
+\begin{rmdoutcomes}
+\begin{itemize}
+\tightlist
+\item
+  Einfache Grafiken erstellen
+\item
+  Grafiken beschriften und speichern
+\item
+  Die Arbeitsweise der Funktion \texttt{par} beschreiben
+\item
+  Die grafischen Parameter für Randgröße, Farbe, Schrift- und
+  Symbolgröße einstellen
+\item
+  Unterschiede zwischen high- und low-level Plotfunktionen erklären
+\item
+  Grafiken mit mehreren Plots erstellen
+\end{itemize}
+\end{rmdoutcomes}
+
+\hypertarget{plotten-mit-r-basisfunktionen}{%
+\section{Plotten mit R-Basisfunktionen}\label{plotten-mit-r-basisfunktionen}}
+
+\hypertarget{high-level-funtion-plot-und-low-level-funtion-lines}{%
+\subsection{\texorpdfstring{High-level-Funtion \texttt{plot} und low-level-Funtion \texttt{lines}}{High-level-Funtion plot und low-level-Funtion lines}}\label{high-level-funtion-plot-und-low-level-funtion-lines}}
+
+Ein Streudiagramm stellt zwei numerische Variablen gegeneinander dar. Wir betrachten Klimadaten der Station Köln-Bonn, die man beim Deutschen Wetterdienst herunterladen kann (\url{https://www.dwd.de/DE/leistungen/klimadatendeutschland/klimadatendeutschland.html}).
+
+Sie können als Übung den Code aus den Chunks leicht herauskopieren und in RStudio laufen lassen.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{meteo <-}\StringTok{ }\KeywordTok{read.table}\NormalTok{(}\StringTok{'produkt_klima_monat_20181001_20200430_02667.txt'}\NormalTok{,}
+\DataTypeTok{header =}\NormalTok{ T, }\DataTypeTok{sep =} \StringTok{';'}\NormalTok{)}
+\KeywordTok{str}\NormalTok{(meteo)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 'data.frame':    19 obs. of  17 variables:
+##  $ STATIONS_ID      : int  2667 2667 2667 2667 2667 2667 2667 2667 2667 2667 ...
+##  $ MESS_DATUM_BEGINN: int  20181001 20181101 20181201 20190101 20190201 20190301 20190401 20190501 20190601 20190701 ...
+##  $ MESS_DATUM_ENDE  : int  20181031 20181130 20181231 20190131 20190228 20190331 20190430 20190531 20190630 20190731 ...
+##  $ QN_4             : int  3 3 3 3 3 3 3 3 3 3 ...
+##  $ MO_N             : num  4.76 5.51 6.49 6.66 4.79 5.62 4.56 5.37 3.85 4.95 ...
+##  $ MO_TT            : num  12.01 7.31 5.64 2.41 6.4 ...
+##  $ MO_TX            : num  17.58 10.95 8.47 4.74 12 ...
+##  $ MO_TN            : num  6.41 3.51 2.61 -0.26 1.12 ...
+##  $ MO_FK            : num  2.42 2.57 2.68 2.84 2.54 3.06 2.53 2.32 2.4 2.23 ...
+##  $ MX_TX            : num  26.7 19.2 15 8.8 21 20.4 25.9 24.3 36.2 40.3 ...
+##  $ MX_FX            : num  15.3 16.5 18.9 22.8 18.7 28.8 19.5 16.5 26.1 14.6 ...
+##  $ MX_TN            : num  0.4 -4.3 -4.9 -10.7 -3.5 -2.8 -2.3 -1.8 7.3 4.4 ...
+##  $ MO_SD_S          : num  145.4 74.2 33.8 38.2 127.3 ...
+##  $ QN_6             : int  9 9 9 3 3 3 3 3 3 3 ...
+##  $ MO_RR            : num  26.5 25 101.9 101.8 30 ...
+##  $ MX_RS            : num  6.9 9.7 15.7 22.3 12.3 18.2 21.4 10.6 8.8 11.9 ...
+##  $ eor              : Factor w/ 1 level "eor": 1 1 1 1 1 1 1 1 1 1 ...
+\end{verbatim}
+
+Uns interessieren hier nur die Spalten MO\_TT, MO\_TN, MO\_TX und MESS\_DATUM\_BEGINN. Das sind jeweils die Monatsmittel der Lufttemperatur in 2m Hoehe, Monatsmittel des Lufttemperatur Minimums, Monatsmittel des Lufttemperatur Maximums und Beginn der Messperiode. Um die Daten als Zeitreihen darstellen zu können, wandeln wir die Spalte MESS\_DATUM\_BEGINN in ein richtiges Zeitpobjekt. Das geht mit der Funktion \texttt{as.Date}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{my_date <-}\StringTok{ }\KeywordTok{as.Date}\NormalTok{(}\KeywordTok{as.character}\NormalTok{(meteo}\OperatorTok{$}\NormalTok{MESS_DATUM_BEGINN), }\DataTypeTok{format =} \StringTok{'%Y%m%d'}\NormalTok{)}
+\NormalTok{my_date}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] "2018-10-01" "2018-11-01" "2018-12-01" "2019-01-01" "2019-02-01"
+##  [6] "2019-03-01" "2019-04-01" "2019-05-01" "2019-06-01" "2019-07-01"
+## [11] "2019-08-01" "2019-09-01" "2019-10-01" "2019-11-01" "2019-12-01"
+## [16] "2020-01-01" "2020-02-01" "2020-03-01" "2020-04-01"
+\end{verbatim}
+
+Es sind Daten von Oktober 2018 bis April 2020. Die Funktion \texttt{plot} stellt erstellt ein Streudiagramm. Mit den Parametern \texttt{xlab} und \texttt{ylab} lassen sich die beiden Achsen beschriften und \texttt{main} fügt einen Titel dazu. Der Parameter \texttt{type} betsimmt die Wahl der Symbole; hier benutzen wir \texttt{type\ =\ b} für \emph{both}, also sowohl Punkte als auch Linien.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(my_date, meteo}\OperatorTok{$}\NormalTok{MO_TT, }\DataTypeTok{type =} \StringTok{'b'}\NormalTok{, }\DataTypeTok{xlab =} \StringTok{'Zeit'}\NormalTok{, }\DataTypeTok{ylab =} \StringTok{'Temperatur [°C]'}\NormalTok{, }\DataTypeTok{main =} \StringTok{'Klimadaten der DWD-Station Köln-Bonn'}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{datenanalyse_files/figure-latex/unnamed-chunk-22-1.pdf}
+
+Die Funktion \texttt{plot} ist eine sogen. high-level-Funtion. Das bedeutet, dass sie alle Schritte des Plottens übernimmt: sie öffnet ein neues Graphikfenster (ein Device), berechnet die größe der Plotfläche und der Ränder (s. unten), berechnet die Ausdehnung der Achsen und die beste Achseneinteilung und plottet Ihre Daten.
+
+Daneben gibt es low-level-Funtionen, die nur in ein bestehendes Device plotten können. Wir wollen zu unserer Graphik nun die Minimum- und die Maximumtemepratur dazu plotten.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(my_date, meteo}\OperatorTok{$}\NormalTok{MO_TT, }\DataTypeTok{type =} \StringTok{'b'}\NormalTok{, }\DataTypeTok{xlab =} \StringTok{'Zeit'}\NormalTok{, }\DataTypeTok{ylab =} \StringTok{'Temperatur [°C]'}\NormalTok{, }\DataTypeTok{main =} \StringTok{'Klimadaten der DWD-Station Köln-Bonn'}\NormalTok{)}
+
+\CommentTok{# Minimumtemperatur in rot}
+\KeywordTok{lines}\NormalTok{(my_date, meteo}\OperatorTok{$}\NormalTok{MO_TN, }\DataTypeTok{col =} \StringTok{'blue'}\NormalTok{)}
+
+\CommentTok{# Maximumtemperatur in blau}
+\KeywordTok{lines}\NormalTok{(my_date, meteo}\OperatorTok{$}\NormalTok{MO_TX, }\DataTypeTok{col =} \StringTok{'red'}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{datenanalyse_files/figure-latex/unnamed-chunk-23-1.pdf}
+
+Dass \texttt{lines} nur eine low-level-Funtion ist, erkennen Sie dara, dass sie nicht in der Lage ist, den Bereich auf der y-Achse zu vergrößern, um alle Daten sichtbar zu machen. Das kann nur \texttt{plot}. Daher muss der Bereich bereits in \texttt{plot} richtig festgelegt werden. Das macht der Parameter \texttt{ylim}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(my_date, meteo}\OperatorTok{$}\NormalTok{MO_TT, }\DataTypeTok{type =} \StringTok{'b'}\NormalTok{, }\DataTypeTok{xlab =} \StringTok{'Zeit'}\NormalTok{, }\DataTypeTok{ylab =} \StringTok{'Temperatur [°C]'}\NormalTok{, }\DataTypeTok{main =} \StringTok{'Klimadaten der DWD-Station Köln-Bonn'}\NormalTok{, }\DataTypeTok{ylim =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{30}\NormalTok{))}
+
+\CommentTok{# Minimumtemperatur in rot}
+\KeywordTok{lines}\NormalTok{(my_date, meteo}\OperatorTok{$}\NormalTok{MO_TN, }\DataTypeTok{col =} \StringTok{'blue'}\NormalTok{)}
+
+\CommentTok{# Maximumtemperatur in blau}
+\KeywordTok{lines}\NormalTok{(my_date, meteo}\OperatorTok{$}\NormalTok{MO_TX, }\DataTypeTok{col =} \StringTok{'red'}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{datenanalyse_files/figure-latex/unnamed-chunk-24-1.pdf}
+
+Die wichtigsten high-level-Grafikfuntionen \citep[nach][verändert]{Ligges2008}:
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule
+Funktion & Beschreibung\tabularnewline
+\midrule
+\endhead
+\texttt{plot} & kontextabhängig -- generische Funktion mit vielen Methoden\tabularnewline
+\texttt{barplot} & Stabdiagramm\tabularnewline
+\texttt{boxplot} & Boxplot\tabularnewline
+\texttt{contour} & Höhenlinien-Plot\tabularnewline
+\texttt{coplot} & Conditioning-Plots\tabularnewline
+\texttt{curve} & Funktionen zeichnen\tabularnewline
+\texttt{dotchart} & Dotplots (Cleveland)\tabularnewline
+\texttt{hist} & Histogramm\tabularnewline
+\texttt{image} & Bilder (3. Dim. als Farbe)\tabularnewline
+\texttt{mosaicplot} & Mosaikplots (kategorielle Daten)\tabularnewline
+\texttt{pairs} & Streudiagramm-Matrix\tabularnewline
+\texttt{persp} & perspektivische Flächen\tabularnewline
+\texttt{qqnorm} und \texttt{qqplot} & QQ--Plot\tabularnewline
+\bottomrule
+\end{longtable}
+
+Die wichtigsten low-level-Grafikfuntionen \citep[nach][verändert]{Ligges2008}:
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule
+\begin{minipage}[b]{0.38\columnwidth}\raggedright
+Funktion\strut
+\end{minipage} & \begin{minipage}[b]{0.56\columnwidth}\raggedright
+Beschreibung\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.38\columnwidth}\raggedright
+\texttt{abline}\strut
+\end{minipage} & \begin{minipage}[t]{0.56\columnwidth}\raggedright
+Fügt eine Linie hinzu; diese kann horizontal, vertikal oder über Steigung und Achsenabschnitt definiert werden\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.38\columnwidth}\raggedright
+\texttt{arrows}\strut
+\end{minipage} & \begin{minipage}[t]{0.56\columnwidth}\raggedright
+Pfeile\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.38\columnwidth}\raggedright
+\texttt{axis}\strut
+\end{minipage} & \begin{minipage}[t]{0.56\columnwidth}\raggedright
+Achsen\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.38\columnwidth}\raggedright
+\texttt{grid}\strut
+\end{minipage} & \begin{minipage}[t]{0.56\columnwidth}\raggedright
+Gitternetz\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.38\columnwidth}\raggedright
+\texttt{legend}\strut
+\end{minipage} & \begin{minipage}[t]{0.56\columnwidth}\raggedright
+Legende\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.38\columnwidth}\raggedright
+\texttt{lines}\strut
+\end{minipage} & \begin{minipage}[t]{0.56\columnwidth}\raggedright
+Linien (schrittweise)\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.38\columnwidth}\raggedright
+\texttt{mtext}\strut
+\end{minipage} & \begin{minipage}[t]{0.56\columnwidth}\raggedright
+Text in den Rändern\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.38\columnwidth}\raggedright
+\texttt{plot.new}\strut
+\end{minipage} & \begin{minipage}[t]{0.56\columnwidth}\raggedright
+Grafik initialisieren\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.38\columnwidth}\raggedright
+\texttt{plot.window}\strut
+\end{minipage} & \begin{minipage}[t]{0.56\columnwidth}\raggedright
+Koordinatensystem initialisieren\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.38\columnwidth}\raggedright
+\texttt{points}\strut
+\end{minipage} & \begin{minipage}[t]{0.56\columnwidth}\raggedright
+Punkte\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.38\columnwidth}\raggedright
+\texttt{polygon}\strut
+\end{minipage} & \begin{minipage}[t]{0.56\columnwidth}\raggedright
+(ausgefullte) Polygone\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.38\columnwidth}\raggedright
+\texttt{pretty}\strut
+\end{minipage} & \begin{minipage}[t]{0.56\columnwidth}\raggedright
+berechnet ``hubsche'' Einteilung der Achsen\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.38\columnwidth}\raggedright
+\texttt{segments}\strut
+\end{minipage} & \begin{minipage}[t]{0.56\columnwidth}\raggedright
+Linien (vektorwertig)\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.38\columnwidth}\raggedright
+\texttt{text}\strut
+\end{minipage} & \begin{minipage}[t]{0.56\columnwidth}\raggedright
+Text\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.38\columnwidth}\raggedright
+\texttt{title}\strut
+\end{minipage} & \begin{minipage}[t]{0.56\columnwidth}\raggedright
+Beschriftung\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\end{longtable}
+
+\hypertarget{tuning-mit-par}{%
+\section{\texorpdfstring{Tuning mit \texttt{par}}{Tuning mit par}}\label{tuning-mit-par}}
+
+Zur Vertiefung dieses Kapitels, lesen Sie \citet{Ligges2008}, Kapitel 8.1.3.
+
+Die Grafikebene in R ist aufgeteilt in drei Regionen (Abbildung \ref{fig:aufteilung}) und hat innere und äußere Ränder. Die Ränder werden von unten im Gegenuhrzeigersinn durchnummeriert.
+
+\begin{figure}
+\includegraphics[width=1\linewidth]{Regionen_und_Raender} \caption{Aufteilung der Graphikfläche [@Ligges2008].}\label{fig:aufteilung}
+\end{figure}
+
+Mit der Funtion \texttt{par} lassen sich sehr viele Einstellung der Grafik verändern. Viele Einstellungen übergibt die Funtion \texttt{plot} selbständig an \texttt{par}, z.B. \texttt{log} (Logarithmieren der Achsen), \texttt{cex} (Größe eines Punkts) oder \texttt{col} (Farbe). Andere können aber nur durch Aufrufen der Funtion \texttt{par} verändert werden. Dazu gehören die inneren Ränder \texttt{mar} und die äußeren Ränder \texttt{oma}, die Aufteilung der Grafikebene mit \texttt{mfrow} oder \texttt{mfcol}.
+
+\begin{rmdalert}
+Richtige Benutzung von \texttt{par}:
+
+\begin{itemize}
+\tightlist
+\item
+  Parameter setzen: \texttt{op\ \textless{}-\ par(\ ...\ )}
+\item
+  plotten
+\item
+  Parameter auf Standard zurück setzen: \texttt{par(op)}
+\end{itemize}
+\end{rmdalert}
+
+Die Zuweisung \texttt{op\ \textless{}-\ par(\ ...\ )} speichert die Standardeinstellungen im Objekt \texttt{par}, bevor Sie sie ändern. Der Aufruf \texttt{par(op)} setzt Ihre Änderungen zurück. Das ist sehr praktisch, wenn Sie z.B. die Aufteilung der Grafikebene nicht mehr benötigen. Wenn Sie die Parameter nicht zurücksetzen, bleiben diese bestehen, bis das Grafikfenster geschlossen wird (z.B. mit \texttt{dev.off()}).
+
+Um die Ränder zu verändern, rufen wir \texttt{par} auf und beschneiden die Ränder, damit Sie den Unterschied erkennen können.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{op <-}\StringTok{ }\KeywordTok{par}\NormalTok{(}\DataTypeTok{mar =} \KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{))}
+\KeywordTok{plot}\NormalTok{(my_date, meteo}\OperatorTok{$}\NormalTok{MO_TT, }\DataTypeTok{type =} \StringTok{'b'}\NormalTok{, }\DataTypeTok{xlab =} \StringTok{'Zeit'}\NormalTok{, }\DataTypeTok{ylab =} \StringTok{'Temperatur [°C]'}\NormalTok{, }\DataTypeTok{main =} \StringTok{'Klimadaten der DWD-Station Köln-Bonn'}\NormalTok{, }\DataTypeTok{ylim =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{30}\NormalTok{))}
+
+\CommentTok{# Minimumtemperatur in rot}
+\KeywordTok{lines}\NormalTok{(my_date, meteo}\OperatorTok{$}\NormalTok{MO_TN, }\DataTypeTok{col =} \StringTok{'blue'}\NormalTok{)}
+
+\CommentTok{# Maximumtemperatur in blau}
+\KeywordTok{lines}\NormalTok{(my_date, meteo}\OperatorTok{$}\NormalTok{MO_TX, }\DataTypeTok{col =} \StringTok{'red'}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{datenanalyse_files/figure-latex/unnamed-chunk-26-1.pdf}
+
+Die Achsenbeschriftungen und die Zahlen haben jetzt nicht mehr genug Platz und verschwinden. Die Größe der Ränder wird in Zeilen angegeben, ist also relativ zur Gesamtgröße. Die Standardeinstellung ist c(5, 4, 4, 2) + 0.1
+
+Einige häufig genutzte Argumente in Grafikfunktionen und in \texttt{par} \citep[nach][verändert]{Ligges2008}. Schlagen Sie die Erklärungen dazu immer in \texttt{?par} oder \texttt{?plot} nach.
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule
+Funktion & Beschreibung\tabularnewline
+\midrule
+\endhead
+\texttt{axes} & Achsen sollen (nicht) eingezeichnet werden\tabularnewline
+\texttt{bg} & Hintergrundfarbe\tabularnewline
+\texttt{cex} & Gröoße eines Punktes bzw. Buchstaben\tabularnewline
+\texttt{col} & Farben\tabularnewline
+\texttt{las} & Ausrichtung der Achsenbeschriftung\tabularnewline
+\texttt{log} & Logarithmierte Darstellung\tabularnewline
+\texttt{lty}, \texttt{lwd} & Linientyp (gestrichelt, \ldots{}) und Linienbreite\tabularnewline
+\texttt{main} & Uberschrift\tabularnewline
+\texttt{mar} & Größe der inneren Ränder fur Achsenbeschriftung etc.\tabularnewline
+\texttt{mfcol}, \texttt{mfrow} & mehrere Grafiken in einem Bild\tabularnewline
+\texttt{pch} & Symbol fur einen Punkt\tabularnewline
+\texttt{type} & Typ (l=Linie, p=Punkt, b=beides, n=nichts)\tabularnewline
+\texttt{usr} & Ausmaße der Achsen auslesen\tabularnewline
+\texttt{xlab}, \texttt{ylab} & x-/y-Achsenbeschriftung\tabularnewline
+\texttt{xlim}, \texttt{ylim} & zu plottender Bereich in x-/y- Richtung\tabularnewline
+\texttt{xpd} & in die Ränder hinein zeichnen\tabularnewline
+\bottomrule
+\end{longtable}
+
+\hypertarget{inhalt-der-live-einfuxfchrung-und-der-uxfcbungen-2}{%
+\section{Inhalt der live Einführung und der Übungen}\label{inhalt-der-live-einfuxfchrung-und-der-uxfcbungen-2}}
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{plot}, \texttt{barplot}, \texttt{mfrow}
+\item
+  Aufgaben \ref{wahlbeteiligung}, \ref{zweitstimme} und \ref{zweigrafiken}.
+\item
+  Speichern als pdf
+\end{itemize}
+
 \hypertarget{aufgabensammlung}{%
 \chapter{Aufgabensammlung}\label{aufgabensammlung}}
 
@@ -917,7 +1267,7 @@ Der angehende Datenanalyst Ar Stat möchte dem Rat seiner Mutter folgen und ein 
 
 \begin{table}
 
-\caption{\label{tab:unnamed-chunk-19}Ars Mensaausgaben}
+\caption{\label{tab:unnamed-chunk-28}Ars Mensaausgaben}
 \centering
 \begin{tabular}[t]{lr}
 \toprule
@@ -955,13 +1305,13 @@ Leider hat Ar sich beim übertragen der Daten vertippt. Er hat am Dienstag seine
   Wie verändern sich die Ergebnisse aus den Teilaufgaben 1 bis 3 Warum?
 \end{enumerate}
 
-\hypertarget{laden-und-speichern-von-daten}{%
-\section{Laden und Speichern von Daten}\label{laden-und-speichern-von-daten}}
+\hypertarget{daten-in-r}{%
+\section{Daten in R}\label{daten-in-r}}
 
 \hypertarget{bestandesaufnahme}{%
-\subsection{Bestandesaufnahme}\label{bestandesaufnahme}}
+\subsection{Bestandesaufnahme im Wald}\label{bestandesaufnahme}}
 
-Ar Stat arbeitet als HiWi in der AG Ökosystemforschung und soll im Nationalpark Eifel eine Bestandsaufnahme durchführen. Er notiert den BHD (Brusthöhendurchmesser) und die Art der Bäume.
+Ar Stat arbeitet als HiWi in der AG Ökosystemforschung und soll im Nationalpark Eifel eine Bestandsaufnahme durchführen (d.h. Baumhöhen und -durchmesser vermessen). Er notiert den BHD (Brusthöhendurchmesser) und die Art der Bäume.
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -982,12 +1332,108 @@ Ar Stat arbeitet als HiWi in der AG Ökosystemforschung und soll im Nationalpark
   Erstellen Sie eine Tabelle mit der Anzahl der jeweiligen Arten. Nutzen Sie die Funktion `table'.
 \item
   Speichern Sie die Tabelle mit \texttt{write.table}.
-\item
-  Welche Baumart hat im Mittel einen größeren Brusthöhendurchmesser?
 \end{enumerate}
 
-\hypertarget{automatisieren-skripte-funktionen}{%
-\section{Automatisieren: Skripte \& Funktionen}\label{automatisieren-skripte-funktionen}}
+\hypertarget{daten-visualisieren-teil-i-fokus-auf-r}{%
+\section{Daten visualisieren, Teil I: Fokus auf R}\label{daten-visualisieren-teil-i-fokus-auf-r}}
+
+\hypertarget{wahlbeteiligung}{%
+\subsection{Wahlbeteiligung bei der Bundestagswahl 2017}\label{wahlbeteiligung}}
+
+Bauen Sie die Grafike aus der Einführung nach (Abbildung \ref{fig:wahlbeteiligung}).
+
+\begin{figure}
+\includegraphics[width=1\linewidth]{Wahlbeteiligung} \caption{Wahlbeteiligung bei den Bundestagswahlen. Quelle: Der Bundeswahlleiter.}\label{fig:wahlbeteiligung}
+\end{figure}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Lesen Sie den Datensatz \texttt{Wahlbeteiligung.csv} in R ein und ordenen Sie ihn dem Objekt \texttt{bet} zu. Der Datensatz hat einen header und haben einen Strichpunkt als Spaltentrenner.
+\item
+  Sehen Sie sich die Struktur und die ersten und letzten 6 Zeilen des Datensatzes an.
+\item
+  Stellen Sie die Wahlbeteiligung als Funktion der Zeit in einem Streudiagramm dar. Wählen Sie die passende Darstellungsform \texttt{type}.
+\item
+  Beschriften Sie die Grafik.
+\item
+  Speichern Sie die Grafik als pdf ab.
+\end{enumerate}
+
+\hypertarget{zweitstimme}{%
+\subsection{Zweitstimme bei der Bundestagswahl 2017}\label{zweitstimme}}
+
+Bauen Sie die Grafike aus der Einführung nach (Abbildung \ref{fig:zweitstimme}).
+
+\begin{figure}
+\includegraphics[width=1\linewidth]{Zweitstimme} \caption{Zweitstimme bei der Bundestagswahl 2017. Quelle: Der Bundeswahlleiter.}\label{fig:zweitstimme}
+\end{figure}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Lesen Sie den Datensatz \texttt{Wahlbeteiligung.csv} in R ein und ordenen Sie ihn dem Objekt \texttt{zweit} zu. Der Datensatz hat einen header und haben einen Strichpunkt als Spaltentrenner.
+\item
+  Sehen Sie sich die Struktur und die ersten und letzten 6 Zeilen des Datensatzes an.
+\item
+  Stellen Sie die die Zweitstimmen pro Partei in einem Säulendiagramm dar. Sortieren Sie die Zweitstimmen in absteigender Reihenfolge.
+\item
+  Beschriften Sie die Grafik.
+\item
+  Speichern Sie die Grafik als pdf ab.
+\end{enumerate}
+
+\hypertarget{zweigrafiken}{%
+\subsection{Ergebnisse der Bundestagswahl in einer Grafik}\label{zweigrafiken}}
+
+Stellen Sie beide Grafiken nebeneinander dar wie in Abbildung () gezeigt
+
+\begin{figure}
+\includegraphics[width=1\linewidth]{Zwei_grafiken} \caption{Ergebnisse der Bundestagswahl 2017. Quelle: Der Bundeswahlleiter.}\label{fig:zweigrafiken}
+\end{figure}
+
+\hypertarget{weisserrand}{%
+\subsection{Einen zu großen weißen Rand vermeiden}\label{weisserrand}}
+
+Bei Berichten ist es oft störend, wenn Grafiken einen übermäßig großen weißen Rand haben.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Kopieren Sie den Code zum Plotten der Temperaturen aus dem Kapitel \ref{visualisieren}.
+\item
+  Stellen Sie oben und rechts einen Rand von 0.1 Zeilen ein.
+\item
+  Speichern Sie die Grafik als pdf ab.
+\end{enumerate}
+
+\hypertarget{spielen-mit-der-funtion-par}{%
+\subsection{\texorpdfstring{Spielen mit der Funtion \texttt{par}}{Spielen mit der Funtion par}}\label{spielen-mit-der-funtion-par}}
+
+Setzen Sie die Übung \ref{weisserrand} fort. Denken Sie an den richtigen Aufruf mit der Zuweisung von \texttt{op\ \textless{}-\ par(\ ...\ )}!
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Probieren Sie die Größeneinstellung \texttt{cex\ =\ 2} in \texttt{plot} aus. Testen Sie unterschiedliche Werte.
+\item
+  Probieren Sie die Einstellungen \texttt{cex.axis}, \texttt{cex.lab} und \texttt{cex.main} in \texttt{par} aus.
+\item
+  Probieren Sie die Einstellung \texttt{col} in \texttt{plot} aus.
+\item
+  Probieren Sie die Einstellungen \texttt{col.axis}, \texttt{col.lab} und \texttt{col.main} aus.
+\item
+  Probieren Sie die Schrifteinstellungen aus. Dazu stellen Sie den Parameter \texttt{family} in \texttt{par} auf ``serif',''sans" oder ``mono''
+\item
+  Probieren Sie die Parameter \texttt{font.lab\ =\ 2} und \texttt{font.axis\ =\ 2} direkt in \texttt{plot} aus. Zahlen 1 bis 5 stehen jeweils für normal, fett, kursiv, fett-kursiv und symbolisch.
+\end{enumerate}
+
+\hypertarget{eigene-funktionen-schreiben}{%
+\section{Eigene Funktionen schreiben}\label{eigene-funktionen-schreiben}}
 
 \hypertarget{r-hausaufgaben}{%
 \subsection{R-Hausaufgaben}\label{r-hausaufgaben}}
@@ -1037,11 +1483,11 @@ Ar belegt im 4. Semester die Veranstaltung ``Spaß mit R''. Bei der Klausur gibt
   Überprüfen Sie Ars Vermutung, dass die Aufgabengruppe 1 im Schnitt leichter war als Aufgabengruppe 2 (d.h. in der Gruppe 1 im Schnitt mehr Punkte erzielt wurden).
 \end{enumerate}
 
-\hypertarget{daten-visualisieren}{%
-\section{Daten visualisieren}\label{daten-visualisieren}}
+\hypertarget{daten-visualisieren-teil-ii-fokus-auf-daten}{%
+\section{Daten visualisieren, Teil II: Fokus auf Daten}\label{daten-visualisieren-teil-ii-fokus-auf-daten}}
 
-\hypertarget{lange-bramke-harz}{%
-\subsection{Lange Bramke (Harz)}\label{lange-bramke-harz}}
+\hypertarget{zeitreihen-aus-der-langen-bramke-harz}{%
+\subsection{Zeitreihen aus der Langen Bramke (Harz)}\label{zeitreihen-aus-der-langen-bramke-harz}}
 
 Im Harz wurden über eine längere Zeit Niederschlag, Abfluss und Temperatur gemessen.
 

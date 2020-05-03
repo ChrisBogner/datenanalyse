@@ -41,12 +41,67 @@ Ar Stat arbeitet als HiWi in der AG Ökosystemforschung und soll im Nationalpark
 5. Fügen Sie die Art in den `data.frame` ein.
 6. Erstellen Sie eine Tabelle mit der Anzahl der jeweiligen Arten. Nutzen Sie die Funktion `table'.
 7. Speichern Sie die Tabelle mit `write.table`.
-8. Welche Baumart hat im Mittel einen größeren Brusthöhendurchmesser?
 
 
 ## Daten visualisieren, Teil I: Fokus auf R
 
-plot, barplot, boxplot etc., par
+### Wahlbeteiligung bei der Bundestagswahl 2017 {#wahlbeteiligung}
+
+Bauen Sie die Grafike aus der Einführung nach (Abbildung \@ref(fig:wahlbeteiligung)).
+
+```{r wahlbeteiligung, echo = F, fig.cap = 'Wahlbeteiligung bei den Bundestagswahlen. Quelle: Der Bundeswahlleiter.', fig.width = 6, out.width = "100%"}
+knitr::include_graphics('Wahlbeteiligung.png', auto_pdf = T)
+```
+
+
+1. Lesen Sie den Datensatz `r file.name('Wahlbeteiligung.csv')` in R ein und ordenen Sie ihn dem Objekt `bet` zu. Der Datensatz hat einen header und haben einen Strichpunkt als Spaltentrenner.
+2. Sehen Sie sich die Struktur und die ersten und letzten 6 Zeilen des Datensatzes an.
+2. Stellen Sie die Wahlbeteiligung als Funktion der Zeit in einem Streudiagramm dar. Wählen Sie die passende Darstellungsform `type`.
+2. Beschriften Sie die Grafik.
+2. Speichern Sie die Grafik als pdf ab.
+
+
+### Zweitstimme bei der Bundestagswahl 2017 {#zweitstimme}
+
+Bauen Sie die Grafike aus der Einführung nach (Abbildung \@ref(fig:zweitstimme)).
+
+```{r zweitstimme, echo = F, fig.cap = 'Zweitstimme bei der Bundestagswahl 2017. Quelle: Der Bundeswahlleiter.', fig.width = 6, out.width = "100%"}
+knitr::include_graphics('Zweitstimme.png', auto_pdf = T)
+```
+
+
+1. Lesen Sie den Datensatz `r file.name('Wahlbeteiligung.csv')` in R ein und ordenen Sie ihn dem Objekt `zweit` zu. Der Datensatz hat einen header und haben einen Strichpunkt als Spaltentrenner.
+2. Sehen Sie sich die Struktur und die ersten und letzten 6 Zeilen des Datensatzes an.
+2. Stellen Sie die die Zweitstimmen pro Partei in einem Säulendiagramm dar. Sortieren Sie die Zweitstimmen in absteigender Reihenfolge.
+2. Beschriften Sie die Grafik.
+2. Speichern Sie die Grafik als pdf ab.
+
+### Ergebnisse der Bundestagswahl in einer Grafik {#zweigrafiken}
+
+Stellen Sie beide Grafiken nebeneinander dar wie in Abbildung () gezeigt
+
+```{r zweigrafiken, echo = F, fig.width = 6, fig.cap = 'Ergebnisse der Bundestagswahl 2017. Quelle: Der Bundeswahlleiter.', fig.width = 6, out.width = "100%"}
+knitr::include_graphics('Zwei_grafiken.png', auto_pdf = T)
+```
+
+
+### Einen zu großen weißen Rand vermeiden {#weisserrand}
+
+Bei Berichten ist es oft störend, wenn Grafiken einen übermäßig großen weißen Rand haben.
+
+1. Kopieren Sie den Code zum Plotten der Temperaturen aus dem Kapitel \@ref(visualisieren).
+1. Stellen Sie oben und rechts einen Rand von 0.1 Zeilen ein.
+1. Speichern Sie die Grafik als pdf ab.
+
+### Spielen mit der Funtion `par`
+ Setzen Sie die Übung \@ref(weisserrand) fort. Denken Sie an den richtigen Aufruf mit der Zuweisung von `op <- par( ... )`!
+
+1. Probieren Sie die Größeneinstellung `cex = 2` in `plot` aus. Testen Sie unterschiedliche Werte.
+1. Probieren Sie die Einstellungen `cex.axis`, `cex.lab` und `cex.main` in `par` aus. 
+1. Probieren Sie die Einstellung `col` in `plot` aus.
+1. Probieren Sie die Einstellungen `col.axis`, `col.lab` und `col.main` aus. 
+1. Probieren Sie die Schrifteinstellungen aus. Dazu stellen Sie den Parameter `family` in `par` auf "serif', "sans" oder "mono"
+1. Probieren Sie die Parameter `font.lab = 2` und `font.axis = 2` direkt in `plot` aus. Zahlen 1 bis 5 stehen jeweils für normal, fett, kursiv, fett-kursiv und symbolisch.
 
 ## Eigene Funktionen schreiben
 

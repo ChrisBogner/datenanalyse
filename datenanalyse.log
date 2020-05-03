@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2019.6.20)  24 APR 2020 09:33
+This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2019.6.20)  3 MAY 2020 21:33
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -791,11 +791,11 @@ File: md-frame-0.mdf 2013/07/01\ 1.9b: md-frame-0
 \c@mdf@env@ii=\count303
 \c@mdf@zref@counter=\count304
 Package zref Info: New property: mdf@pagevalue on input line 895.
-) (/usr/local/texlive/texmf-local/tex/latex/local/Copernicus/natbib.sty
-Package: natbib 2006/09/06 7.4a (PWD)
+) (/usr/local/texlive/2019/texmf-dist/tex/latex/natbib/natbib.sty
+Package: natbib 2010/09/13 8.31b (PWD, AO)
 \bibhang=\skip128
 \bibsep=\skip129
-LaTeX Info: Redefining \cite on input line 541.
+LaTeX Info: Redefining \cite on input line 694.
 \c@NAT@ctr=\count305
 ) (./datenanalyse.aux)
 \openout1 = `datenanalyse.aux'.
@@ -1264,53 +1264,26 @@ Package xcolor Warning: Incompatible color definition on input line 572.
 
 Package xcolor Warning: Incompatible color definition on input line 572.
 
-
-Package xcolor Warning: Incompatible color definition on input line 588.
-
-
-Package xcolor Warning: Incompatible color definition on input line 595.
-
-
-Package xcolor Warning: Incompatible color definition on input line 595.
-
 [14]
 
 Package xcolor Warning: Incompatible color definition on input line 618.
 
 
-Package xcolor Warning: Incompatible color definition on input line 624.
+Package xcolor Warning: Incompatible color definition on input line 625.
 
 
-Package xcolor Warning: Incompatible color definition on input line 624.
+Package xcolor Warning: Incompatible color definition on input line 625.
 
 
-Package xcolor Warning: Incompatible color definition on input line 655.
+Package xcolor Warning: Incompatible color definition on input line 648.
 
 
-Package xcolor Warning: Incompatible color definition on input line 659.
+Package xcolor Warning: Incompatible color definition on input line 654.
 
 
-Package xcolor Warning: Incompatible color definition on input line 659.
-
-
-Package xcolor Warning: Incompatible color definition on input line 665.
-
-
-Package xcolor Warning: Incompatible color definition on input line 669.
-
-
-Package xcolor Warning: Incompatible color definition on input line 669.
+Package xcolor Warning: Incompatible color definition on input line 654.
 
 [15]
-
-Package xcolor Warning: Incompatible color definition on input line 675.
-
-
-Package xcolor Warning: Incompatible color definition on input line 679.
-
-
-Package xcolor Warning: Incompatible color definition on input line 679.
-
 
 Package xcolor Warning: Incompatible color definition on input line 685.
 
@@ -1321,42 +1294,43 @@ Package xcolor Warning: Incompatible color definition on input line 689.
 Package xcolor Warning: Incompatible color definition on input line 689.
 
 
-Package xcolor Warning: Incompatible color definition on input line 697.
+Package xcolor Warning: Incompatible color definition on input line 695.
 
 
-Package xcolor Warning: Incompatible color definition on input line 701.
+Package xcolor Warning: Incompatible color definition on input line 699.
 
 
-Package xcolor Warning: Incompatible color definition on input line 701.
+Package xcolor Warning: Incompatible color definition on input line 699.
 
-Missing character: There is no 😄 in font [lmroman10-regular]:mapping=tex-text;!
 
-Package xcolor Warning: Incompatible color definition on input line 711.
+Package xcolor Warning: Incompatible color definition on input line 705.
+
+
+Package xcolor Warning: Incompatible color definition on input line 709.
+
+
+Package xcolor Warning: Incompatible color definition on input line 709.
 
 
 Package xcolor Warning: Incompatible color definition on input line 715.
 
 
-Package xcolor Warning: Incompatible color definition on input line 715.
+Package xcolor Warning: Incompatible color definition on input line 719.
 
 
-Package xcolor Warning: Incompatible color definition on input line 721.
+Package xcolor Warning: Incompatible color definition on input line 719.
 
 
-Package xcolor Warning: Incompatible color definition on input line 725.
-
-
-Package xcolor Warning: Incompatible color definition on input line 725.
+Package xcolor Warning: Incompatible color definition on input line 727.
 
 
 Package xcolor Warning: Incompatible color definition on input line 731.
 
 
-Package xcolor Warning: Incompatible color definition on input line 735.
+Package xcolor Warning: Incompatible color definition on input line 731.
 
-
-Package xcolor Warning: Incompatible color definition on input line 735.
-
+Missing character: There is no 😄 in font [lmroman10-regular]:mapping=tex-text;!
+[16]
 
 Package xcolor Warning: Incompatible color definition on input line 741.
 
@@ -1366,33 +1340,271 @@ Package xcolor Warning: Incompatible color definition on input line 745.
 
 Package xcolor Warning: Incompatible color definition on input line 745.
 
-[16] [17] [18]
-Chapter 5.
 
-Underfull \vbox (badness 1221) has occurred while \output is active []
+Package xcolor Warning: Incompatible color definition on input line 751.
+
+
+Package xcolor Warning: Incompatible color definition on input line 755.
+
+
+Package xcolor Warning: Incompatible color definition on input line 755.
+
+
+Package xcolor Warning: Incompatible color definition on input line 761.
+
+
+Package xcolor Warning: Incompatible color definition on input line 765.
+
+
+Package xcolor Warning: Incompatible color definition on input line 765.
+
+
+Package xcolor Warning: Incompatible color definition on input line 771.
+
+
+Package xcolor Warning: Incompatible color definition on input line 775.
+
+
+Package xcolor Warning: Incompatible color definition on input line 775.
+
+[17] [18]
+Chapter 5.
+Package mdframed Info: mdframed works in twoside mode on input line 940.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 940.
+LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <12> not available
+(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 963.
+
+Underfull \hbox (badness 10000) in paragraph at lines 965--966
+\TU/lmr/m/n/10 Wetterdienst herunterladen kann ([]$[][][][][] [] [] [] [][][] [
+] [][][] [] [][] [] [][] [] [][][][][][][][][][] []
+ []
+
+
+Package xcolor Warning: Incompatible color definition on input line 969.
+
+
+Package xcolor Warning: Incompatible color definition on input line 975.
+
+
+Package xcolor Warning: Incompatible color definition on input line 975.
+
+
+Overfull \hbox (90.75pt too wide) in paragraph at lines 996--996
+[]\TU/lmtt/m/n/10 ##  $ STATIONS_ID      : int  2667 2667 2667 2667 2667 2667 2
+667 2667 2667 2667 ...[] 
+ []
+
+
+Overfull \hbox (300.75pt too wide) in paragraph at lines 996--996
+[]\TU/lmtt/m/n/10 ##  $ MESS_DATUM_BEGINN: int  20181001 20181101 20181201 2019
+0101 20190201 20190301 20190401 20190501 20190601 20190701 ...[] 
+ []
+
+
+Overfull \hbox (300.75pt too wide) in paragraph at lines 996--996
+[]\TU/lmtt/m/n/10 ##  $ MESS_DATUM_ENDE  : int  20181031 20181130 20181231 2019
+0131 20190228 20190331 20190430 20190531 20190630 20190731 ...[] 
+ []
+
+
+Overfull \hbox (90.75pt too wide) in paragraph at lines 996--996
+[]\TU/lmtt/m/n/10 ##  $ MO_N             : num  4.76 5.51 6.49 6.66 4.79 5.62 4
+.56 5.37 3.85 4.95 ...[] 
+ []
 
 [19
 
-] [20] [21] [22] (./datenanalyse.bbl [23] [24
+]
+Overfull \hbox (85.5pt too wide) in paragraph at lines 996--996
+[]\TU/lmtt/m/n/10 ##  $ MO_FK            : num  2.42 2.57 2.68 2.84 2.54 3.06 2
+.53 2.32 2.4 2.23 ...[] 
+ []
+
+
+Overfull \hbox (64.5pt too wide) in paragraph at lines 996--996
+[]\TU/lmtt/m/n/10 ##  $ MX_TX            : num  26.7 19.2 15 8.8 21 20.4 25.9 2
+4.3 36.2 40.3 ...[] 
+ []
+
+
+Overfull \hbox (90.75pt too wide) in paragraph at lines 996--996
+[]\TU/lmtt/m/n/10 ##  $ MX_FX            : num  15.3 16.5 18.9 22.8 18.7 28.8 1
+9.5 16.5 26.1 14.6 ...[] 
+ []
+
+
+Overfull \hbox (80.25pt too wide) in paragraph at lines 996--996
+[]\TU/lmtt/m/n/10 ##  $ MX_TN            : num  0.4 -4.3 -4.9 -10.7 -3.5 -2.8 -
+2.3 -1.8 7.3 4.4 ...[] 
+ []
+
+
+Overfull \hbox (75.0pt too wide) in paragraph at lines 996--996
+[]\TU/lmtt/m/n/10 ##  $ MX_RS            : num  6.9 9.7 15.7 22.3 12.3 18.2 21.
+4 10.6 8.8 11.9 ...[] 
+ []
+
+
+Overfull \hbox (38.25pt too wide) in paragraph at lines 996--996
+[]\TU/lmtt/m/n/10 ##  $ eor              : Factor w/ 1 level "eor": 1 1 1 1 1 1
+ 1 1 1 1 ...[] 
+ []
+
+
+Underfull \hbox (badness 1694) in paragraph at lines 998--999
+\TU/lmr/m/n/10 MESS_DATUM_BEGINN. Das sind jeweils die Monatsmittel der Luft-
+ []
+
+
+Underfull \hbox (badness 1968) in paragraph at lines 998--999
+\TU/lmr/m/n/10 temperatur in 2m Hoehe, Monatsmittel des Lufttemperatur Minimums
+,
+ []
+
+
+Package xcolor Warning: Incompatible color definition on input line 1000.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1005.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1005.
+
+
+Overfull \hbox (33.0pt too wide) in paragraph at lines 1012--1012
+[]\TU/lmtt/m/n/10 ##  [1] "2018-10-01" "2018-11-01" "2018-12-01" "2019-01-01" "
+2019-02-01"[] 
+ []
+
+
+Overfull \hbox (33.0pt too wide) in paragraph at lines 1012--1012
+[]\TU/lmtt/m/n/10 ##  [6] "2019-03-01" "2019-04-01" "2019-05-01" "2019-06-01" "
+2019-07-01"[] 
+ []
+
+
+Overfull \hbox (33.0pt too wide) in paragraph at lines 1012--1012
+[]\TU/lmtt/m/n/10 ## [11] "2019-08-01" "2019-09-01" "2019-10-01" "2019-11-01" "
+2019-12-01"[] 
+ []
+
+
+Package xcolor Warning: Incompatible color definition on input line 1016.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1020.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1020.
+
+File: datenanalyse_files/figure-latex/unnamed-chunk-22-1.pdf Graphic file (type
+ pdf)
+<use datenanalyse_files/figure-latex/unnamed-chunk-22-1.pdf>
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[20]
+
+Package xcolor Warning: Incompatible color definition on input line 1028.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1038.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1038.
+
+File: datenanalyse_files/figure-latex/unnamed-chunk-23-1.pdf Graphic file (type
+ pdf)
+<use datenanalyse_files/figure-latex/unnamed-chunk-23-1.pdf>
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[21]
+
+Package xcolor Warning: Incompatible color definition on input line 1044.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1054.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1054.
+
+File: datenanalyse_files/figure-latex/unnamed-chunk-24-1.pdf Graphic file (type
+ pdf)
+<use datenanalyse_files/figure-latex/unnamed-chunk-24-1.pdf>
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[22]
+Overfull \hbox (18.31007pt too wide) in alignment at lines 1060--1064
+ [] [] 
+ []
+
+
+Overfull \hbox (18.31007pt too wide) in alignment at lines 1064--1079
+ [] [] 
+ []
+
+[23]
+LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <14.4> not available
+(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 1171.
+File: Regionen_und_Raender.pdf Graphic file (type pdf)
+<use Regionen_und_Raender.pdf>
+Package mdframed Info: mdframed works in twoside mode on input line 1183.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1183.
+[24]
+Package mdframed Info: Not enough space on this page on input line 1195.
+
+Package xcolor Warning: Incompatible color definition on input line 1201.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1212.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1212.
+
+File: datenanalyse_files/figure-latex/unnamed-chunk-26-1.pdf Graphic file (type
+ pdf)
+<use datenanalyse_files/figure-latex/unnamed-chunk-26-1.pdf>
+[25] [26]
+Chapter 6.
+
+Underfull \vbox (badness 1221) has occurred while \output is active []
+
+[27
+
+]
+File: Wahlbeteiligung.pdf Graphic file (type pdf)
+<use Wahlbeteiligung.pdf>
+File: Zweitstimme.pdf Graphic file (type pdf)
+<use Zweitstimme.pdf>
+[28] [29]
+File: Zwei_grafiken.pdf Graphic file (type pdf)
+<use Zwei_grafiken.pdf>
+[30] [31] [32] (./datenanalyse.bbl [33] [34
 
 ])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1149.
-[25]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1149.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1595.
+[35]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1595.
 (./datenanalyse.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 1149.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1149.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 1595.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1595.
 
 Package rerunfilecheck Info: File `datenanalyse.out' has not changed.
-(rerunfilecheck)             Checksum: 5B40B5091189FF911443E2BCC244723D.
+(rerunfilecheck)             Checksum: B09C1BB9B988F7259A87C2CB12C7973B.
  ) 
 Here is how much of TeX's memory you used:
- 28456 strings out of 492909
- 519993 string characters out of 6132923
- 761717 words of memory out of 5000000
- 32225 multiletter control sequences out of 15000+600000
- 538748 words of font info for 79 fonts, out of 8000000 for 9000
+ 28618 strings out of 492909
+ 523209 string characters out of 6132923
+ 766606 words of memory out of 5000000
+ 32374 multiletter control sequences out of 15000+600000
+ 538772 words of font info for 82 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 58i,8n,115p,820b,453s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 58i,8n,115p,820b,466s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on datenanalyse.pdf (25 pages).
+Output written on datenanalyse.pdf (35 pages).

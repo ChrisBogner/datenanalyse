@@ -1,13 +1,169 @@
 # Daten visualisieren {#visualisieren}
 
 ```{block, type = 'rmdoutcomes'}
-- Einfache Graphiken erstellen
-- Graphiken beschriften und speichern
+- Einfache Grafiken erstellen
+- Grafiken beschriften und speichern
 - Die Arbeitsweise der Funktion `par` beschreiben
 - Die grafischen Parameter für Randgröße, Farbe, Schrift- und Symbolgröße einstellen
 - Unterschiede zwischen high- und low-level Plotfunktionen erklären
 - Grafiken mit mehreren Plots erstellen
-- Grafiken mit einer Sekundärachse erstellen
 ```
 
-## Datenstrukturen erzeugen
+## Plotten mit R-Basisfunktionen
+
+### High-level-Funtion `plot` und low-level-Funtion `lines`
+
+Ein Streudiagramm stellt zwei numerische Variablen gegeneinander dar. Wir betrachten Klimadaten der Station Köln-Bonn, die man beim Deutschen Wetterdienst herunterladen kann (https://www.dwd.de/DE/leistungen/klimadatendeutschland/klimadatendeutschland.html).
+
+Sie können als Übung den Code aus den Chunks leicht herauskopieren und in RStudio laufen lassen.
+
+```{r}
+meteo <- read.table('produkt_klima_monat_20181001_20200430_02667.txt',
+header = T, sep = ';')
+str(meteo)
+```
+
+
+Uns interessieren hier nur die Spalten MO_TT, MO_TN, MO_TX und MESS_DATUM_BEGINN. Das sind jeweils die Monatsmittel der Lufttemperatur in 2m Hoehe, Monatsmittel des Lufttemperatur Minimums, Monatsmittel des Lufttemperatur Maximums und Beginn der Messperiode. Um die Daten als Zeitreihen darstellen zu können, wandeln wir die Spalte MESS_DATUM_BEGINN in ein richtiges Zeitpobjekt. Das geht mit der Funktion `as.Date`.
+
+
+```{r}
+my_date <- as.Date(as.character(meteo$MESS_DATUM_BEGINN), format = '%Y%m%d')
+my_date
+```
+
+Es sind Daten von Oktober 2018 bis April 2020. Die Funktion `plot` stellt erstellt ein Streudiagramm. Mit den Parametern `xlab` und `ylab` lassen sich die beiden Achsen beschriften und `main` fügt einen Titel dazu. Der Parameter `type` betsimmt die Wahl der Symbole; hier benutzen wir `type = b` für *both*, also sowohl Punkte als auch Linien.
+
+```{r}
+plot(my_date, meteo$MO_TT, type = 'b', xlab = 'Zeit', ylab = 'Temperatur [°C]', main = 'Klimadaten der DWD-Station Köln-Bonn')
+```
+
+
+Die Funktion `plot` ist eine sogen. high-level-Funtion. Das bedeutet, dass sie alle Schritte des Plottens übernimmt: sie öffnet ein neues Graphikfenster (ein Device), berechnet die größe der Plotfläche und der Ränder (s. unten), berechnet die Ausdehnung der Achsen und die beste Achseneinteilung und plottet Ihre Daten.
+
+Daneben gibt es low-level-Funtionen, die nur in ein bestehendes Device plotten können. Wir wollen zu unserer Graphik nun die Minimum- und die Maximumtemepratur dazu plotten.
+
+```{r}
+plot(my_date, meteo$MO_TT, type = 'b', xlab = 'Zeit', ylab = 'Temperatur [°C]', main = 'Klimadaten der DWD-Station Köln-Bonn')
+
+# Minimumtemperatur in rot
+lines(my_date, meteo$MO_TN, col = 'blue')
+
+# Maximumtemperatur in blau
+lines(my_date, meteo$MO_TX, col = 'red')
+```
+
+Dass `lines` nur eine low-level-Funtion ist, erkennen Sie dara, dass sie nicht in der Lage ist, den Bereich auf der y-Achse zu vergrößern, um alle Daten sichtbar zu machen. Das kann nur `plot`. Daher muss der Bereich bereits in `plot` richtig festgelegt werden. Das macht der Parameter `ylim`.
+
+```{r}
+plot(my_date, meteo$MO_TT, type = 'b', xlab = 'Zeit', ylab = 'Temperatur [°C]', main = 'Klimadaten der DWD-Station Köln-Bonn', ylim = c(0, 30))
+
+# Minimumtemperatur in rot
+lines(my_date, meteo$MO_TN, col = 'blue')
+
+# Maximumtemperatur in blau
+lines(my_date, meteo$MO_TX, col = 'red')
+```
+
+Die wichtigsten high-level-Grafikfuntionen [nach @Ligges2008, verändert]:
+
+Funktion | Beschreibung |
+:-------- | :------------ |
+`plot` | kontextabhängig – generische Funktion mit vielen Methoden |
+`barplot` | Stabdiagramm |
+`boxplot` | Boxplot |
+`contour` | Höhenlinien-Plot |
+`coplot` | Conditioning-Plots |
+`curve` | Funktionen zeichnen |
+`dotchart` | Dotplots (Cleveland) |
+`hist` | Histogramm |
+`image` |Bilder (3. Dim. als Farbe) |
+`mosaicplot`| Mosaikplots (kategorielle Daten) |
+`pairs` |Streudiagramm-Matrix |
+`persp` |perspektivische Flächen |
+`qqnorm` und `qqplot` | QQ–Plot |
+
+
+Die wichtigsten low-level-Grafikfuntionen [nach @Ligges2008, verändert]:
+
+Funktion | Beschreibung |
+:-------- | :------------ |
+`abline` | Fügt eine Linie hinzu; diese kann horizontal, vertikal oder über Steigung und Achsenabschnitt definiert werden |
+`arrows` | Pfeile| 
+`axis` | Achsen|
+`grid` |Gitternetz|
+`legend` |Legende|
+`lines` |Linien (schrittweise)|
+`mtext` |Text in den Rändern|
+`plot.new` |Grafik initialisieren|
+`plot.window` |Koordinatensystem initialisieren|
+`points` | Punkte|
+`polygon` |(ausgefullte) Polygone|
+`pretty` |berechnet "hubsche" Einteilung der Achsen|
+`segments` |Linien (vektorwertig)|
+`text` |Text|
+`title` |Beschriftung|
+
+## Tuning mit `par`
+
+Zur Vertiefung dieses Kapitels, lesen Sie @Ligges2008, Kapitel 8.1.3.
+
+Die Grafikebene in R ist aufgeteilt in drei Regionen (Abbildung \@ref(fig:aufteilung)) und hat innere und äußere Ränder. Die Ränder werden von unten im Gegenuhrzeigersinn durchnummeriert.
+
+```{r aufteilung, echo = F, fig.cap = 'Aufteilung der Graphikfläche [@Ligges2008].', fig.width = 6, out.width = "100%"}
+knitr::include_graphics('Regionen_und_Raender.png', auto_pdf = T)
+```
+
+Mit der Funtion `par` lassen sich sehr viele Einstellung der Grafik verändern. Viele Einstellungen übergibt die Funtion `plot` selbständig an `par`, z.B. `log` (Logarithmieren der Achsen), `cex` (Größe eines Punkts) oder `col` (Farbe). Andere können aber nur durch Aufrufen der Funtion `par` verändert werden. Dazu gehören die inneren Ränder `mar` und die äußeren Ränder `oma`, die Aufteilung der Grafikebene mit `mfrow` oder `mfcol`.
+
+
+```{block, type='rmdalert'}
+Richtige Benutzung von `par`:
+
+- Parameter setzen: `op <- par( ... )`
+- plotten
+- Parameter auf Standard zurück setzen: `par(op)`
+```
+
+Die Zuweisung `op <- par( ... )` speichert die Standardeinstellungen im Objekt `par`, bevor Sie sie ändern. Der Aufruf `par(op)` setzt Ihre Änderungen zurück. Das ist sehr praktisch, wenn Sie z.B. die Aufteilung der Grafikebene nicht mehr benötigen. Wenn Sie die Parameter nicht zurücksetzen, bleiben diese bestehen, bis das Grafikfenster geschlossen wird (z.B. mit `dev.off()`).
+
+Um die Ränder zu verändern, rufen wir `par` auf und beschneiden die Ränder, damit Sie den Unterschied erkennen können.
+
+```{r}
+op <- par(mar = c(1, 1, 1, 1))
+plot(my_date, meteo$MO_TT, type = 'b', xlab = 'Zeit', ylab = 'Temperatur [°C]', main = 'Klimadaten der DWD-Station Köln-Bonn', ylim = c(0, 30))
+
+# Minimumtemperatur in rot
+lines(my_date, meteo$MO_TN, col = 'blue')
+
+# Maximumtemperatur in blau
+lines(my_date, meteo$MO_TX, col = 'red')
+```
+
+Die Achsenbeschriftungen und die Zahlen haben jetzt nicht mehr genug Platz und verschwinden. Die Größe der Ränder wird in Zeilen angegeben, ist also relativ zur Gesamtgröße. Die Standardeinstellung ist c(5, 4, 4, 2) + 0.1
+
+Einige häufig genutzte Argumente in Grafikfunktionen und in `par` [nach @Ligges2008, verändert]. Schlagen Sie die Erklärungen dazu immer in `?par` oder `?plot` nach.
+
+Funktion | Beschreibung|
+:-------- | :------------ |
+`axes` | Achsen sollen (nicht) eingezeichnet werden|
+`bg` |Hintergrundfarbe|
+`cex` |Gröoße eines Punktes bzw. Buchstaben|
+`col` |Farben|
+`las` |Ausrichtung der Achsenbeschriftung|
+`log` |Logarithmierte Darstellung|
+`lty`, `lwd` |Linientyp (gestrichelt, ...) und Linienbreite|
+`main` |Uberschrift |
+`mar` |Größe der inneren Ränder fur Achsenbeschriftung etc.|
+`mfcol`, `mfrow` |mehrere Grafiken in einem Bild|
+`pch` |Symbol fur einen Punkt|
+`type` |Typ (l=Linie, p=Punkt, b=beides, n=nichts)|
+`usr` |Ausmaße der Achsen auslesen|
+`xlab`, `ylab` |x-/y-Achsenbeschriftung|
+`xlim`, `ylim` |zu plottender Bereich in x-/y- Richtung|
+`xpd` |in die Ränder hinein zeichnen|
+
+## Inhalt der live Einführung und der Übungen
+- `plot`, `barplot`, `mfrow`
+- Aufgaben \@ref(wahlbeteiligung), \@ref(zweitstimme) und \@ref(zweigrafiken).
+- Speichern als pdf

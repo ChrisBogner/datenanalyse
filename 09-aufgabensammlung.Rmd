@@ -70,7 +70,7 @@ knitr::include_graphics('Zweitstimme.png', auto_pdf = T)
 ```
 
 
-1. Lesen Sie den Datensatz `r file.name('Wahlbeteiligung.csv')` in R ein und ordnen Sie ihn dem Objekt `zweit` zu. Der Datensatz hat einen *header* und haben einen Strichpunkt als Spaltentrenner.
+1. Lesen Sie den Datensatz `r file.name('Zweitstimme.csv')` in R ein und ordnen Sie ihn dem Objekt `zweit` zu. Der Datensatz hat einen *header* und haben einen Strichpunkt als Spaltentrenner.
 2. Sehen Sie sich die Struktur und die ersten und letzten 6 Zeilen des Datensatzes an.
 2. Stellen Sie die die Zweitstimmen pro Partei in einem Säulendiagramm dar. Sortieren Sie die Zweitstimmen in absteigender Reihenfolge.
 2. Beschriften Sie die Grafik.

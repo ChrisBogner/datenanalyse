@@ -48,7 +48,7 @@ knitr::include_graphics('RStudio.png')
 
 
 
-## Inhalt der live Einführung und der Übungen
+## Inhalt der live Einführung
 
 - Überblick über RStudio
 - R als Taschenrechner

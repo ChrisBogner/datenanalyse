@@ -39,7 +39,7 @@ Ar Stat arbeitet als HiWi in der AG Ökosystemforschung und soll im Nationalpark
 4. Löschen Sie den Vektor `a`.
 4. Lesen Sie den Datensatz `r file.name("Art.txt")` ein und ordnen Sie ihn der Variablen `art` zu.
 5. Fügen Sie die Art in den `data.frame` ein.
-6. Erstellen Sie eine Tabelle mit der Anzahl der jeweiligen Arten. Nutzen Sie die Funktion `table'.
+6. Erstellen Sie eine Tabelle mit der Anzahl der jeweiligen Arten. Nutzen Sie die Funktion `table`.
 7. Speichern Sie die Tabelle mit `write.table`.
 
 
@@ -47,14 +47,14 @@ Ar Stat arbeitet als HiWi in der AG Ökosystemforschung und soll im Nationalpark
 
 ### Wahlbeteiligung bei der Bundestagswahl 2017 {#wahlbeteiligung}
 
-Bauen Sie die Grafike aus der Einführung nach (Abbildung \@ref(fig:wahlbeteiligung)).
+Bauen Sie die Grafiken aus der Einführung nach (Abbildung \@ref(fig:wahlbeteiligung)).
 
 ```{r wahlbeteiligung, echo = F, fig.cap = 'Wahlbeteiligung bei den Bundestagswahlen. Quelle: Der Bundeswahlleiter.', fig.width = 6, out.width = "100%"}
 knitr::include_graphics('Wahlbeteiligung.png', auto_pdf = T)
 ```
 
 
-1. Lesen Sie den Datensatz `r file.name('Wahlbeteiligung.csv')` in R ein und ordenen Sie ihn dem Objekt `bet` zu. Der Datensatz hat einen header und haben einen Strichpunkt als Spaltentrenner.
+1. Lesen Sie den Datensatz `r file.name('Wahlbeteiligung.csv')` in R ein und ordnen Sie ihn dem Objekt `bet` zu. Der Datensatz hat einen *header* und haben einen Strichpunkt als Spaltentrenner.
 2. Sehen Sie sich die Struktur und die ersten und letzten 6 Zeilen des Datensatzes an.
 2. Stellen Sie die Wahlbeteiligung als Funktion der Zeit in einem Streudiagramm dar. Wählen Sie die passende Darstellungsform `type`.
 2. Beschriften Sie die Grafik.
@@ -63,14 +63,14 @@ knitr::include_graphics('Wahlbeteiligung.png', auto_pdf = T)
 
 ### Zweitstimme bei der Bundestagswahl 2017 {#zweitstimme}
 
-Bauen Sie die Grafike aus der Einführung nach (Abbildung \@ref(fig:zweitstimme)).
+Bauen Sie die Grafiken aus der Einführung nach (Abbildung \@ref(fig:zweitstimme)).
 
 ```{r zweitstimme, echo = F, fig.cap = 'Zweitstimme bei der Bundestagswahl 2017. Quelle: Der Bundeswahlleiter.', fig.width = 6, out.width = "100%"}
 knitr::include_graphics('Zweitstimme.png', auto_pdf = T)
 ```
 
 
-1. Lesen Sie den Datensatz `r file.name('Wahlbeteiligung.csv')` in R ein und ordenen Sie ihn dem Objekt `zweit` zu. Der Datensatz hat einen header und haben einen Strichpunkt als Spaltentrenner.
+1. Lesen Sie den Datensatz `r file.name('Wahlbeteiligung.csv')` in R ein und ordnen Sie ihn dem Objekt `zweit` zu. Der Datensatz hat einen *header* und haben einen Strichpunkt als Spaltentrenner.
 2. Sehen Sie sich die Struktur und die ersten und letzten 6 Zeilen des Datensatzes an.
 2. Stellen Sie die die Zweitstimmen pro Partei in einem Säulendiagramm dar. Sortieren Sie die Zweitstimmen in absteigender Reihenfolge.
 2. Beschriften Sie die Grafik.
@@ -78,7 +78,7 @@ knitr::include_graphics('Zweitstimme.png', auto_pdf = T)
 
 ### Ergebnisse der Bundestagswahl in einer Grafik {#zweigrafiken}
 
-Stellen Sie beide Grafiken nebeneinander dar wie in Abbildung () gezeigt
+Stellen Sie beide Grafiken nebeneinander dar wie in Abbildung (\@ref(zweigrafiken)) gezeigt.
 
 ```{r zweigrafiken, echo = F, fig.width = 6, fig.cap = 'Ergebnisse der Bundestagswahl 2017. Quelle: Der Bundeswahlleiter.', fig.width = 6, out.width = "100%"}
 knitr::include_graphics('Zwei_grafiken.png', auto_pdf = T)
@@ -87,20 +87,20 @@ knitr::include_graphics('Zwei_grafiken.png', auto_pdf = T)
 
 ### Einen zu großen weißen Rand vermeiden {#weisserrand}
 
-Bei Berichten ist es oft störend, wenn Grafiken einen übermäßig großen weißen Rand haben.
+Bei Berichten haben Abbildungen meistens keine Überschrift, da alles in der Bildunterschrift erklärt wird. Wenn man die Überschrift beim plotten weglässt, die Standardeinstellungen für die Ränder aber beibehält, entsteht ein zu großer weißer Rand um die Grafik. Diesen wollen wir nun abschalten.
 
 1. Kopieren Sie den Code zum Plotten der Temperaturen aus dem Kapitel \@ref(visualisieren).
 1. Stellen Sie oben und rechts einen Rand von 0.1 Zeilen ein.
 1. Speichern Sie die Grafik als pdf ab.
 
-### Spielen mit der Funtion `par`
+### Spielen mit der Funktion `par`
  Setzen Sie die Übung \@ref(weisserrand) fort. Denken Sie an den richtigen Aufruf mit der Zuweisung von `op <- par( ... )`!
 
 1. Probieren Sie die Größeneinstellung `cex = 2` in `plot` aus. Testen Sie unterschiedliche Werte.
 1. Probieren Sie die Einstellungen `cex.axis`, `cex.lab` und `cex.main` in `par` aus. 
 1. Probieren Sie die Einstellung `col` in `plot` aus.
 1. Probieren Sie die Einstellungen `col.axis`, `col.lab` und `col.main` aus. 
-1. Probieren Sie die Schrifteinstellungen aus. Dazu stellen Sie den Parameter `family` in `par` auf "serif', "sans" oder "mono"
+1. Probieren Sie die Schrifteinstellungen aus. Dazu stellen Sie den Parameter `family` in `par` auf "serif", "sans" oder "mono".
 1. Probieren Sie die Parameter `font.lab = 2` und `font.axis = 2` direkt in `plot` aus. Zahlen 1 bis 5 stehen jeweils für normal, fett, kursiv, fett-kursiv und symbolisch.
 
 ## Eigene Funktionen schreiben
@@ -139,7 +139,7 @@ Ar belegt im 4. Semester die Veranstaltung "Spaß mit R". Bei der Klausur gibt e
 Im Harz wurden über eine längere Zeit Niederschlag, Abfluss und Temperatur gemessen.
 
 1. Laden Sie den Datensatz `r file.name("Data.dat")`.
-2. Stellen Sie die Temperatur in einem Scatterplot dar. Welche Darstellungsart (Argument `type` in `plot`) erscheint Ihnen am sinnvollsten? 
+2. Stellen Sie die Temperatur in einem Streudiagramm dar. Welche Darstellungsart (Argument `type` in `plot`) erscheint Ihnen am sinnvollsten? 
 3. Beschriften Sie die Graphik und fügen Sie einen Titel hinzu.
 4. Speichern Sie die Graphik als pdf ab.
 5. Stellen Sie die Niederschläge in einem Diagramm dar. Wählen Sie einen geeigneten Darstellungstyp mit `type` (Tipp: geben Sie für die Hilfe `?plot` in die Console ein).
@@ -148,7 +148,7 @@ Im Harz wurden über eine längere Zeit Niederschlag, Abfluss und Temperatur gem
 
 1. Laden Sie den Temperatur-Datensatz aus @Zuur2009a.
 1. Berechnen Sie die Monatsmittelwerte für alle Stationen, sowie die Standardabweichungen.
-1. Stellen Sie die Monatsmittel der Temperatur in einem Barplot dar.
+1. Stellen Sie die Monatsmittel der Temperatur in einem Säulendiagramm dar.
 1. Beschriften Sie die Graphik sinnvoll.
 1. Fügen Sie die Standardabweichungen zu den einzelnen Balken hinzu.
 
@@ -179,7 +179,7 @@ Im Waldstein wurden Tracerversuche mit dem Farbstoff Brilliant Blue durchgeführ
 ### Lagerungsdichten
 Auf 10 verschiedenen landwirtschaftlichen Feldern wurden im Oberboden je 25 Stechzylinder entnommen.
 
-1. Lesen Sie den Datensatz  r file.name("Bodendaten.txt")` ein.
+1. Lesen Sie den Datensatz  `r file.name("Bodendaten.txt")` ein.
 1. Bestimmen Sie die mittlere Lagerungsdichte pro Feld.
 
 ### Temperatur-Datensatz, revisited

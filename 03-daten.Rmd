@@ -93,7 +93,7 @@ dim(my_dataframe)
 Datenlücken werden in R mit `NA` kodiert, Fehlschläge bei Berechnungen mit `NaN` (not a number) und Vektoren der Länge 0 mit `NULL`. Letzteres wird häufig beim Aufruf von Funktionen benutzt, wenn man bestimmte Parameter ausschalten möchte. Die Benutzung muss aber immer in der Hilfe zur jeweiligen Funktion nachgeschlagen werden.
 
 
-## Inhalt der live Einführung und der Übungen
+## Inhalt der live Einführung
 
 - Daten einlesen und `data.frame` erstellen: Aufgabe \@ref(bestandesaufnahme)
 

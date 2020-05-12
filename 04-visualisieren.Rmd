@@ -1,4 +1,4 @@
-# Daten visualisieren {#visualisieren}
+# Daten visualisieren I: Einfache Grafiken {#visualisieren}
 
 ```{block, type = 'rmdoutcomes'}
 - Einfache Grafiken erstellen

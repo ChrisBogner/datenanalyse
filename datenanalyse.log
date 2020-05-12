@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2019.6.20)  4 MAY 2020 18:08
+This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2019.6.20)  12 MAY 2020 08:54
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1170,13 +1170,11 @@ LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
 (Font)              scaled to size 6.99925pt on input line 2.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
 (Font)              scaled to size 4.99947pt on input line 2.
-)
+[3])
 \tf@toc=\write5
 \openout5 = `datenanalyse.toc'.
 
-[3] [4
-
-]
+[4]
 Chapter 1.
 Package mdframed Info: mdframed works in twoside mode on input line 189.
 Package mdframed Info: mdframed detected package amsthm 
@@ -1185,7 +1183,9 @@ Package mdframed Info: mdframed detected package amsthm
 
 Underfull \vbox (badness 2343) has occurred while \output is active []
 
-[5]
+[5
+
+]
 Package mdframed Info: mdframed works in twoside mode on input line 222.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
@@ -1383,12 +1383,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 938--939
 
 Package xcolor Warning: Incompatible color definition on input line 944.
 
-
-Package xcolor Warning: Incompatible color definition on input line 950.
-
-
-Package xcolor Warning: Incompatible color definition on input line 950.
-
 [19
 
 ]
@@ -1580,39 +1574,66 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [26] [27] [28]
 Chapter 6.
+Package mdframed Info: mdframed works in twoside mode on input line 1317.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1317.
+
+Overfull \hbox (1.96788pt too wide) in paragraph at lines 1332--1332
+[]\TU/lmr/bx/n/14.4 Warum Reproduzierbarkeit in der Forschung
+ []
+
+
+Underfull \hbox (badness 1546) in paragraph at lines 1335--1335
+[]\TU/lmr/bx/it/14.4 Literate Programming \TU/lmr/bx/n/14.4 Idee von Donald
+ []
+
+
+Underfull \hbox (badness 1521) in paragraph at lines 1344--1345
+\TU/lmr/m/n/10 R hat sein eigenes System von reproduzierbaren Berichten, genann
+t R
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[29
+
+] [30]
+Chapter 7.
 
 Underfull \vbox (badness 1221) has occurred while \output is active []
 
-[29
+[31
 
 ]
 File: Wahlbeteiligung.pdf Graphic file (type pdf)
 <use Wahlbeteiligung.pdf>
 File: Zweitstimme.pdf Graphic file (type pdf)
 <use Zweitstimme.pdf>
-[30] [31]
+[32] [33]
 File: Zwei_grafiken.pdf Graphic file (type pdf)
 <use Zwei_grafiken.pdf>
-[32] [33] [34] (./datenanalyse.bbl [35] [36
+[34] [35] [36] [37] (./datenanalyse.bbl [38])
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1719.
+[39
 
-])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1652.
-[37]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1652.
+]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1719.
 (./datenanalyse.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 1652.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1652.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 1719.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1719.
 
 Package rerunfilecheck Info: File `datenanalyse.out' has not changed.
-(rerunfilecheck)             Checksum: 05C3C09F3AF5E4A030C008144BD108C8.
+(rerunfilecheck)             Checksum: C5AA983ECC9508F35CCB3A2383CD40AB.
  ) 
 Here is how much of TeX's memory you used:
- 28630 strings out of 492909
- 523636 string characters out of 6132923
- 764805 words of memory out of 5000000
- 32383 multiletter control sequences out of 15000+600000
- 538780 words of font info for 83 fonts, out of 8000000 for 9000
+ 28656 strings out of 492909
+ 524277 string characters out of 6132923
+ 767493 words of memory out of 5000000
+ 32408 multiletter control sequences out of 15000+600000
+ 538788 words of font info for 84 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  58i,8n,115p,848b,453s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on datenanalyse.pdf (37 pages).
+Output written on datenanalyse.pdf (39 pages).

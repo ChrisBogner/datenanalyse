@@ -165,7 +165,7 @@
 \providecommand{\subtitle}[1]{}
 \subtitle{SoSe 2020}
 \author{Christina Bogner}
-\date{Version vom 04. Mai 2020}
+\date{Version vom 12. Mai 2020}
 
 \begin{document}
 \maketitle
@@ -905,7 +905,7 @@ Speichert die History.\strut
 \end{longtable}
 
 \hypertarget{visualisieren}{%
-\chapter{Daten visualisieren}\label{visualisieren}}
+\chapter{Daten visualisieren I: Einfache Grafiken}\label{visualisieren}}
 
 \begin{rmdoutcomes}
 \begin{itemize}
@@ -1311,6 +1311,65 @@ Funktion & Beschreibung\tabularnewline
   Speichern als pdf
 \end{itemize}
 
+\hypertarget{reproduzieren}{%
+\chapter{Reproduzierbare Forschung}\label{reproduzieren}}
+
+\begin{rmdoutcomes}
+\begin{itemize}
+\tightlist
+\item
+  Wichtigkeit der Reproduzierbarkeit erklären
+\item
+  Begriff \emph{literate programming} definieren
+\item
+  Aufbau einer RMarkdown-Datei erklären
+\item
+  Einen einfachen ersten reproduzierbaren Bericht schreiben
+\end{itemize}
+\end{rmdoutcomes}
+
+\hypertarget{warum-reproduzierbarkeit-in-der-forschung-wichtig-ist}{%
+\section{Warum Reproduzierbarkeit in der Forschung wichtig ist}\label{warum-reproduzierbarkeit-in-der-forschung-wichtig-ist}}
+
+\hypertarget{literate-programming-idee-von-donald-knuth}{%
+\section{\texorpdfstring{\emph{Literate Programming} Idee von Donald Knuth}{Literate Programming Idee von Donald Knuth}}\label{literate-programming-idee-von-donald-knuth}}
+
+Die Idee, dass man den Code und die dazugehörige Interpretation (Text, Bericht etc.) nicht von einander trennen sollte, geht auf \citet{Knuth1984} zurück. Mit \emph{Literate Programming} meinte Knuth, dass Programme auch nichts anderes wie literatirsche Werke sind. Er setzte den Fokus darauf, mit Programmen menschlichen Benutzern zu erklären, was man den Computer machen lassen möchte. Also weg vom computer- hin zum menschzentrierten Zugang. So wird Programmieren und in unserem Fall die Datenanalyse verständlich und vor allem reproduzierbar.
+
+Leider ist es in unserer modernen Forschungslandschaft immer noch nicht Standard. Das Trennen von Analyseergebnissen und Berichten (Forschungsartikeln) sorgt für viele (unendeckte und unnötige) Fehler und Frust.
+
+\hypertarget{reproduzierbare-berichte-mit-r-markdown}{%
+\section{Reproduzierbare Berichte mit R Markdown}\label{reproduzierbare-berichte-mit-r-markdown}}
+
+R hat sein eigenes System von reproduzierbaren Berichten, genannt R Markdown \citep{Xie2018}. Es ist benutzerfreundlich und ermöglicht unterschiedliche Formate von Berichten, wie HTML-Dokumente, PDF-Dateien, Präsentationsfolien usw.
+
+Es wird Sie vielleicht überraschen, aber das Skript, das Sie gerade lesen ist nichts anderes als ein ``literarisch'' programmierter Bericht in R Bookdown \citep{Xie2016}, einem R-Paket speziell für lange R Markdown-Dokumente.
+
+Wir werden vor allem mit R Notebooks arbeiten, die eine gute Interaktion zwischen dem geschriebenen Text und dem R-Code ermöglichen. Das Notebook kann sowohl in ein HTML-Dokument als auch in PDF oder Word als endgültiges Berichtdokument umgewandlet werden. Diesen Prozess nennt man \emph{knit} (der Knopf in RStudio mit dem Wollknäuel).
+
+\hypertarget{wichtigste-regeln-fuxfcr-reproduzierbarkeit}{%
+\section{Wichtigste Regeln für Reproduzierbarkeit}\label{wichtigste-regeln-fuxfcr-reproduzierbarkeit}}
+
+\hypertarget{weiterfuxfchrende-videos-und-literatur}{%
+\section{Weiterführende Videos und Literatur}\label{weiterfuxfchrende-videos-und-literatur}}
+
+Die Playlist zu \emph{Reporducible Research} finden Sie \href{https://www.youtube.com/watch?v=4rBX6r5emgQ\&list=PLjTlxb-wKvXOU4WW4p3qc4VKWTI4gLNUf}{hier}.
+
+Report Writing for Data Science in R \citep{Peng2019} (auf ILIAS)
+
+\hypertarget{inhalt-der-live-einfuxfchrung-3}{%
+\section{Inhalt der live Einführung}\label{inhalt-der-live-einfuxfchrung-3}}
+
+\begin{itemize}
+\tightlist
+\item
+  Erstellen eines einfachen R Notebooks
+\item
+  R-Code Chunks
+\item
+  Einfache Layoutelemente: Überschriften, Listen, fett und kursiv
+\end{itemize}
+
 \hypertarget{aufgabensammlung}{%
 \chapter{Aufgabensammlung}\label{aufgabensammlung}}
 
@@ -1324,7 +1383,7 @@ Der angehende Datenanalyst Ar Stat möchte dem Rat seiner Mutter folgen und ein 
 
 \begin{table}
 
-\caption{\label{tab:unnamed-chunk-29}Ars Mensaausgaben}
+\caption{\label{tab:unnamed-chunk-31}Ars Mensaausgaben}
 \centering
 \begin{tabular}[t]{lr}
 \toprule
@@ -1488,6 +1547,14 @@ Setzen Sie die Übung \ref{weisserrand} fort. Denken Sie an den richtigen Aufruf
 \item
   Probieren Sie die Parameter \texttt{font.lab\ =\ 2} und \texttt{font.axis\ =\ 2} direkt in \texttt{plot} aus. Zahlen 1 bis 5 stehen jeweils für normal, fett, kursiv, fett-kursiv und symbolisch.
 \end{enumerate}
+
+\hypertarget{reproduzierbare-berichte-mir-r-markdown}{%
+\section{Reproduzierbare Berichte mir R Markdown}\label{reproduzierbare-berichte-mir-r-markdown}}
+
+\hypertarget{erster-eigener-bericht}{%
+\subsection{Erster eigener Bericht}\label{erster-eigener-bericht}}
+
+Erstellen Sie ein R Notebook aus den Notizen der ersten 3 R-Sessions.
 
 \hypertarget{eigene-funktionen-schreiben}{%
 \section{Eigene Funktionen schreiben}\label{eigene-funktionen-schreiben}}

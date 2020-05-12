@@ -1,5 +1,6 @@
 book_filename: "datenanalyse"
-rmd_files: ["index.Rmd", "01-einfuehrung.Rmd", "02-was_ist_r.Rmd", "03-daten.Rmd", "04-visualisieren.Rmd", 
+rmd_files: ["index.Rmd", "01-einfuehrung.Rmd", "02-was_ist_r.Rmd",
+"03-daten.Rmd", "04-visualisieren.Rmd", "05-rmarkdown.Rmd", #"07-visualisieren_2.Rmd",
 "09-aufgabensammlung.Rmd", "10-biblio.Rmd"]
 before_chapter_script: ["helper_functions.R"]
 language:

@@ -165,7 +165,7 @@
 \providecommand{\subtitle}[1]{}
 \subtitle{SoSe 2020}
 \author{Christina Bogner}
-\date{Version vom 12. Mai 2020}
+\date{Version vom 17. Mai 2020}
 
 \begin{document}
 \maketitle
@@ -980,10 +980,10 @@ Uns interessieren hier nur die Spalten MO\_TT, MO\_TN, MO\_TX und MESS\_DATUM\_B
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] "2018-10-01" "2018-11-01" "2018-12-01" "2019-01-01" "2019-02-01"
-##  [6] "2019-03-01" "2019-04-01" "2019-05-01" "2019-06-01" "2019-07-01"
-## [11] "2019-08-01" "2019-09-01" "2019-10-01" "2019-11-01" "2019-12-01"
-## [16] "2020-01-01" "2020-02-01" "2020-03-01" "2020-04-01"
+##  [1] "2018-10-01" "2018-11-01" "2018-12-01" "2019-01-01" "2019-02-01" "2019-03-01"
+##  [7] "2019-04-01" "2019-05-01" "2019-06-01" "2019-07-01" "2019-08-01" "2019-09-01"
+## [13] "2019-10-01" "2019-11-01" "2019-12-01" "2020-01-01" "2020-02-01" "2020-03-01"
+## [19] "2020-04-01"
 \end{verbatim}
 
 Es sind Daten von Oktober 2018 bis April 2020. Wir erstellen ein Streudiagramm mit der Funktion \texttt{plot}. Mit den Parametern \texttt{xlab} und \texttt{ylab} lassen sich die beiden Achsen beschriften und \texttt{main} fügt einen Titel dazu. Der Parameter \texttt{type} bestimmt die Wahl der Symbole; hier benutzen wir \texttt{type\ =\ b} für \emph{both}, also sowohl Punkte als auch Linien.
@@ -1370,6 +1370,311 @@ Report Writing for Data Science in R \citep{Peng2019} (auf ILIAS)
   Einfache Layoutelemente: Überschriften, Listen, fett und kursiv
 \end{itemize}
 
+\hypertarget{funktionen}{%
+\chapter{Funktionen}\label{funktionen}}
+
+\begin{rmdoutcomes}
+\begin{itemize}
+\tightlist
+\item
+  Den Aufbau von Funktionen in R beschreiben
+\item
+  Den Aufruf von Funktionen in R erklären
+\item
+  Einfache Funktionen selbst schreiben
+\item
+  Fallunterscheidungen
+\item
+  \texttt{for} Schleifen
+\end{itemize}
+\end{rmdoutcomes}
+
+Was eine Funktion genau ist und wie man Funktionen in R aufruft, lesen Sie bitte bei \citet{Ligges2008} in Kapitel 4.1 nach. In diesem Kapitel des Skripts geht es um das Schreiben der eigenen Funktionen, Fallunterscheidungen und \texttt{for} Schleifen.
+
+\hypertarget{eigene-funktionen-schreiben}{%
+\section{Eigene Funktionen schreiben}\label{eigene-funktionen-schreiben}}
+
+Funktionen sind eine großartige Möglichkeit, sich das Leben einfacher zu machen. Sie können repetitive Aufgaben erledigen, ohne dass wir ständig mit Copy und Paste hantieren müssen, machen unsere Notebooks übersichtlich und helfen, Fehler und Inkonsistenzen zu vermeiden. Als Faustregel gilt: wenn Sie ein Stück Code mehr als 2 Mal kopieren und abändern, wird es Zeit für eine Funktion 😄.
+
+Schauen wir uns ein Beispiel an. Als erstes würfeln wir ein paar Daten aus der Gleichverteilung mit unterschiedlichen Minima und Maxima und sehen uns die Zusammenfassung und die Standardabweichungen an.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{my_data <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{col1 =} \KeywordTok{runif}\NormalTok{(}\DecValTok{20}\NormalTok{, }\DataTypeTok{min =} \DecValTok{3}\NormalTok{, }\DataTypeTok{max =} \DecValTok{10}\NormalTok{),}
+                      \DataTypeTok{col2 =} \KeywordTok{runif}\NormalTok{(}\DecValTok{20}\NormalTok{, }\DataTypeTok{min =} \DecValTok{7}\NormalTok{, }\DataTypeTok{max =} \DecValTok{12}\NormalTok{),}
+                      \DataTypeTok{col3 =} \KeywordTok{runif}\NormalTok{(}\DecValTok{20}\NormalTok{, }\DataTypeTok{min =} \DecValTok{13}\NormalTok{, }\DataTypeTok{max =} \DecValTok{100}\NormalTok{))}
+\KeywordTok{summary}\NormalTok{(my_data)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##       col1            col2             col3      
+##  Min.   :3.242   Min.   : 7.696   Min.   :13.62  
+##  1st Qu.:5.370   1st Qu.: 8.727   1st Qu.:45.94  
+##  Median :7.515   Median :10.364   Median :58.09  
+##  Mean   :6.979   Mean   : 9.871   Mean   :57.93  
+##  3rd Qu.:8.500   3rd Qu.:10.745   3rd Qu.:74.78  
+##  Max.   :9.538   Max.   :11.598   Max.   :94.33
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{sapply}\NormalTok{(my_data, sd)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      col1      col2      col3 
+##  1.979369  1.325531 22.194543
+\end{verbatim}
+
+Ich möchte die Daten so transformieren, dass alle Variablen im Datensatz (d.h. Spalten) einen Mittelwert von 0 und eine Standardabweichung von 1 haben. Dazu ziehe ich den Mittelwert ab und teile durch die Standardabweichung. Das ist eine klassische Transformation (manchmal \(z\)-Transformation genannt), die manche Analysemethoden (z.B. Hauptkomponentenanalyse) als Vorbehandlung der Daten verlangen.
+
+Erst einmal das Naheliegende: Transformation per Copy und Paste:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{my_data_trans <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{col1_trans =}\NormalTok{ (my_data}\OperatorTok{$}\NormalTok{col1 }\OperatorTok{-}\StringTok{ }\KeywordTok{mean}\NormalTok{(my_data}\OperatorTok{$}\NormalTok{col1))}\OperatorTok{/}\KeywordTok{sd}\NormalTok{(my_data}\OperatorTok{$}\NormalTok{col1),}
+                            \DataTypeTok{col2_trans =}\NormalTok{ (my_data}\OperatorTok{$}\NormalTok{col2 }\OperatorTok{-}\StringTok{ }\KeywordTok{mean}\NormalTok{(my_data}\OperatorTok{$}\NormalTok{col2))}\OperatorTok{/}\KeywordTok{sd}\NormalTok{(my_data}\OperatorTok{$}\NormalTok{col1),}
+                            \DataTypeTok{col3_trans =}\NormalTok{ (my_data}\OperatorTok{$}\NormalTok{col3 }\OperatorTok{-}\StringTok{ }\KeywordTok{mean}\NormalTok{(my_data}\OperatorTok{$}\NormalTok{col3))}\OperatorTok{/}\KeywordTok{sd}\NormalTok{(my_data}\OperatorTok{$}\NormalTok{col3))}
+\end{Highlighting}
+\end{Shaded}
+
+Haben Sie den Fehler bemerkt? Ich habe einmal vergessen eine 1 durch eine 2 zu ersetzten. Das merke ich aber nur, wenn ich mir das Ergebnis ansehen. Die Standardabweichung in \texttt{col2\_trans} ist nicht gleich 1.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{summary}\NormalTok{(my_data_trans)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    col1_trans        col2_trans        col3_trans       
+##  Min.   :-1.8877   Min.   :-1.0990   Min.   :-1.996638  
+##  1st Qu.:-0.8130   1st Qu.:-0.5782   1st Qu.:-0.540130  
+##  Median : 0.2706   Median : 0.2490   Median : 0.007125  
+##  Mean   : 0.0000   Mean   : 0.0000   Mean   : 0.000000  
+##  3rd Qu.: 0.7685   3rd Qu.: 0.4415   3rd Qu.: 0.759103  
+##  Max.   : 1.2928   Max.   : 0.8725   Max.   : 1.639766
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{sapply}\NormalTok{(my_data_trans, sd)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## col1_trans col2_trans col3_trans 
+##  1.0000000  0.6696736  1.0000000
+\end{verbatim}
+
+So etwas passiert sehr schnell und kann sehr leicht durch das Schreiben einer Funktion vermieden werden.
+
+Jede Funktionsdefinition beginnt mit der Wahl des Namens. Es ist eine gute Idee, sich einen konsistenten und sauberen Stil gleich am Anfang anzugewöhnen. Seien Sie nett zu Ihrem zukünftigen Ich und anderen Menschen, die Ihren Code lesen werden. Es ist ein guter Stil, Verben als Funktionsnamen zu nutzen, die beschreiben, was eine Funktion macht. In jedem Fall, \textbf{wählen Sie keine Namen, die schon für Funktionen oder Variablen vergeben sind!} Das würde die ursprünglichen Funktionen oder Variablen einfach überschreiben.
+
+Wir nennen unsere Funktion \texttt{z\_transform}, weil sie Daten \(z\)-transformiert. Bei zusammengesetzten Namen sollten Sie den Unterstrich verwenden. Das macht den Namen einfacher zu lesen.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{z_transofrm <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(x) \{}
+\NormalTok{  (x }\OperatorTok{-}\StringTok{ }\KeywordTok{mean}\NormalTok{(x))}\OperatorTok{/}\KeywordTok{sd}\NormalTok{(x)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Bei jeder Funktionsdefinition arbeiten Sie drei Schritte ab:
+1. Namen finden und das Skelett aus \texttt{Name\_der\_Funktion\ \textless{}-\ function()\ \{\}} hin schreiben.
+2. Überlege, welche Parameter die Funktion braucht und ob diese Standardwerte benötigen.
+3. Funktionskörper (\emph{body}), also die eigentliche Aufgabe der Funktion, hinschreiben.
+
+Wir brauchen für unsere Funktion nur einen Parameter. Zwar sind die Namen der Parameter nicht ganz so wichtig wie Namen der Funktionen. Trotzdem sollten man hier konsistent sein: bei einfachen Vektoren sind \texttt{x}, \texttt{y}, \texttt{z} etc. völlig in Ordnung. Ansonsten sind Substantive ein guter Namensstil für Parameter.
+
+Wir wenden die Funktion jetzt auf unseren Datensatz an.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{my_data_trans_}\DecValTok{2}\NormalTok{ <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{col1_trans =} \KeywordTok{z_transofrm}\NormalTok{(my_data}\OperatorTok{$}\NormalTok{col1),}
+                              \DataTypeTok{col2_trans =} \KeywordTok{z_transofrm}\NormalTok{(my_data}\OperatorTok{$}\NormalTok{col2),}
+                              \DataTypeTok{col2_trans =} \KeywordTok{z_transofrm}\NormalTok{(my_data}\OperatorTok{$}\NormalTok{col3))}
+\KeywordTok{summary}\NormalTok{(my_data_trans_}\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    col1_trans        col2_trans       col2_trans.1      
+##  Min.   :-1.8877   Min.   :-1.6411   Min.   :-1.996638  
+##  1st Qu.:-0.8130   1st Qu.:-0.8634   1st Qu.:-0.540130  
+##  Median : 0.2706   Median : 0.3718   Median : 0.007125  
+##  Mean   : 0.0000   Mean   : 0.0000   Mean   : 0.000000  
+##  3rd Qu.: 0.7685   3rd Qu.: 0.6593   3rd Qu.: 0.759103  
+##  Max.   : 1.2928   Max.   : 1.3028   Max.   : 1.639766
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{sapply}\NormalTok{(my_data_trans_}\DecValTok{2}\NormalTok{, sd)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   col1_trans   col2_trans col2_trans.1 
+##            1            1            1
+\end{verbatim}
+
+\hypertarget{fallunterscheidungen}{%
+\section{Fallunterscheidungen}\label{fallunterscheidungen}}
+
+Wir erweitern unsere Funktion um eine Fallunterscheidung, eine \texttt{if}-\texttt{else} Ausdruck. Diese ermöglicht unterschiedliche Berechnung innerhalb einer Funktion, je nach aufgestellter Bedingung.
+
+Jede Fallunterscheidung hat die folgende Form, wobei die zweite Bedingung nicht zwingend notwendig ist.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (Bedingung1) \{}
+  \CommentTok{# Code, der ausgeführt wird, wenn die erste Bedingung1 stimmt}
+\NormalTok{\} }\ControlFlowTok{else} \ControlFlowTok{if}\NormalTok{ (Bedingung2) \{}
+  \CommentTok{# Code, der ausgeführt wird, wenn zweite Bedingung2 stimmt}
+\NormalTok{\} }\ControlFlowTok{else}\NormalTok{ \{}
+  \CommentTok{# Code, der ausgeführt wird, wenn keine der Bedingungung stimmt}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Achten Sie genau darauf, wie \texttt{else\ if} und \texttt{else} positioniert werden, nämlich zwischen den beiden geschweiften Klammern.
+
+Wir schreiben eine Begrüßungsfunktion, die ja nach Tageszeit die richtige Begrüßung ausgibt.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{say_hello <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(my_time) \{}
+  \ControlFlowTok{if}\NormalTok{ (my_time }\OperatorTok{==}\StringTok{ 'Morgen'}\NormalTok{) \{}
+    \KeywordTok{print}\NormalTok{(}\StringTok{'Guten Morgen'}\NormalTok{)}
+\NormalTok{  \} }\ControlFlowTok{else} \ControlFlowTok{if}\NormalTok{ (my_time }\OperatorTok{==}\StringTok{ 'Mittag'}\NormalTok{) \{}
+    \KeywordTok{print}\NormalTok{(}\StringTok{'Guten Tag'}\NormalTok{)}
+\NormalTok{  \} }\ControlFlowTok{else} \ControlFlowTok{if}\NormalTok{ (my_time }\OperatorTok{==}\StringTok{ 'Abend'}\NormalTok{)\{}
+    \KeywordTok{print}\NormalTok{(}\StringTok{'Guten Abend'}\NormalTok{)}
+\NormalTok{  \} }\ControlFlowTok{else}\NormalTok{ \{}
+    \KeywordTok{print}\NormalTok{(}\StringTok{'In meiner Welt gibt es das nicht.'}\NormalTok{)}
+\NormalTok{  \}}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Wir rufen die Funktion auf mit einmal mit Abend und einmal mit abend.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{say_hello}\NormalTok{(}\StringTok{'Abend'}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Guten Abend"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{say_hello}\NormalTok{(}\StringTok{'abend'}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "In meiner Welt gibt es das nicht."
+\end{verbatim}
+
+\hypertarget{for-schleifen-for-loops}{%
+\section{\texorpdfstring{\texttt{for}-Schleifen (\texttt{for} \emph{loops})}{for-Schleifen (for loops)}}\label{for-schleifen-for-loops}}
+
+Wenn wir unsere \texttt{say\_hello} Funktion auf einen Vektor von Tageszeiten anwenden wollen, gibt es eine Warnung.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{say_hello}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\StringTok{'Morgen'}\NormalTok{, }\StringTok{'Mittag'}\NormalTok{, }\StringTok{'Abend'}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning in if (my_time == "Morgen") {: Bedingung hat Länge > 1 und nur das erste
+## Element wird benutzt
+\end{verbatim}
+
+\begin{verbatim}
+## [1] "Guten Morgen"
+\end{verbatim}
+
+Das liegt daran, dass die Auswertung der Bedingung eine Antwort der Länge 1 liefern muss: entweder \texttt{TRUE}, wenn die Bedingung stimmt, oder \texttt{FALSE}, wenn sie nicht stimmt. Bei einem Vektor ist die Antwort aber länger als 1 und die Funktion benutzt nur die erste Stelle der Antwort. Man sagt auch, dass die Funktion \texttt{say\_hello} \emph{nicht vektorisiert} sei, sie kann also nicht von sich aus auf einen Vektor angewendet werden.
+
+Damit man eine Fallunterscheidung auf einen Vektor anwenden kann, gibt es mehrere Möglichkeiten. Eine davon ist die sogen. \texttt{for} Schleife. Eine Schleife ist eine wiederholte Ausführung von Code.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{begruessung <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{'Morgen'}\NormalTok{, }\StringTok{'Mittag'}\NormalTok{, }\StringTok{'Abend'}\NormalTok{)}
+
+\CommentTok{# Vektor für Ergebnisse erstellen}
+\NormalTok{ergebnis <-}\StringTok{ }\KeywordTok{vector}\NormalTok{(}\DataTypeTok{mode =} \StringTok{'character'}\NormalTok{, }\DataTypeTok{length =} \DecValTok{3}\NormalTok{)}
+
+\CommentTok{# For Schleife über die Zahlenfolge 1:3 mit Hilfe der Dummy-Variablen i}
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\DecValTok{3}\NormalTok{) \{}
+\NormalTok{  ergebnis[i] <-}\StringTok{ }\KeywordTok{say_hello}\NormalTok{(begruessung[i])}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Guten Morgen"
+## [1] "Guten Tag"
+## [1] "Guten Abend"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Ergebnis ansehen}
+\NormalTok{ergebnis}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Guten Morgen" "Guten Tag"    "Guten Abend"
+\end{verbatim}
+
+Eine \texttt{for} Schleife braucht drei Bestandteile:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Einen Datencontainer, in unserem Fall den Vektor \texttt{ergebnis}, in dem die Ergebnisse der Schleifendurchläufe gespeichert werden. Dieser muss vorher erstellt werden.
+\item
+  Eine Dummy-Variable (Hilfsvariable), die in jedem Schleifendurchlauf (\emph{Iteration}) einen anderen Wert annehmen wird. Dadurch entsteht erst die Schleife. Die Dummy-Variable bei uns heißt \texttt{i} und nimmt Werte zwischen 1 und 3 (also 1, 2 und 3) an. Es gibt also drei Schleifendurchgänge.
+\item
+  Den Schleifen-Körper, in unserem Fall die Funktion \texttt{say\_hello}. Das ist der Code, der wiederholt ausgeführt werden soll.
+\end{enumerate}
+
+Später werden wir effiziente Funktionen kennen lernen, die ohne Schleifen Funktionen wiederholt ausführen (iterieren) können.
+
+\hypertarget{weiterfuxfchrende-literatur}{%
+\section{Weiterführende Literatur}\label{weiterfuxfchrende-literatur}}
+
+\citet{Ligges2008}, Kapitel 4.1 für technische Beschreibung des Aufrufs von Funktionen
+
+Dieses Kapitel orientiert sich stark an \citet{Wickham2017}, Kapitel 19
+
+\hypertarget{inhalt-der-live-einfuxfchrung-4}{%
+\section{Inhalt der live Einführung}\label{inhalt-der-live-einfuxfchrung-4}}
+
+\begin{itemize}
+\tightlist
+\item
+  Funktionsaufruf
+\item
+  Funktionen selbst schreiben
+\item
+  \texttt{if} - \texttt{else} Bedingungen
+\item
+  \texttt{for} Schleifen
+\end{itemize}
+
 \hypertarget{aufgabensammlung}{%
 \chapter{Aufgabensammlung}\label{aufgabensammlung}}
 
@@ -1383,7 +1688,7 @@ Der angehende Datenanalyst Ar Stat möchte dem Rat seiner Mutter folgen und ein 
 
 \begin{table}
 
-\caption{\label{tab:unnamed-chunk-31}Ars Mensaausgaben}
+\caption{\label{tab:unnamed-chunk-43}Ars Mensaausgaben}
 \centering
 \begin{tabular}[t]{lr}
 \toprule
@@ -1548,16 +1853,16 @@ Setzen Sie die Übung \ref{weisserrand} fort. Denken Sie an den richtigen Aufruf
   Probieren Sie die Parameter \texttt{font.lab\ =\ 2} und \texttt{font.axis\ =\ 2} direkt in \texttt{plot} aus. Zahlen 1 bis 5 stehen jeweils für normal, fett, kursiv, fett-kursiv und symbolisch.
 \end{enumerate}
 
-\hypertarget{reproduzierbare-berichte-mir-r-markdown}{%
-\section{Reproduzierbare Berichte mir R Markdown}\label{reproduzierbare-berichte-mir-r-markdown}}
+\hypertarget{reproduzierbare-berichte-mit-r-markdown-1}{%
+\section{Reproduzierbare Berichte mit R Markdown}\label{reproduzierbare-berichte-mit-r-markdown-1}}
 
 \hypertarget{erster-eigener-bericht}{%
 \subsection{Erster eigener Bericht}\label{erster-eigener-bericht}}
 
 Erstellen Sie ein R Notebook aus den Notizen der ersten 3 R-Sessions.
 
-\hypertarget{eigene-funktionen-schreiben}{%
-\section{Eigene Funktionen schreiben}\label{eigene-funktionen-schreiben}}
+\hypertarget{eigene-funktionen-schreiben-1}{%
+\section{Eigene Funktionen schreiben}\label{eigene-funktionen-schreiben-1}}
 
 \hypertarget{r-hausaufgaben}{%
 \subsection{R-Hausaufgaben}\label{r-hausaufgaben}}

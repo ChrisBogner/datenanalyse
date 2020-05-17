@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2019.6.20)  12 MAY 2020 08:54
+This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2019.6.20)  17 MAY 2020 15:27
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1467,21 +1467,21 @@ Package xcolor Warning: Incompatible color definition on input line 980.
 Package xcolor Warning: Incompatible color definition on input line 980.
 
 
-Overfull \hbox (33.0pt too wide) in paragraph at lines 987--987
+Overfull \hbox (101.25pt too wide) in paragraph at lines 987--987
 []\TU/lmtt/m/n/10 ##  [1] "2018-10-01" "2018-11-01" "2018-12-01" "2019-01-01" "
-2019-02-01"[] 
+2019-02-01" "2019-03-01"[] 
  []
 
 
-Overfull \hbox (33.0pt too wide) in paragraph at lines 987--987
-[]\TU/lmtt/m/n/10 ##  [6] "2019-03-01" "2019-04-01" "2019-05-01" "2019-06-01" "
-2019-07-01"[] 
+Overfull \hbox (101.25pt too wide) in paragraph at lines 987--987
+[]\TU/lmtt/m/n/10 ##  [7] "2019-04-01" "2019-05-01" "2019-06-01" "2019-07-01" "
+2019-08-01" "2019-09-01"[] 
  []
 
 
-Overfull \hbox (33.0pt too wide) in paragraph at lines 987--987
-[]\TU/lmtt/m/n/10 ## [11] "2019-08-01" "2019-09-01" "2019-10-01" "2019-11-01" "
-2019-12-01"[] 
+Overfull \hbox (101.25pt too wide) in paragraph at lines 987--987
+[]\TU/lmtt/m/n/10 ## [13] "2019-10-01" "2019-11-01" "2019-12-01" "2020-01-01" "
+2020-02-01" "2020-03-01"[] 
  []
 
 [20]
@@ -1601,39 +1601,199 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 ] [30]
 Chapter 7.
+Package mdframed Info: mdframed works in twoside mode on input line 1376.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1376.
+Missing character: There is no 😄 in font [lmroman10-regular]:mapping=tex-text;!
+
+Package xcolor Warning: Incompatible color definition on input line 1401.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1408.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1408.
+
+[31
+
+]
+
+Package xcolor Warning: Incompatible color definition on input line 1420.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1424.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1424.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1435.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1441.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1441.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1445.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1449.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1449.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1461.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1465.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1465.
+
+[32]
+
+Package xcolor Warning: Incompatible color definition on input line 1478.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1484.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1484.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1495.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1502.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1502.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1514.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1518.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1518.
+
+
+Underfull \vbox (badness 1237) has occurred while \output is active []
+
+[33]
+
+Package xcolor Warning: Incompatible color definition on input line 1532.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1542.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1542.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1548.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1562.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1562.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1566.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1570.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1570.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1576.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1580.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1580.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1591.
+
+
+Underfull \vbox (badness 1831) has occurred while \output is active []
+
+[34]
+
+Package xcolor Warning: Incompatible color definition on input line 1595.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1595.
+
+
+Overfull \hbox (90.75pt too wide) in paragraph at lines 1600--1600
+[]\TU/lmtt/m/n/10 ## Warning in if (my_time == "Morgen") {: Bedingung hat Länge
+ > 1 und nur das erste[] 
+ []
+
+
+Package xcolor Warning: Incompatible color definition on input line 1610.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1622.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1622.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1630.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1635.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1635.
+
+[35] [36]
+Chapter 8.
 
 Underfull \vbox (badness 1221) has occurred while \output is active []
 
-[31
+[37
 
 ]
 File: Wahlbeteiligung.pdf Graphic file (type pdf)
 <use Wahlbeteiligung.pdf>
 File: Zweitstimme.pdf Graphic file (type pdf)
 <use Zweitstimme.pdf>
-[32] [33]
+[38] [39]
 File: Zwei_grafiken.pdf Graphic file (type pdf)
 <use Zwei_grafiken.pdf>
-[34] [35] [36] [37] (./datenanalyse.bbl [38])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1719.
-[39
+[40] [41] [42] [43] (./datenanalyse.bbl [44])
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 2024.
+[45
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1719.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 2024.
 (./datenanalyse.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 1719.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1719.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 2024.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 2024.
 
 Package rerunfilecheck Info: File `datenanalyse.out' has not changed.
-(rerunfilecheck)             Checksum: C5AA983ECC9508F35CCB3A2383CD40AB.
+(rerunfilecheck)             Checksum: 8E4FF902B65CC96439C0961DAAD99995.
  ) 
 Here is how much of TeX's memory you used:
- 28656 strings out of 492909
- 524277 string characters out of 6132923
- 767493 words of memory out of 5000000
- 32408 multiletter control sequences out of 15000+600000
+ 28667 strings out of 492909
+ 524519 string characters out of 6132923
+ 768982 words of memory out of 5000000
+ 32419 multiletter control sequences out of 15000+600000
  538788 words of font info for 84 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  58i,8n,115p,848b,453s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on datenanalyse.pdf (39 pages).
+Output written on datenanalyse.pdf (45 pages).

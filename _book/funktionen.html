@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Kapitel 3 Erste Schritte in  | Datenanalyse mit R</title>
+  <title>Kapitel 7 Funktionen | Datenanalyse mit R</title>
   <meta name="description" content="Begleitskript zur Veranstaltung Datenanalyse mit R" />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Kapitel 3 Erste Schritte in  | Datenanalyse mit R" />
+  <meta property="og:title" content="Kapitel 7 Funktionen | Datenanalyse mit R" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="https://github.com/ChrisBogner/datenanalyse.git" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Kapitel 3 Erste Schritte in  | Datenanalyse mit R" />
+  <meta name="twitter:title" content="Kapitel 7 Funktionen | Datenanalyse mit R" />
   
   <meta name="twitter:description" content="Begleitskript zur Veranstaltung Datenanalyse mit R" />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="einfuehrung.html"/>
-<link rel="next" href="daten.html"/>
+<link rel="prev" href="reproduzieren.html"/>
+<link rel="next" href="aufgabensammlung.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -230,165 +230,165 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="erste_schritte" class="section level1">
-<h1><span class="header-section-number">Kapitel 3</span> Erste Schritte in <svg style="height:0.8em;top:.04em;position:relative;fill:steelblue;" viewBox="0 0 581 512"><path d="M581 226.6C581 119.1 450.9 32 290.5 32S0 119.1 0 226.6C0 322.4 103.3 402 239.4 418.1V480h99.1v-61.5c24.3-2.7 47.6-7.4 69.4-13.9L448 480h112l-67.4-113.7c54.5-35.4 88.4-84.9 88.4-139.7zm-466.8 14.5c0-73.5 98.9-133 220.8-133s211.9 40.7 211.9 133c0 50.1-26.5 85-70.3 106.4-2.4-1.6-4.7-2.9-6.4-3.7-10.2-5.2-27.8-10.5-27.8-10.5s86.6-6.4 86.6-92.7-90.6-87.9-90.6-87.9h-199V361c-74.1-21.5-125.2-67.1-125.2-119.9zm225.1 38.3v-55.6c57.8 0 87.8-6.8 87.8 27.3 0 36.5-38.2 28.3-87.8 28.3zm-.9 72.5H365c10.8 0 18.9 11.7 24 19.2-16.1 1.9-33 2.8-50.6 2.9v-22.1z"/></svg></h1>
+<div id="funktionen" class="section level1">
+<h1><span class="header-section-number">Kapitel 7</span> Funktionen</h1>
 <div class="rmdoutcomes">
 <ul>
 <li>
-Layout und Bedeutung einzelner Fenster in RStudio kennen
+Den Aufbau von Funktionen in R beschreiben
 </li>
 <li>
-Anweisungen aus dem Skript an die Konsole schicken
+Den Aufruf von Funktionen in R erklären
 </li>
 <li>
-R als Taschenrechner benutzen
+Einfache Funktionen selbst schreiben
 </li>
 <li>
-erste Funktionen aufrufen
+Fallunterscheidungen
 </li>
 <li>
-Objekte mit eckigen Klammern [ ] ansprechen
-</li>
-<li>
-R-Hilfeseiten aufrufen
+Schleifen
 </li>
 </ul>
 </div>
-<div id="was-ist-r" class="section level2">
-<h2><span class="header-section-number">3.1</span> Was ist R?</h2>
-<p>R ist eine Programmiersprache für Datenanalyse und statistische Modellierung. Es ist frei verfügbar (<em>open source software</em>) und neben Python einer der am meisten benutzten Programmiersprachen zur Datenanalyse und -visualisierung. R wurde von Ross Ihaka und Robert Gentleman 1996 veröffentlicht <span class="citation">Ihaka and Gentleman (<a href="literatur.html#ref-Ihaka1996">1996</a>)</span>. Es gibt für R eine Vielzahl von Zusatzpaketen, die die Funktionalität und die Einsatzmöglichkeiten enorm erweitern.</p>
-<p>Sie können R für Ihren Computer auf der offiziellen R-Seite <a href="https://www.r-project.org/" class="uri">https://www.r-project.org/</a> herunter laden und installieren. Auch die Pakete finden Sie dort unter CRAN (<em>The Comprehensive R Archive Network</em>). Auf den CRAN-Seiten finden Sie sogen. <a href="http://cran.r-project.org/web/views/">CRAN Task Views</a>, eine Übersicht über Pakete in verschiedenen Themenbereichen. Für den Umweltbereich sind folgende Paketsammlungen besonders relevant:</p>
+<p>Was genau Funktionen sind und wie man sie in R aufruft, lesen Sie bitte bei <span class="citation">Ligges (<a href="literatur.html#ref-Ligges2008">2008</a>)</span> in Kapitel 4.1 nach. In diesem Kapitel des Skripts geht es um das Schreiben der eigenen Funktionen, Fallunterscheidungen mit <code>if</code>-<code>else</code> und <code>for</code> Schleifen.</p>
+<div id="eigene-funktionen-schreiben" class="section level2">
+<h2><span class="header-section-number">7.1</span> Eigene Funktionen schreiben</h2>
+<p>Funktionen sind eine großartige Möglichkeit, sich das Leben einfacher zu machen. Sie können repetitive Aufgaben erledigen, ohne dass wir ständig mit Copy und Paste hantieren müssen, machen unsere Notebooks übersichtlich und helfen, Fehler und Inkonsistenzen zu vermeiden. Als Faustregel gilt: wenn Sie ein Stück Code mehr als 2 Mal kopieren und abändern, wird es Zeit für eine Funktion 😄.</p>
+<p>Schauen wir uns ein Beispiel an. Als erstes würfeln wir ein paar Daten aus der Gleichverteilung mit unterschiedlichen Minima und Maxima und sehen uns die Zusammenfassung und die Standardabweichungen an.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">my_data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">col1 =</span> <span class="kw">runif</span>(<span class="dv">20</span>, <span class="dt">min =</span> <span class="dv">3</span>, <span class="dt">max =</span> <span class="dv">10</span>),</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">                      <span class="dt">col2 =</span> <span class="kw">runif</span>(<span class="dv">20</span>, <span class="dt">min =</span> <span class="dv">7</span>, <span class="dt">max =</span> <span class="dv">12</span>),</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3">                      <span class="dt">col3 =</span> <span class="kw">runif</span>(<span class="dv">20</span>, <span class="dt">min =</span> <span class="dv">13</span>, <span class="dt">max =</span> <span class="dv">100</span>))</a>
+<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="kw">summary</span>(my_data)</a></code></pre></div>
+<pre><code>##       col1            col2             col3      
+##  Min.   :3.040   Min.   : 7.064   Min.   :16.51  
+##  1st Qu.:4.014   1st Qu.: 8.542   1st Qu.:27.26  
+##  Median :6.749   Median : 9.995   Median :64.46  
+##  Mean   :6.385   Mean   : 9.807   Mean   :58.03  
+##  3rd Qu.:8.112   3rd Qu.:11.079   3rd Qu.:82.35  
+##  Max.   :9.451   Max.   :11.704   Max.   :98.03</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">sapply</span>(my_data, sd)</a></code></pre></div>
+<pre><code>##      col1      col2      col3 
+##  2.093886  1.642531 29.697085</code></pre>
+<p>Ich möchte die Daten so transformieren, dass alle Variablen im Datensatz (d.h. Spalten) einen Mittelwert von 0 und eine Standardabweichung von 1 haben. Dazu ziehe ich den Mittelwert ab und teile durch die Standardabweichung. Das ist eine klassische Transformation (manchmal <span class="math inline">\(z\)</span>-Transformation genannt), die manche Analysemethoden (z.B. Hauptkomponentenanalyse) als Vorbehandlung der Daten verlangen.</p>
+<p>Erst einmal das Naheliegende: Transformation per Copy und Paste.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">my_data_trans &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">col1_trans =</span> (my_data<span class="op">$</span>col1 <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(my_data<span class="op">$</span>col1))<span class="op">/</span><span class="kw">sd</span>(my_data<span class="op">$</span>col1),</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2">                            <span class="dt">col2_trans =</span> (my_data<span class="op">$</span>col2 <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(my_data<span class="op">$</span>col2))<span class="op">/</span><span class="kw">sd</span>(my_data<span class="op">$</span>col1),</a>
+<a class="sourceLine" id="cb5-3" data-line-number="3">                            <span class="dt">col3_trans =</span> (my_data<span class="op">$</span>col3 <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(my_data<span class="op">$</span>col3))<span class="op">/</span><span class="kw">sd</span>(my_data<span class="op">$</span>col3))</a></code></pre></div>
+<p>Haben Sie den Fehler bemerkt? Ich habe einmal vergessen eine 1 durch eine 2 zu ersetzten. Das merke ich aber nur, wenn ich mir das Ergebnis ansehen. Die Standardabweichung in <code>col2_trans</code> ist nicht gleich 1.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw">summary</span>(my_data_trans)</a></code></pre></div>
+<pre><code>##    col1_trans        col2_trans         col3_trans     
+##  Min.   :-1.5978   Min.   :-1.30965   Min.   :-1.3982  
+##  1st Qu.:-1.1326   1st Qu.:-0.60400   1st Qu.:-1.0361  
+##  Median : 0.1736   Median : 0.09008   Median : 0.2165  
+##  Mean   : 0.0000   Mean   : 0.00000   Mean   : 0.0000  
+##  3rd Qu.: 0.8247   3rd Qu.: 0.60783   3rd Qu.: 0.8191  
+##  Max.   : 1.4644   Max.   : 0.90597   Max.   : 1.3470</code></pre>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="kw">sapply</span>(my_data_trans, sd)</a></code></pre></div>
+<pre><code>## col1_trans col2_trans col3_trans 
+##  1.0000000  0.7844411  1.0000000</code></pre>
+<p>So etwas passiert sehr schnell und wird durch das Schreiben einer Funktion vermieden.</p>
+<p>Jede Funktionsdefinition beginnt mit der Wahl des Namens. Es ist eine gute Idee, sich einen konsistenten und sauberen Stil gleich am Anfang anzugewöhnen. Seien Sie nett zu Ihrem zukünftigen Ich und anderen Menschen, die Ihren Code lesen werden 😄. Es ist ein guter Stil, Verben als Funktionsnamen zu nutzen, die beschreiben, was eine Funktion macht. In jedem Fall, <strong>wählen Sie keine Namen, die schon für Funktionen oder Variablen vergeben sind!</strong> Das würde die ursprünglichen Funktionen oder Variablen einfach überschreiben.</p>
+<p>Wir nennen unsere Funktion <code>z_transform</code>, weil sie Daten <span class="math inline">\(z\)</span>-transformiert. Bei zusammengesetzten Namen sollten Sie den Unterstrich verwenden. Das macht den Namen einfacher zu lesen.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1">z_transofrm &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</a>
+<a class="sourceLine" id="cb10-2" data-line-number="2">  (x <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(x))<span class="op">/</span><span class="kw">sd</span>(x)</a>
+<a class="sourceLine" id="cb10-3" data-line-number="3">}</a></code></pre></div>
+<p>Bei jeder Funktionsdefinition arbeiten Sie drei Schritte ab:</p>
+<ol style="list-style-type: decimal">
+<li>Namen finden und das Skelett aus <code>Name_der_Funktion &lt;- function() {}</code> hin schreiben.</li>
+<li>Überlegen, welche Parameter die Funktion braucht und ob diese Standardwerte benötigen. Parameter zwischen die runden Klammern schreiben.</li>
+<li>Funktionskörper (<em>body</em>), also die eigentliche Aufgabe der Funktion, hinschreiben.</li>
+</ol>
+<p>Wir brauchen für unsere Funktion nur einen Parameter. Zwar sind die Namen der Parameter nicht ganz so wichtig wie Namen der Funktionen. Trotzdem sollte man hier konsistent sein: bei einfachen Vektoren sind <code>x</code>, <code>y</code>, <code>z</code> etc. völlig in Ordnung. Ansonsten sind Substantive ein guter Namensstil für Parameter.</p>
+<p>Wir wenden die Funktion jetzt auf unseren Datensatz an.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1">my_data_trans_<span class="dv">2</span> &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">col1_trans =</span> <span class="kw">z_transofrm</span>(my_data<span class="op">$</span>col1),</a>
+<a class="sourceLine" id="cb11-2" data-line-number="2">                              <span class="dt">col2_trans =</span> <span class="kw">z_transofrm</span>(my_data<span class="op">$</span>col2),</a>
+<a class="sourceLine" id="cb11-3" data-line-number="3">                              <span class="dt">col2_trans =</span> <span class="kw">z_transofrm</span>(my_data<span class="op">$</span>col3))</a>
+<a class="sourceLine" id="cb11-4" data-line-number="4"><span class="kw">summary</span>(my_data_trans_<span class="dv">2</span>)</a></code></pre></div>
+<pre><code>##    col1_trans        col2_trans       col2_trans.1    
+##  Min.   :-1.5978   Min.   :-1.6695   Min.   :-1.3982  
+##  1st Qu.:-1.1326   1st Qu.:-0.7700   1st Qu.:-1.0361  
+##  Median : 0.1736   Median : 0.1148   Median : 0.2165  
+##  Mean   : 0.0000   Mean   : 0.0000   Mean   : 0.0000  
+##  3rd Qu.: 0.8247   3rd Qu.: 0.7749   3rd Qu.: 0.8191  
+##  Max.   : 1.4644   Max.   : 1.1549   Max.   : 1.3470</code></pre>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="kw">sapply</span>(my_data_trans_<span class="dv">2</span>, sd)</a></code></pre></div>
+<pre><code>##   col1_trans   col2_trans col2_trans.1 
+##            1            1            1</code></pre>
+<p>Der Code ist viel aufgeräumter und übersichtlicher. Es ist viel klarer, was berechnet wird.</p>
+</div>
+<div id="fallunterscheidungen" class="section level2">
+<h2><span class="header-section-number">7.2</span> Fallunterscheidungen</h2>
+<p>Manchmal möchte man unterschiedliche Berechnung innerhalb einer Funktion durchführen, je nach aufgestellter Bedingung. Daszu brauchen wir eine Fallunterscheidung, die durch einen <code>if</code>-<code>else</code> Ausdruck definiert wird. Jede Fallunterscheidung hat die folgende Form, wobei die zweite Bedingung nicht zwingend notwendig ist.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="cf">if</span> (Bedingung1) {</a>
+<a class="sourceLine" id="cb15-2" data-line-number="2">  <span class="co"># Code, der ausgeführt wird, wenn die erste Bedingung1 stimmt</span></a>
+<a class="sourceLine" id="cb15-3" data-line-number="3">} <span class="cf">else</span> <span class="cf">if</span> (Bedingung2) {</a>
+<a class="sourceLine" id="cb15-4" data-line-number="4">  <span class="co"># Code, der ausgeführt wird, wenn zweite Bedingung2 stimmt</span></a>
+<a class="sourceLine" id="cb15-5" data-line-number="5">} <span class="cf">else</span> {</a>
+<a class="sourceLine" id="cb15-6" data-line-number="6">  <span class="co"># Code, der ausgeführt wird, wenn keine der Bedingungung stimmt</span></a>
+<a class="sourceLine" id="cb15-7" data-line-number="7">}</a></code></pre></div>
+<p>Achten Sie genau darauf, wie <code>else if</code> und <code>else</code> positioniert werden, nämlich zwischen den beiden geschweiften Klammern. Eine Fallunterscheidung kann auch mehr als zwei Bedingungen haben, aber man sollte nicht übertreiben. Wenn die Anzahl der Bedingungen zu hoch ist, sollte man nachdenken, ob das Problem nicht anders als mit <code>if</code>-<code>else</code> gelöst werden kann.</p>
+<p>Wir schreiben eine Begrüßungsfunktion, die ja nach Tageszeit die richtige Begrüßung ausgibt.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1">say_hello &lt;-<span class="st"> </span><span class="cf">function</span>(my_time) {</a>
+<a class="sourceLine" id="cb16-2" data-line-number="2">  <span class="cf">if</span> (my_time <span class="op">==</span><span class="st"> &#39;Morgen&#39;</span>) {</a>
+<a class="sourceLine" id="cb16-3" data-line-number="3">    <span class="st">&#39;Guten Morgen&#39;</span></a>
+<a class="sourceLine" id="cb16-4" data-line-number="4">  } <span class="cf">else</span> <span class="cf">if</span> (my_time <span class="op">==</span><span class="st"> &#39;Mittag&#39;</span>) {</a>
+<a class="sourceLine" id="cb16-5" data-line-number="5">    <span class="st">&#39;Guten Tag&#39;</span></a>
+<a class="sourceLine" id="cb16-6" data-line-number="6">  } <span class="cf">else</span> <span class="cf">if</span> (my_time <span class="op">==</span><span class="st"> &#39;Abend&#39;</span>){</a>
+<a class="sourceLine" id="cb16-7" data-line-number="7">    <span class="st">&#39;Guten Abend&#39;</span></a>
+<a class="sourceLine" id="cb16-8" data-line-number="8">  } <span class="cf">else</span> {</a>
+<a class="sourceLine" id="cb16-9" data-line-number="9">    <span class="st">&#39;In meiner Welt gibt es das nicht.&#39;</span></a>
+<a class="sourceLine" id="cb16-10" data-line-number="10">  }</a>
+<a class="sourceLine" id="cb16-11" data-line-number="11">}</a></code></pre></div>
+<p>Wir rufen die Funktion auf mit einmal mit Abend und einmal mit abend.</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="kw">say_hello</span>(<span class="st">&#39;Abend&#39;</span>)</a></code></pre></div>
+<pre><code>## [1] &quot;Guten Abend&quot;</code></pre>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1"><span class="kw">say_hello</span>(<span class="st">&#39;abend&#39;</span>)</a></code></pre></div>
+<pre><code>## [1] &quot;In meiner Welt gibt es das nicht.&quot;</code></pre>
+</div>
+<div id="for-schleifen-for-loops" class="section level2">
+<h2><span class="header-section-number">7.3</span> <code>for</code>-Schleifen (<code>for</code> <em>loops</em>)</h2>
+<p>Wenn wir unsere <code>say_hello</code> Funktion auf einen Vektor von Tageszeiten anwenden wollen, gibt es eine Warnung.</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1"><span class="kw">say_hello</span>(<span class="kw">c</span>(<span class="st">&#39;Morgen&#39;</span>, <span class="st">&#39;Mittag&#39;</span>, <span class="st">&#39;Abend&#39;</span>))</a></code></pre></div>
+<pre><code>## Warning in if (my_time == &quot;Morgen&quot;) {: Bedingung hat Länge &gt; 1 und nur das erste
+## Element wird benutzt</code></pre>
+<pre><code>## [1] &quot;Guten Morgen&quot;</code></pre>
+<p>Das liegt daran, dass die Auswertung der Bedingung eine Antwort der Länge 1 liefern muss: entweder <code>TRUE</code>, wenn die Bedingung stimmt, oder <code>FALSE</code>, wenn sie nicht stimmt. Bei einem Vektor ist die Antwort aber länger als 1 und die Funktion benutzt nur die erste Stelle der Antwort. Man sagt auch, dass die Funktion <code>say_hello</code> <em>nicht vektorisiert</em> sei, sie kann also nicht von sich aus auf einem Vektor arbeiten.</p>
+<p>Damit man eine eine nicht vektorisierte Funktion auf einen Vektor anwenden kann, gibt es mehrere Möglichkeiten. Eine davon ist die sogen. <code>for</code> Schleife. Eine Schleife ist eine wiederholte Ausführung von Code, man sagt auch <em>Iteration</em>.</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" data-line-number="1">begruessung &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;Morgen&#39;</span>, <span class="st">&#39;Mittag&#39;</span>, <span class="st">&#39;Abend&#39;</span>)</a>
+<a class="sourceLine" id="cb24-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb24-3" data-line-number="3"><span class="co"># Vektor für Ergebnisse erstellen</span></a>
+<a class="sourceLine" id="cb24-4" data-line-number="4">ergebnis &lt;-<span class="st"> </span><span class="kw">vector</span>(<span class="dt">mode =</span> <span class="st">&#39;character&#39;</span>, <span class="dt">length =</span> <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb24-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb24-6" data-line-number="6"><span class="co"># For Schleife über die Zahlenfolge 1:3 mit Hilfe der Dummy-Variablen i</span></a>
+<a class="sourceLine" id="cb24-7" data-line-number="7"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>) {</a>
+<a class="sourceLine" id="cb24-8" data-line-number="8">  ergebnis[i] &lt;-<span class="st"> </span><span class="kw">say_hello</span>(begruessung[i])</a>
+<a class="sourceLine" id="cb24-9" data-line-number="9">}</a>
+<a class="sourceLine" id="cb24-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb24-11" data-line-number="11"><span class="co"># Ergebnis ansehen</span></a>
+<a class="sourceLine" id="cb24-12" data-line-number="12">ergebnis</a></code></pre></div>
+<pre><code>## [1] &quot;Guten Morgen&quot; &quot;Guten Tag&quot;    &quot;Guten Abend&quot;</code></pre>
+<p>Eine <code>for</code> Schleife braucht drei Bestandteile:</p>
+<ol style="list-style-type: decimal">
+<li>Einen Datencontainer, in unserem Fall den Vektor <code>ergebnis</code>, in dem die Ergebnisse der Schleifendurchläufe gespeichert werden. Dieser Vektor muss vorher erstellt werden.</li>
+<li>Eine Dummy-Variable (Hilfsvariable), die in jedem Schleifendurchlauf einen anderen Wert annehmen wird. Dadurch entsteht erst die Schleife. Die Dummy-Variable bei uns heißt <code>i</code> und nimmt Werte zwischen 1 und 3 (also 1, 2 und 3) an. Es gibt also drei Schleifendurchgänge.</li>
+<li>Den Schleifen-Körper, in unserem Fall die Funktion <code>say_hello</code>. Das ist der Code, der wiederholt ausgeführt werden soll.</li>
+</ol>
+<p>Später werden wir effiziente Funktionen kennen lernen, die ohne Schleifen Funktionen wiederholt ausführen (iterieren) können.</p>
+</div>
+<div id="weiterführende-literatur" class="section level2">
+<h2><span class="header-section-number">7.4</span> Weiterführende Literatur</h2>
+<p><span class="citation">Ligges (<a href="literatur.html#ref-Ligges2008">2008</a>)</span>, Kapitel 4.1 für technische Beschreibung des Aufrufs von Funktionen</p>
+<p>Dieses Kapitel orientiert sich stark an <span class="citation">Wickham and Grolemund (<a href="literatur.html#ref-Wickham2017">2017</a>)</span>, Kapitel 19</p>
+</div>
+<div id="inhalt-der-live-einführung-4" class="section level2">
+<h2><span class="header-section-number">7.5</span> Inhalt der live Einführung</h2>
 <ul>
-<li>Environmetrics: Analyse von Umweltdaten</li>
-<li>Multivariate: Multivariate Statistik</li>
-<li>Spatial: Analyse von räumlichen Daten</li>
-<li>TimeSeries: Zeitreihenanalyse</li>
+<li>Funktionsaufruf</li>
+<li>Funktionen selbst schreiben</li>
+<li><code>if</code> - <code>else</code> Bedingungen</li>
+<li><code>for</code> Schleifen</li>
 </ul>
-<p>Zu Beginn des Kurses, werden wir jedoch nicht auf Ihren lokalen Rechnern arbeiten, sondern in einer Cloud (s.u.). Das ermöglicht einen schnelleren Einstieg in R und bietet eine live Unterstützung durch den Dozenten beim Programmieren. Daher biete ich zu diesem frühen Zeitpunkt im Kurs keine Unterstützung bei der Installation. Für die ganz Ungeduldigen, gibt es hier eine kurze <em>Einleitung zur Installation</em></p>
-<iframe width="640" height="360" src="https://www.youtube.com/embed/kygOqp_zijk?list=PLG4WP9jv27SeMbBjhVcyXrGKQgnaex-0o" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-</iframe>
-</div>
-<div id="was-ist-rstudio" class="section level2">
-<h2><span class="header-section-number">3.2</span> Was ist RStudio?</h2>
-<p>RStudio Desktop ist eine Entwicklungsumgebung für R. Sie können die <em>open source</em> Version kostenlos für Ihren Rechner <a href="https://rstudio.com/products/rstudio/#rstudio-desktop">hier</a> herunterladen.</p>
-<p>Es gibt eine live Einführung in RStudio im Kurs. Zusätzlich können Sie hier ein Video dazu ansehen.</p>
-<iframe width="640" height="360" src="https://www.youtube.com/embed/r5wOhFVWXUE?list=PLG4WP9jv27SeMbBjhVcyXrGKQgnaex-0o" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-</iframe>
-</div>
-<div id="rstudio-cloud" class="section level2">
-<h2><span class="header-section-number">3.3</span> RStudio Cloud</h2>
-<p>Zu Beginn des Kurses werden wir in der <a href="https://rstudio.cloud/">RStudio Cloud</a> arbeiten. Sie sollten eine Einladungsmail zu unserem Kurs in der Cloud bekommen haben. Ich werde in der Cloud Projekte für Sie anlegen (<em>assignment</em>), die Skripte, Arbeitsanweisungen etc. beinhalten. Wenn Sie auf so ein Assignment klicken, wird für Sie automatische ein Kopie des Projekts erstellt, in der Sie dann arbeiten können.</p>
-<p>Der große Vorteil der Cloud ist, dass ich direkt in Ihre Projekte eingreifen kann, wenn es mal zu Fehlern kommt. Während ich in Ihrem Projekt arbeite, werden Sie kurz aus der R-Sitzung ausgeloggt, da die Cloud kein gleichzeitiges Arbeiten unterstützt. Nehmen Sie sich etwas Zeit, um die Cloud und die darin enthaltenen <a href="https://rstudio.cloud/learn/primers">Tutorials</a> kennen zu lernen.</p>
-<p>Sowohl in der RStudio Cloud als auch in einer lokalen Installation, ist Ihr RStudio so aufgebaut wie in Abbildung <a href="erste-schritte.html#fig:rstudio">3.1</a>.</p>
-<div class="figure"><span id="fig:rstudio"></span>
-<img src="RStudio.png" alt="Aufbau von RStudio" width="100%" />
-<p class="caption">
-Abbildung 3.1: Aufbau von RStudio
-</p>
-</div>
-</div>
-<div id="inhalt-der-live-einführung" class="section level2">
-<h2><span class="header-section-number">3.4</span> Inhalt der live Einführung</h2>
-<ul>
-<li>Überblick über RStudio</li>
-<li>R als Taschenrechner</li>
-<li>einfache Funktionen aufrufen</li>
-<li>Zuordnungen (<em>assignments</em>)</li>
-<li>Notation mit eckigen Klammern [ ] (<em>array</em>-Notation)</li>
-<li>Hilfeseiten aufrufen</li>
-</ul>
-<p>Funktionen, die wir in der Session nutzen werden:</p>
-<table>
-<colgroup>
-<col width="33%" />
-<col width="30%" />
-<col width="36%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th align="left">Funktion</th>
-<th align="left">Bedeutung</th>
-<th align="left">Beispielaufruf</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left"><code>pi</code></td>
-<td align="left">Zahl pi</td>
-<td align="left"><code>pi</code></td>
-</tr>
-<tr class="even">
-<td align="left"><code>sin</code></td>
-<td align="left">Sinus</td>
-<td align="left"><code>sin(2)</code></td>
-</tr>
-<tr class="odd">
-<td align="left"><code>cos</code></td>
-<td align="left">Cosinus</td>
-<td align="left"><code>cos(2)</code></td>
-</tr>
-<tr class="even">
-<td align="left"><code>sqrt</code></td>
-<td align="left">Quadratwurzel</td>
-<td align="left"><code>sqrt(2)</code></td>
-</tr>
-<tr class="odd">
-<td align="left"><code>c</code></td>
-<td align="left">(<em>concatenate</em>) Fügt Daten zu einem Vektor zusammen</td>
-<td align="left"><code>c(1,2,3,4)</code></td>
-</tr>
-<tr class="even">
-<td align="left"><code>help.start</code></td>
-<td align="left">Öffnet ein Browser-Fenster mit diversen Handbüchern</td>
-<td align="left"><code>help.start()</code></td>
-</tr>
-<tr class="odd">
-<td align="left"><code>help.search</code></td>
-<td align="left">Sucht nach einem Begriff in Hilfe-Dateien</td>
-<td align="left"><code>help.search('time')</code></td>
-</tr>
-<tr class="even">
-<td align="left"><code>??</code></td>
-<td align="left">alias <code>help.search</code></td>
-<td align="left"><code>??time</code></td>
-</tr>
-<tr class="odd">
-<td align="left"><code>help</code></td>
-<td align="left">Sucht nach einer Funktion</td>
-<td align="left"><code>?mean</code></td>
-</tr>
-<tr class="even">
-<td align="left"><code>?</code></td>
-<td align="left">alias <code>help()</code></td>
-<td align="left"><code>?mean</code></td>
-</tr>
-<tr class="odd">
-<td align="left"><code>mean</code></td>
-<td align="left">Mittelwert</td>
-<td align="left"><code>mean(c(1,2,3,4))</code></td>
-</tr>
-<tr class="even">
-<td align="left"><code>var</code></td>
-<td align="left">Varianz</td>
-<td align="left"><code>var(c(1,2,3,4))</code></td>
-</tr>
-<tr class="odd">
-<td align="left"><code>sd</code></td>
-<td align="left">Standardabweichung</td>
-<td align="left"><code>sd(c(1,2,3,4))</code></td>
-</tr>
-<tr class="even">
-<td align="left"><code>sum</code></td>
-<td align="left">Summe</td>
-<td align="left"><code>sum(c(1,2,3,4))</code></td>
-</tr>
-<tr class="odd">
-<td align="left"><code>vector</code></td>
-<td align="left">Generiert einen Vektor</td>
-<td align="left"><code>vector(length=3, mode='numeric')</code></td>
-</tr>
-</tbody>
-</table>
 
 </div>
 </div>
@@ -397,8 +397,8 @@ Abbildung 3.1: Aufbau von RStudio
           </div>
         </div>
       </div>
-<a href="einfuehrung.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="daten.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="reproduzieren.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="aufgabensammlung.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

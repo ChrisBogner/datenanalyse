@@ -103,7 +103,7 @@ Bei Berichten haben Abbildungen meistens keine Überschrift, da alles in der Bil
 1. Probieren Sie die Schrifteinstellungen aus. Dazu stellen Sie den Parameter `family` in `par` auf "serif", "sans" oder "mono".
 1. Probieren Sie die Parameter `font.lab = 2` und `font.axis = 2` direkt in `plot` aus. Zahlen 1 bis 5 stehen jeweils für normal, fett, kursiv, fett-kursiv und symbolisch.
 
-## Reproduzierbare Berichte mir R Markdown
+## Reproduzierbare Berichte mit R Markdown
 
 ### Erster eigener Bericht
 

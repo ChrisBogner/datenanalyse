@@ -1,0 +1,23 @@
+# Tidyverse {#tidyverse}
+
+```{block, type = 'rmdoutcomes'}
+- bla
+```
+
+
+
+## Funktionen `apply()`, `tapply()` und `sapply()`
+
+
+## Eigene Funktionen schreiben
+
+
+## Weiterführende Literatur
+
+@Ligges2008, Kapitel 4.1
+
+## Inhalt der live Einführung
+
+- Funktionsaufruf
+- `apply()` und Co
+- `if` - `else` Bedingungen

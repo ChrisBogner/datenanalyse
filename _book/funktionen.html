@@ -195,7 +195,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="8.5" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#eigene-funktionen-schreiben-1"><i class="fa fa-check"></i><b>8.5</b> Eigene Funktionen schreiben</a><ul>
 <li class="chapter" data-level="8.5.1" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#r-hausaufgaben"><i class="fa fa-check"></i><b>8.5.1</b> R-Hausaufgaben</a></li>
-<li class="chapter" data-level="8.5.2" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#fledermäuse-die-zweite"><i class="fa fa-check"></i><b>8.5.2</b> Fledermäuse, die Zweite</a></li>
+<li class="chapter" data-level="8.5.2" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#fledermaus"><i class="fa fa-check"></i><b>8.5.2</b> Fledermäuse, die Zweite</a></li>
 <li class="chapter" data-level="8.5.3" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#unfaire-klausur"><i class="fa fa-check"></i><b>8.5.3</b> Unfaire Klausur?</a></li>
 </ul></li>
 <li class="chapter" data-level="8.6" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#daten-visualisieren-teil-ii-fokus-auf-daten"><i class="fa fa-check"></i><b>8.6</b> Daten visualisieren, Teil II: Fokus auf Daten</a><ul>
@@ -256,43 +256,43 @@ Schleifen
 <h2><span class="header-section-number">7.1</span> Eigene Funktionen schreiben</h2>
 <p>Funktionen sind eine großartige Möglichkeit, sich das Leben einfacher zu machen. Sie können repetitive Aufgaben erledigen, ohne dass wir ständig mit Copy und Paste hantieren müssen, machen unsere Notebooks übersichtlich und helfen, Fehler und Inkonsistenzen zu vermeiden. Als Faustregel gilt: wenn Sie ein Stück Code mehr als 2 Mal kopieren und abändern, wird es Zeit für eine Funktion 😄.</p>
 <p>Schauen wir uns ein Beispiel an. Als erstes würfeln wir ein paar Daten aus der Gleichverteilung mit unterschiedlichen Minima und Maxima und sehen uns die Zusammenfassung und die Standardabweichungen an.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">my_data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">col1 =</span> <span class="kw">runif</span>(<span class="dv">20</span>, <span class="dt">min =</span> <span class="dv">3</span>, <span class="dt">max =</span> <span class="dv">10</span>),</a>
-<a class="sourceLine" id="cb1-2" data-line-number="2">                      <span class="dt">col2 =</span> <span class="kw">runif</span>(<span class="dv">20</span>, <span class="dt">min =</span> <span class="dv">7</span>, <span class="dt">max =</span> <span class="dv">12</span>),</a>
-<a class="sourceLine" id="cb1-3" data-line-number="3">                      <span class="dt">col3 =</span> <span class="kw">runif</span>(<span class="dv">20</span>, <span class="dt">min =</span> <span class="dv">13</span>, <span class="dt">max =</span> <span class="dv">100</span>))</a>
-<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="kw">summary</span>(my_data)</a></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" data-line-number="1">my_data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">col1 =</span> <span class="kw">runif</span>(<span class="dv">20</span>, <span class="dt">min =</span> <span class="dv">3</span>, <span class="dt">max =</span> <span class="dv">10</span>),</a>
+<a class="sourceLine" id="cb38-2" data-line-number="2">                      <span class="dt">col2 =</span> <span class="kw">runif</span>(<span class="dv">20</span>, <span class="dt">min =</span> <span class="dv">7</span>, <span class="dt">max =</span> <span class="dv">12</span>),</a>
+<a class="sourceLine" id="cb38-3" data-line-number="3">                      <span class="dt">col3 =</span> <span class="kw">runif</span>(<span class="dv">20</span>, <span class="dt">min =</span> <span class="dv">13</span>, <span class="dt">max =</span> <span class="dv">100</span>))</a>
+<a class="sourceLine" id="cb38-4" data-line-number="4"><span class="kw">summary</span>(my_data)</a></code></pre></div>
 <pre><code>##       col1            col2             col3      
-##  Min.   :3.040   Min.   : 7.064   Min.   :16.51  
-##  1st Qu.:4.014   1st Qu.: 8.542   1st Qu.:27.26  
-##  Median :6.749   Median : 9.995   Median :64.46  
-##  Mean   :6.385   Mean   : 9.807   Mean   :58.03  
-##  3rd Qu.:8.112   3rd Qu.:11.079   3rd Qu.:82.35  
-##  Max.   :9.451   Max.   :11.704   Max.   :98.03</code></pre>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">sapply</span>(my_data, sd)</a></code></pre></div>
+##  Min.   :3.323   Min.   : 7.311   Min.   :14.23  
+##  1st Qu.:5.058   1st Qu.: 8.479   1st Qu.:26.73  
+##  Median :6.021   Median : 9.607   Median :43.97  
+##  Mean   :6.364   Mean   : 9.572   Mean   :49.05  
+##  3rd Qu.:7.800   3rd Qu.:10.498   3rd Qu.:60.56  
+##  Max.   :9.974   Max.   :11.857   Max.   :97.12</code></pre>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" data-line-number="1"><span class="kw">sapply</span>(my_data, sd)</a></code></pre></div>
 <pre><code>##      col1      col2      col3 
-##  2.093886  1.642531 29.697085</code></pre>
+##  1.947316  1.389014 27.725642</code></pre>
 <p>Ich möchte die Daten so transformieren, dass alle Variablen im Datensatz (d.h. Spalten) einen Mittelwert von 0 und eine Standardabweichung von 1 haben. Dazu ziehe ich den Mittelwert ab und teile durch die Standardabweichung. Das ist eine klassische Transformation (manchmal <span class="math inline">\(z\)</span>-Transformation genannt), die manche Analysemethoden (z.B. Hauptkomponentenanalyse) als Vorbehandlung der Daten verlangen.</p>
 <p>Erst einmal das Naheliegende: Transformation per Copy und Paste.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">my_data_trans &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">col1_trans =</span> (my_data<span class="op">$</span>col1 <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(my_data<span class="op">$</span>col1))<span class="op">/</span><span class="kw">sd</span>(my_data<span class="op">$</span>col1),</a>
-<a class="sourceLine" id="cb5-2" data-line-number="2">                            <span class="dt">col2_trans =</span> (my_data<span class="op">$</span>col2 <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(my_data<span class="op">$</span>col2))<span class="op">/</span><span class="kw">sd</span>(my_data<span class="op">$</span>col1),</a>
-<a class="sourceLine" id="cb5-3" data-line-number="3">                            <span class="dt">col3_trans =</span> (my_data<span class="op">$</span>col3 <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(my_data<span class="op">$</span>col3))<span class="op">/</span><span class="kw">sd</span>(my_data<span class="op">$</span>col3))</a></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" data-line-number="1">my_data_trans &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">col1_trans =</span> (my_data<span class="op">$</span>col1 <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(my_data<span class="op">$</span>col1))<span class="op">/</span><span class="kw">sd</span>(my_data<span class="op">$</span>col1),</a>
+<a class="sourceLine" id="cb42-2" data-line-number="2">                            <span class="dt">col2_trans =</span> (my_data<span class="op">$</span>col2 <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(my_data<span class="op">$</span>col2))<span class="op">/</span><span class="kw">sd</span>(my_data<span class="op">$</span>col1),</a>
+<a class="sourceLine" id="cb42-3" data-line-number="3">                            <span class="dt">col3_trans =</span> (my_data<span class="op">$</span>col3 <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(my_data<span class="op">$</span>col3))<span class="op">/</span><span class="kw">sd</span>(my_data<span class="op">$</span>col3))</a></code></pre></div>
 <p>Haben Sie den Fehler bemerkt? Ich habe einmal vergessen eine 1 durch eine 2 zu ersetzten. Das merke ich aber nur, wenn ich mir das Ergebnis ansehen. Die Standardabweichung in <code>col2_trans</code> ist nicht gleich 1.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw">summary</span>(my_data_trans)</a></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" data-line-number="1"><span class="kw">summary</span>(my_data_trans)</a></code></pre></div>
 <pre><code>##    col1_trans        col2_trans         col3_trans     
-##  Min.   :-1.5978   Min.   :-1.30965   Min.   :-1.3982  
-##  1st Qu.:-1.1326   1st Qu.:-0.60400   1st Qu.:-1.0361  
-##  Median : 0.1736   Median : 0.09008   Median : 0.2165  
+##  Min.   :-1.5617   Min.   :-1.16079   Min.   :-1.2560  
+##  1st Qu.:-0.6704   1st Qu.:-0.56112   1st Qu.:-0.8052  
+##  Median :-0.1760   Median : 0.01848   Median :-0.1834  
 ##  Mean   : 0.0000   Mean   : 0.00000   Mean   : 0.0000  
-##  3rd Qu.: 0.8247   3rd Qu.: 0.60783   3rd Qu.: 0.8191  
-##  Max.   : 1.4644   Max.   : 0.90597   Max.   : 1.3470</code></pre>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="kw">sapply</span>(my_data_trans, sd)</a></code></pre></div>
+##  3rd Qu.: 0.7373   3rd Qu.: 0.47553   3rd Qu.: 0.4151  
+##  Max.   : 1.8541   Max.   : 1.17350   Max.   : 1.7336</code></pre>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" data-line-number="1"><span class="kw">sapply</span>(my_data_trans, sd)</a></code></pre></div>
 <pre><code>## col1_trans col2_trans col3_trans 
-##  1.0000000  0.7844411  1.0000000</code></pre>
+##  1.0000000  0.7132963  1.0000000</code></pre>
 <p>So etwas passiert sehr schnell und wird durch das Schreiben einer Funktion vermieden.</p>
 <p>Jede Funktionsdefinition beginnt mit der Wahl des Namens. Es ist eine gute Idee, sich einen konsistenten und sauberen Stil gleich am Anfang anzugewöhnen. Seien Sie nett zu Ihrem zukünftigen Ich und anderen Menschen, die Ihren Code lesen werden 😄. Es ist ein guter Stil, Verben als Funktionsnamen zu nutzen, die beschreiben, was eine Funktion macht. In jedem Fall, <strong>wählen Sie keine Namen, die schon für Funktionen oder Variablen vergeben sind!</strong> Das würde die ursprünglichen Funktionen oder Variablen einfach überschreiben.</p>
 <p>Wir nennen unsere Funktion <code>z_transform</code>, weil sie Daten <span class="math inline">\(z\)</span>-transformiert. Bei zusammengesetzten Namen sollten Sie den Unterstrich verwenden. Das macht den Namen einfacher zu lesen.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1">z_transofrm &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</a>
-<a class="sourceLine" id="cb10-2" data-line-number="2">  (x <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(x))<span class="op">/</span><span class="kw">sd</span>(x)</a>
-<a class="sourceLine" id="cb10-3" data-line-number="3">}</a></code></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb47-1" data-line-number="1">z_transofrm &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</a>
+<a class="sourceLine" id="cb47-2" data-line-number="2">  (x <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(x))<span class="op">/</span><span class="kw">sd</span>(x)</a>
+<a class="sourceLine" id="cb47-3" data-line-number="3">}</a></code></pre></div>
 <p>Bei jeder Funktionsdefinition arbeiten Sie drei Schritte ab:</p>
 <ol style="list-style-type: decimal">
 <li>Namen finden und das Skelett aus <code>Name_der_Funktion &lt;- function() {}</code> hin schreiben.</li>
@@ -301,18 +301,18 @@ Schleifen
 </ol>
 <p>Wir brauchen für unsere Funktion nur einen Parameter. Zwar sind die Namen der Parameter nicht ganz so wichtig wie Namen der Funktionen. Trotzdem sollte man hier konsistent sein: bei einfachen Vektoren sind <code>x</code>, <code>y</code>, <code>z</code> etc. völlig in Ordnung. Ansonsten sind Substantive ein guter Namensstil für Parameter.</p>
 <p>Wir wenden die Funktion jetzt auf unseren Datensatz an.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1">my_data_trans_<span class="dv">2</span> &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">col1_trans =</span> <span class="kw">z_transofrm</span>(my_data<span class="op">$</span>col1),</a>
-<a class="sourceLine" id="cb11-2" data-line-number="2">                              <span class="dt">col2_trans =</span> <span class="kw">z_transofrm</span>(my_data<span class="op">$</span>col2),</a>
-<a class="sourceLine" id="cb11-3" data-line-number="3">                              <span class="dt">col2_trans =</span> <span class="kw">z_transofrm</span>(my_data<span class="op">$</span>col3))</a>
-<a class="sourceLine" id="cb11-4" data-line-number="4"><span class="kw">summary</span>(my_data_trans_<span class="dv">2</span>)</a></code></pre></div>
-<pre><code>##    col1_trans        col2_trans       col2_trans.1    
-##  Min.   :-1.5978   Min.   :-1.6695   Min.   :-1.3982  
-##  1st Qu.:-1.1326   1st Qu.:-0.7700   1st Qu.:-1.0361  
-##  Median : 0.1736   Median : 0.1148   Median : 0.2165  
-##  Mean   : 0.0000   Mean   : 0.0000   Mean   : 0.0000  
-##  3rd Qu.: 0.8247   3rd Qu.: 0.7749   3rd Qu.: 0.8191  
-##  Max.   : 1.4644   Max.   : 1.1549   Max.   : 1.3470</code></pre>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="kw">sapply</span>(my_data_trans_<span class="dv">2</span>, sd)</a></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" data-line-number="1">my_data_trans_<span class="dv">2</span> &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">col1_trans =</span> <span class="kw">z_transofrm</span>(my_data<span class="op">$</span>col1),</a>
+<a class="sourceLine" id="cb48-2" data-line-number="2">                              <span class="dt">col2_trans =</span> <span class="kw">z_transofrm</span>(my_data<span class="op">$</span>col2),</a>
+<a class="sourceLine" id="cb48-3" data-line-number="3">                              <span class="dt">col2_trans =</span> <span class="kw">z_transofrm</span>(my_data<span class="op">$</span>col3))</a>
+<a class="sourceLine" id="cb48-4" data-line-number="4"><span class="kw">summary</span>(my_data_trans_<span class="dv">2</span>)</a></code></pre></div>
+<pre><code>##    col1_trans        col2_trans        col2_trans.1    
+##  Min.   :-1.5617   Min.   :-1.62736   Min.   :-1.2560  
+##  1st Qu.:-0.6704   1st Qu.:-0.78666   1st Qu.:-0.8052  
+##  Median :-0.1760   Median : 0.02591   Median :-0.1834  
+##  Mean   : 0.0000   Mean   : 0.00000   Mean   : 0.0000  
+##  3rd Qu.: 0.7373   3rd Qu.: 0.66667   3rd Qu.: 0.4151  
+##  Max.   : 1.8541   Max.   : 1.64517   Max.   : 1.7336</code></pre>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" data-line-number="1"><span class="kw">sapply</span>(my_data_trans_<span class="dv">2</span>, sd)</a></code></pre></div>
 <pre><code>##   col1_trans   col2_trans col2_trans.1 
 ##            1            1            1</code></pre>
 <p>Der Code ist viel aufgeräumter und übersichtlicher. Es ist viel klarer, was berechnet wird.</p>
@@ -320,53 +320,53 @@ Schleifen
 <div id="fallunterscheidungen" class="section level2">
 <h2><span class="header-section-number">7.2</span> Fallunterscheidungen</h2>
 <p>Manchmal möchte man unterschiedliche Berechnung innerhalb einer Funktion durchführen, je nach aufgestellter Bedingung. Daszu brauchen wir eine Fallunterscheidung, die durch einen <code>if</code>-<code>else</code> Ausdruck definiert wird. Jede Fallunterscheidung hat die folgende Form, wobei die zweite Bedingung nicht zwingend notwendig ist.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="cf">if</span> (Bedingung1) {</a>
-<a class="sourceLine" id="cb15-2" data-line-number="2">  <span class="co"># Code, der ausgeführt wird, wenn die erste Bedingung1 stimmt</span></a>
-<a class="sourceLine" id="cb15-3" data-line-number="3">} <span class="cf">else</span> <span class="cf">if</span> (Bedingung2) {</a>
-<a class="sourceLine" id="cb15-4" data-line-number="4">  <span class="co"># Code, der ausgeführt wird, wenn zweite Bedingung2 stimmt</span></a>
-<a class="sourceLine" id="cb15-5" data-line-number="5">} <span class="cf">else</span> {</a>
-<a class="sourceLine" id="cb15-6" data-line-number="6">  <span class="co"># Code, der ausgeführt wird, wenn keine der Bedingungung stimmt</span></a>
-<a class="sourceLine" id="cb15-7" data-line-number="7">}</a></code></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb52-1" data-line-number="1"><span class="cf">if</span> (Bedingung1) {</a>
+<a class="sourceLine" id="cb52-2" data-line-number="2">  <span class="co"># Code, der ausgeführt wird, wenn die erste Bedingung1 stimmt</span></a>
+<a class="sourceLine" id="cb52-3" data-line-number="3">} <span class="cf">else</span> <span class="cf">if</span> (Bedingung2) {</a>
+<a class="sourceLine" id="cb52-4" data-line-number="4">  <span class="co"># Code, der ausgeführt wird, wenn zweite Bedingung2 stimmt</span></a>
+<a class="sourceLine" id="cb52-5" data-line-number="5">} <span class="cf">else</span> {</a>
+<a class="sourceLine" id="cb52-6" data-line-number="6">  <span class="co"># Code, der ausgeführt wird, wenn keine der Bedingungung stimmt</span></a>
+<a class="sourceLine" id="cb52-7" data-line-number="7">}</a></code></pre></div>
 <p>Achten Sie genau darauf, wie <code>else if</code> und <code>else</code> positioniert werden, nämlich zwischen den beiden geschweiften Klammern. Eine Fallunterscheidung kann auch mehr als zwei Bedingungen haben, aber man sollte nicht übertreiben. Wenn die Anzahl der Bedingungen zu hoch ist, sollte man nachdenken, ob das Problem nicht anders als mit <code>if</code>-<code>else</code> gelöst werden kann.</p>
 <p>Wir schreiben eine Begrüßungsfunktion, die ja nach Tageszeit die richtige Begrüßung ausgibt.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1">say_hello &lt;-<span class="st"> </span><span class="cf">function</span>(my_time) {</a>
-<a class="sourceLine" id="cb16-2" data-line-number="2">  <span class="cf">if</span> (my_time <span class="op">==</span><span class="st"> &#39;Morgen&#39;</span>) {</a>
-<a class="sourceLine" id="cb16-3" data-line-number="3">    <span class="st">&#39;Guten Morgen&#39;</span></a>
-<a class="sourceLine" id="cb16-4" data-line-number="4">  } <span class="cf">else</span> <span class="cf">if</span> (my_time <span class="op">==</span><span class="st"> &#39;Mittag&#39;</span>) {</a>
-<a class="sourceLine" id="cb16-5" data-line-number="5">    <span class="st">&#39;Guten Tag&#39;</span></a>
-<a class="sourceLine" id="cb16-6" data-line-number="6">  } <span class="cf">else</span> <span class="cf">if</span> (my_time <span class="op">==</span><span class="st"> &#39;Abend&#39;</span>){</a>
-<a class="sourceLine" id="cb16-7" data-line-number="7">    <span class="st">&#39;Guten Abend&#39;</span></a>
-<a class="sourceLine" id="cb16-8" data-line-number="8">  } <span class="cf">else</span> {</a>
-<a class="sourceLine" id="cb16-9" data-line-number="9">    <span class="st">&#39;In meiner Welt gibt es das nicht.&#39;</span></a>
-<a class="sourceLine" id="cb16-10" data-line-number="10">  }</a>
-<a class="sourceLine" id="cb16-11" data-line-number="11">}</a></code></pre></div>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb53-1" data-line-number="1">say_hello &lt;-<span class="st"> </span><span class="cf">function</span>(my_time) {</a>
+<a class="sourceLine" id="cb53-2" data-line-number="2">  <span class="cf">if</span> (my_time <span class="op">==</span><span class="st"> &#39;Morgen&#39;</span>) {</a>
+<a class="sourceLine" id="cb53-3" data-line-number="3">    <span class="st">&#39;Guten Morgen&#39;</span></a>
+<a class="sourceLine" id="cb53-4" data-line-number="4">  } <span class="cf">else</span> <span class="cf">if</span> (my_time <span class="op">==</span><span class="st"> &#39;Mittag&#39;</span>) {</a>
+<a class="sourceLine" id="cb53-5" data-line-number="5">    <span class="st">&#39;Guten Tag&#39;</span></a>
+<a class="sourceLine" id="cb53-6" data-line-number="6">  } <span class="cf">else</span> <span class="cf">if</span> (my_time <span class="op">==</span><span class="st"> &#39;Abend&#39;</span>){</a>
+<a class="sourceLine" id="cb53-7" data-line-number="7">    <span class="st">&#39;Guten Abend&#39;</span></a>
+<a class="sourceLine" id="cb53-8" data-line-number="8">  } <span class="cf">else</span> {</a>
+<a class="sourceLine" id="cb53-9" data-line-number="9">    <span class="st">&#39;In meiner Welt gibt es das nicht.&#39;</span></a>
+<a class="sourceLine" id="cb53-10" data-line-number="10">  }</a>
+<a class="sourceLine" id="cb53-11" data-line-number="11">}</a></code></pre></div>
 <p>Wir rufen die Funktion auf mit einmal mit Abend und einmal mit abend.</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="kw">say_hello</span>(<span class="st">&#39;Abend&#39;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb54-1" data-line-number="1"><span class="kw">say_hello</span>(<span class="st">&#39;Abend&#39;</span>)</a></code></pre></div>
 <pre><code>## [1] &quot;Guten Abend&quot;</code></pre>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1"><span class="kw">say_hello</span>(<span class="st">&#39;abend&#39;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb56-1" data-line-number="1"><span class="kw">say_hello</span>(<span class="st">&#39;abend&#39;</span>)</a></code></pre></div>
 <pre><code>## [1] &quot;In meiner Welt gibt es das nicht.&quot;</code></pre>
 </div>
 <div id="for-schleifen-for-loops" class="section level2">
 <h2><span class="header-section-number">7.3</span> <code>for</code>-Schleifen (<code>for</code> <em>loops</em>)</h2>
 <p>Wenn wir unsere <code>say_hello</code> Funktion auf einen Vektor von Tageszeiten anwenden wollen, gibt es eine Warnung.</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1"><span class="kw">say_hello</span>(<span class="kw">c</span>(<span class="st">&#39;Morgen&#39;</span>, <span class="st">&#39;Mittag&#39;</span>, <span class="st">&#39;Abend&#39;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb58-1" data-line-number="1"><span class="kw">say_hello</span>(<span class="kw">c</span>(<span class="st">&#39;Morgen&#39;</span>, <span class="st">&#39;Mittag&#39;</span>, <span class="st">&#39;Abend&#39;</span>))</a></code></pre></div>
 <pre><code>## Warning in if (my_time == &quot;Morgen&quot;) {: Bedingung hat Länge &gt; 1 und nur das erste
 ## Element wird benutzt</code></pre>
 <pre><code>## [1] &quot;Guten Morgen&quot;</code></pre>
 <p>Das liegt daran, dass die Auswertung der Bedingung eine Antwort der Länge 1 liefern muss: entweder <code>TRUE</code>, wenn die Bedingung stimmt, oder <code>FALSE</code>, wenn sie nicht stimmt. Bei einem Vektor ist die Antwort aber länger als 1 und die Funktion benutzt nur die erste Stelle der Antwort. Man sagt auch, dass die Funktion <code>say_hello</code> <em>nicht vektorisiert</em> sei, sie kann also nicht von sich aus auf einem Vektor arbeiten.</p>
 <p>Damit man eine eine nicht vektorisierte Funktion auf einen Vektor anwenden kann, gibt es mehrere Möglichkeiten. Eine davon ist die sogen. <code>for</code> Schleife. Eine Schleife ist eine wiederholte Ausführung von Code, man sagt auch <em>Iteration</em>.</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" data-line-number="1">begruessung &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;Morgen&#39;</span>, <span class="st">&#39;Mittag&#39;</span>, <span class="st">&#39;Abend&#39;</span>)</a>
-<a class="sourceLine" id="cb24-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb24-3" data-line-number="3"><span class="co"># Vektor für Ergebnisse erstellen</span></a>
-<a class="sourceLine" id="cb24-4" data-line-number="4">ergebnis &lt;-<span class="st"> </span><span class="kw">vector</span>(<span class="dt">mode =</span> <span class="st">&#39;character&#39;</span>, <span class="dt">length =</span> <span class="dv">3</span>)</a>
-<a class="sourceLine" id="cb24-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb24-6" data-line-number="6"><span class="co"># For Schleife über die Zahlenfolge 1:3 mit Hilfe der Dummy-Variablen i</span></a>
-<a class="sourceLine" id="cb24-7" data-line-number="7"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>) {</a>
-<a class="sourceLine" id="cb24-8" data-line-number="8">  ergebnis[i] &lt;-<span class="st"> </span><span class="kw">say_hello</span>(begruessung[i])</a>
-<a class="sourceLine" id="cb24-9" data-line-number="9">}</a>
-<a class="sourceLine" id="cb24-10" data-line-number="10"></a>
-<a class="sourceLine" id="cb24-11" data-line-number="11"><span class="co"># Ergebnis ansehen</span></a>
-<a class="sourceLine" id="cb24-12" data-line-number="12">ergebnis</a></code></pre></div>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb61-1" data-line-number="1">begruessung &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;Morgen&#39;</span>, <span class="st">&#39;Mittag&#39;</span>, <span class="st">&#39;Abend&#39;</span>)</a>
+<a class="sourceLine" id="cb61-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb61-3" data-line-number="3"><span class="co"># Vektor für Ergebnisse erstellen</span></a>
+<a class="sourceLine" id="cb61-4" data-line-number="4">ergebnis &lt;-<span class="st"> </span><span class="kw">vector</span>(<span class="dt">mode =</span> <span class="st">&#39;character&#39;</span>, <span class="dt">length =</span> <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb61-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb61-6" data-line-number="6"><span class="co"># For Schleife über die Zahlenfolge 1:3 mit Hilfe der Dummy-Variablen i</span></a>
+<a class="sourceLine" id="cb61-7" data-line-number="7"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>) {</a>
+<a class="sourceLine" id="cb61-8" data-line-number="8">  ergebnis[i] &lt;-<span class="st"> </span><span class="kw">say_hello</span>(begruessung[i])</a>
+<a class="sourceLine" id="cb61-9" data-line-number="9">}</a>
+<a class="sourceLine" id="cb61-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb61-11" data-line-number="11"><span class="co"># Ergebnis ansehen</span></a>
+<a class="sourceLine" id="cb61-12" data-line-number="12">ergebnis</a></code></pre></div>
 <pre><code>## [1] &quot;Guten Morgen&quot; &quot;Guten Tag&quot;    &quot;Guten Abend&quot;</code></pre>
 <p>Eine <code>for</code> Schleife braucht drei Bestandteile:</p>
 <ol style="list-style-type: decimal">
@@ -386,8 +386,7 @@ Schleifen
 <ul>
 <li>Funktionsaufruf</li>
 <li>Funktionen selbst schreiben</li>
-<li><code>if</code> - <code>else</code> Bedingungen</li>
-<li><code>for</code> Schleifen</li>
+<li>Aufgabe <a href="aufgabensammlung.html#fledermaus">8.5.2</a>: <code>if</code> - <code>else</code> Bedingungen und <code>for</code> Schleifen</li>
 </ul>
 
 </div>

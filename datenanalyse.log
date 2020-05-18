@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2019.6.20)  17 MAY 2020 15:27
+This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2019.6.20)  17 MAY 2020 17:18
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1654,6 +1654,7 @@ Package xcolor Warning: Incompatible color definition on input line 1465.
 
 Package xcolor Warning: Incompatible color definition on input line 1465.
 
+Missing character: There is no 😄 in font [lmroman10-regular]:mapping=tex-text;!
 [32]
 
 Package xcolor Warning: Incompatible color definition on input line 1478.
@@ -1665,47 +1666,35 @@ Package xcolor Warning: Incompatible color definition on input line 1484.
 Package xcolor Warning: Incompatible color definition on input line 1484.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1495.
+Package xcolor Warning: Incompatible color definition on input line 1503.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1502.
+Package xcolor Warning: Incompatible color definition on input line 1510.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1502.
+Package xcolor Warning: Incompatible color definition on input line 1510.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1514.
+Package xcolor Warning: Incompatible color definition on input line 1522.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1518.
+Package xcolor Warning: Incompatible color definition on input line 1526.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1518.
-
-
-Underfull \vbox (badness 1237) has occurred while \output is active []
+Package xcolor Warning: Incompatible color definition on input line 1526.
 
 [33]
 
-Package xcolor Warning: Incompatible color definition on input line 1532.
+Package xcolor Warning: Incompatible color definition on input line 1540.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1542.
+Package xcolor Warning: Incompatible color definition on input line 1550.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1542.
+Package xcolor Warning: Incompatible color definition on input line 1550.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1548.
-
-
-Package xcolor Warning: Incompatible color definition on input line 1562.
-
-
-Package xcolor Warning: Incompatible color definition on input line 1562.
-
-
-Package xcolor Warning: Incompatible color definition on input line 1566.
+Package xcolor Warning: Incompatible color definition on input line 1556.
 
 
 Package xcolor Warning: Incompatible color definition on input line 1570.
@@ -1714,50 +1703,47 @@ Package xcolor Warning: Incompatible color definition on input line 1570.
 Package xcolor Warning: Incompatible color definition on input line 1570.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1576.
+Package xcolor Warning: Incompatible color definition on input line 1574.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1580.
+Package xcolor Warning: Incompatible color definition on input line 1578.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1580.
-
-
-Package xcolor Warning: Incompatible color definition on input line 1591.
-
-
-Underfull \vbox (badness 1831) has occurred while \output is active []
+Package xcolor Warning: Incompatible color definition on input line 1578.
 
 [34]
 
-Package xcolor Warning: Incompatible color definition on input line 1595.
+Package xcolor Warning: Incompatible color definition on input line 1584.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1595.
+Package xcolor Warning: Incompatible color definition on input line 1588.
 
 
-Overfull \hbox (90.75pt too wide) in paragraph at lines 1600--1600
+Package xcolor Warning: Incompatible color definition on input line 1588.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1599.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1603.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1603.
+
+
+Overfull \hbox (90.75pt too wide) in paragraph at lines 1608--1608
 []\TU/lmtt/m/n/10 ## Warning in if (my_time == "Morgen") {: Bedingung hat Länge
  > 1 und nur das erste[] 
  []
 
 
-Package xcolor Warning: Incompatible color definition on input line 1610.
+Package xcolor Warning: Incompatible color definition on input line 1618.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1622.
+Package xcolor Warning: Incompatible color definition on input line 1633.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1622.
-
-
-Package xcolor Warning: Incompatible color definition on input line 1630.
-
-
-Package xcolor Warning: Incompatible color definition on input line 1635.
-
-
-Package xcolor Warning: Incompatible color definition on input line 1635.
+Package xcolor Warning: Incompatible color definition on input line 1633.
 
 [35] [36]
 Chapter 8.
@@ -1774,22 +1760,22 @@ File: Zweitstimme.pdf Graphic file (type pdf)
 [38] [39]
 File: Zwei_grafiken.pdf Graphic file (type pdf)
 <use Zwei_grafiken.pdf>
-[40] [41] [42] [43] (./datenanalyse.bbl [44])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 2024.
-[45
+[40] [41] [42] (./datenanalyse.bbl [43] [44
 
-]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 2024.
+])
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 2018.
+[45]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 2018.
 (./datenanalyse.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 2024.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 2024.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 2018.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 2018.
 
 Package rerunfilecheck Info: File `datenanalyse.out' has not changed.
 (rerunfilecheck)             Checksum: 8E4FF902B65CC96439C0961DAAD99995.
  ) 
 Here is how much of TeX's memory you used:
  28667 strings out of 492909
- 524519 string characters out of 6132923
+ 524504 string characters out of 6132923
  768982 words of memory out of 5000000
  32419 multiletter control sequences out of 15000+600000
  538788 words of font info for 84 fonts, out of 8000000 for 9000

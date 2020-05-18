@@ -119,15 +119,17 @@ An dem Kurs "Einführung in R" nehmen 49 Studierende teil. Der Leistungsnachweis
 2. Ermitteln Sie, wie viele Teilnehmer bestanden und wie viele nicht bestanden haben.
 
 
-### Fledermäuse, die Zweite
+### Fledermäuse, die Zweite {#fledermaus}
 
 Wir beschäftigen uns erneut mit den Fledermäusen.
 
 1. Lesen Sie den korrigierten(!) Datensatz  `r file.name("Fledermaus_cor.txt")` ein.
 2. Schreiben Sie eine Funktion, die den Entwicklungsstand der Tiere klassifiziert. Nutzen Sie dazu die ad hoc Regel: Individuum < 5 cm ist ein Jungtier, sonst erwachsen.
 3. Erstellen Sie eine ordinal-skalierte Variable `alter` mit dem Entwicklungsstand der Tiere.
-4. Schreiben Sie eine Funktion, die die Mittelwerte der Größe für weibliche und männliche Individuen berechnet.
-5. Berechnen Sie die Mittelwerte der Größe und runden Sie auf 2 Nachkommastellen.
+3. Wie viele Erwachsene und wie viele Jungtiere wurden vermessen?
+
+<!-- 4. Schreiben Sie eine Funktion, die die Mittelwerte der Größe für weibliche und männliche Individuen berechnet. -->
+<!-- 5. Berechnen Sie die Mittelwerte der Größe und runden Sie auf 2 Nachkommastellen.-->
 
 
 ### Unfaire Klausur?

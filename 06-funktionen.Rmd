@@ -160,5 +160,4 @@ Dieses Kapitel orientiert sich stark an @Wickham2017, Kapitel 19
 
 - Funktionsaufruf
 - Funktionen selbst schreiben
-- `if` - `else` Bedingungen
-- `for` Schleifen
+- Aufgabe \@ref(fledermaus): `if` - `else` Bedingungen und `for` Schleifen

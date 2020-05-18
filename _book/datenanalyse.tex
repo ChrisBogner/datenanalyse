@@ -1389,7 +1389,7 @@ Report Writing for Data Science in R \citep{Peng2019} (auf ILIAS)
 \end{itemize}
 \end{rmdoutcomes}
 
-Was eine Funktion genau ist und wie man Funktionen in R aufruft, lesen Sie bitte bei \citet{Ligges2008} in Kapitel 4.1 nach. In diesem Kapitel des Skripts geht es um das Schreiben der eigenen Funktionen, Fallunterscheidungen und \texttt{for} Schleifen.
+Was genau Funktionen sind und wie man sie in R aufruft, lesen Sie bitte bei \citet{Ligges2008} in Kapitel 4.1 nach. In diesem Kapitel des Skripts geht es um das Schreiben der eigenen Funktionen, Fallunterscheidungen mit \texttt{if}-\texttt{else} und \texttt{for} Schleifen.
 
 \hypertarget{eigene-funktionen-schreiben}{%
 \section{Eigene Funktionen schreiben}\label{eigene-funktionen-schreiben}}
@@ -1409,12 +1409,12 @@ Schauen wir uns ein Beispiel an. Als erstes würfeln wir ein paar Daten aus der 
 
 \begin{verbatim}
 ##       col1            col2             col3      
-##  Min.   :3.242   Min.   : 7.696   Min.   :13.62  
-##  1st Qu.:5.370   1st Qu.: 8.727   1st Qu.:45.94  
-##  Median :7.515   Median :10.364   Median :58.09  
-##  Mean   :6.979   Mean   : 9.871   Mean   :57.93  
-##  3rd Qu.:8.500   3rd Qu.:10.745   3rd Qu.:74.78  
-##  Max.   :9.538   Max.   :11.598   Max.   :94.33
+##  Min.   :3.288   Min.   : 7.329   Min.   :14.11  
+##  1st Qu.:4.349   1st Qu.: 8.088   1st Qu.:26.50  
+##  Median :6.293   Median : 8.864   Median :51.21  
+##  Mean   :6.249   Mean   : 9.185   Mean   :52.42  
+##  3rd Qu.:7.483   3rd Qu.:10.391   3rd Qu.:72.77  
+##  Max.   :9.661   Max.   :11.649   Max.   :97.27
 \end{verbatim}
 
 \begin{Shaded}
@@ -1425,12 +1425,12 @@ Schauen wir uns ein Beispiel an. Als erstes würfeln wir ein paar Daten aus der 
 
 \begin{verbatim}
 ##      col1      col2      col3 
-##  1.979369  1.325531 22.194543
+##  2.051981  1.460020 25.850348
 \end{verbatim}
 
 Ich möchte die Daten so transformieren, dass alle Variablen im Datensatz (d.h. Spalten) einen Mittelwert von 0 und eine Standardabweichung von 1 haben. Dazu ziehe ich den Mittelwert ab und teile durch die Standardabweichung. Das ist eine klassische Transformation (manchmal \(z\)-Transformation genannt), die manche Analysemethoden (z.B. Hauptkomponentenanalyse) als Vorbehandlung der Daten verlangen.
 
-Erst einmal das Naheliegende: Transformation per Copy und Paste:
+Erst einmal das Naheliegende: Transformation per Copy und Paste.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1449,13 +1449,13 @@ Haben Sie den Fehler bemerkt? Ich habe einmal vergessen eine 1 durch eine 2 zu e
 \end{Shaded}
 
 \begin{verbatim}
-##    col1_trans        col2_trans        col3_trans       
-##  Min.   :-1.8877   Min.   :-1.0990   Min.   :-1.996638  
-##  1st Qu.:-0.8130   1st Qu.:-0.5782   1st Qu.:-0.540130  
-##  Median : 0.2706   Median : 0.2490   Median : 0.007125  
-##  Mean   : 0.0000   Mean   : 0.0000   Mean   : 0.000000  
-##  3rd Qu.: 0.7685   3rd Qu.: 0.4415   3rd Qu.: 0.759103  
-##  Max.   : 1.2928   Max.   : 0.8725   Max.   : 1.639766
+##    col1_trans         col2_trans        col3_trans      
+##  Min.   :-1.44298   Min.   :-0.9043   Min.   :-1.48168  
+##  1st Qu.:-0.92618   1st Qu.:-0.5344   1st Qu.:-1.00249  
+##  Median : 0.02125   Median :-0.1562   Median :-0.04671  
+##  Mean   : 0.00000   Mean   : 0.0000   Mean   : 0.00000  
+##  3rd Qu.: 0.60116   3rd Qu.: 0.5878   3rd Qu.: 0.78736  
+##  Max.   : 1.66261   Max.   : 1.2012   Max.   : 1.73510
 \end{verbatim}
 
 \begin{Shaded}
@@ -1466,12 +1466,12 @@ Haben Sie den Fehler bemerkt? Ich habe einmal vergessen eine 1 durch eine 2 zu e
 
 \begin{verbatim}
 ## col1_trans col2_trans col3_trans 
-##  1.0000000  0.6696736  1.0000000
+##  1.0000000  0.7115172  1.0000000
 \end{verbatim}
 
-So etwas passiert sehr schnell und kann sehr leicht durch das Schreiben einer Funktion vermieden werden.
+So etwas passiert sehr schnell und wird durch das Schreiben einer Funktion vermieden.
 
-Jede Funktionsdefinition beginnt mit der Wahl des Namens. Es ist eine gute Idee, sich einen konsistenten und sauberen Stil gleich am Anfang anzugewöhnen. Seien Sie nett zu Ihrem zukünftigen Ich und anderen Menschen, die Ihren Code lesen werden. Es ist ein guter Stil, Verben als Funktionsnamen zu nutzen, die beschreiben, was eine Funktion macht. In jedem Fall, \textbf{wählen Sie keine Namen, die schon für Funktionen oder Variablen vergeben sind!} Das würde die ursprünglichen Funktionen oder Variablen einfach überschreiben.
+Jede Funktionsdefinition beginnt mit der Wahl des Namens. Es ist eine gute Idee, sich einen konsistenten und sauberen Stil gleich am Anfang anzugewöhnen. Seien Sie nett zu Ihrem zukünftigen Ich und anderen Menschen, die Ihren Code lesen werden 😄. Es ist ein guter Stil, Verben als Funktionsnamen zu nutzen, die beschreiben, was eine Funktion macht. In jedem Fall, \textbf{wählen Sie keine Namen, die schon für Funktionen oder Variablen vergeben sind!} Das würde die ursprünglichen Funktionen oder Variablen einfach überschreiben.
 
 Wir nennen unsere Funktion \texttt{z\_transform}, weil sie Daten \(z\)-transformiert. Bei zusammengesetzten Namen sollten Sie den Unterstrich verwenden. Das macht den Namen einfacher zu lesen.
 
@@ -1484,11 +1484,19 @@ Wir nennen unsere Funktion \texttt{z\_transform}, weil sie Daten \(z\)-transform
 \end{Shaded}
 
 Bei jeder Funktionsdefinition arbeiten Sie drei Schritte ab:
-1. Namen finden und das Skelett aus \texttt{Name\_der\_Funktion\ \textless{}-\ function()\ \{\}} hin schreiben.
-2. Überlege, welche Parameter die Funktion braucht und ob diese Standardwerte benötigen.
-3. Funktionskörper (\emph{body}), also die eigentliche Aufgabe der Funktion, hinschreiben.
 
-Wir brauchen für unsere Funktion nur einen Parameter. Zwar sind die Namen der Parameter nicht ganz so wichtig wie Namen der Funktionen. Trotzdem sollten man hier konsistent sein: bei einfachen Vektoren sind \texttt{x}, \texttt{y}, \texttt{z} etc. völlig in Ordnung. Ansonsten sind Substantive ein guter Namensstil für Parameter.
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Namen finden und das Skelett aus \texttt{Name\_der\_Funktion\ \textless{}-\ function()\ \{\}} hin schreiben.
+\item
+  Überlegen, welche Parameter die Funktion braucht und ob diese Standardwerte benötigen. Parameter zwischen die runden Klammern schreiben.
+\item
+  Funktionskörper (\emph{body}), also die eigentliche Aufgabe der Funktion, hinschreiben.
+\end{enumerate}
+
+Wir brauchen für unsere Funktion nur einen Parameter. Zwar sind die Namen der Parameter nicht ganz so wichtig wie Namen der Funktionen. Trotzdem sollte man hier konsistent sein: bei einfachen Vektoren sind \texttt{x}, \texttt{y}, \texttt{z} etc. völlig in Ordnung. Ansonsten sind Substantive ein guter Namensstil für Parameter.
 
 Wir wenden die Funktion jetzt auf unseren Datensatz an.
 
@@ -1502,13 +1510,13 @@ Wir wenden die Funktion jetzt auf unseren Datensatz an.
 \end{Shaded}
 
 \begin{verbatim}
-##    col1_trans        col2_trans       col2_trans.1      
-##  Min.   :-1.8877   Min.   :-1.6411   Min.   :-1.996638  
-##  1st Qu.:-0.8130   1st Qu.:-0.8634   1st Qu.:-0.540130  
-##  Median : 0.2706   Median : 0.3718   Median : 0.007125  
-##  Mean   : 0.0000   Mean   : 0.0000   Mean   : 0.000000  
-##  3rd Qu.: 0.7685   3rd Qu.: 0.6593   3rd Qu.: 0.759103  
-##  Max.   : 1.2928   Max.   : 1.3028   Max.   : 1.639766
+##    col1_trans         col2_trans       col2_trans.1     
+##  Min.   :-1.44298   Min.   :-1.2709   Min.   :-1.48168  
+##  1st Qu.:-0.92618   1st Qu.:-0.7511   1st Qu.:-1.00249  
+##  Median : 0.02125   Median :-0.2195   Median :-0.04671  
+##  Mean   : 0.00000   Mean   : 0.0000   Mean   : 0.00000  
+##  3rd Qu.: 0.60116   3rd Qu.: 0.8261   3rd Qu.: 0.78736  
+##  Max.   : 1.66261   Max.   : 1.6882   Max.   : 1.73510
 \end{verbatim}
 
 \begin{Shaded}
@@ -1522,12 +1530,12 @@ Wir wenden die Funktion jetzt auf unseren Datensatz an.
 ##            1            1            1
 \end{verbatim}
 
+Der Code ist viel aufgeräumter und übersichtlicher. Es ist viel klarer, was berechnet wird.
+
 \hypertarget{fallunterscheidungen}{%
 \section{Fallunterscheidungen}\label{fallunterscheidungen}}
 
-Wir erweitern unsere Funktion um eine Fallunterscheidung, eine \texttt{if}-\texttt{else} Ausdruck. Diese ermöglicht unterschiedliche Berechnung innerhalb einer Funktion, je nach aufgestellter Bedingung.
-
-Jede Fallunterscheidung hat die folgende Form, wobei die zweite Bedingung nicht zwingend notwendig ist.
+Manchmal möchte man unterschiedliche Berechnung innerhalb einer Funktion durchführen, je nach aufgestellter Bedingung. Daszu brauchen wir eine Fallunterscheidung, die durch einen \texttt{if}-\texttt{else} Ausdruck definiert wird. Jede Fallunterscheidung hat die folgende Form, wobei die zweite Bedingung nicht zwingend notwendig ist.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1541,7 +1549,7 @@ Jede Fallunterscheidung hat die folgende Form, wobei die zweite Bedingung nicht 
 \end{Highlighting}
 \end{Shaded}
 
-Achten Sie genau darauf, wie \texttt{else\ if} und \texttt{else} positioniert werden, nämlich zwischen den beiden geschweiften Klammern.
+Achten Sie genau darauf, wie \texttt{else\ if} und \texttt{else} positioniert werden, nämlich zwischen den beiden geschweiften Klammern. Eine Fallunterscheidung kann auch mehr als zwei Bedingungen haben, aber man sollte nicht übertreiben. Wenn die Anzahl der Bedingungen zu hoch ist, sollte man nachdenken, ob das Problem nicht anders als mit \texttt{if}-\texttt{else} gelöst werden kann.
 
 Wir schreiben eine Begrüßungsfunktion, die ja nach Tageszeit die richtige Begrüßung ausgibt.
 
@@ -1549,13 +1557,13 @@ Wir schreiben eine Begrüßungsfunktion, die ja nach Tageszeit die richtige Begr
 \begin{Highlighting}[]
 \NormalTok{say_hello <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(my_time) \{}
   \ControlFlowTok{if}\NormalTok{ (my_time }\OperatorTok{==}\StringTok{ 'Morgen'}\NormalTok{) \{}
-    \KeywordTok{print}\NormalTok{(}\StringTok{'Guten Morgen'}\NormalTok{)}
+    \StringTok{'Guten Morgen'}
 \NormalTok{  \} }\ControlFlowTok{else} \ControlFlowTok{if}\NormalTok{ (my_time }\OperatorTok{==}\StringTok{ 'Mittag'}\NormalTok{) \{}
-    \KeywordTok{print}\NormalTok{(}\StringTok{'Guten Tag'}\NormalTok{)}
+    \StringTok{'Guten Tag'}
 \NormalTok{  \} }\ControlFlowTok{else} \ControlFlowTok{if}\NormalTok{ (my_time }\OperatorTok{==}\StringTok{ 'Abend'}\NormalTok{)\{}
-    \KeywordTok{print}\NormalTok{(}\StringTok{'Guten Abend'}\NormalTok{)}
+    \StringTok{'Guten Abend'}
 \NormalTok{  \} }\ControlFlowTok{else}\NormalTok{ \{}
-    \KeywordTok{print}\NormalTok{(}\StringTok{'In meiner Welt gibt es das nicht.'}\NormalTok{)}
+    \StringTok{'In meiner Welt gibt es das nicht.'}
 \NormalTok{  \}}
 \NormalTok{\}}
 \end{Highlighting}
@@ -1603,9 +1611,9 @@ Wenn wir unsere \texttt{say\_hello} Funktion auf einen Vektor von Tageszeiten an
 ## [1] "Guten Morgen"
 \end{verbatim}
 
-Das liegt daran, dass die Auswertung der Bedingung eine Antwort der Länge 1 liefern muss: entweder \texttt{TRUE}, wenn die Bedingung stimmt, oder \texttt{FALSE}, wenn sie nicht stimmt. Bei einem Vektor ist die Antwort aber länger als 1 und die Funktion benutzt nur die erste Stelle der Antwort. Man sagt auch, dass die Funktion \texttt{say\_hello} \emph{nicht vektorisiert} sei, sie kann also nicht von sich aus auf einen Vektor angewendet werden.
+Das liegt daran, dass die Auswertung der Bedingung eine Antwort der Länge 1 liefern muss: entweder \texttt{TRUE}, wenn die Bedingung stimmt, oder \texttt{FALSE}, wenn sie nicht stimmt. Bei einem Vektor ist die Antwort aber länger als 1 und die Funktion benutzt nur die erste Stelle der Antwort. Man sagt auch, dass die Funktion \texttt{say\_hello} \emph{nicht vektorisiert} sei, sie kann also nicht von sich aus auf einem Vektor arbeiten.
 
-Damit man eine Fallunterscheidung auf einen Vektor anwenden kann, gibt es mehrere Möglichkeiten. Eine davon ist die sogen. \texttt{for} Schleife. Eine Schleife ist eine wiederholte Ausführung von Code.
+Damit man eine eine nicht vektorisierte Funktion auf einen Vektor anwenden kann, gibt es mehrere Möglichkeiten. Eine davon ist die sogen. \texttt{for} Schleife. Eine Schleife ist eine wiederholte Ausführung von Code, man sagt auch \emph{Iteration}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1618,17 +1626,7 @@ Damit man eine Fallunterscheidung auf einen Vektor anwenden kann, gibt es mehrer
 \ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\DecValTok{3}\NormalTok{) \{}
 \NormalTok{  ergebnis[i] <-}\StringTok{ }\KeywordTok{say_hello}\NormalTok{(begruessung[i])}
 \NormalTok{\}}
-\end{Highlighting}
-\end{Shaded}
 
-\begin{verbatim}
-## [1] "Guten Morgen"
-## [1] "Guten Tag"
-## [1] "Guten Abend"
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \CommentTok{# Ergebnis ansehen}
 \NormalTok{ergebnis}
 \end{Highlighting}
@@ -1644,9 +1642,9 @@ Eine \texttt{for} Schleife braucht drei Bestandteile:
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  Einen Datencontainer, in unserem Fall den Vektor \texttt{ergebnis}, in dem die Ergebnisse der Schleifendurchläufe gespeichert werden. Dieser muss vorher erstellt werden.
+  Einen Datencontainer, in unserem Fall den Vektor \texttt{ergebnis}, in dem die Ergebnisse der Schleifendurchläufe gespeichert werden. Dieser Vektor muss vorher erstellt werden.
 \item
-  Eine Dummy-Variable (Hilfsvariable), die in jedem Schleifendurchlauf (\emph{Iteration}) einen anderen Wert annehmen wird. Dadurch entsteht erst die Schleife. Die Dummy-Variable bei uns heißt \texttt{i} und nimmt Werte zwischen 1 und 3 (also 1, 2 und 3) an. Es gibt also drei Schleifendurchgänge.
+  Eine Dummy-Variable (Hilfsvariable), die in jedem Schleifendurchlauf einen anderen Wert annehmen wird. Dadurch entsteht erst die Schleife. Die Dummy-Variable bei uns heißt \texttt{i} und nimmt Werte zwischen 1 und 3 (also 1, 2 und 3) an. Es gibt also drei Schleifendurchgänge.
 \item
   Den Schleifen-Körper, in unserem Fall die Funktion \texttt{say\_hello}. Das ist der Code, der wiederholt ausgeführt werden soll.
 \end{enumerate}
@@ -1670,9 +1668,7 @@ Dieses Kapitel orientiert sich stark an \citet{Wickham2017}, Kapitel 19
 \item
   Funktionen selbst schreiben
 \item
-  \texttt{if} - \texttt{else} Bedingungen
-\item
-  \texttt{for} Schleifen
+  Aufgabe \ref{fledermaus}: \texttt{if} - \texttt{else} Bedingungen und \texttt{for} Schleifen
 \end{itemize}
 
 \hypertarget{aufgabensammlung}{%
@@ -1878,8 +1874,8 @@ An dem Kurs ``Einführung in R'' nehmen 49 Studierende teil. Der Leistungsnachwe
   Ermitteln Sie, wie viele Teilnehmer bestanden und wie viele nicht bestanden haben.
 \end{enumerate}
 
-\hypertarget{fledermuxe4use-die-zweite}{%
-\subsection{Fledermäuse, die Zweite}\label{fledermuxe4use-die-zweite}}
+\hypertarget{fledermaus}{%
+\subsection{Fledermäuse, die Zweite}\label{fledermaus}}
 
 Wir beschäftigen uns erneut mit den Fledermäusen.
 
@@ -1893,9 +1889,7 @@ Wir beschäftigen uns erneut mit den Fledermäusen.
 \item
   Erstellen Sie eine ordinal-skalierte Variable \texttt{alter} mit dem Entwicklungsstand der Tiere.
 \item
-  Schreiben Sie eine Funktion, die die Mittelwerte der Größe für weibliche und männliche Individuen berechnet.
-\item
-  Berechnen Sie die Mittelwerte der Größe und runden Sie auf 2 Nachkommastellen.
+  Wie viele Erwachsene und wie viele Jungtiere wurden vermessen?
 \end{enumerate}
 
 \hypertarget{unfaire-klausur}{%

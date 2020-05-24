@@ -165,7 +165,7 @@
 \providecommand{\subtitle}[1]{}
 \subtitle{SoSe 2020}
 \author{Christina Bogner}
-\date{Version vom 17. Mai 2020}
+\date{Version vom 19. Mai 2020}
 
 \begin{document}
 \maketitle
@@ -980,10 +980,10 @@ Uns interessieren hier nur die Spalten MO\_TT, MO\_TN, MO\_TX und MESS\_DATUM\_B
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] "2018-10-01" "2018-11-01" "2018-12-01" "2019-01-01" "2019-02-01" "2019-03-01"
-##  [7] "2019-04-01" "2019-05-01" "2019-06-01" "2019-07-01" "2019-08-01" "2019-09-01"
-## [13] "2019-10-01" "2019-11-01" "2019-12-01" "2020-01-01" "2020-02-01" "2020-03-01"
-## [19] "2020-04-01"
+##  [1] "2018-10-01" "2018-11-01" "2018-12-01" "2019-01-01" "2019-02-01"
+##  [6] "2019-03-01" "2019-04-01" "2019-05-01" "2019-06-01" "2019-07-01"
+## [11] "2019-08-01" "2019-09-01" "2019-10-01" "2019-11-01" "2019-12-01"
+## [16] "2020-01-01" "2020-02-01" "2020-03-01" "2020-04-01"
 \end{verbatim}
 
 Es sind Daten von Oktober 2018 bis April 2020. Wir erstellen ein Streudiagramm mit der Funktion \texttt{plot}. Mit den Parametern \texttt{xlab} und \texttt{ylab} lassen sich die beiden Achsen beschriften und \texttt{main} fügt einen Titel dazu. Der Parameter \texttt{type} bestimmt die Wahl der Symbole; hier benutzen wir \texttt{type\ =\ b} für \emph{both}, also sowohl Punkte als auch Linien.
@@ -1409,12 +1409,12 @@ Schauen wir uns ein Beispiel an. Als erstes würfeln wir ein paar Daten aus der 
 
 \begin{verbatim}
 ##       col1            col2             col3      
-##  Min.   :3.288   Min.   : 7.329   Min.   :14.11  
-##  1st Qu.:4.349   1st Qu.: 8.088   1st Qu.:26.50  
-##  Median :6.293   Median : 8.864   Median :51.21  
-##  Mean   :6.249   Mean   : 9.185   Mean   :52.42  
-##  3rd Qu.:7.483   3rd Qu.:10.391   3rd Qu.:72.77  
-##  Max.   :9.661   Max.   :11.649   Max.   :97.27
+##  Min.   :3.048   Min.   : 7.053   Min.   :19.88  
+##  1st Qu.:4.528   1st Qu.: 8.547   1st Qu.:30.80  
+##  Median :6.118   Median : 9.557   Median :51.73  
+##  Mean   :6.119   Mean   : 9.637   Mean   :54.11  
+##  3rd Qu.:7.988   3rd Qu.:10.857   3rd Qu.:77.84  
+##  Max.   :9.577   Max.   :11.892   Max.   :95.32
 \end{verbatim}
 
 \begin{Shaded}
@@ -1425,7 +1425,7 @@ Schauen wir uns ein Beispiel an. Als erstes würfeln wir ein paar Daten aus der 
 
 \begin{verbatim}
 ##      col1      col2      col3 
-##  2.051981  1.460020 25.850348
+##  2.030488  1.499619 24.484795
 \end{verbatim}
 
 Ich möchte die Daten so transformieren, dass alle Variablen im Datensatz (d.h. Spalten) einen Mittelwert von 0 und eine Standardabweichung von 1 haben. Dazu ziehe ich den Mittelwert ab und teile durch die Standardabweichung. Das ist eine klassische Transformation (manchmal \(z\)-Transformation genannt), die manche Analysemethoden (z.B. Hauptkomponentenanalyse) als Vorbehandlung der Daten verlangen.
@@ -1449,13 +1449,13 @@ Haben Sie den Fehler bemerkt? Ich habe einmal vergessen eine 1 durch eine 2 zu e
 \end{Shaded}
 
 \begin{verbatim}
-##    col1_trans         col2_trans        col3_trans      
-##  Min.   :-1.44298   Min.   :-0.9043   Min.   :-1.48168  
-##  1st Qu.:-0.92618   1st Qu.:-0.5344   1st Qu.:-1.00249  
-##  Median : 0.02125   Median :-0.1562   Median :-0.04671  
-##  Mean   : 0.00000   Mean   : 0.0000   Mean   : 0.00000  
-##  3rd Qu.: 0.60116   3rd Qu.: 0.5878   3rd Qu.: 0.78736  
-##  Max.   : 1.66261   Max.   : 1.2012   Max.   : 1.73510
+##    col1_trans           col2_trans        col3_trans      
+##  Min.   :-1.5124501   Min.   :-1.2726   Min.   :-1.39810  
+##  1st Qu.:-0.7837517   1st Qu.:-0.5368   1st Qu.:-0.95201  
+##  Median :-0.0005404   Median :-0.0396   Median :-0.09723  
+##  Mean   : 0.0000000   Mean   : 0.0000   Mean   : 0.00000  
+##  3rd Qu.: 0.9201953   3rd Qu.: 0.6005   3rd Qu.: 0.96924  
+##  Max.   : 1.7029690   Max.   : 1.1103   Max.   : 1.68302
 \end{verbatim}
 
 \begin{Shaded}
@@ -1466,7 +1466,7 @@ Haben Sie den Fehler bemerkt? Ich habe einmal vergessen eine 1 durch eine 2 zu e
 
 \begin{verbatim}
 ## col1_trans col2_trans col3_trans 
-##  1.0000000  0.7115172  1.0000000
+##  1.0000000  0.7385509  1.0000000
 \end{verbatim}
 
 So etwas passiert sehr schnell und wird durch das Schreiben einer Funktion vermieden.
@@ -1510,13 +1510,13 @@ Wir wenden die Funktion jetzt auf unseren Datensatz an.
 \end{Shaded}
 
 \begin{verbatim}
-##    col1_trans         col2_trans       col2_trans.1     
-##  Min.   :-1.44298   Min.   :-1.2709   Min.   :-1.48168  
-##  1st Qu.:-0.92618   1st Qu.:-0.7511   1st Qu.:-1.00249  
-##  Median : 0.02125   Median :-0.2195   Median :-0.04671  
-##  Mean   : 0.00000   Mean   : 0.0000   Mean   : 0.00000  
-##  3rd Qu.: 0.60116   3rd Qu.: 0.8261   3rd Qu.: 0.78736  
-##  Max.   : 1.66261   Max.   : 1.6882   Max.   : 1.73510
+##    col1_trans           col2_trans        col2_trans.1     
+##  Min.   :-1.5124501   Min.   :-1.72306   Min.   :-1.39810  
+##  1st Qu.:-0.7837517   1st Qu.:-0.72688   1st Qu.:-0.95201  
+##  Median :-0.0005404   Median :-0.05362   Median :-0.09723  
+##  Mean   : 0.0000000   Mean   : 0.00000   Mean   : 0.00000  
+##  3rd Qu.: 0.9201953   3rd Qu.: 0.81312   3rd Qu.: 0.96924  
+##  Max.   : 1.7029690   Max.   : 1.50332   Max.   : 1.68302
 \end{verbatim}
 
 \begin{Shaded}

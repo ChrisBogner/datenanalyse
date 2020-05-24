@@ -150,7 +150,7 @@ Im Harz wurden über eine längere Zeit Niederschlag, Abfluss und Temperatur gem
 2. Stellen Sie die Temperatur in einem Streudiagramm dar. Welche Darstellungsart (Argument `type` in `plot`) erscheint Ihnen am sinnvollsten? 
 3. Beschriften Sie die Graphik und fügen Sie einen Titel hinzu.
 4. Speichern Sie die Graphik als pdf ab.
-5. Stellen Sie die Niederschläge in einem Diagramm dar. Wählen Sie einen geeigneten Darstellungstyp mit `type` (Tipp: geben Sie für die Hilfe `?plot` in die Console ein).
+5. Stellen Sie die Niederschläge in einem Diagramm dar. Wählen Sie einen geeigneten Darstellungstyp mit `type` (Tipp: geben Sie für die Hilfe `?plot` in die Konsole ein).
 
 ### Temperatur-Datensatz
 

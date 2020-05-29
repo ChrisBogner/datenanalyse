@@ -6,6 +6,7 @@ knitr::knit_hooks$set(document = function(x) {
 }) 
 
 library(fontawesome)
+library(kableExtra)
 
 # These are different helper functions for the book
 

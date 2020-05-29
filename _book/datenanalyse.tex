@@ -165,7 +165,7 @@
 \providecommand{\subtitle}[1]{}
 \subtitle{SoSe 2020}
 \author{Christina Bogner}
-\date{Version vom 19. Mai 2020}
+\date{Version vom 25. Mai 2020}
 
 \begin{document}
 \maketitle
@@ -980,10 +980,10 @@ Uns interessieren hier nur die Spalten MO\_TT, MO\_TN, MO\_TX und MESS\_DATUM\_B
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] "2018-10-01" "2018-11-01" "2018-12-01" "2019-01-01" "2019-02-01"
-##  [6] "2019-03-01" "2019-04-01" "2019-05-01" "2019-06-01" "2019-07-01"
-## [11] "2019-08-01" "2019-09-01" "2019-10-01" "2019-11-01" "2019-12-01"
-## [16] "2020-01-01" "2020-02-01" "2020-03-01" "2020-04-01"
+##  [1] "2018-10-01" "2018-11-01" "2018-12-01" "2019-01-01" "2019-02-01" "2019-03-01"
+##  [7] "2019-04-01" "2019-05-01" "2019-06-01" "2019-07-01" "2019-08-01" "2019-09-01"
+## [13] "2019-10-01" "2019-11-01" "2019-12-01" "2020-01-01" "2020-02-01" "2020-03-01"
+## [19] "2020-04-01"
 \end{verbatim}
 
 Es sind Daten von Oktober 2018 bis April 2020. Wir erstellen ein Streudiagramm mit der Funktion \texttt{plot}. Mit den Parametern \texttt{xlab} und \texttt{ylab} lassen sich die beiden Achsen beschriften und \texttt{main} fügt einen Titel dazu. Der Parameter \texttt{type} bestimmt die Wahl der Symbole; hier benutzen wir \texttt{type\ =\ b} für \emph{both}, also sowohl Punkte als auch Linien.
@@ -1409,12 +1409,12 @@ Schauen wir uns ein Beispiel an. Als erstes würfeln wir ein paar Daten aus der 
 
 \begin{verbatim}
 ##       col1            col2             col3      
-##  Min.   :3.048   Min.   : 7.053   Min.   :19.88  
-##  1st Qu.:4.528   1st Qu.: 8.547   1st Qu.:30.80  
-##  Median :6.118   Median : 9.557   Median :51.73  
-##  Mean   :6.119   Mean   : 9.637   Mean   :54.11  
-##  3rd Qu.:7.988   3rd Qu.:10.857   3rd Qu.:77.84  
-##  Max.   :9.577   Max.   :11.892   Max.   :95.32
+##  Min.   :3.523   Min.   : 7.164   Min.   :14.13  
+##  1st Qu.:4.853   1st Qu.: 8.237   1st Qu.:38.80  
+##  Median :6.065   Median : 9.818   Median :59.96  
+##  Mean   :6.099   Mean   : 9.545   Mean   :58.46  
+##  3rd Qu.:7.083   3rd Qu.:10.345   3rd Qu.:72.71  
+##  Max.   :9.195   Max.   :11.742   Max.   :99.62
 \end{verbatim}
 
 \begin{Shaded}
@@ -1425,7 +1425,7 @@ Schauen wir uns ein Beispiel an. Als erstes würfeln wir ein paar Daten aus der 
 
 \begin{verbatim}
 ##      col1      col2      col3 
-##  2.030488  1.499619 24.484795
+##  1.661756  1.269660 25.740582
 \end{verbatim}
 
 Ich möchte die Daten so transformieren, dass alle Variablen im Datensatz (d.h. Spalten) einen Mittelwert von 0 und eine Standardabweichung von 1 haben. Dazu ziehe ich den Mittelwert ab und teile durch die Standardabweichung. Das ist eine klassische Transformation (manchmal \(z\)-Transformation genannt), die manche Analysemethoden (z.B. Hauptkomponentenanalyse) als Vorbehandlung der Daten verlangen.
@@ -1449,13 +1449,13 @@ Haben Sie den Fehler bemerkt? Ich habe einmal vergessen eine 1 durch eine 2 zu e
 \end{Shaded}
 
 \begin{verbatim}
-##    col1_trans           col2_trans        col3_trans      
-##  Min.   :-1.5124501   Min.   :-1.2726   Min.   :-1.39810  
-##  1st Qu.:-0.7837517   1st Qu.:-0.5368   1st Qu.:-0.95201  
-##  Median :-0.0005404   Median :-0.0396   Median :-0.09723  
-##  Mean   : 0.0000000   Mean   : 0.0000   Mean   : 0.00000  
-##  3rd Qu.: 0.9201953   3rd Qu.: 0.6005   3rd Qu.: 0.96924  
-##  Max.   : 1.7029690   Max.   : 1.1103   Max.   : 1.68302
+##    col1_trans         col2_trans        col3_trans      
+##  Min.   :-1.55056   Min.   :-1.4328   Min.   :-1.72228  
+##  1st Qu.:-0.75016   1st Qu.:-0.7871   1st Qu.:-0.76381  
+##  Median :-0.02031   Median : 0.1645   Median : 0.05847  
+##  Mean   : 0.00000   Mean   : 0.0000   Mean   : 0.00000  
+##  3rd Qu.: 0.59195   3rd Qu.: 0.4816   3rd Qu.: 0.55383  
+##  Max.   : 1.86303   Max.   : 1.3218   Max.   : 1.59914
 \end{verbatim}
 
 \begin{Shaded}
@@ -1466,7 +1466,7 @@ Haben Sie den Fehler bemerkt? Ich habe einmal vergessen eine 1 durch eine 2 zu e
 
 \begin{verbatim}
 ## col1_trans col2_trans col3_trans 
-##  1.0000000  0.7385509  1.0000000
+##  1.0000000  0.7640471  1.0000000
 \end{verbatim}
 
 So etwas passiert sehr schnell und wird durch das Schreiben einer Funktion vermieden.
@@ -1510,13 +1510,13 @@ Wir wenden die Funktion jetzt auf unseren Datensatz an.
 \end{Shaded}
 
 \begin{verbatim}
-##    col1_trans           col2_trans        col2_trans.1     
-##  Min.   :-1.5124501   Min.   :-1.72306   Min.   :-1.39810  
-##  1st Qu.:-0.7837517   1st Qu.:-0.72688   1st Qu.:-0.95201  
-##  Median :-0.0005404   Median :-0.05362   Median :-0.09723  
-##  Mean   : 0.0000000   Mean   : 0.00000   Mean   : 0.00000  
-##  3rd Qu.: 0.9201953   3rd Qu.: 0.81312   3rd Qu.: 0.96924  
-##  Max.   : 1.7029690   Max.   : 1.50332   Max.   : 1.68302
+##    col1_trans         col2_trans       col2_trans.1     
+##  Min.   :-1.55056   Min.   :-1.8753   Min.   :-1.72228  
+##  1st Qu.:-0.75016   1st Qu.:-1.0301   1st Qu.:-0.76381  
+##  Median :-0.02031   Median : 0.2153   Median : 0.05847  
+##  Mean   : 0.00000   Mean   : 0.0000   Mean   : 0.00000  
+##  3rd Qu.: 0.59195   3rd Qu.: 0.6303   3rd Qu.: 0.55383  
+##  Max.   : 1.86303   Max.   : 1.7300   Max.   : 1.59914
 \end{verbatim}
 
 \begin{Shaded}
@@ -1671,6 +1671,429 @@ Dieses Kapitel orientiert sich stark an \citet{Wickham2017}, Kapitel 19
   Aufgabe \ref{fledermaus}: \texttt{if} - \texttt{else} Bedingungen und \texttt{for} Schleifen
 \end{itemize}
 
+\hypertarget{tidyverse}{%
+\chapter{Tidyverse}\label{tidyverse}}
+
+\begin{rmdoutcomes}
+\begin{itemize}
+\tightlist
+\item
+  Kernpakete aus \texttt{tidyverse} benennen
+\item
+  ein einfaches Workflow (Daten einlesen, zusammenfassen, darstellen)
+  mit \texttt{tidyverse} durchführen
+\item
+  Funktionen des Pakets \texttt{dplyr} für Datentransformation anwenden
+\end{itemize}
+\end{rmdoutcomes}
+
+\texttt{tidyverse} ist eine Sammlung von R-Pakete, die explizit für Datenanalyse entwickelt wurden (\url{https://www.tidyverse.org/}). \texttt{tidyverse} versucht durch gemeinsame Philosophie in Design, Grammatik und Datenstruktur die Datenanalyse zu erleichtern (\url{https://design.tidyverse.org/}). Auch wenn \texttt{tidyverse} auf den ersten Blick etwas fremd erscheint, es ist ein Teil von R, kein eigenes Universum. Es ist also völlig in Ordnung, R-Basisfunktionen mit Funktionen aus \texttt{tidyverse} zu mischen.
+
+Das wichtigste Einführungsbuch zu \texttt{tidyverse} ist sicherlich \textbf{R4DS}: ``R for Data Science'' \citep{Wickham2017}, das Sie kostenlos online lesen können (\url{https://r4ds.had.co.nz/}).
+
+\hypertarget{grundpakete}{%
+\section{Grundpakete}\label{grundpakete}}
+
+\texttt{tidyverse} enthält folgende Grundpakete, die alle installiert werden, wenn Sie \texttt{install.packages(\textquotesingle{}tidyverse\textquotesingle{})} eingeben.
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule
+Paketname & Kurzbeschreibung\tabularnewline
+\midrule
+\endhead
+\texttt{ggplot2} & Visualisierung\tabularnewline
+\texttt{dplyr} & Datentransformation\tabularnewline
+\texttt{tidyr} & Datenbereinigung\tabularnewline
+\texttt{readr} & Daten einlesen\tabularnewline
+\texttt{purrr} & Funktionale Programmierung (Funktionen auf Objekte anwenden)\tabularnewline
+\texttt{tibble} & Erweiterung von \texttt{data.frame}\tabularnewline
+\texttt{stringr} & Funktionen für Strings, d.h. Textvariablen\tabularnewline
+\texttt{forcats} & Funktionen für \texttt{factor}\tabularnewline
+\bottomrule
+\end{longtable}
+
+Jedes dieser Pakete hat ein Cheat Sheet, eine übersichtliche Zusammenstellung der Funktionen des Pakets. Sie bekommen die Cheet Sheats über die \texttt{tidyverse}-Seite (\url{https://www.tidyverse.org/packages/}), indem Sie auf das jeweilige Paket klicken und zum Abschnitt `Cheatsheet' scrollen.
+
+\hypertarget{der-workflow}{%
+\section{Der Workflow}\label{der-workflow}}
+
+\hypertarget{daten-einlesen}{%
+\subsection{Daten einlesen}\label{daten-einlesen}}
+
+Sie kennen bereits die sehr umfangreiche Funktion \texttt{read.table()} zum Einlesen der Daten. Die Funktion \texttt{read\_delim()} ist die allgemeinste Funktion der \texttt{read\_*} Familie aus \texttt{readr} in \texttt{tidyverse}; \texttt{read\_csv()} und \texttt{read\_csv2()} sind jeweils für komma- und strichpunkt-getrennte Datensätze gedacht. Man könnte berechtigterweise fragen, warum eine neue Funktion für etwas erfinden, was es schon gibt. Die Autoren von \texttt{tidyverse} versprechen Konsistenz und Geschwindigkeit. Ersteres war schon immer ein Problem von R, da es nicht von Computerspezialisten, sondern von Anwendern erfunden wurde. Daher ist eine Vereinheitlichung durch \texttt{tidyverse} mehr als willkommen. Und Geschwindigkeit ist spätestens bei größeren Datensätzen ein wichtiger Punkt.
+
+Wir sehen uns erneut Daten des Deutschen Wetterdienstes an, wie im Kapitel \ref{visualisieren}. Nur diesmal sind es Stundenwerte für relative Luftfeuchte (\%) und Lufttemperatur (°C). Die Daten von drei Wetterstationen, nämlich Hof, Frankfurt und Köln-Bonn, befinden sich in der Datei \textbackslash{}texttt\{Drei\_Stationen.csv\} Beim Einlesen zeigt Ihnen \texttt{read\_delim()} bereits, welche Spalten und welche Datentypen es erkennt, mit \texttt{trim\_ws\ =\ T} werden Leerzeichen aus Spalten entfernt.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(tidyverse)}
+
+\NormalTok{temp_humid <-}\StringTok{ }\KeywordTok{read_delim}\NormalTok{(}\StringTok{'Drei_Stationen.csv'}\NormalTok{, }\DataTypeTok{delim =} \StringTok{';'}\NormalTok{,}
+                         \DataTypeTok{trim_ws =}\NormalTok{ T)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Parsed with column specification:
+## cols(
+##   STATIONS_ID = col_double(),
+##   MESS_DATUM = col_double(),
+##   QN_9 = col_double(),
+##   TT_TU = col_double(),
+##   RF_TU = col_double(),
+##   eor = col_character()
+## )
+\end{verbatim}
+
+Eine weitere Kontrolle bietet die Funktion \texttt{print()}, die das eingelesene Ergebnis übersichtlich (und im Notebook interaktiv) darstellt. Sie müssen hier nicht mehr \texttt{head()} verwenden, da grundsätzlich nur die ersten 10 Zeilen dargestellt werden.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{print}\NormalTok{(temp_humid)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 39,600 x 6
+##    STATIONS_ID MESS_DATUM  QN_9 TT_TU RF_TU eor  
+##          <dbl>      <dbl> <dbl> <dbl> <dbl> <chr>
+##  1        2261 2018111900     3  -2.8    99 eor  
+##  2        2261 2018111901     3  -2.5   100 eor  
+##  3        2261 2018111902     3  -2.3   100 eor  
+##  4        2261 2018111903     3  -2     100 eor  
+##  5        2261 2018111904     3  -1.9    99 eor  
+##  6        2261 2018111905     3  -2.1    99 eor  
+##  7        2261 2018111906     3  -1.8    99 eor  
+##  8        2261 2018111907     3  -1.5    99 eor  
+##  9        2261 2018111908     3  -1.1    99 eor  
+## 10        2261 2018111909     3  -0.6    97 eor  
+## # ... with 39,590 more rows
+\end{verbatim}
+
+Das gleiche Ergebnis bekommen Sie auch ohne \texttt{print()}, wenn Sie wie gewohnt den Namen des Objekts tippen.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{temp_humid}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 39,600 x 6
+##    STATIONS_ID MESS_DATUM  QN_9 TT_TU RF_TU eor  
+##          <dbl>      <dbl> <dbl> <dbl> <dbl> <chr>
+##  1        2261 2018111900     3  -2.8    99 eor  
+##  2        2261 2018111901     3  -2.5   100 eor  
+##  3        2261 2018111902     3  -2.3   100 eor  
+##  4        2261 2018111903     3  -2     100 eor  
+##  5        2261 2018111904     3  -1.9    99 eor  
+##  6        2261 2018111905     3  -2.1    99 eor  
+##  7        2261 2018111906     3  -1.8    99 eor  
+##  8        2261 2018111907     3  -1.5    99 eor  
+##  9        2261 2018111908     3  -1.1    99 eor  
+## 10        2261 2018111909     3  -0.6    97 eor  
+## # ... with 39,590 more rows
+\end{verbatim}
+
+In diesem Datensatz sind folgende Parameter (Spalten) enthalten (s. Datensatzbeschreibung des DWDs)
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule
+Parameter & Beschreibung\tabularnewline
+\midrule
+\endhead
+STATIONS\_ID & Stationsidentifikationsnummer\tabularnewline
+MESS\_DATUM & Zeitstempel im Format yyyymmddhh\tabularnewline
+QN\_9 & Qualitätsniveau der nachfolgenden Spalten\tabularnewline
+TT\_TU & Lufttemperatur in 2m Höhe °C\tabularnewline
+RF\_TU & relative Feuchte \%\tabularnewline
+eor & Ende data record\tabularnewline
+\bottomrule
+\end{longtable}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{class}\NormalTok{(temp_humid)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "spec_tbl_df" "tbl_df"      "tbl"         "data.frame"
+\end{verbatim}
+
+Das Objekt \texttt{temp\_humid} ist ein sogen. Tibble, ein \texttt{data.frame} mit ``modernem'' Verhalten. Z.B. gibt die Funktion \texttt{print()} nur die ersten 10 Zeilen aus, die Datentypen in den Spalten werden in hellgrau zwischen `\textless{}\textgreater{}' mit angegeben etc. Mehr zu Tibbles finden Sie in Kapitel 10 ``Tibbles'' in R4DS.
+
+Ein weiteres Paket, dass zwar nicht zum Kern von \texttt{tidyverse} gehört, jedoch trotzdem extrem nützlich ist, heißt \texttt{lubridate}. Es hilft, Text in richtige Datums-Objekte zu transformieren (ohne sich die kryptischen Datumsformate von R merken zu müssen). Wir transformieren die Spalte \texttt{temp\_humid\$MESS\_DATUM} in ein richtiges Datum mit Uhrzeit.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(lubridate)}
+
+\NormalTok{temp_humid}\OperatorTok{$}\NormalTok{MESS_DATUM <-}\StringTok{ }\KeywordTok{ymd_h}\NormalTok{(temp_humid}\OperatorTok{$}\NormalTok{MESS_DATUM)}
+
+\KeywordTok{print}\NormalTok{(temp_humid)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 39,600 x 6
+##    STATIONS_ID MESS_DATUM           QN_9 TT_TU RF_TU eor  
+##          <dbl> <dttm>              <dbl> <dbl> <dbl> <chr>
+##  1        2261 2018-11-19 00:00:00     3  -2.8    99 eor  
+##  2        2261 2018-11-19 01:00:00     3  -2.5   100 eor  
+##  3        2261 2018-11-19 02:00:00     3  -2.3   100 eor  
+##  4        2261 2018-11-19 03:00:00     3  -2     100 eor  
+##  5        2261 2018-11-19 04:00:00     3  -1.9    99 eor  
+##  6        2261 2018-11-19 05:00:00     3  -2.1    99 eor  
+##  7        2261 2018-11-19 06:00:00     3  -1.8    99 eor  
+##  8        2261 2018-11-19 07:00:00     3  -1.5    99 eor  
+##  9        2261 2018-11-19 08:00:00     3  -1.1    99 eor  
+## 10        2261 2018-11-19 09:00:00     3  -0.6    97 eor  
+## # ... with 39,590 more rows
+\end{verbatim}
+
+\hypertarget{daten-zusammenfassen}{%
+\subsection{Daten zusammenfassen}\label{daten-zusammenfassen}}
+
+Die drei Wetterstationen haben folgende IDs:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{station_ids <-}\StringTok{  }\KeywordTok{tibble}\NormalTok{(}\StringTok{'Hof'}\NormalTok{ =}\StringTok{ '2261'}\NormalTok{, }\StringTok{'Frankfurt'}\NormalTok{ =}\StringTok{ '1420'}\NormalTok{, }\StringTok{'Koeln'}\NormalTok{ =}\StringTok{ '2667'}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Ich möchte wissen, wie viele Messpunkte es pro Station gibt:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{temp_humid }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{count}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 1 x 1
+##       n
+##   <int>
+## 1 39600
+\end{verbatim}
+
+Die Zeichenkombination \texttt{\%\textgreater{}\%} heißt Pipe-Operator (\emph{pipe}) und wird als `und dann' gelesen (\emph{then}). Der Ausdruck \texttt{temp\_humid\ \%\textgreater{}\%\ count()} heißt also: nimm \texttt{temp\_humid} und dann zähle die Einträge. Der Pipe-Operator ist die Kernphilosophie von \texttt{tidyverse} und wird Ihnen überall begegnen. Der Operator stammt aus dem Paket \texttt{magrittr} (\url{https://magrittr.tidyverse.org/}). Seine Hauptaufgabe ist es, den Code übersichtlicher und besser lesbar zu machen (vielleicht nicht gleich zu Beginn der Lernkurve aber schon sehr bald 😄).
+
+Die Funktion \texttt{count()} gehört zum Paket \texttt{dplyr}, das für Datentransformationen zuständig ist. Dieses Paket enthält 5 Grundfunktionen (alle nach Verben benannt 😄):
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule
+Funktion & Bedeutung\tabularnewline
+\midrule
+\endhead
+\texttt{filter()} & Wähle Daten anhand ihrere Werte\tabularnewline
+\texttt{arrange()} & Sortiere Zeilen\tabularnewline
+\texttt{select()} & Wähle Variablen anhand ihrere Namen\tabularnewline
+\texttt{mutate()} & Erstelle neue Variablen als Funktionen vorhandener Variablen\tabularnewline
+\texttt{summarize()} & Fasse Daten zusammen\tabularnewline
+\bottomrule
+\end{longtable}
+
+Ich möchte nun wissen, wie viele Messpunkte es für Köln-Bonn gibt. \texttt{tidyverse} ist konsistent: jeder Aufruf einer Funktion aus \texttt{dplyr} gibt ein \texttt{tiblle} zurück (und nicht mal \texttt{data.frame} mal Vektor).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{temp_humid }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{filter}\NormalTok{(STATIONS_ID }\OperatorTok{==}\StringTok{ }\NormalTok{station_ids}\OperatorTok{$}\NormalTok{Koeln) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{count}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 1 x 1
+##       n
+##   <int>
+## 1 13200
+\end{verbatim}
+
+\hypertarget{daten-plotten}{%
+\subsection{Daten plotten}\label{daten-plotten}}
+
+Wir wählen nur die Station Köln-Bonn und plotten die Stundenwerte der Temperatur mit dem Paket \texttt{ggplot2}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Köln-Bonn wählen}
+\NormalTok{koeln <-}\StringTok{ }\NormalTok{temp_humid }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{filter}\NormalTok{(STATIONS_ID }\OperatorTok{==}\StringTok{ }\NormalTok{station_ids}\OperatorTok{$}\NormalTok{Koeln)}
+
+\NormalTok{koeln}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 13,200 x 6
+##    STATIONS_ID MESS_DATUM           QN_9 TT_TU RF_TU eor  
+##          <dbl> <dttm>              <dbl> <dbl> <dbl> <chr>
+##  1        2667 2018-11-19 00:00:00     3  -2.9    69 eor  
+##  2        2667 2018-11-19 01:00:00     3  -1.7    78 eor  
+##  3        2667 2018-11-19 02:00:00     3  -2.4    82 eor  
+##  4        2667 2018-11-19 03:00:00     3   0.2    89 eor  
+##  5        2667 2018-11-19 04:00:00     3   1.7    84 eor  
+##  6        2667 2018-11-19 05:00:00     3   0.3    90 eor  
+##  7        2667 2018-11-19 06:00:00     3   3.4    84 eor  
+##  8        2667 2018-11-19 07:00:00     3   4.1    81 eor  
+##  9        2667 2018-11-19 08:00:00     3   3.9    80 eor  
+## 10        2667 2018-11-19 09:00:00     3   4.8    78 eor  
+## # ... with 13,190 more rows
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Plotten}
+\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ koeln, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ MESS_DATUM, }\DataTypeTok{y =}\NormalTok{ TT_TU)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_line}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{datenanalyse_files/figure-latex/unnamed-chunk-53-1.pdf}
+
+Sie werden sehr bald schon das Paket \texttt{ggplot2} nicht mehr missen wollen. Es erstellt mit wenig Aufwand sehr ansehnliche Grafiken. Natürlich müssen Sie, wie in Base-R auch, für professionelle Grafiken nacharbeiten.
+
+\texttt{ggplot2} folgt einer sogen. Grafikgrammatik (\emph{grammer of graphics}), indem es seine Grafiken mit `+' aufbaut. Erst sagt man in der Funktion \texttt{ggplot()} welchen Datensatz man plotten möchte, was auf die x- und y-Achse kommt und ob man z.B. Farbe für Gruppen in Daten möchte. All diese sichtbaren Elemente nennt man Ästhetiken (Parameter \texttt{aes}). Erst wenn diese `Formalien' geklärt sind, sagt man, welche Form der Darstellung man möchte. Im oberen Beispiel ist es ein Linienplot. Alle Darstellungsarten in \texttt{ggplot2} beginnen mit \texttt{geom\_*()} und sind daher konsistent benannt. Die Informationen zu Daten, x-, y-Achse etc. werden an die \texttt{geom\_*()}-Funktionen von der Mutterfunktion \texttt{ggplot()} weiter vererbt. Daher sind die Klammern in \texttt{geom\_line()} leer.
+
+Wir wollen nun die Monatsmittelwerte für die Temperatur berechnen und diese darstellen. Als erstes erstellen wir zwei neue Spalten, die jeweils das Jahr und den Monat beinhalten. Die beiden neuen Spalten werden am Ende von \texttt{temp\_humid} angehängt.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{temp_humid <-}\StringTok{ }\KeywordTok{mutate}\NormalTok{(temp_humid, }
+                     \DataTypeTok{year =} \KeywordTok{year}\NormalTok{(temp_humid}\OperatorTok{$}\NormalTok{MESS_DATUM),}
+                     \DataTypeTok{month =} \KeywordTok{month}\NormalTok{(temp_humid}\OperatorTok{$}\NormalTok{MESS_DATUM))}
+
+\NormalTok{temp_humid}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 39,600 x 8
+##    STATIONS_ID MESS_DATUM           QN_9 TT_TU RF_TU eor    year month
+##          <dbl> <dttm>              <dbl> <dbl> <dbl> <chr> <dbl> <dbl>
+##  1        2261 2018-11-19 00:00:00     3  -2.8    99 eor    2018    11
+##  2        2261 2018-11-19 01:00:00     3  -2.5   100 eor    2018    11
+##  3        2261 2018-11-19 02:00:00     3  -2.3   100 eor    2018    11
+##  4        2261 2018-11-19 03:00:00     3  -2     100 eor    2018    11
+##  5        2261 2018-11-19 04:00:00     3  -1.9    99 eor    2018    11
+##  6        2261 2018-11-19 05:00:00     3  -2.1    99 eor    2018    11
+##  7        2261 2018-11-19 06:00:00     3  -1.8    99 eor    2018    11
+##  8        2261 2018-11-19 07:00:00     3  -1.5    99 eor    2018    11
+##  9        2261 2018-11-19 08:00:00     3  -1.1    99 eor    2018    11
+## 10        2261 2018-11-19 09:00:00     3  -0.6    97 eor    2018    11
+## # ... with 39,590 more rows
+\end{verbatim}
+
+Jetzt können wir einen neuen Datensatz mit den Mittelwerten erstellen. Dafür gruppieren wir erst einmal die Daten nach \texttt{STATIONS\_ID}, \texttt{year} und \texttt{month}. Die Mittelwerte sollen ja je Station, Jahr und Monat berechnet werden.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{by_month <-}\StringTok{ }\KeywordTok{group_by}\NormalTok{(temp_humid, STATIONS_ID, year, month)}
+\NormalTok{monthly_means <-}\StringTok{ }\KeywordTok{summarize}\NormalTok{(by_month, }\DataTypeTok{mean_T =} \KeywordTok{mean}\NormalTok{(TT_TU), }\DataTypeTok{mean_RH =} \KeywordTok{mean}\NormalTok{(RF_TU))}
+
+\NormalTok{monthly_means}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 57 x 5
+## # Groups:   STATIONS_ID, year [9]
+##    STATIONS_ID  year month mean_T mean_RH
+##          <dbl> <dbl> <dbl>  <dbl>   <dbl>
+##  1        1420  2018    11   4.00    79.7
+##  2        1420  2018    12   4.73    83.7
+##  3        1420  2019     1   2.12    79.3
+##  4        1420  2019     2   4.48    74.1
+##  5        1420  2019     3   8.28    68.5
+##  6        1420  2019     4  11.7     61.0
+##  7        1420  2019     5  12.7     67.5
+##  8        1420  2019     6  21.4     60.6
+##  9        1420  2019     7  21.6     55.6
+## 10        1420  2019     8  20.7     65.6
+## # ... with 47 more rows
+\end{verbatim}
+
+Die Struktur von \texttt{monthly\_means} zeigt uns, dass es sich um gruppierte Daten handelt.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{str}\NormalTok{(monthly_means)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Classes 'grouped_df', 'tbl_df', 'tbl' and 'data.frame':  57 obs. of  5 variables:
+##  $ STATIONS_ID: num  1420 1420 1420 1420 1420 1420 1420 1420 1420 1420 ...
+##  $ year       : num  2018 2018 2019 2019 2019 ...
+##  $ month      : num  11 12 1 2 3 4 5 6 7 8 ...
+##  $ mean_T     : num  4 4.73 2.12 4.48 8.28 ...
+##  $ mean_RH    : num  79.7 83.7 79.3 74.1 68.5 ...
+##  - attr(*, "groups")=Classes 'tbl_df', 'tbl' and 'data.frame':   9 obs. of  3 variables:
+##   ..$ STATIONS_ID: num  1420 1420 1420 2261 2261 ...
+##   ..$ year       : num  2018 2019 2020 2018 2019 ...
+##   ..$ .rows      :List of 9
+##   .. ..$ : int  1 2
+##   .. ..$ : int  3 4 5 6 7 8 9 10 11 12 ...
+##   .. ..$ : int  15 16 17 18 19
+##   .. ..$ : int  20 21
+##   .. ..$ : int  22 23 24 25 26 27 28 29 30 31 ...
+##   .. ..$ : int  34 35 36 37 38
+##   .. ..$ : int  39 40
+##   .. ..$ : int  41 42 43 44 45 46 47 48 49 50 ...
+##   .. ..$ : int  53 54 55 56 57
+##   ..- attr(*, ".drop")= logi TRUE
+\end{verbatim}
+
+Da wir aber mit den Daten weiter rechnen wollen, ist es besser, die Gruppierung wieder aufzugeben. Es könnte sonst später Fehlermeldungen geben.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{monthly_means <-}\StringTok{ }\KeywordTok{ungroup}\NormalTok{(monthly_means)}
+\end{Highlighting}
+\end{Shaded}
+
+Um die Daten als Zeitreihen zu plotten, erstellen wir noch eine ordentliche Zeit-Spalte. Die Funktion \texttt{parse\_date\_time()} kann aus Character richtige Datums-Zeitobjekte erstellen. Sie ist allgemeienr als die oben verwendete \texttt{ymd()} Funktion, da man hier das Format explizit angeben kann. In unserem Fall ist das Format `ym' für Jahr und Monat.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{monthly_means <-}\StringTok{ }\NormalTok{monthly_means }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{my_date =} \KeywordTok{parse_date_time}\NormalTok{(}\KeywordTok{paste0}\NormalTok{(monthly_means}\OperatorTok{$}\NormalTok{year,}
+\NormalTok{                  monthly_means}\OperatorTok{$}\NormalTok{month), }\StringTok{'ym'}\NormalTok{, }\DataTypeTok{tz =} \StringTok{'CET'}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ monthly_means, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ my_date, }\DataTypeTok{y =}\NormalTok{ mean_T, }
+            \DataTypeTok{col =} \KeywordTok{factor}\NormalTok{(STATIONS_ID))) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_line}\NormalTok{() }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{x =} \StringTok{'Time'}\NormalTok{, }\DataTypeTok{y =} \StringTok{'Temperature (°C)'}\NormalTok{, }\DataTypeTok{color =} \StringTok{'Station'}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{datenanalyse_files/figure-latex/unnamed-chunk-59-1.pdf}
+
+Wir werden in eine spätere Kapitel auf \texttt{ggplot2} genauer eingehen. Fürs Erste soll es als Appetithappen reichen 🍰.
+
+\hypertarget{weiterfuxfchrende-literatur-und-videos}{%
+\section{Weiterführende Literatur und Videos}\label{weiterfuxfchrende-literatur-und-videos}}
+
+\begin{itemize}
+\item
+  R4DS: Kapitel 5 ``Data transformation'', 11 ``Data import''
+\item
+  Eine live Analyse des Hauptautors von \texttt{tidyverse}, Hadley Wickham. Empfehlenswert, auch wenn er viel zu schnell tippt 😄.
+\end{itemize}
+
+\hypertarget{inhalt-der-live-einfuxfchrung-5}{%
+\section{Inhalt der live Einführung}\label{inhalt-der-live-einfuxfchrung-5}}
+
+Verschiedene Funktionen aus \texttt{tydiverse} anhand der Aufgaben \ref{fledermaus3} und \ref{klausur}
+
 \hypertarget{aufgabensammlung}{%
 \chapter{Aufgabensammlung}\label{aufgabensammlung}}
 
@@ -1684,7 +2107,7 @@ Der angehende Datenanalyst Ar Stat möchte dem Rat seiner Mutter folgen und ein 
 
 \begin{table}
 
-\caption{\label{tab:unnamed-chunk-43}Ars Mensaausgaben}
+\caption{\label{tab:unnamed-chunk-61}Ars Mensaausgaben}
 \centering
 \begin{tabular}[t]{lr}
 \toprule
@@ -1892,8 +2315,25 @@ Wir beschäftigen uns erneut mit den Fledermäusen.
   Wie viele Erwachsene und wie viele Jungtiere wurden vermessen?
 \end{enumerate}
 
-\hypertarget{unfaire-klausur}{%
-\subsection{Unfaire Klausur?}\label{unfaire-klausur}}
+\hypertarget{tidyverse-1}{%
+\section{Tidyverse}\label{tidyverse-1}}
+
+\hypertarget{fledermaus3}{%
+\subsection{Fledermaus, die Dritte}\label{fledermaus3}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Wiederholen Sie die Aufgabe \ref{fledermaus} mit \texttt{tidyverse}
+\item
+  Berechnen Sie die Mittelwerte der Größe für weibliche und männliche Individuen.
+\item
+  Berechnen Sie die Mittelwerte der Größe für die Kategorien weiblich, männlich, Jungtier und erwachsen getrennt.
+\end{enumerate}
+
+\hypertarget{klausur}{%
+\subsection{Unfaire Klausur?}\label{klausur}}
 
 Ar belegt im 4. Semester die Veranstaltung ``Spaß mit R''. Bei der Klausur gibt es 2 Aufgabengruppen mit jeweils 60 Punkten. Aufgabengruppe 1 wird an Studierende auf ungeraden Sitzplätzen und Aufgabengruppe 2 an Studierende auf geraden Sitzplätzen ausgegeben.
 
@@ -1904,6 +2344,10 @@ Ar belegt im 4. Semester die Veranstaltung ``Spaß mit R''. Bei der Klausur gibt
   Lesen Sie den Datensatz \texttt{Klausurpunkte.txt} ein.
 \item
   Überprüfen Sie Ars Vermutung, dass die Aufgabengruppe 1 im Schnitt leichter war als Aufgabengruppe 2 (d.h. in der Gruppe 1 im Schnitt mehr Punkte erzielt wurden).
+
+  Berechnen Sie erst die Mittelwerte pro Gruppe.
+
+  Testen Sie dann mit einem Permutationstest, ob die Mittelwerte signifikant verschieden sind. Adaptieren Sie den Code aus dem Tutorial Hypothesentests\_1.Rmd.
 \end{enumerate}
 
 \hypertarget{daten-visualisieren-teil-ii-fokus-auf-daten}{%
@@ -1926,7 +2370,7 @@ Im Harz wurden über eine längere Zeit Niederschlag, Abfluss und Temperatur gem
 \item
   Speichern Sie die Graphik als pdf ab.
 \item
-  Stellen Sie die Niederschläge in einem Diagramm dar. Wählen Sie einen geeigneten Darstellungstyp mit \texttt{type} (Tipp: geben Sie für die Hilfe \texttt{?plot} in die Console ein).
+  Stellen Sie die Niederschläge in einem Diagramm dar. Wählen Sie einen geeigneten Darstellungstyp mit \texttt{type} (Tipp: geben Sie für die Hilfe \texttt{?plot} in die Konsole ein).
 \end{enumerate}
 
 \hypertarget{temperatur-datensatz}{%

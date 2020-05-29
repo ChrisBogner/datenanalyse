@@ -11,8 +11,12 @@ Der angehende Datenanalyst Ar Stat möchte dem Rat seiner Mutter folgen und ein 
 ```{r, results='asis', echo = F}
 
 tab = data.frame(Wochentag = c('Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag'), Ausgaben = c(2.57, 2.90, 2.73, 3.23, 3.90))
-knitr::kable(tab, caption = 'Ars Mensaausgaben', booktabs = T,
-             format.args = list(decimal.mark = ','))
+knitr::kable(tab, 
+             #format = 'latex',
+             caption = 'Ars Mensaausgaben', booktabs = T,
+             format.args = list(decimal.mark = ',')) %>%
+  kable_styling(bootstrap_options = "striped", full_width = F,
+                position = "left")
 ```
 
 
@@ -128,16 +132,25 @@ Wir beschäftigen uns erneut mit den Fledermäusen.
 3. Erstellen Sie eine ordinal-skalierte Variable `alter` mit dem Entwicklungsstand der Tiere.
 3. Wie viele Erwachsene und wie viele Jungtiere wurden vermessen?
 
-<!-- 4. Schreiben Sie eine Funktion, die die Mittelwerte der Größe für weibliche und männliche Individuen berechnet. -->
-<!-- 5. Berechnen Sie die Mittelwerte der Größe und runden Sie auf 2 Nachkommastellen.-->
+## Tidyverse
+
+### Fledermaus, die Dritte {#fledermaus3}
+1. Wiederholen Sie die Aufgabe \@ref(fledermaus) mit `tidyverse`
+2. Berechnen Sie die Mittelwerte der Größe für weibliche und männliche Individuen.
+3. Berechnen Sie die Mittelwerte der Größe für die Kategorien weiblich, männlich, Jungtier und erwachsen getrennt.
 
 
-### Unfaire Klausur?
+### Unfaire Klausur? {#klausur}
 
 Ar belegt im 4. Semester die Veranstaltung "Spaß mit R". Bei der Klausur gibt es 2 Aufgabengruppen mit jeweils 60 Punkten. Aufgabengruppe 1 wird an Studierende auf ungeraden Sitzplätzen und  Aufgabengruppe 2 an Studierende auf geraden Sitzplätzen ausgegeben. 
 
 1. Lesen Sie den Datensatz `r file.name("Klausurpunkte.txt")` ein.
 1. Überprüfen Sie Ars Vermutung, dass die Aufgabengruppe 1 im Schnitt leichter war als Aufgabengruppe 2 (d.h. in der Gruppe 1 im Schnitt mehr Punkte erzielt wurden).
+  <ol start="i">
+  <li>Berechnen Sie erst die Mittelwerte pro Gruppe.</li>
+  <li>Testen Sie dann mit einem Permutationstest, ob die Mittelwerte signifikant verschieden sind. Adaptieren Sie den Code aus dem Tutorial Hypothesentests_1.Rmd.</li>
+</ol>
+
 
 
 ## Daten visualisieren, Teil II: Fokus auf Daten

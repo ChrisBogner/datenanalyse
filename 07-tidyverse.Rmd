@@ -2,13 +2,13 @@
 
 ```{block, type = 'rmdoutcomes'}
 - Kernpakete aus `tidyverse` benennen
-- ein einfaches Workflow (Daten einlese, zusammenfassen, darstellen) mit `tidyverse` durchführen
-- FUnktionen des Pakets `dplyr` für Datentransformation anwenden
+- ein einfaches Workflow (Daten einlesen, zusammenfassen, darstellen) mit `tidyverse` durchführen
+- Funktionen des Pakets `dplyr` für Datentransformation anwenden
 ```
 
-`tidyverse` ist eine Sammlunt von R-Pakete, die explizit für Datenanalyse entwickelt wurden (https://www.tidyverse.org/). `tidyverse` versucht durch gemeinsame Philosophie in Desing, Grammatik und Datenstruktur die Datenanalyse zu erleichtern. Auch wenn `tidyverse` auf den ersten Blick etwas fremd erscheint, es ist ein Teil von R, kein eigenes Universum. Es ist also völlig in Ordnung, R-Basisfunktionen mit Funtionen aus `tidyverse` zu mischen.
+`tidyverse` ist eine Sammlung von R-Pakete, die explizit für Datenanalyse entwickelt wurden (https://www.tidyverse.org/). `tidyverse` versucht durch gemeinsame Philosophie in Design, Grammatik und Datenstruktur die Datenanalyse zu erleichtern (https://design.tidyverse.org/). Auch wenn `tidyverse` auf den ersten Blick etwas fremd erscheint, es ist ein Teil von R, kein eigenes Universum. Es ist also völlig in Ordnung, R-Basisfunktionen mit Funktionen aus `tidyverse` zu mischen.
 
-Das wichtigste Einführungsbuch zu `tidyverse` ist sicherlicht **R4DS**: "R for Data Science" [@Wickham2017], das Sie kostenlos online lesen können (https://r4ds.had.co.nz/).
+Das wichtigste Einführungsbuch zu `tidyverse` ist sicherlich **R4DS**: "R for Data Science" [@Wickham2017], das Sie kostenlos online lesen können (https://r4ds.had.co.nz/).
 
 ## Grundpakete
 
@@ -33,7 +33,7 @@ Jedes dieser Pakete hat ein Cheat Sheet, eine übersichtliche Zusammenstellung d
 
 Sie kennen bereits die sehr umfangreiche Funktion `read.table()` zum Einlesen der Daten. Die Funktion `read_delim()` ist die allgemeinste Funktion der `read_*` Familie aus `readr` in `tidyverse`; `read_csv()` und `read_csv2()` sind jeweils für komma- und strichpunkt-getrennte Datensätze gedacht. Man könnte berechtigterweise fragen, warum eine neue Funktion für etwas erfinden, was es schon gibt. Die Autoren von `tidyverse` versprechen Konsistenz und Geschwindigkeit. Ersteres war schon immer ein Problem von R, da es nicht von Computerspezialisten, sondern von Anwendern erfunden wurde. Daher ist eine Vereinheitlichung durch `tidyverse` mehr als willkommen. Und Geschwindigkeit ist spätestens bei größeren Datensätzen ein wichtiger Punkt.
 
-Wir sehen uns erneut Daten des Deutschen Wetterdienstes an, wie im Kapitel \@ref(visualisieren). Nur diesmal sind es Stundenwerte für relative Luftfeuchte (%) und Lufttemperatur (°C). Die Daten von drei Wetterstationen, nämlich Hof, Frankfurt und Köln-Bonn, befinden sich in der Datei `r file.name("Drei_Stationen.csv")` Beim Einlesen zeigt Ihnen `read_delim()` bereits, welche Spalten und Welche Datentypen es erkennt, mit `trim_ws = T` werden Leerzeichen aus Spalten entfernt.
+Wir sehen uns erneut Daten des Deutschen Wetterdienstes an, wie im Kapitel \@ref(visualisieren). Nur diesmal sind es Stundenwerte für relative Luftfeuchte (%) und Lufttemperatur (°C). Die Daten von drei Wetterstationen, nämlich Hof, Frankfurt und Köln-Bonn, befinden sich in der Datei `r file.name("Drei_Stationen.csv")` Beim Einlesen zeigt Ihnen `read_delim()` bereits, welche Spalten und welche Datentypen es erkennt, mit `trim_ws = T` werden Leerzeichen aus Spalten entfernt.
 
 ```{r}
 library(tidyverse)
@@ -41,11 +41,18 @@ library(tidyverse)
 temp_humid <- read_delim('Drei_Stationen.csv', delim = ';',
                          trim_ws = T)
 ```
-Eine weitere Kontrolle bietet die Funktion `print()`, die das eingelesene Ergebnis übersichtlich (und im Notebook interaktiv) darstellt. SIe müssen hier nicht mehr `head()` verwenden, da grundsätzlich nur die ersten 10 Zeilen dargestellt werden.
+Eine weitere Kontrolle bietet die Funktion `print()`, die das eingelesene Ergebnis übersichtlich (und im Notebook interaktiv) darstellt. Sie müssen hier nicht mehr `head()` verwenden, da grundsätzlich nur die ersten 10 Zeilen dargestellt werden.
 
 ```{r}
 print(temp_humid)
 ```
+
+Das gleiche Ergebnis bekommen Sie auch ohne `print()`, wenn Sie wie gewohnt den Namen des Objekts tippen.
+
+```{r}
+temp_humid
+```
+
 
 In diesem Datensatz sind folgende Parameter (Spalten) enthalten (s. Datensatzbeschreibung des DWDs)
 
@@ -97,7 +104,7 @@ Die Zeichenkombination `%>%` heißt Pipe-Operator (*pipe*) und wird als 'und dan
 Die Funktion `count()` gehört zum Paket `dplyr`, das für Datentransformationen zuständig ist. Dieses Paket enthält 5 Grundfunktionen (alle nach Verben benannt `r emo::ji('smile')`):
 
 Funktion | Bedeutung |
------------:|-----------:|
+:-----------|:-----------|
 `filter()` | Wähle Daten anhand ihrere Werte |
 `arrange()` | Sortiere Zeilen |
 `select()` | Wähle Variablen anhand ihrere Namen |
@@ -130,9 +137,9 @@ ggplot(data = koeln, aes(x = MESS_DATUM, y = TT_TU)) +
   geom_line()
 ```
 
-Sie werden sehr bald schon das Paket `ggplot2` nicht mehr missen wollen. Es erstellt mit wenigem Aufwand sehr ansehnliche Grafiken. Natürlich müssen Sie, wie in Base-R auch, für professionelle Grafiken nacharbeiten.
+Sie werden sehr bald schon das Paket `ggplot2` nicht mehr missen wollen. Es erstellt mit wenig Aufwand sehr ansehnliche Grafiken. Natürlich müssen Sie, wie in Base-R auch, für professionelle Grafiken nacharbeiten.
 
-`ggplot2` folgt einer sogen. Grafikgrammatik (*grammer of graphics*), indem es seine Grafiken mit '+' aufbaut. Erst sagt man in der Funktion `ggplot()` welchen Datensatz man plotten möchte, was auf die x- und y-Achse kommt und ob man z.B. Farbe für Gruppen in Daten möchte. All diese sichtbaren Elemente nennt man Ästhtiken (Parameter `aes`). Erst wenn diese 'Formalien' geklärt sind, sagt man, welche Form der Darstellung man möchte. Im oberen Beispiel ist es ein Linienplot. Alle Darstellungsarten in `ggplot2` beginnen mit `geom_*()` und sind daher konsistent benannt. Die Informationen zu Daten, x-, y-Achse etc. werden an die `geom_*()`-Funktionen von der Mutterfunktion `ggplot()` weiter vererbt. Daher sind die Klammern in `geom_line()` leer.
+`ggplot2` folgt einer sogen. Grafikgrammatik (*grammer of graphics*), indem es seine Grafiken mit '+' aufbaut. Erst sagt man in der Funktion `ggplot()` welchen Datensatz man plotten möchte, was auf die x- und y-Achse kommt und ob man z.B. Farbe für Gruppen in Daten möchte. All diese sichtbaren Elemente nennt man Ästhetiken (Parameter `aes`). Erst wenn diese 'Formalien' geklärt sind, sagt man, welche Form der Darstellung man möchte. Im oberen Beispiel ist es ein Linienplot. Alle Darstellungsarten in `ggplot2` beginnen mit `geom_*()` und sind daher konsistent benannt. Die Informationen zu Daten, x-, y-Achse etc. werden an die `geom_*()`-Funktionen von der Mutterfunktion `ggplot()` weiter vererbt. Daher sind die Klammern in `geom_line()` leer.
 
 Wir wollen nun die Monatsmittelwerte für die Temperatur berechnen und diese darstellen. Als erstes erstellen wir zwei neue Spalten, die jeweils das Jahr und den Monat beinhalten. Die beiden neuen Spalten werden am Ende von  `temp_humid` angehängt.
 
@@ -159,14 +166,14 @@ Die Struktur von `monthly_means` zeigt uns, dass es sich um gruppierte Daten han
 str(monthly_means)
 ```
 
-Da wir aber mit den Daten weiter rechnen wollen, ist es besser, die Gruppierung wieder aufzugehben, da es sonst Fehlermeldungen geben könnte.
+Da wir aber mit den Daten weiter rechnen wollen, ist es besser, die Gruppierung wieder aufzugeben. Es könnte sonst später Fehlermeldungen geben.
 
 ```{r}
 monthly_means <- ungroup(monthly_means)
 ```
 
 
-Um die Daten als Zeitreihen zu plotten, erstellen wir noch eine ordentliche Zeit-Spalte.
+Um die Daten als Zeitreihen zu plotten, erstellen wir noch eine ordentliche Zeit-Spalte. Die Funktion `parse_date_time()` kann aus Character richtige Datums-Zeitobjekte erstellen. Sie ist allgemeienr als die oben verwendete `ymd()` Funktion, da man hier das Format explizit angeben kann. In unserem Fall ist das Format 'ym' für Jahr und Monat.
 
 ```{r}
 monthly_means <- monthly_means %>%
@@ -182,6 +189,7 @@ ggplot(data = monthly_means, aes(x = my_date, y = mean_T,
   labs(x = 'Time', y = 'Temperature (°C)', color = 'Station')
 ```
 
+Wir werden in eine spätere Kapitel auf `ggplot2` genauer eingehen. Fürs Erste soll es als Appetithappen reichen `r emo::ji('cake')`.
 
 ## Weiterführende Literatur und Videos
 
@@ -193,3 +201,4 @@ ggplot(data = monthly_means, aes(x = my_date, y = mean_T,
 
 ## Inhalt der live Einführung
 
+Verschiedene Funktionen aus `tydiverse` anhand der Aufgaben \@ref(fledermaus3) und \@ref(klausur)

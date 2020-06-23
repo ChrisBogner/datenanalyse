@@ -53,9 +53,9 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
@@ -64,14 +64,16 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -80,9 +82,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -215,12 +217,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.7" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#daten-visualisieren-teil-ii-fokus-auf-daten"><i class="fa fa-check"></i><b>9.7</b> Daten visualisieren, Teil II: Fokus auf Daten</a><ul>
 <li class="chapter" data-level="9.7.1" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#zeitreihen-aus-der-langen-bramke-harz"><i class="fa fa-check"></i><b>9.7.1</b> Zeitreihen aus der Langen Bramke (Harz)</a></li>
 <li class="chapter" data-level="9.7.2" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#temperatur-datensatz"><i class="fa fa-check"></i><b>9.7.2</b> Temperatur-Datensatz</a></li>
-<li class="chapter" data-level="9.7.3" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#artenvielfalt-in-grasländern"><i class="fa fa-check"></i><b>9.7.3</b> Artenvielfalt in Grasländern</a></li>
-<li class="chapter" data-level="9.7.4" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#tracerversuche"><i class="fa fa-check"></i><b>9.7.4</b> Tracerversuche</a></li>
+<li class="chapter" data-level="9.7.3" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#temperatur-datensatz-revisited"><i class="fa fa-check"></i><b>9.7.3</b> Temperatur-Datensatz, revisited</a></li>
+<li class="chapter" data-level="9.7.4" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#artenvielfalt-in-grasländern"><i class="fa fa-check"></i><b>9.7.4</b> Artenvielfalt in Grasländern</a></li>
+<li class="chapter" data-level="9.7.5" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#tracerversuche"><i class="fa fa-check"></i><b>9.7.5</b> Tracerversuche</a></li>
 </ul></li>
 <li class="chapter" data-level="9.8" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#effizientes-programmieren"><i class="fa fa-check"></i><b>9.8</b> Effizientes Programmieren</a><ul>
 <li class="chapter" data-level="9.8.1" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#lagerungsdichten"><i class="fa fa-check"></i><b>9.8.1</b> Lagerungsdichten</a></li>
-<li class="chapter" data-level="9.8.2" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#temperatur-datensatz-revisited"><i class="fa fa-check"></i><b>9.8.2</b> Temperatur-Datensatz, revisited</a></li>
+<li class="chapter" data-level="9.8.2" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#temperatur-datensatz-revisited-1"><i class="fa fa-check"></i><b>9.8.2</b> Temperatur-Datensatz, revisited</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="literatur.html"><a href="literatur.html"><i class="fa fa-check"></i>Literatur</a></li>
@@ -269,13 +272,13 @@ Einen einfachen ersten reproduzierbaren Bericht schreiben
 </div>
 <div id="literate-programming-idee-von-donald-knuth" class="section level2">
 <h2><span class="header-section-number">6.2</span> <em>Literate Programming</em> Idee von Donald Knuth</h2>
-<p>Die Idee, dass man den Code und die dazugehörige Interpretation (Text, Bericht etc.) nicht von einander trennen sollte, geht auf <span class="citation">Knuth (<a href="literatur.html#ref-Knuth1984">1984</a>)</span> zurück. Mit <em>Literate Programming</em> meinte Knuth, dass Programme auch nichts anderes wie literatirsche Werke sind. Er setzte den Fokus darauf, mit Programmen menschlichen Benutzern zu erklären, was man den Computer machen lassen möchte. Also weg vom computer- hin zum menschzentrierten Zugang. So wird Programmieren und in unserem Fall die Datenanalyse verständlich und vor allem reproduzierbar.</p>
+<p>Die Idee, dass man den Code und die dazugehörige Interpretation (Text, Bericht etc.) nicht von einander trennen sollte, geht auf <span class="citation">Knuth (<a href="literatur.html#ref-Knuth1984" role="doc-biblioref">1984</a>)</span> zurück. Mit <em>Literate Programming</em> meinte Knuth, dass Programme auch nichts anderes wie literatirsche Werke sind. Er setzte den Fokus darauf, mit Programmen menschlichen Benutzern zu erklären, was man den Computer machen lassen möchte. Also weg vom computer- hin zum menschzentrierten Zugang. So wird Programmieren und in unserem Fall die Datenanalyse verständlich und vor allem reproduzierbar.</p>
 <p>Leider ist es in unserer modernen Forschungslandschaft immer noch nicht Standard. Das Trennen von Analyseergebnissen und Berichten (Forschungsartikeln) sorgt für viele (unendeckte und unnötige) Fehler und Frust.</p>
 </div>
 <div id="reproduzierbare-berichte-mit-r-markdown" class="section level2">
 <h2><span class="header-section-number">6.3</span> Reproduzierbare Berichte mit R Markdown</h2>
-<p>R hat sein eigenes System von reproduzierbaren Berichten, genannt R Markdown <span class="citation">(Xie, Allaire, and Grolemund <a href="literatur.html#ref-Xie2018">2018</a>)</span>. Es ist benutzerfreundlich und ermöglicht unterschiedliche Formate von Berichten, wie HTML-Dokumente, PDF-Dateien, Präsentationsfolien usw.</p>
-<p>Es wird Sie vielleicht überraschen, aber das Skript, das Sie gerade lesen ist nichts anderes als ein “literarisch” programmierter Bericht in R Bookdown <span class="citation">(Xie <a href="literatur.html#ref-Xie2016">2016</a>)</span>, einem R-Paket speziell für lange R Markdown-Dokumente.</p>
+<p>R hat sein eigenes System von reproduzierbaren Berichten, genannt R Markdown <span class="citation">(Xie, Allaire, and Grolemund <a href="literatur.html#ref-Xie2018" role="doc-biblioref">2018</a>)</span>. Es ist benutzerfreundlich und ermöglicht unterschiedliche Formate von Berichten, wie HTML-Dokumente, PDF-Dateien, Präsentationsfolien usw.</p>
+<p>Es wird Sie vielleicht überraschen, aber das Skript, das Sie gerade lesen ist nichts anderes als ein “literarisch” programmierter Bericht in R Bookdown <span class="citation">(Xie <a href="literatur.html#ref-Xie2016" role="doc-biblioref">2016</a>)</span>, einem R-Paket speziell für lange R Markdown-Dokumente.</p>
 <p>Wir werden vor allem mit R Notebooks arbeiten, die eine gute Interaktion zwischen dem geschriebenen Text und dem R-Code ermöglichen. Das Notebook kann sowohl in ein HTML-Dokument als auch in PDF oder Word als endgültiges Berichtdokument umgewandlet werden. Diesen Prozess nennt man <em>knit</em> (der Knopf in RStudio mit dem Wollknäuel).</p>
 </div>
 <div id="wichtigste-regeln-für-reproduzierbarkeit" class="section level2">
@@ -286,7 +289,7 @@ Einen einfachen ersten reproduzierbaren Bericht schreiben
 <div id="weiterführende-videos-und-literatur" class="section level2">
 <h2><span class="header-section-number">6.5</span> Weiterführende Videos und Literatur</h2>
 <p>Die Playlist zu <em>Reporducible Research</em> finden Sie <a href="https://www.youtube.com/watch?v=4rBX6r5emgQ&amp;list=PLjTlxb-wKvXOU4WW4p3qc4VKWTI4gLNUf">hier</a>.</p>
-<p>Report Writing for Data Science in R <span class="citation">(Peng <a href="literatur.html#ref-Peng2019">2019</a>)</span> (auf ILIAS)</p>
+<p>Report Writing for Data Science in R <span class="citation">(Peng <a href="literatur.html#ref-Peng2019" role="doc-biblioref">2019</a>)</span> (auf ILIAS)</p>
 </div>
 <div id="inhalt-der-live-einführung-3" class="section level2">
 <h2><span class="header-section-number">6.6</span> Inhalt der live Einführung</h2>
@@ -334,7 +337,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": null,
+"download": ["datenanalyse.pdf"],
 "toc": {
 "collapse": "subsection"
 },

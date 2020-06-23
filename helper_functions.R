@@ -1,12 +1,14 @@
 # Load libraries
+library(fontawesome)
+library(kableExtra)
+library(tidyverse)
 
 knitr::knit_hooks$set(document = function(x) {
   sub('\\usepackage{graphicx, color}',
       '\\usepackage{graphicx,xcolor}', x, fixed = TRUE)
 }) 
 
-library(fontawesome)
-library(kableExtra)
+
 
 # These are different helper functions for the book
 

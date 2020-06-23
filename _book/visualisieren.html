@@ -53,9 +53,9 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
@@ -64,14 +64,16 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -80,9 +82,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -215,12 +217,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.7" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#daten-visualisieren-teil-ii-fokus-auf-daten"><i class="fa fa-check"></i><b>9.7</b> Daten visualisieren, Teil II: Fokus auf Daten</a><ul>
 <li class="chapter" data-level="9.7.1" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#zeitreihen-aus-der-langen-bramke-harz"><i class="fa fa-check"></i><b>9.7.1</b> Zeitreihen aus der Langen Bramke (Harz)</a></li>
 <li class="chapter" data-level="9.7.2" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#temperatur-datensatz"><i class="fa fa-check"></i><b>9.7.2</b> Temperatur-Datensatz</a></li>
-<li class="chapter" data-level="9.7.3" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#artenvielfalt-in-grasländern"><i class="fa fa-check"></i><b>9.7.3</b> Artenvielfalt in Grasländern</a></li>
-<li class="chapter" data-level="9.7.4" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#tracerversuche"><i class="fa fa-check"></i><b>9.7.4</b> Tracerversuche</a></li>
+<li class="chapter" data-level="9.7.3" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#temperatur-datensatz-revisited"><i class="fa fa-check"></i><b>9.7.3</b> Temperatur-Datensatz, revisited</a></li>
+<li class="chapter" data-level="9.7.4" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#artenvielfalt-in-grasländern"><i class="fa fa-check"></i><b>9.7.4</b> Artenvielfalt in Grasländern</a></li>
+<li class="chapter" data-level="9.7.5" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#tracerversuche"><i class="fa fa-check"></i><b>9.7.5</b> Tracerversuche</a></li>
 </ul></li>
 <li class="chapter" data-level="9.8" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#effizientes-programmieren"><i class="fa fa-check"></i><b>9.8</b> Effizientes Programmieren</a><ul>
 <li class="chapter" data-level="9.8.1" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#lagerungsdichten"><i class="fa fa-check"></i><b>9.8.1</b> Lagerungsdichten</a></li>
-<li class="chapter" data-level="9.8.2" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#temperatur-datensatz-revisited"><i class="fa fa-check"></i><b>9.8.2</b> Temperatur-Datensatz, revisited</a></li>
+<li class="chapter" data-level="9.8.2" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#temperatur-datensatz-revisited-1"><i class="fa fa-check"></i><b>9.8.2</b> Temperatur-Datensatz, revisited</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="literatur.html"><a href="literatur.html"><i class="fa fa-check"></i>Literatur</a></li>
@@ -270,15 +273,15 @@ Grafiken mit mehreren Plots erstellen
 </div>
 <div id="plotten-mit-r-basisfunktionen" class="section level2">
 <h2><span class="header-section-number">5.1</span> Plotten mit R-Basisfunktionen</h2>
-<p>Für Grafikverliebte und Neugierige empfehle ich die Kapitel 2 und 3 in <span class="citation">Murrell (<a href="literatur.html#ref-Murrell2006">2006</a>)</span>.</p>
+<p>Für Grafikverliebte und Neugierige empfehle ich die Kapitel 2 und 3 in <span class="citation">Murrell (<a href="literatur.html#ref-Murrell2006" role="doc-biblioref">2006</a>)</span>.</p>
 <div id="high-level-grafikfunktion-plot-und-low-level-grafikfunktion-lines" class="section level3">
 <h3><span class="header-section-number">5.1.1</span> <em>High-level</em> Grafikfunktion <code>plot</code> und <em>low-level</em> Grafikfunktion <code>lines</code></h3>
 <p>Ein Streudiagramm stellt zwei numerische Variablen gegeneinander dar. Wir betrachten Klimadaten der Station Köln-Bonn, die man beim Deutschen Wetterdienst herunterladen kann (<a href="https://www.dwd.de/DE/leistungen/klimadatendeutschland/klimadatendeutschland.html" class="uri">https://www.dwd.de/DE/leistungen/klimadatendeutschland/klimadatendeutschland.html</a>).</p>
 <p>Sie können den Code aus den Chunks leicht herauskopieren und in RStudio laufen lassen (rechts oben in den Chunks auf das Symbol <em>copy to clipboard</em> klicken).</p>
 <p>Wir lesen die Daten ein und sehen uns deren Struktur an.</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" data-line-number="1">meteo &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&#39;produkt_klima_monat_20181001_20200430_02667.txt&#39;</span>,</a>
-<a class="sourceLine" id="cb29-2" data-line-number="2"><span class="dt">header =</span> T, <span class="dt">sep =</span> <span class="st">&#39;;&#39;</span>)</a>
-<a class="sourceLine" id="cb29-3" data-line-number="3"><span class="kw">str</span>(meteo)</a></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="visualisieren.html#cb29-1"></a>meteo &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&#39;produkt_klima_monat_20181001_20200430_02667.txt&#39;</span>,</span>
+<span id="cb29-2"><a href="visualisieren.html#cb29-2"></a><span class="dt">header =</span> T, <span class="dt">sep =</span> <span class="st">&#39;;&#39;</span>)</span>
+<span id="cb29-3"><a href="visualisieren.html#cb29-3"></a><span class="kw">str</span>(meteo)</span></code></pre></div>
 <pre><code>## &#39;data.frame&#39;:    19 obs. of  17 variables:
 ##  $ STATIONS_ID      : int  2667 2667 2667 2667 2667 2667 2667 2667 2667 2667 ...
 ##  $ MESS_DATUM_BEGINN: int  20181001 20181101 20181201 20190101 20190201 20190301 20190401 20190501 20190601 20190701 ...
@@ -296,55 +299,55 @@ Grafiken mit mehreren Plots erstellen
 ##  $ QN_6             : int  9 9 9 3 3 3 3 3 3 3 ...
 ##  $ MO_RR            : num  26.5 25 101.9 101.8 30 ...
 ##  $ MX_RS            : num  6.9 9.7 15.7 22.3 12.3 18.2 21.4 10.6 8.8 11.9 ...
-##  $ eor              : Factor w/ 1 level &quot;eor&quot;: 1 1 1 1 1 1 1 1 1 1 ...</code></pre>
+##  $ eor              : chr  &quot;eor&quot; &quot;eor&quot; &quot;eor&quot; &quot;eor&quot; ...</code></pre>
 <p>Uns interessieren hier nur die Spalten MO_TT, MO_TN, MO_TX und MESS_DATUM_BEGINN. Das sind jeweils die Monatsmittel der Lufttemperatur in 2 m Höhe, Monatsmittel des Minimums der Lufttemperatur, Monatsmittel des Maximums der Lufttemperatur und der Beginn der jeweiligen Messperiode (d.h. des Kalendermonats). Um die Daten als Zeitreihen darstellen zu können, wandeln wir die Spalte MESS_DATUM_BEGINN in ein richtiges Zeitobjekt (d.h. ein Objekt der Klasse <em>Date</em>). Das geht mit der Funktion <code>as.Date</code>. Der Parameter <code>format</code> beschreibt den Aufbau des Datums im Objekt <code>meteo</code>: erst steht das Jahr mit 4 Zeichen (z.B. 2018), dann folgt der Monat mit 2 Zeichen (z.B. 01) und dann der Tag mit 2 Zeichen (z.B. 01). Näheres zu Datumsformaten finden Sie mit <code>?strptime</code>.</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" data-line-number="1">my_date &lt;-<span class="st"> </span><span class="kw">as.Date</span>(<span class="kw">as.character</span>(meteo<span class="op">$</span>MESS_DATUM_BEGINN), <span class="dt">format =</span> <span class="st">&#39;%Y%m%d&#39;</span>)</a>
-<a class="sourceLine" id="cb31-2" data-line-number="2">my_date</a></code></pre></div>
-<pre><code>##  [1] &quot;2018-10-01&quot; &quot;2018-11-01&quot; &quot;2018-12-01&quot; &quot;2019-01-01&quot; &quot;2019-02-01&quot; &quot;2019-03-01&quot;
-##  [7] &quot;2019-04-01&quot; &quot;2019-05-01&quot; &quot;2019-06-01&quot; &quot;2019-07-01&quot; &quot;2019-08-01&quot; &quot;2019-09-01&quot;
-## [13] &quot;2019-10-01&quot; &quot;2019-11-01&quot; &quot;2019-12-01&quot; &quot;2020-01-01&quot; &quot;2020-02-01&quot; &quot;2020-03-01&quot;
-## [19] &quot;2020-04-01&quot;</code></pre>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="visualisieren.html#cb31-1"></a>my_date &lt;-<span class="st"> </span><span class="kw">as.Date</span>(<span class="kw">as.character</span>(meteo<span class="op">$</span>MESS_DATUM_BEGINN), <span class="dt">format =</span> <span class="st">&#39;%Y%m%d&#39;</span>)</span>
+<span id="cb31-2"><a href="visualisieren.html#cb31-2"></a>my_date</span></code></pre></div>
+<pre><code>##  [1] &quot;2018-10-01&quot; &quot;2018-11-01&quot; &quot;2018-12-01&quot; &quot;2019-01-01&quot; &quot;2019-02-01&quot;
+##  [6] &quot;2019-03-01&quot; &quot;2019-04-01&quot; &quot;2019-05-01&quot; &quot;2019-06-01&quot; &quot;2019-07-01&quot;
+## [11] &quot;2019-08-01&quot; &quot;2019-09-01&quot; &quot;2019-10-01&quot; &quot;2019-11-01&quot; &quot;2019-12-01&quot;
+## [16] &quot;2020-01-01&quot; &quot;2020-02-01&quot; &quot;2020-03-01&quot; &quot;2020-04-01&quot;</code></pre>
 <p>Es sind Daten von Oktober 2018 bis April 2020. Wir erstellen ein Streudiagramm mit der Funktion <code>plot</code>. Mit den Parametern <code>xlab</code> und <code>ylab</code> lassen sich die beiden Achsen beschriften und <code>main</code> fügt einen Titel dazu. Der Parameter <code>type</code> bestimmt die Wahl der Symbole; hier benutzen wir <code>type = b</code> für <em>both</em>, also sowohl Punkte als auch Linien.</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" data-line-number="1"><span class="kw">plot</span>(my_date, meteo<span class="op">$</span>MO_TT, <span class="dt">type =</span> <span class="st">&#39;b&#39;</span>, <span class="dt">xlab =</span> <span class="st">&#39;Zeit&#39;</span>, <span class="dt">ylab =</span> <span class="st">&#39;Temperatur [°C]&#39;</span>, <span class="dt">main =</span> <span class="st">&#39;Klimadaten der DWD-Station Köln-Bonn&#39;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="visualisieren.html#cb33-1"></a><span class="kw">plot</span>(my_date, meteo<span class="op">$</span>MO_TT, <span class="dt">type =</span> <span class="st">&#39;b&#39;</span>, <span class="dt">xlab =</span> <span class="st">&#39;Zeit&#39;</span>, <span class="dt">ylab =</span> <span class="st">&#39;Temperatur [°C]&#39;</span>, <span class="dt">main =</span> <span class="st">&#39;Klimadaten der DWD-Station Köln-Bonn&#39;</span>)</span></code></pre></div>
 <p><img src="datenanalyse_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
 <p>Die Funktion <code>plot</code> ist eine sogen. <em>high-level</em> Grafikfunktion. Das bedeutet, dass sie alle Schritte des Plottens übernimmt: sie öffnet ein neues Grafikfenster (ein Device), berechnet die Größe der Plotfläche und der Ränder (s. unten), berechnet die Ausdehnung der Achsen und die beste Achseneinteilung und plottet Ihre Daten.</p>
 <p>Daneben gibt es <em>low-level</em> Grafikfunktionen, die nur in ein bestehendes Device plotten können. Wir wollen zu unserer Grafik nun die Minimum- und die Maximumtemperatur dazu plotten.</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" data-line-number="1"><span class="kw">plot</span>(my_date, meteo<span class="op">$</span>MO_TT, <span class="dt">type =</span> <span class="st">&#39;b&#39;</span>, <span class="dt">xlab =</span> <span class="st">&#39;Zeit&#39;</span>, <span class="dt">ylab =</span> <span class="st">&#39;Temperatur [°C]&#39;</span>, <span class="dt">main =</span> <span class="st">&#39;Klimadaten der DWD-Station Köln-Bonn&#39;</span>)</a>
-<a class="sourceLine" id="cb34-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb34-3" data-line-number="3"><span class="co"># Minimumtemperatur in blau</span></a>
-<a class="sourceLine" id="cb34-4" data-line-number="4"><span class="kw">lines</span>(my_date, meteo<span class="op">$</span>MO_TN, <span class="dt">col =</span> <span class="st">&#39;blue&#39;</span>)</a>
-<a class="sourceLine" id="cb34-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb34-6" data-line-number="6"><span class="co"># Maximumtemperatur in rot</span></a>
-<a class="sourceLine" id="cb34-7" data-line-number="7"><span class="kw">lines</span>(my_date, meteo<span class="op">$</span>MO_TX, <span class="dt">col =</span> <span class="st">&#39;red&#39;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="visualisieren.html#cb34-1"></a><span class="kw">plot</span>(my_date, meteo<span class="op">$</span>MO_TT, <span class="dt">type =</span> <span class="st">&#39;b&#39;</span>, <span class="dt">xlab =</span> <span class="st">&#39;Zeit&#39;</span>, <span class="dt">ylab =</span> <span class="st">&#39;Temperatur [°C]&#39;</span>, <span class="dt">main =</span> <span class="st">&#39;Klimadaten der DWD-Station Köln-Bonn&#39;</span>)</span>
+<span id="cb34-2"><a href="visualisieren.html#cb34-2"></a></span>
+<span id="cb34-3"><a href="visualisieren.html#cb34-3"></a><span class="co"># Minimumtemperatur in blau</span></span>
+<span id="cb34-4"><a href="visualisieren.html#cb34-4"></a><span class="kw">lines</span>(my_date, meteo<span class="op">$</span>MO_TN, <span class="dt">col =</span> <span class="st">&#39;blue&#39;</span>)</span>
+<span id="cb34-5"><a href="visualisieren.html#cb34-5"></a></span>
+<span id="cb34-6"><a href="visualisieren.html#cb34-6"></a><span class="co"># Maximumtemperatur in rot</span></span>
+<span id="cb34-7"><a href="visualisieren.html#cb34-7"></a><span class="kw">lines</span>(my_date, meteo<span class="op">$</span>MO_TX, <span class="dt">col =</span> <span class="st">&#39;red&#39;</span>)</span></code></pre></div>
 <p><img src="datenanalyse_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
 <p>Dass <code>lines</code> nur eine <em>low-level</em> Grafikfunktion ist, erkennen Sie daran, dass sie nicht in der Lage ist, den Bereich auf der y-Achse zu vergrößern, um alle Daten sichtbar zu machen. Das kann nur <code>plot</code>. Daher muss der Bereich bereits in <code>plot</code> richtig festgelegt werden. Das macht der Parameter <code>ylim</code>.</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" data-line-number="1"><span class="kw">plot</span>(my_date, meteo<span class="op">$</span>MO_TT, <span class="dt">type =</span> <span class="st">&#39;b&#39;</span>, <span class="dt">xlab =</span> <span class="st">&#39;Zeit&#39;</span>, <span class="dt">ylab =</span> <span class="st">&#39;Temperatur [°C]&#39;</span>, <span class="dt">main =</span> <span class="st">&#39;Klimadaten der DWD-Station Köln-Bonn&#39;</span>, <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">30</span>))</a>
-<a class="sourceLine" id="cb35-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb35-3" data-line-number="3"><span class="co"># Minimumtemperatur in rot</span></a>
-<a class="sourceLine" id="cb35-4" data-line-number="4"><span class="kw">lines</span>(my_date, meteo<span class="op">$</span>MO_TN, <span class="dt">col =</span> <span class="st">&#39;blue&#39;</span>)</a>
-<a class="sourceLine" id="cb35-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb35-6" data-line-number="6"><span class="co"># Maximumtemperatur in blau</span></a>
-<a class="sourceLine" id="cb35-7" data-line-number="7"><span class="kw">lines</span>(my_date, meteo<span class="op">$</span>MO_TX, <span class="dt">col =</span> <span class="st">&#39;red&#39;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="visualisieren.html#cb35-1"></a><span class="kw">plot</span>(my_date, meteo<span class="op">$</span>MO_TT, <span class="dt">type =</span> <span class="st">&#39;b&#39;</span>, <span class="dt">xlab =</span> <span class="st">&#39;Zeit&#39;</span>, <span class="dt">ylab =</span> <span class="st">&#39;Temperatur [°C]&#39;</span>, <span class="dt">main =</span> <span class="st">&#39;Klimadaten der DWD-Station Köln-Bonn&#39;</span>, <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">30</span>))</span>
+<span id="cb35-2"><a href="visualisieren.html#cb35-2"></a></span>
+<span id="cb35-3"><a href="visualisieren.html#cb35-3"></a><span class="co"># Minimumtemperatur in rot</span></span>
+<span id="cb35-4"><a href="visualisieren.html#cb35-4"></a><span class="kw">lines</span>(my_date, meteo<span class="op">$</span>MO_TN, <span class="dt">col =</span> <span class="st">&#39;blue&#39;</span>)</span>
+<span id="cb35-5"><a href="visualisieren.html#cb35-5"></a></span>
+<span id="cb35-6"><a href="visualisieren.html#cb35-6"></a><span class="co"># Maximumtemperatur in blau</span></span>
+<span id="cb35-7"><a href="visualisieren.html#cb35-7"></a><span class="kw">lines</span>(my_date, meteo<span class="op">$</span>MO_TX, <span class="dt">col =</span> <span class="st">&#39;red&#39;</span>)</span></code></pre></div>
 <p><img src="datenanalyse_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
 <p>Wenn in einer Grafik mehrere Elemente dargestellt werden, benötigt man eine Legende. Das erledigt die * low-level* Grafikfunktion <code>legend</code>.</p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" data-line-number="1"><span class="kw">plot</span>(my_date, meteo<span class="op">$</span>MO_TT, <span class="dt">type =</span> <span class="st">&#39;b&#39;</span>, <span class="dt">xlab =</span> <span class="st">&#39;Zeit&#39;</span>, <span class="dt">ylab =</span> <span class="st">&#39;Temperatur [°C]&#39;</span>, <span class="dt">main =</span> <span class="st">&#39;Klimadaten der DWD-Station Köln-Bonn&#39;</span>, <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">30</span>))</a>
-<a class="sourceLine" id="cb36-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb36-3" data-line-number="3"><span class="co"># Minimumtemperatur in rot</span></a>
-<a class="sourceLine" id="cb36-4" data-line-number="4"><span class="kw">lines</span>(my_date, meteo<span class="op">$</span>MO_TN, <span class="dt">col =</span> <span class="st">&#39;blue&#39;</span>)</a>
-<a class="sourceLine" id="cb36-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb36-6" data-line-number="6"><span class="co"># Maximumtemperatur in blau</span></a>
-<a class="sourceLine" id="cb36-7" data-line-number="7"><span class="kw">lines</span>(my_date, meteo<span class="op">$</span>MO_TX, <span class="dt">col =</span> <span class="st">&#39;red&#39;</span>)</a>
-<a class="sourceLine" id="cb36-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb36-9" data-line-number="9"><span class="kw">legend</span>(<span class="st">&#39;topright&#39;</span>, <span class="dt">legend =</span> <span class="kw">c</span>(<span class="st">&#39;Mittelwert&#39;</span>, <span class="st">&#39;Minimum&#39;</span>, <span class="st">&#39;Maximum&#39;</span>),</a>
-<a class="sourceLine" id="cb36-10" data-line-number="10">       <span class="dt">col =</span> <span class="kw">c</span>(<span class="st">&#39;black&#39;</span>, <span class="st">&#39;red&#39;</span>, <span class="st">&#39;blue&#39;</span>), </a>
-<a class="sourceLine" id="cb36-11" data-line-number="11">       <span class="dt">pch =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="ot">NA</span>, <span class="ot">NA</span>),</a>
-<a class="sourceLine" id="cb36-12" data-line-number="12">       <span class="dt">lty =</span> <span class="dv">1</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="visualisieren.html#cb36-1"></a><span class="kw">plot</span>(my_date, meteo<span class="op">$</span>MO_TT, <span class="dt">type =</span> <span class="st">&#39;b&#39;</span>, <span class="dt">xlab =</span> <span class="st">&#39;Zeit&#39;</span>, <span class="dt">ylab =</span> <span class="st">&#39;Temperatur [°C]&#39;</span>, <span class="dt">main =</span> <span class="st">&#39;Klimadaten der DWD-Station Köln-Bonn&#39;</span>, <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">30</span>))</span>
+<span id="cb36-2"><a href="visualisieren.html#cb36-2"></a></span>
+<span id="cb36-3"><a href="visualisieren.html#cb36-3"></a><span class="co"># Minimumtemperatur in rot</span></span>
+<span id="cb36-4"><a href="visualisieren.html#cb36-4"></a><span class="kw">lines</span>(my_date, meteo<span class="op">$</span>MO_TN, <span class="dt">col =</span> <span class="st">&#39;blue&#39;</span>)</span>
+<span id="cb36-5"><a href="visualisieren.html#cb36-5"></a></span>
+<span id="cb36-6"><a href="visualisieren.html#cb36-6"></a><span class="co"># Maximumtemperatur in blau</span></span>
+<span id="cb36-7"><a href="visualisieren.html#cb36-7"></a><span class="kw">lines</span>(my_date, meteo<span class="op">$</span>MO_TX, <span class="dt">col =</span> <span class="st">&#39;red&#39;</span>)</span>
+<span id="cb36-8"><a href="visualisieren.html#cb36-8"></a></span>
+<span id="cb36-9"><a href="visualisieren.html#cb36-9"></a><span class="kw">legend</span>(<span class="st">&#39;topright&#39;</span>, <span class="dt">legend =</span> <span class="kw">c</span>(<span class="st">&#39;Mittelwert&#39;</span>, <span class="st">&#39;Minimum&#39;</span>, <span class="st">&#39;Maximum&#39;</span>),</span>
+<span id="cb36-10"><a href="visualisieren.html#cb36-10"></a>       <span class="dt">col =</span> <span class="kw">c</span>(<span class="st">&#39;black&#39;</span>, <span class="st">&#39;red&#39;</span>, <span class="st">&#39;blue&#39;</span>), </span>
+<span id="cb36-11"><a href="visualisieren.html#cb36-11"></a>       <span class="dt">pch =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="ot">NA</span>, <span class="ot">NA</span>),</span>
+<span id="cb36-12"><a href="visualisieren.html#cb36-12"></a>       <span class="dt">lty =</span> <span class="dv">1</span>)</span></code></pre></div>
 <p><img src="datenanalyse_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
 <p>Der Parameter <code>lty</code> steht für <em>line type</em> und die 1 bedeutet durchgezogene Linie. Mit <code>pch</code> legend wir die Art des Symbols fest; hier steht die 1 für das Standardsymbol “offener Kreis”. Die Funktion <code>legend</code> hat viele Möglichkeiten und es lohnt sich, in die Hilfe zu sehen <code>?legend</code>.</p>
 </div>
 <div id="überblick-über-die-wichtigsten-high-level-und-low-level-grafikfunktionen" class="section level3">
 <h3><span class="header-section-number">5.1.2</span> Überblick über die wichtigsten <em>high-level</em> und <em>low-level</em> Grafikfunktionen</h3>
-<p>Die wichtigsten <em>high-level</em> Grafikfunktionen nach <span class="citation">Ligges (<a href="literatur.html#ref-Ligges2008">2008</a>)</span>, verändert:</p>
+<p>Die wichtigsten <em>high-level</em> Grafikfunktionen nach <span class="citation">Ligges (<a href="literatur.html#ref-Ligges2008" role="doc-biblioref">2008</a>)</span>, verändert:</p>
 <table>
 <colgroup>
 <col width="40%" />
@@ -411,7 +414,7 @@ Grafiken mit mehreren Plots erstellen
 </tr>
 </tbody>
 </table>
-<p>Die wichtigsten <em>low-level</em> Grafikfunktionen nach <span class="citation">Ligges (<a href="literatur.html#ref-Ligges2008">2008</a>)</span>, verändert:</p>
+<p>Die wichtigsten <em>low-level</em> Grafikfunktionen nach <span class="citation">Ligges (<a href="literatur.html#ref-Ligges2008" role="doc-biblioref">2008</a>)</span>, verändert:</p>
 <table>
 <colgroup>
 <col width="40%" />
@@ -490,12 +493,12 @@ Grafiken mit mehreren Plots erstellen
 </div>
 <div id="tuning-mit-par" class="section level2">
 <h2><span class="header-section-number">5.2</span> Tuning mit <code>par</code></h2>
-<p>Zur Vertiefung dieses Kapitels, empfehle ich <span class="citation">Ligges (<a href="literatur.html#ref-Ligges2008">2008</a>)</span>, Kapitel 8.1.3. <br></p>
+<p>Zur Vertiefung dieses Kapitels, empfehle ich <span class="citation">Ligges (<a href="literatur.html#ref-Ligges2008" role="doc-biblioref">2008</a>)</span>, Kapitel 8.1.3. <br></p>
 <p>Die Grafikebene in R ist aufgeteilt in drei Regionen (Abbildung <a href="visualisieren.html#fig:aufteilung">5.1</a>) und hat innere und äußere Ränder. Die Ränder werden von unten im Gegenuhrzeigersinn durchnummeriert.</p>
 <div class="figure"><span id="fig:aufteilung"></span>
 <img src="Regionen_und_Raender.png" alt="Aufteilung der Grafikfläche [@Ligges2008]." width="80%" />
 <p class="caption">
-Abbildung 5.1: Aufteilung der Grafikfläche <span class="citation">(Ligges <a href="literatur.html#ref-Ligges2008">2008</a>)</span>.
+Abbildung 5.1: Aufteilung der Grafikfläche <span class="citation">(Ligges <a href="literatur.html#ref-Ligges2008" role="doc-biblioref">2008</a>)</span>.
 </p>
 </div>
 <p>Mit der Funktion <code>par</code> lassen sich sehr viele Einstellung der Grafik verändern. Viele Einstellungen übergibt die Funktion <code>plot</code> selbständig an <code>par</code>, zu.B. <code>log</code> (Logarithmieren der Achsen), <code>cex</code> (Größe eines Punkts) oder <code>col</code> (Farbe). Andere können aber nur durch Aufrufen der Funktion <code>par</code> verändert werden. Dazu gehören die inneren Ränder <code>mar</code> und die äußeren Ränder <code>oma</code>, die Aufteilung der Grafikebene mit <code>mfrow</code> oder <code>mfcol</code>.</p>
@@ -517,17 +520,17 @@ Parameter auf Standard zurück setzen: <code>par(op)</code>
 </div>
 <p>Die Zuweisung <code>op &lt;- par( ... )</code> speichert die Standardeinstellungen im Objekt <code>par</code>, bevor Sie sie ändern. Der Aufruf <code>par(op)</code> setzt Ihre Änderungen zurück. Das ist sehr praktisch, wenn Sie z.B. die Aufteilung der Grafikebene nicht mehr benötigen. Wenn Sie die Parameter nicht zurücksetzen, bleiben diese bestehen, bis das Grafikfenster geschlossen wird (z.B. mit <code>dev.off()</code>).</p>
 <p>Um die Ränder zu verändern, rufen wir <code>par</code> auf und beschneiden die Ränder, damit Sie den Unterschied erkennen können.</p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" data-line-number="1">op &lt;-<span class="st"> </span><span class="kw">par</span>(<span class="dt">mar =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>))</a>
-<a class="sourceLine" id="cb37-2" data-line-number="2"><span class="kw">plot</span>(my_date, meteo<span class="op">$</span>MO_TT, <span class="dt">type =</span> <span class="st">&#39;b&#39;</span>, <span class="dt">xlab =</span> <span class="st">&#39;Zeit&#39;</span>, <span class="dt">ylab =</span> <span class="st">&#39;Temperatur [°C]&#39;</span>, <span class="dt">main =</span> <span class="st">&#39;Klimadaten der DWD-Station Köln-Bonn&#39;</span>, <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">30</span>))</a>
-<a class="sourceLine" id="cb37-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb37-4" data-line-number="4"><span class="co"># Minimumtemperatur in rot</span></a>
-<a class="sourceLine" id="cb37-5" data-line-number="5"><span class="kw">lines</span>(my_date, meteo<span class="op">$</span>MO_TN, <span class="dt">col =</span> <span class="st">&#39;blue&#39;</span>)</a>
-<a class="sourceLine" id="cb37-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb37-7" data-line-number="7"><span class="co"># Maximumtemperatur in blau</span></a>
-<a class="sourceLine" id="cb37-8" data-line-number="8"><span class="kw">lines</span>(my_date, meteo<span class="op">$</span>MO_TX, <span class="dt">col =</span> <span class="st">&#39;red&#39;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="visualisieren.html#cb37-1"></a>op &lt;-<span class="st"> </span><span class="kw">par</span>(<span class="dt">mar =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>))</span>
+<span id="cb37-2"><a href="visualisieren.html#cb37-2"></a><span class="kw">plot</span>(my_date, meteo<span class="op">$</span>MO_TT, <span class="dt">type =</span> <span class="st">&#39;b&#39;</span>, <span class="dt">xlab =</span> <span class="st">&#39;Zeit&#39;</span>, <span class="dt">ylab =</span> <span class="st">&#39;Temperatur [°C]&#39;</span>, <span class="dt">main =</span> <span class="st">&#39;Klimadaten der DWD-Station Köln-Bonn&#39;</span>, <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">30</span>))</span>
+<span id="cb37-3"><a href="visualisieren.html#cb37-3"></a></span>
+<span id="cb37-4"><a href="visualisieren.html#cb37-4"></a><span class="co"># Minimumtemperatur in rot</span></span>
+<span id="cb37-5"><a href="visualisieren.html#cb37-5"></a><span class="kw">lines</span>(my_date, meteo<span class="op">$</span>MO_TN, <span class="dt">col =</span> <span class="st">&#39;blue&#39;</span>)</span>
+<span id="cb37-6"><a href="visualisieren.html#cb37-6"></a></span>
+<span id="cb37-7"><a href="visualisieren.html#cb37-7"></a><span class="co"># Maximumtemperatur in blau</span></span>
+<span id="cb37-8"><a href="visualisieren.html#cb37-8"></a><span class="kw">lines</span>(my_date, meteo<span class="op">$</span>MO_TX, <span class="dt">col =</span> <span class="st">&#39;red&#39;</span>)</span></code></pre></div>
 <p><img src="datenanalyse_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
 <p>Die Achsenbeschriftungen und die Zahlen haben jetzt nicht mehr genug Platz und verschwinden. Die Größe der Ränder wird in Zeilen angegeben, ist also relativ zur Gesamtgröße. Die Standardeinstellung ist <code>c(5, 4, 4, 2) + 0.1</code>.</p>
-<p>Einige häufig genutzte Argumente in Grafikfunktionen und in <code>par</code> <span class="citation">(nach Ligges <a href="literatur.html#ref-Ligges2008">2008</a>, verändert)</span>. Schlagen Sie die Erklärungen dazu immer in <code>?par</code> oder <code>?plot</code> nach.</p>
+<p>Einige häufig genutzte Argumente in Grafikfunktionen und in <code>par</code> <span class="citation">(nach Ligges <a href="literatur.html#ref-Ligges2008" role="doc-biblioref">2008</a>, verändert)</span>. Schlagen Sie die Erklärungen dazu immer in <code>?par</code> oder <code>?plot</code> nach.</p>
 <table>
 <thead>
 <tr class="header">
@@ -649,7 +652,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": null,
+"download": ["datenanalyse.pdf"],
 "toc": {
 "collapse": "subsection"
 },

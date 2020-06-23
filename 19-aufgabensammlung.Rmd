@@ -82,7 +82,7 @@ knitr::include_graphics('Zweitstimme.png', auto_pdf = T)
 
 ### Ergebnisse der Bundestagswahl in einer Grafik {#zweigrafiken}
 
-Stellen Sie beide Grafiken nebeneinander dar wie in Abbildung (\@ref(zweigrafiken)) gezeigt.
+Stellen Sie beide Grafiken nebeneinander dar wie in Abbildung (\@ref(fig:zweigrafiken)) gezeigt.
 
 ```{r zweigrafiken, echo = F, fig.width = 6, fig.cap = 'Ergebnisse der Bundestagswahl 2017. Quelle: Der Bundeswahlleiter.', fig.width = 6, out.width = "100%"}
 knitr::include_graphics('Zwei_grafiken.png', auto_pdf = T)
@@ -167,25 +167,43 @@ Im Harz wurden über eine längere Zeit Niederschlag, Abfluss und Temperatur gem
 
 ### Temperatur-Datensatz
 
-1. Laden Sie den Temperatur-Datensatz aus @Zuur2009a.
-1. Berechnen Sie die Monatsmittelwerte für alle Stationen, sowie die Standardabweichungen.
-1. Stellen Sie die Monatsmittel der Temperatur in einem Säulendiagramm dar.
-1. Beschriften Sie die Graphik sinnvoll.
-1. Fügen Sie die Standardabweichungen zu den einzelnen Balken hinzu.
+Die Datei `r file.name("Temperatur.csv")` aus @Zuur2009a enthält Messungen von Temperatur, Salinität und Chlorophyl a an 31 Orten entlang der dänischen Küste. Die Daten stammen vom dänischen Institut RIKZ (Monitoringprogramm MWTL: Monitoring Waterstaatkundige Toestand des Lands). Die Messungen wurden zwischen 1990 und 2005 durchgeführt mit einer Häufigkeit von 0-4 mal pro Monat je nach Jahreszeit.
+
+1. Lesen Sie den Temperatur-Datensatz `r file.name("Temperatur.csv")` ein.
+1. Berechnen Sie die Anzahl der Messwerte, Monatsmittelwerte für alle Stationen, sowie die Standardabweichungen.
+1. Stellen Sie die Monatsmittel der Temperatur als Linien dar.
+1. Beschriften Sie die Grafik sinnvoll.
+1. Fügen Sie die Standardabweichungen als Band hinzu.
+1. Speichern Sie die Grafik als pdf ab.
+
+### Temperatur-Datensatz, revisited
+1. Berechnen Sie die Monatsmittelwerte und Standardabweichungen je Station. Tipp: `group_by(Station, Month)`.
+1. Stellen Sie die Daten mit einem Fehlerband dar und speichern Sie sie ab.
+1. Stellen Sie die Daten als Punkte mit Fehlerbalken dar und speichern Sie sie ab. Zur Orientierung, das Ergebnis sollte so aussehen wie in Abbildung (\@ref(fig:temperrors)).
+
+```{r temperrors, echo = F, fig.width = 6, fig.cap = 'Mittelwerte der Temperatur je Station [@Zuur2009a]', fig.width = 6, out.width = "100%"}
+knitr::include_graphics('Temp_error_bars.png', auto_pdf = T)
+```
 
 
 ### Artenvielfalt in Grasländern
 Sie erhalten Daten aus dem Grasland-Monitoring im Yellowstone Nationalpark und dem National Bison Range (USA). Das Ziel des Monitorings ist die Untersuchung möglicher Änderungen der Biodiversität und des Zusammenhang mit Umweltfaktoren. Biodiversität wurde durch die Anzahl unterschiedlicher Arten quantifiziert. Insgesamt haben die Forscher ca. 90 Arten in 8 Transekten kartiert. Die Aufnahmen wurden alle 4 bis 10 Jahre wiederholt. Insgesamt liegen 58 Beobachtungen vor. Die Daten sind in der Datei `r file.name("Vegetation2.xls")` gespeichert.
 
-1. Laden Sie den Datensatz in R und sehen Sie sich das Ergebnis genau mit  `str`, `head` und `tail` an. Diese Aufgabe dient dazu, das Einlesen von Excel-Dateien zu erarbeiten. Tipp: eine mögliche Bibliothek, die dabei helfen kann, wäre `xlsx`.
+1. Laden Sie den Datensatz in R und sehen Sie sich das Ergebnis genau mit  `str`, `head` und `tail` an. Diese Aufgabe dient dazu, das Einlesen von Excel-Dateien mit `tidyverse` zu erarbeiten. Tipp: nutzen Sie die Funktion `read_xls()` in der Bibliothek `readxl`. Lesen Sie genau in der Hilfe nach, wie Sie *ein bestimmtes* Tabellenblatt einlesen können.
 
-1. Berechnen Sie den Mittelwert und die Standardabweichung der Artenzahl (Variable  `R`) pro Transekt. 
+1. Kurze explorative Analyse: Berechnen Sie die Anzahl der Messungen, den Mittelwert und die Standardabweichung der Artenzahl (Variable  `R`) pro Transekt. 
 
-1. Plotten Sie die Artenzahl gegen die Variable `BARESOIL` (Anteil von unbewachsenem Boden).
+1. Plotten Sie die Artenzahl gegen die Variable `BARESOIL` (Anteil von unbewachsenem Boden). Färben Sie die Punkte je nach Transekt unterschiedlich ein. Tipp: Transekt als `as.factor()` konvertieren.
 
-1. Benutzen Sie unterschiedliche Symbole pro Transekt, erstellen Sie eine Legende.
+1. Fügen Sie eine glättende Linie ohne Konfidenzband hinzu, die alle Punkte unabhängig vom Transekt berücksichtigt (Abschnitt 5.2 in ggplot2 Buch). 
 
-1. Beschriften Sie die Graphik sinnvoll und speichern Sie sie als pdf ab, ohne die Maus zu benutzen. 
+1. Beschriften Sie die Graphik (auch die Legende!) sinnvoll und speichern Sie sie als pdf ab.
+
+1. Stellen Sie die Artenzahl je Transekt als Zeitreihe dar. Die Symbole sollen sowohl Punkte als auch Linien sein. Skalieren Sie die Größe der Punkte je nach Anteil des unbewachsenen Bodens (Abschnitt 6.2 im ggplot2 Buch).
+
+1. Beschriften Sie die Grafik (auch die Legenden!) sinnvoll und speichern Sie sie als pdf ab.
+
+1. Setzen Sie nun beide Grafiken neben einander, platzieren Sie die Legenden (ja nach gewähltem Layout) sinnvoll und speichern Sie die Grafiken ab.
 
 
 ### Tracerversuche
@@ -195,15 +213,39 @@ Im Waldstein wurden Tracerversuche mit dem Farbstoff Brilliant Blue durchgeführ
 1. Berechnen Sie die 5%, 50% und 95% Quantile des Färbeanteils (Index d) der 6 Profile.
 1.  Stellen Sie den Median des Anteils der Färbung mit der Tiefe dar und fügen Sie die Quantile als transparente Fläche hinzu (Tipp: `polygon`).
 
-## Effizientes Programmieren
+## Tidy data
 
-### Lagerungsdichten
-Auf 10 verschiedenen landwirtschaftlichen Feldern wurden im Oberboden je 25 Stechzylinder entnommen.
+### Wasserentnahme mit Datenquelle Excel
+Wir beschäftigen uns mit dem Einlesen und bereinigen von Daten aus Exceldateien. Dazu nutzen wir das Beispiel aus einer der ersten Sitzungen zur Wasserentnahme in der EU.
 
-1. Lesen Sie den Datensatz  `r file.name("Bodendaten.txt")` ein.
-1. Bestimmen Sie die mittlere Lagerungsdichte pro Feld.
+1. Sehen Sie sich die Strukture der Datei `r file.name("TEN000021586860138332.xlsx")` an und lesen Sie sie ein. Nutzen Sie dazu die Funktion `read_xlsx()` aus dem Paket readxl.
+2. Bereinigen Sie den Datensatz und konvertieren Sie ihn in *tidy*. Nutzen Sie dazu die Funktion `pivot_longer()`.
+3. Finden und korrigieren Sie den Fehlwert.
+4. Filtern Sie die Einträge für die EU heraus und behalten Sie nur die einzelnen Länder bei.
+5. Stellen Sie die Änderung der Wasserentnahme pro Land dar.
 
-### Temperatur-Datensatz, revisited
+### Wasserentnahme mit Datenquelle EUROSTAT direkt
 
-1. Laden Sie den Temperatur-Datensatz aus @Zuur2009a, Datei `r file.name("Temperatur.csv")`.
-1.  Berechnen Sie die Jahresmittelwerte je Station. (Tipp: Hilfe von `tapply` genau lesen!)
+Wir können die Datenbank EUROSTAT direkt über ihr API (Application Programming Interface) ansprechen. Leider ist das herunter geladene Datenformat sehr umständlich. Um uns Programmierarbeit zu sparen, nutzen wir das Paket eurostat, das die Daten aus der Datenbank herunterlädt und gleich ordentlich formatiert.
+
+1. Installieren Sie das Paket eurostat und sehen Sie sich das Tutorial für das Paket an (https://ropengov.github.io/eurostat/articles/website/eurostat_tutorial.html)
+2. Durchsuchen Sie die Datenbank nach allen Datensätzen, die das Wort "water" enthalten und darin das Wort "abstraction".
+3. Laden Sie den entsprechenden Datensatz herunter (env_wat_abs).
+4. Das Paket skimr bietet Zusammenfassungsfunktionen für Datensätze, die man auch in der Pipe benutzen kann. Installieren Sie das Paket und wenden Sie die Funktion `skim()` auf den heruntergeladenen Datensatz an.
+4. Welche Wasserquellen und Nutzer sind im Datensatz enthalten (https://appsso.eurostat.ec.europa.eu/nui/show.do?dataset=env_wat_abs&lang=en)?
+4. Stellen Sie die Wasserentnahme pro Einwohner dar (Gesamtentnahme aus allen Quellen: wat_proc == 'ABST' & wat_src == 'FRW').
+4. Berechnen Sie die Gesamtmenge des entnommenen Wassers für alle Länder je Quelle (Fresh surface water und Fresh ground water).
+4. Stellen Sie diese Daten als Punktdiagramm, als Balkendiagramm und als Flächendiagramm dar. Was ist das Problem mit dem Flächendiagramm?
+
+<!-- ## Effizientes Programmieren -->
+
+<!-- ### Lagerungsdichten -->
+<!-- Auf 10 verschiedenen landwirtschaftlichen Feldern wurden im Oberboden je 25 Stechzylinder entnommen. -->
+
+<!-- 1. Lesen Sie den Datensatz  `r file.name("Bodendaten.txt")` ein. -->
+<!-- 1. Bestimmen Sie die mittlere Lagerungsdichte pro Feld. -->
+
+<!-- ### Temperatur-Datensatz, revisited -->
+
+<!-- 1. Laden Sie den Temperatur-Datensatz aus @Zuur2009a, Datei `r file.name("Temperatur.csv")`. -->
+<!-- 1.  Berechnen Sie die Jahresmittelwerte je Station. (Tipp: Hilfe von `tapply` genau lesen!) -->

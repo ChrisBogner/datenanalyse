@@ -221,9 +221,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.7.4" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#artenvielfalt-in-grasländern"><i class="fa fa-check"></i><b>9.7.4</b> Artenvielfalt in Grasländern</a></li>
 <li class="chapter" data-level="9.7.5" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#tracerversuche"><i class="fa fa-check"></i><b>9.7.5</b> Tracerversuche</a></li>
 </ul></li>
-<li class="chapter" data-level="9.8" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#effizientes-programmieren"><i class="fa fa-check"></i><b>9.8</b> Effizientes Programmieren</a><ul>
-<li class="chapter" data-level="9.8.1" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#lagerungsdichten"><i class="fa fa-check"></i><b>9.8.1</b> Lagerungsdichten</a></li>
-<li class="chapter" data-level="9.8.2" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#temperatur-datensatz-revisited-1"><i class="fa fa-check"></i><b>9.8.2</b> Temperatur-Datensatz, revisited</a></li>
+<li class="chapter" data-level="9.8" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#tidy-data"><i class="fa fa-check"></i><b>9.8</b> Tidy data</a><ul>
+<li class="chapter" data-level="9.8.1" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#wasserentnahme-mit-datenquelle-excel"><i class="fa fa-check"></i><b>9.8.1</b> Wasserentnahme mit Datenquelle Excel</a></li>
+<li class="chapter" data-level="9.8.2" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#wasserentnahme-mit-datenquelle-eurostat-direkt"><i class="fa fa-check"></i><b>9.8.2</b> Wasserentnahme mit Datenquelle EUROSTAT direkt</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="literatur.html"><a href="literatur.html"><i class="fa fa-check"></i>Literatur</a></li>
@@ -401,11 +401,15 @@ Funktionen des Pakets <code>dplyr</code> für Datentransformation anwenden
 <pre><code>## [1] &quot;spec_tbl_df&quot; &quot;tbl_df&quot;      &quot;tbl&quot;         &quot;data.frame&quot;</code></pre>
 <p>Das Objekt <code>temp_humid</code> ist ein sogen. Tibble, ein <code>data.frame</code> mit “modernem” Verhalten. Z.B. gibt die Funktion <code>print()</code> nur die ersten 10 Zeilen aus, die Datentypen in den Spalten werden in hellgrau zwischen ‘&lt;&gt;’ mit angegeben etc. Mehr zu Tibbles finden Sie in Kapitel 10 “Tibbles” in R4DS.</p>
 <p>Ein weiteres Paket, dass zwar nicht zum Kern von <code>tidyverse</code> gehört, jedoch trotzdem extrem nützlich ist, heißt <code>lubridate</code>. Es hilft, Text in richtige Datums-Objekte zu transformieren (ohne sich die kryptischen Datumsformate von R merken zu müssen). Wir transformieren die Spalte <code>temp_humid$MESS_DATUM</code> in ein richtiges Datum mit Uhrzeit.</p>
-<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="tidyverse.html#cb71-1"></a><span class="kw">library</span>(lubridate)</span>
-<span id="cb71-2"><a href="tidyverse.html#cb71-2"></a></span>
-<span id="cb71-3"><a href="tidyverse.html#cb71-3"></a>temp_humid<span class="op">$</span>MESS_DATUM &lt;-<span class="st"> </span><span class="kw">ymd_h</span>(temp_humid<span class="op">$</span>MESS_DATUM)</span>
-<span id="cb71-4"><a href="tidyverse.html#cb71-4"></a></span>
-<span id="cb71-5"><a href="tidyverse.html#cb71-5"></a><span class="kw">print</span>(temp_humid)</span></code></pre></div>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="tidyverse.html#cb71-1"></a><span class="kw">library</span>(lubridate)</span></code></pre></div>
+<pre><code>## 
+## Attaching package: &#39;lubridate&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     date, intersect, setdiff, union</code></pre>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="tidyverse.html#cb74-1"></a>temp_humid<span class="op">$</span>MESS_DATUM &lt;-<span class="st"> </span><span class="kw">ymd_h</span>(temp_humid<span class="op">$</span>MESS_DATUM)</span>
+<span id="cb74-2"><a href="tidyverse.html#cb74-2"></a></span>
+<span id="cb74-3"><a href="tidyverse.html#cb74-3"></a><span class="kw">print</span>(temp_humid)</span></code></pre></div>
 <pre><code>## # A tibble: 39,600 x 6
 ##    STATIONS_ID MESS_DATUM           QN_9 TT_TU RF_TU eor  
 ##          &lt;dbl&gt; &lt;dttm&gt;              &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;
@@ -424,10 +428,10 @@ Funktionen des Pakets <code>dplyr</code> für Datentransformation anwenden
 <div id="daten-zusammenfassen" class="section level3">
 <h3><span class="header-section-number">8.2.2</span> Daten zusammenfassen</h3>
 <p>Die drei Wetterstationen haben folgende IDs:</p>
-<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="tidyverse.html#cb73-1"></a>station_ids &lt;-<span class="st">  </span><span class="kw">tibble</span>(<span class="st">&#39;Hof&#39;</span> =<span class="st"> &#39;2261&#39;</span>, <span class="st">&#39;Frankfurt&#39;</span> =<span class="st"> &#39;1420&#39;</span>, <span class="st">&#39;Koeln&#39;</span> =<span class="st"> &#39;2667&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="tidyverse.html#cb76-1"></a>station_ids &lt;-<span class="st">  </span><span class="kw">tibble</span>(<span class="st">&#39;Hof&#39;</span> =<span class="st"> &#39;2261&#39;</span>, <span class="st">&#39;Frankfurt&#39;</span> =<span class="st"> &#39;1420&#39;</span>, <span class="st">&#39;Koeln&#39;</span> =<span class="st"> &#39;2667&#39;</span>)</span></code></pre></div>
 <p>Ich möchte wissen, wie viele Messpunkte es pro Station gibt:</p>
-<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="tidyverse.html#cb74-1"></a>temp_humid <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb74-2"><a href="tidyverse.html#cb74-2"></a><span class="st">  </span><span class="kw">count</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="tidyverse.html#cb77-1"></a>temp_humid <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb77-2"><a href="tidyverse.html#cb77-2"></a><span class="st">  </span><span class="kw">count</span>()</span></code></pre></div>
 <pre><code>## # A tibble: 1 x 1
 ##       n
 ##   &lt;int&gt;
@@ -465,9 +469,9 @@ Funktionen des Pakets <code>dplyr</code> für Datentransformation anwenden
 </tbody>
 </table>
 <p>Ich möchte nun wissen, wie viele Messpunkte es für Köln-Bonn gibt. <code>tidyverse</code> ist konsistent: jeder Aufruf einer Funktion aus <code>dplyr</code> gibt ein <code>tiblle</code> zurück (und nicht mal <code>data.frame</code> mal Vektor).</p>
-<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="tidyverse.html#cb76-1"></a>temp_humid <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb76-2"><a href="tidyverse.html#cb76-2"></a><span class="st">  </span><span class="kw">filter</span>(STATIONS_ID <span class="op">==</span><span class="st"> </span>station_ids<span class="op">$</span>Koeln) <span class="op">%&gt;%</span></span>
-<span id="cb76-3"><a href="tidyverse.html#cb76-3"></a><span class="st">  </span><span class="kw">count</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="tidyverse.html#cb79-1"></a>temp_humid <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb79-2"><a href="tidyverse.html#cb79-2"></a><span class="st">  </span><span class="kw">filter</span>(STATIONS_ID <span class="op">==</span><span class="st"> </span>station_ids<span class="op">$</span>Koeln) <span class="op">%&gt;%</span></span>
+<span id="cb79-3"><a href="tidyverse.html#cb79-3"></a><span class="st">  </span><span class="kw">count</span>()</span></code></pre></div>
 <pre><code>## # A tibble: 1 x 1
 ##       n
 ##   &lt;int&gt;
@@ -476,11 +480,11 @@ Funktionen des Pakets <code>dplyr</code> für Datentransformation anwenden
 <div id="daten-plotten" class="section level3">
 <h3><span class="header-section-number">8.2.3</span> Daten plotten</h3>
 <p>Wir wählen nur die Station Köln-Bonn und plotten die Stundenwerte der Temperatur mit dem Paket <code>ggplot2</code>.</p>
-<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="tidyverse.html#cb78-1"></a><span class="co"># Köln-Bonn wählen</span></span>
-<span id="cb78-2"><a href="tidyverse.html#cb78-2"></a>koeln &lt;-<span class="st"> </span>temp_humid <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb78-3"><a href="tidyverse.html#cb78-3"></a><span class="st">  </span><span class="kw">filter</span>(STATIONS_ID <span class="op">==</span><span class="st"> </span>station_ids<span class="op">$</span>Koeln)</span>
-<span id="cb78-4"><a href="tidyverse.html#cb78-4"></a></span>
-<span id="cb78-5"><a href="tidyverse.html#cb78-5"></a>koeln</span></code></pre></div>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="tidyverse.html#cb81-1"></a><span class="co"># Köln-Bonn wählen</span></span>
+<span id="cb81-2"><a href="tidyverse.html#cb81-2"></a>koeln &lt;-<span class="st"> </span>temp_humid <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb81-3"><a href="tidyverse.html#cb81-3"></a><span class="st">  </span><span class="kw">filter</span>(STATIONS_ID <span class="op">==</span><span class="st"> </span>station_ids<span class="op">$</span>Koeln)</span>
+<span id="cb81-4"><a href="tidyverse.html#cb81-4"></a></span>
+<span id="cb81-5"><a href="tidyverse.html#cb81-5"></a>koeln</span></code></pre></div>
 <pre><code>## # A tibble: 13,200 x 6
 ##    STATIONS_ID MESS_DATUM           QN_9 TT_TU RF_TU eor  
 ##          &lt;dbl&gt; &lt;dttm&gt;              &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;
@@ -495,18 +499,18 @@ Funktionen des Pakets <code>dplyr</code> für Datentransformation anwenden
 ##  9        2667 2018-11-19 08:00:00     3   3.9    80 eor  
 ## 10        2667 2018-11-19 09:00:00     3   4.8    78 eor  
 ## # … with 13,190 more rows</code></pre>
-<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="tidyverse.html#cb80-1"></a><span class="co"># Plotten</span></span>
-<span id="cb80-2"><a href="tidyverse.html#cb80-2"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> koeln, <span class="kw">aes</span>(<span class="dt">x =</span> MESS_DATUM, <span class="dt">y =</span> TT_TU)) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb80-3"><a href="tidyverse.html#cb80-3"></a><span class="st">  </span><span class="kw">geom_line</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="tidyverse.html#cb83-1"></a><span class="co"># Plotten</span></span>
+<span id="cb83-2"><a href="tidyverse.html#cb83-2"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> koeln, <span class="kw">aes</span>(<span class="dt">x =</span> MESS_DATUM, <span class="dt">y =</span> TT_TU)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb83-3"><a href="tidyverse.html#cb83-3"></a><span class="st">  </span><span class="kw">geom_line</span>()</span></code></pre></div>
 <p><img src="datenanalyse_files/figure-html/unnamed-chunk-53-1.png" width="672" /></p>
 <p>Sie werden sehr bald schon das Paket <code>ggplot2</code> nicht mehr missen wollen. Es erstellt mit wenig Aufwand sehr ansehnliche Grafiken. Natürlich müssen Sie, wie in Base-R auch, für professionelle Grafiken nacharbeiten.</p>
 <p><code>ggplot2</code> folgt einer sogen. Grafikgrammatik (<em>grammer of graphics</em>), indem es seine Grafiken mit ‘+’ aufbaut. Erst sagt man in der Funktion <code>ggplot()</code> welchen Datensatz man plotten möchte, was auf die x- und y-Achse kommt und ob man z.B. Farbe für Gruppen in Daten möchte. All diese sichtbaren Elemente nennt man Ästhetiken (Parameter <code>aes</code>). Erst wenn diese ‘Formalien’ geklärt sind, sagt man, welche Form der Darstellung man möchte. Im oberen Beispiel ist es ein Linienplot. Alle Darstellungsarten in <code>ggplot2</code> beginnen mit <code>geom_*()</code> und sind daher konsistent benannt. Die Informationen zu Daten, x-, y-Achse etc. werden an die <code>geom_*()</code>-Funktionen von der Mutterfunktion <code>ggplot()</code> weiter vererbt. Daher sind die Klammern in <code>geom_line()</code> leer.</p>
 <p>Wir wollen nun die Monatsmittelwerte für die Temperatur berechnen und diese darstellen. Als erstes erstellen wir zwei neue Spalten, die jeweils das Jahr und den Monat beinhalten. Die beiden neuen Spalten werden am Ende von <code>temp_humid</code> angehängt.</p>
-<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="tidyverse.html#cb81-1"></a>temp_humid &lt;-<span class="st"> </span><span class="kw">mutate</span>(temp_humid, </span>
-<span id="cb81-2"><a href="tidyverse.html#cb81-2"></a>                     <span class="dt">year =</span> <span class="kw">year</span>(temp_humid<span class="op">$</span>MESS_DATUM),</span>
-<span id="cb81-3"><a href="tidyverse.html#cb81-3"></a>                     <span class="dt">month =</span> <span class="kw">month</span>(temp_humid<span class="op">$</span>MESS_DATUM))</span>
-<span id="cb81-4"><a href="tidyverse.html#cb81-4"></a></span>
-<span id="cb81-5"><a href="tidyverse.html#cb81-5"></a>temp_humid</span></code></pre></div>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="tidyverse.html#cb84-1"></a>temp_humid &lt;-<span class="st"> </span><span class="kw">mutate</span>(temp_humid, </span>
+<span id="cb84-2"><a href="tidyverse.html#cb84-2"></a>                     <span class="dt">year =</span> <span class="kw">year</span>(temp_humid<span class="op">$</span>MESS_DATUM),</span>
+<span id="cb84-3"><a href="tidyverse.html#cb84-3"></a>                     <span class="dt">month =</span> <span class="kw">month</span>(temp_humid<span class="op">$</span>MESS_DATUM))</span>
+<span id="cb84-4"><a href="tidyverse.html#cb84-4"></a></span>
+<span id="cb84-5"><a href="tidyverse.html#cb84-5"></a>temp_humid</span></code></pre></div>
 <pre><code>## # A tibble: 39,600 x 8
 ##    STATIONS_ID MESS_DATUM           QN_9 TT_TU RF_TU eor    year month
 ##          &lt;dbl&gt; &lt;dttm&gt;              &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -522,10 +526,10 @@ Funktionen des Pakets <code>dplyr</code> für Datentransformation anwenden
 ## 10        2261 2018-11-19 09:00:00     3  -0.6    97 eor    2018    11
 ## # … with 39,590 more rows</code></pre>
 <p>Jetzt können wir einen neuen Datensatz mit den Mittelwerten erstellen. Dafür gruppieren wir erst einmal die Daten nach <code>STATIONS_ID</code>, <code>year</code> und <code>month</code>. Die Mittelwerte sollen ja je Station, Jahr und Monat berechnet werden.</p>
-<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="tidyverse.html#cb83-1"></a>by_month &lt;-<span class="st"> </span><span class="kw">group_by</span>(temp_humid, STATIONS_ID, year, month)</span>
-<span id="cb83-2"><a href="tidyverse.html#cb83-2"></a>monthly_means &lt;-<span class="st"> </span><span class="kw">summarize</span>(by_month, <span class="dt">mean_T =</span> <span class="kw">mean</span>(TT_TU), <span class="dt">mean_RH =</span> <span class="kw">mean</span>(RF_TU))</span></code></pre></div>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="tidyverse.html#cb86-1"></a>by_month &lt;-<span class="st"> </span><span class="kw">group_by</span>(temp_humid, STATIONS_ID, year, month)</span>
+<span id="cb86-2"><a href="tidyverse.html#cb86-2"></a>monthly_means &lt;-<span class="st"> </span><span class="kw">summarize</span>(by_month, <span class="dt">mean_T =</span> <span class="kw">mean</span>(TT_TU), <span class="dt">mean_RH =</span> <span class="kw">mean</span>(RF_TU))</span></code></pre></div>
 <pre><code>## `summarise()` regrouping output by &#39;STATIONS_ID&#39;, &#39;year&#39; (override with `.groups` argument)</code></pre>
-<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="tidyverse.html#cb85-1"></a>monthly_means</span></code></pre></div>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="tidyverse.html#cb88-1"></a>monthly_means</span></code></pre></div>
 <pre><code>## # A tibble: 57 x 5
 ## # Groups:   STATIONS_ID, year [9]
 ##    STATIONS_ID  year month mean_T mean_RH
@@ -542,7 +546,7 @@ Funktionen des Pakets <code>dplyr</code> für Datentransformation anwenden
 ## 10        1420  2019     8  20.7     65.6
 ## # … with 47 more rows</code></pre>
 <p>Die Struktur von <code>monthly_means</code> zeigt uns, dass es sich um gruppierte Daten handelt.</p>
-<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="tidyverse.html#cb87-1"></a><span class="kw">str</span>(monthly_means)</span></code></pre></div>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="tidyverse.html#cb90-1"></a><span class="kw">str</span>(monthly_means)</span></code></pre></div>
 <pre><code>## tibble [57 × 5] (S3: grouped_df/tbl_df/tbl/data.frame)
 ##  $ STATIONS_ID: num [1:57] 1420 1420 1420 1420 1420 1420 1420 1420 1420 1420 ...
 ##  $ year       : num [1:57] 2018 2018 2019 2019 2019 ...
@@ -565,15 +569,15 @@ Funktionen des Pakets <code>dplyr</code> für Datentransformation anwenden
 ##   .. ..@ ptype: int(0) 
 ##   ..- attr(*, &quot;.drop&quot;)= logi TRUE</code></pre>
 <p>Da wir aber mit den Daten weiter rechnen wollen, ist es besser, die Gruppierung wieder aufzugeben. Es könnte sonst später Fehlermeldungen geben.</p>
-<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="tidyverse.html#cb89-1"></a>monthly_means &lt;-<span class="st"> </span><span class="kw">ungroup</span>(monthly_means)</span></code></pre></div>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="tidyverse.html#cb92-1"></a>monthly_means &lt;-<span class="st"> </span><span class="kw">ungroup</span>(monthly_means)</span></code></pre></div>
 <p>Um die Daten als Zeitreihen zu plotten, erstellen wir noch eine ordentliche Zeit-Spalte. Die Funktion <code>parse_date_time()</code> kann aus Character richtige Datums-Zeitobjekte erstellen. Sie ist allgemeienr als die oben verwendete <code>ymd()</code> Funktion, da man hier das Format explizit angeben kann. In unserem Fall ist das Format ‘ym’ für Jahr und Monat.</p>
-<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="tidyverse.html#cb90-1"></a>monthly_means &lt;-<span class="st"> </span>monthly_means <span class="op">%&gt;%</span></span>
-<span id="cb90-2"><a href="tidyverse.html#cb90-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">my_date =</span> <span class="kw">parse_date_time</span>(<span class="kw">paste0</span>(monthly_means<span class="op">$</span>year,</span>
-<span id="cb90-3"><a href="tidyverse.html#cb90-3"></a>                  monthly_means<span class="op">$</span>month), <span class="st">&#39;ym&#39;</span>, <span class="dt">tz =</span> <span class="st">&#39;CET&#39;</span>))</span></code></pre></div>
-<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="tidyverse.html#cb91-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> monthly_means, <span class="kw">aes</span>(<span class="dt">x =</span> my_date, <span class="dt">y =</span> mean_T, </span>
-<span id="cb91-2"><a href="tidyverse.html#cb91-2"></a>            <span class="dt">col =</span> <span class="kw">factor</span>(STATIONS_ID))) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb91-3"><a href="tidyverse.html#cb91-3"></a><span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span><span class="st"> </span></span>
-<span id="cb91-4"><a href="tidyverse.html#cb91-4"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&#39;Time&#39;</span>, <span class="dt">y =</span> <span class="st">&#39;Temperature (°C)&#39;</span>, <span class="dt">color =</span> <span class="st">&#39;Station&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="tidyverse.html#cb93-1"></a>monthly_means &lt;-<span class="st"> </span>monthly_means <span class="op">%&gt;%</span></span>
+<span id="cb93-2"><a href="tidyverse.html#cb93-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">my_date =</span> <span class="kw">parse_date_time</span>(<span class="kw">paste0</span>(monthly_means<span class="op">$</span>year,</span>
+<span id="cb93-3"><a href="tidyverse.html#cb93-3"></a>                  monthly_means<span class="op">$</span>month), <span class="st">&#39;ym&#39;</span>, <span class="dt">tz =</span> <span class="st">&#39;CET&#39;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="tidyverse.html#cb94-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> monthly_means, <span class="kw">aes</span>(<span class="dt">x =</span> my_date, <span class="dt">y =</span> mean_T, </span>
+<span id="cb94-2"><a href="tidyverse.html#cb94-2"></a>            <span class="dt">col =</span> <span class="kw">factor</span>(STATIONS_ID))) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb94-3"><a href="tidyverse.html#cb94-3"></a><span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb94-4"><a href="tidyverse.html#cb94-4"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&#39;Time&#39;</span>, <span class="dt">y =</span> <span class="st">&#39;Temperature (°C)&#39;</span>, <span class="dt">color =</span> <span class="st">&#39;Station&#39;</span>)</span></code></pre></div>
 <p><img src="datenanalyse_files/figure-html/unnamed-chunk-59-1.png" width="672" /></p>
 <p>Wir werden in eine spätere Kapitel auf <code>ggplot2</code> genauer eingehen. Fürs Erste soll es als Appetithappen reichen 🍰.</p>
 </div>

@@ -221,9 +221,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.7.4" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#artenvielfalt-in-grasländern"><i class="fa fa-check"></i><b>9.7.4</b> Artenvielfalt in Grasländern</a></li>
 <li class="chapter" data-level="9.7.5" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#tracerversuche"><i class="fa fa-check"></i><b>9.7.5</b> Tracerversuche</a></li>
 </ul></li>
-<li class="chapter" data-level="9.8" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#effizientes-programmieren"><i class="fa fa-check"></i><b>9.8</b> Effizientes Programmieren</a><ul>
-<li class="chapter" data-level="9.8.1" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#lagerungsdichten"><i class="fa fa-check"></i><b>9.8.1</b> Lagerungsdichten</a></li>
-<li class="chapter" data-level="9.8.2" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#temperatur-datensatz-revisited-1"><i class="fa fa-check"></i><b>9.8.2</b> Temperatur-Datensatz, revisited</a></li>
+<li class="chapter" data-level="9.8" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#tidy-data"><i class="fa fa-check"></i><b>9.8</b> Tidy data</a><ul>
+<li class="chapter" data-level="9.8.1" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#wasserentnahme-mit-datenquelle-excel"><i class="fa fa-check"></i><b>9.8.1</b> Wasserentnahme mit Datenquelle Excel</a></li>
+<li class="chapter" data-level="9.8.2" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#wasserentnahme-mit-datenquelle-eurostat-direkt"><i class="fa fa-check"></i><b>9.8.2</b> Wasserentnahme mit Datenquelle EUROSTAT direkt</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="literatur.html"><a href="literatur.html"><i class="fa fa-check"></i>Literatur</a></li>
@@ -303,10 +303,10 @@ Grafiken mit mehreren Plots erstellen
 <p>Uns interessieren hier nur die Spalten MO_TT, MO_TN, MO_TX und MESS_DATUM_BEGINN. Das sind jeweils die Monatsmittel der Lufttemperatur in 2 m Höhe, Monatsmittel des Minimums der Lufttemperatur, Monatsmittel des Maximums der Lufttemperatur und der Beginn der jeweiligen Messperiode (d.h. des Kalendermonats). Um die Daten als Zeitreihen darstellen zu können, wandeln wir die Spalte MESS_DATUM_BEGINN in ein richtiges Zeitobjekt (d.h. ein Objekt der Klasse <em>Date</em>). Das geht mit der Funktion <code>as.Date</code>. Der Parameter <code>format</code> beschreibt den Aufbau des Datums im Objekt <code>meteo</code>: erst steht das Jahr mit 4 Zeichen (z.B. 2018), dann folgt der Monat mit 2 Zeichen (z.B. 01) und dann der Tag mit 2 Zeichen (z.B. 01). Näheres zu Datumsformaten finden Sie mit <code>?strptime</code>.</p>
 <div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="visualisieren.html#cb31-1"></a>my_date &lt;-<span class="st"> </span><span class="kw">as.Date</span>(<span class="kw">as.character</span>(meteo<span class="op">$</span>MESS_DATUM_BEGINN), <span class="dt">format =</span> <span class="st">&#39;%Y%m%d&#39;</span>)</span>
 <span id="cb31-2"><a href="visualisieren.html#cb31-2"></a>my_date</span></code></pre></div>
-<pre><code>##  [1] &quot;2018-10-01&quot; &quot;2018-11-01&quot; &quot;2018-12-01&quot; &quot;2019-01-01&quot; &quot;2019-02-01&quot;
-##  [6] &quot;2019-03-01&quot; &quot;2019-04-01&quot; &quot;2019-05-01&quot; &quot;2019-06-01&quot; &quot;2019-07-01&quot;
-## [11] &quot;2019-08-01&quot; &quot;2019-09-01&quot; &quot;2019-10-01&quot; &quot;2019-11-01&quot; &quot;2019-12-01&quot;
-## [16] &quot;2020-01-01&quot; &quot;2020-02-01&quot; &quot;2020-03-01&quot; &quot;2020-04-01&quot;</code></pre>
+<pre><code>##  [1] &quot;2018-10-01&quot; &quot;2018-11-01&quot; &quot;2018-12-01&quot; &quot;2019-01-01&quot; &quot;2019-02-01&quot; &quot;2019-03-01&quot;
+##  [7] &quot;2019-04-01&quot; &quot;2019-05-01&quot; &quot;2019-06-01&quot; &quot;2019-07-01&quot; &quot;2019-08-01&quot; &quot;2019-09-01&quot;
+## [13] &quot;2019-10-01&quot; &quot;2019-11-01&quot; &quot;2019-12-01&quot; &quot;2020-01-01&quot; &quot;2020-02-01&quot; &quot;2020-03-01&quot;
+## [19] &quot;2020-04-01&quot;</code></pre>
 <p>Es sind Daten von Oktober 2018 bis April 2020. Wir erstellen ein Streudiagramm mit der Funktion <code>plot</code>. Mit den Parametern <code>xlab</code> und <code>ylab</code> lassen sich die beiden Achsen beschriften und <code>main</code> fügt einen Titel dazu. Der Parameter <code>type</code> bestimmt die Wahl der Symbole; hier benutzen wir <code>type = b</code> für <em>both</em>, also sowohl Punkte als auch Linien.</p>
 <div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="visualisieren.html#cb33-1"></a><span class="kw">plot</span>(my_date, meteo<span class="op">$</span>MO_TT, <span class="dt">type =</span> <span class="st">&#39;b&#39;</span>, <span class="dt">xlab =</span> <span class="st">&#39;Zeit&#39;</span>, <span class="dt">ylab =</span> <span class="st">&#39;Temperatur [°C]&#39;</span>, <span class="dt">main =</span> <span class="st">&#39;Klimadaten der DWD-Station Köln-Bonn&#39;</span>)</span></code></pre></div>
 <p><img src="datenanalyse_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>

@@ -221,9 +221,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.7.4" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#artenvielfalt-in-grasländern"><i class="fa fa-check"></i><b>9.7.4</b> Artenvielfalt in Grasländern</a></li>
 <li class="chapter" data-level="9.7.5" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#tracerversuche"><i class="fa fa-check"></i><b>9.7.5</b> Tracerversuche</a></li>
 </ul></li>
-<li class="chapter" data-level="9.8" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#effizientes-programmieren"><i class="fa fa-check"></i><b>9.8</b> Effizientes Programmieren</a><ul>
-<li class="chapter" data-level="9.8.1" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#lagerungsdichten"><i class="fa fa-check"></i><b>9.8.1</b> Lagerungsdichten</a></li>
-<li class="chapter" data-level="9.8.2" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#temperatur-datensatz-revisited-1"><i class="fa fa-check"></i><b>9.8.2</b> Temperatur-Datensatz, revisited</a></li>
+<li class="chapter" data-level="9.8" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#tidy-data"><i class="fa fa-check"></i><b>9.8</b> Tidy data</a><ul>
+<li class="chapter" data-level="9.8.1" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#wasserentnahme-mit-datenquelle-excel"><i class="fa fa-check"></i><b>9.8.1</b> Wasserentnahme mit Datenquelle Excel</a></li>
+<li class="chapter" data-level="9.8.2" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#wasserentnahme-mit-datenquelle-eurostat-direkt"><i class="fa fa-check"></i><b>9.8.2</b> Wasserentnahme mit Datenquelle EUROSTAT direkt</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="literatur.html"><a href="literatur.html"><i class="fa fa-check"></i>Literatur</a></li>
@@ -278,15 +278,15 @@ Schleifen
 <span id="cb38-3"><a href="funktionen.html#cb38-3"></a>                      <span class="dt">col3 =</span> <span class="kw">runif</span>(<span class="dv">20</span>, <span class="dt">min =</span> <span class="dv">13</span>, <span class="dt">max =</span> <span class="dv">100</span>))</span>
 <span id="cb38-4"><a href="funktionen.html#cb38-4"></a><span class="kw">summary</span>(my_data)</span></code></pre></div>
 <pre><code>##       col1            col2             col3      
-##  Min.   :3.159   Min.   : 7.098   Min.   :26.11  
-##  1st Qu.:4.301   1st Qu.: 8.651   1st Qu.:45.20  
-##  Median :6.809   Median :10.365   Median :58.97  
-##  Mean   :6.416   Mean   : 9.798   Mean   :57.05  
-##  3rd Qu.:8.272   3rd Qu.:10.872   3rd Qu.:67.27  
-##  Max.   :9.680   Max.   :11.701   Max.   :95.61</code></pre>
+##  Min.   :3.219   Min.   : 7.503   Min.   :26.12  
+##  1st Qu.:4.814   1st Qu.: 9.037   1st Qu.:39.37  
+##  Median :6.449   Median :10.378   Median :58.83  
+##  Mean   :6.591   Mean   :10.053   Mean   :57.54  
+##  3rd Qu.:8.231   3rd Qu.:11.145   3rd Qu.:75.96  
+##  Max.   :9.954   Max.   :11.883   Max.   :95.95</code></pre>
 <div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="funktionen.html#cb40-1"></a><span class="kw">sapply</span>(my_data, sd)</span></code></pre></div>
 <pre><code>##      col1      col2      col3 
-##  2.217154  1.427976 18.652627</code></pre>
+##  2.043766  1.413384 23.089245</code></pre>
 <p>Ich möchte die Daten so transformieren, dass alle Variablen im Datensatz (d.h. Spalten) einen Mittelwert von 0 und eine Standardabweichung von 1 haben. Dazu ziehe ich den Mittelwert ab und teile durch die Standardabweichung. Das ist eine klassische Transformation (manchmal <span class="math inline">\(z\)</span>-Transformation genannt), die manche Analysemethoden (z.B. Hauptkomponentenanalyse) als Vorbehandlung der Daten verlangen.</p>
 <p>Erst einmal das Naheliegende: Transformation per Copy und Paste.</p>
 <div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="funktionen.html#cb42-1"></a>my_data_trans &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">col1_trans =</span> (my_data<span class="op">$</span>col1 <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(my_data<span class="op">$</span>col1))<span class="op">/</span><span class="kw">sd</span>(my_data<span class="op">$</span>col1),</span>
@@ -294,16 +294,16 @@ Schleifen
 <span id="cb42-3"><a href="funktionen.html#cb42-3"></a>                            <span class="dt">col3_trans =</span> (my_data<span class="op">$</span>col3 <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(my_data<span class="op">$</span>col3))<span class="op">/</span><span class="kw">sd</span>(my_data<span class="op">$</span>col3))</span></code></pre></div>
 <p>Haben Sie den Fehler bemerkt? Ich habe einmal vergessen eine 1 durch eine 2 zu ersetzten. Das merke ich aber nur, wenn ich mir das Ergebnis ansehen. Die Standardabweichung in <code>col2_trans</code> ist nicht gleich 1.</p>
 <div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="funktionen.html#cb43-1"></a><span class="kw">summary</span>(my_data_trans)</span></code></pre></div>
-<pre><code>##    col1_trans        col2_trans        col3_trans     
-##  Min.   :-1.4688   Min.   :-1.2178   Min.   :-1.6586  
-##  1st Qu.:-0.9537   1st Qu.:-0.5173   1st Qu.:-0.6351  
-##  Median : 0.1774   Median : 0.2557   Median : 0.1033  
-##  Mean   : 0.0000   Mean   : 0.0000   Mean   : 0.0000  
-##  3rd Qu.: 0.8370   3rd Qu.: 0.4844   3rd Qu.: 0.5483  
-##  Max.   : 1.4723   Max.   : 0.8581   Max.   : 2.0675</code></pre>
+<pre><code>##    col1_trans         col2_trans        col3_trans      
+##  Min.   :-1.64997   Min.   :-1.2481   Min.   :-1.36071  
+##  1st Qu.:-0.86943   1st Qu.:-0.4973   1st Qu.:-0.78685  
+##  Median :-0.06946   Median : 0.1587   Median : 0.05579  
+##  Mean   : 0.00000   Mean   : 0.0000   Mean   : 0.00000  
+##  3rd Qu.: 0.80254   3rd Qu.: 0.5339   3rd Qu.: 0.79748  
+##  Max.   : 1.64573   Max.   : 0.8950   Max.   : 1.66324</code></pre>
 <div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="funktionen.html#cb45-1"></a><span class="kw">sapply</span>(my_data_trans, sd)</span></code></pre></div>
 <pre><code>## col1_trans col2_trans col3_trans 
-##  1.0000000  0.6440581  1.0000000</code></pre>
+##  1.0000000  0.6915586  1.0000000</code></pre>
 <p>So etwas passiert sehr schnell und wird durch das Schreiben einer Funktion vermieden.</p>
 <p>Jede Funktionsdefinition beginnt mit der Wahl des Namens. Es ist eine gute Idee, sich einen konsistenten und sauberen Stil gleich am Anfang anzugewöhnen. Seien Sie nett zu Ihrem zukünftigen Ich und anderen Menschen, die Ihren Code lesen werden 😄. Es ist ein guter Stil, Verben als Funktionsnamen zu nutzen, die beschreiben, was eine Funktion macht. In jedem Fall, <strong>wählen Sie keine Namen, die schon für Funktionen oder Variablen vergeben sind!</strong> Das würde die ursprünglichen Funktionen oder Variablen einfach überschreiben.</p>
 <p>Wir nennen unsere Funktion <code>z_transform</code>, weil sie Daten <span class="math inline">\(z\)</span>-transformiert. Bei zusammengesetzten Namen sollten Sie den Unterstrich verwenden. Das macht den Namen einfacher zu lesen.</p>
@@ -322,13 +322,13 @@ Schleifen
 <span id="cb48-2"><a href="funktionen.html#cb48-2"></a>                              <span class="dt">col2_trans =</span> <span class="kw">z_transofrm</span>(my_data<span class="op">$</span>col2),</span>
 <span id="cb48-3"><a href="funktionen.html#cb48-3"></a>                              <span class="dt">col2_trans =</span> <span class="kw">z_transofrm</span>(my_data<span class="op">$</span>col3))</span>
 <span id="cb48-4"><a href="funktionen.html#cb48-4"></a><span class="kw">summary</span>(my_data_trans_<span class="dv">2</span>)</span></code></pre></div>
-<pre><code>##    col1_trans        col2_trans       col2_trans.1    
-##  Min.   :-1.4688   Min.   :-1.8909   Min.   :-1.6586  
-##  1st Qu.:-0.9537   1st Qu.:-0.8032   1st Qu.:-0.6351  
-##  Median : 0.1774   Median : 0.3971   Median : 0.1033  
-##  Mean   : 0.0000   Mean   : 0.0000   Mean   : 0.0000  
-##  3rd Qu.: 0.8370   3rd Qu.: 0.7522   3rd Qu.: 0.5483  
-##  Max.   : 1.4723   Max.   : 1.3324   Max.   : 2.0675</code></pre>
+<pre><code>##    col1_trans         col2_trans       col2_trans.1     
+##  Min.   :-1.64997   Min.   :-1.8048   Min.   :-1.36071  
+##  1st Qu.:-0.86943   1st Qu.:-0.7192   1st Qu.:-0.78685  
+##  Median :-0.06946   Median : 0.2294   Median : 0.05579  
+##  Mean   : 0.00000   Mean   : 0.0000   Mean   : 0.00000  
+##  3rd Qu.: 0.80254   3rd Qu.: 0.7720   3rd Qu.: 0.79748  
+##  Max.   : 1.64573   Max.   : 1.2941   Max.   : 1.66324</code></pre>
 <div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="funktionen.html#cb50-1"></a><span class="kw">sapply</span>(my_data_trans_<span class="dv">2</span>, sd)</span></code></pre></div>
 <pre><code>##   col1_trans   col2_trans col2_trans.1 
 ##            1            1            1</code></pre>
@@ -367,8 +367,8 @@ Schleifen
 <h2><span class="header-section-number">7.3</span> <code>for</code>-Schleifen (<code>for</code> <em>loops</em>)</h2>
 <p>Wenn wir unsere <code>say_hello</code> Funktion auf einen Vektor von Tageszeiten anwenden wollen, gibt es eine Warnung.</p>
 <div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="funktionen.html#cb58-1"></a><span class="kw">say_hello</span>(<span class="kw">c</span>(<span class="st">&#39;Morgen&#39;</span>, <span class="st">&#39;Mittag&#39;</span>, <span class="st">&#39;Abend&#39;</span>))</span></code></pre></div>
-<pre><code>## Warning in if (my_time == &quot;Morgen&quot;) {: Bedingung hat Länge &gt; 1 und nur das
-## erste Element wird benutzt</code></pre>
+<pre><code>## Warning in if (my_time == &quot;Morgen&quot;) {: Bedingung hat Länge &gt; 1 und nur das erste
+## Element wird benutzt</code></pre>
 <pre><code>## [1] &quot;Guten Morgen&quot;</code></pre>
 <p>Das liegt daran, dass die Auswertung der Bedingung eine Antwort der Länge 1 liefern muss: entweder <code>TRUE</code>, wenn die Bedingung stimmt, oder <code>FALSE</code>, wenn sie nicht stimmt. Bei einem Vektor ist die Antwort aber länger als 1 und die Funktion benutzt nur die erste Stelle der Antwort. Man sagt auch, dass die Funktion <code>say_hello</code> <em>nicht vektorisiert</em> sei, sie kann also nicht von sich aus auf einem Vektor arbeiten.</p>
 <p>Damit man eine eine nicht vektorisierte Funktion auf einen Vektor anwenden kann, gibt es mehrere Möglichkeiten. Eine davon ist die sogen. <code>for</code> Schleife. Eine Schleife ist eine wiederholte Ausführung von Code, man sagt auch <em>Iteration</em>.</p>

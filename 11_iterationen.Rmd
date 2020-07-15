@@ -1,0 +1,6 @@
+# Iterationen {#iterationen}
+
+```{block, type = 'rmdoutcomes'}
+- Funktionen wiederholt anwenden
+- Ergebnisse verpacken und auspacken
+```

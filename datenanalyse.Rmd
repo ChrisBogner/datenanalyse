@@ -1447,7 +1447,7 @@ Im Waldstein wurden Tracerversuche mit dem Farbstoff Brilliant Blue durchgeführ
 ### Wasserentnahme mit Datenquelle Excel
 Wir beschäftigen uns mit dem Einlesen und bereinigen von Daten aus Exceldateien. Dazu nutzen wir das Beispiel aus einer der ersten Sitzungen zur Wasserentnahme in der EU.
 
-1. Sehen Sie sich die Strukture der Datei `r file.name("TEN000021586860138332.xlsx")` an und lesen Sie sie ein. Nutzen Sie dazu die Funktion `read_xlsx()` aus dem Paket readxl.
+1. Sehen Sie sich die Struktur der Datei `r file.name("TEN000021586860138332.xlsx")` an und lesen Sie sie ein. Nutzen Sie dazu die Funktion `read_xlsx()` aus dem Paket readxl.
 2. Bereinigen Sie den Datensatz und konvertieren Sie ihn in *tidy*. Nutzen Sie dazu die Funktion `pivot_longer()`.
 3. Finden und korrigieren Sie den Fehlwert.
 4. Filtern Sie die Einträge für die EU heraus und behalten Sie nur die einzelnen Länder bei.

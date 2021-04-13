@@ -1,4 +1,4 @@
-# Tidyverse {#tidyverse}
+# Der explorative Workflow mit tidyverse {#tidyverse}
 
 ```{block, type = 'rmdoutcomes'}
 - Kernpakete aus `tidyverse` benennen
@@ -8,11 +8,11 @@
 
 `tidyverse` ist eine Sammlung von R-Pakete, die explizit für Datenanalyse entwickelt wurden (https://www.tidyverse.org/). `tidyverse` versucht durch gemeinsame Philosophie in Design, Grammatik und Datenstruktur die Datenanalyse zu erleichtern (https://design.tidyverse.org/). Auch wenn `tidyverse` auf den ersten Blick etwas fremd erscheint, es ist ein Teil von R, kein eigenes Universum. Es ist also völlig in Ordnung, R-Basisfunktionen mit Funktionen aus `tidyverse` zu mischen.
 
-Das wichtigste Einführungsbuch zu `tidyverse` ist sicherlich **R4DS**: "R for Data Science" [@Wickham2017], das Sie kostenlos online lesen können (https://r4ds.had.co.nz/).
+Das wichtigste Einführungsbuch zu `tidyverse` ist sicherlich **R4DS**: "R for Data Science" [@r4ds], das Sie kostenlos online lesen können (https://r4ds.had.co.nz/).
 
 ## Grundpakete
 
-`tidyverse` enthält folgende Grundpakete, die alle installiert werden, wenn Sie `install.packages('tidyverse')` eingeben.
+`tidyverse` enthält folgende Grundpakete, die alle installiert werden, wenn Sie `install.packages('tidyverse')` ausführen.
 
 Paketname | Kurzbeschreibung|
 :-------- | :------------ |
@@ -27,7 +27,7 @@ Paketname | Kurzbeschreibung|
 
 Jedes dieser Pakete hat ein Cheat Sheet, eine übersichtliche Zusammenstellung der Funktionen des Pakets. Sie bekommen die Cheet Sheats über die `tidyverse`-Seite (https://www.tidyverse.org/packages/), indem Sie auf das jeweilige Paket klicken und zum Abschnitt 'Cheatsheet' scrollen.
 
-## Der Workflow
+## Der explorative Workflow
 
 ### Daten einlesen
 

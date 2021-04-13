@@ -1,254 +1,58 @@
 <!DOCTYPE html>
-<html lang="" xml:lang="">
+<html lang="en">
 <head>
-
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Kapitel 7 Funktionen | Datenanalyse mit R</title>
-  <meta name="description" content="Begleitskript zur Veranstaltung Datenanalyse mit R" />
-  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
-
-  <meta property="og:title" content="Kapitel 7 Funktionen | Datenanalyse mit R" />
-  <meta property="og:type" content="book" />
-  
-  
-  <meta property="og:description" content="Begleitskript zur Veranstaltung Datenanalyse mit R" />
-  <meta name="github-repo" content="https://github.com/ChrisBogner/datenanalyse.git" />
-
-  <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Kapitel 7 Funktionen | Datenanalyse mit R" />
-  
-  <meta name="twitter:description" content="Begleitskript zur Veranstaltung Datenanalyse mit R" />
-  
-
-<meta name="author" content="Christina Bogner" />
-
-
-
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-  
-  
-<link rel="prev" href="reproduzieren.html"/>
-<link rel="next" href="tidyverse.html"/>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
-<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
-
-
-
-
-
-
-
-
-<script src="libs/kePrint-0.0.1/kePrint.js"></script>
-
-
-<style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-</style>
-
-<link rel="stylesheet" href="style.css" type="text/css" />
-<link rel="stylesheet" href="css/all.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Kapitel 5 Funktionen | Datenanalyse mit R</title>
+<meta name="author" content="Christina Bogner">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.2"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.7.4/header-attrs.js"></script><script src="libs/jquery-3.5.1/jquery-3.5.1.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.5.3/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.5.3/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.2.4/tabs.js"></script><script src="libs/bs3compat-0.2.4/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><script src="https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/mark.js@8.11.1/dist/mark.min.js"></script><!-- CSS --><link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="font-awesome.min.css">
 </head>
+<body data-spy="scroll" data-target="#toc">
 
-<body>
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
 
-
-
-  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
-
-    <div class="book-summary">
-      <nav role="navigation">
-
-<ul class="summary">
-<li><a href="./">Datenanalyse mit R</a></li>
-
-<li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Vorwort</a><ul>
-<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#organisatorisches"><i class="fa fa-check"></i><b>1.1</b> Organisatorisches</a></li>
-<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#sinn-und-unsinn-dieses-skripts"><i class="fa fa-check"></i><b>1.2</b> Sinn und Unsinn dieses Skripts</a></li>
-</ul></li>
-<li class="chapter" data-level="2" data-path="einfuehrung.html"><a href="einfuehrung.html"><i class="fa fa-check"></i><b>2</b> Der Kurs</a><ul>
-<li class="chapter" data-level="2.1" data-path="einfuehrung.html"><a href="einfuehrung.html#zuordnung-zum-modul-und-leistungsnachweis"><i class="fa fa-check"></i><b>2.1</b> Zuordnung zum Modul und Leistungsnachweis</a></li>
-<li class="chapter" data-level="2.2" data-path="einfuehrung.html"><a href="einfuehrung.html#lernziele-des-kurses"><i class="fa fa-check"></i><b>2.2</b> Lernziele des Kurses</a></li>
-<li class="chapter" data-level="2.3" data-path="einfuehrung.html"><a href="einfuehrung.html#was-mir-im-umgang-miteinander-wichtig-ist"><i class="fa fa-check"></i><b>2.3</b> Was mir im Umgang miteinander wichtig ist</a></li>
-</ul></li>
-<li class="chapter" data-level="3" data-path="erste-schritte.html"><a href="erste-schritte.html"><i class="fa fa-check"></i><b>3</b> Erste Schritte in <svg style="height:0.8em;top:.04em;position:relative;fill:steelblue;" viewBox="0 0 581 512"><path d="M581 226.6C581 119.1 450.9 32 290.5 32S0 119.1 0 226.6C0 322.4 103.3 402 239.4 418.1V480h99.1v-61.5c24.3-2.7 47.6-7.4 69.4-13.9L448 480h112l-67.4-113.7c54.5-35.4 88.4-84.9 88.4-139.7zm-466.8 14.5c0-73.5 98.9-133 220.8-133s211.9 40.7 211.9 133c0 50.1-26.5 85-70.3 106.4-2.4-1.6-4.7-2.9-6.4-3.7-10.2-5.2-27.8-10.5-27.8-10.5s86.6-6.4 86.6-92.7-90.6-87.9-90.6-87.9h-199V361c-74.1-21.5-125.2-67.1-125.2-119.9zm225.1 38.3v-55.6c57.8 0 87.8-6.8 87.8 27.3 0 36.5-38.2 28.3-87.8 28.3zm-.9 72.5H365c10.8 0 18.9 11.7 24 19.2-16.1 1.9-33 2.8-50.6 2.9v-22.1z"/></svg></a><ul>
-<li class="chapter" data-level="3.1" data-path="erste-schritte.html"><a href="erste-schritte.html#was-ist-r"><i class="fa fa-check"></i><b>3.1</b> Was ist R?</a></li>
-<li class="chapter" data-level="3.2" data-path="erste-schritte.html"><a href="erste-schritte.html#was-ist-rstudio"><i class="fa fa-check"></i><b>3.2</b> Was ist RStudio?</a></li>
-<li class="chapter" data-level="3.3" data-path="erste-schritte.html"><a href="erste-schritte.html#rstudio-cloud"><i class="fa fa-check"></i><b>3.3</b> RStudio Cloud</a></li>
-<li class="chapter" data-level="3.4" data-path="erste-schritte.html"><a href="erste-schritte.html#inhalt-der-live-einführung"><i class="fa fa-check"></i><b>3.4</b> Inhalt der live Einführung</a></li>
-</ul></li>
-<li class="chapter" data-level="4" data-path="daten.html"><a href="daten.html"><i class="fa fa-check"></i><b>4</b> Daten in R</a><ul>
-<li class="chapter" data-level="4.1" data-path="daten.html"><a href="daten.html#datenstrukturen-erzeugen"><i class="fa fa-check"></i><b>4.1</b> Datenstrukturen erzeugen</a></li>
-<li class="chapter" data-level="4.2" data-path="daten.html"><a href="daten.html#arten-von-daten-in-r"><i class="fa fa-check"></i><b>4.2</b> Arten von Daten in R</a></li>
-<li class="chapter" data-level="4.3" data-path="daten.html"><a href="daten.html#objekt-sag-mir-wer-du-bist"><i class="fa fa-check"></i><b>4.3</b> Objekt, sag mir wer du bist</a></li>
-<li class="chapter" data-level="4.4" data-path="daten.html"><a href="daten.html#datenlücken-fehlschläge-etc."><i class="fa fa-check"></i><b>4.4</b> Datenlücken, Fehlschläge etc.</a></li>
-<li class="chapter" data-level="4.5" data-path="daten.html"><a href="daten.html#inhalt-der-live-einführung-1"><i class="fa fa-check"></i><b>4.5</b> Inhalt der live Einführung</a></li>
-</ul></li>
-<li class="chapter" data-level="5" data-path="visualisieren.html"><a href="visualisieren.html"><i class="fa fa-check"></i><b>5</b> Daten visualisieren I: Einfache Grafiken</a><ul>
-<li class="chapter" data-level="5.1" data-path="visualisieren.html"><a href="visualisieren.html#plotten-mit-r-basisfunktionen"><i class="fa fa-check"></i><b>5.1</b> Plotten mit R-Basisfunktionen</a><ul>
-<li class="chapter" data-level="5.1.1" data-path="visualisieren.html"><a href="visualisieren.html#high-level-grafikfunktion-plot-und-low-level-grafikfunktion-lines"><i class="fa fa-check"></i><b>5.1.1</b> <em>High-level</em> Grafikfunktion <code>plot</code> und <em>low-level</em> Grafikfunktion <code>lines</code></a></li>
-<li class="chapter" data-level="5.1.2" data-path="visualisieren.html"><a href="visualisieren.html#überblick-über-die-wichtigsten-high-level-und-low-level-grafikfunktionen"><i class="fa fa-check"></i><b>5.1.2</b> Überblick über die wichtigsten <em>high-level</em> und <em>low-level</em> Grafikfunktionen</a></li>
-</ul></li>
-<li class="chapter" data-level="5.2" data-path="visualisieren.html"><a href="visualisieren.html#tuning-mit-par"><i class="fa fa-check"></i><b>5.2</b> Tuning mit <code>par</code></a></li>
-<li class="chapter" data-level="5.3" data-path="visualisieren.html"><a href="visualisieren.html#inhalt-der-live-einführung-2"><i class="fa fa-check"></i><b>5.3</b> Inhalt der live Einführung</a></li>
-</ul></li>
-<li class="chapter" data-level="6" data-path="reproduzieren.html"><a href="reproduzieren.html"><i class="fa fa-check"></i><b>6</b> Reproduzierbare Forschung</a><ul>
-<li class="chapter" data-level="6.1" data-path="reproduzieren.html"><a href="reproduzieren.html#warum-reproduzierbarkeit-in-der-forschung-wichtig-ist"><i class="fa fa-check"></i><b>6.1</b> Warum Reproduzierbarkeit in der Forschung wichtig ist</a></li>
-<li class="chapter" data-level="6.2" data-path="reproduzieren.html"><a href="reproduzieren.html#literate-programming-idee-von-donald-knuth"><i class="fa fa-check"></i><b>6.2</b> <em>Literate Programming</em> Idee von Donald Knuth</a></li>
-<li class="chapter" data-level="6.3" data-path="reproduzieren.html"><a href="reproduzieren.html#reproduzierbare-berichte-mit-r-markdown"><i class="fa fa-check"></i><b>6.3</b> Reproduzierbare Berichte mit R Markdown</a></li>
-<li class="chapter" data-level="6.4" data-path="reproduzieren.html"><a href="reproduzieren.html#wichtigste-regeln-für-reproduzierbarkeit"><i class="fa fa-check"></i><b>6.4</b> Wichtigste Regeln für Reproduzierbarkeit</a></li>
-<li class="chapter" data-level="6.5" data-path="reproduzieren.html"><a href="reproduzieren.html#weiterführende-videos-und-literatur"><i class="fa fa-check"></i><b>6.5</b> Weiterführende Videos und Literatur</a></li>
-<li class="chapter" data-level="6.6" data-path="reproduzieren.html"><a href="reproduzieren.html#inhalt-der-live-einführung-3"><i class="fa fa-check"></i><b>6.6</b> Inhalt der live Einführung</a></li>
-</ul></li>
-<li class="chapter" data-level="7" data-path="funktionen.html"><a href="funktionen.html"><i class="fa fa-check"></i><b>7</b> Funktionen</a><ul>
-<li class="chapter" data-level="7.1" data-path="funktionen.html"><a href="funktionen.html#eigene-funktionen-schreiben"><i class="fa fa-check"></i><b>7.1</b> Eigene Funktionen schreiben</a></li>
-<li class="chapter" data-level="7.2" data-path="funktionen.html"><a href="funktionen.html#fallunterscheidungen"><i class="fa fa-check"></i><b>7.2</b> Fallunterscheidungen</a></li>
-<li class="chapter" data-level="7.3" data-path="funktionen.html"><a href="funktionen.html#for-schleifen-for-loops"><i class="fa fa-check"></i><b>7.3</b> <code>for</code>-Schleifen (<code>for</code> <em>loops</em>)</a></li>
-<li class="chapter" data-level="7.4" data-path="funktionen.html"><a href="funktionen.html#weiterführende-literatur"><i class="fa fa-check"></i><b>7.4</b> Weiterführende Literatur</a></li>
-<li class="chapter" data-level="7.5" data-path="funktionen.html"><a href="funktionen.html#inhalt-der-live-einführung-4"><i class="fa fa-check"></i><b>7.5</b> Inhalt der live Einführung</a></li>
-</ul></li>
-<li class="chapter" data-level="8" data-path="tidyverse.html"><a href="tidyverse.html"><i class="fa fa-check"></i><b>8</b> Tidyverse</a><ul>
-<li class="chapter" data-level="8.1" data-path="tidyverse.html"><a href="tidyverse.html#grundpakete"><i class="fa fa-check"></i><b>8.1</b> Grundpakete</a></li>
-<li class="chapter" data-level="8.2" data-path="tidyverse.html"><a href="tidyverse.html#der-workflow"><i class="fa fa-check"></i><b>8.2</b> Der Workflow</a><ul>
-<li class="chapter" data-level="8.2.1" data-path="tidyverse.html"><a href="tidyverse.html#daten-einlesen"><i class="fa fa-check"></i><b>8.2.1</b> Daten einlesen</a></li>
-<li class="chapter" data-level="8.2.2" data-path="tidyverse.html"><a href="tidyverse.html#daten-zusammenfassen"><i class="fa fa-check"></i><b>8.2.2</b> Daten zusammenfassen</a></li>
-<li class="chapter" data-level="8.2.3" data-path="tidyverse.html"><a href="tidyverse.html#daten-plotten"><i class="fa fa-check"></i><b>8.2.3</b> Daten plotten</a></li>
-</ul></li>
-<li class="chapter" data-level="8.3" data-path="tidyverse.html"><a href="tidyverse.html#weiterführende-literatur-und-videos"><i class="fa fa-check"></i><b>8.3</b> Weiterführende Literatur und Videos</a></li>
-<li class="chapter" data-level="8.4" data-path="tidyverse.html"><a href="tidyverse.html#inhalt-der-live-einführung-5"><i class="fa fa-check"></i><b>8.4</b> Inhalt der live Einführung</a></li>
-</ul></li>
-<li class="chapter" data-level="9" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html"><i class="fa fa-check"></i><b>9</b> Aufgabensammlung</a><ul>
-<li class="chapter" data-level="9.1" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#erste-schritte"><i class="fa fa-check"></i><b>9.1</b> Erste Schritte</a><ul>
-<li class="chapter" data-level="9.1.1" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#ars-haushaltsbuch"><i class="fa fa-check"></i><b>9.1.1</b> Ars Haushaltsbuch</a></li>
-</ul></li>
-<li class="chapter" data-level="9.2" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#daten-in-r"><i class="fa fa-check"></i><b>9.2</b> Daten in R</a><ul>
-<li class="chapter" data-level="9.2.1" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#bestandesaufnahme"><i class="fa fa-check"></i><b>9.2.1</b> Bestandesaufnahme im Wald</a></li>
-</ul></li>
-<li class="chapter" data-level="9.3" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#daten-visualisieren-teil-i-fokus-auf-r"><i class="fa fa-check"></i><b>9.3</b> Daten visualisieren, Teil I: Fokus auf R</a><ul>
-<li class="chapter" data-level="9.3.1" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#wahlbeteiligung"><i class="fa fa-check"></i><b>9.3.1</b> Wahlbeteiligung bei der Bundestagswahl 2017</a></li>
-<li class="chapter" data-level="9.3.2" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#zweitstimme"><i class="fa fa-check"></i><b>9.3.2</b> Zweitstimme bei der Bundestagswahl 2017</a></li>
-<li class="chapter" data-level="9.3.3" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#zweigrafiken"><i class="fa fa-check"></i><b>9.3.3</b> Ergebnisse der Bundestagswahl in einer Grafik</a></li>
-<li class="chapter" data-level="9.3.4" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#weisserrand"><i class="fa fa-check"></i><b>9.3.4</b> Einen zu großen weißen Rand vermeiden</a></li>
-<li class="chapter" data-level="9.3.5" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#spielen-mit-der-funktion-par"><i class="fa fa-check"></i><b>9.3.5</b> Spielen mit der Funktion <code>par</code></a></li>
-</ul></li>
-<li class="chapter" data-level="9.4" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#reproduzierbare-berichte-mit-r-markdown-1"><i class="fa fa-check"></i><b>9.4</b> Reproduzierbare Berichte mit R Markdown</a><ul>
-<li class="chapter" data-level="9.4.1" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#erster-eigener-bericht"><i class="fa fa-check"></i><b>9.4.1</b> Erster eigener Bericht</a></li>
-</ul></li>
-<li class="chapter" data-level="9.5" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#eigene-funktionen-schreiben-1"><i class="fa fa-check"></i><b>9.5</b> Eigene Funktionen schreiben</a><ul>
-<li class="chapter" data-level="9.5.1" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#r-hausaufgaben"><i class="fa fa-check"></i><b>9.5.1</b> R-Hausaufgaben</a></li>
-<li class="chapter" data-level="9.5.2" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#fledermaus"><i class="fa fa-check"></i><b>9.5.2</b> Fledermäuse, die Zweite</a></li>
-</ul></li>
-<li class="chapter" data-level="9.6" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#tidyverse-1"><i class="fa fa-check"></i><b>9.6</b> Tidyverse</a><ul>
-<li class="chapter" data-level="9.6.1" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#fledermaus3"><i class="fa fa-check"></i><b>9.6.1</b> Fledermaus, die Dritte</a></li>
-<li class="chapter" data-level="9.6.2" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#klausur"><i class="fa fa-check"></i><b>9.6.2</b> Unfaire Klausur?</a></li>
-</ul></li>
-<li class="chapter" data-level="9.7" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#daten-visualisieren-teil-ii-fokus-auf-daten"><i class="fa fa-check"></i><b>9.7</b> Daten visualisieren, Teil II: Fokus auf Daten</a><ul>
-<li class="chapter" data-level="9.7.1" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#zeitreihen-aus-der-langen-bramke-harz"><i class="fa fa-check"></i><b>9.7.1</b> Zeitreihen aus der Langen Bramke (Harz)</a></li>
-<li class="chapter" data-level="9.7.2" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#temperatur-datensatz"><i class="fa fa-check"></i><b>9.7.2</b> Temperatur-Datensatz</a></li>
-<li class="chapter" data-level="9.7.3" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#temperatur-datensatz-revisited"><i class="fa fa-check"></i><b>9.7.3</b> Temperatur-Datensatz, revisited</a></li>
-<li class="chapter" data-level="9.7.4" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#artenvielfalt-in-grasländern"><i class="fa fa-check"></i><b>9.7.4</b> Artenvielfalt in Grasländern</a></li>
-<li class="chapter" data-level="9.7.5" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#tracerversuche"><i class="fa fa-check"></i><b>9.7.5</b> Tracerversuche</a></li>
-</ul></li>
-<li class="chapter" data-level="9.8" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#tidy-data"><i class="fa fa-check"></i><b>9.8</b> Tidy data</a><ul>
-<li class="chapter" data-level="9.8.1" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#wasserentnahme-mit-datenquelle-excel"><i class="fa fa-check"></i><b>9.8.1</b> Wasserentnahme mit Datenquelle Excel</a></li>
-<li class="chapter" data-level="9.8.2" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#wasserentnahme-mit-datenquelle-eurostat-direkt"><i class="fa fa-check"></i><b>9.8.2</b> Wasserentnahme mit Datenquelle EUROSTAT direkt</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="literatur.html"><a href="literatur.html"><i class="fa fa-check"></i>Literatur</a></li>
-<li class="divider"></li>
-<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
-
-</ul>
-
-      </nav>
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="SoSe 2021">Datenanalyse mit R</a>:
+        <small class="text-muted">SoSe 2021</small>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
     </div>
 
-    <div class="book-body">
-      <div class="body-inner">
-        <div class="book-header" role="navigation">
-          <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Datenanalyse mit R</a>
-          </h1>
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Vorwort</a></li>
+<li><a class="" href="einfuehrung.html"><span class="header-section-number">1</span> Der Kurs</a></li>
+<li><a class="" href="erste-schritte.html"><span class="header-section-number">2</span> Erste Schritte in R</a></li>
+<li><a class="" href="reproduzieren.html"><span class="header-section-number">3</span> Reproduzierbare Forschung</a></li>
+<li><a class="" href="visualisieren.html"><span class="header-section-number">4</span> Daten visualisieren I: Einfache Grafiken</a></li>
+<li><a class="active" href="funktionen.html"><span class="header-section-number">5</span> Funktionen</a></li>
+<li><a class="" href="tidyverse.html"><span class="header-section-number">6</span> Tidyverse</a></li>
+<li><a class="" href="aufgabensammlung.html"><span class="header-section-number">7</span> Aufgabensammlung</a></li>
+<li><a class="" href="literatur.html">Literatur</a></li>
+</ul>
+
+        <div class="book-extra">
+          
         </div>
-
-        <div class="page-wrapper" tabindex="-1" role="main">
-          <div class="page-inner">
-
-            <section class="normal" id="section-">
-<div id="funktionen" class="section level1">
-<h1><span class="header-section-number">Kapitel 7</span> Funktionen</h1>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="funktionen" class="section level1" number="5">
+<h1>
+<span class="header-section-number">Kapitel 5</span> Funktionen<a class="anchor" aria-label="anchor" href="#funktionen"><i class="fas fa-link"></i></a>
+</h1>
 <div class="rmdoutcomes">
 <ul>
 <li>
@@ -268,48 +72,56 @@ Schleifen
 </li>
 </ul>
 </div>
-<p>Was genau Funktionen sind und wie man sie in R aufruft, lesen Sie bitte bei <span class="citation">Ligges (<a href="literatur.html#ref-Ligges2008" role="doc-biblioref">2008</a>)</span> in Kapitel 4.1 nach. In diesem Kapitel des Skripts geht es um das Schreiben der eigenen Funktionen, Fallunterscheidungen mit <code>if</code>-<code>else</code> und <code>for</code> Schleifen.</p>
-<div id="eigene-funktionen-schreiben" class="section level2">
-<h2><span class="header-section-number">7.1</span> Eigene Funktionen schreiben</h2>
+<p>Was genau Funktionen sind und wie man sie in R aufruft, lesen Sie bitte bei <span class="citation"><a href="literatur.html#ref-Ligges2008" role="doc-biblioref">Ligges</a> (<a href="literatur.html#ref-Ligges2008" role="doc-biblioref">2008</a>)</span> in Kapitel 4.1 nach. In diesem Kapitel des Skripts geht es um das Schreiben der eigenen Funktionen, Fallunterscheidungen mit <code>if</code>-<code>else</code> und <code>for</code> Schleifen.</p>
+<div id="eigene-funktionen-schreiben" class="section level2" number="5.1">
+<h2>
+<span class="header-section-number">5.1</span> Eigene Funktionen schreiben<a class="anchor" aria-label="anchor" href="#eigene-funktionen-schreiben"><i class="fas fa-link"></i></a>
+</h2>
 <p>Funktionen sind eine großartige Möglichkeit, sich das Leben einfacher zu machen. Sie können repetitive Aufgaben erledigen, ohne dass wir ständig mit Copy und Paste hantieren müssen, machen unsere Notebooks übersichtlich und helfen, Fehler und Inkonsistenzen zu vermeiden. Als Faustregel gilt: wenn Sie ein Stück Code mehr als 2 Mal kopieren und abändern, wird es Zeit für eine Funktion 😄.</p>
 <p>Schauen wir uns ein Beispiel an. Als erstes würfeln wir ein paar Daten aus der Gleichverteilung mit unterschiedlichen Minima und Maxima und sehen uns die Zusammenfassung und die Standardabweichungen an.</p>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="funktionen.html#cb38-1"></a>my_data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">col1 =</span> <span class="kw">runif</span>(<span class="dv">20</span>, <span class="dt">min =</span> <span class="dv">3</span>, <span class="dt">max =</span> <span class="dv">10</span>),</span>
-<span id="cb38-2"><a href="funktionen.html#cb38-2"></a>                      <span class="dt">col2 =</span> <span class="kw">runif</span>(<span class="dv">20</span>, <span class="dt">min =</span> <span class="dv">7</span>, <span class="dt">max =</span> <span class="dv">12</span>),</span>
-<span id="cb38-3"><a href="funktionen.html#cb38-3"></a>                      <span class="dt">col3 =</span> <span class="kw">runif</span>(<span class="dv">20</span>, <span class="dt">min =</span> <span class="dv">13</span>, <span class="dt">max =</span> <span class="dv">100</span>))</span>
-<span id="cb38-4"><a href="funktionen.html#cb38-4"></a><span class="kw">summary</span>(my_data)</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">my_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>col1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="fl">20</span>, min <span class="op">=</span> <span class="fl">3</span>, max <span class="op">=</span> <span class="fl">10</span><span class="op">)</span>,
+                      col2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="fl">20</span>, min <span class="op">=</span> <span class="fl">7</span>, max <span class="op">=</span> <span class="fl">12</span><span class="op">)</span>,
+                      col3 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="fl">20</span>, min <span class="op">=</span> <span class="fl">13</span>, max <span class="op">=</span> <span class="fl">100</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">my_data</span><span class="op">)</span></code></pre></div>
 <pre><code>##       col1            col2             col3      
-##  Min.   :3.375   Min.   : 7.017   Min.   :13.47  
-##  1st Qu.:5.281   1st Qu.: 7.507   1st Qu.:65.19  
-##  Median :8.193   Median : 8.448   Median :83.88  
-##  Mean   :7.380   Mean   : 8.986   Mean   :72.94  
-##  3rd Qu.:9.604   3rd Qu.:10.233   3rd Qu.:90.84  
-##  Max.   :9.955   Max.   :11.842   Max.   :99.34</code></pre>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="funktionen.html#cb40-1"></a><span class="kw">sapply</span>(my_data, sd)</span></code></pre></div>
+##  Min.   :3.475   Min.   : 7.063   Min.   :18.89  
+##  1st Qu.:6.611   1st Qu.: 8.005   1st Qu.:39.79  
+##  Median :7.506   Median : 9.115   Median :61.28  
+##  Mean   :7.343   Mean   : 9.194   Mean   :57.85  
+##  3rd Qu.:8.870   3rd Qu.:10.064   3rd Qu.:77.37  
+##  Max.   :9.920   Max.   :11.767   Max.   :99.06</code></pre>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="va">my_data</span>, <span class="va">sd</span><span class="op">)</span></code></pre></div>
 <pre><code>##      col1      col2      col3 
-##  2.405314  1.670579 27.063113</code></pre>
+##  1.808902  1.475178 25.617792</code></pre>
 <p>Ich möchte die Daten so transformieren, dass alle Variablen im Datensatz (d.h. Spalten) einen Mittelwert von 0 und eine Standardabweichung von 1 haben. Dazu ziehe ich den Mittelwert ab und teile durch die Standardabweichung. Das ist eine klassische Transformation (manchmal <span class="math inline">\(z\)</span>-Transformation genannt), die manche Analysemethoden (z.B. Hauptkomponentenanalyse) als Vorbehandlung der Daten verlangen.</p>
 <p>Erst einmal das Naheliegende: Transformation per Copy und Paste.</p>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="funktionen.html#cb42-1"></a>my_data_trans &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">col1_trans =</span> (my_data<span class="op">$</span>col1 <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(my_data<span class="op">$</span>col1))<span class="op">/</span><span class="kw">sd</span>(my_data<span class="op">$</span>col1),</span>
-<span id="cb42-2"><a href="funktionen.html#cb42-2"></a>                            <span class="dt">col2_trans =</span> (my_data<span class="op">$</span>col2 <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(my_data<span class="op">$</span>col2))<span class="op">/</span><span class="kw">sd</span>(my_data<span class="op">$</span>col1),</span>
-<span id="cb42-3"><a href="funktionen.html#cb42-3"></a>                            <span class="dt">col3_trans =</span> (my_data<span class="op">$</span>col3 <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(my_data<span class="op">$</span>col3))<span class="op">/</span><span class="kw">sd</span>(my_data<span class="op">$</span>col3))</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">my_data_trans</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>col1_trans <span class="op">=</span> <span class="op">(</span><span class="va">my_data</span><span class="op">$</span><span class="va">col1</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">my_data</span><span class="op">$</span><span class="va">col1</span><span class="op">)</span><span class="op">)</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">my_data</span><span class="op">$</span><span class="va">col1</span><span class="op">)</span>,
+                            col2_trans <span class="op">=</span> <span class="op">(</span><span class="va">my_data</span><span class="op">$</span><span class="va">col2</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">my_data</span><span class="op">$</span><span class="va">col2</span><span class="op">)</span><span class="op">)</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">my_data</span><span class="op">$</span><span class="va">col1</span><span class="op">)</span>,
+                            col3_trans <span class="op">=</span> <span class="op">(</span><span class="va">my_data</span><span class="op">$</span><span class="va">col3</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">my_data</span><span class="op">$</span><span class="va">col3</span><span class="op">)</span><span class="op">)</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">my_data</span><span class="op">$</span><span class="va">col3</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p>Haben Sie den Fehler bemerkt? Ich habe einmal vergessen eine 1 durch eine 2 zu ersetzten. Das merke ich aber nur, wenn ich mir das Ergebnis ansehen. Die Standardabweichung in <code>col2_trans</code> ist nicht gleich 1.</p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="funktionen.html#cb43-1"></a><span class="kw">summary</span>(my_data_trans)</span></code></pre></div>
-<pre><code>##    col1_trans        col2_trans        col3_trans     
-##  Min.   :-1.6647   Min.   :-0.8189   Min.   :-2.1975  
-##  1st Qu.:-0.8725   1st Qu.:-0.6151   1st Qu.:-0.2865  
-##  Median : 0.3381   Median :-0.2239   Median : 0.4042  
-##  Mean   : 0.0000   Mean   : 0.0000   Mean   : 0.0000  
-##  3rd Qu.: 0.9247   3rd Qu.: 0.5180   3rd Qu.: 0.6613  
-##  Max.   : 1.0708   Max.   : 1.1873   Max.   : 0.9754</code></pre>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="funktionen.html#cb45-1"></a><span class="kw">sapply</span>(my_data_trans, sd)</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">my_data_trans</span><span class="op">)</span></code></pre></div>
+<pre><code>##    col1_trans         col2_trans         col3_trans     
+##  Min.   :-2.13823   Min.   :-1.17777   Min.   :-1.5211  
+##  1st Qu.:-0.40451   1st Qu.:-0.65734   1st Qu.:-0.7050  
+##  Median : 0.09017   Median :-0.04358   Median : 0.1338  
+##  Mean   : 0.00000   Mean   : 0.00000   Mean   : 0.0000  
+##  3rd Qu.: 0.84442   3rd Qu.: 0.48129   3rd Qu.: 0.7619  
+##  Max.   : 1.42480   Max.   : 1.42237   Max.   : 1.6086</code></pre>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="va">my_data_trans</span>, <span class="va">sd</span><span class="op">)</span></code></pre></div>
 <pre><code>## col1_trans col2_trans col3_trans 
-##  1.0000000  0.6945369  1.0000000</code></pre>
+##    1.00000    0.81551    1.00000</code></pre>
 <p>So etwas passiert sehr schnell und wird durch das Schreiben einer Funktion vermieden.</p>
 <p>Jede Funktionsdefinition beginnt mit der Wahl des Namens. Es ist eine gute Idee, sich einen konsistenten und sauberen Stil gleich am Anfang anzugewöhnen. Seien Sie nett zu Ihrem zukünftigen Ich und anderen Menschen, die Ihren Code lesen werden 😄. Es ist ein guter Stil, Verben als Funktionsnamen zu nutzen, die beschreiben, was eine Funktion macht. In jedem Fall, <strong>wählen Sie keine Namen, die schon für Funktionen oder Variablen vergeben sind!</strong> Das würde die ursprünglichen Funktionen oder Variablen einfach überschreiben.</p>
 <p>Wir nennen unsere Funktion <code>z_transform</code>, weil sie Daten <span class="math inline">\(z\)</span>-transformiert. Bei zusammengesetzten Namen sollten Sie den Unterstrich verwenden. Das macht den Namen einfacher zu lesen.</p>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="funktionen.html#cb47-1"></a>z_transofrm &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</span>
-<span id="cb47-2"><a href="funktionen.html#cb47-2"></a>  (x <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(x))<span class="op">/</span><span class="kw">sd</span>(x)</span>
-<span id="cb47-3"><a href="funktionen.html#cb47-3"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">z_transofrm</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span>
+  <span class="op">(</span><span class="va">x</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
+<span class="op">}</span></code></pre></div>
 <p>Bei jeder Funktionsdefinition arbeiten Sie drei Schritte ab:</p>
 <ol style="list-style-type: decimal">
 <li>Namen finden und das Skelett aus <code>Name_der_Funktion &lt;- function() {}</code> hin schreiben.</li>
@@ -318,73 +130,85 @@ Schleifen
 </ol>
 <p>Wir brauchen für unsere Funktion nur einen Parameter. Zwar sind die Namen der Parameter nicht ganz so wichtig wie Namen der Funktionen. Trotzdem sollte man hier konsistent sein: bei einfachen Vektoren sind <code>x</code>, <code>y</code>, <code>z</code> etc. völlig in Ordnung. Ansonsten sind Substantive ein guter Namensstil für Parameter.</p>
 <p>Wir wenden die Funktion jetzt auf unseren Datensatz an.</p>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="funktionen.html#cb48-1"></a>my_data_trans_<span class="dv">2</span> &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">col1_trans =</span> <span class="kw">z_transofrm</span>(my_data<span class="op">$</span>col1),</span>
-<span id="cb48-2"><a href="funktionen.html#cb48-2"></a>                              <span class="dt">col2_trans =</span> <span class="kw">z_transofrm</span>(my_data<span class="op">$</span>col2),</span>
-<span id="cb48-3"><a href="funktionen.html#cb48-3"></a>                              <span class="dt">col2_trans =</span> <span class="kw">z_transofrm</span>(my_data<span class="op">$</span>col3))</span>
-<span id="cb48-4"><a href="funktionen.html#cb48-4"></a><span class="kw">summary</span>(my_data_trans_<span class="dv">2</span>)</span></code></pre></div>
-<pre><code>##    col1_trans        col2_trans       col2_trans.1    
-##  Min.   :-1.6647   Min.   :-1.1791   Min.   :-2.1975  
-##  1st Qu.:-0.8725   1st Qu.:-0.8857   1st Qu.:-0.2865  
-##  Median : 0.3381   Median :-0.3224   Median : 0.4042  
-##  Mean   : 0.0000   Mean   : 0.0000   Mean   : 0.0000  
-##  3rd Qu.: 0.9247   3rd Qu.: 0.7459   3rd Qu.: 0.6613  
-##  Max.   : 1.0708   Max.   : 1.7094   Max.   : 0.9754</code></pre>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="funktionen.html#cb50-1"></a><span class="kw">sapply</span>(my_data_trans_<span class="dv">2</span>, sd)</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">my_data_trans_2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>col1_trans <span class="op">=</span> <span class="fu">z_transofrm</span><span class="op">(</span><span class="va">my_data</span><span class="op">$</span><span class="va">col1</span><span class="op">)</span>,
+                              col2_trans <span class="op">=</span> <span class="fu">z_transofrm</span><span class="op">(</span><span class="va">my_data</span><span class="op">$</span><span class="va">col2</span><span class="op">)</span>,
+                              col2_trans <span class="op">=</span> <span class="fu">z_transofrm</span><span class="op">(</span><span class="va">my_data</span><span class="op">$</span><span class="va">col3</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">my_data_trans_2</span><span class="op">)</span></code></pre></div>
+<pre><code>##    col1_trans         col2_trans        col2_trans.1    
+##  Min.   :-2.13823   Min.   :-1.44422   Min.   :-1.5211  
+##  1st Qu.:-0.40451   1st Qu.:-0.80605   1st Qu.:-0.7050  
+##  Median : 0.09017   Median :-0.05344   Median : 0.1338  
+##  Mean   : 0.00000   Mean   : 0.00000   Mean   : 0.0000  
+##  3rd Qu.: 0.84442   3rd Qu.: 0.59017   3rd Qu.: 0.7619  
+##  Max.   : 1.42480   Max.   : 1.74415   Max.   : 1.6086</code></pre>
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="va">my_data_trans_2</span>, <span class="va">sd</span><span class="op">)</span></code></pre></div>
 <pre><code>##   col1_trans   col2_trans col2_trans.1 
 ##            1            1            1</code></pre>
 <p>Der Code ist viel aufgeräumter und übersichtlicher. Es ist viel klarer, was berechnet wird.</p>
 </div>
-<div id="fallunterscheidungen" class="section level2">
-<h2><span class="header-section-number">7.2</span> Fallunterscheidungen</h2>
+<div id="fallunterscheidungen" class="section level2" number="5.2">
+<h2>
+<span class="header-section-number">5.2</span> Fallunterscheidungen<a class="anchor" aria-label="anchor" href="#fallunterscheidungen"><i class="fas fa-link"></i></a>
+</h2>
 <p>Manchmal möchte man unterschiedliche Berechnung innerhalb einer Funktion durchführen, je nach aufgestellter Bedingung. Daszu brauchen wir eine Fallunterscheidung, die durch einen <code>if</code>-<code>else</code> Ausdruck definiert wird. Jede Fallunterscheidung hat die folgende Form, wobei die zweite Bedingung nicht zwingend notwendig ist.</p>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="funktionen.html#cb52-1"></a><span class="cf">if</span> (Bedingung1) {</span>
-<span id="cb52-2"><a href="funktionen.html#cb52-2"></a>  <span class="co"># Code, der ausgeführt wird, wenn die erste Bedingung1 stimmt</span></span>
-<span id="cb52-3"><a href="funktionen.html#cb52-3"></a>} <span class="cf">else</span> <span class="cf">if</span> (Bedingung2) {</span>
-<span id="cb52-4"><a href="funktionen.html#cb52-4"></a>  <span class="co"># Code, der ausgeführt wird, wenn zweite Bedingung2 stimmt</span></span>
-<span id="cb52-5"><a href="funktionen.html#cb52-5"></a>} <span class="cf">else</span> {</span>
-<span id="cb52-6"><a href="funktionen.html#cb52-6"></a>  <span class="co"># Code, der ausgeführt wird, wenn keine der Bedingungung stimmt</span></span>
-<span id="cb52-7"><a href="funktionen.html#cb52-7"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw">if</span> <span class="op">(</span><span class="va">Bedingung1</span><span class="op">)</span> <span class="op">{</span>
+  <span class="co"># Code, der ausgeführt wird, wenn die erste Bedingung1 stimmt</span>
+<span class="op">}</span> <span class="kw">else</span> <span class="kw">if</span> <span class="op">(</span><span class="va">Bedingung2</span><span class="op">)</span> <span class="op">{</span>
+  <span class="co"># Code, der ausgeführt wird, wenn zweite Bedingung2 stimmt</span>
+<span class="op">}</span> <span class="kw">else</span> <span class="op">{</span>
+  <span class="co"># Code, der ausgeführt wird, wenn keine der Bedingungung stimmt</span>
+<span class="op">}</span></code></pre></div>
 <p>Achten Sie genau darauf, wie <code>else if</code> und <code>else</code> positioniert werden, nämlich zwischen den beiden geschweiften Klammern. Eine Fallunterscheidung kann auch mehr als zwei Bedingungen haben, aber man sollte nicht übertreiben. Wenn die Anzahl der Bedingungen zu hoch ist, sollte man nachdenken, ob das Problem nicht anders als mit <code>if</code>-<code>else</code> gelöst werden kann.</p>
 <p>Wir schreiben eine Begrüßungsfunktion, die ja nach Tageszeit die richtige Begrüßung ausgibt.</p>
-<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="funktionen.html#cb53-1"></a>say_hello &lt;-<span class="st"> </span><span class="cf">function</span>(my_time) {</span>
-<span id="cb53-2"><a href="funktionen.html#cb53-2"></a>  <span class="cf">if</span> (my_time <span class="op">==</span><span class="st"> &#39;Morgen&#39;</span>) {</span>
-<span id="cb53-3"><a href="funktionen.html#cb53-3"></a>    <span class="st">&#39;Guten Morgen&#39;</span></span>
-<span id="cb53-4"><a href="funktionen.html#cb53-4"></a>  } <span class="cf">else</span> <span class="cf">if</span> (my_time <span class="op">==</span><span class="st"> &#39;Mittag&#39;</span>) {</span>
-<span id="cb53-5"><a href="funktionen.html#cb53-5"></a>    <span class="st">&#39;Guten Tag&#39;</span></span>
-<span id="cb53-6"><a href="funktionen.html#cb53-6"></a>  } <span class="cf">else</span> <span class="cf">if</span> (my_time <span class="op">==</span><span class="st"> &#39;Abend&#39;</span>){</span>
-<span id="cb53-7"><a href="funktionen.html#cb53-7"></a>    <span class="st">&#39;Guten Abend&#39;</span></span>
-<span id="cb53-8"><a href="funktionen.html#cb53-8"></a>  } <span class="cf">else</span> {</span>
-<span id="cb53-9"><a href="funktionen.html#cb53-9"></a>    <span class="st">&#39;In meiner Welt gibt es das nicht.&#39;</span></span>
-<span id="cb53-10"><a href="funktionen.html#cb53-10"></a>  }</span>
-<span id="cb53-11"><a href="funktionen.html#cb53-11"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">say_hello</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">my_time</span><span class="op">)</span> <span class="op">{</span>
+  <span class="kw">if</span> <span class="op">(</span><span class="va">my_time</span> <span class="op">==</span> <span class="st">'Morgen'</span><span class="op">)</span> <span class="op">{</span>
+    <span class="st">'Guten Morgen'</span>
+  <span class="op">}</span> <span class="kw">else</span> <span class="kw">if</span> <span class="op">(</span><span class="va">my_time</span> <span class="op">==</span> <span class="st">'Mittag'</span><span class="op">)</span> <span class="op">{</span>
+    <span class="st">'Guten Tag'</span>
+  <span class="op">}</span> <span class="kw">else</span> <span class="kw">if</span> <span class="op">(</span><span class="va">my_time</span> <span class="op">==</span> <span class="st">'Abend'</span><span class="op">)</span><span class="op">{</span>
+    <span class="st">'Guten Abend'</span>
+  <span class="op">}</span> <span class="kw">else</span> <span class="op">{</span>
+    <span class="st">'In meiner Welt gibt es das nicht.'</span>
+  <span class="op">}</span>
+<span class="op">}</span></code></pre></div>
 <p>Wir rufen die Funktion auf mit einmal mit Abend und einmal mit abend.</p>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="funktionen.html#cb54-1"></a><span class="kw">say_hello</span>(<span class="st">&#39;Abend&#39;</span>)</span></code></pre></div>
-<pre><code>## [1] &quot;Guten Abend&quot;</code></pre>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="funktionen.html#cb56-1"></a><span class="kw">say_hello</span>(<span class="st">&#39;abend&#39;</span>)</span></code></pre></div>
-<pre><code>## [1] &quot;In meiner Welt gibt es das nicht.&quot;</code></pre>
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">say_hello</span><span class="op">(</span><span class="st">'Abend'</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] "Guten Abend"</code></pre>
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">say_hello</span><span class="op">(</span><span class="st">'abend'</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] "In meiner Welt gibt es das nicht."</code></pre>
 </div>
-<div id="for-schleifen-for-loops" class="section level2">
-<h2><span class="header-section-number">7.3</span> <code>for</code>-Schleifen (<code>for</code> <em>loops</em>)</h2>
+<div id="for-schleifen-for-loops" class="section level2" number="5.3">
+<h2>
+<span class="header-section-number">5.3</span> <code>for</code>-Schleifen (<code>for</code> <em>loops</em>)<a class="anchor" aria-label="anchor" href="#for-schleifen-for-loops"><i class="fas fa-link"></i></a>
+</h2>
 <p>Wenn wir unsere <code>say_hello</code> Funktion auf einen Vektor von Tageszeiten anwenden wollen, gibt es eine Warnung.</p>
-<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="funktionen.html#cb58-1"></a><span class="kw">say_hello</span>(<span class="kw">c</span>(<span class="st">&#39;Morgen&#39;</span>, <span class="st">&#39;Mittag&#39;</span>, <span class="st">&#39;Abend&#39;</span>))</span></code></pre></div>
-<pre><code>## Warning in if (my_time == &quot;Morgen&quot;) {: Bedingung hat Länge &gt; 1 und nur das erste
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">say_hello</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'Morgen'</span>, <span class="st">'Mittag'</span>, <span class="st">'Abend'</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<pre><code>## Warning in if (my_time == "Morgen") {: Bedingung hat Länge &gt; 1 und nur das erste
 ## Element wird benutzt</code></pre>
-<pre><code>## [1] &quot;Guten Morgen&quot;</code></pre>
+<pre><code>## [1] "Guten Morgen"</code></pre>
 <p>Das liegt daran, dass die Auswertung der Bedingung eine Antwort der Länge 1 liefern muss: entweder <code>TRUE</code>, wenn die Bedingung stimmt, oder <code>FALSE</code>, wenn sie nicht stimmt. Bei einem Vektor ist die Antwort aber länger als 1 und die Funktion benutzt nur die erste Stelle der Antwort. Man sagt auch, dass die Funktion <code>say_hello</code> <em>nicht vektorisiert</em> sei, sie kann also nicht von sich aus auf einem Vektor arbeiten.</p>
 <p>Damit man eine eine nicht vektorisierte Funktion auf einen Vektor anwenden kann, gibt es mehrere Möglichkeiten. Eine davon ist die sogen. <code>for</code> Schleife. Eine Schleife ist eine wiederholte Ausführung von Code, man sagt auch <em>Iteration</em>.</p>
-<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="funktionen.html#cb61-1"></a>begruessung &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;Morgen&#39;</span>, <span class="st">&#39;Mittag&#39;</span>, <span class="st">&#39;Abend&#39;</span>)</span>
-<span id="cb61-2"><a href="funktionen.html#cb61-2"></a></span>
-<span id="cb61-3"><a href="funktionen.html#cb61-3"></a><span class="co"># Vektor für Ergebnisse erstellen</span></span>
-<span id="cb61-4"><a href="funktionen.html#cb61-4"></a>ergebnis &lt;-<span class="st"> </span><span class="kw">vector</span>(<span class="dt">mode =</span> <span class="st">&#39;character&#39;</span>, <span class="dt">length =</span> <span class="dv">3</span>)</span>
-<span id="cb61-5"><a href="funktionen.html#cb61-5"></a></span>
-<span id="cb61-6"><a href="funktionen.html#cb61-6"></a><span class="co"># For Schleife über die Zahlenfolge 1:3 mit Hilfe der Dummy-Variablen i</span></span>
-<span id="cb61-7"><a href="funktionen.html#cb61-7"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>) {</span>
-<span id="cb61-8"><a href="funktionen.html#cb61-8"></a>  ergebnis[i] &lt;-<span class="st"> </span><span class="kw">say_hello</span>(begruessung[i])</span>
-<span id="cb61-9"><a href="funktionen.html#cb61-9"></a>}</span>
-<span id="cb61-10"><a href="funktionen.html#cb61-10"></a></span>
-<span id="cb61-11"><a href="funktionen.html#cb61-11"></a><span class="co"># Ergebnis ansehen</span></span>
-<span id="cb61-12"><a href="funktionen.html#cb61-12"></a>ergebnis</span></code></pre></div>
-<pre><code>## [1] &quot;Guten Morgen&quot; &quot;Guten Tag&quot;    &quot;Guten Abend&quot;</code></pre>
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">begruessung</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'Morgen'</span>, <span class="st">'Mittag'</span>, <span class="st">'Abend'</span><span class="op">)</span>
+
+<span class="co"># Vektor für Ergebnisse erstellen</span>
+<span class="va">ergebnis</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/vector.html">vector</a></span><span class="op">(</span>mode <span class="op">=</span> <span class="st">'character'</span>, length <span class="op">=</span> <span class="fl">3</span><span class="op">)</span>
+
+<span class="co"># For Schleife über die Zahlenfolge 1:3 mit Hilfe der Dummy-Variablen i</span>
+<span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span> <span class="op">{</span>
+  <span class="va">ergebnis</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu">say_hello</span><span class="op">(</span><span class="va">begruessung</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">)</span>
+<span class="op">}</span>
+
+<span class="co"># Ergebnis ansehen</span>
+<span class="va">ergebnis</span></code></pre></div>
+<pre><code>## [1] "Guten Morgen" "Guten Tag"    "Guten Abend"</code></pre>
 <p>Eine <code>for</code> Schleife braucht drei Bestandteile:</p>
 <ol style="list-style-type: decimal">
 <li>Einen Datencontainer, in unserem Fall den Vektor <code>ergebnis</code>, in dem die Ergebnisse der Schleifendurchläufe gespeichert werden. Dieser Vektor muss vorher erstellt werden.</li>
@@ -393,71 +217,61 @@ Schleifen
 </ol>
 <p>Später werden wir effiziente Funktionen kennen lernen, die ohne Schleifen Funktionen wiederholt ausführen (iterieren) können.</p>
 </div>
-<div id="weiterführende-literatur" class="section level2">
-<h2><span class="header-section-number">7.4</span> Weiterführende Literatur</h2>
-<p><span class="citation">Ligges (<a href="literatur.html#ref-Ligges2008" role="doc-biblioref">2008</a>)</span>, Kapitel 4.1 für technische Beschreibung des Aufrufs von Funktionen</p>
-<p>Dieses Kapitel orientiert sich stark an <span class="citation">Wickham and Grolemund (<a href="literatur.html#ref-Wickham2017" role="doc-biblioref">2017</a>)</span>, Kapitel 19</p>
+<div id="weiterführende-literatur-1" class="section level2" number="5.4">
+<h2>
+<span class="header-section-number">5.4</span> Weiterführende Literatur<a class="anchor" aria-label="anchor" href="#weiterf%C3%BChrende-literatur-1"><i class="fas fa-link"></i></a>
+</h2>
+<p><span class="citation"><a href="literatur.html#ref-Ligges2008" role="doc-biblioref">Ligges</a> (<a href="literatur.html#ref-Ligges2008" role="doc-biblioref">2008</a>)</span>, Kapitel 4.1 für technische Beschreibung des Aufrufs von Funktionen</p>
+<p>Dieses Kapitel orientiert sich stark an <span class="citation">(<a href="#ref-Wickham2017" role="doc-biblioref"><strong>Wickham2017?</strong></a>)</span>, Kapitel 19</p>
 </div>
-<div id="inhalt-der-live-einführung-4" class="section level2">
-<h2><span class="header-section-number">7.5</span> Inhalt der live Einführung</h2>
+<div id="inhalt-der-live-einführung-2" class="section level2" number="5.5">
+<h2>
+<span class="header-section-number">5.5</span> Inhalt der live Einführung<a class="anchor" aria-label="anchor" href="#inhalt-der-live-einf%C3%BChrung-2"><i class="fas fa-link"></i></a>
+</h2>
 <ul>
 <li>Funktionsaufruf</li>
 <li>Funktionen selbst schreiben</li>
-<li>Aufgabe <a href="aufgabensammlung.html#fledermaus">9.5.2</a>: <code>if</code> - <code>else</code> Bedingungen und <code>for</code> Schleifen</li>
+<li>Aufgabe <a href="aufgabensammlung.html#fledermaus">7.5.2</a>: <code>if</code> - <code>else</code> Bedingungen und <code>for</code> Schleifen</li>
+</ul>
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="visualisieren.html"><span class="header-section-number">4</span> Daten visualisieren I: Einfache Grafiken</a></div>
+<div class="next"><a href="tidyverse.html"><span class="header-section-number">6</span> Tidyverse</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#funktionen"><span class="header-section-number">5</span> Funktionen</a></li>
+<li><a class="nav-link" href="#eigene-funktionen-schreiben"><span class="header-section-number">5.1</span> Eigene Funktionen schreiben</a></li>
+<li><a class="nav-link" href="#fallunterscheidungen"><span class="header-section-number">5.2</span> Fallunterscheidungen</a></li>
+<li><a class="nav-link" href="#for-schleifen-for-loops"><span class="header-section-number">5.3</span> for-Schleifen (for loops)</a></li>
+<li><a class="nav-link" href="#weiterf%C3%BChrende-literatur-1"><span class="header-section-number">5.4</span> Weiterführende Literatur</a></li>
+<li><a class="nav-link" href="#inhalt-der-live-einf%C3%BChrung-2"><span class="header-section-number">5.5</span> Inhalt der live Einführung</a></li>
 </ul>
 
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
 </div>
+    </nav>
 </div>
-            </section>
 
-          </div>
-        </div>
-      </div>
-<a href="reproduzieren.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="tidyverse.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
-    </div>
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Datenanalyse mit R</strong>: SoSe 2021" was written by Christina Bogner. It was last built on 2021-04-11.</p>
   </div>
-<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
-<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
-<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
-<script>
-gitbook.require(["gitbook"], function(gitbook) {
-gitbook.start({
-"sharing": false,
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": null,
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": null,
-"text": null
-},
-"download": ["datenanalyse.pdf"],
-"toc": {
-"collapse": "subsection"
-},
-"toolbar": {
-"position": "fixed"
-},
-"search": true
-});
-});
-</script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
@@ -471,5 +285,4 @@ gitbook.start({
   })();
 </script>
 </body>
-
 </html>

@@ -1,10 +1,14 @@
 book_filename: "datenanalyse"
-rmd_files: ["index.Rmd", "01-einfuehrung.Rmd", "02-was_ist_r.Rmd",
-"03-daten.Rmd", "04-visualisieren.Rmd", "05-rmarkdown.Rmd", 
-"06-funktionen.Rmd",
-"07-tidyverse.Rmd",
+rmd_files: ["index.Rmd",
+"01-einfuehrung.Rmd", 
+"02-erste-schritte.Rmd",
+"03-rmarkdown.Rmd", 
+#"04-visualisieren.Rmd", 
+#"06-funktionen.Rmd",
+#"07-tidyverse.Rmd",
 #"09-visualisieren_2.Rmd",
-"19-aufgabensammlung.Rmd", "20-biblio.Rmd"]
+"19-aufgabensammlung.Rmd",
+"20-biblio.Rmd"]
 before_chapter_script: ["helper_functions.R"]
 language:
   ui:

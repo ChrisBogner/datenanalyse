@@ -1,0 +1,75 @@
+# R Markdown {#reproduzieren}
+
+```{block, type = 'rmdoutcomes'}
+- Wichtigkeit der Reproduzierbarkeit erklären
+- Begriff *literate programming* definieren
+- Aufbau einer RMarkdown-Datei erklären
+- Einen einfachen ersten reproduzierbaren Bericht schreiben
+```
+
+## Warum Reproduzierbarkeit in der Forschung wichtig ist
+
+<iframe width="640" height="360" src="https://www.youtube.com/embed/4rBX6r5emgQ?list=PLjTlxb-wKvXOU4WW4p3qc4VKWTI4gLNUf" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+## *Literate Programming* Idee von Donald Knuth
+Die Idee, dass man den Code und die dazugehörige Interpretation (Text, Bericht etc.) nicht von einander trennen sollte, geht auf @Knuth1984 zurück. Mit *Literate Programming* meinte Knuth, dass Programme auch nichts anderes wie literarische Werke sind. Er setzte den Fokus darauf, mit Programmen menschlichen Benutzern zu erklären, was man den Computer machen lassen möchte. Also weg vom computer- hin zum mensch-zentrierten Zugang. So wird Programmieren und in unserem Fall die Datenanalyse verständlich und vor allem reproduzierbar. 
+
+Leider ist es in unserer modernen Forschungslandschaft immer noch nicht Standard. Das Trennen von Analyseergebnissen und Berichten (Forschungsartikeln) sorgt für viele (unentdeckte und unnötige) Fehler und Frust.
+
+## Reproduzierbare Berichte mit R Markdown
+R hat sein eigenes System von reproduzierbaren Berichten, genannt **R Markdown** [@RMarkdownGuide]. Es ist benutzerfreundlich und ermöglicht unterschiedliche Formate von Berichten, wie HTML-Dokumente, PDF-Dateien, Präsentationsfolien usw.
+
+Es wird Sie vielleicht überraschen, aber das Skript, das Sie gerade lesen ist nichts anderes als ein "literarisch" programmiertes Buch in R Bookdown [@RMarkdownGuide], einem R-Paket speziell für lange R Markdown-Dokumente.
+
+Wir werden vor allem mit R Notebooks arbeiten, die eine gute Interaktion zwischen dem geschriebenen Text und dem R-Code ermöglichen. Das Notebook kann sowohl in ein HTML-Dokument als auch in PDF oder Word als endgültiges Dokument umgewandelt werden. Diesen Prozess nennt man *knit* (der Knopf in RStudio mit dem Wollknäuel).
+
+## Ein neues R Notebook erstellen
+Um ein neues R Notebook zu erstellen, klicken Sie das leine grüne Plus oben links und wählen Sie R Notebook aus. Sie können es erst einmal bei untitled belassen (Abbildung \@ref(fig:r-notebook)).
+
+```{r r-notebook, echo = F, fig.cap = 'Neues R Notebook anlegen', fig.width = 6, out.width = "60%"}
+knitr::include_graphics('figures/r-notebook.png')
+```
+
+Wenn Sie ein neues Notebook erstellen, enthält das Template etwas Code. Lesen Sie sich das ruhig noch einmal durch, da es ein paar hilfreiche Tastenkürzel und Tipps. Danach können Sie den Text unterhalb des Headers löschen. 
+
+## Der Header eines Notebooks
+Ein R Notebook (und jedes andere R Markdown Dokument) besteht aus einem Header (Kopf) und dem eigentlichen Text und Code. Der Header hat dabei ein bestimmtes Layout, auf das Sie unbedingt achten müssen (Rechtschreibung!). Der Header ist **immer** zwischen drei Minuszeichen `---` eingeschlossen. Bei komplizierteren Headern gibt es auch Einrückungen (mit der Tab-Taste), die Auch Bedeutung haben (s. weiterführende Literatur). Wir bleiben bei einem einfachen Header ohne Einrückungen (Abbildung \@ref(fig:rmarkdown-file)).
+
+Um einen neuen R-Chunk hinzuzufügen, klicken Sie auf das kleine grüne `C+` oben rechts oder verwenden Sie das Tastenkürzel **Str+Alt+i**:
+```{r rmarkdown-file, echo = F, fig.cap = 'Einen neuen Chunk hinzufügen', fig.width = 6, out.width = "100%"}
+knitr::include_graphics('figures/new_chunk.png')
+```
+
+
+Text kann einfach unterhalb des Headers und *außerhalb der Chunks* getippt werden Die wichtigsten Layoutelemente für den Text finden Sie [hier](https://rmarkdown.rstudio.com/authoring_basics.html). R Markdown unterstützt mathematische Notation in Latex-Stil. Eine Einführung in Latex würde an dieser Stelle aber zu weit führen.
+
+Das R Notebook hat den Vorteil, dass man über den Button `Preview` oben in der Leiste sofort die Ergebnisse anzeigen lassen kann. Sie müssen also nicht `knitten`. Falls Sie es doch möchten, klicken Sie auf das kleine Dreieck neben dem Preview und suchen Sie sich ein Output-Format aus. Ein einmal "geknittetes" Notebook ist kein Notebook mehr (kein Preview). Damit es wierder zum Nobebook wird, müssen Sie im Header `output: html_notebbok` einstellen (Abbildung \@ref(fig:rmarkdown-file)).
+
+## Wichtigste Regeln für Reproduzierbarkeit
+
+<iframe width="640" height="360" src="https://www.youtube.com/embed/pjL2uP-fmPY?list=PLjTlxb-wKvXOU4WW4p3qc4VKWTI4gLNUf" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+
+## Lesestoff
+Intro zu Kapitel 2 (Basics), Kapitel 3.2.1 und 3.2.2 in @RMarkdownGuide
+
+## Weiterführende Literatur
+r4ds, Kapitel 27 [@r4ds]
+
+## Aufgaben
+
+### Erstes Notebook
+- Erstellen Sie ein R Notebook. 
+- Fügen Sie Layoutelemente hinzu:
+  - Überschrift
+  - Unterüberschrift
+  - kursiver Text
+  - eine Hochzahl: R^2^
+  - ein Mathematikelement: $x^2$
+  - eine Liste
+  
+
+### Erste Schritte als Notebook
+- Wandeln Sie beide R-Skripte der ersten Session in ein R Notebook um.
+- Fügen Sie mehr Erklärungstext zu den einzelnen Schritten dazu.
+- Gliedern Sie Ihr Notebook mit passenden Layoutelementen.

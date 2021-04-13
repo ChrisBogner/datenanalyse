@@ -1,241 +1,461 @@
 # Aufgabensammlung
 
-## Erste Schritte
+Diese Aufgabensammlung enthält zusätzlich Aufgaben, die z.B. im Seminar bearbeitet werden. Aufgaben zu den einzelnen Kapiteln finden Sie am Ende des jeweiligen Kapitels.
 
-### Ars Haushaltsbuch
+## Tutorial Zusammenhangsmaße
 
-Der angehende Datenanalyst Ar Stat möchte dem Rat seiner Mutter folgen und ein Haushaltsbuch anlegen. Als erstes möchte er sich einen Überblick über seine Ausgaben in der Uni-Mensa verschaffen und erstellt die folgende Tabelle:
+
+**Begleitend zu diesem Tutorial sind die Kapitel 2 und 3 in Mittag (2017) "Statistik" zu lesen.**
+
+## Befragung der Studierenden der Uni Werdeschlau
+
+Wir beschäftigen uns mit einem fiktiven Beispiel.
+
+An der (kleinen) Universität Werdeschlau möchte die Studierendenvertretung wissen, ob sich eine Station zum Ausleihen von Fahrrädern lohnen würde. Dazu befragen sie die Studierenden, wie lange sie zur Uni fahren. Zudem wollen Sie wissen, ob die Anreisezeit und die Zeit, die die Studierenden pro Woche in der Bibliothek verbringen, zusammen hängen.
+
+
+### Grundgesamtheit generieren
+
+Unsere **Grundgesamtheit** sind alle 12000 Studierende von der Uni Werdeschlau. Wir erstellen uns in diesem Beispiel selbst unsere Grundgesamtheit aus der Gleichverteilung. Die Regeln dazu sind absolut frei erfunden. Die meisten Studierenden sind zwischen 5 und 40 Minuten unterwegs; 20% jedoch haben eine längere Anreise zwischen 60 und 120 Minuten.
+
+*Lassen Sie den Code laufen.*
+```{r, results = 'hide', fig.show='hide'}
+library(tidyverse)
+set.seed(123)
+anreise <- c(runif(n = 12000 * 0.8, min = 5, max = 40),
+                     runif(n = 12000 * 0.2, min = 60, max = 120))
+
+geschlecht <- sample(c('m', 'w'), size = 12000, replace = TRUE)
+wohnort <- sapply(anreise, function(x) {
+  if(x < 30) 'stadt'
+  else 'land'
+})
+verkehrsmittel <- sapply(anreise, function(x) {
+  if(x <= 10) 'zu_fuss'
+  else if(x > 10 & x <= 15) sample(c('zu_fuss', 'fahrrad'), size = 1)
+  else if(x > 15 & x <= 45) sample(c('bus', 'fahrrad', 'auto'), size = 1)
+  else sample(c('bus', 'auto'), size = 1)
+})
+
+zeit_bib <- 5 * 60 - 0.7 * anreise + rnorm(length(anreise), 0, 20)
+
+```
+
+Wir setzen `geschlecht`, `wohnort`, `verkehrsmittel`, `anreise` und `zeit_bib` zu einer Datenmatrix (`tibble`) zusammen und nennen das Objekt `grundgesamtheit`.
+
+*Lassen Sie den folgenden Code laufen.*
+
+```{r, results = 'hide', fig.show='hide'}
+grundgesamtheit <- tibble(geschlecht, wohnort, verkehrsmittel, anreise, zeit_bib)
+```
+
+
+### Befragung simulieren
+
+In der Realität werden natürlich nicht alle 12000 Studierende befragt (wer hat schon so viele Kapazitäten?), sondern eine zufällige **Stichprobe** erhoben, also eine Teilmenge der Grundgesamtheit.
+
+**Frage**: Wie nennt man die Studierenden
+
+  - Merkmalsträger
+  - Befragte oder
+  - Modalwerte?
+
+Falls Sie nicht sicher sind: Lesen Sie Kapitel 2 in Mittag (2017) "Statistik"!
+
 
 <br>
 
-```{r, results='asis', echo = F}
+Um unsere Stichprobe zu erstellen, ziehen wir ohne Zurücklegen aus unserer Grundgesamtheit. Sagen wir mal, die Kapazitäten der Befragenden reichen für 200 Befragungen.
 
-tab = data.frame(Wochentag = c('Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag'), Ausgaben = c(2.57, 2.90, 2.73, 3.23, 3.90))
-knitr::kable(tab, 
-             #format = 'latex',
-             caption = 'Ars Mensaausgaben', booktabs = T,
-             format.args = list(decimal.mark = ',')) %>%
-  kable_styling(bootstrap_options = "striped", full_width = F,
-                position = "left")
+*Lassen Sie den folgenden Code laufen.*
+
+```{r, results = 'hide', fig.show='hide'}
+befragung <- grundgesamtheit[sample(1:dim(grundgesamtheit)[1], size = 200, replace = FALSE), ]
+```
+
+### Kurze explorative Datenanalyse
+
+Von hier an arbeiten wir mit unserer Stichprobe `befragung`. Sehen wir uns mal die empirische Verteilung, d.h. die Verteilung in der Stichprobe an.
+
+Plotten Sie ein Histogramm der Anreisezeiten in unserer Stichprobe. *Lassen Sie den Code laufen und passen Sie die bins sinnvoll an.*
+
+```{r, results = 'hide', fig.show='hide'}
+ggplot(data = befragung, aes(x = anreise)) +
+  geom_histogram(bins = 5)
 ```
 
 
-1. Wie viel hat Ar insgesamt in der Woche ausgegeben?
-2. Wie viel hat er im Schnitt pro Tag ausgegeben?
-3. Wie stark schwanken seine Ausgaben?
+### Lage- und Streuungsmaße
 
-Leider hat Ar sich beim übertragen der Daten vertippt. Er hat am Dienstag seine Freundin zum Essen eingeladen und 7,95 € statt 2,90 € ausgegeben.
+Erstellen Sie die Fünf-Punkte-Zusammenfassung der Stichprobe. *Lassen Sie den Code laufen.*
 
-4. Korrigieren Sie Ars Fehler.
-5. Wie verändern sich die Ergebnisse aus den Teilaufgaben 1 bis 3 Warum?
+```{r, results = 'hide', fig.show='hide'}
+summary(befragung)
+```
 
-
-## Daten in R
-
-### Bestandesaufnahme im Wald {#bestandesaufnahme}
-
-Ar Stat arbeitet als HiWi in der AG Ökosystemforschung und soll im Nationalpark Eifel eine Bestandsaufnahme durchführen (d.h. Baumhöhen und -durchmesser vermessen). Er notiert den BHD (Brusthöhendurchmesser) und die Art der Bäume.
+Wie Sie sehen können, behandelt R die kategorischen Daten anders als numerische. Kategorische Variablen werden als absolute Häufigkeiten pro Kategorie dargestellt (d.h. ausgezählt).
 
 
-1.  Lesen Sie den Datensatz `r file.name("BHD.txt")` ein und ordnen Sie ihn der Variable `BHD` zu.
-2. Erstellen Sie einen Vektor `a` mit Baumnummern. Von welcher Art sind die Elemente des Vektors `a`?
-3. Fügen Sie die Datensätze `BHD` und `a` zu einem `data.frame` zusammen und benennen Sie die Spalten sinnvoll.
-4. Löschen Sie den Vektor `a`.
-4. Lesen Sie den Datensatz `r file.name("Art.txt")` ein und ordnen Sie ihn der Variablen `art` zu.
-5. Fügen Sie die Art in den `data.frame` ein.
-6. Erstellen Sie eine Tabelle mit der Anzahl der jeweiligen Arten. Nutzen Sie die Funktion `table`.
-7. Speichern Sie die Tabelle mit `write.table`.
+Wir vergleichen nun gewöhnliche und robuste Lage- und Streuungsmaße. Zu gewöhnlichen gehören der Mittelwert (genauer arithmetisches Mittel) und die Standardabwechung.
+
+*Berechnen Sie den Mittelwert und die Standardabweichung der Anreise.*
+
+Zu den robusten Maßen gehören der Median, der Interquartilabstand und die mittlere absolute Abweichung vom Median (MAD). MAD beschreibt die durchschnittlich Abweichung der Stichprobe von ihrem Median.
+
+*Berechnen Sie den Median der Stichprobe.*
+
+Den Interquartilabstand bekommt man mit Hilfe der Funtion `quantile`, die die Quantile berechnet. 
+
+*Lassen Sie den folgenden Code laufen.*
+
+```{r, results = 'hide', fig.show='hide'}
+quantile(x = befragung$anreise, probs = 0.75) - quantile(x = befragung$anreise, probs = 0.25)
+```
+
+Der Interquartilabstand kann auch direkt mit der Funktion `IQR()` berechnet werden und MAD mit `mad()`.
+
+*Berechnen Sie den Interquartilabstand und MAD der Stichprobe.*
 
 
-## Daten visualisieren, Teil I: Fokus auf R
+Vergleichen Sie die gewöhnlichen und die robusten Maße. Es gilt: je größer die außergewöhnlichen Datenpunkte, d.h. je höher die höchsten Anfahrtszeiten, desto stärker reagieren der Mittelwert und die Standardabweichung. Die robusten Maße bleiben (solange der Anteil der hohen Anfahrtszeiten nicht zu groß ist) relativ konstant.
 
-### Wahlbeteiligung bei der Bundestagswahl 2017 {#wahlbeteiligung}
+Abgesehen vom Aspekt der Robustheit, ist das arithmetische Mittel nicht immer ein geeigneter Durchschnittswert. Für Wachstumsfaktoren (Preissteigerung, Zinsen) ist das geometrische Mittel die korrekte Mittelung und für die Berechnung von Durchschnittsgeschwindigkeiten das harmonische Mittel (Details z.B. bei Fahrmeir et al. (2016). Statistik. Der Weg zur Datenanalyse).
 
-Bauen Sie die Grafiken aus der Einführung nach (Abbildung \@ref(fig:wahlbeteiligung)).
+### Zufall in der Befragung
 
-```{r wahlbeteiligung, echo = F, fig.cap = 'Wahlbeteiligung bei den Bundestagswahlen. Quelle: Der Bundeswahlleiter.', fig.width = 6, out.width = "100%"}
-knitr::include_graphics('Wahlbeteiligung.png', auto_pdf = T)
+Wir haben unsere Befragten rein zufällig ausgewählt. D.h. die Kenngrößen hängen von dieser zufälligen Auswahl ab. Wie würden sie sich verändern, wenn wir eine andere Stichprobe ausgesucht hätten?
+
+Wir simulieren eine wiederholte Befragung und sehen uns an, wie sich der Mittelwert und der Median entwickeln. *Lassen Sie den Code laufen.*
+
+```{r, results = 'hide', fig.show='hide'}
+anzahl_der_befragungen <- 100
+
+# Leere Vektoren erstellen, in die später die Ergebnisse geschrieben werden.
+mean_all <- vector()
+median_all <- vector()
+
+
+for (i in 1:anzahl_der_befragungen){
+  dat <- grundgesamtheit[sample(1:dim(grundgesamtheit)[1], size = 200, replace = FALSE), ]
+  mean_all[i] <- mean(dat$anreise)
+  median_all[i] <- median(dat$anreise)
+}
+
+kennzahlen <- tibble(mean_all, median_all)
+
 ```
 
 
-1. Lesen Sie den Datensatz `r file.name('Wahlbeteiligung.csv')` in R ein und ordnen Sie ihn dem Objekt `bet` zu. Der Datensatz hat einen *header* und haben einen Strichpunkt als Spaltentrenner.
-2. Sehen Sie sich die Struktur und die ersten und letzten 6 Zeilen des Datensatzes an.
-2. Stellen Sie die Wahlbeteiligung als Funktion der Zeit in einem Streudiagramm dar. Wählen Sie die passende Darstellungsform `type`.
-2. Beschriften Sie die Grafik.
-2. Speichern Sie die Grafik als pdf ab.
+Stellen Sie die Mittelwerte `mean_all` als Histogramm dar. *Lassen Sie den Code laufen und passen Sie die bins sinnvoll an.*
 
-
-### Zweitstimme bei der Bundestagswahl 2017 {#zweitstimme}
-
-Bauen Sie die Grafiken aus der Einführung nach (Abbildung \@ref(fig:zweitstimme)).
-
-```{r zweitstimme, echo = F, fig.cap = 'Zweitstimme bei der Bundestagswahl 2017. Quelle: Der Bundeswahlleiter.', fig.width = 6, out.width = "100%"}
-knitr::include_graphics('Zweitstimme.png', auto_pdf = T)
+```{r, results = 'hide', fig.show='hide'}
+ggplot(data = kennzahlen, aes(x = mean_all)) +
+  geom_histogram(bins = 5)
 ```
 
 
-1. Lesen Sie den Datensatz `r file.name('Zweitstimme.csv')` in R ein und ordnen Sie ihn dem Objekt `zweit` zu. Der Datensatz hat einen *header* und haben einen Strichpunkt als Spaltentrenner.
-2. Sehen Sie sich die Struktur und die ersten und letzten 6 Zeilen des Datensatzes an.
-2. Stellen Sie die die Zweitstimmen pro Partei in einem Säulendiagramm dar. Sortieren Sie die Zweitstimmen in absteigender Reihenfolge.
-2. Beschriften Sie die Grafik.
-2. Speichern Sie die Grafik als pdf ab.
+*Stellen Sie die Mediane `median_all` als Histogramm dar.*
 
-### Ergebnisse der Bundestagswahl in einer Grafik {#zweigrafiken}
+```{r, results = 'hide', fig.show='hide'}
+ggplot(data = kennzahlen, aes(x = median_all)) +
+  geom_histogram(bins = 5)
+```
 
-Stellen Sie beide Grafiken nebeneinander dar wie in Abbildung (\@ref(fig:zweigrafiken)) gezeigt.
+### Zusammenhangsmaße für nominalskalierte Merkmale
+Gibt es Präferenzen für bestimmte Verkehrsmittel je nach Geschlecht?
+Wir sehen uns die Kontingenztabelle dazu an.
 
-```{r zweigrafiken, echo = F, fig.width = 6, fig.cap = 'Ergebnisse der Bundestagswahl 2017. Quelle: Der Bundeswahlleiter.', fig.width = 6, out.width = "100%"}
-knitr::include_graphics('Zwei_grafiken.png', auto_pdf = T)
+*Lassen Sie den folgenden Code laufen.*
+
+```{r, results = 'hide', fig.show='hide'}
+table(befragung$geschlecht, befragung$verkehrsmittel)
+```
+Nun berechnen wir die Zusammenhangsmaße auf dieser Tabelle. Dazu nutzen wir die Bibliothek vcd (Visualizing Categorical Data), sehr empfehlenswert, wenn Sie kategorische Daten analysieren wollen.
+
+*Lassen Sie den folgenden Code laufen.*
+
+```{r, results = 'hide', fig.show='hide', message=F}
+library(vcd)
+assocstats(table(befragung$geschlecht, befragung$verkehrsmittel))
+```
+
+Der Phi-Koeffizient ist NA, weil er nur auf $2 \times 2$-Tabellen definiert ist. Die beiden anderen, Contingency Coeff. (Pearson Koeffizient K) und Cramer's V zeigen unterschiedliche Werte an, je nachdem, wie unsere zufällige Stichprobe ausfällt. Aber der Zusammenhang sollte eher klein sein.
+
+Allgemein gil: Contingency Coeff. (Pearson Koeffizient K) und Cramer's V schwanken zwischen 0 (kein Zusammenhang) und 1 (perfekter Zusammenhang). Wichtig: Sie zeigen keine Richtung an. D.h. wir wissen nicht, ob der Zusammenhang positiv - "je mehr desto mehr" oder negativ "je mehr desto weniger" ist.
+
+Die ersten beiden Zeilen, die `assocstats` liefert, gehören zum Thema Hypothsentests. Das besprechen wir später.
+
+Gibt es einen Zusammenhang zwischen dem Wohnort und dem ausgesuchten Verkehrsmittel?
+
+*Berechnen Sie die Kontingenztabelle. Nutzen Sie die Funktion `table()` auf den Spalten `wohnort` und `verkehrsmittel` im Datensatz `befragung`.*
+
+
+Berechnen Sie die Zusammenhangsmaße. *Lassen Sie den Code laufen.*
+
+```{r, results = 'hide', fig.show='hide'}
+assocstats(table(befragung$wohnort, befragung$verkehrsmittel))
 ```
 
 
-### Einen zu großen weißen Rand vermeiden {#weisserrand}
+Gibt es eine Präferenz für den Wohnort je Geschlecht? *Lassen Sie den Code laufen.*
 
-Bei Berichten haben Abbildungen meistens keine Überschrift, da alles in der Bildunterschrift erklärt wird. Wenn man die Überschrift beim plotten weglässt, die Standardeinstellungen für die Ränder aber beibehält, entsteht ein zu großer weißer Rand um die Grafik. Diesen wollen wir nun abschalten.
+```{r, results = 'hide', fig.show='hide'}
+assocstats(table(befragung$wohnort, befragung$geschlecht))
 
-1. Kopieren Sie den Code zum Plotten der Temperaturen aus dem Kapitel \@ref(visualisieren).
-1. Stellen Sie oben und rechts einen Rand von 0.1 Zeilen ein.
-1. Speichern Sie die Grafik als pdf ab.
-
-### Spielen mit der Funktion `par`
- Setzen Sie die Übung \@ref(weisserrand) fort. Denken Sie an den richtigen Aufruf mit der Zuweisung von `op <- par( ... )`!
-
-1. Probieren Sie die Größeneinstellung `cex = 2` in `plot` aus. Testen Sie unterschiedliche Werte.
-1. Probieren Sie die Einstellungen `cex.axis`, `cex.lab` und `cex.main` in `par` aus. 
-1. Probieren Sie die Einstellung `col` in `plot` aus.
-1. Probieren Sie die Einstellungen `col.axis`, `col.lab` und `col.main` aus. 
-1. Probieren Sie die Schrifteinstellungen aus. Dazu stellen Sie den Parameter `family` in `par` auf "serif", "sans" oder "mono".
-1. Probieren Sie die Parameter `font.lab = 2` und `font.axis = 2` direkt in `plot` aus. Zahlen 1 bis 5 stehen jeweils für normal, fett, kursiv, fett-kursiv und symbolisch.
-
-## Reproduzierbare Berichte mit R Markdown
-
-### Erster eigener Bericht
-
-Erstellen Sie ein R Notebook aus den Notizen der ersten 3 R-Sessions.
-
-## Eigene Funktionen schreiben
-
-### R-Hausaufgaben
-
-An dem Kurs "Einführung in R" nehmen 49 Studierende teil. Der Leistungsnachweis besteht aus Hausaufgaben, die insgesamt mit 100 Punkten bewertet werden. Ab 50 Punkten gilt der Kurs als bestanden. 
-
-1. Lesen Sie den Datensatz `r file.name("R-HAs.txt")`, der die Endpunkte enthält, ein.
-2. Ermitteln Sie, wie viele Teilnehmer bestanden und wie viele nicht bestanden haben.
-
-
-### Fledermäuse, die Zweite {#fledermaus}
-
-Wir beschäftigen uns erneut mit den Fledermäusen.
-
-1. Lesen Sie den korrigierten(!) Datensatz  `r file.name("Fledermaus_cor.txt")` ein.
-2. Schreiben Sie eine Funktion, die den Entwicklungsstand der Tiere klassifiziert. Nutzen Sie dazu die ad hoc Regel: Individuum < 5 cm ist ein Jungtier, sonst erwachsen.
-3. Erstellen Sie eine ordinal-skalierte Variable `alter` mit dem Entwicklungsstand der Tiere.
-3. Wie viele Erwachsene und wie viele Jungtiere wurden vermessen?
-
-## Tidyverse
-
-### Fledermaus, die Dritte {#fledermaus3}
-1. Wiederholen Sie die Aufgabe \@ref(fledermaus) mit `tidyverse`
-2. Berechnen Sie die Mittelwerte der Größe für weibliche und männliche Individuen.
-3. Berechnen Sie die Mittelwerte der Größe für die Kategorien weiblich, männlich, Jungtier und erwachsen getrennt.
-
-
-### Unfaire Klausur? {#klausur}
-
-Ar belegt im 4. Semester die Veranstaltung "Spaß mit R". Bei der Klausur gibt es 2 Aufgabengruppen mit jeweils 60 Punkten. Aufgabengruppe 1 wird an Studierende auf ungeraden Sitzplätzen und  Aufgabengruppe 2 an Studierende auf geraden Sitzplätzen ausgegeben. 
-
-1. Lesen Sie den Datensatz `r file.name("Klausurpunkte.txt")` ein.
-1. Überprüfen Sie Ars Vermutung, dass die Aufgabengruppe 1 im Schnitt leichter war als Aufgabengruppe 2 (d.h. in der Gruppe 1 im Schnitt mehr Punkte erzielt wurden).
-  <ol start="i">
-  <li>Berechnen Sie erst die Mittelwerte pro Gruppe.</li>
-  <li>Testen Sie dann mit einem Permutationstest, ob die Mittelwerte signifikant verschieden sind. Adaptieren Sie den Code aus dem Tutorial Hypothesentests_1.Rmd.</li>
-</ol>
-
-
-
-## Daten visualisieren, Teil II: Fokus auf Daten
-
-### Zeitreihen aus der Langen Bramke (Harz)
-
-Im Harz wurden über eine längere Zeit Niederschlag, Abfluss und Temperatur gemessen.
-
-1. Laden Sie den Datensatz `r file.name("Data.dat")`.
-2. Stellen Sie die Temperatur in einem Streudiagramm dar. Welche Darstellungsart (Argument `type` in `plot`) erscheint Ihnen am sinnvollsten? 
-3. Beschriften Sie die Graphik und fügen Sie einen Titel hinzu.
-4. Speichern Sie die Graphik als pdf ab.
-5. Stellen Sie die Niederschläge in einem Diagramm dar. Wählen Sie einen geeigneten Darstellungstyp mit `type` (Tipp: geben Sie für die Hilfe `?plot` in die Konsole ein).
-
-### Temperatur-Datensatz
-
-Die Datei `r file.name("Temperatur.csv")` aus @Zuur2009a enthält Messungen von Temperatur, Salinität und Chlorophyl a an 31 Orten entlang der dänischen Küste. Die Daten stammen vom dänischen Institut RIKZ (Monitoringprogramm MWTL: Monitoring Waterstaatkundige Toestand des Lands). Die Messungen wurden zwischen 1990 und 2005 durchgeführt mit einer Häufigkeit von 0-4 mal pro Monat je nach Jahreszeit.
-
-1. Lesen Sie den Temperatur-Datensatz `r file.name("Temperatur.csv")` ein.
-1. Berechnen Sie die Anzahl der Messwerte, Monatsmittelwerte für alle Stationen, sowie die Standardabweichungen.
-1. Stellen Sie die Monatsmittel der Temperatur als Linien dar.
-1. Beschriften Sie die Grafik sinnvoll.
-1. Fügen Sie die Standardabweichungen als Band hinzu.
-1. Speichern Sie die Grafik als pdf ab.
-
-### Temperatur-Datensatz, revisited
-1. Berechnen Sie die Monatsmittelwerte und Standardabweichungen je Station. Tipp: `group_by(Station, Month)`.
-1. Stellen Sie die Daten mit einem Fehlerband dar und speichern Sie sie ab.
-1. Stellen Sie die Daten als Punkte mit Fehlerbalken dar und speichern Sie sie ab. Zur Orientierung, das Ergebnis sollte so aussehen wie in Abbildung (\@ref(fig:temperrors)).
-
-```{r temperrors, echo = F, fig.width = 6, fig.cap = 'Mittelwerte der Temperatur je Station [@Zuur2009a]', fig.width = 6, out.width = "100%"}
-knitr::include_graphics('Temp_error_bars.png', auto_pdf = T)
 ```
 
-
-### Artenvielfalt in Grasländern
-Sie erhalten Daten aus dem Grasland-Monitoring im Yellowstone Nationalpark und dem National Bison Range (USA). Das Ziel des Monitorings ist die Untersuchung möglicher Änderungen der Biodiversität und des Zusammenhang mit Umweltfaktoren. Biodiversität wurde durch die Anzahl unterschiedlicher Arten quantifiziert. Insgesamt haben die Forscher ca. 90 Arten in 8 Transekten kartiert. Die Aufnahmen wurden alle 4 bis 10 Jahre wiederholt. Insgesamt liegen 58 Beobachtungen vor. Die Daten sind in der Datei `r file.name("Vegetation2.xls")` gespeichert.
-
-1. Laden Sie den Datensatz in R und sehen Sie sich das Ergebnis genau mit  `str`, `head` und `tail` an. Diese Aufgabe dient dazu, das Einlesen von Excel-Dateien mit `tidyverse` zu erarbeiten. Tipp: nutzen Sie die Funktion `read_xls()` in der Bibliothek `readxl`. Lesen Sie genau in der Hilfe nach, wie Sie *ein bestimmtes* Tabellenblatt einlesen können.
-
-1. Kurze explorative Analyse: Berechnen Sie die Anzahl der Messungen, den Mittelwert und die Standardabweichung der Artenzahl (Variable  `R`) pro Transekt. 
-
-1. Plotten Sie die Artenzahl gegen die Variable `BARESOIL` (Anteil von unbewachsenem Boden). Färben Sie die Punkte je nach Transekt unterschiedlich ein. Tipp: Transekt als `as.factor()` konvertieren.
-
-1. Fügen Sie eine glättende Linie ohne Konfidenzband hinzu, die alle Punkte unabhängig vom Transekt berücksichtigt (Abschnitt 5.2 in ggplot2 Buch). 
-
-1. Beschriften Sie die Graphik (auch die Legende!) sinnvoll und speichern Sie sie als pdf ab.
-
-1. Stellen Sie die Artenzahl je Transekt als Zeitreihe dar. Die Symbole sollen sowohl Punkte als auch Linien sein. Skalieren Sie die Größe der Punkte je nach Anteil des unbewachsenen Bodens (Abschnitt 6.2 im ggplot2 Buch).
-
-1. Beschriften Sie die Grafik (auch die Legenden!) sinnvoll und speichern Sie sie als pdf ab.
-
-1. Setzen Sie nun beide Grafiken neben einander, platzieren Sie die Legenden (ja nach gewähltem Layout) sinnvoll und speichern Sie die Grafiken ab.
+Da Sie ja genau wissen, wie die Daten erstellt wurden, sollten Ihnen die Antworten nicht zu schwer fallen.
 
 
-### Tracerversuche
-Im Waldstein wurden Tracerversuche mit dem Farbstoff Brilliant Blue durchgeführt und die gefärbten Bodenprofile *binärisiert* (d.h. in ein schwarz-weiß Bild umgewandelt). Schwarze Pixels stellen gefärbten Boden und weiße ungefärbten dar. Aus diesen Binärbildern wurde anschließend eine Reihe von Kenngrößen berechnet.
+### Zusammenhangsmaße für metrische Merkmale
 
-1. Lesen Sie die Datei `r file.name("Waldstein2005_ind.txt")` ein.  Die Tiefe eines Profils ist 579 Pixel und es liegen 6 Profile untereinander in der Spalte d.
-1. Berechnen Sie die 5%, 50% und 95% Quantile des Färbeanteils (Index d) der 6 Profile.
-1.  Stellen Sie den Median des Anteils der Färbung mit der Tiefe dar und fügen Sie die Quantile als transparente Fläche hinzu (Tipp: `polygon`).
+Zum Schluss wenden wir uns den beiden numerischen Variablen, `anreise` und `zeit_bib`. Besteht hier eine Korrelation?
 
-## Tidy data
+Zuerst stellen wir die Daten dar.
 
-### Wasserentnahme mit Datenquelle Excel
-Wir beschäftigen uns mit dem Einlesen und bereinigen von Daten aus Exceldateien. Dazu nutzen wir das Beispiel aus einer der ersten Sitzungen zur Wasserentnahme in der EU.
+*Lassen Sie den folgenden Code laufen.*
 
-1. Sehen Sie sich die Struktur der Datei `r file.name("TEN000021586860138332.xlsx")` an und lesen Sie sie ein. Nutzen Sie dazu die Funktion `read_xlsx()` aus dem Paket readxl.
-2. Bereinigen Sie den Datensatz und konvertieren Sie ihn in *tidy*. Nutzen Sie dazu die Funktion `pivot_longer()`.
-3. Finden und korrigieren Sie den Fehlwert.
-4. Filtern Sie die Einträge für die EU heraus und behalten Sie nur die einzelnen Länder bei.
-5. Stellen Sie die Änderung der Wasserentnahme pro Land dar.
+```{r, results = 'hide', fig.show='hide'}
+ggplot(data = befragung, aes(x = anreise, y = zeit_bib)) +
+  geom_point() +
+  xlab('Tägliche Anreise (min)') +
+  ylab('Zeit in der Bibliothek pro Woche (min)')
+```
 
-### Wasserentnahme mit Datenquelle EUROSTAT direkt
+Der Zusammenhang zwischen den beiden Variablen ist (ziemlich) linear und negativ.
 
-Wir können die Datenbank EUROSTAT direkt über ihr API (Application Programming Interface) ansprechen. Leider ist das herunter geladene Datenformat sehr umständlich. Um uns Programmierarbeit zu sparen, nutzen wir das Paket eurostat, das die Daten aus der Datenbank herunterlädt und gleich ordentlich formatiert.
+Wir berechnen beide Korrelationsmaße, den Pearson Korrelationskoeffizienten für lineare Zusammenhänge und den Spearman Korrelationskoeffizient für monotone Zusammenhänge.
 
-1. Installieren Sie das Paket eurostat und sehen Sie sich das Tutorial für das Paket an (https://ropengov.github.io/eurostat/articles/website/eurostat_tutorial.html)
-2. Durchsuchen Sie die Datenbank nach allen Datensätzen, die das Wort "water" enthalten und darin das Wort "abstraction".
-3. Laden Sie den entsprechenden Datensatz herunter (env_wat_abs).
-4. Das Paket skimr bietet Zusammenfassungsfunktionen für Datensätze, die man auch in der Pipe benutzen kann. Installieren Sie das Paket und wenden Sie die Funktion `skim()` auf den heruntergeladenen Datensatz an.
-4. Welche Wasserquellen und Nutzer sind im Datensatz enthalten (https://appsso.eurostat.ec.europa.eu/nui/show.do?dataset=env_wat_abs&lang=en)?
-4. Stellen Sie die Wasserentnahme pro Einwohner dar (Gesamtentnahme aus allen Quellen: wat_proc == 'ABST' & wat_src == 'FRW').
-4. Berechnen Sie die Gesamtmenge des entnommenen Wassers für alle Länder je Quelle (Fresh surface water und Fresh ground water).
-4. Stellen Sie diese Daten als Punktdiagramm, als Balkendiagramm und als Flächendiagramm dar. Was ist das Problem mit dem Flächendiagramm?
+*Lassen Sie den Code laufen.*
+
+```{r, results = 'hide', fig.show='hide'}
+# Pearson Korrelationskoeffizient
+cor(befragung$anreise, befragung$zeit_bib, method = 'pearson')
+
+# Spearman Korrelationskoeffizient
+cor(befragung$anreise, befragung$zeit_bib, method = 'spearman')
+```
+
+Beide Koeffizienten sind nah dran an dem Faktor 0.7, den wir zum Simulieren unserer Daten verwendet haben. Man darf hier beide verwenden. Wichtig ist es zu berichten, welchen Sie verwenden. D.h. es ist nicht genug, zu schreiben, dass Sie eine Korrelation berechnet haben. 
+
+**Gut gemacht! Lassen Sie den Code laufen.**
+```{r "emoji", results = 'hide', fig.show='hide'}
+
+library(ggplot2)
+library(emojifont)
+ggplot() + geom_fontawesome("fa-coffee", color='lightblue', size = 80) + theme_void() + ggtitle("It's time for coffee")
+
+```
+
+**Fertig!**
+
+
+<!-- ## Daten in R -->
+
+<!-- ### Bestandesaufnahme im Wald {#bestandesaufnahme} -->
+
+<!-- Ar Stat arbeitet als HiWi in der AG Ökosystemforschung und soll im Nationalpark Eifel eine Bestandsaufnahme durchführen (d.h. Baumhöhen und -durchmesser vermessen). Er notiert den BHD (Brusthöhendurchmesser) und die Art der Bäume. -->
+
+
+<!-- 1.  Lesen Sie den Datensatz `r file.name("BHD.txt")` ein und ordnen Sie ihn der Variable `BHD` zu. -->
+<!-- 2. Erstellen Sie einen Vektor `a` mit Baumnummern. Von welcher Art sind die Elemente des Vektors `a`? -->
+<!-- 3. Fügen Sie die Datensätze `BHD` und `a` zu einem `data.frame` zusammen und benennen Sie die Spalten sinnvoll. -->
+<!-- 4. Löschen Sie den Vektor `a`. -->
+<!-- 4. Lesen Sie den Datensatz `r file.name("Art.txt")` ein und ordnen Sie ihn der Variablen `art` zu. -->
+<!-- 5. Fügen Sie die Art in den `data.frame` ein. -->
+<!-- 6. Erstellen Sie eine Tabelle mit der Anzahl der jeweiligen Arten. Nutzen Sie die Funktion `table`. -->
+<!-- 7. Speichern Sie die Tabelle mit `write.table`. -->
+
+
+<!-- ## Daten visualisieren, Teil I: Fokus auf R -->
+
+<!-- ### Wahlbeteiligung bei der Bundestagswahl 2017 {#wahlbeteiligung} -->
+
+<!-- Bauen Sie die Grafiken aus der Einführung nach (Abbildung \@ref(fig:wahlbeteiligung)). -->
+
+<!-- ```{r wahlbeteiligung, echo = F, fig.cap = 'Wahlbeteiligung bei den Bundestagswahlen. Quelle: Der Bundeswahlleiter.', fig.width = 6, out.width = "100%"} -->
+<!-- knitr::include_graphics('Wahlbeteiligung.png', auto_pdf = T) -->
+<!-- ``` -->
+
+
+<!-- 1. Lesen Sie den Datensatz `r file.name('Wahlbeteiligung.csv')` in R ein und ordnen Sie ihn dem Objekt `bet` zu. Der Datensatz hat einen *header* und haben einen Strichpunkt als Spaltentrenner. -->
+<!-- 2. Sehen Sie sich die Struktur und die ersten und letzten 6 Zeilen des Datensatzes an. -->
+<!-- 2. Stellen Sie die Wahlbeteiligung als Funktion der Zeit in einem Streudiagramm dar. Wählen Sie die passende Darstellungsform `type`. -->
+<!-- 2. Beschriften Sie die Grafik. -->
+<!-- 2. Speichern Sie die Grafik als pdf ab. -->
+
+
+<!-- ### Zweitstimme bei der Bundestagswahl 2017 {#zweitstimme} -->
+
+<!-- Bauen Sie die Grafiken aus der Einführung nach (Abbildung \@ref(fig:zweitstimme)). -->
+
+<!-- ```{r zweitstimme, echo = F, fig.cap = 'Zweitstimme bei der Bundestagswahl 2017. Quelle: Der Bundeswahlleiter.', fig.width = 6, out.width = "100%"} -->
+<!-- knitr::include_graphics('Zweitstimme.png', auto_pdf = T) -->
+<!-- ``` -->
+
+
+<!-- 1. Lesen Sie den Datensatz `r file.name('Zweitstimme.csv')` in R ein und ordnen Sie ihn dem Objekt `zweit` zu. Der Datensatz hat einen *header* und haben einen Strichpunkt als Spaltentrenner. -->
+<!-- 2. Sehen Sie sich die Struktur und die ersten und letzten 6 Zeilen des Datensatzes an. -->
+<!-- 2. Stellen Sie die die Zweitstimmen pro Partei in einem Säulendiagramm dar. Sortieren Sie die Zweitstimmen in absteigender Reihenfolge. -->
+<!-- 2. Beschriften Sie die Grafik. -->
+<!-- 2. Speichern Sie die Grafik als pdf ab. -->
+
+<!-- ### Ergebnisse der Bundestagswahl in einer Grafik {#zweigrafiken} -->
+
+<!-- Stellen Sie beide Grafiken nebeneinander dar wie in Abbildung (\@ref(fig:zweigrafiken)) gezeigt. -->
+
+<!-- ```{r zweigrafiken, echo = F, fig.width = 6, fig.cap = 'Ergebnisse der Bundestagswahl 2017. Quelle: Der Bundeswahlleiter.', fig.width = 6, out.width = "100%"} -->
+<!-- knitr::include_graphics('Zwei_grafiken.png', auto_pdf = T) -->
+<!-- ``` -->
+
+
+<!-- ### Einen zu großen weißen Rand vermeiden {#weisserrand} -->
+
+<!-- Bei Berichten haben Abbildungen meistens keine Überschrift, da alles in der Bildunterschrift erklärt wird. Wenn man die Überschrift beim plotten weglässt, die Standardeinstellungen für die Ränder aber beibehält, entsteht ein zu großer weißer Rand um die Grafik. Diesen wollen wir nun abschalten. -->
+
+<!-- 1. Kopieren Sie den Code zum Plotten der Temperaturen aus dem Kapitel \@ref(visualisieren). -->
+<!-- 1. Stellen Sie oben und rechts einen Rand von 0.1 Zeilen ein. -->
+<!-- 1. Speichern Sie die Grafik als pdf ab. -->
+
+<!-- ### Spielen mit der Funktion `par` -->
+<!--  Setzen Sie die Übung \@ref(weisserrand) fort. Denken Sie an den richtigen Aufruf mit der Zuweisung von `op <- par( ... )`! -->
+
+<!-- 1. Probieren Sie die Größeneinstellung `cex = 2` in `plot` aus. Testen Sie unterschiedliche Werte. -->
+<!-- 1. Probieren Sie die Einstellungen `cex.axis`, `cex.lab` und `cex.main` in `par` aus.  -->
+<!-- 1. Probieren Sie die Einstellung `col` in `plot` aus. -->
+<!-- 1. Probieren Sie die Einstellungen `col.axis`, `col.lab` und `col.main` aus.  -->
+<!-- 1. Probieren Sie die Schrifteinstellungen aus. Dazu stellen Sie den Parameter `family` in `par` auf "serif", "sans" oder "mono". -->
+<!-- 1. Probieren Sie die Parameter `font.lab = 2` und `font.axis = 2` direkt in `plot` aus. Zahlen 1 bis 5 stehen jeweils für normal, fett, kursiv, fett-kursiv und symbolisch. -->
+
+<!-- ## Reproduzierbare Berichte mit R Markdown -->
+
+<!-- ### Erster eigener Bericht -->
+
+<!-- Erstellen Sie ein R Notebook aus den Notizen der ersten 3 R-Sessions. -->
+
+<!-- ## Eigene Funktionen schreiben -->
+
+<!-- ### R-Hausaufgaben -->
+
+<!-- An dem Kurs "Einführung in R" nehmen 49 Studierende teil. Der Leistungsnachweis besteht aus Hausaufgaben, die insgesamt mit 100 Punkten bewertet werden. Ab 50 Punkten gilt der Kurs als bestanden.  -->
+
+<!-- 1. Lesen Sie den Datensatz `r file.name("R-HAs.txt")`, der die Endpunkte enthält, ein. -->
+<!-- 2. Ermitteln Sie, wie viele Teilnehmer bestanden und wie viele nicht bestanden haben. -->
+
+
+<!-- ### Fledermäuse, die Zweite {#fledermaus} -->
+
+<!-- Wir beschäftigen uns erneut mit den Fledermäusen. -->
+
+<!-- 1. Lesen Sie den korrigierten(!) Datensatz  `r file.name("Fledermaus_cor.txt")` ein. -->
+<!-- 2. Schreiben Sie eine Funktion, die den Entwicklungsstand der Tiere klassifiziert. Nutzen Sie dazu die ad hoc Regel: Individuum < 5 cm ist ein Jungtier, sonst erwachsen. -->
+<!-- 3. Erstellen Sie eine ordinal-skalierte Variable `alter` mit dem Entwicklungsstand der Tiere. -->
+<!-- 3. Wie viele Erwachsene und wie viele Jungtiere wurden vermessen? -->
+
+<!-- ## Tidyverse -->
+
+<!-- ### Fledermaus, die Dritte {#fledermaus3} -->
+<!-- 1. Wiederholen Sie die Aufgabe \@ref(fledermaus) mit `tidyverse` -->
+<!-- 2. Berechnen Sie die Mittelwerte der Größe für weibliche und männliche Individuen. -->
+<!-- 3. Berechnen Sie die Mittelwerte der Größe für die Kategorien weiblich, männlich, Jungtier und erwachsen getrennt. -->
+
+
+<!-- ### Unfaire Klausur? {#klausur} -->
+
+<!-- Ar belegt im 4. Semester die Veranstaltung "Spaß mit R". Bei der Klausur gibt es 2 Aufgabengruppen mit jeweils 60 Punkten. Aufgabengruppe 1 wird an Studierende auf ungeraden Sitzplätzen und  Aufgabengruppe 2 an Studierende auf geraden Sitzplätzen ausgegeben.  -->
+
+<!-- 1. Lesen Sie den Datensatz `r file.name("Klausurpunkte.txt")` ein. -->
+<!-- 1. Überprüfen Sie Ars Vermutung, dass die Aufgabengruppe 1 im Schnitt leichter war als Aufgabengruppe 2 (d.h. in der Gruppe 1 im Schnitt mehr Punkte erzielt wurden). -->
+<!--   <ol start="i"> -->
+<!--   <li>Berechnen Sie erst die Mittelwerte pro Gruppe.</li> -->
+<!--   <li>Testen Sie dann mit einem Permutationstest, ob die Mittelwerte signifikant verschieden sind. Adaptieren Sie den Code aus dem Tutorial Hypothesentests_1.Rmd.</li> -->
+<!-- </ol> -->
+
+
+
+<!-- ## Daten visualisieren, Teil II: Fokus auf Daten -->
+
+<!-- ### Zeitreihen aus der Langen Bramke (Harz) -->
+
+<!-- Im Harz wurden über eine längere Zeit Niederschlag, Abfluss und Temperatur gemessen. -->
+
+<!-- 1. Laden Sie den Datensatz `r file.name("Data.dat")`. -->
+<!-- 2. Stellen Sie die Temperatur in einem Streudiagramm dar. Welche Darstellungsart (Argument `type` in `plot`) erscheint Ihnen am sinnvollsten?  -->
+<!-- 3. Beschriften Sie die Graphik und fügen Sie einen Titel hinzu. -->
+<!-- 4. Speichern Sie die Graphik als pdf ab. -->
+<!-- 5. Stellen Sie die Niederschläge in einem Diagramm dar. Wählen Sie einen geeigneten Darstellungstyp mit `type` (Tipp: geben Sie für die Hilfe `?plot` in die Konsole ein). -->
+
+<!-- ### Temperatur-Datensatz -->
+
+<!-- Die Datei `r file.name("Temperatur.csv")` aus @Zuur2009a enthält Messungen von Temperatur, Salinität und Chlorophyl a an 31 Orten entlang der dänischen Küste. Die Daten stammen vom dänischen Institut RIKZ (Monitoringprogramm MWTL: Monitoring Waterstaatkundige Toestand des Lands). Die Messungen wurden zwischen 1990 und 2005 durchgeführt mit einer Häufigkeit von 0-4 mal pro Monat je nach Jahreszeit. -->
+
+<!-- 1. Lesen Sie den Temperatur-Datensatz `r file.name("Temperatur.csv")` ein. -->
+<!-- 1. Berechnen Sie die Anzahl der Messwerte, Monatsmittelwerte für alle Stationen, sowie die Standardabweichungen. -->
+<!-- 1. Stellen Sie die Monatsmittel der Temperatur als Linien dar. -->
+<!-- 1. Beschriften Sie die Grafik sinnvoll. -->
+<!-- 1. Fügen Sie die Standardabweichungen als Band hinzu. -->
+<!-- 1. Speichern Sie die Grafik als pdf ab. -->
+
+<!-- ### Temperatur-Datensatz, revisited -->
+<!-- 1. Berechnen Sie die Monatsmittelwerte und Standardabweichungen je Station. Tipp: `group_by(Station, Month)`. -->
+<!-- 1. Stellen Sie die Daten mit einem Fehlerband dar und speichern Sie sie ab. -->
+<!-- 1. Stellen Sie die Daten als Punkte mit Fehlerbalken dar und speichern Sie sie ab. Zur Orientierung, das Ergebnis sollte so aussehen wie in Abbildung (\@ref(fig:temperrors)). -->
+
+<!-- ```{r temperrors, echo = F, fig.width = 6, fig.cap = 'Mittelwerte der Temperatur je Station [@Zuur2009a]', fig.width = 6, out.width = "100%"} -->
+<!-- knitr::include_graphics('Temp_error_bars.png', auto_pdf = T) -->
+<!-- ``` -->
+
+
+<!-- ### Artenvielfalt in Grasländern -->
+<!-- Sie erhalten Daten aus dem Grasland-Monitoring im Yellowstone Nationalpark und dem National Bison Range (USA). Das Ziel des Monitorings ist die Untersuchung möglicher Änderungen der Biodiversität und des Zusammenhang mit Umweltfaktoren. Biodiversität wurde durch die Anzahl unterschiedlicher Arten quantifiziert. Insgesamt haben die Forscher ca. 90 Arten in 8 Transekten kartiert. Die Aufnahmen wurden alle 4 bis 10 Jahre wiederholt. Insgesamt liegen 58 Beobachtungen vor. Die Daten sind in der Datei `r file.name("Vegetation2.xls")` gespeichert. -->
+
+<!-- 1. Laden Sie den Datensatz in R und sehen Sie sich das Ergebnis genau mit  `str`, `head` und `tail` an. Diese Aufgabe dient dazu, das Einlesen von Excel-Dateien mit `tidyverse` zu erarbeiten. Tipp: nutzen Sie die Funktion `read_xls()` in der Bibliothek `readxl`. Lesen Sie genau in der Hilfe nach, wie Sie *ein bestimmtes* Tabellenblatt einlesen können. -->
+
+<!-- 1. Kurze explorative Analyse: Berechnen Sie die Anzahl der Messungen, den Mittelwert und die Standardabweichung der Artenzahl (Variable  `R`) pro Transekt.  -->
+
+<!-- 1. Plotten Sie die Artenzahl gegen die Variable `BARESOIL` (Anteil von unbewachsenem Boden). Färben Sie die Punkte je nach Transekt unterschiedlich ein. Tipp: Transekt als `as.factor()` konvertieren. -->
+
+<!-- 1. Fügen Sie eine glättende Linie ohne Konfidenzband hinzu, die alle Punkte unabhängig vom Transekt berücksichtigt (Abschnitt 5.2 in ggplot2 Buch).  -->
+
+<!-- 1. Beschriften Sie die Graphik (auch die Legende!) sinnvoll und speichern Sie sie als pdf ab. -->
+
+<!-- 1. Stellen Sie die Artenzahl je Transekt als Zeitreihe dar. Die Symbole sollen sowohl Punkte als auch Linien sein. Skalieren Sie die Größe der Punkte je nach Anteil des unbewachsenen Bodens (Abschnitt 6.2 im ggplot2 Buch). -->
+
+<!-- 1. Beschriften Sie die Grafik (auch die Legenden!) sinnvoll und speichern Sie sie als pdf ab. -->
+
+<!-- 1. Setzen Sie nun beide Grafiken neben einander, platzieren Sie die Legenden (ja nach gewähltem Layout) sinnvoll und speichern Sie die Grafiken ab. -->
+
+
+<!-- ### Tracerversuche -->
+<!-- Im Waldstein wurden Tracerversuche mit dem Farbstoff Brilliant Blue durchgeführt und die gefärbten Bodenprofile *binärisiert* (d.h. in ein schwarz-weiß Bild umgewandelt). Schwarze Pixels stellen gefärbten Boden und weiße ungefärbten dar. Aus diesen Binärbildern wurde anschließend eine Reihe von Kenngrößen berechnet. -->
+
+<!-- 1. Lesen Sie die Datei `r file.name("Waldstein2005_ind.txt")` ein.  Die Tiefe eines Profils ist 579 Pixel und es liegen 6 Profile untereinander in der Spalte d. -->
+<!-- 1. Berechnen Sie die 5%, 50% und 95% Quantile des Färbeanteils (Index d) der 6 Profile. -->
+<!-- 1.  Stellen Sie den Median des Anteils der Färbung mit der Tiefe dar und fügen Sie die Quantile als transparente Fläche hinzu (Tipp: `polygon`). -->
+
+<!-- ## Tidy data -->
+
+<!-- ### Wasserentnahme mit Datenquelle Excel -->
+<!-- Wir beschäftigen uns mit dem Einlesen und bereinigen von Daten aus Exceldateien. Dazu nutzen wir das Beispiel aus einer der ersten Sitzungen zur Wasserentnahme in der EU. -->
+
+<!-- 1. Sehen Sie sich die Struktur der Datei `r file.name("TEN000021586860138332.xlsx")` an und lesen Sie sie ein. Nutzen Sie dazu die Funktion `read_xlsx()` aus dem Paket readxl. -->
+<!-- 2. Bereinigen Sie den Datensatz und konvertieren Sie ihn in *tidy*. Nutzen Sie dazu die Funktion `pivot_longer()`. -->
+<!-- 3. Finden und korrigieren Sie den Fehlwert. -->
+<!-- 4. Filtern Sie die Einträge für die EU heraus und behalten Sie nur die einzelnen Länder bei. -->
+<!-- 5. Stellen Sie die Änderung der Wasserentnahme pro Land dar. -->
+
+<!-- ### Wasserentnahme mit Datenquelle EUROSTAT direkt -->
+
+<!-- Wir können die Datenbank EUROSTAT direkt über ihr API (Application Programming Interface) ansprechen. Leider ist das herunter geladene Datenformat sehr umständlich. Um uns Programmierarbeit zu sparen, nutzen wir das Paket eurostat, das die Daten aus der Datenbank herunterlädt und gleich ordentlich formatiert. -->
+
+<!-- 1. Installieren Sie das Paket eurostat und sehen Sie sich das Tutorial für das Paket an (https://ropengov.github.io/eurostat/articles/website/eurostat_tutorial.html) -->
+<!-- 2. Durchsuchen Sie die Datenbank nach allen Datensätzen, die das Wort "water" enthalten und darin das Wort "abstraction". -->
+<!-- 3. Laden Sie den entsprechenden Datensatz herunter (env_wat_abs). -->
+<!-- 4. Das Paket skimr bietet Zusammenfassungsfunktionen für Datensätze, die man auch in der Pipe benutzen kann. Installieren Sie das Paket und wenden Sie die Funktion `skim()` auf den heruntergeladenen Datensatz an. -->
+<!-- 4. Welche Wasserquellen und Nutzer sind im Datensatz enthalten (https://appsso.eurostat.ec.europa.eu/nui/show.do?dataset=env_wat_abs&lang=en)? -->
+<!-- 4. Stellen Sie die Wasserentnahme pro Einwohner dar (Gesamtentnahme aus allen Quellen: wat_proc == 'ABST' & wat_src == 'FRW'). -->
+<!-- 4. Berechnen Sie die Gesamtmenge des entnommenen Wassers für alle Länder je Quelle (Fresh surface water und Fresh ground water). -->
+<!-- 4. Stellen Sie diese Daten als Punktdiagramm, als Balkendiagramm und als Flächendiagramm dar. Was ist das Problem mit dem Flächendiagramm? -->
 
 <!-- ## Effizientes Programmieren -->
 

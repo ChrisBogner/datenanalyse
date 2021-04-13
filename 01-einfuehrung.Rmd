@@ -20,8 +20,8 @@ Den Leistungsnachweis bildet ein benoteter Praktikumsbericht.
 
 ## Was mir im Umgang miteinander wichtig ist
 
-- Pünktlichkeit bei live und Präsenzsitzungen
-- Gute Vorbereitung durch erledigen der blenden learning Einheiten und Hausaufgaben
+- Pünktlichkeit bei Livesitzungen
+- Gute Vorbereitung durch erledigen der Hausaufgaben
 - Respektieren anderer Meinungen
 - Offenheit gegenüber neuen Sichtweisen, Themen und Methoden
 - Geduld mit sich selbst und den anderen `r emo::ji('smile')`

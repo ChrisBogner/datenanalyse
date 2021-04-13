@@ -1,254 +1,58 @@
 <!DOCTYPE html>
-<html lang="" xml:lang="">
+<html lang="en">
 <head>
-
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Kapitel 5 Daten visualisieren I: Einfache Grafiken | Datenanalyse mit R</title>
-  <meta name="description" content="Begleitskript zur Veranstaltung Datenanalyse mit R" />
-  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
-
-  <meta property="og:title" content="Kapitel 5 Daten visualisieren I: Einfache Grafiken | Datenanalyse mit R" />
-  <meta property="og:type" content="book" />
-  
-  
-  <meta property="og:description" content="Begleitskript zur Veranstaltung Datenanalyse mit R" />
-  <meta name="github-repo" content="https://github.com/ChrisBogner/datenanalyse.git" />
-
-  <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Kapitel 5 Daten visualisieren I: Einfache Grafiken | Datenanalyse mit R" />
-  
-  <meta name="twitter:description" content="Begleitskript zur Veranstaltung Datenanalyse mit R" />
-  
-
-<meta name="author" content="Christina Bogner" />
-
-
-
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-  
-  
-<link rel="prev" href="daten.html"/>
-<link rel="next" href="reproduzieren.html"/>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
-<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
-
-
-
-
-
-
-
-
-<script src="libs/kePrint-0.0.1/kePrint.js"></script>
-
-
-<style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-</style>
-
-<link rel="stylesheet" href="style.css" type="text/css" />
-<link rel="stylesheet" href="css/all.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Kapitel 4 Daten visualisieren I: Einfache Grafiken | Datenanalyse mit R</title>
+<meta name="author" content="Christina Bogner">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.2"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.7.4/header-attrs.js"></script><script src="libs/jquery-3.5.1/jquery-3.5.1.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.5.3/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.5.3/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.2.4/tabs.js"></script><script src="libs/bs3compat-0.2.4/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><script src="https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/mark.js@8.11.1/dist/mark.min.js"></script><!-- CSS --><link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="font-awesome.min.css">
 </head>
+<body data-spy="scroll" data-target="#toc">
 
-<body>
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
 
-
-
-  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
-
-    <div class="book-summary">
-      <nav role="navigation">
-
-<ul class="summary">
-<li><a href="./">Datenanalyse mit R</a></li>
-
-<li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Vorwort</a><ul>
-<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#organisatorisches"><i class="fa fa-check"></i><b>1.1</b> Organisatorisches</a></li>
-<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#sinn-und-unsinn-dieses-skripts"><i class="fa fa-check"></i><b>1.2</b> Sinn und Unsinn dieses Skripts</a></li>
-</ul></li>
-<li class="chapter" data-level="2" data-path="einfuehrung.html"><a href="einfuehrung.html"><i class="fa fa-check"></i><b>2</b> Der Kurs</a><ul>
-<li class="chapter" data-level="2.1" data-path="einfuehrung.html"><a href="einfuehrung.html#zuordnung-zum-modul-und-leistungsnachweis"><i class="fa fa-check"></i><b>2.1</b> Zuordnung zum Modul und Leistungsnachweis</a></li>
-<li class="chapter" data-level="2.2" data-path="einfuehrung.html"><a href="einfuehrung.html#lernziele-des-kurses"><i class="fa fa-check"></i><b>2.2</b> Lernziele des Kurses</a></li>
-<li class="chapter" data-level="2.3" data-path="einfuehrung.html"><a href="einfuehrung.html#was-mir-im-umgang-miteinander-wichtig-ist"><i class="fa fa-check"></i><b>2.3</b> Was mir im Umgang miteinander wichtig ist</a></li>
-</ul></li>
-<li class="chapter" data-level="3" data-path="erste-schritte.html"><a href="erste-schritte.html"><i class="fa fa-check"></i><b>3</b> Erste Schritte in <svg style="height:0.8em;top:.04em;position:relative;fill:steelblue;" viewBox="0 0 581 512"><path d="M581 226.6C581 119.1 450.9 32 290.5 32S0 119.1 0 226.6C0 322.4 103.3 402 239.4 418.1V480h99.1v-61.5c24.3-2.7 47.6-7.4 69.4-13.9L448 480h112l-67.4-113.7c54.5-35.4 88.4-84.9 88.4-139.7zm-466.8 14.5c0-73.5 98.9-133 220.8-133s211.9 40.7 211.9 133c0 50.1-26.5 85-70.3 106.4-2.4-1.6-4.7-2.9-6.4-3.7-10.2-5.2-27.8-10.5-27.8-10.5s86.6-6.4 86.6-92.7-90.6-87.9-90.6-87.9h-199V361c-74.1-21.5-125.2-67.1-125.2-119.9zm225.1 38.3v-55.6c57.8 0 87.8-6.8 87.8 27.3 0 36.5-38.2 28.3-87.8 28.3zm-.9 72.5H365c10.8 0 18.9 11.7 24 19.2-16.1 1.9-33 2.8-50.6 2.9v-22.1z"/></svg></a><ul>
-<li class="chapter" data-level="3.1" data-path="erste-schritte.html"><a href="erste-schritte.html#was-ist-r"><i class="fa fa-check"></i><b>3.1</b> Was ist R?</a></li>
-<li class="chapter" data-level="3.2" data-path="erste-schritte.html"><a href="erste-schritte.html#was-ist-rstudio"><i class="fa fa-check"></i><b>3.2</b> Was ist RStudio?</a></li>
-<li class="chapter" data-level="3.3" data-path="erste-schritte.html"><a href="erste-schritte.html#rstudio-cloud"><i class="fa fa-check"></i><b>3.3</b> RStudio Cloud</a></li>
-<li class="chapter" data-level="3.4" data-path="erste-schritte.html"><a href="erste-schritte.html#inhalt-der-live-einführung"><i class="fa fa-check"></i><b>3.4</b> Inhalt der live Einführung</a></li>
-</ul></li>
-<li class="chapter" data-level="4" data-path="daten.html"><a href="daten.html"><i class="fa fa-check"></i><b>4</b> Daten in R</a><ul>
-<li class="chapter" data-level="4.1" data-path="daten.html"><a href="daten.html#datenstrukturen-erzeugen"><i class="fa fa-check"></i><b>4.1</b> Datenstrukturen erzeugen</a></li>
-<li class="chapter" data-level="4.2" data-path="daten.html"><a href="daten.html#arten-von-daten-in-r"><i class="fa fa-check"></i><b>4.2</b> Arten von Daten in R</a></li>
-<li class="chapter" data-level="4.3" data-path="daten.html"><a href="daten.html#objekt-sag-mir-wer-du-bist"><i class="fa fa-check"></i><b>4.3</b> Objekt, sag mir wer du bist</a></li>
-<li class="chapter" data-level="4.4" data-path="daten.html"><a href="daten.html#datenlücken-fehlschläge-etc."><i class="fa fa-check"></i><b>4.4</b> Datenlücken, Fehlschläge etc.</a></li>
-<li class="chapter" data-level="4.5" data-path="daten.html"><a href="daten.html#inhalt-der-live-einführung-1"><i class="fa fa-check"></i><b>4.5</b> Inhalt der live Einführung</a></li>
-</ul></li>
-<li class="chapter" data-level="5" data-path="visualisieren.html"><a href="visualisieren.html"><i class="fa fa-check"></i><b>5</b> Daten visualisieren I: Einfache Grafiken</a><ul>
-<li class="chapter" data-level="5.1" data-path="visualisieren.html"><a href="visualisieren.html#plotten-mit-r-basisfunktionen"><i class="fa fa-check"></i><b>5.1</b> Plotten mit R-Basisfunktionen</a><ul>
-<li class="chapter" data-level="5.1.1" data-path="visualisieren.html"><a href="visualisieren.html#high-level-grafikfunktion-plot-und-low-level-grafikfunktion-lines"><i class="fa fa-check"></i><b>5.1.1</b> <em>High-level</em> Grafikfunktion <code>plot</code> und <em>low-level</em> Grafikfunktion <code>lines</code></a></li>
-<li class="chapter" data-level="5.1.2" data-path="visualisieren.html"><a href="visualisieren.html#überblick-über-die-wichtigsten-high-level-und-low-level-grafikfunktionen"><i class="fa fa-check"></i><b>5.1.2</b> Überblick über die wichtigsten <em>high-level</em> und <em>low-level</em> Grafikfunktionen</a></li>
-</ul></li>
-<li class="chapter" data-level="5.2" data-path="visualisieren.html"><a href="visualisieren.html#tuning-mit-par"><i class="fa fa-check"></i><b>5.2</b> Tuning mit <code>par</code></a></li>
-<li class="chapter" data-level="5.3" data-path="visualisieren.html"><a href="visualisieren.html#inhalt-der-live-einführung-2"><i class="fa fa-check"></i><b>5.3</b> Inhalt der live Einführung</a></li>
-</ul></li>
-<li class="chapter" data-level="6" data-path="reproduzieren.html"><a href="reproduzieren.html"><i class="fa fa-check"></i><b>6</b> Reproduzierbare Forschung</a><ul>
-<li class="chapter" data-level="6.1" data-path="reproduzieren.html"><a href="reproduzieren.html#warum-reproduzierbarkeit-in-der-forschung-wichtig-ist"><i class="fa fa-check"></i><b>6.1</b> Warum Reproduzierbarkeit in der Forschung wichtig ist</a></li>
-<li class="chapter" data-level="6.2" data-path="reproduzieren.html"><a href="reproduzieren.html#literate-programming-idee-von-donald-knuth"><i class="fa fa-check"></i><b>6.2</b> <em>Literate Programming</em> Idee von Donald Knuth</a></li>
-<li class="chapter" data-level="6.3" data-path="reproduzieren.html"><a href="reproduzieren.html#reproduzierbare-berichte-mit-r-markdown"><i class="fa fa-check"></i><b>6.3</b> Reproduzierbare Berichte mit R Markdown</a></li>
-<li class="chapter" data-level="6.4" data-path="reproduzieren.html"><a href="reproduzieren.html#wichtigste-regeln-für-reproduzierbarkeit"><i class="fa fa-check"></i><b>6.4</b> Wichtigste Regeln für Reproduzierbarkeit</a></li>
-<li class="chapter" data-level="6.5" data-path="reproduzieren.html"><a href="reproduzieren.html#weiterführende-videos-und-literatur"><i class="fa fa-check"></i><b>6.5</b> Weiterführende Videos und Literatur</a></li>
-<li class="chapter" data-level="6.6" data-path="reproduzieren.html"><a href="reproduzieren.html#inhalt-der-live-einführung-3"><i class="fa fa-check"></i><b>6.6</b> Inhalt der live Einführung</a></li>
-</ul></li>
-<li class="chapter" data-level="7" data-path="funktionen.html"><a href="funktionen.html"><i class="fa fa-check"></i><b>7</b> Funktionen</a><ul>
-<li class="chapter" data-level="7.1" data-path="funktionen.html"><a href="funktionen.html#eigene-funktionen-schreiben"><i class="fa fa-check"></i><b>7.1</b> Eigene Funktionen schreiben</a></li>
-<li class="chapter" data-level="7.2" data-path="funktionen.html"><a href="funktionen.html#fallunterscheidungen"><i class="fa fa-check"></i><b>7.2</b> Fallunterscheidungen</a></li>
-<li class="chapter" data-level="7.3" data-path="funktionen.html"><a href="funktionen.html#for-schleifen-for-loops"><i class="fa fa-check"></i><b>7.3</b> <code>for</code>-Schleifen (<code>for</code> <em>loops</em>)</a></li>
-<li class="chapter" data-level="7.4" data-path="funktionen.html"><a href="funktionen.html#weiterführende-literatur"><i class="fa fa-check"></i><b>7.4</b> Weiterführende Literatur</a></li>
-<li class="chapter" data-level="7.5" data-path="funktionen.html"><a href="funktionen.html#inhalt-der-live-einführung-4"><i class="fa fa-check"></i><b>7.5</b> Inhalt der live Einführung</a></li>
-</ul></li>
-<li class="chapter" data-level="8" data-path="tidyverse.html"><a href="tidyverse.html"><i class="fa fa-check"></i><b>8</b> Tidyverse</a><ul>
-<li class="chapter" data-level="8.1" data-path="tidyverse.html"><a href="tidyverse.html#grundpakete"><i class="fa fa-check"></i><b>8.1</b> Grundpakete</a></li>
-<li class="chapter" data-level="8.2" data-path="tidyverse.html"><a href="tidyverse.html#der-workflow"><i class="fa fa-check"></i><b>8.2</b> Der Workflow</a><ul>
-<li class="chapter" data-level="8.2.1" data-path="tidyverse.html"><a href="tidyverse.html#daten-einlesen"><i class="fa fa-check"></i><b>8.2.1</b> Daten einlesen</a></li>
-<li class="chapter" data-level="8.2.2" data-path="tidyverse.html"><a href="tidyverse.html#daten-zusammenfassen"><i class="fa fa-check"></i><b>8.2.2</b> Daten zusammenfassen</a></li>
-<li class="chapter" data-level="8.2.3" data-path="tidyverse.html"><a href="tidyverse.html#daten-plotten"><i class="fa fa-check"></i><b>8.2.3</b> Daten plotten</a></li>
-</ul></li>
-<li class="chapter" data-level="8.3" data-path="tidyverse.html"><a href="tidyverse.html#weiterführende-literatur-und-videos"><i class="fa fa-check"></i><b>8.3</b> Weiterführende Literatur und Videos</a></li>
-<li class="chapter" data-level="8.4" data-path="tidyverse.html"><a href="tidyverse.html#inhalt-der-live-einführung-5"><i class="fa fa-check"></i><b>8.4</b> Inhalt der live Einführung</a></li>
-</ul></li>
-<li class="chapter" data-level="9" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html"><i class="fa fa-check"></i><b>9</b> Aufgabensammlung</a><ul>
-<li class="chapter" data-level="9.1" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#erste-schritte"><i class="fa fa-check"></i><b>9.1</b> Erste Schritte</a><ul>
-<li class="chapter" data-level="9.1.1" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#ars-haushaltsbuch"><i class="fa fa-check"></i><b>9.1.1</b> Ars Haushaltsbuch</a></li>
-</ul></li>
-<li class="chapter" data-level="9.2" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#daten-in-r"><i class="fa fa-check"></i><b>9.2</b> Daten in R</a><ul>
-<li class="chapter" data-level="9.2.1" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#bestandesaufnahme"><i class="fa fa-check"></i><b>9.2.1</b> Bestandesaufnahme im Wald</a></li>
-</ul></li>
-<li class="chapter" data-level="9.3" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#daten-visualisieren-teil-i-fokus-auf-r"><i class="fa fa-check"></i><b>9.3</b> Daten visualisieren, Teil I: Fokus auf R</a><ul>
-<li class="chapter" data-level="9.3.1" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#wahlbeteiligung"><i class="fa fa-check"></i><b>9.3.1</b> Wahlbeteiligung bei der Bundestagswahl 2017</a></li>
-<li class="chapter" data-level="9.3.2" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#zweitstimme"><i class="fa fa-check"></i><b>9.3.2</b> Zweitstimme bei der Bundestagswahl 2017</a></li>
-<li class="chapter" data-level="9.3.3" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#zweigrafiken"><i class="fa fa-check"></i><b>9.3.3</b> Ergebnisse der Bundestagswahl in einer Grafik</a></li>
-<li class="chapter" data-level="9.3.4" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#weisserrand"><i class="fa fa-check"></i><b>9.3.4</b> Einen zu großen weißen Rand vermeiden</a></li>
-<li class="chapter" data-level="9.3.5" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#spielen-mit-der-funktion-par"><i class="fa fa-check"></i><b>9.3.5</b> Spielen mit der Funktion <code>par</code></a></li>
-</ul></li>
-<li class="chapter" data-level="9.4" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#reproduzierbare-berichte-mit-r-markdown-1"><i class="fa fa-check"></i><b>9.4</b> Reproduzierbare Berichte mit R Markdown</a><ul>
-<li class="chapter" data-level="9.4.1" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#erster-eigener-bericht"><i class="fa fa-check"></i><b>9.4.1</b> Erster eigener Bericht</a></li>
-</ul></li>
-<li class="chapter" data-level="9.5" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#eigene-funktionen-schreiben-1"><i class="fa fa-check"></i><b>9.5</b> Eigene Funktionen schreiben</a><ul>
-<li class="chapter" data-level="9.5.1" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#r-hausaufgaben"><i class="fa fa-check"></i><b>9.5.1</b> R-Hausaufgaben</a></li>
-<li class="chapter" data-level="9.5.2" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#fledermaus"><i class="fa fa-check"></i><b>9.5.2</b> Fledermäuse, die Zweite</a></li>
-</ul></li>
-<li class="chapter" data-level="9.6" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#tidyverse-1"><i class="fa fa-check"></i><b>9.6</b> Tidyverse</a><ul>
-<li class="chapter" data-level="9.6.1" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#fledermaus3"><i class="fa fa-check"></i><b>9.6.1</b> Fledermaus, die Dritte</a></li>
-<li class="chapter" data-level="9.6.2" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#klausur"><i class="fa fa-check"></i><b>9.6.2</b> Unfaire Klausur?</a></li>
-</ul></li>
-<li class="chapter" data-level="9.7" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#daten-visualisieren-teil-ii-fokus-auf-daten"><i class="fa fa-check"></i><b>9.7</b> Daten visualisieren, Teil II: Fokus auf Daten</a><ul>
-<li class="chapter" data-level="9.7.1" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#zeitreihen-aus-der-langen-bramke-harz"><i class="fa fa-check"></i><b>9.7.1</b> Zeitreihen aus der Langen Bramke (Harz)</a></li>
-<li class="chapter" data-level="9.7.2" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#temperatur-datensatz"><i class="fa fa-check"></i><b>9.7.2</b> Temperatur-Datensatz</a></li>
-<li class="chapter" data-level="9.7.3" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#temperatur-datensatz-revisited"><i class="fa fa-check"></i><b>9.7.3</b> Temperatur-Datensatz, revisited</a></li>
-<li class="chapter" data-level="9.7.4" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#artenvielfalt-in-grasländern"><i class="fa fa-check"></i><b>9.7.4</b> Artenvielfalt in Grasländern</a></li>
-<li class="chapter" data-level="9.7.5" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#tracerversuche"><i class="fa fa-check"></i><b>9.7.5</b> Tracerversuche</a></li>
-</ul></li>
-<li class="chapter" data-level="9.8" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#tidy-data"><i class="fa fa-check"></i><b>9.8</b> Tidy data</a><ul>
-<li class="chapter" data-level="9.8.1" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#wasserentnahme-mit-datenquelle-excel"><i class="fa fa-check"></i><b>9.8.1</b> Wasserentnahme mit Datenquelle Excel</a></li>
-<li class="chapter" data-level="9.8.2" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#wasserentnahme-mit-datenquelle-eurostat-direkt"><i class="fa fa-check"></i><b>9.8.2</b> Wasserentnahme mit Datenquelle EUROSTAT direkt</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="literatur.html"><a href="literatur.html"><i class="fa fa-check"></i>Literatur</a></li>
-<li class="divider"></li>
-<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
-
-</ul>
-
-      </nav>
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="SoSe 2021">Datenanalyse mit R</a>:
+        <small class="text-muted">SoSe 2021</small>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
     </div>
 
-    <div class="book-body">
-      <div class="body-inner">
-        <div class="book-header" role="navigation">
-          <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Datenanalyse mit R</a>
-          </h1>
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Vorwort</a></li>
+<li><a class="" href="einfuehrung.html"><span class="header-section-number">1</span> Der Kurs</a></li>
+<li><a class="" href="erste-schritte.html"><span class="header-section-number">2</span> Erste Schritte in R</a></li>
+<li><a class="" href="reproduzieren.html"><span class="header-section-number">3</span> Reproduzierbare Forschung</a></li>
+<li><a class="active" href="visualisieren.html"><span class="header-section-number">4</span> Daten visualisieren I: Einfache Grafiken</a></li>
+<li><a class="" href="funktionen.html"><span class="header-section-number">5</span> Funktionen</a></li>
+<li><a class="" href="tidyverse.html"><span class="header-section-number">6</span> Tidyverse</a></li>
+<li><a class="" href="aufgabensammlung.html"><span class="header-section-number">7</span> Aufgabensammlung</a></li>
+<li><a class="" href="literatur.html">Literatur</a></li>
+</ul>
+
+        <div class="book-extra">
+          
         </div>
-
-        <div class="page-wrapper" tabindex="-1" role="main">
-          <div class="page-inner">
-
-            <section class="normal" id="section-">
-<div id="visualisieren" class="section level1">
-<h1><span class="header-section-number">Kapitel 5</span> Daten visualisieren I: Einfache Grafiken</h1>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="visualisieren" class="section level1" number="4">
+<h1>
+<span class="header-section-number">Kapitel 4</span> Daten visualisieren I: Einfache Grafiken<a class="anchor" aria-label="anchor" href="#visualisieren"><i class="fas fa-link"></i></a>
+</h1>
 <div class="rmdoutcomes">
 <ul>
 <li>
@@ -271,18 +75,23 @@ Grafiken mit mehreren Plots erstellen
 </li>
 </ul>
 </div>
-<div id="plotten-mit-r-basisfunktionen" class="section level2">
-<h2><span class="header-section-number">5.1</span> Plotten mit R-Basisfunktionen</h2>
-<p>Für Grafikverliebte und Neugierige empfehle ich die Kapitel 2 und 3 in <span class="citation">Murrell (<a href="literatur.html#ref-Murrell2006" role="doc-biblioref">2006</a>)</span>.</p>
-<div id="high-level-grafikfunktion-plot-und-low-level-grafikfunktion-lines" class="section level3">
-<h3><span class="header-section-number">5.1.1</span> <em>High-level</em> Grafikfunktion <code>plot</code> und <em>low-level</em> Grafikfunktion <code>lines</code></h3>
+<div id="plotten-mit-r-basisfunktionen" class="section level2" number="4.1">
+<h2>
+<span class="header-section-number">4.1</span> Plotten mit R-Basisfunktionen<a class="anchor" aria-label="anchor" href="#plotten-mit-r-basisfunktionen"><i class="fas fa-link"></i></a>
+</h2>
+<p>Für Grafikverliebte und Neugierige empfehle ich die Kapitel 2 und 3 in <span class="citation"><a href="literatur.html#ref-Murrell2006" role="doc-biblioref">Murrell</a> (<a href="literatur.html#ref-Murrell2006" role="doc-biblioref">2006</a>)</span>.</p>
+<div id="high-level-grafikfunktion-plot-und-low-level-grafikfunktion-lines" class="section level3" number="4.1.1">
+<h3>
+<span class="header-section-number">4.1.1</span> <em>High-level</em> Grafikfunktion <code>plot</code> und <em>low-level</em> Grafikfunktion <code>lines</code><a class="anchor" aria-label="anchor" href="#high-level-grafikfunktion-plot-und-low-level-grafikfunktion-lines"><i class="fas fa-link"></i></a>
+</h3>
 <p>Ein Streudiagramm stellt zwei numerische Variablen gegeneinander dar. Wir betrachten Klimadaten der Station Köln-Bonn, die man beim Deutschen Wetterdienst herunterladen kann (<a href="https://www.dwd.de/DE/leistungen/klimadatendeutschland/klimadatendeutschland.html" class="uri">https://www.dwd.de/DE/leistungen/klimadatendeutschland/klimadatendeutschland.html</a>).</p>
 <p>Sie können den Code aus den Chunks leicht herauskopieren und in RStudio laufen lassen (rechts oben in den Chunks auf das Symbol <em>copy to clipboard</em> klicken).</p>
 <p>Wir lesen die Daten ein und sehen uns deren Struktur an.</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="visualisieren.html#cb29-1"></a>meteo &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&#39;produkt_klima_monat_20181001_20200430_02667.txt&#39;</span>,</span>
-<span id="cb29-2"><a href="visualisieren.html#cb29-2"></a><span class="dt">header =</span> T, <span class="dt">sep =</span> <span class="st">&#39;;&#39;</span>)</span>
-<span id="cb29-3"><a href="visualisieren.html#cb29-3"></a><span class="kw">str</span>(meteo)</span></code></pre></div>
-<pre><code>## &#39;data.frame&#39;:    19 obs. of  17 variables:
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">meteo</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.table</a></span><span class="op">(</span><span class="st">'produkt_klima_monat_20181001_20200430_02667.txt'</span>,
+header <span class="op">=</span> <span class="cn">T</span>, sep <span class="op">=</span> <span class="st">';'</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">meteo</span><span class="op">)</span></code></pre></div>
+<pre><code>## 'data.frame':    19 obs. of  17 variables:
 ##  $ STATIONS_ID      : int  2667 2667 2667 2667 2667 2667 2667 2667 2667 2667 ...
 ##  $ MESS_DATUM_BEGINN: int  20181001 20181101 20181201 20190101 20190201 20190301 20190401 20190501 20190601 20190701 ...
 ##  $ MESS_DATUM_ENDE  : int  20181031 20181130 20181231 20190131 20190228 20190331 20190430 20190531 20190630 20190731 ...
@@ -299,66 +108,71 @@ Grafiken mit mehreren Plots erstellen
 ##  $ QN_6             : int  9 9 9 3 3 3 3 3 3 3 ...
 ##  $ MO_RR            : num  26.5 25 101.9 101.8 30 ...
 ##  $ MX_RS            : num  6.9 9.7 15.7 22.3 12.3 18.2 21.4 10.6 8.8 11.9 ...
-##  $ eor              : chr  &quot;eor&quot; &quot;eor&quot; &quot;eor&quot; &quot;eor&quot; ...</code></pre>
-<p>Uns interessieren hier nur die Spalten MO_TT, MO_TN, MO_TX und MESS_DATUM_BEGINN. Das sind jeweils die Monatsmittel der Lufttemperatur in 2 m Höhe, Monatsmittel des Minimums der Lufttemperatur, Monatsmittel des Maximums der Lufttemperatur und der Beginn der jeweiligen Messperiode (d.h. des Kalendermonats). Um die Daten als Zeitreihen darstellen zu können, wandeln wir die Spalte MESS_DATUM_BEGINN in ein richtiges Zeitobjekt (d.h. ein Objekt der Klasse <em>Date</em>). Das geht mit der Funktion <code>as.Date</code>. Der Parameter <code>format</code> beschreibt den Aufbau des Datums im Objekt <code>meteo</code>: erst steht das Jahr mit 4 Zeichen (z.B. 2018), dann folgt der Monat mit 2 Zeichen (z.B. 01) und dann der Tag mit 2 Zeichen (z.B. 01). Näheres zu Datumsformaten finden Sie mit <code>?strptime</code>.</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="visualisieren.html#cb31-1"></a>my_date &lt;-<span class="st"> </span><span class="kw">as.Date</span>(<span class="kw">as.character</span>(meteo<span class="op">$</span>MESS_DATUM_BEGINN), <span class="dt">format =</span> <span class="st">&#39;%Y%m%d&#39;</span>)</span>
-<span id="cb31-2"><a href="visualisieren.html#cb31-2"></a>my_date</span></code></pre></div>
-<pre><code>##  [1] &quot;2018-10-01&quot; &quot;2018-11-01&quot; &quot;2018-12-01&quot; &quot;2019-01-01&quot; &quot;2019-02-01&quot; &quot;2019-03-01&quot;
-##  [7] &quot;2019-04-01&quot; &quot;2019-05-01&quot; &quot;2019-06-01&quot; &quot;2019-07-01&quot; &quot;2019-08-01&quot; &quot;2019-09-01&quot;
-## [13] &quot;2019-10-01&quot; &quot;2019-11-01&quot; &quot;2019-12-01&quot; &quot;2020-01-01&quot; &quot;2020-02-01&quot; &quot;2020-03-01&quot;
-## [19] &quot;2020-04-01&quot;</code></pre>
+##  $ eor              : chr  "eor" "eor" "eor" "eor" ...</code></pre>
+<p>Uns interessieren hier nur die Spalten MO_TT, MO_TN, MO_TX und MESS_DATUM_BEGINN. Das sind jeweils die Monatsmittel der Lufttemperatur in 2 m Höhe, Monatsmittel des Minimums der Lufttemperatur, Monatsmittel des Maximums der Lufttemperatur und der Beginn der jeweiligen Messperiode (d.h. des Kalendermonats). Um die Daten als Zeitreihen darstellen zu können, wandeln wir die Spalte MESS_DATUM_BEGINN in ein richtiges Zeitobjekt (d.h. ein Objekt der Klasse <em>Date</em>). Das geht mit der Funktion <code>as.Date</code>. Der Parameter <code>format</code> beschreibt den Aufbau des Datums im Objekt <code>meteo</code>: erst steht das Jahr mit 4 Zeichen (z.B. 2018), dann folgt der Monat mit 2 Zeichen (z.B. 01) und dann der Tag mit 2 Zeichen (z.B. 01). Näheres zu Datumsformaten finden Sie mit <code><a href="https://rdrr.io/r/base/strptime.html">?strptime</a></code>.</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">my_date</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span><span class="op">(</span><span class="va">meteo</span><span class="op">$</span><span class="va">MESS_DATUM_BEGINN</span><span class="op">)</span>, format <span class="op">=</span> <span class="st">'%Y%m%d'</span><span class="op">)</span>
+<span class="va">my_date</span></code></pre></div>
+<pre><code>##  [1] "2018-10-01" "2018-11-01" "2018-12-01" "2019-01-01" "2019-02-01"
+##  [6] "2019-03-01" "2019-04-01" "2019-05-01" "2019-06-01" "2019-07-01"
+## [11] "2019-08-01" "2019-09-01" "2019-10-01" "2019-11-01" "2019-12-01"
+## [16] "2020-01-01" "2020-02-01" "2020-03-01" "2020-04-01"</code></pre>
 <p>Es sind Daten von Oktober 2018 bis April 2020. Wir erstellen ein Streudiagramm mit der Funktion <code>plot</code>. Mit den Parametern <code>xlab</code> und <code>ylab</code> lassen sich die beiden Achsen beschriften und <code>main</code> fügt einen Titel dazu. Der Parameter <code>type</code> bestimmt die Wahl der Symbole; hier benutzen wir <code>type = b</code> für <em>both</em>, also sowohl Punkte als auch Linien.</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="visualisieren.html#cb33-1"></a><span class="kw">plot</span>(my_date, meteo<span class="op">$</span>MO_TT, <span class="dt">type =</span> <span class="st">&#39;b&#39;</span>, <span class="dt">xlab =</span> <span class="st">&#39;Zeit&#39;</span>, <span class="dt">ylab =</span> <span class="st">&#39;Temperatur [°C]&#39;</span>, <span class="dt">main =</span> <span class="st">&#39;Klimadaten der DWD-Station Köln-Bonn&#39;</span>)</span></code></pre></div>
-<p><img src="datenanalyse_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">my_date</span>, <span class="va">meteo</span><span class="op">$</span><span class="va">MO_TT</span>, type <span class="op">=</span> <span class="st">'b'</span>, xlab <span class="op">=</span> <span class="st">'Zeit'</span>, ylab <span class="op">=</span> <span class="st">'Temperatur [°C]'</span>, main <span class="op">=</span> <span class="st">'Klimadaten der DWD-Station Köln-Bonn'</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="datenanalyse_files/figure-html/unnamed-chunk-17-1.png" width="672"></div>
 <p>Die Funktion <code>plot</code> ist eine sogen. <em>high-level</em> Grafikfunktion. Das bedeutet, dass sie alle Schritte des Plottens übernimmt: sie öffnet ein neues Grafikfenster (ein Device), berechnet die Größe der Plotfläche und der Ränder (s. unten), berechnet die Ausdehnung der Achsen und die beste Achseneinteilung und plottet Ihre Daten.</p>
 <p>Daneben gibt es <em>low-level</em> Grafikfunktionen, die nur in ein bestehendes Device plotten können. Wir wollen zu unserer Grafik nun die Minimum- und die Maximumtemperatur dazu plotten.</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="visualisieren.html#cb34-1"></a><span class="kw">plot</span>(my_date, meteo<span class="op">$</span>MO_TT, <span class="dt">type =</span> <span class="st">&#39;b&#39;</span>, <span class="dt">xlab =</span> <span class="st">&#39;Zeit&#39;</span>, <span class="dt">ylab =</span> <span class="st">&#39;Temperatur [°C]&#39;</span>, <span class="dt">main =</span> <span class="st">&#39;Klimadaten der DWD-Station Köln-Bonn&#39;</span>)</span>
-<span id="cb34-2"><a href="visualisieren.html#cb34-2"></a></span>
-<span id="cb34-3"><a href="visualisieren.html#cb34-3"></a><span class="co"># Minimumtemperatur in blau</span></span>
-<span id="cb34-4"><a href="visualisieren.html#cb34-4"></a><span class="kw">lines</span>(my_date, meteo<span class="op">$</span>MO_TN, <span class="dt">col =</span> <span class="st">&#39;blue&#39;</span>)</span>
-<span id="cb34-5"><a href="visualisieren.html#cb34-5"></a></span>
-<span id="cb34-6"><a href="visualisieren.html#cb34-6"></a><span class="co"># Maximumtemperatur in rot</span></span>
-<span id="cb34-7"><a href="visualisieren.html#cb34-7"></a><span class="kw">lines</span>(my_date, meteo<span class="op">$</span>MO_TX, <span class="dt">col =</span> <span class="st">&#39;red&#39;</span>)</span></code></pre></div>
-<p><img src="datenanalyse_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">my_date</span>, <span class="va">meteo</span><span class="op">$</span><span class="va">MO_TT</span>, type <span class="op">=</span> <span class="st">'b'</span>, xlab <span class="op">=</span> <span class="st">'Zeit'</span>, ylab <span class="op">=</span> <span class="st">'Temperatur [°C]'</span>, main <span class="op">=</span> <span class="st">'Klimadaten der DWD-Station Köln-Bonn'</span><span class="op">)</span>
+
+<span class="co"># Minimumtemperatur in blau</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/lines.html">lines</a></span><span class="op">(</span><span class="va">my_date</span>, <span class="va">meteo</span><span class="op">$</span><span class="va">MO_TN</span>, col <span class="op">=</span> <span class="st">'blue'</span><span class="op">)</span>
+
+<span class="co"># Maximumtemperatur in rot</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/lines.html">lines</a></span><span class="op">(</span><span class="va">my_date</span>, <span class="va">meteo</span><span class="op">$</span><span class="va">MO_TX</span>, col <span class="op">=</span> <span class="st">'red'</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="datenanalyse_files/figure-html/unnamed-chunk-18-1.png" width="672"></div>
 <p>Dass <code>lines</code> nur eine <em>low-level</em> Grafikfunktion ist, erkennen Sie daran, dass sie nicht in der Lage ist, den Bereich auf der y-Achse zu vergrößern, um alle Daten sichtbar zu machen. Das kann nur <code>plot</code>. Daher muss der Bereich bereits in <code>plot</code> richtig festgelegt werden. Das macht der Parameter <code>ylim</code>.</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="visualisieren.html#cb35-1"></a><span class="kw">plot</span>(my_date, meteo<span class="op">$</span>MO_TT, <span class="dt">type =</span> <span class="st">&#39;b&#39;</span>, <span class="dt">xlab =</span> <span class="st">&#39;Zeit&#39;</span>, <span class="dt">ylab =</span> <span class="st">&#39;Temperatur [°C]&#39;</span>, <span class="dt">main =</span> <span class="st">&#39;Klimadaten der DWD-Station Köln-Bonn&#39;</span>, <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">30</span>))</span>
-<span id="cb35-2"><a href="visualisieren.html#cb35-2"></a></span>
-<span id="cb35-3"><a href="visualisieren.html#cb35-3"></a><span class="co"># Minimumtemperatur in rot</span></span>
-<span id="cb35-4"><a href="visualisieren.html#cb35-4"></a><span class="kw">lines</span>(my_date, meteo<span class="op">$</span>MO_TN, <span class="dt">col =</span> <span class="st">&#39;blue&#39;</span>)</span>
-<span id="cb35-5"><a href="visualisieren.html#cb35-5"></a></span>
-<span id="cb35-6"><a href="visualisieren.html#cb35-6"></a><span class="co"># Maximumtemperatur in blau</span></span>
-<span id="cb35-7"><a href="visualisieren.html#cb35-7"></a><span class="kw">lines</span>(my_date, meteo<span class="op">$</span>MO_TX, <span class="dt">col =</span> <span class="st">&#39;red&#39;</span>)</span></code></pre></div>
-<p><img src="datenanalyse_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">my_date</span>, <span class="va">meteo</span><span class="op">$</span><span class="va">MO_TT</span>, type <span class="op">=</span> <span class="st">'b'</span>, xlab <span class="op">=</span> <span class="st">'Zeit'</span>, ylab <span class="op">=</span> <span class="st">'Temperatur [°C]'</span>, main <span class="op">=</span> <span class="st">'Klimadaten der DWD-Station Köln-Bonn'</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">30</span><span class="op">)</span><span class="op">)</span>
+
+<span class="co"># Minimumtemperatur in rot</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/lines.html">lines</a></span><span class="op">(</span><span class="va">my_date</span>, <span class="va">meteo</span><span class="op">$</span><span class="va">MO_TN</span>, col <span class="op">=</span> <span class="st">'blue'</span><span class="op">)</span>
+
+<span class="co"># Maximumtemperatur in blau</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/lines.html">lines</a></span><span class="op">(</span><span class="va">my_date</span>, <span class="va">meteo</span><span class="op">$</span><span class="va">MO_TX</span>, col <span class="op">=</span> <span class="st">'red'</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="datenanalyse_files/figure-html/unnamed-chunk-19-1.png" width="672"></div>
 <p>Wenn in einer Grafik mehrere Elemente dargestellt werden, benötigt man eine Legende. Das erledigt die * low-level* Grafikfunktion <code>legend</code>.</p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="visualisieren.html#cb36-1"></a><span class="kw">plot</span>(my_date, meteo<span class="op">$</span>MO_TT, <span class="dt">type =</span> <span class="st">&#39;b&#39;</span>, <span class="dt">xlab =</span> <span class="st">&#39;Zeit&#39;</span>, <span class="dt">ylab =</span> <span class="st">&#39;Temperatur [°C]&#39;</span>, <span class="dt">main =</span> <span class="st">&#39;Klimadaten der DWD-Station Köln-Bonn&#39;</span>, <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">30</span>))</span>
-<span id="cb36-2"><a href="visualisieren.html#cb36-2"></a></span>
-<span id="cb36-3"><a href="visualisieren.html#cb36-3"></a><span class="co"># Minimumtemperatur in rot</span></span>
-<span id="cb36-4"><a href="visualisieren.html#cb36-4"></a><span class="kw">lines</span>(my_date, meteo<span class="op">$</span>MO_TN, <span class="dt">col =</span> <span class="st">&#39;blue&#39;</span>)</span>
-<span id="cb36-5"><a href="visualisieren.html#cb36-5"></a></span>
-<span id="cb36-6"><a href="visualisieren.html#cb36-6"></a><span class="co"># Maximumtemperatur in blau</span></span>
-<span id="cb36-7"><a href="visualisieren.html#cb36-7"></a><span class="kw">lines</span>(my_date, meteo<span class="op">$</span>MO_TX, <span class="dt">col =</span> <span class="st">&#39;red&#39;</span>)</span>
-<span id="cb36-8"><a href="visualisieren.html#cb36-8"></a></span>
-<span id="cb36-9"><a href="visualisieren.html#cb36-9"></a><span class="kw">legend</span>(<span class="st">&#39;topright&#39;</span>, <span class="dt">legend =</span> <span class="kw">c</span>(<span class="st">&#39;Mittelwert&#39;</span>, <span class="st">&#39;Minimum&#39;</span>, <span class="st">&#39;Maximum&#39;</span>),</span>
-<span id="cb36-10"><a href="visualisieren.html#cb36-10"></a>       <span class="dt">col =</span> <span class="kw">c</span>(<span class="st">&#39;black&#39;</span>, <span class="st">&#39;red&#39;</span>, <span class="st">&#39;blue&#39;</span>), </span>
-<span id="cb36-11"><a href="visualisieren.html#cb36-11"></a>       <span class="dt">pch =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="ot">NA</span>, <span class="ot">NA</span>),</span>
-<span id="cb36-12"><a href="visualisieren.html#cb36-12"></a>       <span class="dt">lty =</span> <span class="dv">1</span>)</span></code></pre></div>
-<p><img src="datenanalyse_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
-<p>Der Parameter <code>lty</code> steht für <em>line type</em> und die 1 bedeutet durchgezogene Linie. Mit <code>pch</code> legend wir die Art des Symbols fest; hier steht die 1 für das Standardsymbol “offener Kreis”. Die Funktion <code>legend</code> hat viele Möglichkeiten und es lohnt sich, in die Hilfe zu sehen <code>?legend</code>.</p>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">my_date</span>, <span class="va">meteo</span><span class="op">$</span><span class="va">MO_TT</span>, type <span class="op">=</span> <span class="st">'b'</span>, xlab <span class="op">=</span> <span class="st">'Zeit'</span>, ylab <span class="op">=</span> <span class="st">'Temperatur [°C]'</span>, main <span class="op">=</span> <span class="st">'Klimadaten der DWD-Station Köln-Bonn'</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">30</span><span class="op">)</span><span class="op">)</span>
+
+<span class="co"># Minimumtemperatur in rot</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/lines.html">lines</a></span><span class="op">(</span><span class="va">my_date</span>, <span class="va">meteo</span><span class="op">$</span><span class="va">MO_TN</span>, col <span class="op">=</span> <span class="st">'blue'</span><span class="op">)</span>
+
+<span class="co"># Maximumtemperatur in blau</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/lines.html">lines</a></span><span class="op">(</span><span class="va">my_date</span>, <span class="va">meteo</span><span class="op">$</span><span class="va">MO_TX</span>, col <span class="op">=</span> <span class="st">'red'</span><span class="op">)</span>
+
+<span class="fu"><a href="https://rdrr.io/r/graphics/legend.html">legend</a></span><span class="op">(</span><span class="st">'topright'</span>, legend <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'Mittelwert'</span>, <span class="st">'Minimum'</span>, <span class="st">'Maximum'</span><span class="op">)</span>,
+       col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'black'</span>, <span class="st">'red'</span>, <span class="st">'blue'</span><span class="op">)</span>, 
+       pch <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="cn">NA</span>, <span class="cn">NA</span><span class="op">)</span>,
+       lty <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="datenanalyse_files/figure-html/unnamed-chunk-20-1.png" width="672"></div>
+<p>Der Parameter <code>lty</code> steht für <em>line type</em> und die 1 bedeutet durchgezogene Linie. Mit <code>pch</code> legend wir die Art des Symbols fest; hier steht die 1 für das Standardsymbol “offener Kreis.” Die Funktion <code>legend</code> hat viele Möglichkeiten und es lohnt sich, in die Hilfe zu sehen <code><a href="https://rdrr.io/r/graphics/legend.html">?legend</a></code>.</p>
 </div>
-<div id="überblick-über-die-wichtigsten-high-level-und-low-level-grafikfunktionen" class="section level3">
-<h3><span class="header-section-number">5.1.2</span> Überblick über die wichtigsten <em>high-level</em> und <em>low-level</em> Grafikfunktionen</h3>
-<p>Die wichtigsten <em>high-level</em> Grafikfunktionen nach <span class="citation">Ligges (<a href="literatur.html#ref-Ligges2008" role="doc-biblioref">2008</a>)</span>, verändert:</p>
-<table>
+<div id="überblick-über-die-wichtigsten-high-level-und-low-level-grafikfunktionen" class="section level3" number="4.1.2">
+<h3>
+<span class="header-section-number">4.1.2</span> Überblick über die wichtigsten <em>high-level</em> und <em>low-level</em> Grafikfunktionen<a class="anchor" aria-label="anchor" href="#%C3%BCberblick-%C3%BCber-die-wichtigsten-high-level-und-low-level-grafikfunktionen"><i class="fas fa-link"></i></a>
+</h3>
+<p>Die wichtigsten <em>high-level</em> Grafikfunktionen nach <span class="citation"><a href="literatur.html#ref-Ligges2008" role="doc-biblioref">Ligges</a> (<a href="literatur.html#ref-Ligges2008" role="doc-biblioref">2008</a>)</span>, verändert:</p>
+<div class="inline-table"><table class="table table-sm">
 <colgroup>
-<col width="40%" />
-<col width="59%" />
+<col width="40%">
+<col width="59%">
 </colgroup>
-<thead>
-<tr class="header">
+<thead><tr class="header">
 <th align="left">Funktion</th>
 <th align="left">Beschreibung</th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr class="odd">
 <td align="left"><code>plot</code></td>
@@ -409,23 +223,23 @@ Grafiken mit mehreren Plots erstellen
 <td align="left">perspektivische Flächen</td>
 </tr>
 <tr class="odd">
-<td align="left"><code>qqnorm</code> und <code>qqplot</code></td>
+<td align="left">
+<code>qqnorm</code> und <code>qqplot</code>
+</td>
 <td align="left">QQ–Plot</td>
 </tr>
 </tbody>
-</table>
-<p>Die wichtigsten <em>low-level</em> Grafikfunktionen nach <span class="citation">Ligges (<a href="literatur.html#ref-Ligges2008" role="doc-biblioref">2008</a>)</span>, verändert:</p>
-<table>
+</table></div>
+<p>Die wichtigsten <em>low-level</em> Grafikfunktionen nach <span class="citation"><a href="literatur.html#ref-Ligges2008" role="doc-biblioref">Ligges</a> (<a href="literatur.html#ref-Ligges2008" role="doc-biblioref">2008</a>)</span>, verändert:</p>
+<div class="inline-table"><table class="table table-sm">
 <colgroup>
-<col width="40%" />
-<col width="59%" />
+<col width="40%">
+<col width="59%">
 </colgroup>
-<thead>
-<tr class="header">
+<thead><tr class="header">
 <th align="left">Funktion</th>
 <th align="left">Beschreibung</th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr class="odd">
 <td align="left"><code>abline</code></td>
@@ -488,17 +302,19 @@ Grafiken mit mehreren Plots erstellen
 <td align="left">Beschriftung</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 </div>
 </div>
-<div id="tuning-mit-par" class="section level2">
-<h2><span class="header-section-number">5.2</span> Tuning mit <code>par</code></h2>
-<p>Zur Vertiefung dieses Kapitels, empfehle ich <span class="citation">Ligges (<a href="literatur.html#ref-Ligges2008" role="doc-biblioref">2008</a>)</span>, Kapitel 8.1.3. <br></p>
-<p>Die Grafikebene in R ist aufgeteilt in drei Regionen (Abbildung <a href="visualisieren.html#fig:aufteilung">5.1</a>) und hat innere und äußere Ränder. Die Ränder werden von unten im Gegenuhrzeigersinn durchnummeriert.</p>
-<div class="figure"><span id="fig:aufteilung"></span>
-<img src="Regionen_und_Raender.png" alt="Aufteilung der Grafikfläche [@Ligges2008]." width="80%" />
-<p class="caption">
-Abbildung 5.1: Aufteilung der Grafikfläche <span class="citation">(Ligges <a href="literatur.html#ref-Ligges2008" role="doc-biblioref">2008</a>)</span>.
+<div id="tuning-mit-par" class="section level2" number="4.2">
+<h2>
+<span class="header-section-number">4.2</span> Tuning mit <code>par</code><a class="anchor" aria-label="anchor" href="#tuning-mit-par"><i class="fas fa-link"></i></a>
+</h2>
+<p>Zur Vertiefung dieses Kapitels, empfehle ich <span class="citation"><a href="literatur.html#ref-Ligges2008" role="doc-biblioref">Ligges</a> (<a href="literatur.html#ref-Ligges2008" role="doc-biblioref">2008</a>)</span>, Kapitel 8.1.3. <br></p>
+<p>Die Grafikebene in R ist aufgeteilt in drei Regionen (Abbildung <a href="visualisieren.html#fig:aufteilung">4.1</a>) und hat innere und äußere Ränder. Die Ränder werden von unten im Gegenuhrzeigersinn durchnummeriert.</p>
+<div class="figure">
+<span id="fig:aufteilung"></span>
+<img src="Regionen_und_Raender.png" alt="Aufteilung der Grafikfläche [@Ligges2008]." width="80%"><p class="caption">
+Abbildung 4.1: Aufteilung der Grafikfläche <span class="citation">(<a href="literatur.html#ref-Ligges2008" role="doc-biblioref">Ligges 2008</a>)</span>.
 </p>
 </div>
 <p>Mit der Funktion <code>par</code> lassen sich sehr viele Einstellung der Grafik verändern. Viele Einstellungen übergibt die Funktion <code>plot</code> selbständig an <code>par</code>, zu.B. <code>log</code> (Logarithmieren der Achsen), <code>cex</code> (Größe eines Punkts) oder <code>col</code> (Farbe). Andere können aber nur durch Aufrufen der Funktion <code>par</code> verändert werden. Dazu gehören die inneren Ränder <code>mar</code> und die äußeren Ränder <code>oma</code>, die Aufteilung der Grafikebene mit <code>mfrow</code> oder <code>mfcol</code>.</p>
@@ -514,30 +330,29 @@ Parameter setzen: <code>op &lt;- par( … )</code>
 plotten
 </li>
 <li>
-Parameter auf Standard zurück setzen: <code>par(op)</code>
+Parameter auf Standard zurück setzen: <code><a href="https://rdrr.io/r/graphics/par.html">par(op)</a></code>
 </li>
 </ul>
 </div>
-<p>Die Zuweisung <code>op &lt;- par( ... )</code> speichert die Standardeinstellungen im Objekt <code>par</code>, bevor Sie sie ändern. Der Aufruf <code>par(op)</code> setzt Ihre Änderungen zurück. Das ist sehr praktisch, wenn Sie z.B. die Aufteilung der Grafikebene nicht mehr benötigen. Wenn Sie die Parameter nicht zurücksetzen, bleiben diese bestehen, bis das Grafikfenster geschlossen wird (z.B. mit <code>dev.off()</code>).</p>
+<p>Die Zuweisung <code>op &lt;- par( ... )</code> speichert die Standardeinstellungen im Objekt <code>par</code>, bevor Sie sie ändern. Der Aufruf <code><a href="https://rdrr.io/r/graphics/par.html">par(op)</a></code> setzt Ihre Änderungen zurück. Das ist sehr praktisch, wenn Sie z.B. die Aufteilung der Grafikebene nicht mehr benötigen. Wenn Sie die Parameter nicht zurücksetzen, bleiben diese bestehen, bis das Grafikfenster geschlossen wird (z.B. mit <code><a href="https://rdrr.io/r/grDevices/dev.html">dev.off()</a></code>).</p>
 <p>Um die Ränder zu verändern, rufen wir <code>par</code> auf und beschneiden die Ränder, damit Sie den Unterschied erkennen können.</p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="visualisieren.html#cb37-1"></a>op &lt;-<span class="st"> </span><span class="kw">par</span>(<span class="dt">mar =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>))</span>
-<span id="cb37-2"><a href="visualisieren.html#cb37-2"></a><span class="kw">plot</span>(my_date, meteo<span class="op">$</span>MO_TT, <span class="dt">type =</span> <span class="st">&#39;b&#39;</span>, <span class="dt">xlab =</span> <span class="st">&#39;Zeit&#39;</span>, <span class="dt">ylab =</span> <span class="st">&#39;Temperatur [°C]&#39;</span>, <span class="dt">main =</span> <span class="st">&#39;Klimadaten der DWD-Station Köln-Bonn&#39;</span>, <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">30</span>))</span>
-<span id="cb37-3"><a href="visualisieren.html#cb37-3"></a></span>
-<span id="cb37-4"><a href="visualisieren.html#cb37-4"></a><span class="co"># Minimumtemperatur in rot</span></span>
-<span id="cb37-5"><a href="visualisieren.html#cb37-5"></a><span class="kw">lines</span>(my_date, meteo<span class="op">$</span>MO_TN, <span class="dt">col =</span> <span class="st">&#39;blue&#39;</span>)</span>
-<span id="cb37-6"><a href="visualisieren.html#cb37-6"></a></span>
-<span id="cb37-7"><a href="visualisieren.html#cb37-7"></a><span class="co"># Maximumtemperatur in blau</span></span>
-<span id="cb37-8"><a href="visualisieren.html#cb37-8"></a><span class="kw">lines</span>(my_date, meteo<span class="op">$</span>MO_TX, <span class="dt">col =</span> <span class="st">&#39;red&#39;</span>)</span></code></pre></div>
-<p><img src="datenanalyse_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">op</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">my_date</span>, <span class="va">meteo</span><span class="op">$</span><span class="va">MO_TT</span>, type <span class="op">=</span> <span class="st">'b'</span>, xlab <span class="op">=</span> <span class="st">'Zeit'</span>, ylab <span class="op">=</span> <span class="st">'Temperatur [°C]'</span>, main <span class="op">=</span> <span class="st">'Klimadaten der DWD-Station Köln-Bonn'</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">30</span><span class="op">)</span><span class="op">)</span>
+
+<span class="co"># Minimumtemperatur in rot</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/lines.html">lines</a></span><span class="op">(</span><span class="va">my_date</span>, <span class="va">meteo</span><span class="op">$</span><span class="va">MO_TN</span>, col <span class="op">=</span> <span class="st">'blue'</span><span class="op">)</span>
+
+<span class="co"># Maximumtemperatur in blau</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/lines.html">lines</a></span><span class="op">(</span><span class="va">my_date</span>, <span class="va">meteo</span><span class="op">$</span><span class="va">MO_TX</span>, col <span class="op">=</span> <span class="st">'red'</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="datenanalyse_files/figure-html/unnamed-chunk-22-1.png" width="672"></div>
 <p>Die Achsenbeschriftungen und die Zahlen haben jetzt nicht mehr genug Platz und verschwinden. Die Größe der Ränder wird in Zeilen angegeben, ist also relativ zur Gesamtgröße. Die Standardeinstellung ist <code>c(5, 4, 4, 2) + 0.1</code>.</p>
-<p>Einige häufig genutzte Argumente in Grafikfunktionen und in <code>par</code> <span class="citation">(nach Ligges <a href="literatur.html#ref-Ligges2008" role="doc-biblioref">2008</a>, verändert)</span>. Schlagen Sie die Erklärungen dazu immer in <code>?par</code> oder <code>?plot</code> nach.</p>
-<table>
-<thead>
-<tr class="header">
+<p>Einige häufig genutzte Argumente in Grafikfunktionen und in <code>par</code> <span class="citation">(nach <a href="literatur.html#ref-Ligges2008" role="doc-biblioref">Ligges 2008</a>, verändert)</span>. Schlagen Sie die Erklärungen dazu immer in <code><a href="https://rdrr.io/r/graphics/par.html">?par</a></code> oder <code><a href="https://rdrr.io/r/graphics/plot.default.html">?plot</a></code> nach.</p>
+<div class="inline-table"><table class="table table-sm">
+<thead><tr class="header">
 <th align="left">Funktion</th>
 <th align="left">Beschreibung</th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr class="odd">
 <td align="left"><code>axes</code></td>
@@ -564,7 +379,9 @@ Parameter auf Standard zurück setzen: <code>par(op)</code>
 <td align="left">Logarithmierte Darstellung</td>
 </tr>
 <tr class="odd">
-<td align="left"><code>lty</code>, <code>lwd</code></td>
+<td align="left">
+<code>lty</code>, <code>lwd</code>
+</td>
 <td align="left">Linientyp (gestrichelt, …) und Linienbreite</td>
 </tr>
 <tr class="even">
@@ -576,7 +393,9 @@ Parameter auf Standard zurück setzen: <code>par(op)</code>
 <td align="left">Größe der inneren Ränder für Achsenbeschriftung etc.</td>
 </tr>
 <tr class="even">
-<td align="left"><code>mfcol</code>, <code>mfrow</code></td>
+<td align="left">
+<code>mfcol</code>, <code>mfrow</code>
+</td>
 <td align="left">mehrere Grafiken in einem Bild</td>
 </tr>
 <tr class="odd">
@@ -592,11 +411,15 @@ Parameter auf Standard zurück setzen: <code>par(op)</code>
 <td align="left">Ausmaße der Achsen auslesen</td>
 </tr>
 <tr class="even">
-<td align="left"><code>xlab</code>, <code>ylab</code></td>
+<td align="left">
+<code>xlab</code>, <code>ylab</code>
+</td>
 <td align="left">x-/y-Achsenbeschriftung</td>
 </tr>
 <tr class="odd">
-<td align="left"><code>xlim</code>, <code>ylim</code></td>
+<td align="left">
+<code>xlim</code>, <code>ylim</code>
+</td>
 <td align="left">zu plottender Bereich in x-/y- Richtung</td>
 </tr>
 <tr class="even">
@@ -604,68 +427,61 @@ Parameter auf Standard zurück setzen: <code>par(op)</code>
 <td align="left">in die Ränder hinein zeichnen</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 </div>
-<div id="inhalt-der-live-einführung-2" class="section level2">
-<h2><span class="header-section-number">5.3</span> Inhalt der live Einführung</h2>
+<div id="inhalt-der-live-einführung-1" class="section level2" number="4.3">
+<h2>
+<span class="header-section-number">4.3</span> Inhalt der live Einführung<a class="anchor" aria-label="anchor" href="#inhalt-der-live-einf%C3%BChrung-1"><i class="fas fa-link"></i></a>
+</h2>
 <ul>
-<li><code>plot</code>, <code>barplot</code>, <code>mfrow</code></li>
-<li>Aufgaben <a href="aufgabensammlung.html#wahlbeteiligung">9.3.1</a>, <a href="aufgabensammlung.html#zweitstimme">9.3.2</a> und <a href="aufgabensammlung.html#zweigrafiken">9.3.3</a>.</li>
+<li>
+<code>plot</code>, <code>barplot</code>, <code>mfrow</code>
+</li>
+<li>Aufgaben <a href="aufgabensammlung.html#wahlbeteiligung">7.3.1</a>, <a href="aufgabensammlung.html#zweitstimme">7.3.2</a> und <a href="aufgabensammlung.html#zweigrafiken">7.3.3</a>.</li>
 <li>Speichern als pdf</li>
 </ul>
-
 </div>
 </div>
-            </section>
+  <div class="chapter-nav">
+<div class="prev"><a href="reproduzieren.html"><span class="header-section-number">3</span> Reproduzierbare Forschung</a></div>
+<div class="next"><a href="funktionen.html"><span class="header-section-number">5</span> Funktionen</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#visualisieren"><span class="header-section-number">4</span> Daten visualisieren I: Einfache Grafiken</a></li>
+<li>
+<a class="nav-link" href="#plotten-mit-r-basisfunktionen"><span class="header-section-number">4.1</span> Plotten mit R-Basisfunktionen</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#high-level-grafikfunktion-plot-und-low-level-grafikfunktion-lines"><span class="header-section-number">4.1.1</span> High-level Grafikfunktion plot und low-level Grafikfunktion lines</a></li>
+<li><a class="nav-link" href="#%C3%BCberblick-%C3%BCber-die-wichtigsten-high-level-und-low-level-grafikfunktionen"><span class="header-section-number">4.1.2</span> Überblick über die wichtigsten high-level und low-level Grafikfunktionen</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#tuning-mit-par"><span class="header-section-number">4.2</span> Tuning mit par</a></li>
+<li><a class="nav-link" href="#inhalt-der-live-einf%C3%BChrung-1"><span class="header-section-number">4.3</span> Inhalt der live Einführung</a></li>
+</ul>
 
-          </div>
-        </div>
-      </div>
-<a href="daten.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="reproduzieren.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
-    </div>
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Datenanalyse mit R</strong>: SoSe 2021" was written by Christina Bogner. It was last built on 2021-04-11.</p>
   </div>
-<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
-<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
-<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
-<script>
-gitbook.require(["gitbook"], function(gitbook) {
-gitbook.start({
-"sharing": false,
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": null,
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": null,
-"text": null
-},
-"download": ["datenanalyse.pdf"],
-"toc": {
-"collapse": "subsection"
-},
-"toolbar": {
-"position": "fixed"
-},
-"search": true
-});
-});
-</script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
@@ -679,5 +495,4 @@ gitbook.start({
   })();
 </script>
 </body>
-
 </html>

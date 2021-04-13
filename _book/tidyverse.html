@@ -1,254 +1,58 @@
 <!DOCTYPE html>
-<html lang="" xml:lang="">
+<html lang="en">
 <head>
-
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Kapitel 8 Tidyverse | Datenanalyse mit R</title>
-  <meta name="description" content="Begleitskript zur Veranstaltung Datenanalyse mit R" />
-  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
-
-  <meta property="og:title" content="Kapitel 8 Tidyverse | Datenanalyse mit R" />
-  <meta property="og:type" content="book" />
-  
-  
-  <meta property="og:description" content="Begleitskript zur Veranstaltung Datenanalyse mit R" />
-  <meta name="github-repo" content="https://github.com/ChrisBogner/datenanalyse.git" />
-
-  <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Kapitel 8 Tidyverse | Datenanalyse mit R" />
-  
-  <meta name="twitter:description" content="Begleitskript zur Veranstaltung Datenanalyse mit R" />
-  
-
-<meta name="author" content="Christina Bogner" />
-
-
-
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-  
-  
-<link rel="prev" href="funktionen.html"/>
-<link rel="next" href="aufgabensammlung.html"/>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
-<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
-
-
-
-
-
-
-
-
-<script src="libs/kePrint-0.0.1/kePrint.js"></script>
-
-
-<style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-</style>
-
-<link rel="stylesheet" href="style.css" type="text/css" />
-<link rel="stylesheet" href="css/all.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Kapitel 6 Tidyverse | Datenanalyse mit R</title>
+<meta name="author" content="Christina Bogner">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.2"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.7.4/header-attrs.js"></script><script src="libs/jquery-3.5.1/jquery-3.5.1.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.5.3/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.5.3/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.2.4/tabs.js"></script><script src="libs/bs3compat-0.2.4/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><script src="https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/mark.js@8.11.1/dist/mark.min.js"></script><!-- CSS --><link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="font-awesome.min.css">
 </head>
+<body data-spy="scroll" data-target="#toc">
 
-<body>
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
 
-
-
-  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
-
-    <div class="book-summary">
-      <nav role="navigation">
-
-<ul class="summary">
-<li><a href="./">Datenanalyse mit R</a></li>
-
-<li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Vorwort</a><ul>
-<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#organisatorisches"><i class="fa fa-check"></i><b>1.1</b> Organisatorisches</a></li>
-<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#sinn-und-unsinn-dieses-skripts"><i class="fa fa-check"></i><b>1.2</b> Sinn und Unsinn dieses Skripts</a></li>
-</ul></li>
-<li class="chapter" data-level="2" data-path="einfuehrung.html"><a href="einfuehrung.html"><i class="fa fa-check"></i><b>2</b> Der Kurs</a><ul>
-<li class="chapter" data-level="2.1" data-path="einfuehrung.html"><a href="einfuehrung.html#zuordnung-zum-modul-und-leistungsnachweis"><i class="fa fa-check"></i><b>2.1</b> Zuordnung zum Modul und Leistungsnachweis</a></li>
-<li class="chapter" data-level="2.2" data-path="einfuehrung.html"><a href="einfuehrung.html#lernziele-des-kurses"><i class="fa fa-check"></i><b>2.2</b> Lernziele des Kurses</a></li>
-<li class="chapter" data-level="2.3" data-path="einfuehrung.html"><a href="einfuehrung.html#was-mir-im-umgang-miteinander-wichtig-ist"><i class="fa fa-check"></i><b>2.3</b> Was mir im Umgang miteinander wichtig ist</a></li>
-</ul></li>
-<li class="chapter" data-level="3" data-path="erste-schritte.html"><a href="erste-schritte.html"><i class="fa fa-check"></i><b>3</b> Erste Schritte in <svg style="height:0.8em;top:.04em;position:relative;fill:steelblue;" viewBox="0 0 581 512"><path d="M581 226.6C581 119.1 450.9 32 290.5 32S0 119.1 0 226.6C0 322.4 103.3 402 239.4 418.1V480h99.1v-61.5c24.3-2.7 47.6-7.4 69.4-13.9L448 480h112l-67.4-113.7c54.5-35.4 88.4-84.9 88.4-139.7zm-466.8 14.5c0-73.5 98.9-133 220.8-133s211.9 40.7 211.9 133c0 50.1-26.5 85-70.3 106.4-2.4-1.6-4.7-2.9-6.4-3.7-10.2-5.2-27.8-10.5-27.8-10.5s86.6-6.4 86.6-92.7-90.6-87.9-90.6-87.9h-199V361c-74.1-21.5-125.2-67.1-125.2-119.9zm225.1 38.3v-55.6c57.8 0 87.8-6.8 87.8 27.3 0 36.5-38.2 28.3-87.8 28.3zm-.9 72.5H365c10.8 0 18.9 11.7 24 19.2-16.1 1.9-33 2.8-50.6 2.9v-22.1z"/></svg></a><ul>
-<li class="chapter" data-level="3.1" data-path="erste-schritte.html"><a href="erste-schritte.html#was-ist-r"><i class="fa fa-check"></i><b>3.1</b> Was ist R?</a></li>
-<li class="chapter" data-level="3.2" data-path="erste-schritte.html"><a href="erste-schritte.html#was-ist-rstudio"><i class="fa fa-check"></i><b>3.2</b> Was ist RStudio?</a></li>
-<li class="chapter" data-level="3.3" data-path="erste-schritte.html"><a href="erste-schritte.html#rstudio-cloud"><i class="fa fa-check"></i><b>3.3</b> RStudio Cloud</a></li>
-<li class="chapter" data-level="3.4" data-path="erste-schritte.html"><a href="erste-schritte.html#inhalt-der-live-einführung"><i class="fa fa-check"></i><b>3.4</b> Inhalt der live Einführung</a></li>
-</ul></li>
-<li class="chapter" data-level="4" data-path="daten.html"><a href="daten.html"><i class="fa fa-check"></i><b>4</b> Daten in R</a><ul>
-<li class="chapter" data-level="4.1" data-path="daten.html"><a href="daten.html#datenstrukturen-erzeugen"><i class="fa fa-check"></i><b>4.1</b> Datenstrukturen erzeugen</a></li>
-<li class="chapter" data-level="4.2" data-path="daten.html"><a href="daten.html#arten-von-daten-in-r"><i class="fa fa-check"></i><b>4.2</b> Arten von Daten in R</a></li>
-<li class="chapter" data-level="4.3" data-path="daten.html"><a href="daten.html#objekt-sag-mir-wer-du-bist"><i class="fa fa-check"></i><b>4.3</b> Objekt, sag mir wer du bist</a></li>
-<li class="chapter" data-level="4.4" data-path="daten.html"><a href="daten.html#datenlücken-fehlschläge-etc."><i class="fa fa-check"></i><b>4.4</b> Datenlücken, Fehlschläge etc.</a></li>
-<li class="chapter" data-level="4.5" data-path="daten.html"><a href="daten.html#inhalt-der-live-einführung-1"><i class="fa fa-check"></i><b>4.5</b> Inhalt der live Einführung</a></li>
-</ul></li>
-<li class="chapter" data-level="5" data-path="visualisieren.html"><a href="visualisieren.html"><i class="fa fa-check"></i><b>5</b> Daten visualisieren I: Einfache Grafiken</a><ul>
-<li class="chapter" data-level="5.1" data-path="visualisieren.html"><a href="visualisieren.html#plotten-mit-r-basisfunktionen"><i class="fa fa-check"></i><b>5.1</b> Plotten mit R-Basisfunktionen</a><ul>
-<li class="chapter" data-level="5.1.1" data-path="visualisieren.html"><a href="visualisieren.html#high-level-grafikfunktion-plot-und-low-level-grafikfunktion-lines"><i class="fa fa-check"></i><b>5.1.1</b> <em>High-level</em> Grafikfunktion <code>plot</code> und <em>low-level</em> Grafikfunktion <code>lines</code></a></li>
-<li class="chapter" data-level="5.1.2" data-path="visualisieren.html"><a href="visualisieren.html#überblick-über-die-wichtigsten-high-level-und-low-level-grafikfunktionen"><i class="fa fa-check"></i><b>5.1.2</b> Überblick über die wichtigsten <em>high-level</em> und <em>low-level</em> Grafikfunktionen</a></li>
-</ul></li>
-<li class="chapter" data-level="5.2" data-path="visualisieren.html"><a href="visualisieren.html#tuning-mit-par"><i class="fa fa-check"></i><b>5.2</b> Tuning mit <code>par</code></a></li>
-<li class="chapter" data-level="5.3" data-path="visualisieren.html"><a href="visualisieren.html#inhalt-der-live-einführung-2"><i class="fa fa-check"></i><b>5.3</b> Inhalt der live Einführung</a></li>
-</ul></li>
-<li class="chapter" data-level="6" data-path="reproduzieren.html"><a href="reproduzieren.html"><i class="fa fa-check"></i><b>6</b> Reproduzierbare Forschung</a><ul>
-<li class="chapter" data-level="6.1" data-path="reproduzieren.html"><a href="reproduzieren.html#warum-reproduzierbarkeit-in-der-forschung-wichtig-ist"><i class="fa fa-check"></i><b>6.1</b> Warum Reproduzierbarkeit in der Forschung wichtig ist</a></li>
-<li class="chapter" data-level="6.2" data-path="reproduzieren.html"><a href="reproduzieren.html#literate-programming-idee-von-donald-knuth"><i class="fa fa-check"></i><b>6.2</b> <em>Literate Programming</em> Idee von Donald Knuth</a></li>
-<li class="chapter" data-level="6.3" data-path="reproduzieren.html"><a href="reproduzieren.html#reproduzierbare-berichte-mit-r-markdown"><i class="fa fa-check"></i><b>6.3</b> Reproduzierbare Berichte mit R Markdown</a></li>
-<li class="chapter" data-level="6.4" data-path="reproduzieren.html"><a href="reproduzieren.html#wichtigste-regeln-für-reproduzierbarkeit"><i class="fa fa-check"></i><b>6.4</b> Wichtigste Regeln für Reproduzierbarkeit</a></li>
-<li class="chapter" data-level="6.5" data-path="reproduzieren.html"><a href="reproduzieren.html#weiterführende-videos-und-literatur"><i class="fa fa-check"></i><b>6.5</b> Weiterführende Videos und Literatur</a></li>
-<li class="chapter" data-level="6.6" data-path="reproduzieren.html"><a href="reproduzieren.html#inhalt-der-live-einführung-3"><i class="fa fa-check"></i><b>6.6</b> Inhalt der live Einführung</a></li>
-</ul></li>
-<li class="chapter" data-level="7" data-path="funktionen.html"><a href="funktionen.html"><i class="fa fa-check"></i><b>7</b> Funktionen</a><ul>
-<li class="chapter" data-level="7.1" data-path="funktionen.html"><a href="funktionen.html#eigene-funktionen-schreiben"><i class="fa fa-check"></i><b>7.1</b> Eigene Funktionen schreiben</a></li>
-<li class="chapter" data-level="7.2" data-path="funktionen.html"><a href="funktionen.html#fallunterscheidungen"><i class="fa fa-check"></i><b>7.2</b> Fallunterscheidungen</a></li>
-<li class="chapter" data-level="7.3" data-path="funktionen.html"><a href="funktionen.html#for-schleifen-for-loops"><i class="fa fa-check"></i><b>7.3</b> <code>for</code>-Schleifen (<code>for</code> <em>loops</em>)</a></li>
-<li class="chapter" data-level="7.4" data-path="funktionen.html"><a href="funktionen.html#weiterführende-literatur"><i class="fa fa-check"></i><b>7.4</b> Weiterführende Literatur</a></li>
-<li class="chapter" data-level="7.5" data-path="funktionen.html"><a href="funktionen.html#inhalt-der-live-einführung-4"><i class="fa fa-check"></i><b>7.5</b> Inhalt der live Einführung</a></li>
-</ul></li>
-<li class="chapter" data-level="8" data-path="tidyverse.html"><a href="tidyverse.html"><i class="fa fa-check"></i><b>8</b> Tidyverse</a><ul>
-<li class="chapter" data-level="8.1" data-path="tidyverse.html"><a href="tidyverse.html#grundpakete"><i class="fa fa-check"></i><b>8.1</b> Grundpakete</a></li>
-<li class="chapter" data-level="8.2" data-path="tidyverse.html"><a href="tidyverse.html#der-workflow"><i class="fa fa-check"></i><b>8.2</b> Der Workflow</a><ul>
-<li class="chapter" data-level="8.2.1" data-path="tidyverse.html"><a href="tidyverse.html#daten-einlesen"><i class="fa fa-check"></i><b>8.2.1</b> Daten einlesen</a></li>
-<li class="chapter" data-level="8.2.2" data-path="tidyverse.html"><a href="tidyverse.html#daten-zusammenfassen"><i class="fa fa-check"></i><b>8.2.2</b> Daten zusammenfassen</a></li>
-<li class="chapter" data-level="8.2.3" data-path="tidyverse.html"><a href="tidyverse.html#daten-plotten"><i class="fa fa-check"></i><b>8.2.3</b> Daten plotten</a></li>
-</ul></li>
-<li class="chapter" data-level="8.3" data-path="tidyverse.html"><a href="tidyverse.html#weiterführende-literatur-und-videos"><i class="fa fa-check"></i><b>8.3</b> Weiterführende Literatur und Videos</a></li>
-<li class="chapter" data-level="8.4" data-path="tidyverse.html"><a href="tidyverse.html#inhalt-der-live-einführung-5"><i class="fa fa-check"></i><b>8.4</b> Inhalt der live Einführung</a></li>
-</ul></li>
-<li class="chapter" data-level="9" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html"><i class="fa fa-check"></i><b>9</b> Aufgabensammlung</a><ul>
-<li class="chapter" data-level="9.1" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#erste-schritte"><i class="fa fa-check"></i><b>9.1</b> Erste Schritte</a><ul>
-<li class="chapter" data-level="9.1.1" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#ars-haushaltsbuch"><i class="fa fa-check"></i><b>9.1.1</b> Ars Haushaltsbuch</a></li>
-</ul></li>
-<li class="chapter" data-level="9.2" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#daten-in-r"><i class="fa fa-check"></i><b>9.2</b> Daten in R</a><ul>
-<li class="chapter" data-level="9.2.1" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#bestandesaufnahme"><i class="fa fa-check"></i><b>9.2.1</b> Bestandesaufnahme im Wald</a></li>
-</ul></li>
-<li class="chapter" data-level="9.3" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#daten-visualisieren-teil-i-fokus-auf-r"><i class="fa fa-check"></i><b>9.3</b> Daten visualisieren, Teil I: Fokus auf R</a><ul>
-<li class="chapter" data-level="9.3.1" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#wahlbeteiligung"><i class="fa fa-check"></i><b>9.3.1</b> Wahlbeteiligung bei der Bundestagswahl 2017</a></li>
-<li class="chapter" data-level="9.3.2" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#zweitstimme"><i class="fa fa-check"></i><b>9.3.2</b> Zweitstimme bei der Bundestagswahl 2017</a></li>
-<li class="chapter" data-level="9.3.3" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#zweigrafiken"><i class="fa fa-check"></i><b>9.3.3</b> Ergebnisse der Bundestagswahl in einer Grafik</a></li>
-<li class="chapter" data-level="9.3.4" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#weisserrand"><i class="fa fa-check"></i><b>9.3.4</b> Einen zu großen weißen Rand vermeiden</a></li>
-<li class="chapter" data-level="9.3.5" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#spielen-mit-der-funktion-par"><i class="fa fa-check"></i><b>9.3.5</b> Spielen mit der Funktion <code>par</code></a></li>
-</ul></li>
-<li class="chapter" data-level="9.4" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#reproduzierbare-berichte-mit-r-markdown-1"><i class="fa fa-check"></i><b>9.4</b> Reproduzierbare Berichte mit R Markdown</a><ul>
-<li class="chapter" data-level="9.4.1" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#erster-eigener-bericht"><i class="fa fa-check"></i><b>9.4.1</b> Erster eigener Bericht</a></li>
-</ul></li>
-<li class="chapter" data-level="9.5" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#eigene-funktionen-schreiben-1"><i class="fa fa-check"></i><b>9.5</b> Eigene Funktionen schreiben</a><ul>
-<li class="chapter" data-level="9.5.1" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#r-hausaufgaben"><i class="fa fa-check"></i><b>9.5.1</b> R-Hausaufgaben</a></li>
-<li class="chapter" data-level="9.5.2" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#fledermaus"><i class="fa fa-check"></i><b>9.5.2</b> Fledermäuse, die Zweite</a></li>
-</ul></li>
-<li class="chapter" data-level="9.6" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#tidyverse-1"><i class="fa fa-check"></i><b>9.6</b> Tidyverse</a><ul>
-<li class="chapter" data-level="9.6.1" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#fledermaus3"><i class="fa fa-check"></i><b>9.6.1</b> Fledermaus, die Dritte</a></li>
-<li class="chapter" data-level="9.6.2" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#klausur"><i class="fa fa-check"></i><b>9.6.2</b> Unfaire Klausur?</a></li>
-</ul></li>
-<li class="chapter" data-level="9.7" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#daten-visualisieren-teil-ii-fokus-auf-daten"><i class="fa fa-check"></i><b>9.7</b> Daten visualisieren, Teil II: Fokus auf Daten</a><ul>
-<li class="chapter" data-level="9.7.1" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#zeitreihen-aus-der-langen-bramke-harz"><i class="fa fa-check"></i><b>9.7.1</b> Zeitreihen aus der Langen Bramke (Harz)</a></li>
-<li class="chapter" data-level="9.7.2" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#temperatur-datensatz"><i class="fa fa-check"></i><b>9.7.2</b> Temperatur-Datensatz</a></li>
-<li class="chapter" data-level="9.7.3" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#temperatur-datensatz-revisited"><i class="fa fa-check"></i><b>9.7.3</b> Temperatur-Datensatz, revisited</a></li>
-<li class="chapter" data-level="9.7.4" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#artenvielfalt-in-grasländern"><i class="fa fa-check"></i><b>9.7.4</b> Artenvielfalt in Grasländern</a></li>
-<li class="chapter" data-level="9.7.5" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#tracerversuche"><i class="fa fa-check"></i><b>9.7.5</b> Tracerversuche</a></li>
-</ul></li>
-<li class="chapter" data-level="9.8" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#tidy-data"><i class="fa fa-check"></i><b>9.8</b> Tidy data</a><ul>
-<li class="chapter" data-level="9.8.1" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#wasserentnahme-mit-datenquelle-excel"><i class="fa fa-check"></i><b>9.8.1</b> Wasserentnahme mit Datenquelle Excel</a></li>
-<li class="chapter" data-level="9.8.2" data-path="aufgabensammlung.html"><a href="aufgabensammlung.html#wasserentnahme-mit-datenquelle-eurostat-direkt"><i class="fa fa-check"></i><b>9.8.2</b> Wasserentnahme mit Datenquelle EUROSTAT direkt</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="literatur.html"><a href="literatur.html"><i class="fa fa-check"></i>Literatur</a></li>
-<li class="divider"></li>
-<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
-
-</ul>
-
-      </nav>
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="SoSe 2021">Datenanalyse mit R</a>:
+        <small class="text-muted">SoSe 2021</small>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
     </div>
 
-    <div class="book-body">
-      <div class="body-inner">
-        <div class="book-header" role="navigation">
-          <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Datenanalyse mit R</a>
-          </h1>
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Vorwort</a></li>
+<li><a class="" href="einfuehrung.html"><span class="header-section-number">1</span> Der Kurs</a></li>
+<li><a class="" href="erste-schritte.html"><span class="header-section-number">2</span> Erste Schritte in R</a></li>
+<li><a class="" href="reproduzieren.html"><span class="header-section-number">3</span> Reproduzierbare Forschung</a></li>
+<li><a class="" href="visualisieren.html"><span class="header-section-number">4</span> Daten visualisieren I: Einfache Grafiken</a></li>
+<li><a class="" href="funktionen.html"><span class="header-section-number">5</span> Funktionen</a></li>
+<li><a class="active" href="tidyverse.html"><span class="header-section-number">6</span> Tidyverse</a></li>
+<li><a class="" href="aufgabensammlung.html"><span class="header-section-number">7</span> Aufgabensammlung</a></li>
+<li><a class="" href="literatur.html">Literatur</a></li>
+</ul>
+
+        <div class="book-extra">
+          
         </div>
-
-        <div class="page-wrapper" tabindex="-1" role="main">
-          <div class="page-inner">
-
-            <section class="normal" id="section-">
-<div id="tidyverse" class="section level1">
-<h1><span class="header-section-number">Kapitel 8</span> Tidyverse</h1>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="tidyverse" class="section level1" number="6">
+<h1>
+<span class="header-section-number">Kapitel 6</span> Tidyverse<a class="anchor" aria-label="anchor" href="#tidyverse"><i class="fas fa-link"></i></a>
+</h1>
 <div class="rmdoutcomes">
 <ul>
 <li>
@@ -263,17 +67,17 @@ Funktionen des Pakets <code>dplyr</code> für Datentransformation anwenden
 </ul>
 </div>
 <p><code>tidyverse</code> ist eine Sammlung von R-Pakete, die explizit für Datenanalyse entwickelt wurden (<a href="https://www.tidyverse.org/" class="uri">https://www.tidyverse.org/</a>). <code>tidyverse</code> versucht durch gemeinsame Philosophie in Design, Grammatik und Datenstruktur die Datenanalyse zu erleichtern (<a href="https://design.tidyverse.org/" class="uri">https://design.tidyverse.org/</a>). Auch wenn <code>tidyverse</code> auf den ersten Blick etwas fremd erscheint, es ist ein Teil von R, kein eigenes Universum. Es ist also völlig in Ordnung, R-Basisfunktionen mit Funktionen aus <code>tidyverse</code> zu mischen.</p>
-<p>Das wichtigste Einführungsbuch zu <code>tidyverse</code> ist sicherlich <strong>R4DS</strong>: “R for Data Science” <span class="citation">(Wickham and Grolemund <a href="literatur.html#ref-Wickham2017" role="doc-biblioref">2017</a>)</span>, das Sie kostenlos online lesen können (<a href="https://r4ds.had.co.nz/" class="uri">https://r4ds.had.co.nz/</a>).</p>
-<div id="grundpakete" class="section level2">
-<h2><span class="header-section-number">8.1</span> Grundpakete</h2>
-<p><code>tidyverse</code> enthält folgende Grundpakete, die alle installiert werden, wenn Sie <code>install.packages('tidyverse')</code> eingeben.</p>
-<table>
-<thead>
-<tr class="header">
+<p>Das wichtigste Einführungsbuch zu <code>tidyverse</code> ist sicherlich <strong>R4DS</strong>: “R for Data Science” <span class="citation">(<a href="literatur.html#ref-r4ds" role="doc-biblioref">Wickham and Grolemund 2021</a>)</span>, das Sie kostenlos online lesen können (<a href="https://r4ds.had.co.nz/" class="uri">https://r4ds.had.co.nz/</a>).</p>
+<div id="grundpakete" class="section level2" number="6.1">
+<h2>
+<span class="header-section-number">6.1</span> Grundpakete<a class="anchor" aria-label="anchor" href="#grundpakete"><i class="fas fa-link"></i></a>
+</h2>
+<p><code>tidyverse</code> enthält folgende Grundpakete, die alle installiert werden, wenn Sie <code><a href="https://rdrr.io/r/utils/install.packages.html">install.packages('tidyverse')</a></code> eingeben.</p>
+<div class="inline-table"><table class="table table-sm">
+<thead><tr class="header">
 <th align="left">Paketname</th>
 <th align="left">Kurzbeschreibung</th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr class="odd">
 <td align="left"><code>ggplot2</code></td>
@@ -297,7 +101,8 @@ Funktionen des Pakets <code>dplyr</code> für Datentransformation anwenden
 </tr>
 <tr class="even">
 <td align="left"><code>tibble</code></td>
-<td align="left">Erweiterung von <code>data.frame</code></td>
+<td align="left">Erweiterung von <code>data.frame</code>
+</td>
 </tr>
 <tr class="odd">
 <td align="left"><code>stringr</code></td>
@@ -305,22 +110,28 @@ Funktionen des Pakets <code>dplyr</code> für Datentransformation anwenden
 </tr>
 <tr class="even">
 <td align="left"><code>forcats</code></td>
-<td align="left">Funktionen für <code>factor</code></td>
+<td align="left">Funktionen für <code>factor</code>
+</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p>Jedes dieser Pakete hat ein Cheat Sheet, eine übersichtliche Zusammenstellung der Funktionen des Pakets. Sie bekommen die Cheet Sheats über die <code>tidyverse</code>-Seite (<a href="https://www.tidyverse.org/packages/" class="uri">https://www.tidyverse.org/packages/</a>), indem Sie auf das jeweilige Paket klicken und zum Abschnitt ‘Cheatsheet’ scrollen.</p>
 </div>
-<div id="der-workflow" class="section level2">
-<h2><span class="header-section-number">8.2</span> Der Workflow</h2>
-<div id="daten-einlesen" class="section level3">
-<h3><span class="header-section-number">8.2.1</span> Daten einlesen</h3>
-<p>Sie kennen bereits die sehr umfangreiche Funktion <code>read.table()</code> zum Einlesen der Daten. Die Funktion <code>read_delim()</code> ist die allgemeinste Funktion der <code>read_*</code> Familie aus <code>readr</code> in <code>tidyverse</code>; <code>read_csv()</code> und <code>read_csv2()</code> sind jeweils für komma- und strichpunkt-getrennte Datensätze gedacht. Man könnte berechtigterweise fragen, warum eine neue Funktion für etwas erfinden, was es schon gibt. Die Autoren von <code>tidyverse</code> versprechen Konsistenz und Geschwindigkeit. Ersteres war schon immer ein Problem von R, da es nicht von Computerspezialisten, sondern von Anwendern erfunden wurde. Daher ist eine Vereinheitlichung durch <code>tidyverse</code> mehr als willkommen. Und Geschwindigkeit ist spätestens bei größeren Datensätzen ein wichtiger Punkt.</p>
-<p>Wir sehen uns erneut Daten des Deutschen Wetterdienstes an, wie im Kapitel <a href="visualisieren.html#visualisieren">5</a>. Nur diesmal sind es Stundenwerte für relative Luftfeuchte (%) und Lufttemperatur (°C). Die Daten von drei Wetterstationen, nämlich Hof, Frankfurt und Köln-Bonn, befinden sich in der Datei <span style="font-family: sans-serif; font-size: medium">Drei_Stationen.csv</span> Beim Einlesen zeigt Ihnen <code>read_delim()</code> bereits, welche Spalten und welche Datentypen es erkennt, mit <code>trim_ws = T</code> werden Leerzeichen aus Spalten entfernt.</p>
-<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="tidyverse.html#cb63-1"></a><span class="kw">library</span>(tidyverse)</span>
-<span id="cb63-2"><a href="tidyverse.html#cb63-2"></a></span>
-<span id="cb63-3"><a href="tidyverse.html#cb63-3"></a>temp_humid &lt;-<span class="st"> </span><span class="kw">read_delim</span>(<span class="st">&#39;Drei_Stationen.csv&#39;</span>, <span class="dt">delim =</span> <span class="st">&#39;;&#39;</span>,</span>
-<span id="cb63-4"><a href="tidyverse.html#cb63-4"></a>                         <span class="dt">trim_ws =</span> T)</span></code></pre></div>
+<div id="der-workflow" class="section level2" number="6.2">
+<h2>
+<span class="header-section-number">6.2</span> Der Workflow<a class="anchor" aria-label="anchor" href="#der-workflow"><i class="fas fa-link"></i></a>
+</h2>
+<div id="daten-einlesen" class="section level3" number="6.2.1">
+<h3>
+<span class="header-section-number">6.2.1</span> Daten einlesen<a class="anchor" aria-label="anchor" href="#daten-einlesen"><i class="fas fa-link"></i></a>
+</h3>
+<p>Sie kennen bereits die sehr umfangreiche Funktion <code><a href="https://rdrr.io/r/utils/read.table.html">read.table()</a></code> zum Einlesen der Daten. Die Funktion <code>read_delim()</code> ist die allgemeinste Funktion der <code>read_*</code> Familie aus <code>readr</code> in <code>tidyverse</code>; <code>read_csv()</code> und <code>read_csv2()</code> sind jeweils für komma- und strichpunkt-getrennte Datensätze gedacht. Man könnte berechtigterweise fragen, warum eine neue Funktion für etwas erfinden, was es schon gibt. Die Autoren von <code>tidyverse</code> versprechen Konsistenz und Geschwindigkeit. Ersteres war schon immer ein Problem von R, da es nicht von Computerspezialisten, sondern von Anwendern erfunden wurde. Daher ist eine Vereinheitlichung durch <code>tidyverse</code> mehr als willkommen. Und Geschwindigkeit ist spätestens bei größeren Datensätzen ein wichtiger Punkt.</p>
+<p>Wir sehen uns erneut Daten des Deutschen Wetterdienstes an, wie im Kapitel <a href="visualisieren.html#visualisieren">4</a>. Nur diesmal sind es Stundenwerte für relative Luftfeuchte (%) und Lufttemperatur (°C). Die Daten von drei Wetterstationen, nämlich Hof, Frankfurt und Köln-Bonn, befinden sich in der Datei <span style="font-family: sans-serif; font-size: medium">Drei_Stationen.csv</span> Beim Einlesen zeigt Ihnen <code>read_delim()</code> bereits, welche Spalten und welche Datentypen es erkennt, mit <code>trim_ws = T</code> werden Leerzeichen aus Spalten entfernt.</p>
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
+
+<span class="va">temp_humid</span> <span class="op">&lt;-</span> <span class="fu">read_delim</span><span class="op">(</span><span class="st">'Drei_Stationen.csv'</span>, delim <span class="op">=</span> <span class="st">';'</span>,
+                         trim_ws <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></code></pre></div>
 <pre><code>## Parsed with column specification:
 ## cols(
 ##   STATIONS_ID = col_double(),
@@ -330,8 +141,9 @@ Funktionen des Pakets <code>dplyr</code> für Datentransformation anwenden
 ##   RF_TU = col_double(),
 ##   eor = col_character()
 ## )</code></pre>
-<p>Eine weitere Kontrolle bietet die Funktion <code>print()</code>, die das eingelesene Ergebnis übersichtlich (und im Notebook interaktiv) darstellt. Sie müssen hier nicht mehr <code>head()</code> verwenden, da grundsätzlich nur die ersten 10 Zeilen dargestellt werden.</p>
-<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="tidyverse.html#cb65-1"></a><span class="kw">print</span>(temp_humid)</span></code></pre></div>
+<p>Eine weitere Kontrolle bietet die Funktion <code><a href="https://rdrr.io/r/base/print.html">print()</a></code>, die das eingelesene Ergebnis übersichtlich (und im Notebook interaktiv) darstellt. Sie müssen hier nicht mehr <code><a href="https://rdrr.io/r/utils/head.html">head()</a></code> verwenden, da grundsätzlich nur die ersten 10 Zeilen dargestellt werden.</p>
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">temp_humid</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 39,600 x 6
 ##    STATIONS_ID MESS_DATUM  QN_9 TT_TU RF_TU eor  
 ##          &lt;dbl&gt;      &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;
@@ -346,8 +158,9 @@ Funktionen des Pakets <code>dplyr</code> für Datentransformation anwenden
 ##  9        2261 2018111908     3  -1.1    99 eor  
 ## 10        2261 2018111909     3  -0.6    97 eor  
 ## # … with 39,590 more rows</code></pre>
-<p>Das gleiche Ergebnis bekommen Sie auch ohne <code>print()</code>, wenn Sie wie gewohnt den Namen des Objekts tippen.</p>
-<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="tidyverse.html#cb67-1"></a>temp_humid</span></code></pre></div>
+<p>Das gleiche Ergebnis bekommen Sie auch ohne <code><a href="https://rdrr.io/r/base/print.html">print()</a></code>, wenn Sie wie gewohnt den Namen des Objekts tippen.</p>
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">temp_humid</span></code></pre></div>
 <pre><code>## # A tibble: 39,600 x 6
 ##    STATIONS_ID MESS_DATUM  QN_9 TT_TU RF_TU eor  
 ##          &lt;dbl&gt;      &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;
@@ -363,13 +176,11 @@ Funktionen des Pakets <code>dplyr</code> für Datentransformation anwenden
 ## 10        2261 2018111909     3  -0.6    97 eor  
 ## # … with 39,590 more rows</code></pre>
 <p>In diesem Datensatz sind folgende Parameter (Spalten) enthalten (s. Datensatzbeschreibung des DWDs)</p>
-<table>
-<thead>
-<tr class="header">
+<div class="inline-table"><table class="table table-sm">
+<thead><tr class="header">
 <th align="left">Parameter</th>
 <th align="left">Beschreibung</th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr class="odd">
 <td align="left">STATIONS_ID</td>
@@ -396,20 +207,23 @@ Funktionen des Pakets <code>dplyr</code> für Datentransformation anwenden
 <td align="left">Ende data record</td>
 </tr>
 </tbody>
-</table>
-<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="tidyverse.html#cb69-1"></a><span class="kw">class</span>(temp_humid)</span></code></pre></div>
-<pre><code>## [1] &quot;spec_tbl_df&quot; &quot;tbl_df&quot;      &quot;tbl&quot;         &quot;data.frame&quot;</code></pre>
-<p>Das Objekt <code>temp_humid</code> ist ein sogen. Tibble, ein <code>data.frame</code> mit “modernem” Verhalten. Z.B. gibt die Funktion <code>print()</code> nur die ersten 10 Zeilen aus, die Datentypen in den Spalten werden in hellgrau zwischen ‘&lt;&gt;’ mit angegeben etc. Mehr zu Tibbles finden Sie in Kapitel 10 “Tibbles” in R4DS.</p>
+</table></div>
+<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">temp_humid</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] "spec_tbl_df" "tbl_df"      "tbl"         "data.frame"</code></pre>
+<p>Das Objekt <code>temp_humid</code> ist ein sogen. Tibble, ein <code>data.frame</code> mit “modernem” Verhalten. Z.B. gibt die Funktion <code><a href="https://rdrr.io/r/base/print.html">print()</a></code> nur die ersten 10 Zeilen aus, die Datentypen in den Spalten werden in hellgrau zwischen ‘&lt;&gt;’ mit angegeben etc. Mehr zu Tibbles finden Sie in Kapitel 10 “Tibbles” in R4DS.</p>
 <p>Ein weiteres Paket, dass zwar nicht zum Kern von <code>tidyverse</code> gehört, jedoch trotzdem extrem nützlich ist, heißt <code>lubridate</code>. Es hilft, Text in richtige Datums-Objekte zu transformieren (ohne sich die kryptischen Datumsformate von R merken zu müssen). Wir transformieren die Spalte <code>temp_humid$MESS_DATUM</code> in ein richtiges Datum mit Uhrzeit.</p>
-<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="tidyverse.html#cb71-1"></a><span class="kw">library</span>(lubridate)</span></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://lubridate.tidyverse.org">lubridate</a></span><span class="op">)</span></code></pre></div>
 <pre><code>## 
-## Attaching package: &#39;lubridate&#39;</code></pre>
-<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## Attaching package: 'lubridate'</code></pre>
+<pre><code>## The following objects are masked from 'package:base':
 ## 
 ##     date, intersect, setdiff, union</code></pre>
-<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="tidyverse.html#cb74-1"></a>temp_humid<span class="op">$</span>MESS_DATUM &lt;-<span class="st"> </span><span class="kw">ymd_h</span>(temp_humid<span class="op">$</span>MESS_DATUM)</span>
-<span id="cb74-2"><a href="tidyverse.html#cb74-2"></a></span>
-<span id="cb74-3"><a href="tidyverse.html#cb74-3"></a><span class="kw">print</span>(temp_humid)</span></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">temp_humid</span><span class="op">$</span><span class="va">MESS_DATUM</span> <span class="op">&lt;-</span> <span class="fu"><a href="http://lubridate.tidyverse.org/reference/ymd_hms.html">ymd_h</a></span><span class="op">(</span><span class="va">temp_humid</span><span class="op">$</span><span class="va">MESS_DATUM</span><span class="op">)</span>
+
+<span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">temp_humid</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 39,600 x 6
 ##    STATIONS_ID MESS_DATUM           QN_9 TT_TU RF_TU eor  
 ##          &lt;dbl&gt; &lt;dttm&gt;              &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;
@@ -425,29 +239,31 @@ Funktionen des Pakets <code>dplyr</code> für Datentransformation anwenden
 ## 10        2261 2018-11-19 09:00:00     3  -0.6    97 eor  
 ## # … with 39,590 more rows</code></pre>
 </div>
-<div id="daten-zusammenfassen" class="section level3">
-<h3><span class="header-section-number">8.2.2</span> Daten zusammenfassen</h3>
+<div id="daten-zusammenfassen" class="section level3" number="6.2.2">
+<h3>
+<span class="header-section-number">6.2.2</span> Daten zusammenfassen<a class="anchor" aria-label="anchor" href="#daten-zusammenfassen"><i class="fas fa-link"></i></a>
+</h3>
 <p>Die drei Wetterstationen haben folgende IDs:</p>
-<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="tidyverse.html#cb76-1"></a>station_ids &lt;-<span class="st">  </span><span class="kw">tibble</span>(<span class="st">&#39;Hof&#39;</span> =<span class="st"> &#39;2261&#39;</span>, <span class="st">&#39;Frankfurt&#39;</span> =<span class="st"> &#39;1420&#39;</span>, <span class="st">&#39;Koeln&#39;</span> =<span class="st"> &#39;2667&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">station_ids</span> <span class="op">&lt;-</span>  <span class="fu">tibble</span><span class="op">(</span><span class="st">'Hof'</span> <span class="op">=</span> <span class="st">'2261'</span>, <span class="st">'Frankfurt'</span> <span class="op">=</span> <span class="st">'1420'</span>, <span class="st">'Koeln'</span> <span class="op">=</span> <span class="st">'2667'</span><span class="op">)</span></code></pre></div>
 <p>Ich möchte wissen, wie viele Messpunkte es pro Station gibt:</p>
-<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="tidyverse.html#cb77-1"></a>temp_humid <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb77-2"><a href="tidyverse.html#cb77-2"></a><span class="st">  </span><span class="kw">count</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">temp_humid</span> <span class="op">%&gt;%</span> 
+  <span class="fu">count</span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 1 x 1
 ##       n
 ##   &lt;int&gt;
 ## 1 39600</code></pre>
 <p>Die Zeichenkombination <code>%&gt;%</code> heißt Pipe-Operator (<em>pipe</em>) und wird als ‘und dann’ gelesen (<em>then</em>). Der Ausdruck <code>temp_humid %&gt;% count()</code> heißt also: nimm <code>temp_humid</code> und dann zähle die Einträge. Der Pipe-Operator ist die Kernphilosophie von <code>tidyverse</code> und wird Ihnen überall begegnen. Der Operator stammt aus dem Paket <code>magrittr</code> (<a href="https://magrittr.tidyverse.org/" class="uri">https://magrittr.tidyverse.org/</a>). Seine Hauptaufgabe ist es, den Code übersichtlicher und besser lesbar zu machen (vielleicht nicht gleich zu Beginn der Lernkurve aber schon sehr bald 😄).</p>
 <p>Die Funktion <code>count()</code> gehört zum Paket <code>dplyr</code>, das für Datentransformationen zuständig ist. Dieses Paket enthält 5 Grundfunktionen (alle nach Verben benannt 😄):</p>
-<table>
-<thead>
-<tr class="header">
+<div class="inline-table"><table class="table table-sm">
+<thead><tr class="header">
 <th align="left">Funktion</th>
 <th align="left">Bedeutung</th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left"><code>filter()</code></td>
+<td align="left"><code><a href="https://rdrr.io/r/stats/filter.html">filter()</a></code></td>
 <td align="left">Wähle Daten anhand ihrere Werte</td>
 </tr>
 <tr class="even">
@@ -467,24 +283,28 @@ Funktionen des Pakets <code>dplyr</code> für Datentransformation anwenden
 <td align="left">Fasse Daten zusammen</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p>Ich möchte nun wissen, wie viele Messpunkte es für Köln-Bonn gibt. <code>tidyverse</code> ist konsistent: jeder Aufruf einer Funktion aus <code>dplyr</code> gibt ein <code>tiblle</code> zurück (und nicht mal <code>data.frame</code> mal Vektor).</p>
-<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="tidyverse.html#cb79-1"></a>temp_humid <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb79-2"><a href="tidyverse.html#cb79-2"></a><span class="st">  </span><span class="kw">filter</span>(STATIONS_ID <span class="op">==</span><span class="st"> </span>station_ids<span class="op">$</span>Koeln) <span class="op">%&gt;%</span></span>
-<span id="cb79-3"><a href="tidyverse.html#cb79-3"></a><span class="st">  </span><span class="kw">count</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">temp_humid</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">STATIONS_ID</span> <span class="op">==</span> <span class="va">station_ids</span><span class="op">$</span><span class="va">Koeln</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">count</span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 1 x 1
 ##       n
 ##   &lt;int&gt;
 ## 1 13200</code></pre>
 </div>
-<div id="daten-plotten" class="section level3">
-<h3><span class="header-section-number">8.2.3</span> Daten plotten</h3>
+<div id="daten-plotten" class="section level3" number="6.2.3">
+<h3>
+<span class="header-section-number">6.2.3</span> Daten plotten<a class="anchor" aria-label="anchor" href="#daten-plotten"><i class="fas fa-link"></i></a>
+</h3>
 <p>Wir wählen nur die Station Köln-Bonn und plotten die Stundenwerte der Temperatur mit dem Paket <code>ggplot2</code>.</p>
-<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="tidyverse.html#cb81-1"></a><span class="co"># Köln-Bonn wählen</span></span>
-<span id="cb81-2"><a href="tidyverse.html#cb81-2"></a>koeln &lt;-<span class="st"> </span>temp_humid <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb81-3"><a href="tidyverse.html#cb81-3"></a><span class="st">  </span><span class="kw">filter</span>(STATIONS_ID <span class="op">==</span><span class="st"> </span>station_ids<span class="op">$</span>Koeln)</span>
-<span id="cb81-4"><a href="tidyverse.html#cb81-4"></a></span>
-<span id="cb81-5"><a href="tidyverse.html#cb81-5"></a>koeln</span></code></pre></div>
+<div class="sourceCode" id="cb53"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Köln-Bonn wählen</span>
+<span class="va">koeln</span> <span class="op">&lt;-</span> <span class="va">temp_humid</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">STATIONS_ID</span> <span class="op">==</span> <span class="va">station_ids</span><span class="op">$</span><span class="va">Koeln</span><span class="op">)</span>
+
+<span class="va">koeln</span></code></pre></div>
 <pre><code>## # A tibble: 13,200 x 6
 ##    STATIONS_ID MESS_DATUM           QN_9 TT_TU RF_TU eor  
 ##          &lt;dbl&gt; &lt;dttm&gt;              &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;
@@ -499,18 +319,20 @@ Funktionen des Pakets <code>dplyr</code> für Datentransformation anwenden
 ##  9        2667 2018-11-19 08:00:00     3   3.9    80 eor  
 ## 10        2667 2018-11-19 09:00:00     3   4.8    78 eor  
 ## # … with 13,190 more rows</code></pre>
-<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="tidyverse.html#cb83-1"></a><span class="co"># Plotten</span></span>
-<span id="cb83-2"><a href="tidyverse.html#cb83-2"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> koeln, <span class="kw">aes</span>(<span class="dt">x =</span> MESS_DATUM, <span class="dt">y =</span> TT_TU)) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb83-3"><a href="tidyverse.html#cb83-3"></a><span class="st">  </span><span class="kw">geom_line</span>()</span></code></pre></div>
-<p><img src="datenanalyse_files/figure-html/unnamed-chunk-53-1.png" width="672" /></p>
+<div class="sourceCode" id="cb55"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Plotten</span>
+<span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">koeln</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">MESS_DATUM</span>, y <span class="op">=</span> <span class="va">TT_TU</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu">geom_line</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="datenanalyse_files/figure-html/unnamed-chunk-46-1.png" width="672"></div>
 <p>Sie werden sehr bald schon das Paket <code>ggplot2</code> nicht mehr missen wollen. Es erstellt mit wenig Aufwand sehr ansehnliche Grafiken. Natürlich müssen Sie, wie in Base-R auch, für professionelle Grafiken nacharbeiten.</p>
 <p><code>ggplot2</code> folgt einer sogen. Grafikgrammatik (<em>grammer of graphics</em>), indem es seine Grafiken mit ‘+’ aufbaut. Erst sagt man in der Funktion <code>ggplot()</code> welchen Datensatz man plotten möchte, was auf die x- und y-Achse kommt und ob man z.B. Farbe für Gruppen in Daten möchte. All diese sichtbaren Elemente nennt man Ästhetiken (Parameter <code>aes</code>). Erst wenn diese ‘Formalien’ geklärt sind, sagt man, welche Form der Darstellung man möchte. Im oberen Beispiel ist es ein Linienplot. Alle Darstellungsarten in <code>ggplot2</code> beginnen mit <code>geom_*()</code> und sind daher konsistent benannt. Die Informationen zu Daten, x-, y-Achse etc. werden an die <code>geom_*()</code>-Funktionen von der Mutterfunktion <code>ggplot()</code> weiter vererbt. Daher sind die Klammern in <code>geom_line()</code> leer.</p>
 <p>Wir wollen nun die Monatsmittelwerte für die Temperatur berechnen und diese darstellen. Als erstes erstellen wir zwei neue Spalten, die jeweils das Jahr und den Monat beinhalten. Die beiden neuen Spalten werden am Ende von <code>temp_humid</code> angehängt.</p>
-<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="tidyverse.html#cb84-1"></a>temp_humid &lt;-<span class="st"> </span><span class="kw">mutate</span>(temp_humid, </span>
-<span id="cb84-2"><a href="tidyverse.html#cb84-2"></a>                     <span class="dt">year =</span> <span class="kw">year</span>(temp_humid<span class="op">$</span>MESS_DATUM),</span>
-<span id="cb84-3"><a href="tidyverse.html#cb84-3"></a>                     <span class="dt">month =</span> <span class="kw">month</span>(temp_humid<span class="op">$</span>MESS_DATUM))</span>
-<span id="cb84-4"><a href="tidyverse.html#cb84-4"></a></span>
-<span id="cb84-5"><a href="tidyverse.html#cb84-5"></a>temp_humid</span></code></pre></div>
+<div class="sourceCode" id="cb56"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">temp_humid</span> <span class="op">&lt;-</span> <span class="fu">mutate</span><span class="op">(</span><span class="va">temp_humid</span>, 
+                     year <span class="op">=</span> <span class="fu"><a href="http://lubridate.tidyverse.org/reference/year.html">year</a></span><span class="op">(</span><span class="va">temp_humid</span><span class="op">$</span><span class="va">MESS_DATUM</span><span class="op">)</span>,
+                     month <span class="op">=</span> <span class="fu"><a href="http://lubridate.tidyverse.org/reference/month.html">month</a></span><span class="op">(</span><span class="va">temp_humid</span><span class="op">$</span><span class="va">MESS_DATUM</span><span class="op">)</span><span class="op">)</span>
+
+<span class="va">temp_humid</span></code></pre></div>
 <pre><code>## # A tibble: 39,600 x 8
 ##    STATIONS_ID MESS_DATUM           QN_9 TT_TU RF_TU eor    year month
 ##          &lt;dbl&gt; &lt;dttm&gt;              &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -526,10 +348,12 @@ Funktionen des Pakets <code>dplyr</code> für Datentransformation anwenden
 ## 10        2261 2018-11-19 09:00:00     3  -0.6    97 eor    2018    11
 ## # … with 39,590 more rows</code></pre>
 <p>Jetzt können wir einen neuen Datensatz mit den Mittelwerten erstellen. Dafür gruppieren wir erst einmal die Daten nach <code>STATIONS_ID</code>, <code>year</code> und <code>month</code>. Die Mittelwerte sollen ja je Station, Jahr und Monat berechnet werden.</p>
-<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="tidyverse.html#cb86-1"></a>by_month &lt;-<span class="st"> </span><span class="kw">group_by</span>(temp_humid, STATIONS_ID, year, month)</span>
-<span id="cb86-2"><a href="tidyverse.html#cb86-2"></a>monthly_means &lt;-<span class="st"> </span><span class="kw">summarize</span>(by_month, <span class="dt">mean_T =</span> <span class="kw">mean</span>(TT_TU), <span class="dt">mean_RH =</span> <span class="kw">mean</span>(RF_TU))</span></code></pre></div>
-<pre><code>## `summarise()` regrouping output by &#39;STATIONS_ID&#39;, &#39;year&#39; (override with `.groups` argument)</code></pre>
-<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="tidyverse.html#cb88-1"></a>monthly_means</span></code></pre></div>
+<div class="sourceCode" id="cb58"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">by_month</span> <span class="op">&lt;-</span> <span class="fu">group_by</span><span class="op">(</span><span class="va">temp_humid</span>, <span class="va">STATIONS_ID</span>, <span class="va">year</span>, <span class="va">month</span><span class="op">)</span>
+<span class="va">monthly_means</span> <span class="op">&lt;-</span> <span class="fu">summarize</span><span class="op">(</span><span class="va">by_month</span>, mean_T <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">TT_TU</span><span class="op">)</span>, mean_RH <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">RF_TU</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<pre><code>## `summarise()` regrouping output by 'STATIONS_ID', 'year' (override with `.groups` argument)</code></pre>
+<div class="sourceCode" id="cb60"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">monthly_means</span></code></pre></div>
 <pre><code>## # A tibble: 57 x 5
 ## # Groups:   STATIONS_ID, year [9]
 ##    STATIONS_ID  year month mean_T mean_RH
@@ -546,14 +370,15 @@ Funktionen des Pakets <code>dplyr</code> für Datentransformation anwenden
 ## 10        1420  2019     8  20.7     65.6
 ## # … with 47 more rows</code></pre>
 <p>Die Struktur von <code>monthly_means</code> zeigt uns, dass es sich um gruppierte Daten handelt.</p>
-<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="tidyverse.html#cb90-1"></a><span class="kw">str</span>(monthly_means)</span></code></pre></div>
+<div class="sourceCode" id="cb62"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">monthly_means</span><span class="op">)</span></code></pre></div>
 <pre><code>## tibble [57 × 5] (S3: grouped_df/tbl_df/tbl/data.frame)
 ##  $ STATIONS_ID: num [1:57] 1420 1420 1420 1420 1420 1420 1420 1420 1420 1420 ...
 ##  $ year       : num [1:57] 2018 2018 2019 2019 2019 ...
 ##  $ month      : num [1:57] 11 12 1 2 3 4 5 6 7 8 ...
 ##  $ mean_T     : num [1:57] 4 4.73 2.12 4.48 8.28 ...
 ##  $ mean_RH    : num [1:57] 79.7 83.7 79.3 74.1 68.5 ...
-##  - attr(*, &quot;groups&quot;)= tibble [9 × 3] (S3: tbl_df/tbl/data.frame)
+##  - attr(*, "groups")= tibble [9 × 3] (S3: tbl_df/tbl/data.frame)
 ##   ..$ STATIONS_ID: num [1:9] 1420 1420 1420 2261 2261 ...
 ##   ..$ year       : num [1:9] 2018 2019 2020 2018 2019 ...
 ##   ..$ .rows      : list&lt;int&gt; [1:9] 
@@ -567,86 +392,85 @@ Funktionen des Pakets <code>dplyr</code> für Datentransformation anwenden
 ##   .. ..$ : int [1:12] 41 42 43 44 45 46 47 48 49 50 ...
 ##   .. ..$ : int [1:5] 53 54 55 56 57
 ##   .. ..@ ptype: int(0) 
-##   ..- attr(*, &quot;.drop&quot;)= logi TRUE</code></pre>
+##   ..- attr(*, ".drop")= logi TRUE</code></pre>
 <p>Da wir aber mit den Daten weiter rechnen wollen, ist es besser, die Gruppierung wieder aufzugeben. Es könnte sonst später Fehlermeldungen geben.</p>
-<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="tidyverse.html#cb92-1"></a>monthly_means &lt;-<span class="st"> </span><span class="kw">ungroup</span>(monthly_means)</span></code></pre></div>
-<p>Um die Daten als Zeitreihen zu plotten, erstellen wir noch eine ordentliche Zeit-Spalte. Die Funktion <code>parse_date_time()</code> kann aus Character richtige Datums-Zeitobjekte erstellen. Sie ist allgemeienr als die oben verwendete <code>ymd()</code> Funktion, da man hier das Format explizit angeben kann. In unserem Fall ist das Format ‘ym’ für Jahr und Monat.</p>
-<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="tidyverse.html#cb93-1"></a>monthly_means &lt;-<span class="st"> </span>monthly_means <span class="op">%&gt;%</span></span>
-<span id="cb93-2"><a href="tidyverse.html#cb93-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">my_date =</span> <span class="kw">parse_date_time</span>(<span class="kw">paste0</span>(monthly_means<span class="op">$</span>year,</span>
-<span id="cb93-3"><a href="tidyverse.html#cb93-3"></a>                  monthly_means<span class="op">$</span>month), <span class="st">&#39;ym&#39;</span>, <span class="dt">tz =</span> <span class="st">&#39;CET&#39;</span>))</span></code></pre></div>
-<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="tidyverse.html#cb94-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> monthly_means, <span class="kw">aes</span>(<span class="dt">x =</span> my_date, <span class="dt">y =</span> mean_T, </span>
-<span id="cb94-2"><a href="tidyverse.html#cb94-2"></a>            <span class="dt">col =</span> <span class="kw">factor</span>(STATIONS_ID))) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb94-3"><a href="tidyverse.html#cb94-3"></a><span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span><span class="st"> </span></span>
-<span id="cb94-4"><a href="tidyverse.html#cb94-4"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&#39;Time&#39;</span>, <span class="dt">y =</span> <span class="st">&#39;Temperature (°C)&#39;</span>, <span class="dt">color =</span> <span class="st">&#39;Station&#39;</span>)</span></code></pre></div>
-<p><img src="datenanalyse_files/figure-html/unnamed-chunk-59-1.png" width="672" /></p>
+<div class="sourceCode" id="cb64"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">monthly_means</span> <span class="op">&lt;-</span> <span class="fu">ungroup</span><span class="op">(</span><span class="va">monthly_means</span><span class="op">)</span></code></pre></div>
+<p>Um die Daten als Zeitreihen zu plotten, erstellen wir noch eine ordentliche Zeit-Spalte. Die Funktion <code><a href="http://lubridate.tidyverse.org/reference/parse_date_time.html">parse_date_time()</a></code> kann aus Character richtige Datums-Zeitobjekte erstellen. Sie ist allgemeienr als die oben verwendete <code><a href="http://lubridate.tidyverse.org/reference/ymd.html">ymd()</a></code> Funktion, da man hier das Format explizit angeben kann. In unserem Fall ist das Format ‘ym’ für Jahr und Monat.</p>
+<div class="sourceCode" id="cb65"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">monthly_means</span> <span class="op">&lt;-</span> <span class="va">monthly_means</span> <span class="op">%&gt;%</span>
+  <span class="fu">mutate</span><span class="op">(</span>my_date <span class="op">=</span> <span class="fu"><a href="http://lubridate.tidyverse.org/reference/parse_date_time.html">parse_date_time</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">monthly_means</span><span class="op">$</span><span class="va">year</span>,
+                  <span class="va">monthly_means</span><span class="op">$</span><span class="va">month</span><span class="op">)</span>, <span class="st">'ym'</span>, tz <span class="op">=</span> <span class="st">'CET'</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb66"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">monthly_means</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">my_date</span>, y <span class="op">=</span> <span class="va">mean_T</span>, 
+            col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">STATIONS_ID</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu">geom_line</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">'Time'</span>, y <span class="op">=</span> <span class="st">'Temperature (°C)'</span>, color <span class="op">=</span> <span class="st">'Station'</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="datenanalyse_files/figure-html/unnamed-chunk-52-1.png" width="672"></div>
 <p>Wir werden in eine spätere Kapitel auf <code>ggplot2</code> genauer eingehen. Fürs Erste soll es als Appetithappen reichen 🍰.</p>
 </div>
 </div>
-<div id="weiterführende-literatur-und-videos" class="section level2">
-<h2><span class="header-section-number">8.3</span> Weiterführende Literatur und Videos</h2>
+<div id="weiterführende-literatur-und-videos" class="section level2" number="6.3">
+<h2>
+<span class="header-section-number">6.3</span> Weiterführende Literatur und Videos<a class="anchor" aria-label="anchor" href="#weiterf%C3%BChrende-literatur-und-videos"><i class="fas fa-link"></i></a>
+</h2>
 <ul>
-<li><p>R4DS: Kapitel 5 “Data transformation”, 11 “Data import”</p></li>
+<li><p>R4DS: Kapitel 5 “Data transformation,” 11 “Data import”</p></li>
 <li><p>Eine live Analyse des Hauptautors von <code>tidyverse</code>, Hadley Wickham. Empfehlenswert, auch wenn er viel zu schnell tippt 😄.</p></li>
 </ul>
 <iframe width="913" height="432" src="https://www.youtube.com/embed/go5Au01Jrvs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
 </div>
-<div id="inhalt-der-live-einführung-5" class="section level2">
-<h2><span class="header-section-number">8.4</span> Inhalt der live Einführung</h2>
-<p>Verschiedene Funktionen aus <code>tydiverse</code> anhand der Aufgaben <a href="aufgabensammlung.html#fledermaus3">9.6.1</a> und <a href="aufgabensammlung.html#klausur">9.6.2</a></p>
+<div id="inhalt-der-live-einführung-3" class="section level2" number="6.4">
+<h2>
+<span class="header-section-number">6.4</span> Inhalt der live Einführung<a class="anchor" aria-label="anchor" href="#inhalt-der-live-einf%C3%BChrung-3"><i class="fas fa-link"></i></a>
+</h2>
+<p>Verschiedene Funktionen aus <code>tydiverse</code> anhand der Aufgaben <a href="aufgabensammlung.html#fledermaus3">7.6.1</a> und <a href="aufgabensammlung.html#klausur">7.6.2</a></p>
 
 </div>
 </div>
-            </section>
+  <div class="chapter-nav">
+<div class="prev"><a href="funktionen.html"><span class="header-section-number">5</span> Funktionen</a></div>
+<div class="next"><a href="aufgabensammlung.html"><span class="header-section-number">7</span> Aufgabensammlung</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#tidyverse"><span class="header-section-number">6</span> Tidyverse</a></li>
+<li><a class="nav-link" href="#grundpakete"><span class="header-section-number">6.1</span> Grundpakete</a></li>
+<li>
+<a class="nav-link" href="#der-workflow"><span class="header-section-number">6.2</span> Der Workflow</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#daten-einlesen"><span class="header-section-number">6.2.1</span> Daten einlesen</a></li>
+<li><a class="nav-link" href="#daten-zusammenfassen"><span class="header-section-number">6.2.2</span> Daten zusammenfassen</a></li>
+<li><a class="nav-link" href="#daten-plotten"><span class="header-section-number">6.2.3</span> Daten plotten</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#weiterf%C3%BChrende-literatur-und-videos"><span class="header-section-number">6.3</span> Weiterführende Literatur und Videos</a></li>
+<li><a class="nav-link" href="#inhalt-der-live-einf%C3%BChrung-3"><span class="header-section-number">6.4</span> Inhalt der live Einführung</a></li>
+</ul>
 
-          </div>
-        </div>
-      </div>
-<a href="funktionen.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="aufgabensammlung.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
-    </div>
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Datenanalyse mit R</strong>: SoSe 2021" was written by Christina Bogner. It was last built on 2021-04-11.</p>
   </div>
-<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
-<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
-<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
-<script>
-gitbook.require(["gitbook"], function(gitbook) {
-gitbook.start({
-"sharing": false,
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": null,
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": null,
-"text": null
-},
-"download": ["datenanalyse.pdf"],
-"toc": {
-"collapse": "subsection"
-},
-"toolbar": {
-"position": "fixed"
-},
-"search": true
-});
-});
-</script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
@@ -660,5 +484,4 @@ gitbook.start({
   })();
 </script>
 </body>
-
 </html>

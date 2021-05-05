@@ -1,0 +1,163 @@
+# Funktionen {#funktionen}
+
+```{block, type = 'rmdoutcomes'}
+- Den Aufbau von Funktionen in R beschreiben
+- Den Aufruf von Funktionen in R erklären
+- Einfache Funktionen selbst schreiben
+- Fallunterscheidungen
+- \texttt{for} Schleifen
+```
+
+Was genau Funktionen sind und wie man sie in R aufruft, lesen Sie bitte bei @Ligges2008 in Kapitel 4.1 nach. In diesem Kapitel des Skripts geht es um das Schreiben der eigenen Funktionen, Fallunterscheidungen mit `if`-`else` und `for` Schleifen.
+
+## Eigene Funktionen schreiben
+Funktionen sind eine großartige Möglichkeit, sich das Leben einfacher zu machen. Sie können repetitive Aufgaben erledigen, ohne dass wir ständig mit Copy und Paste hantieren müssen, machen unsere Notebooks übersichtlich und helfen, Fehler und Inkonsistenzen zu vermeiden. Als Faustregel gilt: wenn Sie ein Stück Code mehr als 2 Mal kopieren und abändern, wird es Zeit für eine Funktion `r emo::ji('smile')`.
+
+
+Schauen wir uns ein Beispiel an. Als erstes würfeln wir ein paar Daten aus der Gleichverteilung mit unterschiedlichen Minima und Maxima und sehen uns die Zusammenfassung und die Standardabweichungen an.
+
+```{r}
+my_data <- data.frame(col1 = runif(20, min = 3, max = 10),
+                      col2 = runif(20, min = 7, max = 12),
+                      col3 = runif(20, min = 13, max = 100))
+summary(my_data)
+sapply(my_data, sd)
+```
+
+Ich möchte die Daten so transformieren, dass alle Variablen im Datensatz (d.h. Spalten) einen Mittelwert von 0 und eine Standardabweichung von 1 haben. Dazu ziehe ich den Mittelwert ab und teile durch die Standardabweichung. Das ist eine klassische Transformation (manchmal $z$-Transformation genannt), die manche Analysemethoden (z.B. Hauptkomponentenanalyse) als Vorbehandlung der Daten verlangen.
+
+Erst einmal das Naheliegende: Transformation per Copy und Paste.
+
+```{r}
+my_data_trans <- data.frame(col1_trans = (my_data$col1 - mean(my_data$col1))/sd(my_data$col1),
+                            col2_trans = (my_data$col2 - mean(my_data$col2))/sd(my_data$col1),
+                            col3_trans = (my_data$col3 - mean(my_data$col3))/sd(my_data$col3))
+```
+
+Haben Sie den Fehler bemerkt? Ich habe einmal vergessen eine 1 durch eine 2 zu ersetzten. Das merke ich aber nur, wenn ich mir das Ergebnis ansehen. Die Standardabweichung in `col2_trans` ist nicht gleich 1.
+
+```{r}
+summary(my_data_trans)
+sapply(my_data_trans, sd)
+```
+
+So etwas passiert sehr schnell und wird durch das Schreiben einer Funktion vermieden. 
+
+Jede Funktionsdefinition beginnt mit der Wahl des Namens. Es ist eine gute Idee, sich einen konsistenten und sauberen Stil gleich am Anfang anzugewöhnen. Seien Sie nett zu Ihrem zukünftigen Ich und anderen Menschen, die Ihren Code lesen werden `r emo::ji('smile')`. Es ist ein guter Stil, Verben als Funktionsnamen zu nutzen, die beschreiben, was eine Funktion macht. In jedem Fall, **wählen Sie keine Namen, die schon für Funktionen oder Variablen vergeben sind!** Das würde die ursprünglichen Funktionen oder Variablen einfach überschreiben.
+
+Wir nennen unsere Funktion `z_transform`, weil sie Daten $z$-transformiert. Bei zusammengesetzten Namen sollten Sie den Unterstrich verwenden. Das macht den Namen einfacher zu lesen.
+
+```{r}
+z_transofrm <- function(x) {
+  (x - mean(x))/sd(x)
+}
+```
+
+Bei jeder Funktionsdefinition arbeiten Sie drei Schritte ab:
+
+1. Namen finden und das Skelett aus `Name_der_Funktion <- function() {}` hin schreiben.
+2. Überlegen, welche Parameter die Funktion braucht und ob diese Standardwerte benötigen. Parameter zwischen die runden Klammern schreiben.
+3. Funktionskörper (*body*), also die eigentliche Aufgabe der Funktion, hinschreiben.
+
+Wir brauchen für unsere Funktion nur einen Parameter. Zwar sind die Namen der Parameter nicht ganz so wichtig wie Namen der Funktionen. Trotzdem sollte man hier konsistent sein: bei einfachen Vektoren sind `x`, `y`, `z` etc. völlig in Ordnung. Ansonsten sind Substantive ein guter Namensstil für Parameter.
+
+Wir wenden die Funktion jetzt auf unseren Datensatz an.
+
+```{r}
+my_data_trans_2 <- data.frame(col1_trans = z_transofrm(my_data$col1),
+                              col2_trans = z_transofrm(my_data$col2),
+                              col2_trans = z_transofrm(my_data$col3))
+summary(my_data_trans_2)
+sapply(my_data_trans_2, sd)
+```
+
+Der Code ist viel aufgeräumter und übersichtlicher. Es ist viel klarer, was berechnet wird.
+
+## Fallunterscheidungen
+
+Manchmal möchte man unterschiedliche Berechnung innerhalb einer Funktion durchführen, je nach aufgestellter Bedingung. Daszu brauchen wir eine Fallunterscheidung, die durch einen `if`-`else` Ausdruck definiert wird. Jede Fallunterscheidung hat die folgende Form, wobei die zweite Bedingung nicht zwingend notwendig ist.
+
+```{r eval = F}
+if (Bedingung1) {
+  # Code, der ausgeführt wird, wenn die erste Bedingung1 stimmt
+} else if (Bedingung2) {
+  # Code, der ausgeführt wird, wenn zweite Bedingung2 stimmt
+} else {
+  # Code, der ausgeführt wird, wenn keine der Bedingungung stimmt
+}
+```
+
+Achten Sie genau darauf, wie `else if` und `else` positioniert werden, nämlich zwischen den beiden geschweiften Klammern.  Eine Fallunterscheidung kann auch mehr als zwei Bedingungen haben, aber man sollte nicht übertreiben. Wenn die Anzahl der Bedingungen zu hoch ist, sollte man nachdenken, ob das Problem nicht anders als mit `if`-`else` gelöst werden kann.
+
+Wir schreiben eine Begrüßungsfunktion, die ja nach Tageszeit die richtige Begrüßung ausgibt.
+
+```{r}
+say_hello <- function(my_time) {
+  if (my_time == 'Morgen') {
+    'Guten Morgen'
+  } else if (my_time == 'Mittag') {
+    'Guten Tag'
+  } else if (my_time == 'Abend'){
+    'Guten Abend'
+  } else {
+    'In meiner Welt gibt es das nicht.'
+  }
+}
+```
+
+Wir rufen die Funktion auf mit einmal mit Abend und einmal mit abend.
+
+```{r}
+say_hello('Abend')
+say_hello('abend')
+```
+
+
+## `for`-Schleifen (`for` *loops*)
+
+Wenn wir unsere `say_hello` Funktion auf einen Vektor von Tageszeiten anwenden wollen, gibt es eine Warnung. 
+
+```{r}
+say_hello(c('Morgen', 'Mittag', 'Abend'))
+```
+
+
+Das liegt daran, dass die Auswertung der Bedingung eine Antwort der Länge 1 liefern muss: entweder `TRUE`, wenn die Bedingung stimmt, oder `FALSE`, wenn sie nicht stimmt. Bei einem Vektor ist die Antwort aber länger als 1 und die Funktion benutzt nur die erste Stelle der Antwort. Man sagt auch, dass die Funktion `say_hello` *nicht vektorisiert* sei, sie kann also nicht von sich aus auf einem Vektor arbeiten.
+
+Damit man eine eine nicht vektorisierte Funktion auf einen Vektor anwenden kann, gibt es mehrere Möglichkeiten. Eine davon ist die sogen. `for` Schleife. Eine Schleife ist eine wiederholte Ausführung von Code, man sagt auch *Iteration*.
+
+```{r}
+begruessung <- c('Morgen', 'Mittag', 'Abend')
+
+# Vektor für Ergebnisse erstellen
+ergebnis <- vector(mode = 'character', length = 3)
+
+# For Schleife über die Zahlenfolge 1:3 mit Hilfe der Dummy-Variablen i
+for (i in 1:3) {
+  ergebnis[i] <- say_hello(begruessung[i])
+}
+
+# Ergebnis ansehen
+ergebnis
+```
+
+
+Eine `for` Schleife braucht drei Bestandteile:
+
+1. Einen Datencontainer, in unserem Fall den Vektor `ergebnis`, in dem die Ergebnisse der Schleifendurchläufe gespeichert werden. Dieser Vektor muss vorher erstellt werden.
+2. Eine Dummy-Variable (Hilfsvariable), die in jedem Schleifendurchlauf einen anderen Wert annehmen wird. Dadurch entsteht erst die Schleife. Die Dummy-Variable bei uns heißt `i` und nimmt Werte zwischen 1 und 3 (also 1, 2 und 3) an. Es gibt also drei Schleifendurchgänge.
+3. Den Schleifen-Körper, in unserem Fall die Funktion `say_hello`. Das ist der Code, der wiederholt ausgeführt werden soll.
+
+Später werden wir effiziente Funktionen kennen lernen, die ohne Schleifen Funktionen wiederholt ausführen (iterieren) können.
+
+## Weiterführende Literatur
+
+@Ligges2008, Kapitel 4.1 für technische Beschreibung des Aufrufs von Funktionen
+
+Dieses Kapitel orientiert sich stark an @Wickham2017, Kapitel 19
+
+## Inhalt der live Einführung
+
+- Funktionsaufruf
+- Funktionen selbst schreiben
+- Aufgabe \@ref(fledermaus): `if` - `else` Bedingungen und `for` Schleifen

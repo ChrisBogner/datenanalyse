@@ -1,0 +1,6 @@
+# Einfache Datentransformationen
+
+```{block, type = 'rmdoutcomes'}
+- 
+- Funktionen des Pakets `dplyr` für Datentransformation anwenden
+```

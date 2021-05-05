@@ -37,7 +37,10 @@
 <li><a class="" href="einfuehrung.html"><span class="header-section-number">1</span> Der Kurs</a></li>
 <li><a class="" href="erste-schritte.html"><span class="header-section-number">2</span> Erste Schritte in R</a></li>
 <li><a class="active" href="reproduzieren.html"><span class="header-section-number">3</span> R Markdown</a></li>
-<li><a class="" href="aufgabensammlung.html"><span class="header-section-number">4</span> Aufgabensammlung</a></li>
+<li><a class="" href="ggplot.html"><span class="header-section-number">4</span> Einführung in ggplot2</a></li>
+<li><a class="" href="daten-einlesen-und-visualisieren.html"><span class="header-section-number">5</span> Daten einlesen und visualisieren</a></li>
+<li><a class="" href="tidyverse.html"><span class="header-section-number">6</span> Der explorative Workflow mit tidyverse</a></li>
+<li><a class="" href="aufgabensammlung.html"><span class="header-section-number">7</span> Aufgabensammlung</a></li>
 <li><a class="" href="literatur.html">Literatur</a></li>
 </ul>
 
@@ -86,7 +89,7 @@ Einen einfachen ersten reproduzierbaren Bericht schreiben
 </h2>
 <p>R hat sein eigenes System von reproduzierbaren Berichten, genannt <strong>R Markdown</strong> <span class="citation">(<a href="literatur.html#ref-RMarkdownGuide" role="doc-biblioref">Xie, Allaire, and Grolemund 2021</a>)</span>. Es ist benutzerfreundlich und ermöglicht unterschiedliche Formate von Berichten, wie HTML-Dokumente, PDF-Dateien, Präsentationsfolien usw.</p>
 <p>Es wird Sie vielleicht überraschen, aber das Skript, das Sie gerade lesen ist nichts anderes als ein “literarisch” programmiertes Buch in R Bookdown <span class="citation">(<a href="literatur.html#ref-RMarkdownGuide" role="doc-biblioref">Xie, Allaire, and Grolemund 2021</a>)</span>, einem R-Paket speziell für lange R Markdown-Dokumente.</p>
-<p>Wir werden vor allem mit R Notebooks arbeiten, die eine gute Interaktion zwischen dem geschriebenen Text und dem R-Code ermöglichen. Das Notebook kann sowohl in ein HTML-Dokument als auch in PDF oder Word als endgültiges Dokument umgewandelt werden. Diesen Prozess nennt man <em>knit</em> (der Knopf in RStudio mit dem Wollknäuel).</p>
+<p>Wir werden vor allem mit R Notebooks arbeiten, die eine gute Interaktion zwischen dem geschriebenen Text und dem R-Code ermöglichen. Das Notebook kann sowohl in ein HTML-Dokument als auch in PDF oder Word als endgültiges Dokument umgewandelt werden. Diesen Prozess nennt man <em>knit</em>.</p>
 </div>
 <div id="ein-neues-r-notebook-erstellen" class="section level2" number="3.4">
 <h2>
@@ -101,11 +104,11 @@ Abbildung 3.1: Neues R Notebook anlegen
 </div>
 <p>Wenn Sie ein neues Notebook erstellen, enthält das Template etwas Code. Lesen Sie sich das ruhig noch einmal durch, da es ein paar hilfreiche Tastenkürzel und Tipps. Danach können Sie den Text unterhalb des Headers löschen.</p>
 </div>
-<div id="der-header-eines-notebooks" class="section level2" number="3.5">
+<div id="header" class="section level2" number="3.5">
 <h2>
-<span class="header-section-number">3.5</span> Der Header eines Notebooks<a class="anchor" aria-label="anchor" href="#der-header-eines-notebooks"><i class="fas fa-link"></i></a>
+<span class="header-section-number">3.5</span> Der Header eines Notebooks<a class="anchor" aria-label="anchor" href="#header"><i class="fas fa-link"></i></a>
 </h2>
-<p>Ein R Notebook (und jedes andere R Markdown Dokument) besteht aus einem Header (Kopf) und dem eigentlichen Text und Code. Der Header hat dabei ein bestimmtes Layout, auf das Sie unbedingt achten müssen (Rechtschreibung!). Der Header ist <strong>immer</strong> zwischen drei Minuszeichen <code>---</code> eingeschlossen. Bei komplizierteren Headern gibt es auch Einrückungen (mit der Tab-Taste), die Auch Bedeutung haben (s. weiterführende Literatur). Wir bleiben bei einem einfachen Header ohne Einrückungen (Abbildung <a href="reproduzieren.html#fig:rmarkdown-file">3.2</a>).</p>
+<p>Ein R Notebook (und jedes andere R Markdown Dokument) besteht aus einem Header (Kopf) und dem eigentlichen Text und Code. Der Header hat dabei ein bestimmtes Layout, auf das Sie unbedingt achten müssen (Rechtschreibung!). Der Header ist <strong>immer</strong> zwischen drei Minuszeichen <code>---</code> eingeschlossen. Bei komplizierteren Headern gibt es auch Einrückungen (mit der Tab-Taste), die auch Bedeutung haben (s. weiterführende Literatur). Wir bleiben bei einem einfachen Header ohne Einrückungen (Abbildung <a href="reproduzieren.html#fig:rmarkdown-file">3.2</a>).</p>
 Um einen neuen R-Chunk hinzuzufügen, klicken Sie auf das kleine grüne <code>C+</code> oben rechts oder verwenden Sie das Tastenkürzel <strong>Str+Alt+i</strong>:
 <div class="figure">
 <span id="fig:rmarkdown-file"></span>
@@ -113,7 +116,7 @@ Um einen neuen R-Chunk hinzuzufügen, klicken Sie auf das kleine grüne <code>C+
 Abbildung 3.2: Einen neuen Chunk hinzufügen
 </p>
 </div>
-<p>Text kann einfach unterhalb des Headers und <em>außerhalb der Chunks</em> getippt werden Die wichtigsten Layoutelemente für den Text finden Sie <a href="https://rmarkdown.rstudio.com/authoring_basics.html">hier</a>. R Markdown unterstützt mathematische Notation in Latex-Stil. Eine Einführung in Latex würde an dieser Stelle aber zu weit führen.</p>
+<p>Text kann einfach unterhalb des Headers und <em>außerhalb der Chunks</em> getippt werden. Die wichtigsten Layoutelemente für den Text finden Sie <a href="https://rmarkdown.rstudio.com/authoring_basics.html">hier</a>. R Markdown unterstützt mathematische Notation in Latex-Stil. Eine Einführung in Latex würde an dieser Stelle aber zu weit führen.</p>
 <p>Das R Notebook hat den Vorteil, dass man über den Button <code>Preview</code> oben in der Leiste sofort die Ergebnisse anzeigen lassen kann. Sie müssen also nicht <code>knitten</code>. Falls Sie es doch möchten, klicken Sie auf das kleine Dreieck neben dem Preview und suchen Sie sich ein Output-Format aus. Ein einmal “geknittetes” Notebook ist kein Notebook mehr (kein Preview). Damit es wierder zum Nobebook wird, müssen Sie im Header <code>output: html_notebbok</code> einstellen (Abbildung <a href="reproduzieren.html#fig:rmarkdown-file">3.2</a>).</p>
 </div>
 <div id="wichtigste-regeln-für-reproduzierbarkeit" class="section level2" number="3.6">
@@ -158,22 +161,30 @@ Abbildung 3.2: Einen neuen Chunk hinzufügen
 </ul>
 </li>
 </ul>
+<p>Nutzen Sie die unter <a href="reproduzieren.html#header">3.5</a> verlinkte Liste der Layoutelemente.</p>
 </div>
 <div id="erste-schritte-als-notebook" class="section level3" number="3.9.2">
 <h3>
 <span class="header-section-number">3.9.2</span> Erste Schritte als Notebook<a class="anchor" aria-label="anchor" href="#erste-schritte-als-notebook"><i class="fas fa-link"></i></a>
 </h3>
 <ul>
-<li>Wandeln Sie beide R-Skripte der ersten Session in ein R Notebook um.</li>
-<li>Fügen Sie mehr Erklärungstext zu den einzelnen Schritten dazu.</li>
-<li>Gliedern Sie Ihr Notebook mit passenden Layoutelementen.</li>
+<li>Wandeln Sie beide R-Skripte der ersten Sessions in R Notebooks um.</li>
+<li>Fügen Sie mehr Erklärungstext zu den einzelnen Schritten hinzu</li>
+<li>Gliedern Sie Ihre Notebooks mit passenden Layoutelementen.</li>
 </ul>
+</div>
+<div id="exploration-eines-datensatzes" class="section level3" number="3.9.3">
+<h3>
+<span class="header-section-number">3.9.3</span> Exploration eines Datensatzes<a class="anchor" aria-label="anchor" href="#exploration-eines-datensatzes"><i class="fas fa-link"></i></a>
+</h3>
+<p>Arbeiten Sie das Kapitel 1.4 Explore your first datasets in <span class="citation"><a href="literatur.html#ref-ModernDive" role="doc-biblioref">Ismay and Kim</a> (<a href="literatur.html#ref-ModernDive" role="doc-biblioref">2021</a>)</span> durch.</p>
+
 </div>
 </div>
 </div>
   <div class="chapter-nav">
 <div class="prev"><a href="erste-schritte.html"><span class="header-section-number">2</span> Erste Schritte in R</a></div>
-<div class="next"><a href="aufgabensammlung.html"><span class="header-section-number">4</span> Aufgabensammlung</a></div>
+<div class="next"><a href="ggplot.html"><span class="header-section-number">4</span> Einführung in ggplot2</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
@@ -182,7 +193,7 @@ Abbildung 3.2: Einen neuen Chunk hinzufügen
 <li><a class="nav-link" href="#literate-programming-idee-von-donald-knuth"><span class="header-section-number">3.2</span> Literate Programming Idee von Donald Knuth</a></li>
 <li><a class="nav-link" href="#reproduzierbare-berichte-mit-r-markdown"><span class="header-section-number">3.3</span> Reproduzierbare Berichte mit R Markdown</a></li>
 <li><a class="nav-link" href="#ein-neues-r-notebook-erstellen"><span class="header-section-number">3.4</span> Ein neues R Notebook erstellen</a></li>
-<li><a class="nav-link" href="#der-header-eines-notebooks"><span class="header-section-number">3.5</span> Der Header eines Notebooks</a></li>
+<li><a class="nav-link" href="#header"><span class="header-section-number">3.5</span> Der Header eines Notebooks</a></li>
 <li><a class="nav-link" href="#wichtigste-regeln-f%C3%BCr-reproduzierbarkeit"><span class="header-section-number">3.6</span> Wichtigste Regeln für Reproduzierbarkeit</a></li>
 <li><a class="nav-link" href="#lesestoff-1"><span class="header-section-number">3.7</span> Lesestoff</a></li>
 <li><a class="nav-link" href="#weiterf%C3%BChrende-literatur"><span class="header-section-number">3.8</span> Weiterführende Literatur</a></li>
@@ -190,6 +201,7 @@ Abbildung 3.2: Einen neuen Chunk hinzufügen
 <a class="nav-link" href="#aufgaben-1"><span class="header-section-number">3.9</span> Aufgaben</a><ul class="nav navbar-nav">
 <li><a class="nav-link" href="#erstes-notebook"><span class="header-section-number">3.9.1</span> Erstes Notebook</a></li>
 <li><a class="nav-link" href="#erste-schritte-als-notebook"><span class="header-section-number">3.9.2</span> Erste Schritte als Notebook</a></li>
+<li><a class="nav-link" href="#exploration-eines-datensatzes"><span class="header-section-number">3.9.3</span> Exploration eines Datensatzes</a></li>
 </ul>
 </li>
 </ul>
@@ -208,7 +220,7 @@ Abbildung 3.2: Einen neuen Chunk hinzufügen
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Datenanalyse mit R</strong>: SoSe 2021" was written by Christina Bogner. It was last built on 2021-04-13.</p>
+    <p>"<strong>Datenanalyse mit R</strong>: SoSe 2021" was written by Christina Bogner. It was last built on 2021-05-05.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

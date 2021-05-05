@@ -258,7 +258,7 @@ Elemente in solchen Vektoren kann man mit Namen in eckigen Klammern ansprechen. 
 - Fragen Sie nach dem Element `Koeln` im Vektor `benannt`.
 
 ## Ihre Arbeit einreichen
-- Spechern Sie Ihre .R Datei auf dem Server ab.
+- Speichern Sie Ihre .R Datei auf dem Server ab.
 - Laden Sie diese Datei herunter und speichern Sie sie auf Ihrem Computer ab.
 - Laden Sie die Datei auf ILIAS in der dazugehörigen Übung hoch.
 - Nach der Abgabe erhalten Sie die Musterlösung.

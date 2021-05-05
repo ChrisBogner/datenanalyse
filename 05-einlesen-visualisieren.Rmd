@@ -1,0 +1,219 @@
+# Daten einlesen und visualisieren
+
+```{block, type = 'rmdoutcomes'}
+- Daten aus Textdateien in R einlesen
+- `data.frame` speichern
+- Grafiken anpassen (nebeneinander, Facetten, Transparenz)
+- Grafiken speichern
+```
+
+## Daten aus Textdateien in R einlesen
+Um Daten aus Textdateien (z.B. aus .csv, .txt, .dat) in R zu importieren (i.e. einzulesen) werden wir die Bibliothek `readr` aus `tidyverse` benutzen. Wir laden erst einmal `tidyverse`.
+
+```{r, message = F, warning = F}
+library(tidyverse)
+```
+
+Wir gehen davon aus, dass die Daten im Ordner `data` gespeichert sind. Falls Ihre Daten an einem anderen Ort abgelegt sind, müssen Sie den Pfad beim Einlesen entsprechend anpassen. 
+
+Um die Daten zu laden, gibt es in der Bibliothek `readr` verschiedene Funktionen, die alle mit `read_` beginnen. Die allgemeinste davon ist `read_delim`. Darin kann man explizit einstellen, mit welchem Zeichen (z.B. Komma, Strichpunkt etc.) die einzlenen Spalten in der zu importierenden Datei getrennt sind.
+```{r}
+emissions <- read_delim(file = 'data/emissions.csv', delim = ';')
+```
+
+Ein kurzer Blick auf den Datensatz. Hierbei handelt es sich um Daten zu Treibhausgasemissionen auf der EU-Ebene, die ich bei [eurostat](https://appsso.eurostat.ec.europa.eu/nui/show.do?dataset=env_air_gge&lang=en) heruntergeladen und vorgefiltert habe. Die Datenbank bietet sehr viele Datensäzte und ist als Quelle für Berichte hervorragend geeignet `r emo::ji('smile')`.
+
+```{r}
+emissions
+```
+
+Das Ergebnis des Einlesens mit `read_` Funktionen ist immer ein `tibble`. Kategorische Variablen werden als Text (*character*) eingelesen und nicht in `factor` umgewandelt. Wenn man `factor` möchte, muss man die Variablen per Hand umwandeln. 
+
+Wir verschaffen uns einen kurzen Überblick über die Daten.
+```{r}
+summary(emissions)
+```
+Um die Anzahl der einzelnen Länder zu ermitteln, sehen wir uns die Länge der Ausgabe der Funktion `unique()` an, die die einzelnen verschiedenen Einträge ermitteln kann. Es sind Einträge für 33 verschiedene Länder vorhanden.
+```{r}
+length(unique(emissions$geo))
+```
+
+
+
+## Legende verschieben und Facetten
+Wir stellen die Zeitreihen der Emissionen eingefärbt nach Land dar. Die Länder stehen in der Variablen `geo`.
+
+```{r}
+ggplot(data = emissions, mapping = aes(x = time, y = values, colour = geo)) +
+  geom_line()
+```
+
+Als erstes fällt auf, dass die Legende sehr umfangreich ist (wir haben ja 33 Länder im Datensatz). Daher wäre es günstig, die Legende unterhalb der Grafik zu positionieren und den Titel der Legende oberhalb der Legende zu belassen. Das geht mit Hilfe der Funktionen `theme()` und `guides()`. Wie immer, werden sie im Plotaufbau (denken Sie *grammer of graphics*) mit `+` angehängt.
+
+```{r, out.width = "90%"}
+ggplot(data = emissions, mapping = aes(x = time, y = values, colour = geo)) +
+  geom_line() +
+  theme(legend.position = "bottom") +
+  guides(colour = guide_legend(title.position = "top"))
+```
+
+Die Zeitreihen sehen echt seltsam aus. Wenn wir uns die Variable `vehicle` ansehen, wird auch klar, warum. Wir stellen gerade Emissionen für verschiedene Fahrzeuge dar, d.h. wir mischen mehrere Zeitreihen zusammen.
+```{r}
+unique(emissions$vehicle)
+```
+Die einfachste Lösung ist, drei verschiedene Grafiken pro Verkehrsmittel zu erstellen. Dies gelingt sehr leicht mit der Funktion `facet_wrap()`, die den Namen der Variablen erwartet, mit Hilfe derer die Grafiken gesplittet werden sollen. Vor der Variablen muss eine Tilde (`~`) stehen. In unserem Fall wollen wir nach Verkehrsmittel splitten, d.h. mit Hilfe der Varialben `vehicle`.
+```{r, out.width = "90%"}
+ggplot(data = emissions, mapping = aes(x = time, y = values, colour = geo)) +
+  geom_line() +
+  facet_wrap(~vehicle) +
+  theme(legend.position = "bottom") +
+  guides(colour = guide_legend(title.position = "top"))
+```
+
+Da die Emissionen sehr unterschiedlich sind, macht es Sinn, die Skalierungen der y-Achsen anzupassen. Aber Achtung: Das sollten Sie in Ihren Berichten unbedingt ansprechen (z.B. in der Bildunterschrift), da man unterschiedliche Skalierunge sehr leicht übersieht und dann die Interpretation der Daten leicht in die falsche Richtung gehen kann. Der Funktionsparameter `labeller = label_wrap_gen()` sorgt für geschickte Zeilenumbrüche bei zu langen Labels. Zum Vergleich können Sie ihn mal weglassen und sehen, was dann passiert.
+
+```{r, out.width = "90%"}
+ggplot(data = emissions, mapping = aes(x = time, y = values, colour = geo)) +
+  geom_line() +
+  facet_wrap(~vehicle, scales = 'free_y', labeller = label_wrap_gen()) +
+  theme(legend.position = "bottom") +
+  guides(colour = guide_legend(title.position = "top"))
+```
+
+
+
+## Fehlerbalken und Co.
+Um die Variabilität der Daten grafisch darzustellen, bieten sich Fehlerbalken, Bereiche etc. an. Dafür hat `ggplot2` spezielle geoms. Hier ein Beispiel aus dem `ggplot2` Buch @Wickham2020.
+```{r, out.width = "90%"}
+y <- c(18, 11, 16)
+df <- tibble(x = 1:3, y = y, se = c(1.2, 0.5, 1.0))
+
+base <- ggplot(df, aes(x, y, ymin = y - se, ymax = y + se))
+base + geom_pointrange()
+base + geom_errorbar()
+```
+
+Sie sehen, dass man `ggplot` Objekte so wie andere Objekte in R zuweisen kann, um mit ihnen später zu arbeiten. In diesem Fall ist `base` ein `ggplot` Objekt.
+```{r}
+class(base)
+```
+
+
+## Mehrere Grafiken nebeneinander
+Um mehrere Grafiken nebeneinander zu plotten, nutzen wir die Funktion `grid.arrange()` aus der Bibliothek `gridExtra`. Um sie zu nutzen, müssen wir die `ggplot` Objekte abspeichern und dann mit Hilfe der Funktion `grid.arrange`, wie der Name schon sagt, "arrangieren". In diesem Fall wollen wir in der Gesamtgrafik eine Zeile (`nrow = 1`), sodass die Grafiken nebeneinander stehen.
+
+```{r, message = F, out.width = "90%"}
+library(gridExtra)
+
+p1 <- base + geom_pointrange()
+p2 <- base + geom_errorbar()
+
+alles <- grid.arrange(p1, p2, nrow = 1)
+```
+
+Um die Grafiken untereinander abzubilden, bestellen wir entsprechend zwei Zeilen.
+
+```{r, out.width = "90%"}
+alles <- grid.arrange(p1, p2, nrow = 2)
+```
+
+
+## Grafiken abspeichern
+
+```{r}
+ggsave(filename = 'Fehlerbalken.pdf', plot = alles, device = 'pdf', width = 7, height = 5)
+```
+
+
+## Weitere statistsiche Zusammenfassungen in Grafiken
+Arbeiten Sie selbständig das Kapitel 5: Statistical summaries in @Wickham2020 (https://ggplot2-book.org/statistical-summaries.html).
+
+## Lesestoff
+Kapitel 2.2 bis 2.9 in @ModernDive
+
+
+## Aufgaben
+
+### Grafiken richtig beschriften
+Beschriften Sie die finale Grafik der Zeitreihen (Achsen, Titel, Legende).
+
+### Bestandesaufnahme im Wald {#bestandesaufnahme}
+
+Ar Stat arbeitet als HiWi in der AG Ökosystemforschung und soll im Nationalpark Eifel eine Bestandsaufnahme durchführen (d.h. Baumhöhen und -durchmesser vermessen). Er notiert den BHD (Brusthöhendurchmesser) und die Art der Bäume.
+
+
+1.  Lesen Sie den Datensatz `r file.name("BHD.txt")` ein und ordnen Sie ihn der Variable `BHD` zu.
+2. Erstellen Sie einen Vektor `Nr` mit durchlaufenden Baumnummern. Von welcher Art sind die Elemente des Vektors `a`?
+3. Fügen Sie die Datensätze `BHD` und `Nr` zu einem `tibble` zusammen und benennen Sie die Spalten sinnvoll.
+4. Löschen Sie den Vektor `Nr`.
+4. Lesen Sie den Datensatz `r file.name("Art.txt")` ein und ordnen Sie ihn der Variablen `art` zu.
+5. Fügen Sie die Art in das `tibble` ein.
+6. Erstellen Sie eine Tabelle mit der Anzahl der jeweiligen Arten. Nutzen Sie die Funktion `table()`.
+7. Speichern Sie die Tabelle mit `write_delim()` ab. Schlagen Sie in der Hilfe nach, wie diese Funktion arbeitet!
+
+### Wahlbeteiligung bei der Bundestagswahl 2017 {#wahlbeteiligung} 
+
+Bauen Sie die Grafik nach (Abbildung \@ref(fig:wahlbeteiligung)).
+
+```{r wahlbeteiligung, echo = F, fig.cap = 'Wahlbeteiligung bei den Bundestagswahlen. Quelle: Der Bundeswahlleiter.', fig.width = 6, out.width = "90%", message = F, warning = F}
+library(tidyverse)
+beteiligung <- read_delim('data/Wahlbeteiligung.csv', delim = ';')
+
+bet <- ggplot(beteiligung, aes(x = Wahljahr, y = Bundesgebiet)) +
+  geom_point() +
+  geom_line() +
+  labs(x = 'Jahr', y = 'Anteil (%)', title = 'Wahlbeteiligung Bundestagswahl, Bundesgebiet gesamt')
+
+bet
+```
+
+
+1. Lesen Sie den Datensatz `r file.name('Wahlbeteiligung.csv')` in R ein und ordnen Sie ihn dem Objekt `beteiligung` zu.
+2. Sehen Sie sich den Datensatz an und fassen Sie ihn zusammen.
+2. Stellen Sie die Wahlbeteiligung als Funktion der Zeit dar, wie in Abbildung \@ref(fig:wahlbeteiligung) gezeigt.
+2. Beschriften Sie die Grafik.
+2. Speichern Sie die Grafik als pdf ab.
+
+
+### Zweitstimme bei der Bundestagswahl 2017 {#zweitstimme}
+
+Bauen Sie die Grafik nach (Abbildung \@ref(fig:zweitstimme)).
+
+```{r zweitstimme, echo = F, fig.cap = 'Zweitstimme bei der Bundestagswahl 2017. Quelle: Der Bundeswahlleiter.', fig.width = 6, out.width = "90%", message = F, warning = F}
+zweitstimme <- read_delim('data/Zweitstimme_2017.csv', delim = ';')
+
+zweitstimme$Partei <- as_factor(zweitstimme$Partei)
+
+zweit <- ggplot(zweitstimme, aes(x = Partei, y = `Zweitstimme 2017`)) +
+  geom_col(fill = c('black', 'red', 'magenta', 'darkgreen', 'yellow', 'blue', 'grey')) +
+  labs(x = 'Partei', y = 'Anteil (%)', title = 'Zweitstimme Bundestagswahl 2017')
+
+
+zweit
+```
+
+
+1. Lesen Sie den Datensatz `r file.name('Zweitstimme.csv')` in R ein und ordnen Sie ihn dem Objekt `zweitstimme` zu.
+2. Sehen Sie sich den Datensatz an und fassen Sie ihn zusammen.
+2. Stellen Sie die die Zweitstimmen pro Partei in einem Säulendiagramm dar. Nutzen Sie das geom `geom_col()` und lesen Sie den Unterschied zu `geom_bar()` in der Hilfe nach. Tipps: 
+    a. Der Variablenname `Zweitstimme 2017` enthält ein Leerzeichen. Daher müssen Sie es beim Aufruf zu `ggplot` unbedingt in "`" setzten.
+    b. Damit die Parteien in der selben Reihenfolge dargestellt werden, wie im Datensatz angegeben, wandeln Sie die Spalte `Partei` in ein `factor` um: `zweitstimme$Partei <- as_factor(zweitstimme$Partei)`.
+    c. Farben stellen Sie direkt in `geom_col()` ein mit `fill = c('black', 'red', 'magenta', 'darkgreen', 'yellow', 'blue', 'grey')`
+2. Beschriften Sie die Grafik.
+2. Speichern Sie die Grafik als pdf ab.
+
+### Ergebnisse der Bundestagswahl in einer Grafik {#zweigrafiken}
+
+Stellen Sie beide Grafiken untereinander dar wie in Abbildung (\@ref(fig:zweigrafiken)) gezeigt.
+
+```{r zweigrafiken, echo = F, fig.width = 6, fig.cap = 'Ergebnisse der Bundestagswahl 2017. Quelle: Der Bundeswahlleiter.', fig.width = 6, out.width = "90%"}
+library(gridExtra)
+
+grid.arrange(bet, zweit, nrow = 2, heights = c(3, 3))
+```
+
+
+## Ihre Arbeit einreichen
+- Speichern Sie Ihr Notbook ab und laden Sie nur die .Rmd Datei vom Server.
+- Laden Sie Ihre .Rmd Datei in ILIAS hoch. **Beachten Sie die Deadline!**
+- Sie erhalten die Musterlösung nach dem Hochladen.

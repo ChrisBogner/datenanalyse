@@ -62,9 +62,9 @@ temp_humid
 ```
 
 
-In diesem Datensatz sind folgende Parameter (Spalten) enthalten (s. Datensatzbeschreibung des DWDs)
+In diesem Datensatz sind folgende Variablen (Spalten) enthalten (s. Datensatzbeschreibung des DWDs)
 
-Parameter | Beschreibung |
+Variablen | Beschreibung |
 :--------|:---------------|
 STATIONS_ID | Stationsidentifikationsnummer |
 MESS_DATUM | Zeitstempel im Format yyyymmddhh |
@@ -110,13 +110,13 @@ temp_humid %>%
 Die Zeichenkombination `%>%` heißt Pipe-Operator (*pipe*) und wird als 'und dann' gelesen (*then*). Der Ausdruck `temp_humid %>% group_by(STATIONS_ID) %>% count()` heißt also: nimm das Objekt `temp_humid`, gruppiere es nach der Variablen `STATION_ID` und dann zähle die Einträge pro Gruppe zusammen. Der Pipe-Operator ist die Kernphilosophie von `tidyverse` und wird Ihnen überall begegnen. Der Operator stammt aus dem Paket `magrittr` (https://magrittr.tidyverse.org/). Seine Hauptaufgabe ist es, den Code übersichtlicher und besser lesbar zu machen (vielleicht nicht gleich zu Beginn der Lernkurve aber schon sehr bald `r emo::ji('sunglasses')`).
 
 ## Die Grammatik der Datenmanipulation -- `dplyr`
-Die Funktion `count()` gehört zum Paket `dplyr`, das für Datentransformationen zuständig ist. Es ist mal wieder eine Grammatik Dieses Paket enthält 5 Grundfunktionen (alle nach Verben benannt, damit man gleich weiß, was frau tut `r emo::ji('smile')`):
+Die Funktion `count()` gehört zum Paket `dplyr`, das für Datentransformationen zuständig ist. Es ist mal wieder eine Grammatik. Dieses Paket enthält 5 Grundfunktionen (alle nach Verben benannt, damit man gleich weiß, was frau tut `r emo::ji('smile')`):
 
 Funktion | Bedeutung |
 :-----------|:-----------|
-`filter()` | Wähle Daten anhand ihrere Werte |
+`filter()` | Wähle Daten anhand ihrer Werte |
 `arrange()` | Sortiere Zeilen |
-`select()` | Wähle Variablen anhand ihrere Namen |
+`select()` | Wähle Variablen anhand ihrer Namen |
 `mutate()` | Erstelle neue Variablen als Funktionen vorhandener Variablen |
 `summarize()` | Fasse Daten zusammen |
 

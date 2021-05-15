@@ -1,0 +1,16 @@
+# Daten importieren: APIs, Web scraping und Co {#scraping}
+
+
+```{block, type = 'rmdoutcomes'}
+- bla
+```
+
+
+## Was sind statistische Grafiken?
+
+@Wickham2020
+
+
+## Und zum Schluss...
+
+<iframe width="1056" height="594" src="https://www.youtube.com/embed/9YTNYT1maa4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

@@ -45,7 +45,7 @@ In Worten könnte man es vielleicht wie folgt umschreiben:
     a. färbe ein mit Hilfe der Variablen `continent`
     a. bestimme die Größe der Symbole mit Hilfe der Variablen `pop`
   
-2. Stelle das Ganze als geometrisches Objekte Punkte dar (`deom_point()`)
+2. Stelle das Ganze als geometrisches Objekte Punkte dar (`geom_point()`)
 
 Sie sehen, dass diese Zuordnungen klar nach einer Legende verlangen, die dann auch automatisch sowohl für die Farbe als auch für die Größe der Symbole, erstellt wird.
 

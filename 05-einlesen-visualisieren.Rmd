@@ -21,7 +21,7 @@ Um die Daten zu laden, gibt es in der Bibliothek `readr` verschiedene Funktionen
 emissions <- read_delim(file = 'data/emissions.csv', delim = ';')
 ```
 
-Ein kurzer Blick auf den Datensatz. Hierbei handelt es sich um Daten zu Treibhausgasemissionen auf der EU-Ebene, die ich bei [eurostat](https://appsso.eurostat.ec.europa.eu/nui/show.do?dataset=env_air_gge&lang=en) heruntergeladen und vorgefiltert habe. Die Datenbank bietet sehr viele Datensäzte und ist als Quelle für Berichte hervorragend geeignet `r emo::ji('smile')`.
+Ein kurzer Blick auf den Datensatz. Hierbei handelt es sich um Daten zu Treibhausgasemissionen auf der EU-Ebene, die ich bei [eurostat](https://appsso.eurostat.ec.europa.eu/nui/show.do?dataset=env_air_gge&lang=en) am 30.4.2021 heruntergeladen und vorgefiltert habe. Die Datenbank bietet sehr viele Datensäzte und ist als Quelle für Berichte hervorragend geeignet `r emo::ji('smile')`.
 
 ```{r}
 emissions

@@ -262,77 +262,66 @@ ggplot() + geom_fontawesome("fa-coffee", color='lightblue', size = 80) + theme_v
 
 
 
-<!-- ## Eigene Funktionen schreiben -->
+## Der explorative Workflow mit tidyverse
 
-<!-- ### R-Hausaufgaben -->
+### R-Hausaufgaben
 
-<!-- An dem Kurs "Einführung in R" nehmen 49 Studierende teil. Der Leistungsnachweis besteht aus Hausaufgaben, die insgesamt mit 100 Punkten bewertet werden. Ab 50 Punkten gilt der Kurs als bestanden.  -->
+An dem Kurs "Einführung in R" nehmen 49 Studierende teil. Der Leistungsnachweis besteht aus Hausaufgaben, die insgesamt mit 100 Punkten bewertet werden. Ab 50 Punkten gilt der Kurs als bestanden.
 
-<!-- 1. Lesen Sie den Datensatz `r file.name("R-HAs.txt")`, der die Endpunkte enthält, ein. -->
-<!-- 2. Ermitteln Sie, wie viele Teilnehmer bestanden und wie viele nicht bestanden haben. -->
-
-
-<!-- ### Fledermäuse, die Zweite {#fledermaus} -->
-
-<!-- Wir beschäftigen uns erneut mit den Fledermäusen. -->
-
-<!-- 1. Lesen Sie den korrigierten(!) Datensatz  `r file.name("Fledermaus_cor.txt")` ein. -->
-<!-- 2. Schreiben Sie eine Funktion, die den Entwicklungsstand der Tiere klassifiziert. Nutzen Sie dazu die ad hoc Regel: Individuum < 5 cm ist ein Jungtier, sonst erwachsen. -->
-<!-- 3. Erstellen Sie eine ordinal-skalierte Variable `alter` mit dem Entwicklungsstand der Tiere. -->
-<!-- 3. Wie viele Erwachsene und wie viele Jungtiere wurden vermessen? -->
-
-<!-- ## Tidyverse -->
-
-<!-- ### Fledermaus, die Dritte {#fledermaus3} -->
-<!-- 1. Wiederholen Sie die Aufgabe \@ref(fledermaus) mit `tidyverse` -->
-<!-- 2. Berechnen Sie die Mittelwerte der Größe für weibliche und männliche Individuen. -->
-<!-- 3. Berechnen Sie die Mittelwerte der Größe für die Kategorien weiblich, männlich, Jungtier und erwachsen getrennt. -->
+1. Lesen Sie den Datensatz `r file.name("R-HAs.txt")`, der die Endpunkte enthält, ein.
+2. Ermitteln Sie, wie viele Teilnehmer bestanden und wie viele nicht bestanden haben. Nutzen Sie dazu die Funktion `mutate()` und die Funktion `ifelse()`.
 
 
-<!-- ### Unfaire Klausur? {#klausur} -->
+### Unfaire Klausur? {#klausur}
 
-<!-- Ar belegt im 4. Semester die Veranstaltung "Spaß mit R". Bei der Klausur gibt es 2 Aufgabengruppen mit jeweils 60 Punkten. Aufgabengruppe 1 wird an Studierende auf ungeraden Sitzplätzen und  Aufgabengruppe 2 an Studierende auf geraden Sitzplätzen ausgegeben.  -->
+Ar belegt im 4. Semester die Veranstaltung "Spaß mit R". Bei der Klausur gibt es 2 Aufgabengruppen mit jeweils 60 Punkten. Aufgabengruppe 1 wird an Studierende auf ungeraden Sitzplätzen und  Aufgabengruppe 2 an Studierende auf geraden Sitzplätzen ausgegeben.
 
-<!-- 1. Lesen Sie den Datensatz `r file.name("Klausurpunkte.txt")` ein. -->
-<!-- 1. Überprüfen Sie Ars Vermutung, dass die Aufgabengruppe 1 im Schnitt leichter war als Aufgabengruppe 2 (d.h. in der Gruppe 1 im Schnitt mehr Punkte erzielt wurden). -->
-<!--   <ol start="i"> -->
-<!--   <li>Berechnen Sie erst die Mittelwerte pro Gruppe.</li> -->
-<!--   <li>Testen Sie dann mit einem Permutationstest, ob die Mittelwerte signifikant verschieden sind. Adaptieren Sie den Code aus dem Tutorial Hypothesentests_1.Rmd.</li> -->
-<!-- </ol> -->
+1. Lesen Sie den Datensatz `r file.name("Klausurpunkte.txt")` ein.
+1. Überprüfen Sie Ars Vermutung, dass die Aufgabengruppe 1 im Schnitt leichter war als Aufgabengruppe 2 (d.h. in der Gruppe 1 im Schnitt mehr Punkte erzielt wurden). Nutzen Sie die Funktionen `mutate()`, um eine Spalte mit der Gruppenzugehörigkeit zu ermitteln und `summarize()`, um den Mittelwert zu berechnen. Tipp: mit dem Operator `%%` können Sie überprüfen, ob eine Zahl z.B. durch 2 teilbar ist.
 
 
+### Fledermäuse
+Ar Stat untersucht im Rahmen eines ökologischen Praktikums Fledermäuse in Ecuador. Er vermisst die größe der Tiere und notiert ihr Geschlecht.
 
-<!-- ## Daten visualisieren, Teil II: Fokus auf Daten -->
+- Laden Sie den Datensatz `r file.name('Fledermaus.txt')`. Dieser enthält die Größe der Tiere in cm.
+- Die ersten 20 untersuchten Tiere sind Männchen. Erstellen Sie einen `factor` "geschlecht", der das Geschlecht der Tiere enthält. Benutzen Sie dazu die Funktionen `rep()`.
+- Fügen Sie die Informationen über die Größe und das Geschlecht in einem `tibble` zusammen und bennen Sie die Spalten entsprechend.
+- Bei dem 3. Individuum hat sich Ar vertippt. Die Größe des Tieres lautet in Wirklichkeit 5,37 cm. Korrigieren Sie den Fehler.
+- Speichern Sie den korrigierten Datensatz ab.
+- Berechnen Sie die Mittelwerte und die Standardabweichungen der Größen der Tiere je Geschlecht.
+- Plotten Sie die Größen je Geschlecht in einem Boxplot und speichern Sie diesen ab.
 
-<!-- ### Zeitreihen aus der Langen Bramke (Harz) -->
+### Fledermäuse, revisited
+Wir gehen davon aus, dass das Alter der Fledermäuse mit ihrer Größe zusammenhängt. Pauschal legen wir fest, dass ein Tier, das kleiner als 5 cm groß ist, ein Jungtier ist.
 
-<!-- Im Harz wurden über eine längere Zeit Niederschlag, Abfluss und Temperatur gemessen. -->
+- Klassifizieren Sie die Tiere in J (Jungtier) und E (Erwachsen). Erstellen Sie dazu mit `mutate()` ein eigene Spalte.
+- Wie viele Jungtiere gibt es im Datensatz?
+- Sind die Jungtiere weiblich oder männlich?
 
-<!-- 1. Laden Sie den Datensatz `r file.name("Data.dat")`. -->
-<!-- 2. Stellen Sie die Temperatur in einem Streudiagramm dar. Welche Darstellungsart (Argument `type` in `plot`) erscheint Ihnen am sinnvollsten?  -->
-<!-- 3. Beschriften Sie die Graphik und fügen Sie einen Titel hinzu. -->
-<!-- 4. Speichern Sie die Graphik als pdf ab. -->
-<!-- 5. Stellen Sie die Niederschläge in einem Diagramm dar. Wählen Sie einen geeigneten Darstellungstyp mit `type` (Tipp: geben Sie für die Hilfe `?plot` in die Konsole ein). -->
+### Zeitreihen aus der Langen Bramke (Harz)
+Im Harz wurden über eine längere Zeit Niederschlag, Abfluss und Temperatur gemessen. DIe Messeinheiten sind für Temperatur °C, für Niederschlag und Abfluss mm.
 
-<!-- ### Temperatur-Datensatz -->
+1. Laden Sie den Datensatz `r file.name("Data.dat")`.
+1. Wandeln Sie die Spalte `Date` in ein richtiges Datum um.
+2. Plotten Sie die Temperatur, den Niederschlag und den Abfluss (in verschiedene Grafiken) untereinander. Beschriften Sie alles korrekt und fügen Sie Titel hinzu. Überlegen Sie, welche Darstellungsart (geom) für den Niederschlag am besten ist.
+4. Speichern Sie die Grafik als pdf ab.
 
-<!-- Die Datei `r file.name("Temperatur.csv")` aus @Zuur2009a enthält Messungen von Temperatur, Salinität und Chlorophyl a an 31 Orten entlang der dänischen Küste. Die Daten stammen vom dänischen Institut RIKZ (Monitoringprogramm MWTL: Monitoring Waterstaatkundige Toestand des Lands). Die Messungen wurden zwischen 1990 und 2005 durchgeführt mit einer Häufigkeit von 0-4 mal pro Monat je nach Jahreszeit. -->
 
-<!-- 1. Lesen Sie den Temperatur-Datensatz `r file.name("Temperatur.csv")` ein. -->
-<!-- 1. Berechnen Sie die Anzahl der Messwerte, Monatsmittelwerte für alle Stationen, sowie die Standardabweichungen. -->
-<!-- 1. Stellen Sie die Monatsmittel der Temperatur als Linien dar. -->
-<!-- 1. Beschriften Sie die Grafik sinnvoll. -->
-<!-- 1. Fügen Sie die Standardabweichungen als Band hinzu. -->
-<!-- 1. Speichern Sie die Grafik als pdf ab. -->
+### Umweltdaten entlang der dänischen Küste
 
-<!-- ### Temperatur-Datensatz, revisited -->
-<!-- 1. Berechnen Sie die Monatsmittelwerte und Standardabweichungen je Station. Tipp: `group_by(Station, Month)`. -->
-<!-- 1. Stellen Sie die Daten mit einem Fehlerband dar und speichern Sie sie ab. -->
-<!-- 1. Stellen Sie die Daten als Punkte mit Fehlerbalken dar und speichern Sie sie ab. Zur Orientierung, das Ergebnis sollte so aussehen wie in Abbildung (\@ref(fig:temperrors)). -->
+Die Datei `r file.name("Temperatur.csv")` aus @Zuur2009a enthält Messungen von Temperatur, Salinität und Chlorophyl a an 31 Orten entlang der dänischen Küste. Die Daten stammen vom dänischen Institut RIKZ (Monitoringprogramm MWTL: Monitoring Waterstaatkundige Toestand des Lands). Die Messungen wurden zwischen 1990 und 2005 durchgeführt mit einer Häufigkeit von 0--4 mal pro Monat je nach Jahreszeit.
 
-<!-- ```{r temperrors, echo = F, fig.width = 6, fig.cap = 'Mittelwerte der Temperatur je Station [@Zuur2009a]', fig.width = 6, out.width = "100%"} -->
-<!-- knitr::include_graphics('Temp_error_bars.png', auto_pdf = T) -->
-<!-- ``` -->
+1. Lesen Sie den Datensatz `r file.name("Temperatur.csv")` ein.
+1. Konvertieren Sie die Spalte Date in ein richtiges Datumsformat und plotten Sie die Temperaturen pro Station (`facet_wrap()`) als Zeitreihen.
+1. Berechnen Sie die Anzahl der Messwerte, Monatsmittelwerte der Temperatur für alle Stationen, sowie die Standardabweichungen.
+1. Stellen Sie die Monatsmittel der Temperatur als Linien dar.
+1. Beschriften Sie die Grafik sinnvoll.
+1. Fügen Sie die Standardabweichungen als Band hinzu.
+1. Speichern Sie die Grafik als pdf ab.
+
+### Umweltdaten entlang der dänischen Küste, revisited
+1. Berechnen Sie die Monatsmittelwerte und Standardabweichungen je Station. Tipp: `group_by(Station, Month)`.
+1. Stellen Sie die Daten mit einem Fehlerband dar (in verschiedenen Plots mit `facet_wrap()`) und speichern Sie sie ab.
 
 
 <!-- ### Artenvielfalt in Grasländern -->

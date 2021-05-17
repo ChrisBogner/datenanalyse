@@ -2,7 +2,7 @@
 
 Diese Aufgabensammlung enthält zusätzlich Aufgaben, die z.B. im Seminar bearbeitet werden. Aufgaben zu den einzelnen Kapiteln finden Sie am Ende des jeweiligen Kapitels.
 
-## Tutorial Zusammenhangsmaße
+## Tutorial Zusammenhangsmaße {#werdeschlau}
 
 
 **Begleitend zu diesem Tutorial sind die Kapitel 2 und 3 in Mittag (2017) "Statistik" zu lesen.**

@@ -29,9 +29,9 @@ In dieser Veranstaltung werden wir folgende Werkzeuge verwenden:
 
 **ILIAS**: die Online-Lernplattform der UzK. Entweder sind Sie bereits automatisch in dem Kurs registriert oder werden von mir per Hand angemeldet.
 
-**Campuswire**: die Live-Chatplattform dient der allgemeinen Kommunikation und der Selbstorganisation des Lernens. Verwenden Sie diese, um Fragen mit Ihren Kommilitonen und mir zu diskutieren. Sie sollten eine Einladungsmail zu Campuswire erhalten haben.
+**Campuswire**: die Chatplattform dient der allgemeinen Kommunikation und der Selbstorganisation des Lernens. Verwenden Sie diese, um Fragen mit Ihren Kommilitonen*innen und mir zu diskutieren. Sie sollten eine Einladungsmail zu Campuswire erhalten haben.
 
-**Zoom**: die Videokonferenz-Software werden wir für live Einführungen nutzen. Die Anmeldemodalitäten sind auf den Kursseiten in ILIAS erklärt.
+**Zoom**: die Videokonferenz-Software werden wir für Liveveranstaltungen nutzen. Die Anmeldemodalitäten sind auf den Kursseiten in ILIAS erklärt.
 
 **RStudio Server Pro**: der Server bietet die Möglichkeit, online in R und RStudio zu arbeiten.
 
@@ -45,7 +45,7 @@ Ab und an werde ich Ihnen auch andere Literatur empfehlen. Für Ihren Abschlussb
 
 Dieses Skript ist ein lebendiges Begleitdokument des Kurses. Es wird laufend angepasst und aktualisiert.
 
-Ich nutze verschiedene Farbkästen, um wichtige Stellen hervorzuheben:
+Ich nutze verschiedenfarbige Blöcke, um wichtige Stellen hervorzuheben:
 
 ```{block, type='rmdinfo'}
 Infoblock

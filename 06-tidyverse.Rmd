@@ -171,7 +171,7 @@ ggplot(data = temp_humid, aes(x = MESS_DATUM, y = TT_TU)) +
   labs(x = 'Zeit', y = 'Temperatur (°C)')
 ```
 
-### Daten Zusammenfassen
+### Neue Variablen erstellen mit `mutate()`
 
 Wir wollen nun die Monatsmittelwerte und die Standardabweichungen für die Temperatur berechnen und diese darstellen. Als erstes erstellen wir zwei neue Spalten, die jeweils das Jahr und den Monat beinhalten. Die beiden neuen Spalten werden am Ende von `temp_humid` angehängt. Um neue Spalten zu erstellen, nutzen wir die Funktion `mutate()`. Die Funktionen `year()`und `month()` gehören zur Bibliothek `lubridate` und extrahieren jeweils das Jahr und den Monat aus `MESS_DATUM`.
 
@@ -207,11 +207,11 @@ monthly_means <- ungroup(monthly_means)
 ```
 
 
-Um die Daten als Zeitreihen zu plotten, erstellen wir noch eine ordentliche Zeit-Spalte. Die Funktion `parse_date_time()` kann aus Character richtige Datums-Zeitobjekte erstellen. Sie ist allgemeienr als die oben verwendete `ymd_h()` Funktion, da man hier das Format explizit angeben kann. In unserem Fall ist das Format 'ym' für Jahr und Monat.
+Um die Daten als Zeitreihen zu plotten, erstellen wir noch eine ordentliche Zeit-Spalte. Die Funktion `parse_date_time()` kann aus Character richtige Datums-Zeitobjekte erstellen. Sie ist allgemeiner als die oben verwendete `ymd_h()` Funktion, da man hier das Format explizit angeben kann. In unserem Fall ist das Format 'ym' für Jahr und Monat.
 
 ```{r}
 monthly_means <- monthly_means %>%
-  mutate(year_month = parse_date_time(paste0(year, month), 'ym', tz = 'CET'))
+  mutate(year_month = parse_date_time(paste0(year, month), orders = 'ym', tz = 'CET'))
 
 monthly_means
 ```
@@ -219,8 +219,7 @@ monthly_means
 Der Code `paste0(year, month)` "klebt" die Daten in der Variablen `year` und `month` zusammen. Das ist nötig, da die Funktion `parse_date_time()` einen Charaktervektor als Input erwartet und keine zwei getrennten Spalten. Da das Datum außer dem Jahr und dem Monat noch einen Tag braucht, hat `parse_date_time()` den ersten eines jeden Monats genommen.
 
 ```{r, out.width = "90%"}
-ggplot(data = monthly_means, aes(x = year_month, y = mean_T, 
-            col = factor(STATIONS_ID))) + 
+ggplot(data = monthly_means, aes(x = year_month, y = mean_T, col = factor(STATIONS_ID))) + 
   geom_line() + 
   labs(x = 'Zeit', y = 'Temperatur (°C)', color = 'Messstation')
 ```
@@ -231,7 +230,7 @@ ggplot(monthly_means, aes(x = year_month, y = mean_T, ymin = mean_T - sd_T, ymax
   geom_errorbar() +
   geom_point() +
   facet_wrap(~STATIONS_ID, nrow = 3) + 
-  labs(x = 'Zeti', y = 'Temperatur (°C)', color = 'Messstation')
+  labs(x = 'Zeti', y = 'Temperatur (°C)')
 ```
 
 Oder, weil es gerade Spaß macht, als halb-transparentes Band. Ich hoffe, Sie haben jetzt Lust, das Kapitel 5 im ggplot2 Buch zu lesen `r emo::ji('sunglasses')`.
@@ -240,7 +239,7 @@ ggplot(monthly_means, aes(x = year_month, y = mean_T, ymin = mean_T - sd_T, ymax
   geom_ribbon(alpha = 0.5) +
   geom_line() +
   facet_wrap(~STATIONS_ID, nrow = 3) + 
-  labs(x = 'Zeit', y = 'Temperatur (°C)', color = 'Messstation')
+  labs(x = 'Zeit', y = 'Temperatur (°C)')
 ```
 
 Ein letzter Trick. Die Überschriften für die Teilgrafiken sind ungeschickt, da man die IDs als Mensch einfach nicht zuordnen kann. Weiter oben haben wir einen benannten Vektor definiert, der die Klarnamen enthält.
@@ -254,7 +253,7 @@ ggplot(monthly_means, aes(x = year_month, y = mean_T, ymin = mean_T - sd_T, ymax
   geom_ribbon(alpha = 0.5) +
   geom_line() +
   facet_wrap(~STATIONS_ID, nrow = 3, labeller = labeller(STATIONS_ID = station_ids)) + 
-  labs(x = 'Zeit', y = 'Temperatur (°C)', color = 'Messstation')
+  labs(x = 'Zeit', y = 'Temperatur (°C)')
 ```
 
 ## Lesestoff

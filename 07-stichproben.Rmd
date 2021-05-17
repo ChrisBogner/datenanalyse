@@ -1,0 +1,250 @@
+# Stichproben und Variabilität
+
+```{block, type = 'rmdoutcomes'}
+- Begriffe Stichprobenverteilung und Standardfehler erkären
+- Zufall bei wiederholter Erstellung von Stichproben erkennen
+- Stichprobenverteilung darstellen
+- Einfluss der Stichprobengröße auf Stichprobenverteilung bennen
+```
+
+Mit diesem Kapitel steigen wir ein in die schließende Statistik. Wir beginnen damit, wie man in der Statistik zu Daten kommt und welche Rolle der Zufall dabei spielt. Dabei konzentrieren wir uns auf die Erhebung von Stichproben, nicht auf das Designen von Experimenten. Das ist eine Kunst für sich und geht über die Ziele dieses Kurses hinaus.
+
+```{r, message = F, error = F}
+library(tidyverse)
+library(moderndive)
+```
+
+
+## Stichproben
+
+Wir nutzen wieder die selbst erstellten Daten aus der Aufgabe \@ref(werdeschlau). Die 1200 Studiere sind unsere **Grundgesamtheit**. Da wir die Daten selbst erstellt haben, wissen wir alles über sie. Das ist ein großer Vorteil von Computerexperimenten `r emo::ji('smile')`. Damit alle dieselben Daten erstellen, ist die Zeile `set.seed(123)` sehr wichtig. Sie sorgt dafür, dass der Generator für Zufallszahlen in einen zufälligen, aber reproduzierbaren Zustand versetzt wird. DIe Zahl in den Klammern ist nicht wichtig. Wichtig ist, dass alle dieselbe benutzen `r emo::ji('smile')`.
+
+Für bessere Nachvollziehbarkeit, nummerieren wir unsere Studierenden diesmal durch.
+
+```{r}
+set.seed(123)
+
+student_id <- 1:12000
+  
+anreise <- c(runif(n = 12000 * 0.8, min = 5, max = 40),
+             runif(n = 12000 * 0.2, min = 60, max = 120))
+
+geschlecht <- sample(c('m', 'w'), size = 12000, replace = TRUE)
+
+wohnort <- sapply(anreise, function(x) {
+  if(x < 30) 'stadt'
+  else 'land'
+})
+
+verkehrsmittel <- sapply(anreise, function(x) {
+  if(x <= 10) 'zu_fuss'
+  else if(x > 10 & x <= 15) sample(c('zu_fuss', 'fahrrad'), size = 1)
+  else if(x > 15 & x <= 45) sample(c('bus', 'fahrrad', 'auto'), size = 1)
+  else sample(c('bus', 'auto'), size = 1)
+})
+
+zeit_bib <- 5 * 60 - 0.7 * anreise + rnorm(length(anreise), 0, 20)
+
+grundgesamtheit <- tibble(student_id, geschlecht, wohnort, verkehrsmittel, anreise, zeit_bib)
+
+grundgesamtheit
+
+```
+Wir wollen nun 50 Studierende befragen. Durch die zufällige Auswahl an Befragten erzeugen wir eine **zufällige Stichprobe**.  Übersetzt in unser Computerexperiment bedeutet es, dass wir zufällig 50 Zeilen aus dem Datensatz `grundgesamtheit` ziehen und zwar so, dass sich diese Zeilen nicht wiederholen (d.h. niemand mehrfach befragt wird). Dazu nutzen wir die Funktion `rep_sample_n()`, die wiederholt (*rep*) *n* Zeilen zieht (*sample*), und zwar mit der Einstellung `replace = FALSE`, also ohne Zurücklegen. Wir befragen nur einmal, daher `reps = 1`. 
+
+Damit alle wieder dieselben Daten bekommen, setzen wir vorher den seed (Zustand des Zufallszahlengenerators). Die Variable `befragung_size` gibt die **Stichprobengröße** an.
+
+```{r}
+set.seed(345)
+
+befragung_size <- 50
+
+befragung <- rep_sample_n(grundgesamtheit, size = befragung_size, replace = FALSE, reps = 1)
+
+befragung
+```
+Die Variable `replicate` zeigt immer 1. Das bedeutet, dass wir die Befragung einmal wiederholt (repliziert) haben und alle Datenpunkte zu dieser Wiederholung gehören.
+
+Wir wollen nun wissen, wie viele Studierende unter den Befragten in der Stadt und auf dem Land wohnen.
+
+```{r}
+befragung %>% 
+  group_by(wohnort) %>% 
+  count()
+```
+Das Ganze möchten wir als Anteile ausdrücken. Die Funktion `n()` kann innerhalb der Funktion `summarize()` zum Auszählen genutzt werden. Wir teilen durch die Stichprobengröße.
+```{r}
+befragung %>% 
+  group_by(wohnort) %>% 
+  summarise(prop = n()/befragung_size)
+```
+Es wohnen also 42% auf dem Land und 58% in der Stadt.
+
+
+Was passiert, wenn wir die Befragung mehrfach wiederholen, sagen wir 33 Mal? In der Realität ist dieses Szenario sehr unwahrscheinlich, aber in einem Computerexperiment einfach zu implementieren. Es hilft uns ein Gefühl für die **Variabilität**, die durch das zufällige Auswählen der Studierenden bei der Befragung entsteht, zu entwickeln.
+
+Wir setzten erneut den seed, damit alle dieselben Ergebnisse bekommen.
+
+```{r}
+set.seed(234)
+
+befragung_reps <- rep_sample_n(grundgesamtheit, size = befragung_size, replace = FALSE, reps = 33)
+
+befragung_reps
+```
+Jetzt wird uns angezeigt, dass es in dem Datensatz `befragung_reps` 33 replicates (Wiederholgungen) gibt. Diese sind einfach nacheinander in `befragung_reps` angeordent (blättern Sie durch den Datensatz). Dementsprechend hat der Datensatz 50 $\times$ 33 = 1650 Zeilen.
+
+Wie sieht es jetzt mit den Anteilen von Stadt- und Landbewohnern aus? Wir müssen nun zusätzlich zum `wohnort` auch noch nach `replicate` gruppieren.
+
+```{r}
+wohnort_props <- befragung_reps %>% 
+  group_by(replicate, wohnort) %>% 
+  summarise(prop = n()/befragung_size)
+
+wohnort_props
+```
+
+Erwartungsgemäß bringt jede Wiederholung der Befragung, die wir ja als zufälliges Herausgreifen der Studierenden ohne Mehrfachbefragung programmiert haben, etwas andere Ergebnisse (sehen Sie sich die `studnet_id` in den replicates an!). In einem Histogramm sieht das ganze so aus:
+
+```{r, out.width = '90%'}
+ggplot(data = wohnort_props, aes(x = prop)) + 
+  geom_histogram(binwidth = 0.05, boundary = 0.4, col = 'white') +
+  facet_wrap(~ wohnort) +
+  labs(x = 'Anteile beim Wohnort', title = 'Verteilung der Wohnorte', y = 'Häufigkeit')
+```
+
+Die häufigsten Anteile sind um die 40% für Land und um die 60% für Stadt. Wir können es sogar etwas genauer ablesen, da wir `binwidth = 0.05` gewähnt haben, also Schritte von 5%. Es sind 35--40% für Land und 55--60% für Stadt.
+
+### Anzahl der Wiederholungen und Variabilität
+
+Was passiert, wenn wir unsere Umfrage nun 1000 Mal wiederholen? Wir können den ganzen Code recyclen und müssen nur die reps entsprechend verändern. Wir erstellen dafür nun eine extra Variable `befragung_reps`. Beim Histogramm sollten wir die `binwidth` etwas heruntersetzten, da wir jetzt sehr viel mehr Daten haben und diese detaillierter anzeigen lassen können. Zusätzlich wird die x-Achse "frei" gegeben, i.e. die Skalierung wird jetzt auf jeder Achse separat bestimmt `scales = 'free_x'` in `facet_wrap()`, um die Verteilungen besser zu sehen.
+
+```{r, out.width = '90%'}
+set.seed(345)
+
+befragung_reps <- 1000
+
+befragung_reps <- rep_sample_n(grundgesamtheit, size = befragung_size, replace = FALSE, reps = befragung_reps)
+
+wohnort_props <- befragung_reps %>% 
+  group_by(replicate, wohnort) %>% 
+  summarise(prop = n()/befragung_size)
+
+
+ggplot(data = wohnort_props, aes(x = prop)) + 
+  geom_histogram(binwidth = 0.02, boundary = 0.4, col = 'white') +
+  facet_wrap(~ wohnort, scales = 'free_x') +
+  labs(x = 'Anteile beim Wohnort', title = 'Verteilung der Wohnorte', y = 'Häufigkeit')
+```
+
+Die häufigsten Anteile beim Land liegen bei 40--42% und bei der Stadt bei 58--60%.
+
+Die Histogramme geben nun sehr gut die Verteilung der Anteile der Stadt- und Landbewohner wieder. Solche Verteilungen nennt man **Stichprobenverteilungen**. Sie geben die Verteilung einer statistischen Kenngröße (Statistik), in unserem Fall Anteil, wider.
+
+
+### Stichprobengröße
+Was passiert, wenn wir die Größe der Stichproben variieren? Das würde Befragungen mit unterschiedlicher Anzahl von Teilnehmern entsprechen. Wir vergleichen 25, 50 und 100 Befragte und wiederholen jeweils 1000 Mal, um erneut Stichprobenverteilungen plotten zu können. Das ist eine repetitive Aufgabe und ich werde dafür eine Funktion definieren. Wie man das macht, wird in einer späteren Stunde erklärt.
+
+```{r}
+set.seed(123)
+
+calculate_props <- function(grund_data = grundgesamtheit, befragung_size, befragung_reps = 1000) {
+  
+  befragung <- rep_sample_n(grund_data, size = befragung_size, replace = FALSE, reps = befragung_reps)
+
+wohnort_props <- befragung %>% 
+  group_by(replicate, wohnort) %>% 
+  summarise(prop = n()/befragung_size)
+
+wohnort_props
+}
+
+# Stichprobengröße 25
+wohnort_props_25 <- calculate_props(grund_data = grundgesamtheit, befragung_size = 25, befragung_reps = 1000)
+  
+# Stichprobengröße 50
+wohnort_props_50 <- calculate_props(grund_data = grundgesamtheit, befragung_size = 50, befragung_reps = 1000)
+
+# Stichprobengröße 100
+wohnort_props_100 <- calculate_props(grund_data = grundgesamtheit, befragung_size = 100, befragung_reps = 1000)
+```
+Wir stellen die drei Stichprobenverteilungen dar. Die binwidth ist jeweils eine andere.
+
+```{r, out.width = '90%'}
+ggplot(data = wohnort_props_25, aes(x = prop)) + 
+  geom_histogram(binwidth = 0.05, boundary = 0.4, col = 'white') +
+  facet_wrap(~ wohnort, scales = 'free_x') +
+  labs(x = 'Anteile beim Wohnort', title = 'Verteilung der Wohnorte, Stichprobengröße = 25', y = 'Häufigkeit')
+
+ggplot(data = wohnort_props_50, aes(x = prop)) + 
+  geom_histogram(binwidth = 0.02, boundary = 0.4, col = 'white') +
+  facet_wrap(~ wohnort, scales = 'free_x') +
+  labs(x = 'Anteile beim Wohnort', title = 'Verteilung der Wohnorte, Stichprobengröße = 50', y = 'Häufigkeit')
+
+ggplot(data = wohnort_props_100, aes(x = prop)) + 
+  geom_histogram(binwidth = 0.02, boundary = 0.4, col = 'white') +
+  facet_wrap(~ wohnort, scales = 'free_x') +
+  labs(x = 'Anteile beim Wohnort', title = 'Verteilung der Wohnorte, Stichprobengröße = 100', y = 'Häufigkeit')
+```
+
+Wie kann man diese Stichprobenverteilungen charakterisieren? Nun, es sind in erster Linie Daten und wie bei jedem Datensatz kann man auch hier einen Mittelwert und eine Stadanrdabweichung angeben. Die Standardabweichung der Stichprobenverteilung heißt **Standardfehler** und fasst den Einfluss der Variabilität (zufälliges Herausgreifen der Studierenden) zusammen.
+
+```{r}
+wohnort_props_25 %>% 
+  group_by(wohnort) %>% 
+  summarise(prop_sd = sd(prop))
+
+wohnort_props_50 %>% 
+  group_by(wohnort) %>% 
+  summarise(prop_sd = sd(prop))
+
+wohnort_props_100 %>% 
+  group_by(wohnort) %>% 
+  summarise(prop_sd = sd(prop))
+```
+
+Sei sehen, dass mit steigender Stichprobengröße der Standardfehler sinkt. Das ist intuitiv verständlich, denn je mehr Studierende wir (pro Wiederholung!) befragen, desto repräsentativer ist die Stichprobe.
+
+Da dieses Kapitel so wichtig ist, gibt es Ausnahmesweise vorformulierte Take-Home-Messages `r emo::ji('smile')`:
+
+```{block, type='rmdalert'}
+- Eine zufällige Stichprobe ist (meistens*) der Königsweg, um repräsentative Informationen über die Grundgesamtheit zu bekommen.
+- Die Verteilung einer statistischen Kenngröße, die aus Stichproben ausgerechnet wurde, heißt Stichprobenverteilung. Um diese Verteilung zu bekommen, muss man wiederholt Stichproben erheben. Je mehr Stichproben man erhebt, desto genauer kann man die Stichprobenverteilung beschreiben.
+- Die Standardabweichung der Kenngröße, die durch die Stichprobenverteilung dargestellt wird, heißt Standardfehler.
+- Der Zufall macht sich durch eine Streuung (erfasst durch den Standardfehler) in der Stichprobenverteilung bemerkbar. Je größer die einzelnen Stichproben, desto kleiner der Standardfehler.
+```
+
+*: Manchmal ist die interessierte Größe in unterschiedlichen Untergruppen der Grundgesamtheit unterschiedlich verteilt. Z.B. könnten bestimmte Haltungen in der Bevölkerung gegenüber irgendwelchen Sachverhalten von Alter oder Bildungsstand oder Wohnort (Stadt vs. Land) abhängen. Dann sollte man sich überlegen, ob man statt einer zufälligen Stichprobe lieber eine stratifizierte Stichprobe zieht, d.h. proportional nach diesen Kategorien beprobt.
+
+## Lesestoff
+Kapitel 7 in @ModernDive
+
+## Aufgaben
+
+### Wahrer Wert in der Grundgesamtheit
+Berechnen Sie die Anteile von Studierenden in der Grundgesamtheit, die in der Stadt bzw. auf dem Land leben. Wie gut waren die Schätzungen im Vergleich zum wahren Wert in der Grundgesamtheit?
+
+### Lohnt eine Station zum Ausleihen von Farrähdern?
+In unserem fiktiven Beispiel der Uni Werdeschlau geht es eigenlich darum, ob sich eine Station zum Ausleihen von Fahrrädern lohnen würde. Daher ist die Frage interessant, wie viele Studierende mit dem Fahrrad zur Uni kommen. Wiederholen Sie die obige Analyse und ermitteln Sie statt der Anteile von Stadt- und Landbewohnern nun die Anteile der unterschiedlichen Verkehrsmittel. Nutzen Sie für die flexible Beprobung den folgneden Code:
+```{r}
+calculate_props_verkehr <- function(grund_data = grundgesamtheit, befragung_size, befragung_reps = 1000) {
+  
+  befragung <- rep_sample_n(grund_data, size = befragung_size, replace = FALSE, reps = befragung_reps)
+
+verkehrsmittel_props <- befragung %>% 
+  group_by(replicate, verkehrsmittel) %>% 
+  summarise(prop = n()/befragung_size)
+
+verkehrsmittel_props
+}
+```
+
+In der Lösung zu dieser Aufgabe erhalten Sie auch weiter Tipps zur Darstellung von Histogrammen und Dichtefunktionen `r emo::ji('sunglasses')`.
+
+
+## Ihre Arbeit einreichen
+- Speichern Sie Ihr Notbook ab und laden Sie nur die .Rmd Datei vom Server.
+- Laden Sie Ihre .Rmd Datei in ILIAS hoch. **Beachten Sie die Deadline!**
+- Sie erhalten die Musterlösung nach dem Hochladen.
+
+<!-- ## Weiterführende Literatur -->

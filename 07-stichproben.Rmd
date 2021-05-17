@@ -205,7 +205,7 @@ wohnort_props_100 %>%
 
 Sei sehen, dass mit steigender Stichprobengröße der Standardfehler sinkt. Das ist intuitiv verständlich, denn je mehr Studierende wir (pro Wiederholung!) befragen, desto repräsentativer ist die Stichprobe.
 
-Da dieses Kapitel so wichtig ist, gibt es Ausnahmesweise vorformulierte Take-Home-Messages `r emo::ji('smile')`:
+Da dieses Kapitel so wichtig ist, gibt es ausnahmsweise vorformulierte Take-Home-Messages `r emo::ji('smile')`:
 
 ```{block, type='rmdalert'}
 - Eine zufällige Stichprobe ist (meistens*) der Königsweg, um repräsentative Informationen über die Grundgesamtheit zu bekommen.

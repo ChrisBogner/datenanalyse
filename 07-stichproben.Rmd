@@ -7,7 +7,7 @@
 - Einfluss der Stichprobengröße auf Stichprobenverteilung bennen
 ```
 
-Mit diesem Kapitel steigen wir ein in die schließende Statistik. Wir beginnen damit, wie man in der Statistik zu Daten kommt und welche Rolle der Zufall dabei spielt. Dabei konzentrieren wir uns auf die Erhebung von Stichproben, nicht auf das Designen von Experimenten. Das ist eine Kunst für sich und geht über die Ziele dieses Kurses hinaus.
+Mit diesem Kapitel steigen wir in die schließende Statistik ein. Wir beginnen damit, wie man in der Statistik zu Daten kommt (**Stichprobenerhebung**) und welche Rolle der Zufall dabei spielt. Dabei konzentrieren wir uns auf die Erhebung von einfachen zufälligen Stichproben (**Zufallsstichproben**), nicht auf das Designen von komplizierten Erhebungen. Das ist eine Kunst für sich und geht über die Ziele dieses Kurses hinaus.
 
 ```{r, message = F, error = F}
 library(tidyverse)
@@ -17,7 +17,7 @@ library(moderndive)
 
 ## Stichproben
 
-Wir nutzen wieder die selbst erstellten Daten aus der Aufgabe \@ref(werdeschlau). Die 1200 Studiere sind unsere **Grundgesamtheit**. Da wir die Daten selbst erstellt haben, wissen wir alles über sie. Das ist ein großer Vorteil von Computerexperimenten `r emo::ji('smile')`. Damit alle dieselben Daten erstellen, ist die Zeile `set.seed(123)` sehr wichtig. Sie sorgt dafür, dass der Generator für Zufallszahlen in einen zufälligen, aber reproduzierbaren Zustand versetzt wird. DIe Zahl in den Klammern ist nicht wichtig. Wichtig ist, dass alle dieselbe benutzen `r emo::ji('smile')`.
+Wir nutzen wieder die selbst erstellten Daten aus der Aufgabe \@ref(werdeschlau). Die 12000 Studiere sind unsere **Grundgesamtheit**. Da wir die Daten selbst erstellt haben, wissen wir alles über sie. Das ist ein großer Vorteil von Computerexperimenten `r emo::ji('smile')`. Damit alle dieselben Daten erstellen, ist die Zeile `set.seed(123)` sehr wichtig. Sie sorgt dafür, dass der Generator für Zufallszahlen in einen zufälligen, aber reproduzierbaren Zustand versetzt wird. DIe Zahl in den Klammern ist nicht wichtig. Wichtig ist, dass alle dieselbe benutzen.
 
 Für bessere Nachvollziehbarkeit, nummerieren wir unsere Studierenden diesmal durch.
 
@@ -65,14 +65,14 @@ befragung
 ```
 Die Variable `replicate` zeigt immer 1. Das bedeutet, dass wir die Befragung einmal wiederholt (repliziert) haben und alle Datenpunkte zu dieser Wiederholung gehören.
 
-Wir wollen nun wissen, wie viele Studierende unter den Befragten in der Stadt und auf dem Land wohnen.
+Wir wollen nun wissen, wie viele Studierende unter den Befragten in der Stadt oder auf dem Land wohnen.
 
 ```{r}
 befragung %>% 
   group_by(wohnort) %>% 
   count()
 ```
-Das Ganze möchten wir als Anteile ausdrücken. Die Funktion `n()` kann innerhalb der Funktion `summarize()` zum Auszählen genutzt werden. Wir teilen durch die Stichprobengröße.
+Das Ganze möchten wir als Anteile ausdrücken. Die Funktion `n()` kann innerhalb der Funktion `summarise()` zum Auszählen genutzt werden. Wir teilen durch die Stichprobengröße.
 ```{r}
 befragung %>% 
   group_by(wohnort) %>% 
@@ -96,7 +96,7 @@ Jetzt wird uns angezeigt, dass es in dem Datensatz `befragung_reps` 33 replicate
 
 Wie sieht es jetzt mit den Anteilen von Stadt- und Landbewohnern aus? Wir müssen nun zusätzlich zum `wohnort` auch noch nach `replicate` gruppieren.
 
-```{r}
+```{r, message = F}
 wohnort_props <- befragung_reps %>% 
   group_by(replicate, wohnort) %>% 
   summarise(prop = n()/befragung_size)
@@ -104,7 +104,7 @@ wohnort_props <- befragung_reps %>%
 wohnort_props
 ```
 
-Erwartungsgemäß bringt jede Wiederholung der Befragung, die wir ja als zufälliges Herausgreifen der Studierenden ohne Mehrfachbefragung programmiert haben, etwas andere Ergebnisse (sehen Sie sich die `studnet_id` in den replicates an!). In einem Histogramm sieht das ganze so aus:
+Erwartungsgemäß bringt jede Wiederholung der Befragung, die wir ja als zufälliges Herausgreifen der Studierenden ohne Mehrfachbefragung programmiert haben, etwas andere Ergebnisse. Sehen Sie sich die `studnet_id` in den replicates an, es werde unterschiedliche Studierende befragt! In einem Histogramm sieht das ganze so aus:
 
 ```{r, out.width = '90%'}
 ggplot(data = wohnort_props, aes(x = prop)) + 
@@ -117,9 +117,9 @@ Die häufigsten Anteile sind um die 40% für Land und um die 60% für Stadt. Wir
 
 ### Anzahl der Wiederholungen und Variabilität
 
-Was passiert, wenn wir unsere Umfrage nun 1000 Mal wiederholen? Wir können den ganzen Code recyclen und müssen nur die reps entsprechend verändern. Wir erstellen dafür nun eine extra Variable `befragung_reps`. Beim Histogramm sollten wir die `binwidth` etwas heruntersetzten, da wir jetzt sehr viel mehr Daten haben und diese detaillierter anzeigen lassen können. Zusätzlich wird die x-Achse "frei" gegeben, i.e. die Skalierung wird jetzt auf jeder Achse separat bestimmt `scales = 'free_x'` in `facet_wrap()`, um die Verteilungen besser zu sehen.
+Was passiert, wenn wir unsere Umfrage nun 1000 Mal wiederholen? Wir können den ganzen Code recyclen und müssen nur die reps entsprechend verändern. Wir erstellen dafür eine extra Variable `befragung_reps`. Beim Histogramm sollten wir die `binwidth` etwas heruntersetzten, da wir jetzt sehr viel mehr Daten haben und diese detaillierter anzeigen lassen können. Zusätzlich wird die x-Achse "frei" gegeben, i.e. die Skalierung wird jetzt auf jeder Achse separat bestimmt `scales = 'free_x'` in `facet_wrap()`, um die Verteilungen besser zu sehen.
 
-```{r, out.width = '90%'}
+```{r, out.width = '90%', message = F}
 set.seed(345)
 
 befragung_reps <- 1000
@@ -139,7 +139,7 @@ ggplot(data = wohnort_props, aes(x = prop)) +
 
 Die häufigsten Anteile beim Land liegen bei 40--42% und bei der Stadt bei 58--60%.
 
-Die Histogramme geben nun sehr gut die Verteilung der Anteile der Stadt- und Landbewohner wieder. Solche Verteilungen nennt man **Stichprobenverteilungen**. Sie geben die Verteilung einer statistischen Kenngröße (Statistik), in unserem Fall Anteil, wider.
+Die Histogramme geben nun sehr gut die Verteilung der Anteile der Stadt- und Landbewohner wieder. Solche Verteilungen nennt man **Stichprobenverteilungen**. Sie zeigen die Verteilung einer statistischen Kenngröße (Statistik), in unserem Fall Anteil, die aus zufälligen Stichproben ausgerechnet wurde. Die Stichprobenverteilung beantwrotet die Frage: Wenn ich eine zufällige Menge (Stichprobengröße) an Daten (Zufallsstichprobe) aus der Grundgesamtheit herausgreife und eine Kenngröße (z.B. Anteil) berechne, welchen Wert werde ich im Mittel erhalten und wie stark wird der Wert schwanken.
 
 
 ### Stichprobengröße
@@ -158,7 +158,10 @@ wohnort_props <- befragung %>%
 
 wohnort_props
 }
+```
 
+Nun wenden wir diese selbst definierte Funktion an und füren die Befragungen durch.
+```{r, message = F}
 # Stichprobengröße 25
 wohnort_props_25 <- calculate_props(grund_data = grundgesamtheit, befragung_size = 25, befragung_reps = 1000)
   
@@ -203,18 +206,18 @@ wohnort_props_100 %>%
   summarise(prop_sd = sd(prop))
 ```
 
-Sei sehen, dass mit steigender Stichprobengröße der Standardfehler sinkt. Das ist intuitiv verständlich, denn je mehr Studierende wir (pro Wiederholung!) befragen, desto repräsentativer ist die Stichprobe.
+Sie sehen, dass mit steigender Stichprobengröße der Standardfehler sinkt. Das ist intuitiv verständlich, denn je mehr Studierende wir (pro Wiederholung!) befragen, desto repräsentativer ist die Stichprobe.
 
 Da dieses Kapitel so wichtig ist, gibt es ausnahmsweise vorformulierte Take-Home-Messages `r emo::ji('smile')`:
 
 ```{block, type='rmdalert'}
-- Eine zufällige Stichprobe ist (meistens*) der Königsweg, um repräsentative Informationen über die Grundgesamtheit zu bekommen.
-- Die Verteilung einer statistischen Kenngröße, die aus Stichproben ausgerechnet wurde, heißt Stichprobenverteilung. Um diese Verteilung zu bekommen, muss man wiederholt Stichproben erheben. Je mehr Stichproben man erhebt, desto genauer kann man die Stichprobenverteilung beschreiben.
+- Eine zufällige Stichprobe ist (meistens$^*$) der Königsweg, um repräsentative Informationen über die Grundgesamtheit zu bekommen.
+- Die Verteilung einer statistischen Kenngröße, die aus Zufallsstichproben ausgerechnet wurde, heißt Stichprobenverteilung. Um diese Verteilung zu bekommen, muss man wiederholt Stichproben erheben. Je mehr Stichproben man erhebt, desto genauer kann man die Stichprobenverteilung beschreiben.
 - Die Standardabweichung der Kenngröße, die durch die Stichprobenverteilung dargestellt wird, heißt Standardfehler.
 - Der Zufall macht sich durch eine Streuung (erfasst durch den Standardfehler) in der Stichprobenverteilung bemerkbar. Je größer die einzelnen Stichproben, desto kleiner der Standardfehler.
 ```
 
-*: Manchmal ist die interessierte Größe in unterschiedlichen Untergruppen der Grundgesamtheit unterschiedlich verteilt. Z.B. könnten bestimmte Haltungen in der Bevölkerung gegenüber irgendwelchen Sachverhalten von Alter oder Bildungsstand oder Wohnort (Stadt vs. Land) abhängen. Dann sollte man sich überlegen, ob man statt einer zufälligen Stichprobe lieber eine stratifizierte Stichprobe zieht, d.h. proportional nach diesen Kategorien beprobt.
+$^*$: Manchmal ist die interessierte Größe in unterschiedlichen Untergruppen der Grundgesamtheit unterschiedlich verteilt. Z.B. könnten bestimmte Haltungen in der Bevölkerung gegenüber irgendwelchen Sachverhalten von Alter oder Bildungsstand oder Wohnort (Stadt vs. Land) abhängen. Dann sollte man sich überlegen, ob man statt einer zufälligen Stichprobe lieber eine **geschichtete Zufallsstichprobe** zieht, d.h. innerhalb dieser Kategorien zufällig beprobt.
 
 ## Lesestoff
 Kapitel 7 in @ModernDive
@@ -225,7 +228,7 @@ Kapitel 7 in @ModernDive
 Berechnen Sie die Anteile von Studierenden in der Grundgesamtheit, die in der Stadt bzw. auf dem Land leben. Wie gut waren die Schätzungen im Vergleich zum wahren Wert in der Grundgesamtheit?
 
 ### Lohnt eine Station zum Ausleihen von Farrähdern?
-In unserem fiktiven Beispiel der Uni Werdeschlau geht es eigenlich darum, ob sich eine Station zum Ausleihen von Fahrrädern lohnen würde. Daher ist die Frage interessant, wie viele Studierende mit dem Fahrrad zur Uni kommen. Wiederholen Sie die obige Analyse und ermitteln Sie statt der Anteile von Stadt- und Landbewohnern nun die Anteile der unterschiedlichen Verkehrsmittel. Nutzen Sie für die flexible Beprobung den folgneden Code:
+In unserem fiktiven Beispiel der Uni Werdeschlau geht es eigenlich darum, ob sich eine Station zum Ausleihen von Fahrrädern lohnen würde. Daher ist die Frage interessant, wie viele Studierende mit dem Fahrrad zur Uni kommen. Wiederholen Sie die obige Analyse und ermitteln Sie statt der Anteile von Stadt- und Landbewohnern nun die Anteile der unterschiedlichen Verkehrsmittel. Die selbst definierte Funktion müssen Sie durch die folgende ersetzten.
 ```{r}
 calculate_props_verkehr <- function(grund_data = grundgesamtheit, befragung_size, befragung_reps = 1000) {
   

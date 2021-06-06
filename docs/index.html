@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Vorwort | Datenanalyse mit R</title>
+<meta name="author" content="Christina Bogner">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.2"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.8/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.2.5.1/tabs.js"></script><script src="libs/bs3compat-0.2.5.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/mark.js@8.11.1/dist/mark.min.js"></script><!-- CSS --><link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="font-awesome.min.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="SoSe 2021">Datenanalyse mit R</a>:
+        <small class="text-muted">SoSe 2021</small>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="active" href="index.html">Vorwort</a></li>
+<li><a class="" href="einfuehrung.html"><span class="header-section-number">1</span> Der Kurs</a></li>
+<li><a class="" href="erste-schritte.html"><span class="header-section-number">2</span> Erste Schritte in R</a></li>
+<li><a class="" href="reproduzieren.html"><span class="header-section-number">3</span> R Markdown</a></li>
+<li><a class="" href="ggplot.html"><span class="header-section-number">4</span> Einführung in ggplot2</a></li>
+<li><a class="" href="daten-einlesen-und-visualisieren.html"><span class="header-section-number">5</span> Daten einlesen und visualisieren</a></li>
+<li><a class="" href="tidyverse.html"><span class="header-section-number">6</span> Der explorative Workflow mit tidyverse</a></li>
+<li><a class="" href="stichproben.html"><span class="header-section-number">7</span> Stichproben und Variabilität</a></li>
+<li><a class="" href="bootstrapping-und-konfidenzintervalle.html"><span class="header-section-number">8</span> Bootstrapping und Konfidenzintervalle</a></li>
+<li><a class="" href="hypothesentests-mit-dem-paket-infer.html"><span class="header-section-number">9</span> Hypothesentests mit dem Paket infer</a></li>
+<li><a class="" href="aufgabensammlung.html"><span class="header-section-number">10</span> Aufgabensammlung</a></li>
+<li><a class="" href="literatur.html">Literatur</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/ChrisBogner/datenanalyse.git">View book source <i class="fab fa-github"></i></a></p>
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><!--bookdown:title:end--><!--bookdown:title:start--><div id="vorwort" class="section level1 unnumbered">
+<h1>Vorwort<a class="anchor" aria-label="anchor" href="#vorwort"><i class="fas fa-link"></i></a>
+</h1>
+<blockquote>
+<p>“And honey, we’re gonna do it in style”</p>
+</blockquote>
+<footer>
+— Fools Garden
+</footer><div id="organisatorisches" class="section level2 unnumbered">
+<h2>Organisatorisches<a class="anchor" aria-label="anchor" href="#organisatorisches"><i class="fas fa-link"></i></a>
+</h2>
+<div class="rmdinfo">
+<p>
+Die Coronaviruspandemie verändert unser Leben und unser Lernen. Die UzK bittet Lehrende, das SoSe 2021 als Hybridsemester zu gestalten. Wir werden unseren Kurs komplett online durchführen. Bitte seien Sie nachsichtig, wenn nicht alles so klappt wie in Präsenzveranstaltungen. Wir müssen aktuell alle sehr viel dazu lernen in Sachen digitale Lehre. Sie können sicher sein, dass das Geographische Institut bemüht ist, die Lehre so effizient wie möglich weiter laufen zu lassen, damit Sie in Ihrem Studium fortfahren können.
+</p>
+</div>
+<p>In dieser Veranstaltung werden wir folgende Werkzeuge verwenden:</p>
+<p><strong>ILIAS</strong>: die Online-Lernplattform der UzK. Entweder sind Sie bereits automatisch in dem Kurs registriert oder werden von mir per Hand angemeldet.</p>
+<p><strong>Campuswire</strong>: die Chatplattform dient der allgemeinen Kommunikation und der Selbstorganisation des Lernens. Verwenden Sie diese, um Fragen mit Ihren Kommilitonen*innen und mir zu diskutieren. Sie sollten eine Einladungsmail zu Campuswire erhalten haben.</p>
+<p><strong>Zoom</strong>: die Videokonferenz-Software werden wir für Liveveranstaltungen nutzen. Die Anmeldemodalitäten sind auf den Kursseiten in ILIAS erklärt.</p>
+<p><strong>RStudio Server Pro</strong>: der Server bietet die Möglichkeit, online in R und RStudio zu arbeiten.</p>
+</div>
+<div id="verwendete-literatur" class="section level2 unnumbered">
+<h2>Verwendete Literatur<a class="anchor" aria-label="anchor" href="#verwendete-literatur"><i class="fas fa-link"></i></a>
+</h2>
+<p>Wir werden in diesem Kurs hauptsächlich das freie, englischsprachige Buch <a href="https://moderndive.com/">ModernDive: Statistical Inference via Data Science</a> benutzen <span class="citation">(<a href="literatur.html#ref-ModernDive" role="doc-biblioref">Ismay and Kim 2021</a>)</span>. Bitte lassen Sie sich nicht davon abschrecken, dass das Buch englischsprachig ist. Es ist sehr gut verständlich und bietet einen modernen Zugang zur Datenanalyse. Als ein weiteres Buch werden wir <span class="citation"><a href="literatur.html#ref-Sauer2019" role="doc-biblioref">Sauer</a> (<a href="literatur.html#ref-Sauer2019" role="doc-biblioref">2019</a>)</span> nutzen.</p>
+<p>Ab und an werde ich Ihnen auch andere Literatur empfehlen. Für Ihren Abschlussbericht werden Sie auch selbständig weitere Literatur recherchieren.</p>
+</div>
+<div id="sinn-und-unsinn-dieses-skripts" class="section level2 unnumbered">
+<h2>Sinn und Unsinn dieses Skripts<a class="anchor" aria-label="anchor" href="#sinn-und-unsinn-dieses-skripts"><i class="fas fa-link"></i></a>
+</h2>
+<p>Dieses Skript ist ein lebendiges Begleitdokument des Kurses. Es wird laufend angepasst und aktualisiert.</p>
+<p>Ich nutze verschiedenfarbige Blöcke, um wichtige Stellen hervorzuheben:</p>
+<div class="rmdinfo">
+<p>
+Infoblock
+</p>
+</div>
+<p><br></p>
+<div class="rmdalert">
+<p>
+Achtung, wichtig!
+</p>
+</div>
+<p><br></p>
+<div class="rmdexample">
+<p>
+Beispielblock
+</p>
+</div>
+<p><br></p>
+<div class="rmdoutcomes">
+<p>
+Lernziele
+</p>
+</div>
+<!-- <br> -->
+<!-- ```{block, type='rmdsummary'} -->
+<!-- Zusammenfassung -->
+<!-- ``` -->
+</div>
+<div id="inspiration-quellen-und-danksagung" class="section level2 unnumbered">
+<h2>Inspiration, Quellen und Danksagung<a class="anchor" aria-label="anchor" href="#inspiration-quellen-und-danksagung"><i class="fas fa-link"></i></a>
+</h2>
+<p>Dieses Skript baut stark auf folgenden freien Quellen auf:</p>
+<ul>
+<li>r4ds: <span class="citation"><a href="literatur.html#ref-r4ds" role="doc-biblioref">Wickham and Grolemund</a> (<a href="literatur.html#ref-r4ds" role="doc-biblioref">2021</a>)</span>
+</li>
+<li>ggplot2: <span class="citation"><a href="literatur.html#ref-Wickham2020" role="doc-biblioref">Wickham</a> (<a href="literatur.html#ref-Wickham2020" role="doc-biblioref">2020</a>)</span>
+</li>
+<li>ModernDive: <span class="citation"><a href="literatur.html#ref-ModernDive" role="doc-biblioref">Ismay and Kim</a> (<a href="literatur.html#ref-ModernDive" role="doc-biblioref">2021</a>)</span>
+</li>
+</ul>
+<p>Den Autoren dieser Bücher gilt ein großer Dank für Ihren Beitrag zur <svg aria-hidden="true" role="img" viewbox="0 0 581 512" style="height:1em;width:1.13em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:steelblue;overflow:visible;position:relative;"><path d="M581 226.6C581 119.1 450.9 32 290.5 32S0 119.1 0 226.6C0 322.4 103.3 402 239.4 418.1V480h99.1v-61.5c24.3-2.7 47.6-7.4 69.4-13.9L448 480h112l-67.4-113.7c54.5-35.4 88.4-84.9 88.4-139.7zm-466.8 14.5c0-73.5 98.9-133 220.8-133s211.9 40.7 211.9 133c0 50.1-26.5 85-70.3 106.4-2.4-1.6-4.7-2.9-6.4-3.7-10.2-5.2-27.8-10.5-27.8-10.5s86.6-6.4 86.6-92.7-90.6-87.9-90.6-87.9h-199V361c-74.1-21.5-125.2-67.1-125.2-119.9zm225.1 38.3v-55.6c57.8 0 87.8-6.8 87.8 27.3 0 36.5-38.2 28.3-87.8 28.3zm-.9 72.5H365c10.8 0 18.9 11.7 24 19.2-16.1 1.9-33 2.8-50.6 2.9v-22.1z"></path></svg>-Community <svg aria-hidden="true" role="img" viewbox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:red;overflow:visible;position:relative;"><path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"></path></svg>!</p>
+</div>
+<div id="reproduzierbarkeit" class="section level2 unnumbered">
+<h2>Reproduzierbarkeit<a class="anchor" aria-label="anchor" href="#reproduzierbarkeit"><i class="fas fa-link"></i></a>
+</h2>
+<p>Dieses Buch wurde in <a href="https://www.rstudio.com/products/rstudio/">RStudio</a> mit <a href="https://bookdown.org/">Bookdown</a> geschrieben und in R version 4.1.0 (2021-05-18) gebaut. Folgende Pakete werden für die Beispiele und Übungen benötigt:</p>
+<div class="inline-table"><table class="table table-sm">
+<thead><tr class="header">
+<th align="left">package</th>
+<th align="left">version</th>
+<th align="left">source</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">gapminder</td>
+<td align="left">0.3.0</td>
+<td align="left">CRAN (R 4.1.0)</td>
+</tr>
+<tr class="even">
+<td align="left">infer</td>
+<td align="left">0.5.4</td>
+<td align="left">CRAN (R 4.1.0)</td>
+</tr>
+<tr class="odd">
+<td align="left">lubridate</td>
+<td align="left">1.7.10</td>
+<td align="left">CRAN (R 4.1.0)</td>
+</tr>
+<tr class="even">
+<td align="left">moderndive</td>
+<td align="left">0.5.1</td>
+<td align="left">CRAN (R 4.1.0)</td>
+</tr>
+<tr class="odd">
+<td align="left">tidyverse</td>
+<td align="left">1.3.1</td>
+<td align="left">CRAN (R 4.1.0)</td>
+</tr>
+</tbody>
+</table></div>
+<p>Die komplette Information zur Session lautet:</p>
+<pre><code>## R version 4.1.0 (2021-05-18)
+## Platform: x86_64-pc-linux-gnu (64-bit)
+## Running under: Ubuntu 20.10
+## 
+## Matrix products: default
+## BLAS:   /usr/lib/x86_64-linux-gnu/atlas/libblas.so.3.10.3
+## LAPACK: /usr/lib/x86_64-linux-gnu/atlas/liblapack.so.3.10.3
+## 
+## locale:
+##  [1] LC_CTYPE=de_DE.UTF-8       LC_NUMERIC=C              
+##  [3] LC_TIME=de_DE.UTF-8        LC_COLLATE=de_DE.UTF-8    
+##  [5] LC_MONETARY=de_DE.UTF-8    LC_MESSAGES=de_DE.UTF-8   
+##  [7] LC_PAPER=de_DE.UTF-8       LC_NAME=C                 
+##  [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+## [11] LC_MEASUREMENT=de_DE.UTF-8 LC_IDENTIFICATION=C       
+## 
+## attached base packages:
+## [1] stats     graphics  grDevices utils     datasets  methods   base     
+## 
+## other attached packages:
+##  [1] forcats_0.5.1     stringr_1.4.0     dplyr_1.0.6       purrr_0.3.4      
+##  [5] readr_1.4.0       tidyr_1.1.3       tibble_3.1.2      ggplot2_3.3.3    
+##  [9] tidyverse_1.3.1   kableExtra_1.3.4  fontawesome_0.2.1
+## 
+## loaded via a namespace (and not attached):
+##  [1] Rcpp_1.0.6        svglite_2.0.0     lubridate_1.7.10  tufte_0.10       
+##  [5] assertthat_0.2.1  rprojroot_2.0.2   digest_0.6.27     utf8_1.2.1       
+##  [9] R6_2.5.0          cellranger_1.1.0  backports_1.2.1   reprex_2.0.0     
+## [13] evaluate_0.14     highr_0.9         httr_1.4.2        pillar_1.6.1     
+## [17] rlang_0.4.11      readxl_1.3.1      rstudioapi_0.13   jquerylib_0.1.4  
+## [21] rmarkdown_2.8     desc_1.3.0        webshot_0.5.2     munsell_0.5.0    
+## [25] broom_0.7.6       compiler_4.1.0    modelr_0.1.8      xfun_0.23        
+## [29] pkgconfig_2.0.3   systemfonts_1.0.2 htmltools_0.5.1.1 downlit_0.2.1    
+## [33] tidyselect_1.1.1  bookdown_0.22.3   fansi_0.5.0       viridisLite_0.4.0
+## [37] crayon_1.4.1      dbplyr_2.1.1      withr_2.4.2       grid_4.1.0       
+## [41] jsonlite_1.7.2    gtable_0.3.0      lifecycle_1.0.0   DBI_1.1.1        
+## [45] magrittr_2.0.1    scales_1.1.1      cli_2.5.0         stringi_1.6.2    
+## [49] fs_1.5.0          xml2_1.3.2        bslib_0.2.5.1     ellipsis_0.3.2   
+## [53] generics_0.1.0    vctrs_0.3.8       tools_4.1.0       glue_1.4.2       
+## [57] hms_1.1.0         yaml_2.2.1        colorspace_2.0-1  sessioninfo_1.1.1
+## [61] rvest_1.0.0       knitr_1.33        haven_2.4.1       sass_0.4.0</code></pre>
+<div class="inline-figure"><img src="figures/Cc-by-nc-sa_icon.svg" style="width:30.0%"></div>
+<p>Diese Skript ist lizensiert unter <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.de/">Creative Commons Namensnennung - Nicht-kommerziell - Weitergabe unter gleichen Bedingungen 4.0 International.</a></p>
+
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="empty"></div>
+<div class="next"><a href="einfuehrung.html"><span class="header-section-number">1</span> Der Kurs</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#vorwort">Vorwort</a></li>
+<li><a class="nav-link" href="#organisatorisches">Organisatorisches</a></li>
+<li><a class="nav-link" href="#verwendete-literatur">Verwendete Literatur</a></li>
+<li><a class="nav-link" href="#sinn-und-unsinn-dieses-skripts">Sinn und Unsinn dieses Skripts</a></li>
+<li><a class="nav-link" href="#inspiration-quellen-und-danksagung">Inspiration, Quellen und Danksagung</a></li>
+<li><a class="nav-link" href="#reproduzierbarkeit">Reproduzierbarkeit</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/ChrisBogner/datenanalyse.git/blob/master/index.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/ChrisBogner/datenanalyse.git/edit/master/index.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Datenanalyse mit R</strong>: SoSe 2021" was written by Christina Bogner. It was last built on 2021-06-06.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+</html>

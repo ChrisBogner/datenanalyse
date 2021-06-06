@@ -1,10 +1,10 @@
-# Stichproben und Variabilität
+# Stichproben und Variabilität {#stichproben}
 
 ```{block, type = 'rmdoutcomes'}
 - Begriffe Stichprobenverteilung und Standardfehler erkären
-- Zufall bei wiederholter Erstellung von Stichproben erkennen
+- Zufall bei wiederholter Stichprobenerhebung erkennen
 - Stichprobenverteilung darstellen
-- Einfluss der Stichprobengröße auf Stichprobenverteilung bennen
+- Einfluss der Stichprobengröße auf Stichprobenverteilung benennen
 ```
 
 Mit diesem Kapitel steigen wir in die schließende Statistik ein. Wir beginnen damit, wie man in der Statistik zu Daten kommt (**Stichprobenerhebung**) und welche Rolle der Zufall dabei spielt. Dabei konzentrieren wir uns auf die Erhebung von einfachen zufälligen Stichproben (**Zufallsstichproben**), nicht auf das Designen von komplizierten Erhebungen. Das ist eine Kunst für sich und geht über die Ziele dieses Kurses hinaus.
@@ -146,8 +146,6 @@ Die Histogramme geben nun sehr gut die Verteilung der Anteile der Stadt- und Lan
 Was passiert, wenn wir die Größe der Stichproben variieren? Das würde Befragungen mit unterschiedlicher Anzahl von Teilnehmern entsprechen. Wir vergleichen 25, 50 und 100 Befragte und wiederholen jeweils 1000 Mal, um erneut Stichprobenverteilungen plotten zu können. Das ist eine repetitive Aufgabe und ich werde dafür eine Funktion definieren. Wie man das macht, wird in einer späteren Stunde erklärt.
 
 ```{r}
-set.seed(123)
-
 calculate_props <- function(grund_data = grundgesamtheit, befragung_size, befragung_reps = 1000) {
   
   befragung <- rep_sample_n(grund_data, size = befragung_size, replace = FALSE, reps = befragung_reps)
@@ -162,6 +160,8 @@ wohnort_props
 
 Nun wenden wir diese selbst definierte Funktion an und füren die Befragungen durch.
 ```{r, message = F}
+set.seed(123)
+
 # Stichprobengröße 25
 wohnort_props_25 <- calculate_props(grund_data = grundgesamtheit, befragung_size = 25, befragung_reps = 1000)
   
@@ -246,7 +246,7 @@ In der Lösung zu dieser Aufgabe erhalten Sie auch weiter Tipps zur Darstellung 
 
 
 ## Ihre Arbeit einreichen
-- Speichern Sie Ihr Notbook ab und laden Sie nur die .Rmd Datei vom Server.
+- Speichern Sie Ihr Notebook ab und laden Sie nur die .Rmd Datei vom Server.
 - Laden Sie Ihre .Rmd Datei in ILIAS hoch. **Beachten Sie die Deadline!**
 - Sie erhalten die Musterlösung nach dem Hochladen.
 

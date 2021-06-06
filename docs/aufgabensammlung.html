@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Kapitel 10 Aufgabensammlung | Datenanalyse mit R</title>
+<meta name="author" content="Christina Bogner">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.2"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.8/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.2.5.1/tabs.js"></script><script src="libs/bs3compat-0.2.5.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/mark.js@8.11.1/dist/mark.min.js"></script><!-- CSS --><link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="font-awesome.min.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="SoSe 2021">Datenanalyse mit R</a>:
+        <small class="text-muted">SoSe 2021</small>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Vorwort</a></li>
+<li><a class="" href="einfuehrung.html"><span class="header-section-number">1</span> Der Kurs</a></li>
+<li><a class="" href="erste-schritte.html"><span class="header-section-number">2</span> Erste Schritte in R</a></li>
+<li><a class="" href="reproduzieren.html"><span class="header-section-number">3</span> R Markdown</a></li>
+<li><a class="" href="ggplot.html"><span class="header-section-number">4</span> Einführung in ggplot2</a></li>
+<li><a class="" href="daten-einlesen-und-visualisieren.html"><span class="header-section-number">5</span> Daten einlesen und visualisieren</a></li>
+<li><a class="" href="tidyverse.html"><span class="header-section-number">6</span> Der explorative Workflow mit tidyverse</a></li>
+<li><a class="" href="stichproben.html"><span class="header-section-number">7</span> Stichproben und Variabilität</a></li>
+<li><a class="" href="bootstrapping-und-konfidenzintervalle.html"><span class="header-section-number">8</span> Bootstrapping und Konfidenzintervalle</a></li>
+<li><a class="" href="hypothesentests-mit-dem-paket-infer.html"><span class="header-section-number">9</span> Hypothesentests mit dem Paket infer</a></li>
+<li><a class="active" href="aufgabensammlung.html"><span class="header-section-number">10</span> Aufgabensammlung</a></li>
+<li><a class="" href="literatur.html">Literatur</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/ChrisBogner/datenanalyse.git">View book source <i class="fab fa-github"></i></a></p>
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="aufgabensammlung" class="section level1" number="10">
+<h1>
+<span class="header-section-number">Kapitel 10</span> Aufgabensammlung<a class="anchor" aria-label="anchor" href="#aufgabensammlung"><i class="fas fa-link"></i></a>
+</h1>
+<p>Diese Aufgabensammlung enthält zusätzlich Aufgaben, die z.B. im Seminar bearbeitet werden. Aufgaben zu den einzelnen Kapiteln finden Sie am Ende des jeweiligen Kapitels.</p>
+<div id="werdeschlau" class="section level2" number="10.1">
+<h2>
+<span class="header-section-number">10.1</span> Tutorial Zusammenhangsmaße<a class="anchor" aria-label="anchor" href="#werdeschlau"><i class="fas fa-link"></i></a>
+</h2>
+<p><strong>Begleitend zu diesem Tutorial sind die Kapitel 2 und 3 in Mittag (2017) “Statistik” zu lesen.</strong></p>
+</div>
+<div id="befragung-der-studierenden-der-uni-werdeschlau" class="section level2 unnumbered">
+<h2>Befragung der Studierenden der Uni Werdeschlau<a class="anchor" aria-label="anchor" href="#befragung-der-studierenden-der-uni-werdeschlau"><i class="fas fa-link"></i></a>
+</h2>
+<p>Wir beschäftigen uns mit einem fiktiven Beispiel.</p>
+<p>An der (kleinen) Universität Werdeschlau möchte die Studierendenvertretung wissen, ob sich eine Station zum Ausleihen von Fahrrädern lohnen würde. Dazu befragen sie die Studierenden, wie lange sie zur Uni fahren. Zudem wollen Sie wissen, ob die Anreisezeit und die Zeit, die die Studierenden pro Woche in der Bibliothek verbringen, zusammen hängen.</p>
+<div id="grundgesamtheit-generieren" class="section level3" number="10.1.1">
+<h3>
+<span class="header-section-number">10.1.1</span> Grundgesamtheit generieren<a class="anchor" aria-label="anchor" href="#grundgesamtheit-generieren"><i class="fas fa-link"></i></a>
+</h3>
+<p>Unsere <strong>Grundgesamtheit</strong> sind alle 12000 Studierende von der Uni Werdeschlau. Wir erstellen uns in diesem Beispiel selbst unsere Grundgesamtheit aus der Gleichverteilung. Die Regeln dazu sind absolut frei erfunden. Die meisten Studierenden sind zwischen 5 und 40 Minuten unterwegs; 20% jedoch haben eine längere Anreise zwischen 60 und 120 Minuten.</p>
+<p><em>Lassen Sie den Code laufen.</em></p>
+<div class="sourceCode" id="cb162"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
+<span class="va">anreise</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">12000</span> <span class="op">*</span> <span class="fl">0.8</span>, min <span class="op">=</span> <span class="fl">5</span>, max <span class="op">=</span> <span class="fl">40</span><span class="op">)</span>,
+                     <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">12000</span> <span class="op">*</span> <span class="fl">0.2</span>, min <span class="op">=</span> <span class="fl">60</span>, max <span class="op">=</span> <span class="fl">120</span><span class="op">)</span><span class="op">)</span>
+
+<span class="va">geschlecht</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'m'</span>, <span class="st">'w'</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">12000</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+<span class="va">wohnort</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="va">anreise</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span>
+  <span class="kw">if</span><span class="op">(</span><span class="va">x</span> <span class="op">&lt;</span> <span class="fl">30</span><span class="op">)</span> <span class="st">'stadt'</span>
+  <span class="kw">else</span> <span class="st">'land'</span>
+<span class="op">}</span><span class="op">)</span>
+<span class="va">verkehrsmittel</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="va">anreise</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span>
+  <span class="kw">if</span><span class="op">(</span><span class="va">x</span> <span class="op">&lt;=</span> <span class="fl">10</span><span class="op">)</span> <span class="st">'zu_fuss'</span>
+  <span class="kw">else</span> <span class="kw">if</span><span class="op">(</span><span class="va">x</span> <span class="op">&gt;</span> <span class="fl">10</span> <span class="op">&amp;</span> <span class="va">x</span> <span class="op">&lt;=</span> <span class="fl">15</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'zu_fuss'</span>, <span class="st">'fahrrad'</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
+  <span class="kw">else</span> <span class="kw">if</span><span class="op">(</span><span class="va">x</span> <span class="op">&gt;</span> <span class="fl">15</span> <span class="op">&amp;</span> <span class="va">x</span> <span class="op">&lt;=</span> <span class="fl">45</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'bus'</span>, <span class="st">'fahrrad'</span>, <span class="st">'auto'</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
+  <span class="kw">else</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'bus'</span>, <span class="st">'auto'</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
+<span class="op">}</span><span class="op">)</span>
+
+<span class="va">zeit_bib</span> <span class="op">&lt;-</span> <span class="fl">5</span> <span class="op">*</span> <span class="fl">60</span> <span class="op">-</span> <span class="fl">0.7</span> <span class="op">*</span> <span class="va">anreise</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">anreise</span><span class="op">)</span>, <span class="fl">0</span>, <span class="fl">20</span><span class="op">)</span></code></pre></div>
+<p>Wir setzen <code>geschlecht</code>, <code>wohnort</code>, <code>verkehrsmittel</code>, <code>anreise</code> und <code>zeit_bib</code> zu einer Datenmatrix (<code>tibble</code>) zusammen und nennen das Objekt <code>grundgesamtheit</code>.</p>
+<p><em>Lassen Sie den folgenden Code laufen.</em></p>
+<div class="sourceCode" id="cb163"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">grundgesamtheit</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="op">(</span><span class="va">geschlecht</span>, <span class="va">wohnort</span>, <span class="va">verkehrsmittel</span>, <span class="va">anreise</span>, <span class="va">zeit_bib</span><span class="op">)</span></code></pre></div>
+</div>
+<div id="befragung-simulieren" class="section level3" number="10.1.2">
+<h3>
+<span class="header-section-number">10.1.2</span> Befragung simulieren<a class="anchor" aria-label="anchor" href="#befragung-simulieren"><i class="fas fa-link"></i></a>
+</h3>
+<p>In der Realität werden natürlich nicht alle 12000 Studierende befragt (wer hat schon so viele Kapazitäten?), sondern eine zufällige <strong>Stichprobe</strong> erhoben, also eine Teilmenge der Grundgesamtheit.</p>
+<p><strong>Frage</strong>: Wie nennt man die Studierenden</p>
+<ul>
+<li>Merkmalsträger</li>
+<li>Befragte oder</li>
+<li>Modalwerte?</li>
+</ul>
+<p>Falls Sie nicht sicher sind: Lesen Sie Kapitel 2 in Mittag (2017) “Statistik!”</p>
+<p><br></p>
+<p>Um unsere Stichprobe zu erstellen, ziehen wir ohne Zurücklegen aus unserer Grundgesamtheit. Sagen wir mal, die Kapazitäten der Befragenden reichen für 200 Befragungen.</p>
+<p><em>Lassen Sie den folgenden Code laufen.</em></p>
+<div class="sourceCode" id="cb164"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">befragung</span> <span class="op">&lt;-</span> <span class="va">grundgesamtheit</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">grundgesamtheit</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, size <span class="op">=</span> <span class="fl">200</span>, replace <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>, <span class="op">]</span></code></pre></div>
+</div>
+<div id="kurze-explorative-datenanalyse" class="section level3" number="10.1.3">
+<h3>
+<span class="header-section-number">10.1.3</span> Kurze explorative Datenanalyse<a class="anchor" aria-label="anchor" href="#kurze-explorative-datenanalyse"><i class="fas fa-link"></i></a>
+</h3>
+<p>Von hier an arbeiten wir mit unserer Stichprobe <code>befragung</code>. Sehen wir uns mal die empirische Verteilung, d.h. die Verteilung in der Stichprobe an.</p>
+<p>Plotten Sie ein Histogramm der Anreisezeiten in unserer Stichprobe. <em>Lassen Sie den Code laufen und passen Sie die bins sinnvoll an.</em></p>
+<div class="sourceCode" id="cb165"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">befragung</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">anreise</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">geom_histogram</span><span class="op">(</span>bins <span class="op">=</span> <span class="fl">5</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">xlab</span><span class="op">(</span><span class="st">'Tagliche Anreise (min)'</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">ylab</span><span class="op">(</span><span class="st">'Häufigkeit'</span><span class="op">)</span></code></pre></div>
+</div>
+<div id="lage--und-streuungsmaße" class="section level3" number="10.1.4">
+<h3>
+<span class="header-section-number">10.1.4</span> Lage- und Streuungsmaße<a class="anchor" aria-label="anchor" href="#lage--und-streuungsma%C3%9Fe"><i class="fas fa-link"></i></a>
+</h3>
+<p>Erstellen Sie die Fünf-Punkte-Zusammenfassung der Stichprobe. <em>Lassen Sie den Code laufen.</em></p>
+<div class="sourceCode" id="cb166"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">befragung</span><span class="op">)</span></code></pre></div>
+<p>Wie Sie sehen können, behandelt R die kategorischen Daten anders als numerische. Kategorische Variablen werden als absolute Häufigkeiten pro Kategorie dargestellt (d.h. ausgezählt).</p>
+<p>Wir vergleichen nun gewöhnliche und robuste Lage- und Streuungsmaße. Zu gewöhnlichen gehören der Mittelwert (genauer arithmetisches Mittel) und die Standardabwechung.</p>
+<p><em>Berechnen Sie den Mittelwert und die Standardabweichung der Anreise.</em></p>
+<p>Zu den robusten Maßen gehören der Median, der Interquartilabstand und die mittlere absolute Abweichung vom Median (MAD). MAD beschreibt die durchschnittlich Abweichung der Stichprobe von ihrem Median.</p>
+<p><em>Berechnen Sie den Median der Stichprobe.</em></p>
+<p>Den Interquartilabstand bekommt man mit Hilfe der Funtion <code>quantile</code>, die die Quantile berechnet.</p>
+<p><em>Lassen Sie den folgenden Code laufen.</em></p>
+<div class="sourceCode" id="cb167"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">befragung</span><span class="op">$</span><span class="va">anreise</span>, probs <span class="op">=</span> <span class="fl">0.75</span><span class="op">)</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">befragung</span><span class="op">$</span><span class="va">anreise</span>, probs <span class="op">=</span> <span class="fl">0.25</span><span class="op">)</span></code></pre></div>
+<p>Der Interquartilabstand kann auch direkt mit der Funktion <code><a href="https://rdrr.io/r/stats/IQR.html">IQR()</a></code> berechnet werden und MAD mit <code><a href="https://rdrr.io/r/stats/mad.html">mad()</a></code>.</p>
+<p><em>Berechnen Sie den Interquartilabstand und MAD der Stichprobe.</em></p>
+<p>Vergleichen Sie die gewöhnlichen und die robusten Maße. Es gilt: je größer die außergewöhnlichen Datenpunkte, d.h. je höher die höchsten Anfahrtszeiten, desto stärker reagieren der Mittelwert und die Standardabweichung. Die robusten Maße bleiben (solange der Anteil der hohen Anfahrtszeiten nicht zu groß ist) relativ konstant.</p>
+<p>Abgesehen vom Aspekt der Robustheit, ist das arithmetische Mittel nicht immer ein geeigneter Durchschnittswert. Für Wachstumsfaktoren (Preissteigerung, Zinsen) ist das geometrische Mittel die korrekte Mittelung und für die Berechnung von Durchschnittsgeschwindigkeiten das harmonische Mittel (Details z.B. bei Fahrmeir et al. (2016). Statistik. Der Weg zur Datenanalyse).</p>
+</div>
+<div id="zufall-in-der-befragung" class="section level3" number="10.1.5">
+<h3>
+<span class="header-section-number">10.1.5</span> Zufall in der Befragung<a class="anchor" aria-label="anchor" href="#zufall-in-der-befragung"><i class="fas fa-link"></i></a>
+</h3>
+<p>Wir haben unsere Befragten rein zufällig ausgewählt. D.h. die Kenngrößen hängen von dieser zufälligen Auswahl ab. Wie würden sie sich verändern, wenn wir eine andere Stichprobe ausgesucht hätten?</p>
+<p>Wir simulieren eine wiederholte Befragung und sehen uns an, wie sich der Mittelwert und der Median entwickeln. <em>Lassen Sie den Code laufen.</em></p>
+<div class="sourceCode" id="cb168"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">anzahl_der_befragungen</span> <span class="op">&lt;-</span> <span class="fl">100</span>
+
+<span class="co"># Leere Vektoren erstellen, in die später die Ergebnisse geschrieben werden.</span>
+<span class="va">mean_all</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/vector.html">vector</a></span><span class="op">(</span><span class="op">)</span>
+<span class="va">median_all</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/vector.html">vector</a></span><span class="op">(</span><span class="op">)</span>
+
+
+<span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="va">anzahl_der_befragungen</span><span class="op">)</span><span class="op">{</span>
+  <span class="va">dat</span> <span class="op">&lt;-</span> <span class="va">grundgesamtheit</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">grundgesamtheit</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, size <span class="op">=</span> <span class="fl">200</span>, replace <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>, <span class="op">]</span>
+  <span class="va">mean_all</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">anreise</span><span class="op">)</span>
+  <span class="va">median_all</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html">median</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">anreise</span><span class="op">)</span>
+<span class="op">}</span>
+
+<span class="va">kennzahlen</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="op">(</span><span class="va">mean_all</span>, <span class="va">median_all</span><span class="op">)</span></code></pre></div>
+<p>Stellen Sie die Mittelwerte <code>mean_all</code> als Histogramm dar. <em>Lassen Sie den Code laufen und passen Sie die bins sinnvoll an.</em></p>
+<div class="sourceCode" id="cb169"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">kennzahlen</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">mean_all</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">geom_histogram</span><span class="op">(</span>bins <span class="op">=</span> <span class="fl">5</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">xlab</span><span class="op">(</span><span class="st">'Mittelwerte der taglichen Anreise (min)'</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">ylab</span><span class="op">(</span><span class="st">'Häufigkeit'</span><span class="op">)</span></code></pre></div>
+<p>Stellen Sie die Mediane <code>median_all</code> als Histogramm dar. <em>Lassen Sie den Code laufen und passen Sie die bins sinnvoll an.</em></p>
+<div class="sourceCode" id="cb170"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">kennzahlen</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">median_all</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">geom_histogram</span><span class="op">(</span>bins <span class="op">=</span> <span class="fl">5</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">xlab</span><span class="op">(</span><span class="st">'Mediane der taglichen Anreise (min)'</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">ylab</span><span class="op">(</span><span class="st">'Häufigkeit'</span><span class="op">)</span></code></pre></div>
+</div>
+<div id="zusammenhangsmaße-für-nominalskalierte-merkmale" class="section level3" number="10.1.6">
+<h3>
+<span class="header-section-number">10.1.6</span> Zusammenhangsmaße für nominalskalierte Merkmale<a class="anchor" aria-label="anchor" href="#zusammenhangsma%C3%9Fe-f%C3%BCr-nominalskalierte-merkmale"><i class="fas fa-link"></i></a>
+</h3>
+<p>Gibt es Präferenzen für bestimmte Verkehrsmittel je nach Geschlecht?
+Wir sehen uns die Kontingenztabelle dazu an.</p>
+<p><em>Lassen Sie den folgenden Code laufen.</em></p>
+<div class="sourceCode" id="cb171"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">befragung</span><span class="op">$</span><span class="va">geschlecht</span>, <span class="va">befragung</span><span class="op">$</span><span class="va">verkehrsmittel</span><span class="op">)</span></code></pre></div>
+<p>Nun berechnen wir die Zusammenhangsmaße auf dieser Tabelle. Dazu nutzen wir die Bibliothek vcd (Visualizing Categorical Data), sehr empfehlenswert, wenn Sie kategorische Daten analysieren wollen.</p>
+<p><em>Lassen Sie den folgenden Code laufen.</em></p>
+<div class="sourceCode" id="cb172"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">vcd</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/pkg/vcd/man/assocstats.html">assocstats</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">befragung</span><span class="op">$</span><span class="va">geschlecht</span>, <span class="va">befragung</span><span class="op">$</span><span class="va">verkehrsmittel</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<p>Der Phi-Koeffizient ist NA, weil er nur auf <span class="math inline">\(2 \times 2\)</span>-Tabellen definiert ist. Die beiden anderen, Contingency Coeff. (Pearson Koeffizient K) und Cramer’s V zeigen unterschiedliche Werte an, je nachdem, wie unsere zufällige Stichprobe ausfällt. Aber der Zusammenhang sollte eher klein sein.</p>
+<p>Allgemein gil: Contingency Coeff. (Pearson Koeffizient K) und Cramer’s V schwanken zwischen 0 (kein Zusammenhang) und 1 (perfekter Zusammenhang). Wichtig: Sie zeigen keine Richtung an. D.h. wir wissen nicht, ob der Zusammenhang positiv - “je mehr desto mehr” oder negativ “je mehr desto weniger” ist.</p>
+<p>Die ersten beiden Zeilen, die <code>assocstats</code> liefert, gehören zum Thema Hypothsentests. Das besprechen wir später.</p>
+<p>Gibt es einen Zusammenhang zwischen dem Wohnort und dem ausgesuchten Verkehrsmittel?</p>
+<p><em>Berechnen Sie die Kontingenztabelle. Nutzen Sie die Funktion <code><a href="https://rdrr.io/r/base/table.html">table()</a></code> auf den Spalten <code>wohnort</code> und <code>verkehrsmittel</code> im Datensatz <code>befragung</code>.</em></p>
+<p>Berechnen Sie die Zusammenhangsmaße. <em>Lassen Sie den Code laufen.</em></p>
+<div class="sourceCode" id="cb173"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/vcd/man/assocstats.html">assocstats</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">befragung</span><span class="op">$</span><span class="va">wohnort</span>, <span class="va">befragung</span><span class="op">$</span><span class="va">verkehrsmittel</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<p>Gibt es eine Präferenz für den Wohnort je Geschlecht? <em>Lassen Sie den Code laufen.</em></p>
+<div class="sourceCode" id="cb174"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/vcd/man/assocstats.html">assocstats</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">befragung</span><span class="op">$</span><span class="va">wohnort</span>, <span class="va">befragung</span><span class="op">$</span><span class="va">geschlecht</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<p>Da Sie ja genau wissen, wie die Daten erstellt wurden, sollten Ihnen die Antworten nicht zu schwer fallen.</p>
+</div>
+<div id="zusammenhangsmaße-für-metrische-merkmale" class="section level3" number="10.1.7">
+<h3>
+<span class="header-section-number">10.1.7</span> Zusammenhangsmaße für metrische Merkmale<a class="anchor" aria-label="anchor" href="#zusammenhangsma%C3%9Fe-f%C3%BCr-metrische-merkmale"><i class="fas fa-link"></i></a>
+</h3>
+<p>Zum Schluss wenden wir uns den beiden numerischen Variablen, <code>anreise</code> und <code>zeit_bib</code>. Besteht hier eine Korrelation?</p>
+<p>Zuerst stellen wir die Daten dar.</p>
+<p><em>Lassen Sie den folgenden Code laufen.</em></p>
+<div class="sourceCode" id="cb175"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">befragung</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">anreise</span>, y <span class="op">=</span> <span class="va">zeit_bib</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">xlab</span><span class="op">(</span><span class="st">'Tägliche Anreise (min)'</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">ylab</span><span class="op">(</span><span class="st">'Zeit in der Bibliothek pro Woche (min)'</span><span class="op">)</span></code></pre></div>
+<p>Der Zusammenhang zwischen den beiden Variablen ist (ziemlich) linear und negativ.</p>
+<p>Wir berechnen beide Korrelationsmaße, den Pearson Korrelationskoeffizienten für lineare Zusammenhänge und den Spearman Korrelationskoeffizient für monotone Zusammenhänge.</p>
+<p><em>Lassen Sie den Code laufen.</em></p>
+<div class="sourceCode" id="cb176"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Pearson Korrelationskoeffizient</span>
+<span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">befragung</span><span class="op">$</span><span class="va">anreise</span>, <span class="va">befragung</span><span class="op">$</span><span class="va">zeit_bib</span>, method <span class="op">=</span> <span class="st">'pearson'</span><span class="op">)</span>
+
+<span class="co"># Spearman Korrelationskoeffizient</span>
+<span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">befragung</span><span class="op">$</span><span class="va">anreise</span>, <span class="va">befragung</span><span class="op">$</span><span class="va">zeit_bib</span>, method <span class="op">=</span> <span class="st">'spearman'</span><span class="op">)</span></code></pre></div>
+<p>Beide Koeffizienten sind nah dran an dem Faktor 0.7, den wir zum Simulieren unserer Daten verwendet haben. Man darf hier beide verwenden. Wichtig ist es zu berichten, welchen Sie verwenden. D.h. es ist nicht genug, zu schreiben, dass Sie eine Korrelation berechnet haben.</p>
+<p><strong>Gut gemacht! Lassen Sie den Code laufen.</strong></p>
+<div class="sourceCode" id="cb177"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://guangchuangyu.github.io/emojifont">emojifont</a></span><span class="op">)</span>
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/pkg/emojifont/man/geom_fontawesome.html">geom_fontawesome</a></span><span class="op">(</span><span class="st">"fa-coffee"</span>, color<span class="op">=</span><span class="st">'lightblue'</span>, size <span class="op">=</span> <span class="fl">80</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_void</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span><span class="st">"It's time for coffee"</span><span class="op">)</span></code></pre></div>
+</div>
+<div id="aufgabe-einreichen" class="section level3" number="10.1.8">
+<h3>
+<span class="header-section-number">10.1.8</span> Aufgabe einreichen<a class="anchor" aria-label="anchor" href="#aufgabe-einreichen"><i class="fas fa-link"></i></a>
+</h3>
+<ul>
+<li>Speichern Sie Ihr Notebook und laden Sie es vom Server herunter.</li>
+<li>Laden Sie Ihr Notebook in ILIAS hoch. Sie bekommen eine Musterlösung</li>
+<li>Vergleichen Sie Ihre Lösung mit der Musterlösung.</li>
+</ul>
+<p><strong>Fertig!</strong></p>
+</div>
+</div>
+<div id="der-explorative-workflow-mit-tidyverse" class="section level2" number="10.2">
+<h2>
+<span class="header-section-number">10.2</span> Der explorative Workflow mit tidyverse<a class="anchor" aria-label="anchor" href="#der-explorative-workflow-mit-tidyverse"><i class="fas fa-link"></i></a>
+</h2>
+<div id="r-hausaufgaben" class="section level3" number="10.2.1">
+<h3>
+<span class="header-section-number">10.2.1</span> R-Hausaufgaben<a class="anchor" aria-label="anchor" href="#r-hausaufgaben"><i class="fas fa-link"></i></a>
+</h3>
+<p>An dem Kurs “Einführung in R” nehmen 49 Studierende teil. Der Leistungsnachweis besteht aus Hausaufgaben, die insgesamt mit 100 Punkten bewertet werden. Ab 50 Punkten gilt der Kurs als bestanden.</p>
+<ol style="list-style-type: decimal">
+<li>Lesen Sie den Datensatz <span style="font-family: sans-serif; font-size: medium">R-HAs.txt</span>, der die Endpunkte enthält, ein.</li>
+<li>Ermitteln Sie, wie viele Teilnehmer bestanden und wie viele nicht bestanden haben. Nutzen Sie dazu die Funktion <code>mutate()</code> und die Funktion <code><a href="https://rdrr.io/r/base/ifelse.html">ifelse()</a></code>.</li>
+</ol>
+</div>
+<div id="klausur" class="section level3" number="10.2.2">
+<h3>
+<span class="header-section-number">10.2.2</span> Unfaire Klausur?<a class="anchor" aria-label="anchor" href="#klausur"><i class="fas fa-link"></i></a>
+</h3>
+<p>Ar belegt im 4. Semester die Veranstaltung “Spaß mit R.” Bei der Klausur gibt es 2 Aufgabengruppen mit jeweils 60 Punkten. Aufgabengruppe 1 wird an Studierende auf ungeraden Sitzplätzen und Aufgabengruppe 2 an Studierende auf geraden Sitzplätzen ausgegeben.</p>
+<ol style="list-style-type: decimal">
+<li>Lesen Sie den Datensatz <span style="font-family: sans-serif; font-size: medium">Klausurpunkte.txt</span> ein.</li>
+<li>Überprüfen Sie Ars Vermutung, dass die Aufgabengruppe 1 im Schnitt leichter war als Aufgabengruppe 2 (d.h. in der Gruppe 1 im Schnitt mehr Punkte erzielt wurden). Nutzen Sie die Funktionen <code>mutate()</code>, um eine Spalte mit der Gruppenzugehörigkeit zu ermitteln und <code>summarize()</code>, um den Mittelwert zu berechnen. Tipp: mit dem Operator <code><a href="https://rdrr.io/r/base/Arithmetic.html">%%</a></code> können Sie überprüfen, ob eine Zahl z.B. durch 2 teilbar ist.</li>
+</ol>
+</div>
+<div id="fledermäuse" class="section level3" number="10.2.3">
+<h3>
+<span class="header-section-number">10.2.3</span> Fledermäuse<a class="anchor" aria-label="anchor" href="#flederm%C3%A4use"><i class="fas fa-link"></i></a>
+</h3>
+<p>Ar Stat untersucht im Rahmen eines ökologischen Praktikums Fledermäuse in Ecuador. Er vermisst die größe der Tiere und notiert ihr Geschlecht.</p>
+<ul>
+<li>Laden Sie den Datensatz <span style="font-family: sans-serif; font-size: medium">Fledermaus.txt</span>. Dieser enthält die Größe der Tiere in cm.</li>
+<li>Die ersten 20 untersuchten Tiere sind Männchen. Erstellen Sie einen <code>factor</code> “geschlecht,” der das Geschlecht der Tiere enthält. Benutzen Sie dazu die Funktionen <code><a href="https://rdrr.io/r/base/rep.html">rep()</a></code>.</li>
+<li>Fügen Sie die Informationen über die Größe und das Geschlecht in einem <code>tibble</code> zusammen und bennen Sie die Spalten entsprechend.</li>
+<li>Bei dem 3. Individuum hat sich Ar vertippt. Die Größe des Tieres lautet in Wirklichkeit 5,37 cm. Korrigieren Sie den Fehler.</li>
+<li>Speichern Sie den korrigierten Datensatz ab.</li>
+<li>Berechnen Sie die Mittelwerte und die Standardabweichungen der Größen der Tiere je Geschlecht.</li>
+<li>Plotten Sie die Größen je Geschlecht in einem Boxplot und speichern Sie diesen ab.</li>
+</ul>
+</div>
+<div id="fledermäuse-revisited" class="section level3" number="10.2.4">
+<h3>
+<span class="header-section-number">10.2.4</span> Fledermäuse, revisited<a class="anchor" aria-label="anchor" href="#flederm%C3%A4use-revisited"><i class="fas fa-link"></i></a>
+</h3>
+<p>Wir gehen davon aus, dass das Alter der Fledermäuse mit ihrer Größe zusammenhängt. Pauschal legen wir fest, dass ein Tier, das kleiner als 5 cm groß ist, ein Jungtier ist.</p>
+<ul>
+<li>Klassifizieren Sie die Tiere in J (Jungtier) und E (Erwachsen). Erstellen Sie dazu mit <code>mutate()</code> ein eigene Spalte.</li>
+<li>Wie viele Jungtiere gibt es im Datensatz?</li>
+<li>Sind die Jungtiere weiblich oder männlich?</li>
+</ul>
+</div>
+<div id="zeitreihen-aus-der-langen-bramke-harz" class="section level3" number="10.2.5">
+<h3>
+<span class="header-section-number">10.2.5</span> Zeitreihen aus der Langen Bramke (Harz)<a class="anchor" aria-label="anchor" href="#zeitreihen-aus-der-langen-bramke-harz"><i class="fas fa-link"></i></a>
+</h3>
+<p>Im Harz wurden über eine längere Zeit Niederschlag, Abfluss und Temperatur gemessen. DIe Messeinheiten sind für Temperatur °C, für Niederschlag und Abfluss mm.</p>
+<ol style="list-style-type: decimal">
+<li>Laden Sie den Datensatz <span style="font-family: sans-serif; font-size: medium">Data.dat</span>.</li>
+<li>Wandeln Sie die Spalte <code>Date</code> in ein richtiges Datum um.</li>
+<li>Plotten Sie die Temperatur, den Niederschlag und den Abfluss (in verschiedene Grafiken) untereinander. Beschriften Sie alles korrekt und fügen Sie Titel hinzu. Überlegen Sie, welche Darstellungsart (geom) für den Niederschlag am besten ist.</li>
+<li>Speichern Sie die Grafik als pdf ab.</li>
+</ol>
+</div>
+<div id="umweltdaten-entlang-der-dänischen-küste" class="section level3" number="10.2.6">
+<h3>
+<span class="header-section-number">10.2.6</span> Umweltdaten entlang der dänischen Küste<a class="anchor" aria-label="anchor" href="#umweltdaten-entlang-der-d%C3%A4nischen-k%C3%BCste"><i class="fas fa-link"></i></a>
+</h3>
+<p>Die Datei <span style="font-family: sans-serif; font-size: medium">Temperatur.csv</span> aus <span class="citation"><a href="literatur.html#ref-Zuur2009a" role="doc-biblioref">Zuur, Ieno, and Meesters</a> (<a href="literatur.html#ref-Zuur2009a" role="doc-biblioref">2009</a>)</span> enthält Messungen von Temperatur, Salinität und Chlorophyl a an 31 Orten entlang der dänischen Küste. Die Daten stammen vom dänischen Institut RIKZ (Monitoringprogramm MWTL: Monitoring Waterstaatkundige Toestand des Lands). Die Messungen wurden zwischen 1990 und 2005 durchgeführt mit einer Häufigkeit von 0–4 mal pro Monat je nach Jahreszeit.</p>
+<ol style="list-style-type: decimal">
+<li>Lesen Sie den Datensatz <span style="font-family: sans-serif; font-size: medium">Temperatur.csv</span> ein.</li>
+<li>Konvertieren Sie die Spalte Date in ein richtiges Datumsformat und plotten Sie die Temperaturen pro Station (<code><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap()</a></code>) als Zeitreihen.</li>
+<li>Berechnen Sie die Anzahl der Messwerte, Monatsmittelwerte der Temperatur für alle Stationen, sowie die Standardabweichungen.</li>
+<li>Stellen Sie die Monatsmittel der Temperatur als Linien dar.</li>
+<li>Beschriften Sie die Grafik sinnvoll.</li>
+<li>Fügen Sie die Standardabweichungen als Band hinzu.</li>
+<li>Speichern Sie die Grafik als pdf ab.</li>
+</ol>
+</div>
+<div id="umweltdaten-entlang-der-dänischen-küste-revisited" class="section level3" number="10.2.7">
+<h3>
+<span class="header-section-number">10.2.7</span> Umweltdaten entlang der dänischen Küste, revisited<a class="anchor" aria-label="anchor" href="#umweltdaten-entlang-der-d%C3%A4nischen-k%C3%BCste-revisited"><i class="fas fa-link"></i></a>
+</h3>
+<ol style="list-style-type: decimal">
+<li>Berechnen Sie die Monatsmittelwerte und Standardabweichungen je Station. Tipp: <code>group_by(Station, Month)</code>.</li>
+<li>Stellen Sie die Daten mit einem Fehlerband dar (in verschiedenen Plots mit <code><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap()</a></code>) und speichern Sie sie ab.</li>
+</ol>
+<!-- ### Artenvielfalt in Grasländern --><!-- Sie erhalten Daten aus dem Grasland-Monitoring im Yellowstone Nationalpark und dem National Bison Range (USA). Das Ziel des Monitorings ist die Untersuchung möglicher Änderungen der Biodiversität und des Zusammenhang mit Umweltfaktoren. Biodiversität wurde durch die Anzahl unterschiedlicher Arten quantifiziert. Insgesamt haben die Forscher ca. 90 Arten in 8 Transekten kartiert. Die Aufnahmen wurden alle 4 bis 10 Jahre wiederholt. Insgesamt liegen 58 Beobachtungen vor. Die Daten sind in der Datei <span style='font-family: sans-serif; font-size: medium'>Vegetation2.xls</span> gespeichert. --><!-- 1. Laden Sie den Datensatz in R und sehen Sie sich das Ergebnis genau mit  `str`, `head` und `tail` an. Diese Aufgabe dient dazu, das Einlesen von Excel-Dateien mit `tidyverse` zu erarbeiten. Tipp: nutzen Sie die Funktion `read_xls()` in der Bibliothek `readxl`. Lesen Sie genau in der Hilfe nach, wie Sie *ein bestimmtes* Tabellenblatt einlesen können. --><!-- 1. Kurze explorative Analyse: Berechnen Sie die Anzahl der Messungen, den Mittelwert und die Standardabweichung der Artenzahl (Variable  `R`) pro Transekt.  --><!-- 1. Plotten Sie die Artenzahl gegen die Variable `BARESOIL` (Anteil von unbewachsenem Boden). Färben Sie die Punkte je nach Transekt unterschiedlich ein. Tipp: Transekt als `as.factor()` konvertieren. --><!-- 1. Fügen Sie eine glättende Linie ohne Konfidenzband hinzu, die alle Punkte unabhängig vom Transekt berücksichtigt (Abschnitt 5.2 in ggplot2 Buch).  --><!-- 1. Beschriften Sie die Graphik (auch die Legende!) sinnvoll und speichern Sie sie als pdf ab. --><!-- 1. Stellen Sie die Artenzahl je Transekt als Zeitreihe dar. Die Symbole sollen sowohl Punkte als auch Linien sein. Skalieren Sie die Größe der Punkte je nach Anteil des unbewachsenen Bodens (Abschnitt 6.2 im ggplot2 Buch). --><!-- 1. Beschriften Sie die Grafik (auch die Legenden!) sinnvoll und speichern Sie sie als pdf ab. --><!-- 1. Setzen Sie nun beide Grafiken neben einander, platzieren Sie die Legenden (ja nach gewähltem Layout) sinnvoll und speichern Sie die Grafiken ab. --><!-- ### Tracerversuche --><!-- Im Waldstein wurden Tracerversuche mit dem Farbstoff Brilliant Blue durchgeführt und die gefärbten Bodenprofile *binärisiert* (d.h. in ein schwarz-weiß Bild umgewandelt). Schwarze Pixels stellen gefärbten Boden und weiße ungefärbten dar. Aus diesen Binärbildern wurde anschließend eine Reihe von Kenngrößen berechnet. --><!-- 1. Lesen Sie die Datei <span style='font-family: sans-serif; font-size: medium'>Waldstein2005_ind.txt</span> ein.  Die Tiefe eines Profils ist 579 Pixel und es liegen 6 Profile untereinander in der Spalte d. --><!-- 1. Berechnen Sie die 5%, 50% und 95% Quantile des Färbeanteils (Index d) der 6 Profile. --><!-- 1.  Stellen Sie den Median des Anteils der Färbung mit der Tiefe dar und fügen Sie die Quantile als transparente Fläche hinzu (Tipp: `polygon`). --><!-- ## Tidy data --><!-- ### Wasserentnahme mit Datenquelle Excel --><!-- Wir beschäftigen uns mit dem Einlesen und bereinigen von Daten aus Exceldateien. Dazu nutzen wir das Beispiel aus einer der ersten Sitzungen zur Wasserentnahme in der EU. --><!-- 1. Sehen Sie sich die Struktur der Datei <span style='font-family: sans-serif; font-size: medium'>TEN000021586860138332.xlsx</span> an und lesen Sie sie ein. Nutzen Sie dazu die Funktion `read_xlsx()` aus dem Paket readxl. --><!-- 2. Bereinigen Sie den Datensatz und konvertieren Sie ihn in *tidy*. Nutzen Sie dazu die Funktion `pivot_longer()`. --><!-- 3. Finden und korrigieren Sie den Fehlwert. --><!-- 4. Filtern Sie die Einträge für die EU heraus und behalten Sie nur die einzelnen Länder bei. --><!-- 5. Stellen Sie die Änderung der Wasserentnahme pro Land dar. --><!-- ### Wasserentnahme mit Datenquelle EUROSTAT direkt --><!-- Wir können die Datenbank EUROSTAT direkt über ihr API (Application Programming Interface) ansprechen. Leider ist das herunter geladene Datenformat sehr umständlich. Um uns Programmierarbeit zu sparen, nutzen wir das Paket eurostat, das die Daten aus der Datenbank herunterlädt und gleich ordentlich formatiert. --><!-- 1. Installieren Sie das Paket eurostat und sehen Sie sich das Tutorial für das Paket an (https://ropengov.github.io/eurostat/articles/website/eurostat_tutorial.html) --><!-- 2. Durchsuchen Sie die Datenbank nach allen Datensätzen, die das Wort "water" enthalten und darin das Wort "abstraction". --><!-- 3. Laden Sie den entsprechenden Datensatz herunter (env_wat_abs). --><!-- 4. Das Paket skimr bietet Zusammenfassungsfunktionen für Datensätze, die man auch in der Pipe benutzen kann. Installieren Sie das Paket und wenden Sie die Funktion `skim()` auf den heruntergeladenen Datensatz an. --><!-- 4. Welche Wasserquellen und Nutzer sind im Datensatz enthalten (https://appsso.eurostat.ec.europa.eu/nui/show.do?dataset=env_wat_abs&lang=en)? --><!-- 4. Stellen Sie die Wasserentnahme pro Einwohner dar (Gesamtentnahme aus allen Quellen: wat_proc == 'ABST' & wat_src == 'FRW'). --><!-- 4. Berechnen Sie die Gesamtmenge des entnommenen Wassers für alle Länder je Quelle (Fresh surface water und Fresh ground water). --><!-- 4. Stellen Sie diese Daten als Punktdiagramm, als Balkendiagramm und als Flächendiagramm dar. Was ist das Problem mit dem Flächendiagramm? --><!-- ## Effizientes Programmieren --><!-- ### Lagerungsdichten --><!-- Auf 10 verschiedenen landwirtschaftlichen Feldern wurden im Oberboden je 25 Stechzylinder entnommen. --><!-- 1. Lesen Sie den Datensatz  <span style='font-family: sans-serif; font-size: medium'>Bodendaten.txt</span> ein. --><!-- 1. Bestimmen Sie die mittlere Lagerungsdichte pro Feld. --><!-- ### Temperatur-Datensatz, revisited --><!-- 1. Laden Sie den Temperatur-Datensatz aus @Zuur2009a, Datei <span style='font-family: sans-serif; font-size: medium'>Temperatur.csv</span>. --><!-- 1.  Berechnen Sie die Jahresmittelwerte je Station. (Tipp: Hilfe von `tapply` genau lesen!) -->
+</div>
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="hypothesentests-mit-dem-paket-infer.html"><span class="header-section-number">9</span> Hypothesentests mit dem Paket infer</a></div>
+<div class="next"><a href="literatur.html">Literatur</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#aufgabensammlung"><span class="header-section-number">10</span> Aufgabensammlung</a></li>
+<li><a class="nav-link" href="#werdeschlau"><span class="header-section-number">10.1</span> Tutorial Zusammenhangsmaße</a></li>
+<li>
+<a class="nav-link" href="#befragung-der-studierenden-der-uni-werdeschlau">Befragung der Studierenden der Uni Werdeschlau</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#grundgesamtheit-generieren"><span class="header-section-number">10.1.1</span> Grundgesamtheit generieren</a></li>
+<li><a class="nav-link" href="#befragung-simulieren"><span class="header-section-number">10.1.2</span> Befragung simulieren</a></li>
+<li><a class="nav-link" href="#kurze-explorative-datenanalyse"><span class="header-section-number">10.1.3</span> Kurze explorative Datenanalyse</a></li>
+<li><a class="nav-link" href="#lage--und-streuungsma%C3%9Fe"><span class="header-section-number">10.1.4</span> Lage- und Streuungsmaße</a></li>
+<li><a class="nav-link" href="#zufall-in-der-befragung"><span class="header-section-number">10.1.5</span> Zufall in der Befragung</a></li>
+<li><a class="nav-link" href="#zusammenhangsma%C3%9Fe-f%C3%BCr-nominalskalierte-merkmale"><span class="header-section-number">10.1.6</span> Zusammenhangsmaße für nominalskalierte Merkmale</a></li>
+<li><a class="nav-link" href="#zusammenhangsma%C3%9Fe-f%C3%BCr-metrische-merkmale"><span class="header-section-number">10.1.7</span> Zusammenhangsmaße für metrische Merkmale</a></li>
+<li><a class="nav-link" href="#aufgabe-einreichen"><span class="header-section-number">10.1.8</span> Aufgabe einreichen</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#der-explorative-workflow-mit-tidyverse"><span class="header-section-number">10.2</span> Der explorative Workflow mit tidyverse</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#r-hausaufgaben"><span class="header-section-number">10.2.1</span> R-Hausaufgaben</a></li>
+<li><a class="nav-link" href="#klausur"><span class="header-section-number">10.2.2</span> Unfaire Klausur?</a></li>
+<li><a class="nav-link" href="#flederm%C3%A4use"><span class="header-section-number">10.2.3</span> Fledermäuse</a></li>
+<li><a class="nav-link" href="#flederm%C3%A4use-revisited"><span class="header-section-number">10.2.4</span> Fledermäuse, revisited</a></li>
+<li><a class="nav-link" href="#zeitreihen-aus-der-langen-bramke-harz"><span class="header-section-number">10.2.5</span> Zeitreihen aus der Langen Bramke (Harz)</a></li>
+<li><a class="nav-link" href="#umweltdaten-entlang-der-d%C3%A4nischen-k%C3%BCste"><span class="header-section-number">10.2.6</span> Umweltdaten entlang der dänischen Küste</a></li>
+<li><a class="nav-link" href="#umweltdaten-entlang-der-d%C3%A4nischen-k%C3%BCste-revisited"><span class="header-section-number">10.2.7</span> Umweltdaten entlang der dänischen Küste, revisited</a></li>
+</ul>
+</li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/ChrisBogner/datenanalyse.git/blob/master/19-aufgabensammlung.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/ChrisBogner/datenanalyse.git/edit/master/19-aufgabensammlung.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Datenanalyse mit R</strong>: SoSe 2021" was written by Christina Bogner. It was last built on 2021-06-06.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+</html>

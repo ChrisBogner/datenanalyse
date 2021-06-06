@@ -7,6 +7,8 @@ rmd_files: ["index.Rmd",
 "05-einlesen-visualisieren.Rmd",
 "06-tidyverse.Rmd",
 "07-stichproben.Rmd",
+"08-bootstrap.Rmd",
+"09-hypothesentests.Rmd",
 #"06-funktionen.Rmd",
 #"09-visualisieren_2.Rmd",
 "19-aufgabensammlung.Rmd",
@@ -19,3 +21,4 @@ language:
         tab: 'Tabelle '
         fig: 'Abbildung '
 delete_merged_file: true
+output_dir: "docs"

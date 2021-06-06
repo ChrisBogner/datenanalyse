@@ -1,0 +1,260 @@
+# Bootstrapping und Konfidenzintervalle
+
+```{block, type = 'rmdoutcomes'}
+- Funktionsweise von Bootstrap erklären
+- Bootstrap-Konfidenzintervalle für Mittelwert berechnen
+```
+
+Im Kapitel \@ref(stichproben) haben Sie gesehen, dass Statistiken aus zufällig gezogenen Stichproben, dem Zufall unterliegen. Sie sind **Zufallsvariablen**. Diesen Zufall haben wir mit Hilfe der Stichprobenverteilung dieser Statistiken quantifiziert, in dem wir den **Standardfehler**, die Standardabweichung aus der Stichprobenverteilung, berechnet haben.
+
+Die Statistik, die wir im Kapitel \@ref(stichproben) berechnet haben, war der Anteil von Studierenden, die entweder in der Stadt oder auf dem Land wohnen. Mit jeder Stichprobe, aus der wir diesen Anteil berechnet haben, haben wir eigentlich **geschätzt**, wie groß der wahre Anteil der Stadt- und Landbewohner in der Grundgesamtheit (allen 12000 Studierenden von Werdeschlau) ist. Der aus der Stichprobe berechnete Anteil ist also ein **Schätzer**  für den wahren Anteil in der Grundgesamtheit. Dieser Schätzer ist eine Zufallsvariable (s.o.) und wie jede andere Zufallsvariable ist er durch seine Verteilung, nämlich die **Stichprobenverteilung** charakterisiert.
+
+Wir können jetzt also eine Menge statistischer Begriffe mit Hilfe unseres Beispiels mit Leben füllen:
+
+```{block, type='rmdalert'}
+- **Grundgesamtheit**: alle Studierenden der Universität Werdeschlau
+- **zufällige Stichprobe**: eine zufällig ausgesuchte Gruppe von Studierenden
+- **Parameter der Grundgesamtheit**: z.B. der wahre Anteil von Studierenden, die in der Stadt oder auf dem Land leben
+- **Schätzer** für diesen Parameter der Grundgesamtheit: Anteil der Studierenden, die in der Stadt oder auf dem Land leben, berechnet aus der zufälligen Stichprobe. Da die Stichprobe zufällig ist, kann man davon ausgehen, dass sie repräsentativ für die Grundgesamtheit ist und der Schätzer unverzerrt (*unbiased*, d.h. ohne einen systematischen Fehler).
+- **Inferenz**: schließen auf die Grundgesamtheit darf man, wenn die Stichprobe zufällig erhoben wurde und repräsentative für die Fragestellung ist.
+```
+
+Die Begriffe Statistik, Schätzer, Schätzfunktion und Stichprobenfunktion werden als Synonyme verwendet. Die Statistik ist ja auch eine Funktion, da sie mit einer Formel eine Zahl aus Daten (Stichprobe) berechnet. Sie fasst die Stichprobe also zusammen.
+
+Im echten Leben werden Sie kaum wiederholt befragen (Stichproben ziehen) können. Das ist vollkommen unrealistisch und nur für Computerexperimente ein tolles Werkzeug. In diesem Kapitel wird es darum gehen, wie man nun im richtigen Leben mit **einer Stichprobe** einen Parameter der Grundgesamtheit schätzen kann und dabei seine Variabilität quantifiziert.
+
+## Bootstrapping, die Münchhausenmethode
+Wenn wir nur eine Stichprobe haben, werden wir den Parameter der Grundgesamtheit daraus schätzen. Der Schätzer kann der Mittelwert oder eben auch der Anteil sein, so wie bei unseren vorherigen Beispielen mit Mittelwert der Anreisezeit oder dem Anteil der Studierenden aus der Stadt bzw. vom Land.
+
+Da jede Stichprobe dem Zufall unterliegt und der Schätzer somit eine Zufallsvariable darstellt, würden wir gerne wissen, wie gut wir schätzen. 
+
+>Gibt es einen plausiblen Bereich für den Mittelwert der Anreisezeit? Plausibel meint, dass wenn wir sehr oft verschiedene zufällige Stichprobe ziehen, dieser Bereich in sagen wir mal 95% der Fälle den wahren Mittelwert einschließt. Solche Plausibilitätsbereiche nennt man **Konfidenzintervalle**.
+
+Es gibt mehrere Methoden, solche Konfidenzintervalle zu berechnen. Wenn man die Verteilung des Schätzers kennt, wie z.B. beim Mittelwert (Normalverteilung), dann kann man daraus den Standardfehler berechnen (nennen wir diesen $SE$). Ein 95%-Konfidenzintervall wäre dann $\hat{\mu} \pm 1.96 \cdot SE$, wobei $\hat{\mu}$ der geschätzter Mittelwert ist. Das Hütchen steht für *geschätzt*. Diese Formel haben Sie bestimmt schon in der Grundvorlesung Statistik gesehen.
+
+Es gibt aber Schätzer, für die keine theoretische Verteilung bekannt ist. Da muss man eine andere Methode anwenden. Eine bekannte Methode heißt Bootstrapping (Bootstrap-Verfahren), manchmal auch Münchhausenmethode. Sie klingt auf den ersten Blick wie ein Selbstbetrug, so als ob man sich selbst an den Haaren aus dem Sumpf zieht (Abblildung \@ref(fig:meunch)), hat aber sehr gut fundierte mathematische Wurzeln. Bootstrap wurde von @Efron1979 Ende der 70er vorgestellt und hat sich seit dem als eine der wichtigsten *Resampling*-Strategien etabliert.
+
+```{r meunch, echo = F, fig.cap = 'Münchhausen zieht sich aus dem Sumpf (Theodor Hosemann (1807-1875), Public domain, via Wikimedia Commons)', fig.width = 6, out.width = "80%"}
+knitr::include_graphics('figures/Münchhausen-Sumpf-Hosemann.png')
+```
+
+Das Prinzip beim Bootstrap ist, dass die Stichprobe die Rolle der Grundgesamtheit übernimmt. Abbildung \@ref(fig:sampling-world) zeigt das Vorgehen aus dem Kapitel \@ref(stichproben). Wir ziehen mehrere echte Stichproben aus einer Grundgesamtheit, erhalten eine Stichprobenverteilung und können den Parameter der Grundgesamtheit schätzen.
+
+```{r sampling-world, echo = F, fig.cap = 'Berechnen einer Stichprobenverteilung durch wiederholtes Stichproben ziehen. Abbildung aus [@Hesterberg2015], dort Figure 4. Die Publikation ist open-access und darf für nicht-kommerzielle Zwecke verwendet werden.', fig.width = 6, out.width = "80%"}
+knitr::include_graphics('figures/sampling_world.png')
+```
+
+In Abbildung \@ref(fig:sampling-bootstrap) haben wir nur eine Stichprobe. Wir gehen davon aus, dass diese Stipchprobe eine Miniatur der Grundgesamtheit ist, also zufällig gezogen wurde und repräsentative ist. Mit dieser Grundidee im Kopf, ersetzten wir die Grundgesamtheit durch dies Stichprobe und verfahren (fast) genauso, um die Stichprobenverteilung zu ermitteln. Der einzige Unterschied ist, dass wir aus dieser einen Stichprobe **mit Zurücklegen** neue Stichproben (Bootstrap-Stichproben) ziehen.
+
+```{r sampling-bootstrap, echo = F, fig.cap = 'Berechnen einer Stichprobenverteilung durch wiederholtes Ziehen aus einer Stichprobe mit Zurücklegen. Abbildung aus [@Hesterberg2015], dort Figure 5. Die Publikation ist open-access und darf für nicht-kommerzielle Zwecke verwendet werden.', fig.width = 6, out.width = "80%"}
+knitr::include_graphics('figures/sampling_bootstrap.png')
+```
+
+Die Konfidenzintervalle berechnet man aus der Stichprobenverteilung der Bootstrap-Stichproben, indem man z.B. das 2.5% und das 97.5% Quantil berechnet. Zwischen diesen beiden Quantilen sind 95% der Werte enthalten. Dieses Intervall nennt man das 95%-Konfidenzintervall.
+
+## Konfidenzintervall für den Mittelwert der Anreisezeit
+Wir sehen uns das Ganze anhand des Beispiels der Studierenden aus Werdeschlau. Zunächst wieder der Code für die Grundgesamtheit.
+
+```{r, message = F, error = F}
+library(tidyverse)
+library(infer)
+```
+
+```{r}
+set.seed(123)
+
+student_id <- 1:12000
+  
+anreise <- c(runif(n = 12000 * 0.8, min = 5, max = 40),
+             runif(n = 12000 * 0.2, min = 60, max = 120))
+
+geschlecht <- sample(c('m', 'w'), size = 12000, replace = TRUE)
+
+wohnort <- sapply(anreise, function(x) {
+  if(x < 30) 'stadt'
+  else 'land'
+})
+
+verkehrsmittel <- sapply(anreise, function(x) {
+  if(x <= 10) 'zu_fuss'
+  else if(x > 10 & x <= 15) sample(c('zu_fuss', 'fahrrad'), size = 1)
+  else if(x > 15 & x <= 45) sample(c('bus', 'fahrrad', 'auto'), size = 1)
+  else sample(c('bus', 'auto'), size = 1)
+})
+
+zeit_bib <- 5 * 60 - 0.7 * anreise + rnorm(length(anreise), 0, 20)
+
+grundgesamtheit <- tibble(student_id, geschlecht, wohnort, verkehrsmittel, anreise, zeit_bib)
+
+grundgesamtheit
+```
+
+Nun befragen wir 200 Studierende.
+
+```{r}
+set.seed(345)
+
+befragung_size <- 200
+
+befragung <- rep_sample_n(grundgesamtheit, size = befragung_size, replace = FALSE, reps = 1)
+
+befragung
+```
+
+Wir berechnen den wahren Mittelwert der Anreisezeit und den Mittelwert aus der Befragung.
+```{r}
+mean_grundgesamtheit <- grundgesamtheit %>% 
+  summarise(Mittelwert = mean(anreise))
+
+mean_grundgesamtheit
+
+mean_befragung <- befragung %>% 
+  summarise(Mittelwert = mean(anreise))
+
+mean_befragung
+```
+
+Wir ziehen nun unsere Bootstrap-Stichproben aus der einen Stichprobe, nämlich der `befragung`. Achten Sie darauf, wie ähnlich der Code zum Ziehen von echten Stichproben ist. Wir ändern nur `replace = TRUE`.
+
+```{r}
+set.seed(345)
+
+befragung_size <- 200
+number_reps <- 10000
+
+befragung_reps_bootstrap <- rep_sample_n(befragung, size = befragung_size, replace = TRUE, reps = number_reps)
+
+befragung_reps_bootstrap
+```
+
+Studierende kommen jetzt mehrfach vor, da wir ja mit Zurücklegen gezogen haben. Wir sehen uns das in den erste 50 Bootstrap-Stichproben an.
+```{r}
+befragung_reps_bootstrap %>% 
+  filter(replicate %in% (1:50)) %>% 
+  group_by(replicate, student_id) %>% 
+  tally() %>% 
+  filter(n != 1) %>% 
+  arrange(desc(n))
+```
+
+Nun berechnen wir die Mittelwerte aus den Bootstrap-Stichproben.
+```{r}
+res_means_bootstrap <- befragung_reps_bootstrap %>%
+  group_by(replicate) %>% 
+  summarise(Mittelwert = mean(anreise))
+
+res_means_bootstrap
+```
+
+Der Standardfehler des Bootstraps und das 95%-Konfidenzintervall basierend auf Quantilen berechnen sich wie folgt:
+```{r}
+stat_bootstrap <- res_means_bootstrap %>% 
+  summarize(mean = mean(Mittelwert), sd = sd(Mittelwert), ci_2.5 = quantile(Mittelwert, probs = 0.025), ci_97.5 = quantile(Mittelwert, probs = 0.975))
+```
+
+
+Wir stellen die Stichprobenverteilung mit dem Standardfehler des Bootstraps und dem 95%-Konfidenzintervall dar. Das ist eine umfangreiche Grafik und wir gehen in der Übung Schritt für Schritt vor. Die Funktion `scale_color_manual` erlaubt es uns, die Legende anzupassen.
+
+```{r, out.width = '90%'}
+ggplot(res_means_bootstrap, aes(Mittelwert)) + 
+  geom_histogram(bins = 50 , color="white") +
+  labs(y = 'Häufigkeit', x = 'Mittelwerte der Anreise (min)') +
+  geom_vline(aes(xintercept = mean_grundgesamtheit$Mittelwert, col = 'grundgesamtheit'), linetype = "dashed", size = 2) + 
+  geom_vline(aes(xintercept = stat_bootstrap$mean, col = 'boot')) + 
+  geom_vline(aes(xintercept = mean_befragung$Mittelwert, col = 'stichprobe'), linetype = 'dashed', size = 2) +
+  geom_vline(aes(xintercept = stat_bootstrap$mean + stat_bootstrap$sd, col = 'sd')) + 
+  geom_vline(xintercept = stat_bootstrap$mean - stat_bootstrap$sd, col = 'orange') + 
+  geom_vline(aes(xintercept = stat_bootstrap$ci_2.5, col = 'ci')) +
+  geom_vline(xintercept = stat_bootstrap$ci_97.5, col = 'brown') + 
+  scale_color_manual(name = "Statistik", values = c(grundgesamtheit = 'black', sd = 'orange', boot = 'red', ci = 'brown', stichprobe = 'gray90'), breaks = c('stichprobe', 'boot', 'sd', 'ci', 'grundgesamtheit'), label = c('Mittelwert Stichprobe', 'Mittelwert Bootstrap', 'Standardfehler Bootstrap', '95% Konfidenzintervall Bootstrap', 'Mittelwert Population'))
+```
+
+Der Standardfehler des Bootstraps stimmt sehr gut mit dem  Fehler $s/\sqrt(n)$ für den Schätzer des Mittelwerts überein. Da wir normalerweise die wahre Standardabweichung der Grundgesamtheit nicht kennen, wird in der Formel $s/\sqrt(n)$ die Standardabweichung der Stichprobe als Schätzung verwendet.
+
+```{r}
+befragung %>% 
+  summarize(sd_error = sd(anreise)/sqrt(length(anreise)))
+```
+
+Standardfehler des Bootstraps.
+```{r}
+res_means_bootstrap %>% 
+  summarize(sd_error = sd(Mittelwert))
+```
+
+Und der wahre Standardfehler, wenn man die Standardabweichung der Grundgesamtheit kennt.
+```{r}
+grundgesamtheit %>% 
+  summarize(sd_error = sd(anreise)/sqrt(length(befragung$anreise)))
+```
+
+
+## Bootstrap-Konfidenzintervalle mit `infer`
+Das Paket `infer` bietet eine sehr bequeme Möglichkeit, Konfidentintervalle mit Bootstrap zu berechnen und zu visualisieren. Das Vorgehen aus dem vorherigen Abschnitt übertragen wir nun in den Workflow mit `infer`.
+
+Brechnen der Bootstrap-Stichproben.
+```{r}
+set.seed(345)
+
+bootstrap_distribution <- befragung %>%
+  specify(response = anreise) %>% 
+  generate(reps = 10000, type = 'bootstrap') %>% 
+  calculate(stat = 'mean')
+```
+
+Visualisieren der Stichprobenverteilung.
+```{r}
+visualize(bootstrap_distribution)
+```
+
+Berechnen Konfidenzintervalle
+```{r}
+percentile_ci <- bootstrap_distribution %>% 
+  get_confidence_interval(level = 0.95, type = "percentile")
+percentile_ci
+```
+
+Visualisieren der Stichprobenverteilung mit den Konfidenzintervallen
+```{r}
+visualize(bootstrap_distribution) + 
+  shade_confidence_interval(endpoints = percentile_ci, color = "orange", fill = "khaki") +
+  geom_vline(xintercept = mean_grundgesamtheit$Mittelwert, linetype = 'dashed')
+```
+
+
+Die Konfidenzintervalle, die wir als Quantile aus der Bootstrap-Stichprobenverteilung berechnet haben, und die, die man mit der Formel $\hat{\mu} \pm 1.96 \cdot s/\sqrt(n)$ berechnen kann, sind sehr ähnlich. Das werden Sie in einer der Aufgaben (s.u.) nachrechnen. Das liegt daran, dass der *Zentrale Grenzwertsatz* garantiert, dass die Stichprobenverteilung des Schätzers des Mittelwerts eine Normalverteilung ist. Es gibt aber Schätzer, wie z.B. den des Medians, für den es keine theoretische Verteilung gibt. Daher gilt als Take-Home-Message, dass man Bootstrap zum Berechnen der Konfidenzintervalle gut einsetzten kann, egal ob es eine theoretische Verteilung des Schätzers gibt. Die Quantilmethode zur Berechnung der Bootstrap-Konfidenzintervalle liefert gute Ergebnisse. Wir werden im späteren Kapitel lernen, dass man Bootstrap auch für die Regressionsanalyse nutzen kann.
+
+
+## Bedeutung der Konfidenzintervalle
+Ein Konfidenzintervall hängt von der Stichprobe ab, ist also vom Zufall betroffen. Man kann also sagen, dass die Grenzen des Konfidenzintervalls Zufallsvariablen sind. Das Konfidenzintervall wird nicht immer den wahren Parameter der Grundgesamtheit einschließen. Die Definition eines 95%-Konfidenzintervalls kann wie folgt formuliert werden:
+
+> Wenn wir sehr oft die Stichproben neu ziehen und jedesmal ein 95%-Kofidenzintervall berechnen, dann erwarten wir, dass in 95% der Fälle diese Konfidenzintervalle den wahren Parameter der Grundgesamtheit enthalten.
+
+Das Konfidenzintervall ist unsere Abschätzung der Lage des wahren Parameters der Grundgesamtheit. Eine andere Abschätzung haben wir nicht (es sei denn, es gibt wiederum eine theoretische Verteilung). Die Interpretation wird oft so abgekürzt, dass man sagt, man sei zu 95% sicher, dass das 95%-Konfidenzintervall den wahren Parameter enthält. Das ist nicht richtig (s. Definition oben). Es ist besser zu sagen, dass in 95% der Fälle, das Konfidenzintervall den wahren Parameter der Grundgesamtheit enthält. Was mit 95% der Fälle gemeint ist, wissen Sie ja, wenn Sie sich an die genaue Definition erinnern `r emo::ji('smile')`.
+
+## Lesestoff
+Kapitel 8 in @ModernDive
+
+## Aufgaben
+### Konfidenzintervall aus dem Zentralen Grenzwertsatz
+Der Zentrale Grenzwertsatz besagt, dass die Stichprobenverteilung des Schätzers des Mittelwerts sich asymptotisch (also bei vielen Stichproben) der Normalverteilung nähert. Daher kann man für die Konfidenzintervalle auch die folgende Formel nutzen: $\hat{\mu} \pm 1.96 \cdot SE$, wobei $\hat{\mu}$ der geschätzter Mittelwert ist. Das Hütchen steht für *geschätzt*.
+
+- Berechnen Sie die Konfidenzintervalle mit dieser Formel für die Stichprobenverteilung aus dem Bootstrap für den Mittelwert der Anreisezeit. Dazu passen Sie in der Funktion `get_confidence_interval` den Typ des Konfidenzintervalls an `type = "se"` und geben Sie den Mittelwert der Befragung an: `get_confidence_interval(type = "se", point_estimate = mean_befragung$Mittelwert)`.
+- Stellen Sie die Stichprobenverteilung mit diesem Konfidenzintervall dar und vergleichen Sie mit dem Konfidenzintervall, das wir mit der Quantil-Methode berechnet haben.
+
+### Anteile an Stadt- und Landbewohnern
+Wiederholen Sie die Analyse, die wir mit dem Paket `infer` für die Schätzung des Mittelwerts der Anreisezeit gemacht haben, nun für die Anteile an Stadt- und Landbewohnern. Tip: `specify(response = wohnort, success = 'stadt')`.
+
+### Wie hängt das Konfidenzintervall von der Stichprobengröße ab?
+Wiederholen Sie die Analyse für den Mittelwert der Anreisezeit für eine Stichprobe von 30 Studierenden. Wie verändert sich das Konfidenzintervall?
+
+
+
+## Ihre Arbeit einreichen
+- Speichern Sie Ihr Notebook ab und laden Sie nur die .Rmd Datei vom Server.
+- Laden Sie Ihre .Rmd Datei in ILIAS hoch. **Beachten Sie die Deadline!**
+- Sie erhalten die Musterlösung nach dem Hochladen.
+
+## Weiterführende Literatur
+Kapitel 17.3 in @Sauer2019
+

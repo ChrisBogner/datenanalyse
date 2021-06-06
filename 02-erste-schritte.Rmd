@@ -36,7 +36,7 @@ Es gibt eine live Einführung in RStudio im Kurs. Zusätzlich können Sie hier e
 
 ## RStudio Server Pro
 ### Einloggen und eine Session starten
-Zu Beginn des Kurses werden wir auf dem RStudio Server Pro (RSSP) arbeiten. Jede(r) von Ihnen wird ein persönliches Login für den Server erhalten. **Dieses Login darf nicht weiter gegeben werden.** Damit ich mich im Falle von Programmierfehlern in Ihre Konto einloggen darf, müssen Sie eine Einwilligung unterschreiben und per Email an Herrn Dr. Bolten schicken (andreas.bolten@uni-koeln.de).
+Zu Beginn des Kurses werden wir auf dem RStudio Server Pro (RSSP) arbeiten. Jede(r) von Ihnen wird ein persönliches Login für den Server erhalten. **Dieses Login darf nicht weiter gegeben werden.** Damit ich mich im Falle von Programmierfehlern in Ihre Konto einloggen darf, müssen Sie eine Einwilligung unterschreiben und per Email an mich.
 
 Bevor Sie sich auf dem RSSP einloggen können, müssen Sie Ihre VPN-Verbindung aktivieren (aus dem Uni-Netz geht es auch ohne). Auf den Seiten der Rechenzentrums finden Sie eine [Anleitung](https://rrzk.uni-koeln.de/internetzugang-web/netzzugang/vpn) zur Einrichtung des VPN-Zugangs.
 
@@ -223,7 +223,7 @@ my_a <- c(32, 54, 1.2, 398)
 
 
 ### Funktionsaufruf
-In R gibt es eine Vielzahl von vordefinierten Funktionen. Ein kleine Übersicht davon haben Sie in unserem Begleitskript im Kapitel 3. Ein Funktionsaufruf hat immer die gleiche Form: *mach_das(damit)* oder *mach_das(damit, und_mit_dieser_einstellung)*. Z.B. wird die Summe auf einem Objekt `mein_objekt` mit `sum(mein_objekt)` berechnet.
+In R gibt es eine Vielzahl von vordefinierten Funktionen. Ein Funktionsaufruf hat immer die gleiche Form: *mach_das(damit)* oder *mach_das(damit, und_mit_dieser_einstellung)*. Z.B. wird die Summe auf einem Objekt `mein_objekt` mit `sum(mein_objekt)` berechnet.
 
 - Erstellen Sie einen Vektor mit den Zahlen 32, 54, 1,2 und 398 und weisen Sie ihn der Variablen `my_a` zu.
 - Berechnen Sie die summe von `my_a`. 

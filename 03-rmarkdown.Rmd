@@ -64,7 +64,7 @@ r4ds, Kapitel 27 [@r4ds]
   - Überschrift
   - Unterüberschrift
   - kursiver Text
-  - eine Hochzahl: R^2^
+  - ein Exponent: R^2^
   - ein Mathematikelement: $x^2$
   - eine Liste
 

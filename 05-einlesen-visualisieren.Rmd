@@ -214,6 +214,6 @@ grid.arrange(bet, zweit, nrow = 2, heights = c(3, 3))
 
 
 ## Ihre Arbeit einreichen
-- Speichern Sie Ihr Notbook ab und laden Sie nur die .Rmd Datei vom Server.
+- Speichern Sie Ihr Notebook ab und laden Sie nur die .Rmd Datei vom Server.
 - Laden Sie Ihre .Rmd Datei in ILIAS hoch. **Beachten Sie die Deadline!**
 - Sie erhalten die Musterlösung nach dem Hochladen.

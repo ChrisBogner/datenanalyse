@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Kapitel 8 Bootstrapping und Konfidenzintervalle | Datenanalyse mit R</title>
+<meta name="author" content="Christina Bogner">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.2"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.8/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.2.5.1/tabs.js"></script><script src="libs/bs3compat-0.2.5.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/mark.js@8.11.1/dist/mark.min.js"></script><!-- CSS --><link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="font-awesome.min.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="SoSe 2021">Datenanalyse mit R</a>:
+        <small class="text-muted">SoSe 2021</small>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Vorwort</a></li>
+<li><a class="" href="einfuehrung.html"><span class="header-section-number">1</span> Der Kurs</a></li>
+<li><a class="" href="erste-schritte.html"><span class="header-section-number">2</span> Erste Schritte in R</a></li>
+<li><a class="" href="reproduzieren.html"><span class="header-section-number">3</span> R Markdown</a></li>
+<li><a class="" href="ggplot.html"><span class="header-section-number">4</span> Einführung in ggplot2</a></li>
+<li><a class="" href="daten-einlesen-und-visualisieren.html"><span class="header-section-number">5</span> Daten einlesen und visualisieren</a></li>
+<li><a class="" href="tidyverse.html"><span class="header-section-number">6</span> Der explorative Workflow mit tidyverse</a></li>
+<li><a class="" href="stichproben.html"><span class="header-section-number">7</span> Stichproben und Variabilität</a></li>
+<li><a class="active" href="bootstrapping-und-konfidenzintervalle.html"><span class="header-section-number">8</span> Bootstrapping und Konfidenzintervalle</a></li>
+<li><a class="" href="hypothesentests-mit-dem-paket-infer.html"><span class="header-section-number">9</span> Hypothesentests mit dem Paket infer</a></li>
+<li><a class="" href="aufgabensammlung.html"><span class="header-section-number">10</span> Aufgabensammlung</a></li>
+<li><a class="" href="literatur.html">Literatur</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/ChrisBogner/datenanalyse.git">View book source <i class="fab fa-github"></i></a></p>
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="bootstrapping-und-konfidenzintervalle" class="section level1" number="8">
+<h1>
+<span class="header-section-number">Kapitel 8</span> Bootstrapping und Konfidenzintervalle<a class="anchor" aria-label="anchor" href="#bootstrapping-und-konfidenzintervalle"><i class="fas fa-link"></i></a>
+</h1>
+<div class="rmdoutcomes">
+<ul>
+<li>
+Funktionsweise von Bootstrap erklären
+</li>
+<li>
+Bootstrap-Konfidenzintervalle für Mittelwert berechnen
+</li>
+</ul>
+</div>
+<p>Im Kapitel <a href="stichproben.html#stichproben">7</a> haben Sie gesehen, dass Statistiken aus zufällig gezogenen Stichproben, dem Zufall unterliegen. Sie sind <strong>Zufallsvariablen</strong>. Diesen Zufall haben wir mit Hilfe der Stichprobenverteilung dieser Statistiken quantifiziert, in dem wir den <strong>Standardfehler</strong>, die Standardabweichung aus der Stichprobenverteilung, berechnet haben.</p>
+<p>Die Statistik, die wir im Kapitel <a href="stichproben.html#stichproben">7</a> berechnet haben, war der Anteil von Studierenden, die entweder in der Stadt oder auf dem Land wohnen. Mit jeder Stichprobe, aus der wir diesen Anteil berechnet haben, haben wir eigentlich <strong>geschätzt</strong>, wie groß der wahre Anteil der Stadt- und Landbewohner in der Grundgesamtheit (allen 12000 Studierenden von Werdeschlau) ist. Der aus der Stichprobe berechnete Anteil ist also ein <strong>Schätzer</strong> für den wahren Anteil in der Grundgesamtheit. Dieser Schätzer ist eine Zufallsvariable (s.o.) und wie jede andere Zufallsvariable ist er durch seine Verteilung, nämlich die <strong>Stichprobenverteilung</strong> charakterisiert.</p>
+<p>Wir können jetzt also eine Menge statistischer Begriffe mit Hilfe unseres Beispiels mit Leben füllen:</p>
+<div class="rmdalert">
+<ul>
+<li>
+<strong>Grundgesamtheit</strong>: alle Studierenden der Universität Werdeschlau
+</li>
+<li>
+<strong>zufällige Stichprobe</strong>: eine zufällig ausgesuchte Gruppe von Studierenden
+</li>
+<li>
+<strong>Parameter der Grundgesamtheit</strong>: z.B. der wahre Anteil von Studierenden, die in der Stadt oder auf dem Land leben
+</li>
+<li>
+<strong>Schätzer</strong> für diesen Parameter der Grundgesamtheit: Anteil der Studierenden, die in der Stadt oder auf dem Land leben, berechnet aus der zufälligen Stichprobe. Da die Stichprobe zufällig ist, kann man davon ausgehen, dass sie repräsentativ für die Grundgesamtheit ist und der Schätzer unverzerrt (<em>unbiased</em>, d.h. ohne einen systematischen Fehler).
+</li>
+<li>
+<strong>Inferenz</strong>: schließen auf die Grundgesamtheit darf man, wenn die Stichprobe zufällig erhoben wurde und repräsentative für die Fragestellung ist.
+</li>
+</ul>
+</div>
+<p>Die Begriffe Statistik, Schätzer, Schätzfunktion und Stichprobenfunktion werden als Synonyme verwendet. Die Statistik ist ja auch eine Funktion, da sie mit einer Formel eine Zahl aus Daten (Stichprobe) berechnet. Sie fasst die Stichprobe also zusammen.</p>
+<p>Im echten Leben werden Sie kaum wiederholt befragen (Stichproben ziehen) können. Das ist vollkommen unrealistisch und nur für Computerexperimente ein tolles Werkzeug. In diesem Kapitel wird es darum gehen, wie man nun im richtigen Leben mit <strong>einer Stichprobe</strong> einen Parameter der Grundgesamtheit schätzen kann und dabei seine Variabilität quantifiziert.</p>
+<div id="bootstrapping-die-münchhausenmethode" class="section level2" number="8.1">
+<h2>
+<span class="header-section-number">8.1</span> Bootstrapping, die Münchhausenmethode<a class="anchor" aria-label="anchor" href="#bootstrapping-die-m%C3%BCnchhausenmethode"><i class="fas fa-link"></i></a>
+</h2>
+<p>Wenn wir nur eine Stichprobe haben, werden wir den Parameter der Grundgesamtheit daraus schätzen. Der Schätzer kann der Mittelwert oder eben auch der Anteil sein, so wie bei unseren vorherigen Beispielen mit Mittelwert der Anreisezeit oder dem Anteil der Studierenden aus der Stadt bzw. vom Land.</p>
+<p>Da jede Stichprobe dem Zufall unterliegt und der Schätzer somit eine Zufallsvariable darstellt, würden wir gerne wissen, wie gut wir schätzen.</p>
+<blockquote>
+<p>Gibt es einen plausiblen Bereich für den Mittelwert der Anreisezeit? Plausibel meint, dass wenn wir sehr oft verschiedene zufällige Stichprobe ziehen, dieser Bereich in sagen wir mal 95% der Fälle den wahren Mittelwert einschließt. Solche Plausibilitätsbereiche nennt man <strong>Konfidenzintervalle</strong>.</p>
+</blockquote>
+<p>Es gibt mehrere Methoden, solche Konfidenzintervalle zu berechnen. Wenn man die Verteilung des Schätzers kennt, wie z.B. beim Mittelwert (Normalverteilung), dann kann man daraus den Standardfehler berechnen (nennen wir diesen <span class="math inline">\(SE\)</span>). Ein 95%-Konfidenzintervall wäre dann <span class="math inline">\(\hat{\mu} \pm 1.96 \cdot SE\)</span>, wobei <span class="math inline">\(\hat{\mu}\)</span> der geschätzter Mittelwert ist. Das Hütchen steht für <em>geschätzt</em>. Diese Formel haben Sie bestimmt schon in der Grundvorlesung Statistik gesehen.</p>
+<p>Es gibt aber Schätzer, für die keine theoretische Verteilung bekannt ist. Da muss man eine andere Methode anwenden. Eine bekannte Methode heißt Bootstrapping (Bootstrap-Verfahren), manchmal auch Münchhausenmethode. Sie klingt auf den ersten Blick wie ein Selbstbetrug, so als ob man sich selbst an den Haaren aus dem Sumpf zieht (Abblildung <a href="bootstrapping-und-konfidenzintervalle.html#fig:meunch">8.1</a>), hat aber sehr gut fundierte mathematische Wurzeln. Bootstrap wurde von <span class="citation"><a href="literatur.html#ref-Efron1979" role="doc-biblioref">Efron</a> (<a href="literatur.html#ref-Efron1979" role="doc-biblioref">1979</a>)</span> Ende der 70er vorgestellt und hat sich seit dem als eine der wichtigsten <em>Resampling</em>-Strategien etabliert.</p>
+<div class="figure">
+<span style="display:block;" id="fig:meunch"></span>
+<img src="figures/M%C3%BCnchhausen-Sumpf-Hosemann.png" alt="Münchhausen zieht sich aus dem Sumpf (Theodor Hosemann (1807-1875), Public domain, via Wikimedia Commons)" width="80%"><p class="caption">
+Abbildung 8.1: Münchhausen zieht sich aus dem Sumpf (Theodor Hosemann (1807-1875), Public domain, via Wikimedia Commons)
+</p>
+</div>
+<p>Das Prinzip beim Bootstrap ist, dass die Stichprobe die Rolle der Grundgesamtheit übernimmt. Abbildung <a href="bootstrapping-und-konfidenzintervalle.html#fig:sampling-world">8.2</a> zeigt das Vorgehen aus dem Kapitel <a href="stichproben.html#stichproben">7</a>. Wir ziehen mehrere echte Stichproben aus einer Grundgesamtheit, erhalten eine Stichprobenverteilung und können den Parameter der Grundgesamtheit schätzen.</p>
+<div class="figure">
+<span style="display:block;" id="fig:sampling-world"></span>
+<img src="figures/sampling_world.png" alt="Berechnen einer Stichprobenverteilung durch wiederholtes Stichproben ziehen. Abbildung aus [@Hesterberg2015], dort Figure 4. Die Publikation ist open-access und darf für nicht-kommerzielle Zwecke verwendet werden." width="80%"><p class="caption">
+Abbildung 8.2: Berechnen einer Stichprobenverteilung durch wiederholtes Stichproben ziehen. Abbildung aus <span class="citation">(<a href="literatur.html#ref-Hesterberg2015" role="doc-biblioref">Hesterberg 2015</a>)</span>, dort Figure 4. Die Publikation ist open-access und darf für nicht-kommerzielle Zwecke verwendet werden.
+</p>
+</div>
+<p>In Abbildung <a href="bootstrapping-und-konfidenzintervalle.html#fig:sampling-bootstrap">8.3</a> haben wir nur eine Stichprobe. Wir gehen davon aus, dass diese Stipchprobe eine Miniatur der Grundgesamtheit ist, also zufällig gezogen wurde und repräsentative ist. Mit dieser Grundidee im Kopf, ersetzten wir die Grundgesamtheit durch dies Stichprobe und verfahren (fast) genauso, um die Stichprobenverteilung zu ermitteln. Der einzige Unterschied ist, dass wir aus dieser einen Stichprobe <strong>mit Zurücklegen</strong> neue Stichproben (Bootstrap-Stichproben) ziehen.</p>
+<div class="figure">
+<span style="display:block;" id="fig:sampling-bootstrap"></span>
+<img src="figures/sampling_bootstrap.png" alt="Berechnen einer Stichprobenverteilung durch wiederholtes Ziehen aus einer Stichprobe mit Zurücklegen. Abbildung aus [@Hesterberg2015], dort Figure 5. Die Publikation ist open-access und darf für nicht-kommerzielle Zwecke verwendet werden." width="80%"><p class="caption">
+Abbildung 8.3: Berechnen einer Stichprobenverteilung durch wiederholtes Ziehen aus einer Stichprobe mit Zurücklegen. Abbildung aus <span class="citation">(<a href="literatur.html#ref-Hesterberg2015" role="doc-biblioref">Hesterberg 2015</a>)</span>, dort Figure 5. Die Publikation ist open-access und darf für nicht-kommerzielle Zwecke verwendet werden.
+</p>
+</div>
+<p>Die Konfidenzintervalle berechnet man aus der Stichprobenverteilung der Bootstrap-Stichproben, indem man z.B. das 2.5% und das 97.5% Quantil berechnet. Zwischen diesen beiden Quantilen sind 95% der Werte enthalten. Dieses Intervall nennt man das 95%-Konfidenzintervall.</p>
+</div>
+<div id="konfidenzintervall-für-den-mittelwert-der-anreisezeit" class="section level2" number="8.2">
+<h2>
+<span class="header-section-number">8.2</span> Konfidenzintervall für den Mittelwert der Anreisezeit<a class="anchor" aria-label="anchor" href="#konfidenzintervall-f%C3%BCr-den-mittelwert-der-anreisezeit"><i class="fas fa-link"></i></a>
+</h2>
+<p>Wir sehen uns das Ganze anhand des Beispiels der Studierenden aus Werdeschlau. Zunächst wieder der Code für die Grundgesamtheit.</p>
+<div class="sourceCode" id="cb111"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/tidymodels/infer">infer</a></span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb112"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
+
+<span class="va">student_id</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fl">12000</span>
+  
+<span class="va">anreise</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">12000</span> <span class="op">*</span> <span class="fl">0.8</span>, min <span class="op">=</span> <span class="fl">5</span>, max <span class="op">=</span> <span class="fl">40</span><span class="op">)</span>,
+             <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">12000</span> <span class="op">*</span> <span class="fl">0.2</span>, min <span class="op">=</span> <span class="fl">60</span>, max <span class="op">=</span> <span class="fl">120</span><span class="op">)</span><span class="op">)</span>
+
+<span class="va">geschlecht</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'m'</span>, <span class="st">'w'</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">12000</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+
+<span class="va">wohnort</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="va">anreise</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span>
+  <span class="kw">if</span><span class="op">(</span><span class="va">x</span> <span class="op">&lt;</span> <span class="fl">30</span><span class="op">)</span> <span class="st">'stadt'</span>
+  <span class="kw">else</span> <span class="st">'land'</span>
+<span class="op">}</span><span class="op">)</span>
+
+<span class="va">verkehrsmittel</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="va">anreise</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span>
+  <span class="kw">if</span><span class="op">(</span><span class="va">x</span> <span class="op">&lt;=</span> <span class="fl">10</span><span class="op">)</span> <span class="st">'zu_fuss'</span>
+  <span class="kw">else</span> <span class="kw">if</span><span class="op">(</span><span class="va">x</span> <span class="op">&gt;</span> <span class="fl">10</span> <span class="op">&amp;</span> <span class="va">x</span> <span class="op">&lt;=</span> <span class="fl">15</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'zu_fuss'</span>, <span class="st">'fahrrad'</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
+  <span class="kw">else</span> <span class="kw">if</span><span class="op">(</span><span class="va">x</span> <span class="op">&gt;</span> <span class="fl">15</span> <span class="op">&amp;</span> <span class="va">x</span> <span class="op">&lt;=</span> <span class="fl">45</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'bus'</span>, <span class="st">'fahrrad'</span>, <span class="st">'auto'</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
+  <span class="kw">else</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'bus'</span>, <span class="st">'auto'</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
+<span class="op">}</span><span class="op">)</span>
+
+<span class="va">zeit_bib</span> <span class="op">&lt;-</span> <span class="fl">5</span> <span class="op">*</span> <span class="fl">60</span> <span class="op">-</span> <span class="fl">0.7</span> <span class="op">*</span> <span class="va">anreise</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">anreise</span><span class="op">)</span>, <span class="fl">0</span>, <span class="fl">20</span><span class="op">)</span>
+
+<span class="va">grundgesamtheit</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="op">(</span><span class="va">student_id</span>, <span class="va">geschlecht</span>, <span class="va">wohnort</span>, <span class="va">verkehrsmittel</span>, <span class="va">anreise</span>, <span class="va">zeit_bib</span><span class="op">)</span>
+
+<span class="va">grundgesamtheit</span></code></pre></div>
+<pre><code>## # A tibble: 12,000 x 6
+##    student_id geschlecht wohnort verkehrsmittel anreise zeit_bib
+##         &lt;int&gt; &lt;chr&gt;      &lt;chr&gt;   &lt;chr&gt;            &lt;dbl&gt;    &lt;dbl&gt;
+##  1          1 w          stadt   bus              15.1      294.
+##  2          2 w          land    fahrrad          32.6      254.
+##  3          3 w          stadt   fahrrad          19.3      231.
+##  4          4 m          land    auto             35.9      245.
+##  5          5 m          land    bus              37.9      234.
+##  6          6 w          stadt   zu_fuss           6.59     303.
+##  7          7 w          stadt   bus              23.5      284.
+##  8          8 m          land    auto             36.2      274.
+##  9          9 m          stadt   fahrrad          24.3      299.
+## 10         10 w          stadt   bus              21.0      282.
+## # … with 11,990 more rows</code></pre>
+<p>Nun befragen wir 200 Studierende.</p>
+<div class="sourceCode" id="cb114"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">345</span><span class="op">)</span>
+
+<span class="va">befragung_size</span> <span class="op">&lt;-</span> <span class="fl">200</span>
+
+<span class="va">befragung</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://infer.tidymodels.org/reference/rep_sample_n.html">rep_sample_n</a></span><span class="op">(</span><span class="va">grundgesamtheit</span>, size <span class="op">=</span> <span class="va">befragung_size</span>, replace <span class="op">=</span> <span class="cn">FALSE</span>, reps <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
+
+<span class="va">befragung</span></code></pre></div>
+<pre><code>## # A tibble: 200 x 7
+## # Groups:   replicate [1]
+##    replicate student_id geschlecht wohnort verkehrsmittel anreise zeit_bib
+##        &lt;int&gt;      &lt;int&gt; &lt;chr&gt;      &lt;chr&gt;   &lt;chr&gt;            &lt;dbl&gt;    &lt;dbl&gt;
+##  1         1       1623 m          stadt   zu_fuss           7.06     299.
+##  2         1       9171 m          stadt   fahrrad          11.3      278.
+##  3         1      10207 w          land    bus             107.       199.
+##  4         1       3506 w          stadt   bus              25.0      326.
+##  5         1       8892 w          stadt   bus              28.1      259.
+##  6         1       5460 m          stadt   bus              23.6      299.
+##  7         1       6120 w          stadt   bus              20.0      268.
+##  8         1        865 w          stadt   fahrrad          26.6      290.
+##  9         1      11586 m          land    bus             114.       207.
+## 10         1       8153 w          stadt   zu_fuss           8.06     297.
+## # … with 190 more rows</code></pre>
+<p>Wir berechnen den wahren Mittelwert der Anreisezeit und den Mittelwert aus der Befragung.</p>
+<div class="sourceCode" id="cb116"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">mean_grundgesamtheit</span> <span class="op">&lt;-</span> <span class="va">grundgesamtheit</span> <span class="op">%&gt;%</span> 
+  <span class="fu">summarise</span><span class="op">(</span>Mittelwert <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">anreise</span><span class="op">)</span><span class="op">)</span>
+
+<span class="va">mean_grundgesamtheit</span></code></pre></div>
+<pre><code>## # A tibble: 1 x 1
+##   Mittelwert
+##        &lt;dbl&gt;
+## 1       36.0</code></pre>
+<div class="sourceCode" id="cb118"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">mean_befragung</span> <span class="op">&lt;-</span> <span class="va">befragung</span> <span class="op">%&gt;%</span> 
+  <span class="fu">summarise</span><span class="op">(</span>Mittelwert <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">anreise</span><span class="op">)</span><span class="op">)</span>
+
+<span class="va">mean_befragung</span></code></pre></div>
+<pre><code>## # A tibble: 1 x 2
+##   replicate Mittelwert
+##       &lt;int&gt;      &lt;dbl&gt;
+## 1         1       34.1</code></pre>
+<p>Wir ziehen nun unsere Bootstrap-Stichproben aus der einen Stichprobe, nämlich der <code>befragung</code>. Achten Sie darauf, wie ähnlich der Code zum Ziehen von echten Stichproben ist. Wir ändern nur <code>replace = TRUE</code>.</p>
+<div class="sourceCode" id="cb120"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">345</span><span class="op">)</span>
+
+<span class="va">befragung_size</span> <span class="op">&lt;-</span> <span class="fl">200</span>
+<span class="va">number_reps</span> <span class="op">&lt;-</span> <span class="fl">10000</span>
+
+<span class="va">befragung_reps_bootstrap</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://infer.tidymodels.org/reference/rep_sample_n.html">rep_sample_n</a></span><span class="op">(</span><span class="va">befragung</span>, size <span class="op">=</span> <span class="va">befragung_size</span>, replace <span class="op">=</span> <span class="cn">TRUE</span>, reps <span class="op">=</span> <span class="va">number_reps</span><span class="op">)</span>
+
+<span class="va">befragung_reps_bootstrap</span></code></pre></div>
+<pre><code>## # A tibble: 2,000,000 x 7
+## # Groups:   replicate [10,000]
+##    replicate student_id geschlecht wohnort verkehrsmittel anreise zeit_bib
+##        &lt;int&gt;      &lt;int&gt; &lt;chr&gt;      &lt;chr&gt;   &lt;chr&gt;            &lt;dbl&gt;    &lt;dbl&gt;
+##  1         1       7038 m          stadt   bus              29.4      243.
+##  2         1        493 m          stadt   bus              21.1      303.
+##  3         1       3442 m          land    auto             30.3      311.
+##  4         1       4920 w          stadt   bus              21.1      290.
+##  5         1       3178 w          stadt   zu_fuss           8.07     325.
+##  6         1       7694 w          land    auto             31.3      295.
+##  7         1       9479 m          land    bus              39.5      302.
+##  8         1       3367 m          land    auto             36.4      272.
+##  9         1       5985 w          stadt   fahrrad          15.9      303.
+## 10         1        843 m          stadt   fahrrad          26.4      300.
+## # … with 1,999,990 more rows</code></pre>
+<p>Studierende kommen jetzt mehrfach vor, da wir ja mit Zurücklegen gezogen haben. Wir sehen uns das in den erste 50 Bootstrap-Stichproben an.</p>
+<div class="sourceCode" id="cb122"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">befragung_reps_bootstrap</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">replicate</span> <span class="op">%in%</span> <span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">50</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu">group_by</span><span class="op">(</span><span class="va">replicate</span>, <span class="va">student_id</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu">tally</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">n</span> <span class="op">!=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu">arrange</span><span class="op">(</span><span class="fu">desc</span><span class="op">(</span><span class="va">n</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<pre><code>## # A tibble: 2,657 x 3
+## # Groups:   replicate [50]
+##    replicate student_id     n
+##        &lt;int&gt;      &lt;int&gt; &lt;int&gt;
+##  1        43       4787     8
+##  2        20       5985     6
+##  3        34       7749     6
+##  4        38       5641     6
+##  5        41       8456     6
+##  6         3       7083     5
+##  7         3      10943     5
+##  8         5       8994     5
+##  9         6      10118     5
+## 10         8      11425     5
+## # … with 2,647 more rows</code></pre>
+<p>Nun berechnen wir die Mittelwerte aus den Bootstrap-Stichproben.</p>
+<div class="sourceCode" id="cb124"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">res_means_bootstrap</span> <span class="op">&lt;-</span> <span class="va">befragung_reps_bootstrap</span> <span class="op">%&gt;%</span>
+  <span class="fu">group_by</span><span class="op">(</span><span class="va">replicate</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu">summarise</span><span class="op">(</span>Mittelwert <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">anreise</span><span class="op">)</span><span class="op">)</span>
+
+<span class="va">res_means_bootstrap</span></code></pre></div>
+<pre><code>## # A tibble: 10,000 x 2
+##    replicate Mittelwert
+##        &lt;int&gt;      &lt;dbl&gt;
+##  1         1       32.6
+##  2         2       31.9
+##  3         3       38.9
+##  4         4       33.5
+##  5         5       35.4
+##  6         6       37.2
+##  7         7       34.4
+##  8         8       33.4
+##  9         9       35.5
+## 10        10       31.0
+## # … with 9,990 more rows</code></pre>
+<p>Der Standardfehler des Bootstraps und das 95%-Konfidenzintervall basierend auf Quantilen berechnen sich wie folgt:</p>
+<div class="sourceCode" id="cb126"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">stat_bootstrap</span> <span class="op">&lt;-</span> <span class="va">res_means_bootstrap</span> <span class="op">%&gt;%</span> 
+  <span class="fu">summarize</span><span class="op">(</span>mean <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">Mittelwert</span><span class="op">)</span>, sd <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">Mittelwert</span><span class="op">)</span>, ci_2.5 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">Mittelwert</span>, probs <span class="op">=</span> <span class="fl">0.025</span><span class="op">)</span>, ci_97.5 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">Mittelwert</span>, probs <span class="op">=</span> <span class="fl">0.975</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<p>Wir stellen die Stichprobenverteilung mit dem Standardfehler des Bootstraps und dem 95%-Konfidenzintervall dar. Das ist eine umfangreiche Grafik und wir gehen in der Übung Schritt für Schritt vor. Die Funktion <code>scale_color_manual</code> erlaubt es uns, die Legende anzupassen.</p>
+<div class="sourceCode" id="cb127"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span><span class="va">res_means_bootstrap</span>, <span class="fu">aes</span><span class="op">(</span><span class="va">Mittelwert</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu">geom_histogram</span><span class="op">(</span>bins <span class="op">=</span> <span class="fl">50</span> , color<span class="op">=</span><span class="st">"white"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">labs</span><span class="op">(</span>y <span class="op">=</span> <span class="st">'Häufigkeit'</span>, x <span class="op">=</span> <span class="st">'Mittelwerte der Anreise (min)'</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">geom_vline</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>xintercept <span class="op">=</span> <span class="va">mean_grundgesamtheit</span><span class="op">$</span><span class="va">Mittelwert</span>, col <span class="op">=</span> <span class="st">'grundgesamtheit'</span><span class="op">)</span>, linetype <span class="op">=</span> <span class="st">"dashed"</span>, size <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu">geom_vline</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>xintercept <span class="op">=</span> <span class="va">stat_bootstrap</span><span class="op">$</span><span class="va">mean</span>, col <span class="op">=</span> <span class="st">'boot'</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu">geom_vline</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>xintercept <span class="op">=</span> <span class="va">mean_befragung</span><span class="op">$</span><span class="va">Mittelwert</span>, col <span class="op">=</span> <span class="st">'stichprobe'</span><span class="op">)</span>, linetype <span class="op">=</span> <span class="st">'dashed'</span>, size <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">geom_vline</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>xintercept <span class="op">=</span> <span class="va">stat_bootstrap</span><span class="op">$</span><span class="va">mean</span> <span class="op">+</span> <span class="va">stat_bootstrap</span><span class="op">$</span><span class="va">sd</span>, col <span class="op">=</span> <span class="st">'sd'</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu">geom_vline</span><span class="op">(</span>xintercept <span class="op">=</span> <span class="va">stat_bootstrap</span><span class="op">$</span><span class="va">mean</span> <span class="op">-</span> <span class="va">stat_bootstrap</span><span class="op">$</span><span class="va">sd</span>, col <span class="op">=</span> <span class="st">'orange'</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu">geom_vline</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>xintercept <span class="op">=</span> <span class="va">stat_bootstrap</span><span class="op">$</span><span class="va">ci_2.5</span>, col <span class="op">=</span> <span class="st">'ci'</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">geom_vline</span><span class="op">(</span>xintercept <span class="op">=</span> <span class="va">stat_bootstrap</span><span class="op">$</span><span class="va">ci_97.5</span>, col <span class="op">=</span> <span class="st">'brown'</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu">scale_color_manual</span><span class="op">(</span>name <span class="op">=</span> <span class="st">"Statistik"</span>, values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>grundgesamtheit <span class="op">=</span> <span class="st">'black'</span>, sd <span class="op">=</span> <span class="st">'orange'</span>, boot <span class="op">=</span> <span class="st">'red'</span>, ci <span class="op">=</span> <span class="st">'brown'</span>, stichprobe <span class="op">=</span> <span class="st">'gray90'</span><span class="op">)</span>, breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'stichprobe'</span>, <span class="st">'boot'</span>, <span class="st">'sd'</span>, <span class="st">'ci'</span>, <span class="st">'grundgesamtheit'</span><span class="op">)</span>, label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'Mittelwert Stichprobe'</span>, <span class="st">'Mittelwert Bootstrap'</span>, <span class="st">'Standardfehler Bootstrap'</span>, <span class="st">'95% Konfidenzintervall Bootstrap'</span>, <span class="st">'Mittelwert Population'</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="datenanalyse_files/figure-html/unnamed-chunk-100-1.png" width="90%"></div>
+<p>Der Standardfehler des Bootstraps stimmt sehr gut mit dem Fehler <span class="math inline">\(s/\sqrt(n)\)</span> für den Schätzer des Mittelwerts überein. Da wir normalerweise die wahre Standardabweichung der Grundgesamtheit nicht kennen, wird in der Formel <span class="math inline">\(s/\sqrt(n)\)</span> die Standardabweichung der Stichprobe als Schätzung verwendet.</p>
+<div class="sourceCode" id="cb128"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">befragung</span> <span class="op">%&gt;%</span> 
+  <span class="fu">summarize</span><span class="op">(</span>sd_error <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">anreise</span><span class="op">)</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">anreise</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<pre><code>## # A tibble: 1 x 2
+##   replicate sd_error
+##       &lt;int&gt;    &lt;dbl&gt;
+## 1         1     2.04</code></pre>
+<p>Standardfehler des Bootstraps.</p>
+<div class="sourceCode" id="cb130"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">res_means_bootstrap</span> <span class="op">%&gt;%</span> 
+  <span class="fu">summarize</span><span class="op">(</span>sd_error <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">Mittelwert</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<pre><code>## # A tibble: 1 x 1
+##   sd_error
+##      &lt;dbl&gt;
+## 1     2.06</code></pre>
+<p>Und der wahre Standardfehler, wenn man die Standardabweichung der Grundgesamtheit kennt.</p>
+<div class="sourceCode" id="cb132"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">grundgesamtheit</span> <span class="op">%&gt;%</span> 
+  <span class="fu">summarize</span><span class="op">(</span>sd_error <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">anreise</span><span class="op">)</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">befragung</span><span class="op">$</span><span class="va">anreise</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<pre><code>## # A tibble: 1 x 1
+##   sd_error
+##      &lt;dbl&gt;
+## 1     2.09</code></pre>
+</div>
+<div id="bootstrap-konfidenzintervalle-mit-infer" class="section level2" number="8.3">
+<h2>
+<span class="header-section-number">8.3</span> Bootstrap-Konfidenzintervalle mit <code>infer</code><a class="anchor" aria-label="anchor" href="#bootstrap-konfidenzintervalle-mit-infer"><i class="fas fa-link"></i></a>
+</h2>
+<p>Das Paket <code>infer</code> bietet eine sehr bequeme Möglichkeit, Konfidentintervalle mit Bootstrap zu berechnen und zu visualisieren. Das Vorgehen aus dem vorherigen Abschnitt übertragen wir nun in den Workflow mit <code>infer</code>.</p>
+<p>Brechnen der Bootstrap-Stichproben.</p>
+<div class="sourceCode" id="cb134"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">345</span><span class="op">)</span>
+
+<span class="va">bootstrap_distribution</span> <span class="op">&lt;-</span> <span class="va">befragung</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://infer.tidymodels.org/reference/specify.html">specify</a></span><span class="op">(</span>response <span class="op">=</span> <span class="va">anreise</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://infer.tidymodels.org/reference/generate.html">generate</a></span><span class="op">(</span>reps <span class="op">=</span> <span class="fl">10000</span>, type <span class="op">=</span> <span class="st">'bootstrap'</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://infer.tidymodels.org/reference/calculate.html">calculate</a></span><span class="op">(</span>stat <span class="op">=</span> <span class="st">'mean'</span><span class="op">)</span></code></pre></div>
+<p>Visualisieren der Stichprobenverteilung.</p>
+<div class="sourceCode" id="cb135"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://infer.tidymodels.org/reference/visualize.html">visualize</a></span><span class="op">(</span><span class="va">bootstrap_distribution</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="datenanalyse_files/figure-html/unnamed-chunk-105-1.png" width="672"></div>
+<p>Berechnen Konfidenzintervalle</p>
+<div class="sourceCode" id="cb136"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">percentile_ci</span> <span class="op">&lt;-</span> <span class="va">bootstrap_distribution</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://infer.tidymodels.org/reference/get_confidence_interval.html">get_confidence_interval</a></span><span class="op">(</span>level <span class="op">=</span> <span class="fl">0.95</span>, type <span class="op">=</span> <span class="st">"percentile"</span><span class="op">)</span>
+<span class="va">percentile_ci</span></code></pre></div>
+<pre><code>## # A tibble: 1 x 2
+##   lower_ci upper_ci
+##      &lt;dbl&gt;    &lt;dbl&gt;
+## 1     30.1     38.3</code></pre>
+<p>Visualisieren der Stichprobenverteilung mit den Konfidenzintervallen</p>
+<div class="sourceCode" id="cb138"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://infer.tidymodels.org/reference/visualize.html">visualize</a></span><span class="op">(</span><span class="va">bootstrap_distribution</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="https://infer.tidymodels.org/reference/shade_confidence_interval.html">shade_confidence_interval</a></span><span class="op">(</span>endpoints <span class="op">=</span> <span class="va">percentile_ci</span>, color <span class="op">=</span> <span class="st">"orange"</span>, fill <span class="op">=</span> <span class="st">"khaki"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">geom_vline</span><span class="op">(</span>xintercept <span class="op">=</span> <span class="va">mean_grundgesamtheit</span><span class="op">$</span><span class="va">Mittelwert</span>, linetype <span class="op">=</span> <span class="st">'dashed'</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="datenanalyse_files/figure-html/unnamed-chunk-107-1.png" width="672"></div>
+<p>Die Konfidenzintervalle, die wir als Quantile aus der Bootstrap-Stichprobenverteilung berechnet haben, und die, die man mit der Formel <span class="math inline">\(\hat{\mu} \pm 1.96 \cdot s/\sqrt(n)\)</span> berechnen kann, sind sehr ähnlich. Das werden Sie in einer der Aufgaben (s.u.) nachrechnen. Das liegt daran, dass der <em>Zentrale Grenzwertsatz</em> garantiert, dass die Stichprobenverteilung des Schätzers des Mittelwerts eine Normalverteilung ist. Es gibt aber Schätzer, wie z.B. den des Medians, für den es keine theoretische Verteilung gibt. Daher gilt als Take-Home-Message, dass man Bootstrap zum Berechnen der Konfidenzintervalle gut einsetzten kann, egal ob es eine theoretische Verteilung des Schätzers gibt. Die Quantilmethode zur Berechnung der Bootstrap-Konfidenzintervalle liefert gute Ergebnisse. Wir werden im späteren Kapitel lernen, dass man Bootstrap auch für die Regressionsanalyse nutzen kann.</p>
+</div>
+<div id="bedeutung-der-konfidenzintervalle" class="section level2" number="8.4">
+<h2>
+<span class="header-section-number">8.4</span> Bedeutung der Konfidenzintervalle<a class="anchor" aria-label="anchor" href="#bedeutung-der-konfidenzintervalle"><i class="fas fa-link"></i></a>
+</h2>
+<p>Ein Konfidenzintervall hängt von der Stichprobe ab, ist also vom Zufall betroffen. Man kann also sagen, dass die Grenzen des Konfidenzintervalls Zufallsvariablen sind. Das Konfidenzintervall wird nicht immer den wahren Parameter der Grundgesamtheit einschließen. Die Definition eines 95%-Konfidenzintervalls kann wie folgt formuliert werden:</p>
+<blockquote>
+<p>Wenn wir sehr oft die Stichproben neu ziehen und jedesmal ein 95%-Kofidenzintervall berechnen, dann erwarten wir, dass in 95% der Fälle diese Konfidenzintervalle den wahren Parameter der Grundgesamtheit enthalten.</p>
+</blockquote>
+<p>Das Konfidenzintervall ist unsere Abschätzung der Lage des wahren Parameters der Grundgesamtheit. Eine andere Abschätzung haben wir nicht (es sei denn, es gibt wiederum eine theoretische Verteilung). Die Interpretation wird oft so abgekürzt, dass man sagt, man sei zu 95% sicher, dass das 95%-Konfidenzintervall den wahren Parameter enthält. Das ist nicht richtig (s. Definition oben). Es ist besser zu sagen, dass in 95% der Fälle, das Konfidenzintervall den wahren Parameter der Grundgesamtheit enthält. Was mit 95% der Fälle gemeint ist, wissen Sie ja, wenn Sie sich an die genaue Definition erinnern 😄.</p>
+</div>
+<div id="lesestoff-6" class="section level2" number="8.5">
+<h2>
+<span class="header-section-number">8.5</span> Lesestoff<a class="anchor" aria-label="anchor" href="#lesestoff-6"><i class="fas fa-link"></i></a>
+</h2>
+<p>Kapitel 8 in <span class="citation"><a href="literatur.html#ref-ModernDive" role="doc-biblioref">Ismay and Kim</a> (<a href="literatur.html#ref-ModernDive" role="doc-biblioref">2021</a>)</span></p>
+</div>
+<div id="aufgaben-5" class="section level2" number="8.6">
+<h2>
+<span class="header-section-number">8.6</span> Aufgaben<a class="anchor" aria-label="anchor" href="#aufgaben-5"><i class="fas fa-link"></i></a>
+</h2>
+<div id="konfidenzintervall-aus-dem-zentralen-grenzwertsatz" class="section level3" number="8.6.1">
+<h3>
+<span class="header-section-number">8.6.1</span> Konfidenzintervall aus dem Zentralen Grenzwertsatz<a class="anchor" aria-label="anchor" href="#konfidenzintervall-aus-dem-zentralen-grenzwertsatz"><i class="fas fa-link"></i></a>
+</h3>
+<p>Der Zentrale Grenzwertsatz besagt, dass die Stichprobenverteilung des Schätzers des Mittelwerts sich asymptotisch (also bei vielen Stichproben) der Normalverteilung nähert. Daher kann man für die Konfidenzintervalle auch die folgende Formel nutzen: <span class="math inline">\(\hat{\mu} \pm 1.96 \cdot SE\)</span>, wobei <span class="math inline">\(\hat{\mu}\)</span> der geschätzter Mittelwert ist. Das Hütchen steht für <em>geschätzt</em>.</p>
+<ul>
+<li>Berechnen Sie die Konfidenzintervalle mit dieser Formel für die Stichprobenverteilung aus dem Bootstrap für den Mittelwert der Anreisezeit. Dazu passen Sie in der Funktion <code>get_confidence_interval</code> den Typ des Konfidenzintervalls an <code>type = "se"</code> und geben Sie den Mittelwert der Befragung an: <code><a href="https://infer.tidymodels.org/reference/get_confidence_interval.html">get_confidence_interval(type = "se", point_estimate = mean_befragung$Mittelwert)</a></code>.</li>
+<li>Stellen Sie die Stichprobenverteilung mit diesem Konfidenzintervall dar und vergleichen Sie mit dem Konfidenzintervall, das wir mit der Quantil-Methode berechnet haben.</li>
+</ul>
+</div>
+<div id="anteile-an-stadt--und-landbewohnern" class="section level3" number="8.6.2">
+<h3>
+<span class="header-section-number">8.6.2</span> Anteile an Stadt- und Landbewohnern<a class="anchor" aria-label="anchor" href="#anteile-an-stadt--und-landbewohnern"><i class="fas fa-link"></i></a>
+</h3>
+<p>Wiederholen Sie die Analyse, die wir mit dem Paket <code>infer</code> für die Schätzung des Mittelwerts der Anreisezeit gemacht haben, nun für die Anteile an Stadt- und Landbewohnern. Tip: <code><a href="https://infer.tidymodels.org/reference/specify.html">specify(response = wohnort, success = 'stadt')</a></code>.</p>
+</div>
+<div id="wie-hängt-das-konfidenzintervall-von-der-stichprobengröße-ab" class="section level3" number="8.6.3">
+<h3>
+<span class="header-section-number">8.6.3</span> Wie hängt das Konfidenzintervall von der Stichprobengröße ab?<a class="anchor" aria-label="anchor" href="#wie-h%C3%A4ngt-das-konfidenzintervall-von-der-stichprobengr%C3%B6%C3%9Fe-ab"><i class="fas fa-link"></i></a>
+</h3>
+<p>Wiederholen Sie die Analyse für den Mittelwert der Anreisezeit für eine Stichprobe von 30 Studierenden. Wie verändert sich das Konfidenzintervall?</p>
+</div>
+</div>
+<div id="ihre-arbeit-einreichen-4" class="section level2" number="8.7">
+<h2>
+<span class="header-section-number">8.7</span> Ihre Arbeit einreichen<a class="anchor" aria-label="anchor" href="#ihre-arbeit-einreichen-4"><i class="fas fa-link"></i></a>
+</h2>
+<ul>
+<li>Speichern Sie Ihr Notebook ab und laden Sie nur die .Rmd Datei vom Server.</li>
+<li>Laden Sie Ihre .Rmd Datei in ILIAS hoch. <strong>Beachten Sie die Deadline!</strong>
+</li>
+<li>Sie erhalten die Musterlösung nach dem Hochladen.</li>
+</ul>
+</div>
+<div id="weiterführende-literatur-1" class="section level2" number="8.8">
+<h2>
+<span class="header-section-number">8.8</span> Weiterführende Literatur<a class="anchor" aria-label="anchor" href="#weiterf%C3%BChrende-literatur-1"><i class="fas fa-link"></i></a>
+</h2>
+<p>Kapitel 17.3 in <span class="citation"><a href="literatur.html#ref-Sauer2019" role="doc-biblioref">Sauer</a> (<a href="literatur.html#ref-Sauer2019" role="doc-biblioref">2019</a>)</span></p>
+
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="stichproben.html"><span class="header-section-number">7</span> Stichproben und Variabilität</a></div>
+<div class="next"><a href="hypothesentests-mit-dem-paket-infer.html"><span class="header-section-number">9</span> Hypothesentests mit dem Paket infer</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#bootstrapping-und-konfidenzintervalle"><span class="header-section-number">8</span> Bootstrapping und Konfidenzintervalle</a></li>
+<li><a class="nav-link" href="#bootstrapping-die-m%C3%BCnchhausenmethode"><span class="header-section-number">8.1</span> Bootstrapping, die Münchhausenmethode</a></li>
+<li><a class="nav-link" href="#konfidenzintervall-f%C3%BCr-den-mittelwert-der-anreisezeit"><span class="header-section-number">8.2</span> Konfidenzintervall für den Mittelwert der Anreisezeit</a></li>
+<li><a class="nav-link" href="#bootstrap-konfidenzintervalle-mit-infer"><span class="header-section-number">8.3</span> Bootstrap-Konfidenzintervalle mit infer</a></li>
+<li><a class="nav-link" href="#bedeutung-der-konfidenzintervalle"><span class="header-section-number">8.4</span> Bedeutung der Konfidenzintervalle</a></li>
+<li><a class="nav-link" href="#lesestoff-6"><span class="header-section-number">8.5</span> Lesestoff</a></li>
+<li>
+<a class="nav-link" href="#aufgaben-5"><span class="header-section-number">8.6</span> Aufgaben</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#konfidenzintervall-aus-dem-zentralen-grenzwertsatz"><span class="header-section-number">8.6.1</span> Konfidenzintervall aus dem Zentralen Grenzwertsatz</a></li>
+<li><a class="nav-link" href="#anteile-an-stadt--und-landbewohnern"><span class="header-section-number">8.6.2</span> Anteile an Stadt- und Landbewohnern</a></li>
+<li><a class="nav-link" href="#wie-h%C3%A4ngt-das-konfidenzintervall-von-der-stichprobengr%C3%B6%C3%9Fe-ab"><span class="header-section-number">8.6.3</span> Wie hängt das Konfidenzintervall von der Stichprobengröße ab?</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#ihre-arbeit-einreichen-4"><span class="header-section-number">8.7</span> Ihre Arbeit einreichen</a></li>
+<li><a class="nav-link" href="#weiterf%C3%BChrende-literatur-1"><span class="header-section-number">8.8</span> Weiterführende Literatur</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/ChrisBogner/datenanalyse.git/blob/master/08-bootstrap.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/ChrisBogner/datenanalyse.git/edit/master/08-bootstrap.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Datenanalyse mit R</strong>: SoSe 2021" was written by Christina Bogner. It was last built on 2021-06-06.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+</html>

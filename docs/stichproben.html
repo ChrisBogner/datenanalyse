@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Kapitel 7 Stichproben und Variabilität | Datenanalyse mit R</title>
+<meta name="author" content="Christina Bogner">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.2"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.8/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.2.5.1/tabs.js"></script><script src="libs/bs3compat-0.2.5.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/mark.js@8.11.1/dist/mark.min.js"></script><!-- CSS --><link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="font-awesome.min.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="SoSe 2021">Datenanalyse mit R</a>:
+        <small class="text-muted">SoSe 2021</small>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Vorwort</a></li>
+<li><a class="" href="einfuehrung.html"><span class="header-section-number">1</span> Der Kurs</a></li>
+<li><a class="" href="erste-schritte.html"><span class="header-section-number">2</span> Erste Schritte in R</a></li>
+<li><a class="" href="reproduzieren.html"><span class="header-section-number">3</span> R Markdown</a></li>
+<li><a class="" href="ggplot.html"><span class="header-section-number">4</span> Einführung in ggplot2</a></li>
+<li><a class="" href="daten-einlesen-und-visualisieren.html"><span class="header-section-number">5</span> Daten einlesen und visualisieren</a></li>
+<li><a class="" href="tidyverse.html"><span class="header-section-number">6</span> Der explorative Workflow mit tidyverse</a></li>
+<li><a class="active" href="stichproben.html"><span class="header-section-number">7</span> Stichproben und Variabilität</a></li>
+<li><a class="" href="bootstrapping-und-konfidenzintervalle.html"><span class="header-section-number">8</span> Bootstrapping und Konfidenzintervalle</a></li>
+<li><a class="" href="hypothesentests-mit-dem-paket-infer.html"><span class="header-section-number">9</span> Hypothesentests mit dem Paket infer</a></li>
+<li><a class="" href="aufgabensammlung.html"><span class="header-section-number">10</span> Aufgabensammlung</a></li>
+<li><a class="" href="literatur.html">Literatur</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/ChrisBogner/datenanalyse.git">View book source <i class="fab fa-github"></i></a></p>
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="stichproben" class="section level1" number="7">
+<h1>
+<span class="header-section-number">Kapitel 7</span> Stichproben und Variabilität<a class="anchor" aria-label="anchor" href="#stichproben"><i class="fas fa-link"></i></a>
+</h1>
+<div class="rmdoutcomes">
+<ul>
+<li>
+Begriffe Stichprobenverteilung und Standardfehler erkären
+</li>
+<li>
+Zufall bei wiederholter Stichprobenerhebung erkennen
+</li>
+<li>
+Stichprobenverteilung darstellen
+</li>
+<li>
+Einfluss der Stichprobengröße auf Stichprobenverteilung benennen
+</li>
+</ul>
+</div>
+<p>Mit diesem Kapitel steigen wir in die schließende Statistik ein. Wir beginnen damit, wie man in der Statistik zu Daten kommt (<strong>Stichprobenerhebung</strong>) und welche Rolle der Zufall dabei spielt. Dabei konzentrieren wir uns auf die Erhebung von einfachen zufälligen Stichproben (<strong>Zufallsstichproben</strong>), nicht auf das Designen von komplizierten Erhebungen. Das ist eine Kunst für sich und geht über die Ziele dieses Kurses hinaus.</p>
+<div class="sourceCode" id="cb84"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/moderndive/moderndive/issues">moderndive</a></span><span class="op">)</span></code></pre></div>
+<div id="stichproben-1" class="section level2" number="7.1">
+<h2>
+<span class="header-section-number">7.1</span> Stichproben<a class="anchor" aria-label="anchor" href="#stichproben-1"><i class="fas fa-link"></i></a>
+</h2>
+<p>Wir nutzen wieder die selbst erstellten Daten aus der Aufgabe <a href="aufgabensammlung.html#werdeschlau">10.1</a>. Die 12000 Studiere sind unsere <strong>Grundgesamtheit</strong>. Da wir die Daten selbst erstellt haben, wissen wir alles über sie. Das ist ein großer Vorteil von Computerexperimenten 😄. Damit alle dieselben Daten erstellen, ist die Zeile <code><a href="https://rdrr.io/r/base/Random.html">set.seed(123)</a></code> sehr wichtig. Sie sorgt dafür, dass der Generator für Zufallszahlen in einen zufälligen, aber reproduzierbaren Zustand versetzt wird. DIe Zahl in den Klammern ist nicht wichtig. Wichtig ist, dass alle dieselbe benutzen.</p>
+<p>Für bessere Nachvollziehbarkeit, nummerieren wir unsere Studierenden diesmal durch.</p>
+<div class="sourceCode" id="cb85"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
+
+<span class="va">student_id</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fl">12000</span>
+  
+<span class="va">anreise</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">12000</span> <span class="op">*</span> <span class="fl">0.8</span>, min <span class="op">=</span> <span class="fl">5</span>, max <span class="op">=</span> <span class="fl">40</span><span class="op">)</span>,
+             <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">12000</span> <span class="op">*</span> <span class="fl">0.2</span>, min <span class="op">=</span> <span class="fl">60</span>, max <span class="op">=</span> <span class="fl">120</span><span class="op">)</span><span class="op">)</span>
+
+<span class="va">geschlecht</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'m'</span>, <span class="st">'w'</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">12000</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+
+<span class="va">wohnort</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="va">anreise</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span>
+  <span class="kw">if</span><span class="op">(</span><span class="va">x</span> <span class="op">&lt;</span> <span class="fl">30</span><span class="op">)</span> <span class="st">'stadt'</span>
+  <span class="kw">else</span> <span class="st">'land'</span>
+<span class="op">}</span><span class="op">)</span>
+
+<span class="va">verkehrsmittel</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="va">anreise</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span>
+  <span class="kw">if</span><span class="op">(</span><span class="va">x</span> <span class="op">&lt;=</span> <span class="fl">10</span><span class="op">)</span> <span class="st">'zu_fuss'</span>
+  <span class="kw">else</span> <span class="kw">if</span><span class="op">(</span><span class="va">x</span> <span class="op">&gt;</span> <span class="fl">10</span> <span class="op">&amp;</span> <span class="va">x</span> <span class="op">&lt;=</span> <span class="fl">15</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'zu_fuss'</span>, <span class="st">'fahrrad'</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
+  <span class="kw">else</span> <span class="kw">if</span><span class="op">(</span><span class="va">x</span> <span class="op">&gt;</span> <span class="fl">15</span> <span class="op">&amp;</span> <span class="va">x</span> <span class="op">&lt;=</span> <span class="fl">45</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'bus'</span>, <span class="st">'fahrrad'</span>, <span class="st">'auto'</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
+  <span class="kw">else</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'bus'</span>, <span class="st">'auto'</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
+<span class="op">}</span><span class="op">)</span>
+
+<span class="va">zeit_bib</span> <span class="op">&lt;-</span> <span class="fl">5</span> <span class="op">*</span> <span class="fl">60</span> <span class="op">-</span> <span class="fl">0.7</span> <span class="op">*</span> <span class="va">anreise</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">anreise</span><span class="op">)</span>, <span class="fl">0</span>, <span class="fl">20</span><span class="op">)</span>
+
+<span class="va">grundgesamtheit</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="op">(</span><span class="va">student_id</span>, <span class="va">geschlecht</span>, <span class="va">wohnort</span>, <span class="va">verkehrsmittel</span>, <span class="va">anreise</span>, <span class="va">zeit_bib</span><span class="op">)</span>
+
+<span class="va">grundgesamtheit</span></code></pre></div>
+<pre><code>## # A tibble: 12,000 x 6
+##    student_id geschlecht wohnort verkehrsmittel anreise zeit_bib
+##         &lt;int&gt; &lt;chr&gt;      &lt;chr&gt;   &lt;chr&gt;            &lt;dbl&gt;    &lt;dbl&gt;
+##  1          1 w          stadt   bus              15.1      294.
+##  2          2 w          land    fahrrad          32.6      254.
+##  3          3 w          stadt   fahrrad          19.3      231.
+##  4          4 m          land    auto             35.9      245.
+##  5          5 m          land    bus              37.9      234.
+##  6          6 w          stadt   zu_fuss           6.59     303.
+##  7          7 w          stadt   bus              23.5      284.
+##  8          8 m          land    auto             36.2      274.
+##  9          9 m          stadt   fahrrad          24.3      299.
+## 10         10 w          stadt   bus              21.0      282.
+## # … with 11,990 more rows</code></pre>
+<p>Wir wollen nun 50 Studierende befragen. Durch die zufällige Auswahl an Befragten erzeugen wir eine <strong>zufällige Stichprobe</strong>. Übersetzt in unser Computerexperiment bedeutet es, dass wir zufällig 50 Zeilen aus dem Datensatz <code>grundgesamtheit</code> ziehen und zwar so, dass sich diese Zeilen nicht wiederholen (d.h. niemand mehrfach befragt wird). Dazu nutzen wir die Funktion <code><a href="https://infer.tidymodels.org/reference/rep_sample_n.html">rep_sample_n()</a></code>, die wiederholt (<em>rep</em>) <em>n</em> Zeilen zieht (<em>sample</em>), und zwar mit der Einstellung <code>replace = FALSE</code>, also ohne Zurücklegen. Wir befragen nur einmal, daher <code>reps = 1</code>.</p>
+<p>Damit alle wieder dieselben Daten bekommen, setzen wir vorher den seed (Zustand des Zufallszahlengenerators). Die Variable <code>befragung_size</code> gibt die <strong>Stichprobengröße</strong> an.</p>
+<div class="sourceCode" id="cb87"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">345</span><span class="op">)</span>
+
+<span class="va">befragung_size</span> <span class="op">&lt;-</span> <span class="fl">50</span>
+
+<span class="va">befragung</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://infer.tidymodels.org/reference/rep_sample_n.html">rep_sample_n</a></span><span class="op">(</span><span class="va">grundgesamtheit</span>, size <span class="op">=</span> <span class="va">befragung_size</span>, replace <span class="op">=</span> <span class="cn">FALSE</span>, reps <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
+
+<span class="va">befragung</span></code></pre></div>
+<pre><code>## # A tibble: 50 x 7
+## # Groups:   replicate [1]
+##    replicate student_id geschlecht wohnort verkehrsmittel anreise zeit_bib
+##        &lt;int&gt;      &lt;int&gt; &lt;chr&gt;      &lt;chr&gt;   &lt;chr&gt;            &lt;dbl&gt;    &lt;dbl&gt;
+##  1         1       1623 m          stadt   zu_fuss           7.06     299.
+##  2         1       9171 m          stadt   fahrrad          11.3      278.
+##  3         1      10207 w          land    bus             107.       199.
+##  4         1       3506 w          stadt   bus              25.0      326.
+##  5         1       8892 w          stadt   bus              28.1      259.
+##  6         1       5460 m          stadt   bus              23.6      299.
+##  7         1       6120 w          stadt   bus              20.0      268.
+##  8         1        865 w          stadt   fahrrad          26.6      290.
+##  9         1      11586 m          land    bus             114.       207.
+## 10         1       8153 w          stadt   zu_fuss           8.06     297.
+## # … with 40 more rows</code></pre>
+<p>Die Variable <code>replicate</code> zeigt immer 1. Das bedeutet, dass wir die Befragung einmal wiederholt (repliziert) haben und alle Datenpunkte zu dieser Wiederholung gehören.</p>
+<p>Wir wollen nun wissen, wie viele Studierende unter den Befragten in der Stadt oder auf dem Land wohnen.</p>
+<div class="sourceCode" id="cb89"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">befragung</span> <span class="op">%&gt;%</span> 
+  <span class="fu">group_by</span><span class="op">(</span><span class="va">wohnort</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu">count</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<pre><code>## # A tibble: 2 x 2
+## # Groups:   wohnort [2]
+##   wohnort     n
+##   &lt;chr&gt;   &lt;int&gt;
+## 1 land       21
+## 2 stadt      29</code></pre>
+<p>Das Ganze möchten wir als Anteile ausdrücken. Die Funktion <code>n()</code> kann innerhalb der Funktion <code>summarise()</code> zum Auszählen genutzt werden. Wir teilen durch die Stichprobengröße.</p>
+<div class="sourceCode" id="cb91"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">befragung</span> <span class="op">%&gt;%</span> 
+  <span class="fu">group_by</span><span class="op">(</span><span class="va">wohnort</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu">summarise</span><span class="op">(</span>prop <span class="op">=</span> <span class="fu">n</span><span class="op">(</span><span class="op">)</span><span class="op">/</span><span class="va">befragung_size</span><span class="op">)</span></code></pre></div>
+<pre><code>## # A tibble: 2 x 2
+##   wohnort  prop
+##   &lt;chr&gt;   &lt;dbl&gt;
+## 1 land     0.42
+## 2 stadt    0.58</code></pre>
+<p>Es wohnen also 42% auf dem Land und 58% in der Stadt.</p>
+<p>Was passiert, wenn wir die Befragung mehrfach wiederholen, sagen wir 33 Mal? In der Realität ist dieses Szenario sehr unwahrscheinlich, aber in einem Computerexperiment einfach zu implementieren. Es hilft uns ein Gefühl für die <strong>Variabilität</strong>, die durch das zufällige Auswählen der Studierenden bei der Befragung entsteht, zu entwickeln.</p>
+<p>Wir setzten erneut den seed, damit alle dieselben Ergebnisse bekommen.</p>
+<div class="sourceCode" id="cb93"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">234</span><span class="op">)</span>
+
+<span class="va">befragung_reps</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://infer.tidymodels.org/reference/rep_sample_n.html">rep_sample_n</a></span><span class="op">(</span><span class="va">grundgesamtheit</span>, size <span class="op">=</span> <span class="va">befragung_size</span>, replace <span class="op">=</span> <span class="cn">FALSE</span>, reps <span class="op">=</span> <span class="fl">33</span><span class="op">)</span>
+
+<span class="va">befragung_reps</span></code></pre></div>
+<pre><code>## # A tibble: 1,650 x 7
+## # Groups:   replicate [33]
+##    replicate student_id geschlecht wohnort verkehrsmittel anreise zeit_bib
+##        &lt;int&gt;      &lt;int&gt; &lt;chr&gt;      &lt;chr&gt;   &lt;chr&gt;            &lt;dbl&gt;    &lt;dbl&gt;
+##  1         1       2079 m          land    auto              38.8     262.
+##  2         1       1314 m          stadt   fahrrad           13.3     301.
+##  3         1       1710 m          stadt   auto              26.5     272.
+##  4         1       4386 w          stadt   bus               23.9     269.
+##  5         1       9490 m          land    auto              34.2     262.
+##  6         1      11757 w          land    bus              102.      227.
+##  7         1      11649 w          land    bus              111.      202.
+##  8         1       2244 m          land    bus               38.9     256.
+##  9         1       3652 w          stadt   fahrrad           10.3     254.
+## 10         1       3127 m          stadt   fahrrad           29.6     271.
+## # … with 1,640 more rows</code></pre>
+<p>Jetzt wird uns angezeigt, dass es in dem Datensatz <code>befragung_reps</code> 33 replicates (Wiederholgungen) gibt. Diese sind einfach nacheinander in <code>befragung_reps</code> angeordent (blättern Sie durch den Datensatz). Dementsprechend hat der Datensatz 50 <span class="math inline">\(\times\)</span> 33 = 1650 Zeilen.</p>
+<p>Wie sieht es jetzt mit den Anteilen von Stadt- und Landbewohnern aus? Wir müssen nun zusätzlich zum <code>wohnort</code> auch noch nach <code>replicate</code> gruppieren.</p>
+<div class="sourceCode" id="cb95"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">wohnort_props</span> <span class="op">&lt;-</span> <span class="va">befragung_reps</span> <span class="op">%&gt;%</span> 
+  <span class="fu">group_by</span><span class="op">(</span><span class="va">replicate</span>, <span class="va">wohnort</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu">summarise</span><span class="op">(</span>prop <span class="op">=</span> <span class="fu">n</span><span class="op">(</span><span class="op">)</span><span class="op">/</span><span class="va">befragung_size</span><span class="op">)</span>
+
+<span class="va">wohnort_props</span></code></pre></div>
+<pre><code>## # A tibble: 66 x 3
+## # Groups:   replicate [33]
+##    replicate wohnort  prop
+##        &lt;int&gt; &lt;chr&gt;   &lt;dbl&gt;
+##  1         1 land     0.42
+##  2         1 stadt    0.58
+##  3         2 land     0.36
+##  4         2 stadt    0.64
+##  5         3 land     0.4 
+##  6         3 stadt    0.6 
+##  7         4 land     0.38
+##  8         4 stadt    0.62
+##  9         5 land     0.4 
+## 10         5 stadt    0.6 
+## # … with 56 more rows</code></pre>
+<p>Erwartungsgemäß bringt jede Wiederholung der Befragung, die wir ja als zufälliges Herausgreifen der Studierenden ohne Mehrfachbefragung programmiert haben, etwas andere Ergebnisse. Sehen Sie sich die <code>studnet_id</code> in den replicates an, es werde unterschiedliche Studierende befragt! In einem Histogramm sieht das ganze so aus:</p>
+<div class="sourceCode" id="cb97"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">wohnort_props</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">prop</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu">geom_histogram</span><span class="op">(</span>binwidth <span class="op">=</span> <span class="fl">0.05</span>, boundary <span class="op">=</span> <span class="fl">0.4</span>, col <span class="op">=</span> <span class="st">'white'</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">facet_wrap</span><span class="op">(</span><span class="op">~</span> <span class="va">wohnort</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">'Anteile beim Wohnort'</span>, title <span class="op">=</span> <span class="st">'Verteilung der Wohnorte'</span>, y <span class="op">=</span> <span class="st">'Häufigkeit'</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="datenanalyse_files/figure-html/unnamed-chunk-81-1.png" width="90%"></div>
+<p>Die häufigsten Anteile sind um die 40% für Land und um die 60% für Stadt. Wir können es sogar etwas genauer ablesen, da wir <code>binwidth = 0.05</code> gewähnt haben, also Schritte von 5%. Es sind 35–40% für Land und 55–60% für Stadt.</p>
+<div id="anzahl-der-wiederholungen-und-variabilität" class="section level3" number="7.1.1">
+<h3>
+<span class="header-section-number">7.1.1</span> Anzahl der Wiederholungen und Variabilität<a class="anchor" aria-label="anchor" href="#anzahl-der-wiederholungen-und-variabilit%C3%A4t"><i class="fas fa-link"></i></a>
+</h3>
+<p>Was passiert, wenn wir unsere Umfrage nun 1000 Mal wiederholen? Wir können den ganzen Code recyclen und müssen nur die reps entsprechend verändern. Wir erstellen dafür eine extra Variable <code>befragung_reps</code>. Beim Histogramm sollten wir die <code>binwidth</code> etwas heruntersetzten, da wir jetzt sehr viel mehr Daten haben und diese detaillierter anzeigen lassen können. Zusätzlich wird die x-Achse “frei” gegeben, i.e. die Skalierung wird jetzt auf jeder Achse separat bestimmt <code>scales = 'free_x'</code> in <code>facet_wrap()</code>, um die Verteilungen besser zu sehen.</p>
+<div class="sourceCode" id="cb98"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">345</span><span class="op">)</span>
+
+<span class="va">befragung_reps</span> <span class="op">&lt;-</span> <span class="fl">1000</span>
+
+<span class="va">befragung_reps</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://infer.tidymodels.org/reference/rep_sample_n.html">rep_sample_n</a></span><span class="op">(</span><span class="va">grundgesamtheit</span>, size <span class="op">=</span> <span class="va">befragung_size</span>, replace <span class="op">=</span> <span class="cn">FALSE</span>, reps <span class="op">=</span> <span class="va">befragung_reps</span><span class="op">)</span>
+
+<span class="va">wohnort_props</span> <span class="op">&lt;-</span> <span class="va">befragung_reps</span> <span class="op">%&gt;%</span> 
+  <span class="fu">group_by</span><span class="op">(</span><span class="va">replicate</span>, <span class="va">wohnort</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu">summarise</span><span class="op">(</span>prop <span class="op">=</span> <span class="fu">n</span><span class="op">(</span><span class="op">)</span><span class="op">/</span><span class="va">befragung_size</span><span class="op">)</span>
+
+
+<span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">wohnort_props</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">prop</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu">geom_histogram</span><span class="op">(</span>binwidth <span class="op">=</span> <span class="fl">0.02</span>, boundary <span class="op">=</span> <span class="fl">0.4</span>, col <span class="op">=</span> <span class="st">'white'</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">facet_wrap</span><span class="op">(</span><span class="op">~</span> <span class="va">wohnort</span>, scales <span class="op">=</span> <span class="st">'free_x'</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">'Anteile beim Wohnort'</span>, title <span class="op">=</span> <span class="st">'Verteilung der Wohnorte'</span>, y <span class="op">=</span> <span class="st">'Häufigkeit'</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="datenanalyse_files/figure-html/unnamed-chunk-82-1.png" width="90%"></div>
+<p>Die häufigsten Anteile beim Land liegen bei 40–42% und bei der Stadt bei 58–60%.</p>
+<p>Die Histogramme geben nun sehr gut die Verteilung der Anteile der Stadt- und Landbewohner wieder. Solche Verteilungen nennt man <strong>Stichprobenverteilungen</strong>. Sie zeigen die Verteilung einer statistischen Kenngröße (Statistik), in unserem Fall Anteil, die aus zufälligen Stichproben ausgerechnet wurde. Die Stichprobenverteilung beantwrotet die Frage: Wenn ich eine zufällige Menge (Stichprobengröße) an Daten (Zufallsstichprobe) aus der Grundgesamtheit herausgreife und eine Kenngröße (z.B. Anteil) berechne, welchen Wert werde ich im Mittel erhalten und wie stark wird der Wert schwanken.</p>
+</div>
+<div id="stichprobengröße" class="section level3" number="7.1.2">
+<h3>
+<span class="header-section-number">7.1.2</span> Stichprobengröße<a class="anchor" aria-label="anchor" href="#stichprobengr%C3%B6%C3%9Fe"><i class="fas fa-link"></i></a>
+</h3>
+<p>Was passiert, wenn wir die Größe der Stichproben variieren? Das würde Befragungen mit unterschiedlicher Anzahl von Teilnehmern entsprechen. Wir vergleichen 25, 50 und 100 Befragte und wiederholen jeweils 1000 Mal, um erneut Stichprobenverteilungen plotten zu können. Das ist eine repetitive Aufgabe und ich werde dafür eine Funktion definieren. Wie man das macht, wird in einer späteren Stunde erklärt.</p>
+<div class="sourceCode" id="cb99"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">calculate_props</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">grund_data</span> <span class="op">=</span> <span class="va">grundgesamtheit</span>, <span class="va">befragung_size</span>, <span class="va">befragung_reps</span> <span class="op">=</span> <span class="fl">1000</span><span class="op">)</span> <span class="op">{</span>
+  
+  <span class="va">befragung</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://infer.tidymodels.org/reference/rep_sample_n.html">rep_sample_n</a></span><span class="op">(</span><span class="va">grund_data</span>, size <span class="op">=</span> <span class="va">befragung_size</span>, replace <span class="op">=</span> <span class="cn">FALSE</span>, reps <span class="op">=</span> <span class="va">befragung_reps</span><span class="op">)</span>
+
+<span class="va">wohnort_props</span> <span class="op">&lt;-</span> <span class="va">befragung</span> <span class="op">%&gt;%</span> 
+  <span class="fu">group_by</span><span class="op">(</span><span class="va">replicate</span>, <span class="va">wohnort</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu">summarise</span><span class="op">(</span>prop <span class="op">=</span> <span class="fu">n</span><span class="op">(</span><span class="op">)</span><span class="op">/</span><span class="va">befragung_size</span><span class="op">)</span>
+
+<span class="va">wohnort_props</span>
+<span class="op">}</span></code></pre></div>
+<p>Nun wenden wir diese selbst definierte Funktion an und füren die Befragungen durch.</p>
+<div class="sourceCode" id="cb100"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
+
+<span class="co"># Stichprobengröße 25</span>
+<span class="va">wohnort_props_25</span> <span class="op">&lt;-</span> <span class="fu">calculate_props</span><span class="op">(</span>grund_data <span class="op">=</span> <span class="va">grundgesamtheit</span>, befragung_size <span class="op">=</span> <span class="fl">25</span>, befragung_reps <span class="op">=</span> <span class="fl">1000</span><span class="op">)</span>
+  
+<span class="co"># Stichprobengröße 50</span>
+<span class="va">wohnort_props_50</span> <span class="op">&lt;-</span> <span class="fu">calculate_props</span><span class="op">(</span>grund_data <span class="op">=</span> <span class="va">grundgesamtheit</span>, befragung_size <span class="op">=</span> <span class="fl">50</span>, befragung_reps <span class="op">=</span> <span class="fl">1000</span><span class="op">)</span>
+
+<span class="co"># Stichprobengröße 100</span>
+<span class="va">wohnort_props_100</span> <span class="op">&lt;-</span> <span class="fu">calculate_props</span><span class="op">(</span>grund_data <span class="op">=</span> <span class="va">grundgesamtheit</span>, befragung_size <span class="op">=</span> <span class="fl">100</span>, befragung_reps <span class="op">=</span> <span class="fl">1000</span><span class="op">)</span></code></pre></div>
+<p>Wir stellen die drei Stichprobenverteilungen dar. Die binwidth ist jeweils eine andere.</p>
+<div class="sourceCode" id="cb101"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">wohnort_props_25</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">prop</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu">geom_histogram</span><span class="op">(</span>binwidth <span class="op">=</span> <span class="fl">0.05</span>, boundary <span class="op">=</span> <span class="fl">0.4</span>, col <span class="op">=</span> <span class="st">'white'</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">facet_wrap</span><span class="op">(</span><span class="op">~</span> <span class="va">wohnort</span>, scales <span class="op">=</span> <span class="st">'free_x'</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">'Anteile beim Wohnort'</span>, title <span class="op">=</span> <span class="st">'Verteilung der Wohnorte, Stichprobengröße = 25'</span>, y <span class="op">=</span> <span class="st">'Häufigkeit'</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="datenanalyse_files/figure-html/unnamed-chunk-85-1.png" width="90%"></div>
+<div class="sourceCode" id="cb102"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">wohnort_props_50</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">prop</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu">geom_histogram</span><span class="op">(</span>binwidth <span class="op">=</span> <span class="fl">0.02</span>, boundary <span class="op">=</span> <span class="fl">0.4</span>, col <span class="op">=</span> <span class="st">'white'</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">facet_wrap</span><span class="op">(</span><span class="op">~</span> <span class="va">wohnort</span>, scales <span class="op">=</span> <span class="st">'free_x'</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">'Anteile beim Wohnort'</span>, title <span class="op">=</span> <span class="st">'Verteilung der Wohnorte, Stichprobengröße = 50'</span>, y <span class="op">=</span> <span class="st">'Häufigkeit'</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="datenanalyse_files/figure-html/unnamed-chunk-85-2.png" width="90%"></div>
+<div class="sourceCode" id="cb103"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">wohnort_props_100</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">prop</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu">geom_histogram</span><span class="op">(</span>binwidth <span class="op">=</span> <span class="fl">0.02</span>, boundary <span class="op">=</span> <span class="fl">0.4</span>, col <span class="op">=</span> <span class="st">'white'</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">facet_wrap</span><span class="op">(</span><span class="op">~</span> <span class="va">wohnort</span>, scales <span class="op">=</span> <span class="st">'free_x'</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">'Anteile beim Wohnort'</span>, title <span class="op">=</span> <span class="st">'Verteilung der Wohnorte, Stichprobengröße = 100'</span>, y <span class="op">=</span> <span class="st">'Häufigkeit'</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="datenanalyse_files/figure-html/unnamed-chunk-85-3.png" width="90%"></div>
+<p>Wie kann man diese Stichprobenverteilungen charakterisieren? Nun, es sind in erster Linie Daten und wie bei jedem Datensatz kann man auch hier einen Mittelwert und eine Stadanrdabweichung angeben. Die Standardabweichung der Stichprobenverteilung heißt <strong>Standardfehler</strong> und fasst den Einfluss der Variabilität (zufälliges Herausgreifen der Studierenden) zusammen.</p>
+<div class="sourceCode" id="cb104"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">wohnort_props_25</span> <span class="op">%&gt;%</span> 
+  <span class="fu">group_by</span><span class="op">(</span><span class="va">wohnort</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu">summarise</span><span class="op">(</span>prop_sd <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">prop</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<pre><code>## # A tibble: 2 x 2
+##   wohnort prop_sd
+##   &lt;chr&gt;     &lt;dbl&gt;
+## 1 land      0.102
+## 2 stadt     0.102</code></pre>
+<div class="sourceCode" id="cb106"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">wohnort_props_50</span> <span class="op">%&gt;%</span> 
+  <span class="fu">group_by</span><span class="op">(</span><span class="va">wohnort</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu">summarise</span><span class="op">(</span>prop_sd <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">prop</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<pre><code>## # A tibble: 2 x 2
+##   wohnort prop_sd
+##   &lt;chr&gt;     &lt;dbl&gt;
+## 1 land     0.0679
+## 2 stadt    0.0679</code></pre>
+<div class="sourceCode" id="cb108"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">wohnort_props_100</span> <span class="op">%&gt;%</span> 
+  <span class="fu">group_by</span><span class="op">(</span><span class="va">wohnort</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu">summarise</span><span class="op">(</span>prop_sd <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">prop</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<pre><code>## # A tibble: 2 x 2
+##   wohnort prop_sd
+##   &lt;chr&gt;     &lt;dbl&gt;
+## 1 land     0.0458
+## 2 stadt    0.0458</code></pre>
+<p>Sie sehen, dass mit steigender Stichprobengröße der Standardfehler sinkt. Das ist intuitiv verständlich, denn je mehr Studierende wir (pro Wiederholung!) befragen, desto repräsentativer ist die Stichprobe.</p>
+<p>Da dieses Kapitel so wichtig ist, gibt es ausnahmsweise vorformulierte Take-Home-Messages 😄:</p>
+<div class="rmdalert">
+<ul>
+<li>
+Eine zufällige Stichprobe ist (meistens<span class="math inline"><span class="math inline">\(^*\)</span></span>) der Königsweg, um repräsentative Informationen über die Grundgesamtheit zu bekommen.
+</li>
+<li>
+Die Verteilung einer statistischen Kenngröße, die aus Zufallsstichproben ausgerechnet wurde, heißt Stichprobenverteilung. Um diese Verteilung zu bekommen, muss man wiederholt Stichproben erheben. Je mehr Stichproben man erhebt, desto genauer kann man die Stichprobenverteilung beschreiben.
+</li>
+<li>
+Die Standardabweichung der Kenngröße, die durch die Stichprobenverteilung dargestellt wird, heißt Standardfehler.
+</li>
+<li>
+Der Zufall macht sich durch eine Streuung (erfasst durch den Standardfehler) in der Stichprobenverteilung bemerkbar. Je größer die einzelnen Stichproben, desto kleiner der Standardfehler.
+</li>
+</ul>
+</div>
+<p><span class="math inline">\(^*\)</span>: Manchmal ist die interessierte Größe in unterschiedlichen Untergruppen der Grundgesamtheit unterschiedlich verteilt. Z.B. könnten bestimmte Haltungen in der Bevölkerung gegenüber irgendwelchen Sachverhalten von Alter oder Bildungsstand oder Wohnort (Stadt vs. Land) abhängen. Dann sollte man sich überlegen, ob man statt einer zufälligen Stichprobe lieber eine <strong>geschichtete Zufallsstichprobe</strong> zieht, d.h. innerhalb dieser Kategorien zufällig beprobt.</p>
+</div>
+</div>
+<div id="lesestoff-5" class="section level2" number="7.2">
+<h2>
+<span class="header-section-number">7.2</span> Lesestoff<a class="anchor" aria-label="anchor" href="#lesestoff-5"><i class="fas fa-link"></i></a>
+</h2>
+<p>Kapitel 7 in <span class="citation"><a href="literatur.html#ref-ModernDive" role="doc-biblioref">Ismay and Kim</a> (<a href="literatur.html#ref-ModernDive" role="doc-biblioref">2021</a>)</span></p>
+</div>
+<div id="aufgaben-4" class="section level2" number="7.3">
+<h2>
+<span class="header-section-number">7.3</span> Aufgaben<a class="anchor" aria-label="anchor" href="#aufgaben-4"><i class="fas fa-link"></i></a>
+</h2>
+<div id="wahrer-wert-in-der-grundgesamtheit" class="section level3" number="7.3.1">
+<h3>
+<span class="header-section-number">7.3.1</span> Wahrer Wert in der Grundgesamtheit<a class="anchor" aria-label="anchor" href="#wahrer-wert-in-der-grundgesamtheit"><i class="fas fa-link"></i></a>
+</h3>
+<p>Berechnen Sie die Anteile von Studierenden in der Grundgesamtheit, die in der Stadt bzw. auf dem Land leben. Wie gut waren die Schätzungen im Vergleich zum wahren Wert in der Grundgesamtheit?</p>
+</div>
+<div id="lohnt-eine-station-zum-ausleihen-von-farrähdern" class="section level3" number="7.3.2">
+<h3>
+<span class="header-section-number">7.3.2</span> Lohnt eine Station zum Ausleihen von Farrähdern?<a class="anchor" aria-label="anchor" href="#lohnt-eine-station-zum-ausleihen-von-farr%C3%A4hdern"><i class="fas fa-link"></i></a>
+</h3>
+<p>In unserem fiktiven Beispiel der Uni Werdeschlau geht es eigenlich darum, ob sich eine Station zum Ausleihen von Fahrrädern lohnen würde. Daher ist die Frage interessant, wie viele Studierende mit dem Fahrrad zur Uni kommen. Wiederholen Sie die obige Analyse und ermitteln Sie statt der Anteile von Stadt- und Landbewohnern nun die Anteile der unterschiedlichen Verkehrsmittel. Die selbst definierte Funktion müssen Sie durch die folgende ersetzten.</p>
+<div class="sourceCode" id="cb110"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">calculate_props_verkehr</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">grund_data</span> <span class="op">=</span> <span class="va">grundgesamtheit</span>, <span class="va">befragung_size</span>, <span class="va">befragung_reps</span> <span class="op">=</span> <span class="fl">1000</span><span class="op">)</span> <span class="op">{</span>
+  
+  <span class="va">befragung</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://infer.tidymodels.org/reference/rep_sample_n.html">rep_sample_n</a></span><span class="op">(</span><span class="va">grund_data</span>, size <span class="op">=</span> <span class="va">befragung_size</span>, replace <span class="op">=</span> <span class="cn">FALSE</span>, reps <span class="op">=</span> <span class="va">befragung_reps</span><span class="op">)</span>
+
+<span class="va">verkehrsmittel_props</span> <span class="op">&lt;-</span> <span class="va">befragung</span> <span class="op">%&gt;%</span> 
+  <span class="fu">group_by</span><span class="op">(</span><span class="va">replicate</span>, <span class="va">verkehrsmittel</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu">summarise</span><span class="op">(</span>prop <span class="op">=</span> <span class="fu">n</span><span class="op">(</span><span class="op">)</span><span class="op">/</span><span class="va">befragung_size</span><span class="op">)</span>
+
+<span class="va">verkehrsmittel_props</span>
+<span class="op">}</span></code></pre></div>
+<p>In der Lösung zu dieser Aufgabe erhalten Sie auch weiter Tipps zur Darstellung von Histogrammen und Dichtefunktionen 😎.</p>
+</div>
+</div>
+<div id="ihre-arbeit-einreichen-3" class="section level2" number="7.4">
+<h2>
+<span class="header-section-number">7.4</span> Ihre Arbeit einreichen<a class="anchor" aria-label="anchor" href="#ihre-arbeit-einreichen-3"><i class="fas fa-link"></i></a>
+</h2>
+<ul>
+<li>Speichern Sie Ihr Notebook ab und laden Sie nur die .Rmd Datei vom Server.</li>
+<li>Laden Sie Ihre .Rmd Datei in ILIAS hoch. <strong>Beachten Sie die Deadline!</strong>
+</li>
+<li>Sie erhalten die Musterlösung nach dem Hochladen.</li>
+</ul>
+<!-- ## Weiterführende Literatur -->
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="tidyverse.html"><span class="header-section-number">6</span> Der explorative Workflow mit tidyverse</a></div>
+<div class="next"><a href="bootstrapping-und-konfidenzintervalle.html"><span class="header-section-number">8</span> Bootstrapping und Konfidenzintervalle</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#stichproben"><span class="header-section-number">7</span> Stichproben und Variabilität</a></li>
+<li>
+<a class="nav-link" href="#stichproben-1"><span class="header-section-number">7.1</span> Stichproben</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#anzahl-der-wiederholungen-und-variabilit%C3%A4t"><span class="header-section-number">7.1.1</span> Anzahl der Wiederholungen und Variabilität</a></li>
+<li><a class="nav-link" href="#stichprobengr%C3%B6%C3%9Fe"><span class="header-section-number">7.1.2</span> Stichprobengröße</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#lesestoff-5"><span class="header-section-number">7.2</span> Lesestoff</a></li>
+<li>
+<a class="nav-link" href="#aufgaben-4"><span class="header-section-number">7.3</span> Aufgaben</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#wahrer-wert-in-der-grundgesamtheit"><span class="header-section-number">7.3.1</span> Wahrer Wert in der Grundgesamtheit</a></li>
+<li><a class="nav-link" href="#lohnt-eine-station-zum-ausleihen-von-farr%C3%A4hdern"><span class="header-section-number">7.3.2</span> Lohnt eine Station zum Ausleihen von Farrähdern?</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#ihre-arbeit-einreichen-3"><span class="header-section-number">7.4</span> Ihre Arbeit einreichen</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/ChrisBogner/datenanalyse.git/blob/master/07-stichproben.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/ChrisBogner/datenanalyse.git/edit/master/07-stichproben.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Datenanalyse mit R</strong>: SoSe 2021" was written by Christina Bogner. It was last built on 2021-06-06.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+</html>

@@ -122,6 +122,6 @@ Stellen Sie den zeitlichen Verlauf der Lebenserwartung in fünf europäischen L�
 Stellen Sie die Lebenserwartung im Jahr 1952 und im Jahr 2007 pro Kontinent dar. Das sind zwei verschiedene Boxplots.
 
 ## Ihre Arbeit einreichen
-- Speichern Sie Ihr Notbook ab und laden Sie nur die .Rmd Datei vom Server.
+- Speichern Sie Ihr Notebook ab und laden Sie nur die .Rmd Datei vom Server.
 - Laden Sie Ihre .Rmd Datei in ILIAS hoch. **Beachten Sie die Deadline!**
 - Sie erhalten die Musterlösung nach dem Hochladen.

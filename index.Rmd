@@ -22,7 +22,7 @@ description: "Begleitskript zur Veranstaltung Datenanalyse mit R"
 ## Organisatorisches {-}
 
 ```{block, type='rmdinfo'}
-Die Coronaviruspandemie verändert unser Leben und unser Lernen. Die UzK bittet Lehrende, das SoSe 2021 als Hybridsemester zu gestalten. Wir werden unseren Kurs komplett online durchführen. Bitte seien Sie nachsichtig, wenn nicht alles so klappt, wie in Präsenzveranstaltungen. Wir müssen aktuell alle sehr viel dazu lernen in Sachen digitale Lehre. Sie können sicher sein, dass das Geographische Institut bemüht ist, die Lehre so effizient wie möglich weiter laufen zu lassen, damit Sie in Ihrem Studium fortfahren können.
+Die Coronaviruspandemie verändert unser Leben und unser Lernen. Die UzK bittet Lehrende, das SoSe 2021 als Hybridsemester zu gestalten. Wir werden unseren Kurs komplett online durchführen. Bitte seien Sie nachsichtig, wenn nicht alles so klappt wie in Präsenzveranstaltungen. Wir müssen aktuell alle sehr viel dazu lernen in Sachen digitale Lehre. Sie können sicher sein, dass das Geographische Institut bemüht ist, die Lehre so effizient wie möglich weiter laufen zu lassen, damit Sie in Ihrem Studium fortfahren können.
 ```
 
 In dieser Veranstaltung werden wir folgende Werkzeuge verwenden:
@@ -80,6 +80,47 @@ Lernziele
 Dieses Skript baut stark auf folgenden freien Quellen auf:
 
 - r4ds: @r4ds
+- ggplot2: @Wickham2020
 - ModernDive: @ModernDive
 
 Den Autoren dieser Bücher gilt ein großer Dank für Ihren Beitrag zur `r fa("r-project", fill = "steelblue")`-Community `r fa("heart", fill = "red")`!
+
+## Reproduzierbarkeit {-}
+Dieses Buch wurde in [RStudio](https://www.rstudio.com/products/rstudio/) mit [Bookdown](https://bookdown.org/) geschrieben und in `r R.version.string` gebaut. Folgende Pakete werden für die Beispiele und Übungen benötigt:
+
+```{r, echo = FALSE, cache = FALSE}
+# Dieser Code stammt aus dem ggplot2 Buch
+# https://github.com/hadley/ggplot2-book/blob/master/introduction.Rmd
+    deps <- desc::desc_get_deps()
+    pkgs <- sort(deps$package[deps$type == "Imports"])
+    pkgs2 <- strwrap(paste(encodeString(pkgs, quote = '"'), collapse = ", "), exdent = 2)
+    install <- paste0(
+      "install.packages(c(\n  ", 
+      paste(pkgs2, "\n", collapse = ""), 
+      "))"
+    )
+```
+
+
+```{r, echo = FALSE, results="asis"}
+# Dieser Code stammt aus dem ggplot2 Buch
+# https://github.com/hadley/ggplot2-book/blob/master/introduction.Rmd
+pkgs <- sessioninfo::package_info(pkgs, dependencies = FALSE)
+df <- tibble(
+  package = pkgs$package,
+  version = pkgs$ondiskversion,
+  source = gsub("@", "\\\\@", pkgs$source)
+)
+knitr::kable(df, format = "markdown")
+```
+
+
+Die komplette Information zur Session lautet:
+
+```{r, echo = FALSE,}
+sessionInfo()
+```
+
+![](figures/Cc-by-nc-sa_icon.svg){width=30%}
+
+Diese Skript ist lizensiert unter [Creative Commons Namensnennung - Nicht-kommerziell - Weitergabe unter gleichen Bedingungen 4.0 International.](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.de/)

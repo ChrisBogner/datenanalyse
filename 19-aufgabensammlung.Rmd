@@ -187,7 +187,7 @@ assocstats(table(befragung$geschlecht, befragung$verkehrsmittel))
 
 Der Phi-Koeffizient ist NA, weil er nur auf $2 \times 2$-Tabellen definiert ist. Die beiden anderen, Contingency Coeff. (Pearson Koeffizient K) und Cramer's V zeigen unterschiedliche Werte an, je nachdem, wie unsere zufällige Stichprobe ausfällt. Aber der Zusammenhang sollte eher klein sein.
 
-Allgemein gil: Contingency Coeff. (Pearson Koeffizient K) und Cramer's V schwanken zwischen 0 (kein Zusammenhang) und 1 (perfekter Zusammenhang). Wichtig: Sie zeigen keine Richtung an. D.h. wir wissen nicht, ob der Zusammenhang positiv - "je mehr desto mehr" oder negativ "je mehr desto weniger" ist.
+Allgemein gilt: Contingency Coeff. (Pearson Koeffizient K) und Cramer's V schwanken zwischen 0 (kein Zusammenhang) und 1 (perfekter Zusammenhang). Wichtig: Sie zeigen keine Richtung an. D.h. wir wissen nicht, ob der Zusammenhang positiv - "je mehr desto mehr" oder negativ "je mehr desto weniger" ist.
 
 Die ersten beiden Zeilen, die `assocstats` liefert, gehören zum Thema Hypothsentests. Das besprechen wir später.
 
@@ -298,8 +298,8 @@ Wir gehen davon aus, dass das Alter der Fledermäuse mit ihrer Größe zusammenh
 - Wie viele Jungtiere gibt es im Datensatz?
 - Sind die Jungtiere weiblich oder männlich?
 
-### Zeitreihen aus der Langen Bramke (Harz)
-Im Harz wurden über eine längere Zeit Niederschlag, Abfluss und Temperatur gemessen. DIe Messeinheiten sind für Temperatur °C, für Niederschlag und Abfluss mm.
+### Zeitreihen aus dem Lehstenbacheinzugsgebiet (NE Bayern)
+Im Lehstenbacheinzugsgebiet wurden über eine längere Zeit Niederschlag, Abfluss und Temperatur gemessen. Die Messeinheiten sind für Temperatur °C, für Niederschlag und Abfluss mm.
 
 1. Laden Sie den Datensatz `r file.name("Data.dat")`.
 1. Wandeln Sie die Spalte `Date` in ein richtiges Datum um.
@@ -324,24 +324,24 @@ Die Datei `r file.name("Temperatur.csv")` aus @Zuur2009a enthält Messungen von 
 1. Stellen Sie die Daten mit einem Fehlerband dar (in verschiedenen Plots mit `facet_wrap()`) und speichern Sie sie ab.
 
 
-<!-- ### Artenvielfalt in Grasländern -->
-<!-- Sie erhalten Daten aus dem Grasland-Monitoring im Yellowstone Nationalpark und dem National Bison Range (USA). Das Ziel des Monitorings ist die Untersuchung möglicher Änderungen der Biodiversität und des Zusammenhang mit Umweltfaktoren. Biodiversität wurde durch die Anzahl unterschiedlicher Arten quantifiziert. Insgesamt haben die Forscher ca. 90 Arten in 8 Transekten kartiert. Die Aufnahmen wurden alle 4 bis 10 Jahre wiederholt. Insgesamt liegen 58 Beobachtungen vor. Die Daten sind in der Datei `r file.name("Vegetation2.xls")` gespeichert. -->
+### Artenvielfalt in Grasländern
+Sie erhalten Daten aus dem Grasland-Monitoring im Yellowstone Nationalpark und dem National Bison Range (USA). Das Ziel des Monitorings ist die Untersuchung möglicher Änderungen der Biodiversität und des Zusammenhang mit Umweltfaktoren. Biodiversität wurde durch die Anzahl unterschiedlicher Arten quantifiziert. Insgesamt haben die Forscher ca. 90 Arten in 8 Transekten kartiert. Die Aufnahmen wurden alle 4 bis 10 Jahre wiederholt. Insgesamt liegen 58 Beobachtungen vor. Die Daten sind in der Datei `r file.name("Vegetation2.xls")` gespeichert.
 
-<!-- 1. Laden Sie den Datensatz in R und sehen Sie sich das Ergebnis genau mit  `str`, `head` und `tail` an. Diese Aufgabe dient dazu, das Einlesen von Excel-Dateien mit `tidyverse` zu erarbeiten. Tipp: nutzen Sie die Funktion `read_xls()` in der Bibliothek `readxl`. Lesen Sie genau in der Hilfe nach, wie Sie *ein bestimmtes* Tabellenblatt einlesen können. -->
+1. Laden Sie den Datensatz in R und sehen Sie sich das Ergebnis genau mit  `str`, `head` und `tail` an. Diese Aufgabe dient dazu, das Einlesen von Excel-Dateien mit `tidyverse` zu erarbeiten. Tipp: nutzen Sie die Funktion `read_xls()` in der Bibliothek `readxl`. Lesen Sie genau in der Hilfe nach, wie Sie *ein bestimmtes* Tabellenblatt einlesen können.
 
-<!-- 1. Kurze explorative Analyse: Berechnen Sie die Anzahl der Messungen, den Mittelwert und die Standardabweichung der Artenzahl (Variable  `R`) pro Transekt.  -->
+1. Kurze explorative Analyse: Berechnen Sie die Anzahl der Messungen, den Mittelwert und die Standardabweichung der Artenzahl (Variable  `R`) pro Transekt.
 
-<!-- 1. Plotten Sie die Artenzahl gegen die Variable `BARESOIL` (Anteil von unbewachsenem Boden). Färben Sie die Punkte je nach Transekt unterschiedlich ein. Tipp: Transekt als `as.factor()` konvertieren. -->
+1. Plotten Sie die Artenzahl gegen die Variable `BARESOIL` (Anteil von unbewachsenem Boden). Färben Sie die Punkte je nach Transekt unterschiedlich ein. Tipp: Transekt als `as_factor()` konvertieren.
 
-<!-- 1. Fügen Sie eine glättende Linie ohne Konfidenzband hinzu, die alle Punkte unabhängig vom Transekt berücksichtigt (Abschnitt 5.2 in ggplot2 Buch).  -->
+1. Fügen Sie eine glättende Linie ohne Konfidenzband hinzu, die alle Punkte unabhängig vom Transekt berücksichtigt ([Abschnitt 4.2](https://ggplot2-book.org/collective-geoms.html) im ggplot2 Buch [@Wickham2020]).
 
-<!-- 1. Beschriften Sie die Graphik (auch die Legende!) sinnvoll und speichern Sie sie als pdf ab. -->
+1. Beschriften Sie die Graphik (auch die Legende!) sinnvoll und speichern Sie sie als pdf ab.
 
-<!-- 1. Stellen Sie die Artenzahl je Transekt als Zeitreihe dar. Die Symbole sollen sowohl Punkte als auch Linien sein. Skalieren Sie die Größe der Punkte je nach Anteil des unbewachsenen Bodens (Abschnitt 6.2 im ggplot2 Buch). -->
+1. Stellen Sie die Artenzahl je Transekt als Zeitreihe dar. Die Symbole sollen sowohl Punkte als auch Linien sein. Skalieren Sie die Größe der Punkte je nach Anteil des unbewachsenen Bodens ([Abschnitt 12.1](https://ggplot2-book.org/scale-other.html?q=size#size) im ggplot2 Buch [@Wickham2020]).
 
-<!-- 1. Beschriften Sie die Grafik (auch die Legenden!) sinnvoll und speichern Sie sie als pdf ab. -->
+1. Beschriften Sie die Grafik (auch die Legenden!) sinnvoll und speichern Sie sie als pdf ab.
 
-<!-- 1. Setzen Sie nun beide Grafiken neben einander, platzieren Sie die Legenden (ja nach gewähltem Layout) sinnvoll und speichern Sie die Grafiken ab. -->
+1. Setzen Sie nun beide Grafiken neben einander, platzieren Sie die Legenden (ja nach gewähltem Layout) sinnvoll und speichern Sie die Grafiken ab.
 
 
 <!-- ### Tracerversuche -->

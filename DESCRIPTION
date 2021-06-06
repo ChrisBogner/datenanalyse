@@ -20,7 +20,8 @@ Imports:
     gapminder,
     moderndive,
     lubridate,
-    infer
+    infer,
+    emojifont
 Remotes:
     rstudio/bookdown,
     rstudio/bslib,

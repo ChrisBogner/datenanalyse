@@ -8,7 +8,7 @@ bookdown::bs4_book:
         <li><a href="./">Datenanalyse mit R</a></li>
       after: |
         <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
-  repo: https://github.com/ChrisBogner/datenanalyse.git
+  repo: https://github.com/ChrisBogner/datenanalyse
     #download: ["pdf", "epub"]
 
 
@@ -21,7 +21,7 @@ bookdown::gitbook:
         <li><a href="./">Datenanalyse mit R</a></li>
       after: |
         <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
-    edit: https://github.com/ChrisBogner/datenanalyse.git %s
+    edit: https://github.com/ChrisBogner/datenanalyse
     #download: ["pdf", "epub"]
 bookdown::pdf_book:
   includes:

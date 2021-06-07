@@ -11,7 +11,7 @@ rmd_files: ["index.Rmd",
 "09-hypothesentests.Rmd",
 #"06-funktionen.Rmd",
 #"09-visualisieren_2.Rmd",
-"18-datenquellen.Rmd",
+"18-datenquellen-und-bericht.Rmd",
 "19-aufgabensammlung.Rmd",
 "20-biblio.Rmd"]
 before_chapter_script: ["helper_functions.R"]

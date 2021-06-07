@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Kapitel 10 Datenquellen und Struktur des Abschlussberichts | Datenanalyse mit R</title>
+<meta name="author" content="Christina Bogner">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.2"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.8/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.2.5.1/tabs.js"></script><script src="libs/bs3compat-0.2.5.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/mark.js@8.11.1/dist/mark.min.js"></script><!-- CSS --><link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="font-awesome.min.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="SoSe 2021">Datenanalyse mit R</a>:
+        <small class="text-muted">SoSe 2021</small>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Vorwort</a></li>
+<li><a class="" href="einfuehrung.html"><span class="header-section-number">1</span> Der Kurs</a></li>
+<li><a class="" href="erste-schritte.html"><span class="header-section-number">2</span> Erste Schritte in R</a></li>
+<li><a class="" href="reproduzieren.html"><span class="header-section-number">3</span> R Markdown</a></li>
+<li><a class="" href="ggplot.html"><span class="header-section-number">4</span> Einführung in ggplot2</a></li>
+<li><a class="" href="daten-einlesen-und-visualisieren.html"><span class="header-section-number">5</span> Daten einlesen und visualisieren</a></li>
+<li><a class="" href="tidyverse.html"><span class="header-section-number">6</span> Der explorative Workflow mit tidyverse</a></li>
+<li><a class="" href="stichproben.html"><span class="header-section-number">7</span> Stichproben und Variabilität</a></li>
+<li><a class="" href="bootstrapping-und-konfidenzintervalle.html"><span class="header-section-number">8</span> Bootstrapping und Konfidenzintervalle</a></li>
+<li><a class="" href="hypothesentests-mit-dem-paket-infer.html"><span class="header-section-number">9</span> Hypothesentests mit dem Paket infer</a></li>
+<li><a class="active" href="daten-und-bericht.html"><span class="header-section-number">10</span> Datenquellen und Struktur des Abschlussberichts</a></li>
+<li><a class="" href="aufgabensammlung.html"><span class="header-section-number">11</span> Aufgabensammlung</a></li>
+<li><a class="" href="literatur.html">Literatur</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/ChrisBogner/datenanalyse">View book source <i class="fab fa-github"></i></a></p>
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="daten-und-bericht" class="section level1" number="10">
+<h1>
+<span class="header-section-number">Kapitel 10</span> Datenquellen und Struktur des Abschlussberichts<a class="anchor" aria-label="anchor" href="#daten-und-bericht"><i class="fas fa-link"></i></a>
+</h1>
+<div class="rmdoutcomes">
+<ul>
+<li>
+Verschiedenen Datenquellen kennen
+</li>
+<li>
+Mögliche R-Pakete für direkten Datenbankzugang kennen
+</li>
+</ul>
+</div>
+<div id="datenquellen" class="section level2" number="10.1">
+<h2>
+<span class="header-section-number">10.1</span> Datenquellen<a class="anchor" aria-label="anchor" href="#datenquellen"><i class="fas fa-link"></i></a>
+</h2>
+<p>In diesem Abschnitt beschreibe ich einige mögliche Datenquellen, die Sie für Ihre Abschlussberichte nutzen können. Technische Unterstützung kann ich nur beim Paket eurostat anbieten. Andere Pakete müssen Sie selbständig entdecken.</p>
+<div id="statistsiches-bundesamt" class="section level3" number="10.1.1">
+<h3>
+<span class="header-section-number">10.1.1</span> Statistsiches Bundesamt<a class="anchor" aria-label="anchor" href="#statistsiches-bundesamt"><i class="fas fa-link"></i></a>
+</h3>
+<p>Das <a href="https://www.destatis.de/">Statistische Bundesamt</a> bietet Daten zu und über Deutschland. In deren Datenbank <a href="https://www-genesis.destatis.de/genesis/online?operation=sprachwechsel&amp;language=de">GENESIS</a>. Es ist wichtig, dass Sie beim Herunterladen (Werteabruf) das Format flat wählen. Dann bekommen Sie einen <em>tidy</em> Datensatz.</p>
+</div>
+<div id="eurostat" class="section level3" number="10.1.2">
+<h3>
+<span class="header-section-number">10.1.2</span> eurostat<a class="anchor" aria-label="anchor" href="#eurostat"><i class="fas fa-link"></i></a>
+</h3>
+<p><a href="https://ec.europa.eu/eurostat">eurostat</a> ist das statistische Amt der Europäischen Union. Auf ihrer Seite finden Sie viele Informationen und statistische Daten über und zu Europa.</p>
+<p>Die Daten von eurostat können direkt mit dem Paket <a href="http://ropengov.github.io/eurostat/index.html">eurostat</a> <em>tidy</em> heruntergeladen werden. Das Paket hat eine sehr gute Homepage und Tutorien Unter dem Reiter <em>Articles</em> finden Sie auch ein Tutorium, das die Darstellung der Daten als Karten (auch interaktiv) zeigt.</p>
+</div>
+<div id="gapminder" class="section level3" number="10.1.3">
+<h3>
+<span class="header-section-number">10.1.3</span> gapminder<a class="anchor" aria-label="anchor" href="#gapminder"><i class="fas fa-link"></i></a>
+</h3>
+<p>Sie haben einen Auszug aus den Daten von <a href="https://www.gapminder.org">gapminder</a> bereits kennen gelernt. Es gibt aber noch viel mehr dort zu entdecken. Die Daten können Sie per Hand <a href="https://www.gapminder.org/data/">hier</a> herunter laden. Besser ist jedoch, sich mit dem DDF Format (data description format) auseinander zu setzten. Dieses bietet <em>tidy</em> .csv-Dateien an. Der vollständige Datensatz von gapminder kann <a href="https://github.com/open-numbers/ddf--gapminder--systema_globalis">hier</a> herunter geladen werden.</p>
+</div>
+<div id="national-oceanic-and-atmospheric-administration-noaa" class="section level3" number="10.1.4">
+<h3>
+<span class="header-section-number">10.1.4</span> National Oceanic and Atmospheric Administration (NOAA)<a class="anchor" aria-label="anchor" href="#national-oceanic-and-atmospheric-administration-noaa"><i class="fas fa-link"></i></a>
+</h3>
+<p><a href="https://www.noaa.gov/">NOAA</a> bietet zahlreiche Datensätze zu Ozeanen, Wetter und Klima an. Sie können die Daten mit dem Paket <a href="https://docs.ropensci.org/rnoaa/">rnoaa</a> direkt herunterladen.</p>
+</div>
+<div id="weitere-datenquellen" class="section level3" number="10.1.5">
+<h3>
+<span class="header-section-number">10.1.5</span> Weitere Datenquellen<a class="anchor" aria-label="anchor" href="#weitere-datenquellen"><i class="fas fa-link"></i></a>
+</h3>
+<ul>
+<li><a href="https://data.worldbank.org/">World Bank Open Data</a></li>
+<li><a href="https://worldhappiness.report/ed/2021/">World Happiness Report</a></li>
+<li>Global Carbon Budget 2020
+<ul>
+<li><a href="https://essd.copernicus.org/articles/12/3269/2020/">Publikation und Datensatz</a></li>
+<li><a href="https://www.globalcarbonproject.org/index.htm">Global Carbon Project</a></li>
+</ul>
+</li>
+<li>
+<a href="https://www.pangaea.de/">PANGAEA</a>: eine der größten Datenbanken für Umweltdaten</li>
+<li>Überblick über open data und Pakete für direkten Download auf <a href="https://ropensci.org/">ROpenScie</a>:
+<a href="https://github.com/ropensci-archive/opendata">Daten</a>
+<a href="https://ropensci.org/packages/data-access/">Pakete</a>
+</li>
+</ul>
+</div>
+</div>
+<div id="struktur-des-abschlussberichts" class="section level2" number="10.2">
+<h2>
+<span class="header-section-number">10.2</span> Struktur des Abschlussberichts<a class="anchor" aria-label="anchor" href="#struktur-des-abschlussberichts"><i class="fas fa-link"></i></a>
+</h2>
+<div id="struktur-des-arbeitsverzeichnisses" class="section level3" number="10.2.1">
+<h3>
+<span class="header-section-number">10.2.1</span> Struktur des Arbeitsverzeichnisses<a class="anchor" aria-label="anchor" href="#struktur-des-arbeitsverzeichnisses"><i class="fas fa-link"></i></a>
+</h3>
+<p>Für Ihren Bericht, legen Sie bitte ein eigenes R-Projekt an. Eine ausführliche Anleitung finden sie <a href="https://support.rstudio.com/hc/en-us/articles/200526207-Using-Projects">hier</a>. Ein Projekt hilft Ihnen, Ihre Arbeit gut zu organisieren und nicht den Überblick über verschiedene Dateien zu verlieren.</p>
+<p>In Ihrem R-Projekt-Ordner legen Sie einen Ordner für Daten, gegebenenfalls einen für Hilfsskripte und gegebenenfalls einen für Abbildungen, die Sie zusätzlich im Bericht zeigen möchten. Ihr R-Notebook verbleibt im Wurzelverzeichnis des Projekts.</p>
+</div>
+<div id="daten-herunterladen-und-speichern" class="section level3" number="10.2.2">
+<h3>
+<span class="header-section-number">10.2.2</span> Daten herunterladen und speichern<a class="anchor" aria-label="anchor" href="#daten-herunterladen-und-speichern"><i class="fas fa-link"></i></a>
+</h3>
+<p>Falls Sie Daten mit Hilfe eines R-Pakets herunterladen, dann legen Sie dafür ein gesondertes R-Notebook an und beschreiben Sie den Vorgang: Wann und woher wurde der Datensatz heruntergeladen. Speichern Sie den Datensatz im Ordner Daten. Analysieren Sie den gespeicherten Datensatz. So kann ich später beim Korrigieren auf denselben (abgespeicherten) Datensatz zugreifen wie Sie. Denn Datenbanken können zwischen Abgabe und Korrektur aktualisiert werden.</p>
+</div>
+<div id="struktur-des-berichts" class="section level3" number="10.2.3">
+<h3>
+<span class="header-section-number">10.2.3</span> Struktur des Berichts<a class="anchor" aria-label="anchor" href="#struktur-des-berichts"><i class="fas fa-link"></i></a>
+</h3>
+<p>Strukturieren Sie Ihren Bericht wie folgt:</p>
+<ul>
+<li>Einführung (am Ende muss die Forschungsfrage stehen)</li>
+<li>Material und Methoden: Datenbeschreibung, Beschreibung der Methode mit Literaturangaben, gegebenenfalls Beschreibung des Untersuchungsgebiets</li>
+<li>Ergebnisse</li>
+<li>Diskussion mit Einbezug von weiterer Fachliteratur</li>
+<li>Schlussfolgerung</li>
+<li>Literatur</li>
+</ul>
+<p>Sie können Ergebnisse und Diskussion zu einem Abschnitt vereinen.</p>
+<p>Es gibt keine Längenvorgabe für Ihren Bericht. Seien Sie <em>concise</em>: so viel wie nötig aber nicht mehr.</p>
+<p>Am Ende <em>knit</em>en Sie den Bericht zu einem html-Dokument. Überlegen Sie, welche Code-Chunks im Bericht zu sehen sein müssen und vermeiden Sie Redundanz. Wichtig: das Notebook muss bei mir lauffähig sein, d.h. Sie müssen alle Zusatzskripte, Daten etc. mit richtigen relativen Pfaden im Projekt ansprechen.</p>
+<p><strong>Geben Sie den gesamten Projektordner als zip-Datei ab.</strong></p>
+
+</div>
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="hypothesentests-mit-dem-paket-infer.html"><span class="header-section-number">9</span> Hypothesentests mit dem Paket infer</a></div>
+<div class="next"><a href="aufgabensammlung.html"><span class="header-section-number">11</span> Aufgabensammlung</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#daten-und-bericht"><span class="header-section-number">10</span> Datenquellen und Struktur des Abschlussberichts</a></li>
+<li>
+<a class="nav-link" href="#datenquellen"><span class="header-section-number">10.1</span> Datenquellen</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#statistsiches-bundesamt"><span class="header-section-number">10.1.1</span> Statistsiches Bundesamt</a></li>
+<li><a class="nav-link" href="#eurostat"><span class="header-section-number">10.1.2</span> eurostat</a></li>
+<li><a class="nav-link" href="#gapminder"><span class="header-section-number">10.1.3</span> gapminder</a></li>
+<li><a class="nav-link" href="#national-oceanic-and-atmospheric-administration-noaa"><span class="header-section-number">10.1.4</span> National Oceanic and Atmospheric Administration (NOAA)</a></li>
+<li><a class="nav-link" href="#weitere-datenquellen"><span class="header-section-number">10.1.5</span> Weitere Datenquellen</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#struktur-des-abschlussberichts"><span class="header-section-number">10.2</span> Struktur des Abschlussberichts</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#struktur-des-arbeitsverzeichnisses"><span class="header-section-number">10.2.1</span> Struktur des Arbeitsverzeichnisses</a></li>
+<li><a class="nav-link" href="#daten-herunterladen-und-speichern"><span class="header-section-number">10.2.2</span> Daten herunterladen und speichern</a></li>
+<li><a class="nav-link" href="#struktur-des-berichts"><span class="header-section-number">10.2.3</span> Struktur des Berichts</a></li>
+</ul>
+</li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/ChrisBogner/datenanalyse/blob/master/18-datenquellen.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/ChrisBogner/datenanalyse/edit/master/18-datenquellen.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Datenanalyse mit R</strong>: SoSe 2021" was written by Christina Bogner. It was last built on 2021-06-07.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+# Datenquellen und Struktur des Abschlussberichts {#daten-und-bericht}
+
+```{block, type = 'rmdoutcomes'}
+- Verschiedenen Datenquellen kennen
+- Mögliche R-Pakete für direkten Datenbankzugang kennen
+```
+
+## Datenquellen
+
+In diesem Abschnitt beschreibe ich einige mögliche Datenquellen, die Sie für Ihre Abschlussberichte nutzen können. Technische Unterstützung kann ich nur beim Paket eurostat anbieten. Andere Pakete müssen Sie selbständig entdecken.
+
+### Statistsiches Bundesamt
+Das [Statistische Bundesamt](https://www.destatis.de/) bietet Daten zu und über Deutschland. In deren Datenbank [GENESIS](https://www-genesis.destatis.de/genesis/online?operation=sprachwechsel&language=de). Es ist wichtig, dass Sie beim Herunterladen (Werteabruf) das Format flat wählen. Dann bekommen Sie einen *tidy* Datensatz.
+
+### eurostat
+[eurostat](https://ec.europa.eu/eurostat) ist das statistische Amt der Europäischen Union. Auf ihrer Seite finden Sie viele Informationen und statistische Daten über und zu Europa.  
+
+Die Daten von eurostat können direkt mit dem Paket [eurostat](http://ropengov.github.io/eurostat/index.html) *tidy* heruntergeladen werden. Das Paket hat eine sehr gute Homepage und Tutorien Unter dem Reiter *Articles* finden Sie auch ein Tutorium, das die Darstellung der Daten als Karten (auch interaktiv) zeigt.
+
+### gapminder
+Sie haben einen Auszug aus den Daten von [gapminder](https://www.gapminder.org) bereits kennen gelernt. Es gibt aber noch viel mehr dort zu entdecken. Die Daten können Sie per Hand [hier](https://www.gapminder.org/data/) herunter laden. Besser ist jedoch, sich mit dem DDF Format (data description format) auseinander zu setzten. Dieses bietet *tidy* .csv-Dateien an. Der vollständige Datensatz von gapminder kann [hier](https://github.com/open-numbers/ddf--gapminder--systema_globalis) herunter geladen werden.
+
+
+### National Oceanic and Atmospheric Administration (NOAA)
+[NOAA](https://www.noaa.gov/) bietet zahlreiche Datensätze zu Ozeanen, Wetter und Klima an. Sie können die Daten mit dem Paket [rnoaa](https://docs.ropensci.org/rnoaa/) direkt herunterladen.
+
+### Weitere Datenquellen
+- [World Bank Open Data](https://data.worldbank.org/)
+- [World Happiness Report](https://worldhappiness.report/ed/2021/)
+- Global Carbon Budget 2020
+  - [Publikation und Datensatz](https://essd.copernicus.org/articles/12/3269/2020/)
+  - [Global Carbon Project](https://www.globalcarbonproject.org/index.htm)
+- [PANGAEA](https://www.pangaea.de/): eine der größten Datenbanken für Umweltdaten
+- Überblick über open data und Pakete für direkten Download auf [ROpenScie](https://ropensci.org/):
+  [Daten](https://github.com/ropensci-archive/opendata)
+  [Pakete](https://ropensci.org/packages/data-access/)
+  
+## Struktur des Abschlussberichts
+### Struktur des Arbeitsverzeichnisses
+Für Ihren Bericht, legen Sie bitte ein eigenes R-Projekt an. Eine ausführliche Anleitung finden sie [hier](https://support.rstudio.com/hc/en-us/articles/200526207-Using-Projects). Ein Projekt hilft Ihnen, Ihre Arbeit gut zu organisieren und nicht den Überblick über verschiedene Dateien zu verlieren.
+
+In Ihrem R-Projekt-Ordner legen Sie einen Ordner für Daten, gegebenenfalls einen für Hilfsskripte und gegebenenfalls einen für Abbildungen, die Sie zusätzlich im Bericht zeigen möchten. Ihr R-Notebook verbleibt im Wurzelverzeichnis des Projekts.
+
+### Daten herunterladen und speichern
+Falls Sie Daten mit Hilfe eines R-Pakets herunterladen, dann legen Sie dafür ein gesondertes R-Notebook an und beschreiben Sie den Vorgang: Wann und woher wurde der Datensatz heruntergeladen. Speichern Sie den Datensatz im Ordner Daten. Analysieren Sie den gespeicherten Datensatz. So kann ich später beim Korrigieren auf denselben (abgespeicherten) Datensatz zugreifen wie Sie. Denn Datenbanken können zwischen Abgabe und Korrektur aktualisiert werden.
+
+### Struktur des Berichts
+Strukturieren Sie Ihren Bericht wie folgt:
+
+  - Einführung (am Ende muss die Forschungsfrage stehen)
+  - Material und Methoden: Datenbeschreibung, Beschreibung der Methode mit Literaturangaben, gegebenenfalls Beschreibung des Untersuchungsgebiets
+  - Ergebnisse
+  - Diskussion mit Einbezug von weiterer Fachliteratur
+  - Schlussfolgerung
+  - Literatur
+  
+Sie können Ergebnisse und Diskussion zu einem Abschnitt vereinen.
+
+Es gibt keine Längenvorgabe für Ihren Bericht. Seien Sie *concise*: so viel wie nötig aber nicht mehr.
+
+Am Ende *knit*en Sie den Bericht zu einem html-Dokument. Überlegen Sie, welche Code-Chunks im Bericht zu sehen sein müssen und vermeiden Sie Redundanz. Wichtig: das Notebook muss bei mir lauffähig sein, d.h. Sie müssen alle Zusatzskripte, Daten etc. mit richtigen relativen Pfaden im Projekt ansprechen.
+
+**Geben Sie den gesamten Projektordner als zip-Datei ab.**

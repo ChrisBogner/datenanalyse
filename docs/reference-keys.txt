@@ -122,6 +122,17 @@ aufgaben-6
 sind-anreisezeit-und-zeit-in-der-bibliothek-correliert
 hängt-die-wahl-des-verkehrsmittels-vom-wohnort-ab
 weiterführende-literatur-und-videos-1
+daten-und-bericht
+datenquellen
+statistsiches-bundesamt
+eurostat
+gapminder
+national-oceanic-and-atmospheric-administration-noaa
+weitere-datenquellen
+struktur-des-abschlussberichts
+struktur-des-arbeitsverzeichnisses
+daten-herunterladen-und-speichern
+struktur-des-berichts
 aufgabensammlung
 werdeschlau
 grundgesamtheit-generieren
@@ -140,4 +151,5 @@ fledermäuse-revisited
 zeitreihen-aus-dem-lehstenbacheinzugsgebiet-ne-bayern
 umweltdaten-entlang-der-dänischen-küste
 umweltdaten-entlang-der-dänischen-küste-revisited
+unfaire-klausur-revisited
 artenvielfalt-in-grasländern

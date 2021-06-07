@@ -309,7 +309,7 @@ Im Lehstenbacheinzugsgebiet wurden über eine längere Zeit Niederschlag, Abflus
 
 ### Umweltdaten entlang der dänischen Küste
 
-Die Datei `r file.name("Temperatur.csv")` aus @Zuur2009a enthält Messungen von Temperatur, Salinität und Chlorophyl a an 31 Orten entlang der dänischen Küste. Die Daten stammen vom dänischen Institut RIKZ (Monitoringprogramm MWTL: Monitoring Waterstaatkundige Toestand des Lands). Die Messungen wurden zwischen 1990 und 2005 durchgeführt mit einer Häufigkeit von 0--4 mal pro Monat je nach Jahreszeit.
+Die Datei `r file.name("Temperatur.csv")` aus @Zuur2009a enthält Messungen von Temperatur, Salinität und Chlorophyl a an 31 Orten entlang der dänischen Küste. Der Datensatz kann [hier](https://highstat.com/index.php/a-beginner-s-guide-to-r) heruntergeladen werden. Die Daten stammen vom dänischen Institut RIKZ (Monitoringprogramm MWTL: Monitoring Waterstaatkundige Toestand des Lands). Die Messungen wurden zwischen 1990 und 2005 durchgeführt mit einer Häufigkeit von 0--4 mal pro Monat je nach Jahreszeit.
 
 1. Lesen Sie den Datensatz `r file.name("Temperatur.csv")` ein.
 1. Konvertieren Sie die Spalte Date in ein richtiges Datumsformat und plotten Sie die Temperaturen pro Station (`facet_wrap()`) als Zeitreihen.
@@ -324,25 +324,31 @@ Die Datei `r file.name("Temperatur.csv")` aus @Zuur2009a enthält Messungen von 
 1. Stellen Sie die Daten mit einem Fehlerband dar (in verschiedenen Plots mit `facet_wrap()`) und speichern Sie sie ab.
 
 
+### Unfaire Klausur, revisited
+Wir kommen zurück auf die Klausurpunkte aus der Aufgabe \@ref(klausur). Unterscheiden sich die Mittelwerte der erreichten Klausurpunkte zwischen den Gruppen? Nutzen Sie das Framework in `infer`. Lesen Sie die ursprüngliche Aufgabe noch einmal richtig durch, um die Alternativhypothese richtig zu formulieren.
+
 ### Artenvielfalt in Grasländern
-Sie erhalten Daten aus dem Grasland-Monitoring im Yellowstone Nationalpark und dem National Bison Range (USA). Das Ziel des Monitorings ist die Untersuchung möglicher Änderungen der Biodiversität und des Zusammenhang mit Umweltfaktoren. Biodiversität wurde durch die Anzahl unterschiedlicher Arten quantifiziert. Insgesamt haben die Forscher ca. 90 Arten in 8 Transekten kartiert. Die Aufnahmen wurden alle 4 bis 10 Jahre wiederholt. Insgesamt liegen 58 Beobachtungen vor. Die Daten sind in der Datei `r file.name("Vegetation2.xls")` gespeichert.
+Sie erhalten Daten aus dem Grasland-Monitoring im Yellowstone Nationalpark und dem National Bison Range (USA) aus @Zuur2009a. Der Datensatz kann [hier](https://highstat.com/index.php/a-beginner-s-guide-to-r) heruntergeladen werden. Das Ziel des Monitorings ist die Untersuchung möglicher Änderungen der Biodiversität und des Zusammenhang mit Umweltfaktoren. Biodiversität wurde durch die Anzahl unterschiedlicher Arten quantifiziert (Spalte `R`). Insgesamt haben die Forscher ca. 90 Arten in 8 Transekten kartiert. Die Aufnahmen wurden alle 4 bis 10 Jahre wiederholt. Insgesamt liegen 58 Beobachtungen vor. Die Daten sind in der Datei `r file.name("Vegetation2.xls")` gespeichert.
 
-1. Laden Sie den Datensatz in R und sehen Sie sich das Ergebnis genau mit  `str`, `head` und `tail` an. Diese Aufgabe dient dazu, das Einlesen von Excel-Dateien mit `tidyverse` zu erarbeiten. Tipp: nutzen Sie die Funktion `read_xls()` in der Bibliothek `readxl`. Lesen Sie genau in der Hilfe nach, wie Sie *ein bestimmtes* Tabellenblatt einlesen können.
+1. Laden Sie den Datensatz in R und sehen Sie sich das seine Struktur an. Diese Aufgabe dient dazu, das Einlesen von Excel-Dateien mit `tidyverse` zu erarbeiten. Tipp: nutzen Sie die Funktion `read_xls()` in der Bibliothek `readxl`. Lesen Sie genau in der Hilfe nach, wie Sie *ein bestimmtes* Tabellenblatt einlesen können.
 
-1. Kurze explorative Analyse: Berechnen Sie die Anzahl der Messungen, den Mittelwert und die Standardabweichung der Artenzahl (Variable  `R`) pro Transekt.
+1. Kurze explorative Analyse: Berechnen Sie die Anzahl der Messungen, den Mittelwert und die Standardabweichung der Artenzahl `R` pro Transekt.
 
 1. Plotten Sie die Artenzahl gegen die Variable `BARESOIL` (Anteil von unbewachsenem Boden). Färben Sie die Punkte je nach Transekt unterschiedlich ein. Tipp: Transekt als `as_factor()` konvertieren.
 
-1. Fügen Sie eine glättende Linie ohne Konfidenzband hinzu, die alle Punkte unabhängig vom Transekt berücksichtigt ([Abschnitt 4.2](https://ggplot2-book.org/collective-geoms.html) im ggplot2 Buch [@Wickham2020]).
+1. Fügen Sie eine glättende Linie ohne Konfidenzband hinzu, die alle Punkte unabhängig vom Transekt berücksichtigt ([Abschnitt 4.2](https://ggplot2-book.org/collective-geoms.html) im ggplot2 Buch [@Wickham2020]). Damit eine einzige glättende Linie für alle Transekte hinzugefügt wird, müssen Sie die aes für Farbe statt in `ggplot()` in `geom_point()` angeben.
 
 1. Beschriften Sie die Graphik (auch die Legende!) sinnvoll und speichern Sie sie als pdf ab.
 
-1. Stellen Sie die Artenzahl je Transekt als Zeitreihe dar. Die Symbole sollen sowohl Punkte als auch Linien sein. Skalieren Sie die Größe der Punkte je nach Anteil des unbewachsenen Bodens ([Abschnitt 12.1](https://ggplot2-book.org/scale-other.html?q=size#size) im ggplot2 Buch [@Wickham2020]).
+1. Stellen Sie die Artenzahl je Transekt als Zeitreihe dar. Die Symbole sollen sowohl Punkte als auch Linien sein. Skalieren Sie die Größe der Punkte je nach Anteil des unbewachsenen Bodens ([Abschnitt 12.1](https://ggplot2-book.org/scale-other.html?q=size#size) im ggplot2 Buch [@Wickham2020]). Denken Sie nach, an welcher Stelle die aes mit `size` stehen muss, damit nur die Punkte skaliert werden.
 
 1. Beschriften Sie die Grafik (auch die Legenden!) sinnvoll und speichern Sie sie als pdf ab.
 
-1. Setzen Sie nun beide Grafiken neben einander, platzieren Sie die Legenden (ja nach gewähltem Layout) sinnvoll und speichern Sie die Grafiken ab.
+1. Setzen Sie nun beide Grafiken unter einander, platzieren Sie die Legenden (ja nach gewähltem Layout) sinnvoll und speichern Sie die Grafiken ab.
 
+1. Berechnen Sie den linearen Korrelationskoeffizienten zwischen der Biodiversität und dem Anteil von unbewachsenem Boden und ermitteln Sie das 95%- Bootstrap-Konfidenzintervall.
+
+1. Wenn Sie statt eines 95%-Konfidenzintervalls, das 90%-Konfidenzintervall berechnen, wird das Intervall breiter oder schmaler? Warum? 
 
 <!-- ### Tracerversuche -->
 <!-- Im Waldstein wurden Tracerversuche mit dem Farbstoff Brilliant Blue durchgeführt und die gefärbten Bodenprofile *binärisiert* (d.h. in ein schwarz-weiß Bild umgewandelt). Schwarze Pixels stellen gefärbten Boden und weiße ungefärbten dar. Aus diesen Binärbildern wurde anschließend eine Reihe von Kenngrößen berechnet. -->
@@ -382,8 +388,3 @@ Sie erhalten Daten aus dem Grasland-Monitoring im Yellowstone Nationalpark und d
 
 <!-- 1. Lesen Sie den Datensatz  `r file.name("Bodendaten.txt")` ein. -->
 <!-- 1. Bestimmen Sie die mittlere Lagerungsdichte pro Feld. -->
-
-<!-- ### Temperatur-Datensatz, revisited -->
-
-<!-- 1. Laden Sie den Temperatur-Datensatz aus @Zuur2009a, Datei `r file.name("Temperatur.csv")`. -->
-<!-- 1.  Berechnen Sie die Jahresmittelwerte je Station. (Tipp: Hilfe von `tapply` genau lesen!) -->

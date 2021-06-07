@@ -112,7 +112,7 @@ anteile-an-stadt--und-landbewohnern
 wie-hängt-das-konfidenzintervall-von-der-stichprobengröße-ab
 ihre-arbeit-einreichen-4
 weiterführende-literatur-1
-hypothesentests-mit-dem-paket-infer
+hypothesentsts
 es-gibt-nur-einen-test
 workflow-in-infer
 stadt--und-landbewohner-in-werdeschlau
@@ -122,17 +122,6 @@ aufgaben-6
 sind-anreisezeit-und-zeit-in-der-bibliothek-correliert
 hängt-die-wahl-des-verkehrsmittels-vom-wohnort-ab
 weiterführende-literatur-und-videos-1
-daten-und-bericht
-datenquellen
-statistsiches-bundesamt
-eurostat
-gapminder
-national-oceanic-and-atmospheric-administration-noaa
-weitere-datenquellen
-struktur-des-abschlussberichts
-struktur-des-arbeitsverzeichnisses
-daten-herunterladen-und-speichern
-struktur-des-berichts
 aufgabensammlung
 werdeschlau
 grundgesamtheit-generieren
@@ -151,5 +140,8 @@ fledermäuse-revisited
 zeitreihen-aus-dem-lehstenbacheinzugsgebiet-ne-bayern
 umweltdaten-entlang-der-dänischen-küste
 umweltdaten-entlang-der-dänischen-küste-revisited
+bootstrapping-konfidenzintervalle-und-hypothesentests
 unfaire-klausur-revisited
 artenvielfalt-in-grasländern
+verdichtung
+beschäftige-frauen-im-privaten-und-öffentlichen-sektor

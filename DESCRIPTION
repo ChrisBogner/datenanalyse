@@ -21,6 +21,7 @@ Imports:
     moderndive,
     lubridate,
     infer,
+    dabestr,
     emojifont
 Remotes:
     rstudio/bookdown,

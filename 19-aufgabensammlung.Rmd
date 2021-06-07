@@ -323,9 +323,11 @@ Die Datei `r file.name("Temperatur.csv")` aus @Zuur2009a enthält Messungen von 
 1. Berechnen Sie die Monatsmittelwerte und Standardabweichungen je Station. Tipp: `group_by(Station, Month)`.
 1. Stellen Sie die Daten mit einem Fehlerband dar (in verschiedenen Plots mit `facet_wrap()`) und speichern Sie sie ab.
 
+## Bootstrapping, Konfidenzintervalle und Hypothesentests
 
 ### Unfaire Klausur, revisited
-Wir kommen zurück auf die Klausurpunkte aus der Aufgabe \@ref(klausur). Unterscheiden sich die Mittelwerte der erreichten Klausurpunkte zwischen den Gruppen? Nutzen Sie das Framework in `infer`. Lesen Sie die ursprüngliche Aufgabe noch einmal richtig durch, um die Alternativhypothese richtig zu formulieren.
+Wir kommen zurück auf die Klausurpunkte aus der Aufgabe \@ref(klausur). Waren die Aufgaben in Gruppe 1 leichter? Nutzen Sie das Framework in `infer`.
+
 
 ### Artenvielfalt in Grasländern
 Sie erhalten Daten aus dem Grasland-Monitoring im Yellowstone Nationalpark und dem National Bison Range (USA) aus @Zuur2009a. Der Datensatz kann [hier](https://highstat.com/index.php/a-beginner-s-guide-to-r) heruntergeladen werden. Das Ziel des Monitorings ist die Untersuchung möglicher Änderungen der Biodiversität und des Zusammenhang mit Umweltfaktoren. Biodiversität wurde durch die Anzahl unterschiedlicher Arten quantifiziert (Spalte `R`). Insgesamt haben die Forscher ca. 90 Arten in 8 Transekten kartiert. Die Aufnahmen wurden alle 4 bis 10 Jahre wiederholt. Insgesamt liegen 58 Beobachtungen vor. Die Daten sind in der Datei `r file.name("Vegetation2.xls")` gespeichert.
@@ -350,23 +352,24 @@ Sie erhalten Daten aus dem Grasland-Monitoring im Yellowstone Nationalpark und d
 
 1. Wenn Sie statt eines 95%-Konfidenzintervalls, das 90%-Konfidenzintervall berechnen, wird das Intervall breiter oder schmaler? Warum? 
 
-<!-- ### Tracerversuche -->
-<!-- Im Waldstein wurden Tracerversuche mit dem Farbstoff Brilliant Blue durchgeführt und die gefärbten Bodenprofile *binärisiert* (d.h. in ein schwarz-weiß Bild umgewandelt). Schwarze Pixels stellen gefärbten Boden und weiße ungefärbten dar. Aus diesen Binärbildern wurde anschließend eine Reihe von Kenngrößen berechnet. -->
+### Bodenverdichtung {#verdichtung}
+Schwere landwirtschaftliche Maschinen können beim Bearbeiten des Bodens zu Bodenverdichtung führen. In einem randomisierten Design wurden zufällig Parzellen (Spalte `plots`) auf einem sonst homogenen Feld entweder mit einer schweren Maschine bearbeitet (`compacted`) oder nicht (`control`). Die Lagerungsdichte (auch Trockenrohdichte) ist ein Maß für Bodenstruktur und gibt das Verhältnis der Trockenmasse eines Bodens zu seinem Volumen. Sie wird häufig in [g/cm³] gemessen und kann als ein Indikator für Bodenverdichtung genutzt werden. Der Datensatz  ist in der Date `r file.name("bd_compaction.csv")` gespeichert.
 
-<!-- 1. Lesen Sie die Datei `r file.name("Waldstein2005_ind.txt")` ein.  Die Tiefe eines Profils ist 579 Pixel und es liegen 6 Profile untereinander in der Spalte d. -->
-<!-- 1. Berechnen Sie die 5%, 50% und 95% Quantile des Färbeanteils (Index d) der 6 Profile. -->
-<!-- 1.  Stellen Sie den Median des Anteils der Färbung mit der Tiefe dar und fügen Sie die Quantile als transparente Fläche hinzu (Tipp: `polygon`). -->
+1. Lesen Sie den Datensatz ein und führen Sie eine kurze explorative Datenanalyse durch.
+2. Überprüfen Sie, ob sich die Lagerungsdichte auf den bearbeiteten Feldern erhöht hat. 
 
-<!-- ## Tidy data -->
 
-<!-- ### Wasserentnahme mit Datenquelle Excel -->
-<!-- Wir beschäftigen uns mit dem Einlesen und bereinigen von Daten aus Exceldateien. Dazu nutzen wir das Beispiel aus einer der ersten Sitzungen zur Wasserentnahme in der EU. -->
+### Beschäftige Frauen im privaten und öffentlichen Sektor
+Diese Übung ist inspiriert von Anrew Heiss Blog: https://www.andrewheiss.com/blog/2018/12/05/test-any-hypothesis/
 
-<!-- 1. Sehen Sie sich die Struktur der Datei `r file.name("TEN000021586860138332.xlsx")` an und lesen Sie sie ein. Nutzen Sie dazu die Funktion `read_xlsx()` aus dem Paket readxl. -->
-<!-- 2. Bereinigen Sie den Datensatz und konvertieren Sie ihn in *tidy*. Nutzen Sie dazu die Funktion `pivot_longer()`. -->
-<!-- 3. Finden und korrigieren Sie den Fehlwert. -->
-<!-- 4. Filtern Sie die Einträge für die EU heraus und behalten Sie nur die einzelnen Länder bei. -->
-<!-- 5. Stellen Sie die Änderung der Wasserentnahme pro Land dar. -->
+Wir nutzen den den Datensatz Worldwide Bureaucracy Indicators (WWBI). Diesen kann man bei der [Weltbank](https://datacatalog.worldbank.org/dataset/worldwide-bureaucracy-indicators) herunter laden.
+
+1. Laden Sie den Datensatz als csv file herunter und laden Sie die zip-Datei direkt auf den R-Server in den Ordner Data hoch.
+2. Die Daten sind in der Datei `r file.name('WWBIData.csv')` gespeichert. Lesen Sie den Datensatz ein.
+3. Gemeinsame Übung: Wir bereinigen den Datensatz und machen ihn *tidy*.
+3. Filtern Sie Daten für das Jahr 2012 und die Indikatoren "BI.PWK.PRVS.FE.ZS" und "BI.PWK.PUBS.FE.ZS". Enfernen Sie NAs. Was bedeuten diese Indikatoren?
+4. Stellen Sie die Histogramme dieser Indikatoren dar.
+4. Gibt es Unterschied zwischen den Anteilen der beschäftigen Frauen im privaten und öffentlichen Sektor?
 
 <!-- ### Wasserentnahme mit Datenquelle EUROSTAT direkt -->
 
@@ -381,10 +384,4 @@ Sie erhalten Daten aus dem Grasland-Monitoring im Yellowstone Nationalpark und d
 <!-- 4. Berechnen Sie die Gesamtmenge des entnommenen Wassers für alle Länder je Quelle (Fresh surface water und Fresh ground water). -->
 <!-- 4. Stellen Sie diese Daten als Punktdiagramm, als Balkendiagramm und als Flächendiagramm dar. Was ist das Problem mit dem Flächendiagramm? -->
 
-<!-- ## Effizientes Programmieren -->
 
-<!-- ### Lagerungsdichten -->
-<!-- Auf 10 verschiedenen landwirtschaftlichen Feldern wurden im Oberboden je 25 Stechzylinder entnommen. -->
-
-<!-- 1. Lesen Sie den Datensatz  `r file.name("Bodendaten.txt")` ein. -->
-<!-- 1. Bestimmen Sie die mittlere Lagerungsdichte pro Feld. -->

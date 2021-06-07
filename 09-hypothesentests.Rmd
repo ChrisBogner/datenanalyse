@@ -1,4 +1,4 @@
-# Hypothesentests mit dem Paket `infer`
+# Hypothesentests mit dem Paket `infer` {#hypothesentsts}
 
 ```{block, type = 'rmdoutcomes'}
 - Idee hinter simulationsbasierten Tests erklären
@@ -188,7 +188,7 @@ grundgesamtheit %>%
   calculate(stat = "diff in props", order = c("w", "m"))
 ```
 
-$p$-Werte werden häufig miss- oder überinterpretiert. Es geht soweit, dass nur wissenschaftliche Ergebnisse mit signifikanten Hypothesentests als wertvoll und publizierbar angesehen werden. Davor kann man nur dringend warnen. Diese Einstellung führt zur Verzerrung der wissenschaftlichen Ergebnissen. Ich lade Sie ein, mehr dazu bei @Wasserstein2016 und im Kapitel 9.6 in @ModernDive nachzulesen.
+$p$-Werte werden häufig miss- oder überinterpretiert. Es geht soweit, dass nur wissenschaftliche Ergebnisse mit signifikanten Ausgängen bei Hypothesentests als wertvoll und publizierbar angesehen werden. Davor kann man nur dringend warnen. Diese Einstellung führt zur Verzerrung der wissenschaftlichen Ergebnissen. Ich lade Sie ein, mehr dazu bei @Wasserstein2016 und im Kapitel 9.6 in @ModernDive nachzulesen.
 
 ## Lesestoff
 Kapitel 9.3 bis 9.6 in @ModernDive

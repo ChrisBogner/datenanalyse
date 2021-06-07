@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Kapitel 9 Hypothesentests mit dem Paket infer | Datenanalyse mit R</title>
+<meta name="author" content="Christina Bogner">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.2"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.8/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.2.5.1/tabs.js"></script><script src="libs/bs3compat-0.2.5.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/mark.js@8.11.1/dist/mark.min.js"></script><!-- CSS --><link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="font-awesome.min.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="SoSe 2021">Datenanalyse mit R</a>:
+        <small class="text-muted">SoSe 2021</small>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Vorwort</a></li>
+<li><a class="" href="einfuehrung.html"><span class="header-section-number">1</span> Der Kurs</a></li>
+<li><a class="" href="erste-schritte.html"><span class="header-section-number">2</span> Erste Schritte in R</a></li>
+<li><a class="" href="reproduzieren.html"><span class="header-section-number">3</span> R Markdown</a></li>
+<li><a class="" href="ggplot.html"><span class="header-section-number">4</span> Einführung in ggplot2</a></li>
+<li><a class="" href="daten-einlesen-und-visualisieren.html"><span class="header-section-number">5</span> Daten einlesen und visualisieren</a></li>
+<li><a class="" href="tidyverse.html"><span class="header-section-number">6</span> Der explorative Workflow mit tidyverse</a></li>
+<li><a class="" href="stichproben.html"><span class="header-section-number">7</span> Stichproben und Variabilität</a></li>
+<li><a class="" href="bootstrapping-und-konfidenzintervalle.html"><span class="header-section-number">8</span> Bootstrapping und Konfidenzintervalle</a></li>
+<li><a class="active" href="hypothesentsts.html"><span class="header-section-number">9</span> Hypothesentests mit dem Paket infer</a></li>
+<li><a class="" href="aufgabensammlung.html"><span class="header-section-number">10</span> Aufgabensammlung</a></li>
+<li><a class="" href="literatur.html">Literatur</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/ChrisBogner/datenanalyse">View book source <i class="fab fa-github"></i></a></p>
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="hypothesentsts" class="section level1" number="9">
+<h1>
+<span class="header-section-number">Kapitel 9</span> Hypothesentests mit dem Paket <code>infer</code><a class="anchor" aria-label="anchor" href="#hypothesentsts"><i class="fas fa-link"></i></a>
+</h1>
+<div class="rmdoutcomes">
+<ul>
+<li>
+Idee hinter simulationsbasierten Tests erklären
+</li>
+<li>
+Tests mit dem Paket <code>infer</code> durchführen
+</li>
+</ul>
+</div>
+<div id="es-gibt-nur-einen-test" class="section level2" number="9.1">
+<h2>
+<span class="header-section-number">9.1</span> Es gibt nur einen Test<a class="anchor" aria-label="anchor" href="#es-gibt-nur-einen-test"><i class="fas fa-link"></i></a>
+</h2>
+<p>Ich weiß nicht, wie es Ihnen ergangen ist, aber ich habe in meiner Grundausbildung in Statistik verschiedene Tests kennen gelernt: <span class="math inline">\(t\)</span>-Test für gepaarte und ungepaarte Stichproben, <span class="math inline">\(F\)</span>-Test für die Varianz, <span class="math inline">\(z\)</span>-Test etc. Am Ende war ich verwirrt und wusste nicht mehr, welchen ich wann nehmen soll. Am Ende des Tages musste ich, wenn ich einen neuen Datensatz hatte und einen Test brauchte, lange nachdenken, welchen ich nutzen soll.</p>
+<p>Diese vielen Tests stammen noch aus der Urzeit der Statistik, als Rechenzeit, wenn überhaupt vorhanden, unbezahlbar war. Daher haben die Väter der Statistik (war damals überwiegend eine reine Männerclique 😠) viele Näherungsverfahren entwickelt. Diese Näherungsverfahren leiten eine theoretische Verteilung für verschiedene Teststatistiken ab. Tests, die auf solchen Näherungen basieren, haben häufig starke Annahmen über die Daten, wie z.B. dass die Daten normalverteilt sein müssen, oder dass der Datensatz groß sein muss, damit die Näherung stimmt.</p>
+<p>Heute ist für die meisten unserer Analysen ausreichen Rechenkapazität vorhanden. Daher müssen wir nicht mehr auf solche Näherungen zurück greifen, sondern können Computersimulationen benutzen. Diese Computersimulationen setzt man ein, um bei Hypothesentests Daten unter der Normalverteilung zu generieren. Abbildung <a href="hypothesentsts.html#fig:one-test">9.1</a> zeigt das allgemeine Vorgehen, wie es für jeden beliebigen Test gültig ist. Dieses Vorgehen kann man auf folgende Schritte “runterkochen”:</p>
+<p><strong>Teststatistik aus Stichprobe berechnen</strong>
+Wir haben eine Stichprobe (<em>data</em> in der Abbildung <a href="hypothesentsts.html#fig:one-test">9.1</a>), die wir mit Hilfe einer Teststatistik zusammen fassen. Wir nennen diese Teststatistik <span class="math inline">\(\sigma^*\)</span>. Sie kann z.B. der Mittelwert der Differenzen zwischen einer Behandlung und einer Kontrolle in einem Experiment sein.</p>
+<p><strong>Nullhypothese formulieren</strong>
+Wir denken gut über unsere Forschungsfrage nach und überlegen uns, welches Modell am besten die Nullhypothese <span class="math inline">\(H_0\)</span>, also eine Situation ohne jeglichen Effekt, wiedergibt. Im Falle des Mittelwerts eben eine Welt, in der der besagte Mittelwert null ist, es also keinen Behandlungseffekt in unserem Experiment gibt. Das Modell für <span class="math inline">\(H_0\)</span> kann eine Permutation der Daten sein (Permutationstests) oder aus einer theoretischen Verteilung stammen (z.B. Normalverteilung). Es kann auch ein richtig kompliziertes Modell sein. Letzteres ist nicht Bestandteil diese Kurses.</p>
+<p><strong>Simulation der Daten unter der Nullhypothese</strong>
+Wir simulieren Daten aus diesem Modell ohne Effekt, d.h. Daten unter der Nullhypothese und berechnen aus jedem simulierten Datensatz dieselbe Teststatistik wie aus der echten Stichprobe.</p>
+<p><strong>Berechnen der Stichprobenverteilung</strong>
+Die vielen simulierten Teststatistiken ergeben eine Stichprobenverteilung.</p>
+<p><strong>Vergleich der beobachteten Teststatistik mit der Stichprobenverteilung – Entscheidung</strong>
+Nun können wir die Teststatistik <span class="math inline">\(\sigma^*\)</span> mit der Stichprobenverteilung der simulieren Teststatistiken vergleichen. Wir entscheiden, ob wir <span class="math inline">\(\sigma^*\)</span> in der Welt ohne Effekt, also unter der Nullhypothese häufig oder eher selten vorkommt. Wenn <span class="math inline">\(\sigma^*\)</span> selten vorkommt, verwerfen wir die Nullhypothese und sagen, dass es einen Effekt gibt. Mit anderen Worte, es ist dann unwahrscheinlich, dass das beobachtete <span class="math inline">\(\sigma^*\)</span> auf den Zufall zurück zu führen ist. Als Entscheidungshilfe nutzen wir das Signifikanzniveau <span class="math inline">\(\alpha\)</span>, das häufig auf 5% gesetzt wird.</p>
+<p>Diese Schritte gelten wirklich für jeden beliebigen Test. Daher kann man verallgemeinert sagen, dass es nur einen Test (ein Testframework) gibt.</p>
+<div class="figure">
+<span style="display:block;" id="fig:one-test"></span>
+<img src="figures/one_test.png" alt="Logik hinter den Hypothesentests aus der Sicht der modernen Datenanlyse (Quelle: http://allendowney.blogspot.com/2016/06/there-is-still-only-one-test.html)." width="80%"><p class="caption">
+Abbildung 9.1: Logik hinter den Hypothesentests aus der Sicht der modernen Datenanlyse (Quelle: <a href="http://allendowney.blogspot.com/2016/06/there-is-still-only-one-test.html" class="uri">http://allendowney.blogspot.com/2016/06/there-is-still-only-one-test.html</a>).
+</p>
+</div>
+</div>
+<div id="workflow-in-infer" class="section level2" number="9.2">
+<h2>
+<span class="header-section-number">9.2</span> Workflow in <code>infer</code><a class="anchor" aria-label="anchor" href="#workflow-in-infer"><i class="fas fa-link"></i></a>
+</h2>
+<p>Das Paket <code>infer</code> bietet so ein einheitliches Framework für Hypothesentests (Abbildung <a href="hypothesentsts.html#fig:ht">9.2</a>). Es hat 4 Verben, die den oben beschriebenen Prozess der Hypothesentests vereinheitlichen:</p>
+<ol style="list-style-type: decimal">
+<li>
+<code><a href="https://infer.tidymodels.org/reference/specify.html">specify()</a></code> Variablen festlegen</li>
+<li>
+<code><a href="https://infer.tidymodels.org/reference/hypothesize.html">hypothesize()</a></code> Nullhypothese definieren</li>
+<li>
+<code><a href="https://infer.tidymodels.org/reference/generate.html">generate()</a></code> Daten unter der Nullhypothese generieren</li>
+<li>
+<code><a href="https://infer.tidymodels.org/reference/calculate.html">calculate()</a></code> Stichprobenverteilung (d.g. Verteilung der Teststatistik) berechnen</li>
+<li>
+<code><a href="https://infer.tidymodels.org/reference/visualize.html">visualize()</a></code> Stichprobenverteilung darstellen</li>
+</ol>
+<p>Mit <code>get_p_value</code> kann man den <span class="math inline">\(p\)</span>-Wert berechnen und mit <code>shade_p_value</code> diesen darstellen lassen.</p>
+<div class="figure">
+<span style="display:block;" id="fig:ht"></span>
+<img src="figures/ht-diagram.png" alt="Verallgemeinertes Vorgehen bei Hypothesentests (Quelle: https://infer.netlify.app/)." width="80%"><p class="caption">
+Abbildung 9.2: Verallgemeinertes Vorgehen bei Hypothesentests (Quelle: <a href="https://infer.netlify.app/" class="uri">https://infer.netlify.app/</a>).
+</p>
+</div>
+<div id="stadt--und-landbewohner-in-werdeschlau" class="section level3" number="9.2.1">
+<h3>
+<span class="header-section-number">9.2.1</span> Stadt- und Landbewohner in Werdeschlau<a class="anchor" aria-label="anchor" href="#stadt--und-landbewohner-in-werdeschlau"><i class="fas fa-link"></i></a>
+</h3>
+<p>Wir möchten gerne wissen, ob sich unter den Studierenden in Werdeschlau genauso viele Stadt- und Landbewohner gibt.</p>
+<p>Wir simulieren erneut unsere Grundgesamtheit.</p>
+<div class="sourceCode" id="cb139"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/tidymodels/infer">infer</a></span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb140"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
+
+<span class="va">student_id</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fl">12000</span>
+  
+<span class="va">anreise</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">12000</span> <span class="op">*</span> <span class="fl">0.8</span>, min <span class="op">=</span> <span class="fl">5</span>, max <span class="op">=</span> <span class="fl">40</span><span class="op">)</span>,
+             <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">12000</span> <span class="op">*</span> <span class="fl">0.2</span>, min <span class="op">=</span> <span class="fl">60</span>, max <span class="op">=</span> <span class="fl">120</span><span class="op">)</span><span class="op">)</span>
+
+<span class="va">geschlecht</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'m'</span>, <span class="st">'w'</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">12000</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+
+<span class="va">wohnort</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="va">anreise</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span>
+  <span class="kw">if</span><span class="op">(</span><span class="va">x</span> <span class="op">&lt;</span> <span class="fl">30</span><span class="op">)</span> <span class="st">'stadt'</span>
+  <span class="kw">else</span> <span class="st">'land'</span>
+<span class="op">}</span><span class="op">)</span>
+
+<span class="va">verkehrsmittel</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="va">anreise</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span>
+  <span class="kw">if</span><span class="op">(</span><span class="va">x</span> <span class="op">&lt;=</span> <span class="fl">10</span><span class="op">)</span> <span class="st">'zu_fuss'</span>
+  <span class="kw">else</span> <span class="kw">if</span><span class="op">(</span><span class="va">x</span> <span class="op">&gt;</span> <span class="fl">10</span> <span class="op">&amp;</span> <span class="va">x</span> <span class="op">&lt;=</span> <span class="fl">15</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'zu_fuss'</span>, <span class="st">'fahrrad'</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
+  <span class="kw">else</span> <span class="kw">if</span><span class="op">(</span><span class="va">x</span> <span class="op">&gt;</span> <span class="fl">15</span> <span class="op">&amp;</span> <span class="va">x</span> <span class="op">&lt;=</span> <span class="fl">45</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'bus'</span>, <span class="st">'fahrrad'</span>, <span class="st">'auto'</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
+  <span class="kw">else</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'bus'</span>, <span class="st">'auto'</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
+<span class="op">}</span><span class="op">)</span>
+
+<span class="va">zeit_bib</span> <span class="op">&lt;-</span> <span class="fl">5</span> <span class="op">*</span> <span class="fl">60</span> <span class="op">-</span> <span class="fl">0.7</span> <span class="op">*</span> <span class="va">anreise</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">anreise</span><span class="op">)</span>, <span class="fl">0</span>, <span class="fl">20</span><span class="op">)</span>
+
+<span class="va">grundgesamtheit</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="op">(</span><span class="va">student_id</span>, <span class="va">geschlecht</span>, <span class="va">wohnort</span>, <span class="va">verkehrsmittel</span>, <span class="va">anreise</span>, <span class="va">zeit_bib</span><span class="op">)</span>
+
+<span class="va">grundgesamtheit</span></code></pre></div>
+<pre><code>## # A tibble: 12,000 x 6
+##    student_id geschlecht wohnort verkehrsmittel anreise zeit_bib
+##         &lt;int&gt; &lt;chr&gt;      &lt;chr&gt;   &lt;chr&gt;            &lt;dbl&gt;    &lt;dbl&gt;
+##  1          1 w          stadt   bus              15.1      294.
+##  2          2 w          land    fahrrad          32.6      254.
+##  3          3 w          stadt   fahrrad          19.3      231.
+##  4          4 m          land    auto             35.9      245.
+##  5          5 m          land    bus              37.9      234.
+##  6          6 w          stadt   zu_fuss           6.59     303.
+##  7          7 w          stadt   bus              23.5      284.
+##  8          8 m          land    auto             36.2      274.
+##  9          9 m          stadt   fahrrad          24.3      299.
+## 10         10 w          stadt   bus              21.0      282.
+## # … with 11,990 more rows</code></pre>
+<p>Nun befragen wir 200 Studierende.</p>
+<div class="sourceCode" id="cb142"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">345</span><span class="op">)</span>
+
+<span class="va">befragung_size</span> <span class="op">&lt;-</span> <span class="fl">200</span>
+
+<span class="va">befragung</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://infer.tidymodels.org/reference/rep_sample_n.html">rep_sample_n</a></span><span class="op">(</span><span class="va">grundgesamtheit</span>, size <span class="op">=</span> <span class="va">befragung_size</span>, replace <span class="op">=</span> <span class="cn">FALSE</span>, reps <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
+
+<span class="va">befragung</span></code></pre></div>
+<pre><code>## # A tibble: 200 x 7
+## # Groups:   replicate [1]
+##    replicate student_id geschlecht wohnort verkehrsmittel anreise zeit_bib
+##        &lt;int&gt;      &lt;int&gt; &lt;chr&gt;      &lt;chr&gt;   &lt;chr&gt;            &lt;dbl&gt;    &lt;dbl&gt;
+##  1         1       1623 m          stadt   zu_fuss           7.06     299.
+##  2         1       9171 m          stadt   fahrrad          11.3      278.
+##  3         1      10207 w          land    bus             107.       199.
+##  4         1       3506 w          stadt   bus              25.0      326.
+##  5         1       8892 w          stadt   bus              28.1      259.
+##  6         1       5460 m          stadt   bus              23.6      299.
+##  7         1       6120 w          stadt   bus              20.0      268.
+##  8         1        865 w          stadt   fahrrad          26.6      290.
+##  9         1      11586 m          land    bus             114.       207.
+## 10         1       8153 w          stadt   zu_fuss           8.06     297.
+## # … with 190 more rows</code></pre>
+<p>Wir berechnen den Anteil der Stadtbewohner in der Befragung.</p>
+<div class="sourceCode" id="cb144"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">prop_hat</span> <span class="op">&lt;-</span> <span class="va">befragung</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://infer.tidymodels.org/reference/specify.html">specify</a></span><span class="op">(</span>response <span class="op">=</span> <span class="va">wohnort</span>, success <span class="op">=</span> <span class="st">"stadt"</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://infer.tidymodels.org/reference/calculate.html">calculate</a></span><span class="op">(</span>stat <span class="op">=</span> <span class="st">"prop"</span><span class="op">)</span>
+
+<span class="va">prop_hat</span></code></pre></div>
+<pre><code>## # A tibble: 1 x 1
+##    stat
+##   &lt;dbl&gt;
+## 1  0.62</code></pre>
+<p>Die Nullhypothese und die Alternativhypothese lauten:</p>
+<blockquote>
+<ul>
+<li>
+<span class="math inline">\(H_0\)</span>: es gibt keinen Unterschied in der Anzahl der Stadt- und Landbewohner, d.h. Anteil der Stadtbewohner <span class="math inline">\(p = 0.5\)</span>.</li>
+<li>
+<span class="math inline">\(H_A\)</span>: Anteil der Stadtbewohner <span class="math inline">\(p \neq 0.5\)</span>
+</li>
+</ul>
+</blockquote>
+<p>Wir setzten das Ganz nun mit <code>infer</code> um.</p>
+<div class="sourceCode" id="cb146"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
+
+<span class="va">null_distn</span> <span class="op">&lt;-</span> <span class="va">befragung</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://infer.tidymodels.org/reference/specify.html">specify</a></span><span class="op">(</span>response <span class="op">=</span> <span class="va">wohnort</span>, success <span class="op">=</span> <span class="st">"stadt"</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://infer.tidymodels.org/reference/hypothesize.html">hypothesize</a></span><span class="op">(</span>null <span class="op">=</span> <span class="st">"point"</span>, p <span class="op">=</span> <span class="fl">.5</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://infer.tidymodels.org/reference/generate.html">generate</a></span><span class="op">(</span>reps <span class="op">=</span> <span class="fl">10000</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://infer.tidymodels.org/reference/calculate.html">calculate</a></span><span class="op">(</span>stat <span class="op">=</span> <span class="st">"prop"</span><span class="op">)</span></code></pre></div>
+<pre><code>## Setting `type = "simulate"` in `generate()`.</code></pre>
+<p>Das Paket <code>infer</code> setzt in <code><a href="https://infer.tidymodels.org/reference/generate.html">generate()</a></code> die Art der Simulation automatisch (<em>bootstrap</em>, <em>simulate</em> oder <em>permute</em>). Für sogen. Punkthypothesen <code>null = "point"</code> bei kategoriellen Variablen, z.B. <em><span class="math inline">\(H_0\)</span>: Anteil der Stadtbewohner = 0.5</em>, simuliert <code><a href="https://infer.tidymodels.org/reference/generate.html">generate()</a></code> neue Daten mit Hilfe der Funktion <code><a href="https://rdrr.io/r/base/sample.html">sample()</a></code> und nutzt die in <code><a href="https://infer.tidymodels.org/reference/hypothesize.html">hypothesize()</a></code> definierten Anteil <code>p</code> als Wahrscheinlichket für <code>success</code>. D.h. in unserem Fall simuliert <code><a href="https://infer.tidymodels.org/reference/generate.html">generate()</a></code> 10000 neue Stichproben mit der Wahrscheinlichkeit von 0.5 für Stadtbewohner (<code>success = 'stadt'</code>), wie von <span class="math inline">\(H_0\)</span> verlangt 😄.</p>
+<p>Wir sehen uns die Stichprobenverteilung an.</p>
+<div class="sourceCode" id="cb148"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://infer.tidymodels.org/reference/visualize.html">visualize</a></span><span class="op">(</span><span class="va">null_distn</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://infer.tidymodels.org/reference/shade_p_value.html">shade_p_value</a></span><span class="op">(</span>obs_stat <span class="op">=</span> <span class="va">prop_hat</span>, direction <span class="op">=</span> <span class="st">"two-sided"</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="datenanalyse_files/figure-html/unnamed-chunk-115-1.png" width="90%"></div>
+<p>Am Ende berechnen wir den <span class="math inline">\(p\)</span>-Wert.</p>
+<div class="sourceCode" id="cb149"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">null_distn</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://infer.tidymodels.org/reference/get_p_value.html">get_p_value</a></span><span class="op">(</span>obs_stat <span class="op">=</span> <span class="va">prop_hat</span>, direction <span class="op">=</span> <span class="st">"two-sided"</span><span class="op">)</span></code></pre></div>
+<pre><code>## # A tibble: 1 x 1
+##   p_value
+##     &lt;dbl&gt;
+## 1  0.0008</code></pre>
+<p>Der <span class="math inline">\(p\)</span>-Wert ist sehr klein und kleiner als das Standard-Signifikanzniveau von 5%. Daher schließen wir, dass es sehr unwahrscheinlich ist, dieses Verhältnis von Stadt- und Landbewohnern unter den Studierenden zu beobachten, wenn es wirklich gleich viele Stad- und Landbewohner sind. Ergo, das Verhältnis von Stadt- zu Landbewohnern ist nicht eins zu eins.</p>
+</div>
+<div id="präferenzen-für-den-wohnort" class="section level3" number="9.2.2">
+<h3>
+<span class="header-section-number">9.2.2</span> Präferenzen für den Wohnort<a class="anchor" aria-label="anchor" href="#pr%C3%A4ferenzen-f%C3%BCr-den-wohnort"><i class="fas fa-link"></i></a>
+</h3>
+<p>Haben weibliche und männliche Studierende unterschiedliche Präferenzen für den Wohnort? Das ist ein ähnlicher Fall wie in der Einführung zu Hypothesentests, als wir uns mit den Beförderungschancen von Fraune und Männern in den 70ern befasst haben. Wir haben hier zwei kategoriale Variablen, nämlich <code>wohnort</code> und <code>geschlecht</code> und wollen wissen, ob die beiden miteinander zusammenhängen. Daher lauten unsere Nullhypothese und Alternativhypothese:</p>
+<blockquote>
+<ul>
+<li>
+<span class="math inline">\(H_0\)</span>: <code>wohnort</code> und <code>geschlecht</code> sind unabhängig.</li>
+<li>
+<span class="math inline">\(H_A\)</span>: <code>wohnort</code> und <code>geschlecht</code> hängen zusammen.</li>
+</ul>
+</blockquote>
+<p>Wir berechnen zunächst den Unterschied zwischen Stadtbewohnern nach Geschlecht.</p>
+<div class="sourceCode" id="cb151"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">d_hat</span> <span class="op">&lt;-</span> <span class="va">befragung</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://infer.tidymodels.org/reference/specify.html">specify</a></span><span class="op">(</span><span class="va">wohnort</span> <span class="op">~</span> <span class="va">geschlecht</span>, success <span class="op">=</span> <span class="st">"stadt"</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://infer.tidymodels.org/reference/calculate.html">calculate</a></span><span class="op">(</span>stat <span class="op">=</span> <span class="st">"diff in props"</span>, order <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"w"</span>, <span class="st">"m"</span><span class="op">)</span><span class="op">)</span>
+
+<span class="va">d_hat</span></code></pre></div>
+<pre><code>## # A tibble: 1 x 1
+##    stat
+##   &lt;dbl&gt;
+## 1 0.142</code></pre>
+<p>Wir basieren unseren Test auf Permutation, d.h. wir permutieren mehrfach eine der Variablen und berechnen die Differenzen in den Anteilen der Stadtbewohner je nach Geschlecht für jede Permutation. Die Permutation wird von <code><a href="https://infer.tidymodels.org/reference/generate.html">generate()</a></code> automatisch richtig gewählt.</p>
+<div class="sourceCode" id="cb153"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
+
+<span class="va">null_distn</span> <span class="op">&lt;-</span> <span class="va">befragung</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://infer.tidymodels.org/reference/specify.html">specify</a></span><span class="op">(</span><span class="va">wohnort</span> <span class="op">~</span> <span class="va">geschlecht</span>, success <span class="op">=</span> <span class="st">"stadt"</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://infer.tidymodels.org/reference/hypothesize.html">hypothesize</a></span><span class="op">(</span>null <span class="op">=</span> <span class="st">"independence"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://infer.tidymodels.org/reference/generate.html">generate</a></span><span class="op">(</span>reps <span class="op">=</span> <span class="fl">10000</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://infer.tidymodels.org/reference/calculate.html">calculate</a></span><span class="op">(</span>stat <span class="op">=</span> <span class="st">"diff in props"</span>, order <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"w"</span>, <span class="st">"m"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<pre><code>## Setting `type = "permute"` in `generate()`.</code></pre>
+<div class="sourceCode" id="cb155"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">null_distn</span></code></pre></div>
+<pre><code>## # A tibble: 10,000 x 2
+##    replicate     stat
+##        &lt;int&gt;    &lt;dbl&gt;
+##  1         1 -0.0381 
+##  2         2 -0.0180 
+##  3         3  0.0221 
+##  4         4  0.00201
+##  5         5 -0.0982 
+##  6         6  0.0221 
+##  7         7  0.0622 
+##  8         8  0.0421 
+##  9         9  0.00201
+## 10        10 -0.0581 
+## # … with 9,990 more rows</code></pre>
+<p>Nun Plotten wir die Stichprobenverteilung, die auf Permutation basiert, und färben den <span class="math inline">\(p\)</span>-Wert ein.</p>
+<div class="sourceCode" id="cb157"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://infer.tidymodels.org/reference/visualize.html">visualize</a></span><span class="op">(</span><span class="va">null_distn</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://infer.tidymodels.org/reference/shade_p_value.html">shade_p_value</a></span><span class="op">(</span>obs_stat <span class="op">=</span> <span class="va">d_hat</span>, direction <span class="op">=</span> <span class="st">"two-sided"</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="datenanalyse_files/figure-html/unnamed-chunk-119-1.png" width="90%"></div>
+<p>Der <span class="math inline">\(p\)</span>-Wert beträgt</p>
+<div class="sourceCode" id="cb158"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">null_distn</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://infer.tidymodels.org/reference/get_p_value.html">get_p_value</a></span><span class="op">(</span>obs_stat <span class="op">=</span> <span class="va">d_hat</span>, direction <span class="op">=</span> <span class="st">"two-sided"</span><span class="op">)</span></code></pre></div>
+<pre><code>## # A tibble: 1 x 1
+##   p_value
+##     &lt;dbl&gt;
+## 1  0.0542</code></pre>
+<p>Der <span class="math inline">\(p\)</span>-Wert ist größer als das Standard-Signifikanzniveau von 5%, daher können wir die Nullhypothese nicht ablehnen und behalten sie bei. An dieser Stelle ist es wichtig, nicht am Signifikanzniveau zu drehen, es etwas auf 10% zu setzten, oder irgendwie Datenpunkte heraus zu filtern. Das wäre <strong><span class="math inline">\(p\)</span>-Hacking</strong>. So nennt man das künstliche Drücken des <span class="math inline">\(p\)</span>-Werts unter die 5%-Schranke, um statistische Signifikanz zu erzeugen. Viel besser ist es, zu berichten, dass die beobachteten Differenzen in der Präferenz von Frauen und Männern für den Wohnort zufällig sein können, und den <span class="math inline">\(p\)</span>-Wert mit anzugeben. BTW, der wahre Unterschied aus der Grundgesamtheit ist extrem klein.</p>
+<div class="sourceCode" id="cb160"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">grundgesamtheit</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://infer.tidymodels.org/reference/specify.html">specify</a></span><span class="op">(</span><span class="va">wohnort</span> <span class="op">~</span> <span class="va">geschlecht</span>, success <span class="op">=</span> <span class="st">"stadt"</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://infer.tidymodels.org/reference/calculate.html">calculate</a></span><span class="op">(</span>stat <span class="op">=</span> <span class="st">"diff in props"</span>, order <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"w"</span>, <span class="st">"m"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<pre><code>## # A tibble: 1 x 1
+##       stat
+##      &lt;dbl&gt;
+## 1 -0.00930</code></pre>
+<p><span class="math inline">\(p\)</span>-Werte werden häufig miss- oder überinterpretiert. Es geht soweit, dass nur wissenschaftliche Ergebnisse mit signifikanten Ausgängen bei Hypothesentests als wertvoll und publizierbar angesehen werden. Davor kann man nur dringend warnen. Diese Einstellung führt zur Verzerrung der wissenschaftlichen Ergebnissen. Ich lade Sie ein, mehr dazu bei <span class="citation"><a href="literatur.html#ref-Wasserstein2016" role="doc-biblioref">Wasserstein and Lazar</a> (<a href="literatur.html#ref-Wasserstein2016" role="doc-biblioref">2016</a>)</span> und im Kapitel 9.6 in <span class="citation"><a href="literatur.html#ref-ModernDive" role="doc-biblioref">Ismay and Kim</a> (<a href="literatur.html#ref-ModernDive" role="doc-biblioref">2021</a>)</span> nachzulesen.</p>
+</div>
+</div>
+<div id="lesestoff-7" class="section level2" number="9.3">
+<h2>
+<span class="header-section-number">9.3</span> Lesestoff<a class="anchor" aria-label="anchor" href="#lesestoff-7"><i class="fas fa-link"></i></a>
+</h2>
+<p>Kapitel 9.3 bis 9.6 in <span class="citation"><a href="literatur.html#ref-ModernDive" role="doc-biblioref">Ismay and Kim</a> (<a href="literatur.html#ref-ModernDive" role="doc-biblioref">2021</a>)</span></p>
+</div>
+<div id="aufgaben-6" class="section level2" number="9.4">
+<h2>
+<span class="header-section-number">9.4</span> Aufgaben<a class="anchor" aria-label="anchor" href="#aufgaben-6"><i class="fas fa-link"></i></a>
+</h2>
+<div id="sind-anreisezeit-und-zeit-in-der-bibliothek-correliert" class="section level3" number="9.4.1">
+<h3>
+<span class="header-section-number">9.4.1</span> Sind Anreisezeit und Zeit in der Bibliothek correliert?<a class="anchor" aria-label="anchor" href="#sind-anreisezeit-und-zeit-in-der-bibliothek-correliert"><i class="fas fa-link"></i></a>
+</h3>
+<p>Führen Sie einen Hypothesentest durch, ob die Anreisezeit und die Zeit in der Bibliothek (<code>zeit_bib</code>) korreliert sind. Formulieren Sie die Null- und die Alternativhypothese mit Ihren eigenen Worten, bevor Sie den Test durchführen.</p>
+<p>Tipps: <code><a href="https://infer.tidymodels.org/reference/specify.html">specify(anreise ~ zeit_bib)</a></code> und <code><a href="https://infer.tidymodels.org/reference/calculate.html">calculate(stat = "correlation")</a></code>. Sehr hilfreich dazu ist auch die Webseite von <code>infer</code> (s.u.).</p>
+</div>
+<div id="hängt-die-wahl-des-verkehrsmittels-vom-wohnort-ab" class="section level3" number="9.4.2">
+<h3>
+<span class="header-section-number">9.4.2</span> Hängt die Wahl des Verkehrsmittels vom Wohnort ab?<a class="anchor" aria-label="anchor" href="#h%C3%A4ngt-die-wahl-des-verkehrsmittels-vom-wohnort-ab"><i class="fas fa-link"></i></a>
+</h3>
+<p>Vielleicht können Sie sich noch erinnern, dass wir in einer der früheren Stunden die Kontingenztabelle durchgenommen haben (s. Vorlesung Zusammenhangsmaße). In einer solchen Tabelle fasst man die Häufigkeiten von zwei kategoriellen Variablen zusammen. Anhand von so einer Tabelle kann man entscheiden, ob es einen Zusammenhang zwischen diesen beiden Variablen gibt. Die Statistik, die man für so eine Tabelle ausrechnet, heißt Kontingenzkoeffizient. In einem Hypothesentest, genannt <span class="math inline">\(\chi^2\)</span>-Test, kann man überprüfen, ob dieser Zusammenhang signifikant ist.</p>
+<p>Überprüfen Sie nun, ob es einen Zusamenhang gibt zwischen der Wahl des Verkehrsmittels und dem Wohnort der befragten Studierenden. Tipps: <code><a href="https://infer.tidymodels.org/reference/specify.html">specify(formula = wohnort ~ verkehrsmittel)</a></code> und <code><a href="https://infer.tidymodels.org/reference/calculate.html">calculate(stat = "Chisq")</a></code>. Auch hier lohnt ein Blick auf die Webseite von <code>infer</code> (s.u.)
+.
+## Ihre Arbeit einreichen
+- Speichern Sie Ihr Notebook ab und laden Sie nur die .Rmd Datei vom Server.
+- Laden Sie Ihre .Rmd Datei in ILIAS hoch. <strong>Beachten Sie die Deadline!</strong>
+- Sie erhalten die Musterlösung nach dem Hochladen.</p>
+</div>
+</div>
+<div id="weiterführende-literatur-und-videos-1" class="section level2" number="9.5">
+<h2>
+<span class="header-section-number">9.5</span> Weiterführende Literatur und Videos<a class="anchor" aria-label="anchor" href="#weiterf%C3%BChrende-literatur-und-videos-1"><i class="fas fa-link"></i></a>
+</h2>
+<p>Webseite von <code>infer</code>: <a href="https://infer.netlify.app/" class="uri">https://infer.netlify.app/</a></p>
+<p>Vortrag des Autors von <code>infer</code>.</p>
+<p>
+<a href="https://www.rstudio.com/resources/rstudioconf-2018/infer-a-package-for-tidy-statistical-inference/?wvideo=lkx9sw1ed2"><img src="https://embed-fastly.wistia.com/deliveries/8934494267e19f3cfbc24dcc1cb1c43067a2f722.jpg?image_play_button_size=2x&amp;image_crop_resized=960x540&amp;image_play_button=1&amp;image_play_button_color=4287c7e0" style="width: 400px; height: 225px;" width="400" height="225"></a>
+</p>
+<p>
+<a href="https://www.rstudio.com/resources/rstudioconf-2018/infer-a-package-for-tidy-statistical-inference/?wvideo=lkx9sw1ed2">infer: a package for tidy statistical inference - RStudio</a>
+</p>
+
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="bootstrapping-und-konfidenzintervalle.html"><span class="header-section-number">8</span> Bootstrapping und Konfidenzintervalle</a></div>
+<div class="next"><a href="aufgabensammlung.html"><span class="header-section-number">10</span> Aufgabensammlung</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#hypothesentsts"><span class="header-section-number">9</span> Hypothesentests mit dem Paket infer</a></li>
+<li><a class="nav-link" href="#es-gibt-nur-einen-test"><span class="header-section-number">9.1</span> Es gibt nur einen Test</a></li>
+<li>
+<a class="nav-link" href="#workflow-in-infer"><span class="header-section-number">9.2</span> Workflow in infer</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#stadt--und-landbewohner-in-werdeschlau"><span class="header-section-number">9.2.1</span> Stadt- und Landbewohner in Werdeschlau</a></li>
+<li><a class="nav-link" href="#pr%C3%A4ferenzen-f%C3%BCr-den-wohnort"><span class="header-section-number">9.2.2</span> Präferenzen für den Wohnort</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#lesestoff-7"><span class="header-section-number">9.3</span> Lesestoff</a></li>
+<li>
+<a class="nav-link" href="#aufgaben-6"><span class="header-section-number">9.4</span> Aufgaben</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#sind-anreisezeit-und-zeit-in-der-bibliothek-correliert"><span class="header-section-number">9.4.1</span> Sind Anreisezeit und Zeit in der Bibliothek correliert?</a></li>
+<li><a class="nav-link" href="#h%C3%A4ngt-die-wahl-des-verkehrsmittels-vom-wohnort-ab"><span class="header-section-number">9.4.2</span> Hängt die Wahl des Verkehrsmittels vom Wohnort ab?</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#weiterf%C3%BChrende-literatur-und-videos-1"><span class="header-section-number">9.5</span> Weiterführende Literatur und Videos</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/ChrisBogner/datenanalyse/blob/master/09-hypothesentests.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/ChrisBogner/datenanalyse/edit/master/09-hypothesentests.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Datenanalyse mit R</strong>: SoSe 2021" was written by Christina Bogner. It was last built on 2021-06-07.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+</html>

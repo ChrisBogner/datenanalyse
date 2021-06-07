@@ -1,0 +1,141 @@
+# Schätzen von Effekten: Raus aus der $p < 0.05$-Falle {#effekte}
+
+```{block, type = 'rmdoutcomes'}
+- Unterschied zwischen einem Hypothesentest und der Schätzung von Effekten erklären
+```
+
+
+Das starre Konzept der statistischen Signifikanz, bei dem ein willkürlich gesetzter Grenzwert $\alpha$ darüber entscheidet, ob ein Ergebnis weiter beachtet wird oder nicht, wird seit Jahrzehnten kritisiert [@Wasserstein2019]. Es ist schließlich auch wirklich schwer zu verstehen, warum $p = 0.049$ qualitativ etwas anderes aussagen soll als $p = 0.051$. Und was machen wir mit $p = 0.05$? Die beste Lösung ist, so wie von der ASA (American Statistical Association) vorgeschlagen, den Begriff "signifikant" nicht mehr zu verwenden. Statt dessen berichten Sie den berechneten $p$-Wert und interpretieren ihn im wissenschaftlichen Kontext [@Wasserstein2019].
+
+Ich würde nicht soweit gehen, statistische Tests abschaffen zu wollen. Sie sind manchmal nützlich, aber auch nicht häufiger als manchmal. Allerdings kann ich auch aus eigener Praxis sagen, dass sehr oft statistische Signifikanz mit wissenschaftlicher Relevanz verwechselt wird. Daher werden wir uns in diesem Kapitel damit beschäftigen, wie man die relevanten Aspekte, nämlich die Größe des Effekts, aus den beobachteten Daten schätzen kann.
+
+## Größe des Effekts
+Daten sind immer mit Unsicherheiten behaftet. Modelle und Tests haben Annahmen, z.B. dass die gewählte Statistik oder das Modell der Nullhypothese für die Forschungsfrage geeignet sind. Diese Unsicherheit gilt es richtig zu erfassen und zu berichten. Daher ist es wichtig, für jede Schätzung entweder ein Konfidenzintervall anzugeben oder den Standardfehler [@Wasserstein2019].
+
+Wir werden zum Schätzen von Effekten für einfache statistische Analysen das Paket `dabestr` (https://github.com/ACCLAB/dabestr) benutzen. Es bietet die Möglichkeit, Effekte zu schätzen, Bootstrap-Konfidenzintervalle zu berechnen und das Ganze in sehr ansprechenden Grafiken zu visualisieren. Zu dem Paket gibt es eine Publikation, @Ho2019, die ich sehr empfehlen kann.
+
+## Schätzen des Effekts mit dem Bootstrap -- `dabestr`
+Wir laden die nötigen Bibliotheken.
+
+```{r setup, warning = F, message = F}
+library(tidyverse)
+library(infer)
+library(dabestr)
+```
+
+und holen uns wieder unsere Lieblingsgrundgesamtheit und Befragung `r emo::ji('smile')`.
+
+```{r}
+set.seed(123)
+
+student_id <- 1:12000
+  
+anreise <- c(runif(n = 12000 * 0.8, min = 5, max = 40),
+             runif(n = 12000 * 0.2, min = 60, max = 120))
+
+geschlecht <- sample(c('m', 'w'), size = 12000, replace = TRUE)
+
+wohnort <- sapply(anreise, function(x) {
+  if(x < 30) 'stadt'
+  else 'land'
+})
+
+verkehrsmittel <- sapply(anreise, function(x) {
+  if(x <= 10) 'zu_fuss'
+  else if(x > 10 & x <= 15) sample(c('zu_fuss', 'fahrrad'), size = 1)
+  else if(x > 15 & x <= 45) sample(c('bus', 'fahrrad', 'auto'), size = 1)
+  else sample(c('bus', 'auto'), size = 1)
+})
+
+zeit_bib <- 5 * 60 - 0.7 * anreise + rnorm(length(anreise), 0, 20)
+
+grundgesamtheit <- tibble(student_id, geschlecht, wohnort, verkehrsmittel, anreise, zeit_bib)
+
+grundgesamtheit
+```
+
+
+```{r}
+set.seed(345)
+
+befragung_size <- 200
+
+befragung <- rep_sample_n(grundgesamtheit, size = befragung_size, replace = FALSE, reps = 1)
+
+befragung
+```
+
+Wir würden gerne wissen, ob Männer und Frauen unterschiedlich lange in der Bibliothek arbeiten.
+
+Die wichtigste Funktion in `dabestr` heißt `dabest()`. Sie erfasst die Daten im richtigen Format für die Schätzung und das Bootstrap. Aktuell könenn Sie mit `dabestr` folgende Effekte schätzen:
+- Differenz zwischen Mittelwerten von Gruppen mit `mean_diff()`.
+- Differenz zwischen Medianen von Gruppen mit `median_diff()`.
+- Cohen’s d mit `cohens_d()`. Cohen’s d ist die Differnz zwischen Mittelwerten getilt durch die Standardabweichung der Daten.
+- Hedges’ g mit `hedges_g()`. Ähnlich wie Cohen’s d.
+- Cliff’s delta mit `cliffs_delta()`. Entwickelt für ordinalskalierte Daten, überprüft wie oft Datenpunkte in einer Gruppe größer sind als Datenpunkte in einer Vergleichsgruppe. 
+
+Wir stellen unsere Daten mit Hilfe von `dabest()` zusammen. Der Parameter `idx` gibt an, wie die Differenz berechnet wird, nämlich w - m.
+
+```{r}
+diff_zeit_bib <- 
+  befragung %>%
+  dabest(x = geschlecht, y = zeit_bib, 
+         idx = c('w', 'm'), 
+         paired = FALSE)
+```
+
+Wir sehen uns mit `dabest()` erstellten Datensatz an.
+
+```{r}
+diff_zeit_bib
+```
+Wir berechnen die Unterschiede in Mittelwerten von `zeit_bib` zwischen den Geschlechtern und bootstrappen in einem Schritt.
+```{r}
+set.seed(123)
+
+mean_diff_zeit_bib <- diff_zeit_bib %>%
+  mean_diff(reps = 10000)
+
+mean_diff_zeit_bib
+```
+
+Sie bekommen die Rückmeldung, dass ungepaarte Differenzen zwischen den Gruppen ausgerechnet wurden. Ungepaart bedeutet, dass die Frauen und Männer nicht statistisch nicht verbunden sind. Etwas anderes wäre es, wenn man dieselben Studierenden wiederholt befragen würde (und dazwischen z.B. etwas unternehmen würde, um deren Meinung zu beeinflussen). Weiterhin zeigt Ihnen `dabest` auch gleich die Bootstrap-Konfidenzintervalle.
+
+Die Schätzung des Unterschieds stellen wir in einem Gardner-Altman-Plot dar [@Gardner1986]. Wir beschriften die Grafik gleich sinnvolle und schlagen die Legende ab, da sie in diesem Fall redundant ist.
+
+```{r}
+plot(mean_diff_zeit_bib, color.column = geschlecht, rawplot.ylabel = 'Zeit in der Bibliothek (min)', effsize.ylabel = 'Ungepaarte mittlere Differenzen', show.legend = F)
+```
+
+
+
+
+## Welche Fragen soll ich mir bei der Analyse stellen?
+Bei der statistischen Analyse Ihrer Daten, sollten Sie sich vom "statistischen Denken" leiten lassen. @Wasserstein2019 beschreibt es als 
+> Accept uncertainty. Be thoughtful, open, and modest.
+
+Denken Sie immer daran, dass Unsicherheit jedem Forschungsunterfangen inne wohnt. Wenn Sie Ihre Daten interpretieren, stellen Sie sich folgende Fragen [@Anderson2019]:
+
+1. Welche praktische Bedeutung hat meine Schätzung des Effekts? Ist er überhaupt relevant?
+1. Wie präzise ist die Schätzung?
+1. Passt das Modell zu meiner Forschungsfrage? Ist korrekt formuliert?
+
+
+## Lesestoff
+@Ho2019
+
+
+## Aufgaben
+### Bodenverdichtung, revisited
+Wir kommen zurück zu Daten aus Aufgabe \@ref(verdichtung). Wie stark hat sich die Lagerungsdichte auf den befahrenen Feldern verändert? Schätzen Sie den Effekt und geben Sie 95%-Konfidenzintervalle an. Vergleichen Sie die Aussagen, die Sie mit dieser Lösung treffen können, mit der Aussage aus dem Hypothesentest.
+
+
+
+## Ihre Arbeit einreichen
+- Speichern Sie Ihr Notebook ab und laden Sie nur die .Rmd Datei vom Server.
+- Laden Sie Ihre .Rmd Datei in ILIAS hoch. **Beachten Sie die Deadline!**
+- Sie erhalten die Musterlösung nach dem Hochladen.
+
+## Weitere Infos
+- Vignette von `dabestr`: https://cran.r-project.org/web/packages/dabestr/vignettes/using-dabestr.html
+

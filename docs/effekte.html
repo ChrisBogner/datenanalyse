@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Kapitel 10 Schätzen von Effekten: Raus aus der \(p &lt; 0.05\)-Falle | Datenanalyse mit R</title>
+<meta name="author" content="Christina Bogner">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.2"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.8/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.2.5.1/tabs.js"></script><script src="libs/bs3compat-0.2.5.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/mark.js@8.11.1/dist/mark.min.js"></script><!-- CSS --><link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="font-awesome.min.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="SoSe 2021">Datenanalyse mit R</a>:
+        <small class="text-muted">SoSe 2021</small>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Vorwort</a></li>
+<li><a class="" href="einfuehrung.html"><span class="header-section-number">1</span> Der Kurs</a></li>
+<li><a class="" href="erste-schritte.html"><span class="header-section-number">2</span> Erste Schritte in R</a></li>
+<li><a class="" href="reproduzieren.html"><span class="header-section-number">3</span> R Markdown</a></li>
+<li><a class="" href="ggplot.html"><span class="header-section-number">4</span> Einführung in ggplot2</a></li>
+<li><a class="" href="daten-einlesen-und-visualisieren.html"><span class="header-section-number">5</span> Daten einlesen und visualisieren</a></li>
+<li><a class="" href="tidyverse.html"><span class="header-section-number">6</span> Der explorative Workflow mit tidyverse</a></li>
+<li><a class="" href="stichproben.html"><span class="header-section-number">7</span> Stichproben und Variabilität</a></li>
+<li><a class="" href="bootstrapping-und-konfidenzintervalle.html"><span class="header-section-number">8</span> Bootstrapping und Konfidenzintervalle</a></li>
+<li><a class="" href="hypothesentsts.html"><span class="header-section-number">9</span> Hypothesentests mit dem Paket infer</a></li>
+<li><a class="active" href="effekte.html"><span class="header-section-number">10</span> Schätzen von Effekten: Raus aus der \(p &lt; 0.05\)-Falle</a></li>
+<li><a class="" href="daten-und-bericht.html"><span class="header-section-number">11</span> Datenquellen und Struktur des Abschlussberichts</a></li>
+<li><a class="" href="aufgabensammlung.html"><span class="header-section-number">12</span> Aufgabensammlung</a></li>
+<li><a class="" href="literatur.html">Literatur</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/ChrisBogner/datenanalyse">View book source <i class="fab fa-github"></i></a></p>
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="effekte" class="section level1" number="10">
+<h1>
+<span class="header-section-number">Kapitel 10</span> Schätzen von Effekten: Raus aus der <span class="math inline">\(p &lt; 0.05\)</span>-Falle<a class="anchor" aria-label="anchor" href="#effekte"><i class="fas fa-link"></i></a>
+</h1>
+<div class="rmdoutcomes">
+<ul>
+<li>
+Unterschied zwischen einem Hypothesentest und der Schätzung von Effekten erklären
+</li>
+</ul>
+</div>
+<p>Das starre Konzept der statistischen Signifikanz, bei dem ein willkürlich gesetzter Grenzwert <span class="math inline">\(\alpha\)</span> darüber entscheidet, ob ein Ergebnis weiter beachtet wird oder nicht, wird seit Jahrzehnten kritisiert <span class="citation">(<a href="literatur.html#ref-Wasserstein2019" role="doc-biblioref">Wasserstein, Schirm, and Lazar 2019</a>)</span>. Es ist schließlich auch wirklich schwer zu verstehen, warum <span class="math inline">\(p = 0.049\)</span> qualitativ etwas anderes aussagen soll als <span class="math inline">\(p = 0.051\)</span>. Und was machen wir mit <span class="math inline">\(p = 0.05\)</span>? Die beste Lösung ist, so wie von der ASA (American Statistical Association) vorgeschlagen, den Begriff “signifikant” nicht mehr zu verwenden. Statt dessen berichten Sie den berechneten <span class="math inline">\(p\)</span>-Wert und interpretieren ihn im wissenschaftlichen Kontext <span class="citation">(<a href="literatur.html#ref-Wasserstein2019" role="doc-biblioref">Wasserstein, Schirm, and Lazar 2019</a>)</span>.</p>
+<p>Ich würde nicht soweit gehen, statistische Tests abschaffen zu wollen. Sie sind manchmal nützlich, aber auch nicht häufiger als manchmal. Allerdings kann ich auch aus eigener Praxis sagen, dass sehr oft statistische Signifikanz mit wissenschaftlicher Relevanz verwechselt wird. Daher werden wir uns in diesem Kapitel damit beschäftigen, wie man die relevanten Aspekte, nämlich die Größe des Effekts, aus den beobachteten Daten schätzen kann.</p>
+<div id="größe-des-effekts" class="section level2" number="10.1">
+<h2>
+<span class="header-section-number">10.1</span> Größe des Effekts<a class="anchor" aria-label="anchor" href="#gr%C3%B6%C3%9Fe-des-effekts"><i class="fas fa-link"></i></a>
+</h2>
+<p>Daten sind immer mit Unsicherheiten behaftet. Modelle und Tests haben Annahmen, z.B. dass die gewählte Statistik oder das Modell der Nullhypothese für die Forschungsfrage geeignet sind. Diese Unsicherheit gilt es richtig zu erfassen und zu berichten. Daher ist es wichtig, für jede Schätzung entweder ein Konfidenzintervall anzugeben oder den Standardfehler <span class="citation">(<a href="literatur.html#ref-Wasserstein2019" role="doc-biblioref">Wasserstein, Schirm, and Lazar 2019</a>)</span>.</p>
+<p>Wir werden zum Schätzen von Effekten für einfache statistische Analysen das Paket <code>dabestr</code> (<a href="https://github.com/ACCLAB/dabestr" class="uri">https://github.com/ACCLAB/dabestr</a>) benutzen. Es bietet die Möglichkeit, Effekte zu schätzen, Bootstrap-Konfidenzintervalle zu berechnen und das Ganze in sehr ansprechenden Grafiken zu visualisieren. Zu dem Paket gibt es eine Publikation, <span class="citation"><a href="literatur.html#ref-Ho2019" role="doc-biblioref">Ho et al.</a> (<a href="literatur.html#ref-Ho2019" role="doc-biblioref">2019</a>)</span>, die ich sehr empfehlen kann.</p>
+</div>
+<div id="schätzen-des-effekts-mit-dem-bootstrap-dabestr" class="section level2" number="10.2">
+<h2>
+<span class="header-section-number">10.2</span> Schätzen des Effekts mit dem Bootstrap – <code>dabestr</code><a class="anchor" aria-label="anchor" href="#sch%C3%A4tzen-des-effekts-mit-dem-bootstrap-dabestr"><i class="fas fa-link"></i></a>
+</h2>
+<p>Wir laden die nötigen Bibliotheken.</p>
+<div class="sourceCode" id="cb162"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/tidymodels/infer">infer</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ACCLAB/dabestr">dabestr</a></span><span class="op">)</span></code></pre></div>
+<p>und holen uns wieder unsere Lieblingsgrundgesamtheit und Befragung 😄.</p>
+<div class="sourceCode" id="cb163"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
+
+<span class="va">student_id</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fl">12000</span>
+  
+<span class="va">anreise</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">12000</span> <span class="op">*</span> <span class="fl">0.8</span>, min <span class="op">=</span> <span class="fl">5</span>, max <span class="op">=</span> <span class="fl">40</span><span class="op">)</span>,
+             <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">12000</span> <span class="op">*</span> <span class="fl">0.2</span>, min <span class="op">=</span> <span class="fl">60</span>, max <span class="op">=</span> <span class="fl">120</span><span class="op">)</span><span class="op">)</span>
+
+<span class="va">geschlecht</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'m'</span>, <span class="st">'w'</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">12000</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+
+<span class="va">wohnort</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="va">anreise</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span>
+  <span class="kw">if</span><span class="op">(</span><span class="va">x</span> <span class="op">&lt;</span> <span class="fl">30</span><span class="op">)</span> <span class="st">'stadt'</span>
+  <span class="kw">else</span> <span class="st">'land'</span>
+<span class="op">}</span><span class="op">)</span>
+
+<span class="va">verkehrsmittel</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="va">anreise</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span>
+  <span class="kw">if</span><span class="op">(</span><span class="va">x</span> <span class="op">&lt;=</span> <span class="fl">10</span><span class="op">)</span> <span class="st">'zu_fuss'</span>
+  <span class="kw">else</span> <span class="kw">if</span><span class="op">(</span><span class="va">x</span> <span class="op">&gt;</span> <span class="fl">10</span> <span class="op">&amp;</span> <span class="va">x</span> <span class="op">&lt;=</span> <span class="fl">15</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'zu_fuss'</span>, <span class="st">'fahrrad'</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
+  <span class="kw">else</span> <span class="kw">if</span><span class="op">(</span><span class="va">x</span> <span class="op">&gt;</span> <span class="fl">15</span> <span class="op">&amp;</span> <span class="va">x</span> <span class="op">&lt;=</span> <span class="fl">45</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'bus'</span>, <span class="st">'fahrrad'</span>, <span class="st">'auto'</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
+  <span class="kw">else</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'bus'</span>, <span class="st">'auto'</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
+<span class="op">}</span><span class="op">)</span>
+
+<span class="va">zeit_bib</span> <span class="op">&lt;-</span> <span class="fl">5</span> <span class="op">*</span> <span class="fl">60</span> <span class="op">-</span> <span class="fl">0.7</span> <span class="op">*</span> <span class="va">anreise</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">anreise</span><span class="op">)</span>, <span class="fl">0</span>, <span class="fl">20</span><span class="op">)</span>
+
+<span class="va">grundgesamtheit</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="op">(</span><span class="va">student_id</span>, <span class="va">geschlecht</span>, <span class="va">wohnort</span>, <span class="va">verkehrsmittel</span>, <span class="va">anreise</span>, <span class="va">zeit_bib</span><span class="op">)</span>
+
+<span class="va">grundgesamtheit</span></code></pre></div>
+<pre><code>## # A tibble: 12,000 x 6
+##    student_id geschlecht wohnort verkehrsmittel anreise zeit_bib
+##         &lt;int&gt; &lt;chr&gt;      &lt;chr&gt;   &lt;chr&gt;            &lt;dbl&gt;    &lt;dbl&gt;
+##  1          1 w          stadt   bus              15.1      294.
+##  2          2 w          land    fahrrad          32.6      254.
+##  3          3 w          stadt   fahrrad          19.3      231.
+##  4          4 m          land    auto             35.9      245.
+##  5          5 m          land    bus              37.9      234.
+##  6          6 w          stadt   zu_fuss           6.59     303.
+##  7          7 w          stadt   bus              23.5      284.
+##  8          8 m          land    auto             36.2      274.
+##  9          9 m          stadt   fahrrad          24.3      299.
+## 10         10 w          stadt   bus              21.0      282.
+## # … with 11,990 more rows</code></pre>
+<div class="sourceCode" id="cb165"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">345</span><span class="op">)</span>
+
+<span class="va">befragung_size</span> <span class="op">&lt;-</span> <span class="fl">200</span>
+
+<span class="va">befragung</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://infer.tidymodels.org/reference/rep_sample_n.html">rep_sample_n</a></span><span class="op">(</span><span class="va">grundgesamtheit</span>, size <span class="op">=</span> <span class="va">befragung_size</span>, replace <span class="op">=</span> <span class="cn">FALSE</span>, reps <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
+
+<span class="va">befragung</span></code></pre></div>
+<pre><code>## # A tibble: 200 x 7
+## # Groups:   replicate [1]
+##    replicate student_id geschlecht wohnort verkehrsmittel anreise zeit_bib
+##        &lt;int&gt;      &lt;int&gt; &lt;chr&gt;      &lt;chr&gt;   &lt;chr&gt;            &lt;dbl&gt;    &lt;dbl&gt;
+##  1         1       1623 m          stadt   zu_fuss           7.06     299.
+##  2         1       9171 m          stadt   fahrrad          11.3      278.
+##  3         1      10207 w          land    bus             107.       199.
+##  4         1       3506 w          stadt   bus              25.0      326.
+##  5         1       8892 w          stadt   bus              28.1      259.
+##  6         1       5460 m          stadt   bus              23.6      299.
+##  7         1       6120 w          stadt   bus              20.0      268.
+##  8         1        865 w          stadt   fahrrad          26.6      290.
+##  9         1      11586 m          land    bus             114.       207.
+## 10         1       8153 w          stadt   zu_fuss           8.06     297.
+## # … with 190 more rows</code></pre>
+<p>Wir würden gerne wissen, ob Männer und Frauen unterschiedlich lange in der Bibliothek arbeiten.</p>
+<p>Die wichtigste Funktion in <code>dabestr</code> heißt <code><a href="https://rdrr.io/pkg/dabestr/man/dabest.html">dabest()</a></code>. Sie erfasst die Daten im richtigen Format für die Schätzung und das Bootstrap. Aktuell könenn Sie mit <code>dabestr</code> folgende Effekte schätzen:
+- Differenz zwischen Mittelwerten von Gruppen mit <code><a href="https://rdrr.io/pkg/dabestr/man/mean_diff.html">mean_diff()</a></code>.
+- Differenz zwischen Medianen von Gruppen mit <code><a href="https://rdrr.io/pkg/dabestr/man/mean_diff.html">median_diff()</a></code>.
+- Cohen’s d mit <code><a href="https://rdrr.io/pkg/dabestr/man/mean_diff.html">cohens_d()</a></code>. Cohen’s d ist die Differnz zwischen Mittelwerten getilt durch die Standardabweichung der Daten.
+- Hedges’ g mit <code><a href="https://rdrr.io/pkg/dabestr/man/mean_diff.html">hedges_g()</a></code>. Ähnlich wie Cohen’s d.
+- Cliff’s delta mit <code><a href="https://rdrr.io/pkg/dabestr/man/mean_diff.html">cliffs_delta()</a></code>. Entwickelt für ordinalskalierte Daten, überprüft wie oft Datenpunkte in einer Gruppe größer sind als Datenpunkte in einer Vergleichsgruppe.</p>
+<p>Wir stellen unsere Daten mit Hilfe von <code><a href="https://rdrr.io/pkg/dabestr/man/dabest.html">dabest()</a></code> zusammen. Der Parameter <code>idx</code> gibt an, wie die Differenz berechnet wird, nämlich w - m.</p>
+<div class="sourceCode" id="cb167"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">diff_zeit_bib</span> <span class="op">&lt;-</span> 
+  <span class="va">befragung</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/dabestr/man/dabest.html">dabest</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">geschlecht</span>, y <span class="op">=</span> <span class="va">zeit_bib</span>, 
+         idx <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'w'</span>, <span class="st">'m'</span><span class="op">)</span>, 
+         paired <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+<p>Wir sehen uns mit <code><a href="https://rdrr.io/pkg/dabestr/man/dabest.html">dabest()</a></code> erstellten Datensatz an.</p>
+<div class="sourceCode" id="cb168"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">diff_zeit_bib</span></code></pre></div>
+<pre><code>## dabestr (Data Analysis with Bootstrap Estimation in R) v0.3.0
+## =============================================================
+## 
+## Good evening!
+## The current time is 18:33  on Montag Juni 07, 2021.
+## 
+## Dataset    :  .
+## The first five rows are:
+## # A tibble: 5 x 7
+## # Groups:   replicate [1]
+##   replicate student_id geschlecht wohnort verkehrsmittel anreise zeit_bib
+##       &lt;int&gt;      &lt;int&gt; &lt;fct&gt;      &lt;chr&gt;   &lt;chr&gt;            &lt;dbl&gt;    &lt;dbl&gt;
+## 1         1       1623 m          stadt   zu_fuss           7.06     299.
+## 2         1       9171 m          stadt   fahrrad          11.3      278.
+## 3         1      10207 w          land    bus             107.       199.
+## 4         1       3506 w          stadt   bus              25.0      326.
+## 5         1       8892 w          stadt   bus              28.1      259.
+## 
+## X Variable :  geschlecht
+## Y Variable :  zeit_bib
+## 
+## Effect sizes(s) will be computed for:
+##   1. m minus w</code></pre>
+<p>Wir berechnen die Unterschiede in Mittelwerten von <code>zeit_bib</code> zwischen den Geschlechtern und bootstrappen in einem Schritt.</p>
+<div class="sourceCode" id="cb170"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
+
+<span class="va">mean_diff_zeit_bib</span> <span class="op">&lt;-</span> <span class="va">diff_zeit_bib</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/dabestr/man/mean_diff.html">mean_diff</a></span><span class="op">(</span>reps <span class="op">=</span> <span class="fl">10000</span><span class="op">)</span>
+
+<span class="va">mean_diff_zeit_bib</span></code></pre></div>
+<pre><code>## dabestr (Data Analysis with Bootstrap Estimation in R) v0.3.0
+## =============================================================
+## 
+## Good evening!
+## The current time is 18:33  on Montag Juni 07, 2021.
+## 
+## Dataset    :  .
+## X Variable :  geschlecht
+## Y Variable :  zeit_bib
+## 
+## Unpaired mean difference of m (n = 105) minus w (n = 95)
+##  -4.41 [95CI  -12.9; 4.2]
+## 
+## 
+## 10000 bootstrap resamples.
+## All confidence intervals are bias-corrected and accelerated.</code></pre>
+<p>Sie bekommen die Rückmeldung, dass ungepaarte Differenzen zwischen den Gruppen ausgerechnet wurden. Ungepaart bedeutet, dass die Frauen und Männer nicht statistisch nicht verbunden sind. Etwas anderes wäre es, wenn man dieselben Studierenden wiederholt befragen würde (und dazwischen z.B. etwas unternehmen würde, um deren Meinung zu beeinflussen). Weiterhin zeigt Ihnen <code>dabest</code> auch gleich die Bootstrap-Konfidenzintervalle.</p>
+<p>Die Schätzung des Unterschieds stellen wir in einem Gardner-Altman-Plot dar <span class="citation">(<a href="literatur.html#ref-Gardner1986" role="doc-biblioref">Gardner and Altman 1986</a>)</span>. Wir beschriften die Grafik gleich sinnvolle und schlagen die Legende ab, da sie in diesem Fall redundant ist.</p>
+<div class="sourceCode" id="cb172"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">mean_diff_zeit_bib</span>, color.column <span class="op">=</span> <span class="va">geschlecht</span>, rawplot.ylabel <span class="op">=</span> <span class="st">'Zeit in der Bibliothek (min)'</span>, effsize.ylabel <span class="op">=</span> <span class="st">'Ungepaarte mittlere Differenzen'</span>, show.legend <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="datenanalyse_files/figure-html/unnamed-chunk-129-1.png" width="672"></div>
+</div>
+<div id="welche-fragen-soll-ich-mir-bei-der-analyse-stellen" class="section level2" number="10.3">
+<h2>
+<span class="header-section-number">10.3</span> Welche Fragen soll ich mir bei der Analyse stellen?<a class="anchor" aria-label="anchor" href="#welche-fragen-soll-ich-mir-bei-der-analyse-stellen"><i class="fas fa-link"></i></a>
+</h2>
+<p>Bei der statistischen Analyse Ihrer Daten, sollten Sie sich vom “statistischen Denken” leiten lassen. <span class="citation"><a href="literatur.html#ref-Wasserstein2019" role="doc-biblioref">Wasserstein, Schirm, and Lazar</a> (<a href="literatur.html#ref-Wasserstein2019" role="doc-biblioref">2019</a>)</span> beschreibt es als
+&gt; Accept uncertainty. Be thoughtful, open, and modest.</p>
+<p>Denken Sie immer daran, dass Unsicherheit jedem Forschungsunterfangen inne wohnt. Wenn Sie Ihre Daten interpretieren, stellen Sie sich folgende Fragen <span class="citation">(<a href="literatur.html#ref-Anderson2019" role="doc-biblioref">Anderson 2019</a>)</span>:</p>
+<ol style="list-style-type: decimal">
+<li>Welche praktische Bedeutung hat meine Schätzung des Effekts? Ist er überhaupt relevant?</li>
+<li>Wie präzise ist die Schätzung?</li>
+<li>Passt das Modell zu meiner Forschungsfrage? Ist korrekt formuliert?</li>
+</ol>
+</div>
+<div id="lesestoff-8" class="section level2" number="10.4">
+<h2>
+<span class="header-section-number">10.4</span> Lesestoff<a class="anchor" aria-label="anchor" href="#lesestoff-8"><i class="fas fa-link"></i></a>
+</h2>
+<p><span class="citation"><a href="literatur.html#ref-Ho2019" role="doc-biblioref">Ho et al.</a> (<a href="literatur.html#ref-Ho2019" role="doc-biblioref">2019</a>)</span></p>
+</div>
+<div id="aufgaben-7" class="section level2" number="10.5">
+<h2>
+<span class="header-section-number">10.5</span> Aufgaben<a class="anchor" aria-label="anchor" href="#aufgaben-7"><i class="fas fa-link"></i></a>
+</h2>
+<div id="bodenverdichtung-revisited" class="section level3" number="10.5.1">
+<h3>
+<span class="header-section-number">10.5.1</span> Bodenverdichtung, revisited<a class="anchor" aria-label="anchor" href="#bodenverdichtung-revisited"><i class="fas fa-link"></i></a>
+</h3>
+<p>Wir kommen zurück zu Daten aus Aufgabe <a href="aufgabensammlung.html#verdichtung">12.3.3</a>. Wie stark hat sich die Lagerungsdichte auf den befahrenen Feldern verändert? Schätzen Sie den Effekt und geben Sie 95%-Konfidenzintervalle an. Vergleichen Sie die Aussagen, die Sie mit dieser Lösung treffen können, mit der Aussage aus dem Hypothesentest.</p>
+</div>
+</div>
+<div id="ihre-arbeit-einreichen-5" class="section level2" number="10.6">
+<h2>
+<span class="header-section-number">10.6</span> Ihre Arbeit einreichen<a class="anchor" aria-label="anchor" href="#ihre-arbeit-einreichen-5"><i class="fas fa-link"></i></a>
+</h2>
+<ul>
+<li>Speichern Sie Ihr Notebook ab und laden Sie nur die .Rmd Datei vom Server.</li>
+<li>Laden Sie Ihre .Rmd Datei in ILIAS hoch. <strong>Beachten Sie die Deadline!</strong>
+</li>
+<li>Sie erhalten die Musterlösung nach dem Hochladen.</li>
+</ul>
+</div>
+<div id="weitere-infos" class="section level2" number="10.7">
+<h2>
+<span class="header-section-number">10.7</span> Weitere Infos<a class="anchor" aria-label="anchor" href="#weitere-infos"><i class="fas fa-link"></i></a>
+</h2>
+<ul>
+<li>Vignette von <code>dabestr</code>: <a href="https://cran.r-project.org/web/packages/dabestr/vignettes/using-dabestr.html" class="uri">https://cran.r-project.org/web/packages/dabestr/vignettes/using-dabestr.html</a>
+</li>
+</ul>
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="hypothesentsts.html"><span class="header-section-number">9</span> Hypothesentests mit dem Paket infer</a></div>
+<div class="next"><a href="daten-und-bericht.html"><span class="header-section-number">11</span> Datenquellen und Struktur des Abschlussberichts</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#effekte"><span class="header-section-number">10</span> Schätzen von Effekten: Raus aus der \(p &lt; 0.05\)-Falle</a></li>
+<li><a class="nav-link" href="#gr%C3%B6%C3%9Fe-des-effekts"><span class="header-section-number">10.1</span> Größe des Effekts</a></li>
+<li><a class="nav-link" href="#sch%C3%A4tzen-des-effekts-mit-dem-bootstrap-dabestr"><span class="header-section-number">10.2</span> Schätzen des Effekts mit dem Bootstrap – dabestr</a></li>
+<li><a class="nav-link" href="#welche-fragen-soll-ich-mir-bei-der-analyse-stellen"><span class="header-section-number">10.3</span> Welche Fragen soll ich mir bei der Analyse stellen?</a></li>
+<li><a class="nav-link" href="#lesestoff-8"><span class="header-section-number">10.4</span> Lesestoff</a></li>
+<li>
+<a class="nav-link" href="#aufgaben-7"><span class="header-section-number">10.5</span> Aufgaben</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#bodenverdichtung-revisited"><span class="header-section-number">10.5.1</span> Bodenverdichtung, revisited</a></li></ul>
+</li>
+<li><a class="nav-link" href="#ihre-arbeit-einreichen-5"><span class="header-section-number">10.6</span> Ihre Arbeit einreichen</a></li>
+<li><a class="nav-link" href="#weitere-infos"><span class="header-section-number">10.7</span> Weitere Infos</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/ChrisBogner/datenanalyse/blob/master/10-effekte.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/ChrisBogner/datenanalyse/edit/master/10-effekte.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Datenanalyse mit R</strong>: SoSe 2021" was written by Christina Bogner. It was last built on 2021-06-07.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+</html>

@@ -30,6 +30,9 @@ Sie haben einen Auszug aus den Daten von [gapminder](https://www.gapminder.org) 
 - Global Carbon Budget 2020
   - [Publikation und Datensatz](https://essd.copernicus.org/articles/12/3269/2020/)
   - [Global Carbon Project](https://www.globalcarbonproject.org/index.htm)
+- Gehalte an organischem Kohlenstoff in Böden unter mehrjährigen Kulturen
+  - [Publikation](https://www.nature.com/articles/s41597-019-0062-1)
+  - [Datensatz](https://figshare.com/articles/dataset/A_global_empirical_harmonised_dataset_of_Soil_Organic_Carbon_under_Perennial_Crops/7637210)
 - [PANGAEA](https://www.pangaea.de/): eine der größten Datenbanken für Umweltdaten
 - Überblick über open data und Pakete für direkten Download auf [ROpenScie](https://ropensci.org/):
   [Daten](https://github.com/ropensci-archive/opendata)

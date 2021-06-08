@@ -224,7 +224,7 @@ Einfluss der Stichprobengröße auf Stichprobenverteilung benennen
   <span class="fu">geom_histogram</span><span class="op">(</span>binwidth <span class="op">=</span> <span class="fl">0.05</span>, boundary <span class="op">=</span> <span class="fl">0.4</span>, col <span class="op">=</span> <span class="st">'white'</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">facet_wrap</span><span class="op">(</span><span class="op">~</span> <span class="va">wohnort</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">'Anteile beim Wohnort'</span>, title <span class="op">=</span> <span class="st">'Verteilung der Wohnorte'</span>, y <span class="op">=</span> <span class="st">'Häufigkeit'</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="datenanalyse_files/figure-html/unnamed-chunk-81-1.png" width="90%"></div>
+<div class="inline-figure"><img src="datenanalyse_files/figure-html/unnamed-chunk-80-1.png" width="90%"></div>
 <p>Die häufigsten Anteile sind um die 40% für Land und um die 60% für Stadt. Wir können es sogar etwas genauer ablesen, da wir <code>binwidth = 0.05</code> gewähnt haben, also Schritte von 5%. Es sind 35–40% für Land und 55–60% für Stadt.</p>
 <div id="anzahl-der-wiederholungen-und-variabilität" class="section level3" number="7.1.1">
 <h3>
@@ -247,7 +247,7 @@ Einfluss der Stichprobengröße auf Stichprobenverteilung benennen
   <span class="fu">geom_histogram</span><span class="op">(</span>binwidth <span class="op">=</span> <span class="fl">0.02</span>, boundary <span class="op">=</span> <span class="fl">0.4</span>, col <span class="op">=</span> <span class="st">'white'</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">facet_wrap</span><span class="op">(</span><span class="op">~</span> <span class="va">wohnort</span>, scales <span class="op">=</span> <span class="st">'free_x'</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">'Anteile beim Wohnort'</span>, title <span class="op">=</span> <span class="st">'Verteilung der Wohnorte'</span>, y <span class="op">=</span> <span class="st">'Häufigkeit'</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="datenanalyse_files/figure-html/unnamed-chunk-82-1.png" width="90%"></div>
+<div class="inline-figure"><img src="datenanalyse_files/figure-html/unnamed-chunk-81-1.png" width="90%"></div>
 <p>Die häufigsten Anteile beim Land liegen bei 40–42% und bei der Stadt bei 58–60%.</p>
 <p>Die Histogramme geben nun sehr gut die Verteilung der Anteile der Stadt- und Landbewohner wieder. Solche Verteilungen nennt man <strong>Stichprobenverteilungen</strong>. Sie zeigen die Verteilung einer statistischen Kenngröße (Statistik), in unserem Fall Anteil, die aus zufälligen Stichproben ausgerechnet wurde. Die Stichprobenverteilung beantwrotet die Frage: Wenn ich eine zufällige Menge (Stichprobengröße) an Daten (Zufallsstichprobe) aus der Grundgesamtheit herausgreife und eine Kenngröße (z.B. Anteil) berechne, welchen Wert werde ich im Mittel erhalten und wie stark wird der Wert schwanken.</p>
 </div>
@@ -285,19 +285,19 @@ Einfluss der Stichprobengröße auf Stichprobenverteilung benennen
   <span class="fu">geom_histogram</span><span class="op">(</span>binwidth <span class="op">=</span> <span class="fl">0.05</span>, boundary <span class="op">=</span> <span class="fl">0.4</span>, col <span class="op">=</span> <span class="st">'white'</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">facet_wrap</span><span class="op">(</span><span class="op">~</span> <span class="va">wohnort</span>, scales <span class="op">=</span> <span class="st">'free_x'</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">'Anteile beim Wohnort'</span>, title <span class="op">=</span> <span class="st">'Verteilung der Wohnorte, Stichprobengröße = 25'</span>, y <span class="op">=</span> <span class="st">'Häufigkeit'</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="datenanalyse_files/figure-html/unnamed-chunk-85-1.png" width="90%"></div>
+<div class="inline-figure"><img src="datenanalyse_files/figure-html/unnamed-chunk-84-1.png" width="90%"></div>
 <div class="sourceCode" id="cb102"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">wohnort_props_50</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">prop</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
   <span class="fu">geom_histogram</span><span class="op">(</span>binwidth <span class="op">=</span> <span class="fl">0.02</span>, boundary <span class="op">=</span> <span class="fl">0.4</span>, col <span class="op">=</span> <span class="st">'white'</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">facet_wrap</span><span class="op">(</span><span class="op">~</span> <span class="va">wohnort</span>, scales <span class="op">=</span> <span class="st">'free_x'</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">'Anteile beim Wohnort'</span>, title <span class="op">=</span> <span class="st">'Verteilung der Wohnorte, Stichprobengröße = 50'</span>, y <span class="op">=</span> <span class="st">'Häufigkeit'</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="datenanalyse_files/figure-html/unnamed-chunk-85-2.png" width="90%"></div>
+<div class="inline-figure"><img src="datenanalyse_files/figure-html/unnamed-chunk-84-2.png" width="90%"></div>
 <div class="sourceCode" id="cb103"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">wohnort_props_100</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">prop</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
   <span class="fu">geom_histogram</span><span class="op">(</span>binwidth <span class="op">=</span> <span class="fl">0.02</span>, boundary <span class="op">=</span> <span class="fl">0.4</span>, col <span class="op">=</span> <span class="st">'white'</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">facet_wrap</span><span class="op">(</span><span class="op">~</span> <span class="va">wohnort</span>, scales <span class="op">=</span> <span class="st">'free_x'</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">'Anteile beim Wohnort'</span>, title <span class="op">=</span> <span class="st">'Verteilung der Wohnorte, Stichprobengröße = 100'</span>, y <span class="op">=</span> <span class="st">'Häufigkeit'</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="datenanalyse_files/figure-html/unnamed-chunk-85-3.png" width="90%"></div>
+<div class="inline-figure"><img src="datenanalyse_files/figure-html/unnamed-chunk-84-3.png" width="90%"></div>
 <p>Wie kann man diese Stichprobenverteilungen charakterisieren? Nun, es sind in erster Linie Daten und wie bei jedem Datensatz kann man auch hier einen Mittelwert und eine Stadanrdabweichung angeben. Die Standardabweichung der Stichprobenverteilung heißt <strong>Standardfehler</strong> und fasst den Einfluss der Variabilität (zufälliges Herausgreifen der Studierenden) zusammen.</p>
 <div class="sourceCode" id="cb104"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">wohnort_props_25</span> <span class="op">%&gt;%</span> 
@@ -433,7 +433,7 @@ Der Zufall macht sich durch eine Streuung (erfasst durch den Standardfehler) in 
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Datenanalyse mit R</strong>: SoSe 2021" was written by Christina Bogner. It was last built on 2021-06-07.</p>
+    <p>"<strong>Datenanalyse mit R</strong>: SoSe 2021" was written by Christina Bogner. It was last built on 2021-06-08.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

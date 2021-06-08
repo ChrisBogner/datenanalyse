@@ -379,7 +379,7 @@ Funktionen des Pakets <code>dplyr</code> für Datentransformation anwenden
   <span class="fu">geom_line</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">facet_wrap</span><span class="op">(</span><span class="op">~</span><span class="va">STATIONS_ID</span>, nrow <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">'Zeit'</span>, y <span class="op">=</span> <span class="st">'Temperatur (°C)'</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="datenanalyse_files/figure-html/unnamed-chunk-61-1.png" width="90%"></div>
+<div class="inline-figure"><img src="datenanalyse_files/figure-html/unnamed-chunk-60-1.png" width="90%"></div>
 </div>
 <div id="neue-variablen-erstellen-mit-mutate" class="section level3" number="6.4.2">
 <h3>
@@ -484,7 +484,7 @@ Funktionen des Pakets <code>dplyr</code> für Datentransformation anwenden
 <code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">monthly_means</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">year_month</span>, y <span class="op">=</span> <span class="va">mean_T</span>, col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">STATIONS_ID</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
   <span class="fu">geom_line</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> 
   <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">'Zeit'</span>, y <span class="op">=</span> <span class="st">'Temperatur (°C)'</span>, color <span class="op">=</span> <span class="st">'Messstation'</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="datenanalyse_files/figure-html/unnamed-chunk-67-1.png" width="90%"></div>
+<div class="inline-figure"><img src="datenanalyse_files/figure-html/unnamed-chunk-66-1.png" width="90%"></div>
 <p>Alternativ können wir die Mittelwerte mit den Standardabweichungen darstellen.</p>
 <div class="sourceCode" id="cb79"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span><span class="va">monthly_means</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">year_month</span>, y <span class="op">=</span> <span class="va">mean_T</span>, ymin <span class="op">=</span> <span class="va">mean_T</span> <span class="op">-</span> <span class="va">sd_T</span>, ymax <span class="op">=</span> <span class="va">mean_T</span> <span class="op">+</span> <span class="va">sd_T</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
@@ -492,7 +492,7 @@ Funktionen des Pakets <code>dplyr</code> für Datentransformation anwenden
   <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">facet_wrap</span><span class="op">(</span><span class="op">~</span><span class="va">STATIONS_ID</span>, nrow <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="op">+</span> 
   <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">'Zeti'</span>, y <span class="op">=</span> <span class="st">'Temperatur (°C)'</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="datenanalyse_files/figure-html/unnamed-chunk-68-1.png" width="90%"></div>
+<div class="inline-figure"><img src="datenanalyse_files/figure-html/unnamed-chunk-67-1.png" width="90%"></div>
 <p>Oder, weil es gerade Spaß macht, als halb-transparentes Band. Ich hoffe, Sie haben jetzt Lust, das Kapitel 5 im ggplot2 Buch zu lesen 😎.</p>
 <div class="sourceCode" id="cb80"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span><span class="va">monthly_means</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">year_month</span>, y <span class="op">=</span> <span class="va">mean_T</span>, ymin <span class="op">=</span> <span class="va">mean_T</span> <span class="op">-</span> <span class="va">sd_T</span>, ymax <span class="op">=</span> <span class="va">mean_T</span> <span class="op">+</span> <span class="va">sd_T</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
@@ -500,7 +500,7 @@ Funktionen des Pakets <code>dplyr</code> für Datentransformation anwenden
   <span class="fu">geom_line</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">facet_wrap</span><span class="op">(</span><span class="op">~</span><span class="va">STATIONS_ID</span>, nrow <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="op">+</span> 
   <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">'Zeit'</span>, y <span class="op">=</span> <span class="st">'Temperatur (°C)'</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="datenanalyse_files/figure-html/unnamed-chunk-69-1.png" width="90%"></div>
+<div class="inline-figure"><img src="datenanalyse_files/figure-html/unnamed-chunk-68-1.png" width="90%"></div>
 <p>Ein letzter Trick. Die Überschriften für die Teilgrafiken sind ungeschickt, da man die IDs als Mensch einfach nicht zuordnen kann. Weiter oben haben wir einen benannten Vektor definiert, der die Klarnamen enthält.</p>
 <div class="sourceCode" id="cb81"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">station_ids</span></code></pre></div>
@@ -513,7 +513,7 @@ Funktionen des Pakets <code>dplyr</code> für Datentransformation anwenden
   <span class="fu">geom_line</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">facet_wrap</span><span class="op">(</span><span class="op">~</span><span class="va">STATIONS_ID</span>, nrow <span class="op">=</span> <span class="fl">3</span>, labeller <span class="op">=</span> <span class="fu">labeller</span><span class="op">(</span>STATIONS_ID <span class="op">=</span> <span class="va">station_ids</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
   <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">'Zeit'</span>, y <span class="op">=</span> <span class="st">'Temperatur (°C)'</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="datenanalyse_files/figure-html/unnamed-chunk-71-1.png" width="90%"></div>
+<div class="inline-figure"><img src="datenanalyse_files/figure-html/unnamed-chunk-70-1.png" width="90%"></div>
 </div>
 </div>
 <div id="lesestoff-4" class="section level2" number="6.5">
@@ -574,7 +574,7 @@ Funktionen des Pakets <code>dplyr</code> für Datentransformation anwenden
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Datenanalyse mit R</strong>: SoSe 2021" was written by Christina Bogner. It was last built on 2021-06-07.</p>
+    <p>"<strong>Datenanalyse mit R</strong>: SoSe 2021" was written by Christina Bogner. It was last built on 2021-06-08.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

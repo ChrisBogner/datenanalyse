@@ -6,8 +6,8 @@ fig:files-upload
 fig:files-upload-browse
 fig:files-export
 fig:files-download
+tab:unnamed-chunk-13
 tab:unnamed-chunk-14
-tab:unnamed-chunk-15
 fig:r-notebook
 fig:rmarkdown-file
 fig:wahlbeteiligung
@@ -144,4 +144,4 @@ bootstrapping-konfidenzintervalle-und-hypothesentests
 unfaire-klausur-revisited
 artenvielfalt-in-grasländern
 verdichtung
-beschäftige-frauen-im-privaten-und-öffentlichen-sektor
+anteil-von-beschäftigten-frauen-im-privaten-und-öffentlichen-sektor

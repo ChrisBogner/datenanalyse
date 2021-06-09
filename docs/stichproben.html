@@ -44,7 +44,8 @@
 <li><a class="active" href="stichproben.html"><span class="header-section-number">7</span> Stichproben und Variabilität</a></li>
 <li><a class="" href="bootstrapping-und-konfidenzintervalle.html"><span class="header-section-number">8</span> Bootstrapping und Konfidenzintervalle</a></li>
 <li><a class="" href="hypothesentsts.html"><span class="header-section-number">9</span> Hypothesentests mit dem Paket infer</a></li>
-<li><a class="" href="aufgabensammlung.html"><span class="header-section-number">10</span> Aufgabensammlung</a></li>
+<li><a class="" href="effekte.html"><span class="header-section-number">10</span> Schätzen von Effekten: Raus aus der \(p &lt; 0.05\)-Falle</a></li>
+<li><a class="" href="aufgabensammlung.html"><span class="header-section-number">11</span> Aufgabensammlung</a></li>
 <li><a class="" href="literatur.html">Literatur</a></li>
 </ul>
 
@@ -81,7 +82,7 @@ Einfluss der Stichprobengröße auf Stichprobenverteilung benennen
 <h2>
 <span class="header-section-number">7.1</span> Stichproben<a class="anchor" aria-label="anchor" href="#stichproben-1"><i class="fas fa-link"></i></a>
 </h2>
-<p>Wir nutzen wieder die selbst erstellten Daten aus der Aufgabe <a href="aufgabensammlung.html#werdeschlau">10.1</a>. Die 12000 Studiere sind unsere <strong>Grundgesamtheit</strong>. Da wir die Daten selbst erstellt haben, wissen wir alles über sie. Das ist ein großer Vorteil von Computerexperimenten 😄. Damit alle dieselben Daten erstellen, ist die Zeile <code><a href="https://rdrr.io/r/base/Random.html">set.seed(123)</a></code> sehr wichtig. Sie sorgt dafür, dass der Generator für Zufallszahlen in einen zufälligen, aber reproduzierbaren Zustand versetzt wird. DIe Zahl in den Klammern ist nicht wichtig. Wichtig ist, dass alle dieselbe benutzen.</p>
+<p>Wir nutzen wieder die selbst erstellten Daten aus der Aufgabe <a href="aufgabensammlung.html#werdeschlau">11.1</a>. Die 12000 Studiere sind unsere <strong>Grundgesamtheit</strong>. Da wir die Daten selbst erstellt haben, wissen wir alles über sie. Das ist ein großer Vorteil von Computerexperimenten 😄. Damit alle dieselben Daten erstellen, ist die Zeile <code><a href="https://rdrr.io/r/base/Random.html">set.seed(123)</a></code> sehr wichtig. Sie sorgt dafür, dass der Generator für Zufallszahlen in einen zufälligen, aber reproduzierbaren Zustand versetzt wird. DIe Zahl in den Klammern ist nicht wichtig. Wichtig ist, dass alle dieselbe benutzen.</p>
 <p>Für bessere Nachvollziehbarkeit, nummerieren wir unsere Studierenden diesmal durch.</p>
 <div class="sourceCode" id="cb85"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
@@ -433,7 +434,7 @@ Der Zufall macht sich durch eine Streuung (erfasst durch den Standardfehler) in 
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Datenanalyse mit R</strong>: SoSe 2021" was written by Christina Bogner. It was last built on 2021-06-08.</p>
+    <p>"<strong>Datenanalyse mit R</strong>: SoSe 2021" was written by Christina Bogner. It was last built on 2021-06-09.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

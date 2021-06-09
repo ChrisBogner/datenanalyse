@@ -122,6 +122,17 @@ aufgaben-6
 sind-anreisezeit-und-zeit-in-der-bibliothek-correliert
 hängt-die-wahl-des-verkehrsmittels-vom-wohnort-ab
 weiterführende-literatur-und-videos-1
+effekte
+größe-des-effekts
+schätzen-des-effekts-mit-dem-bootstrap-dabestr
+welche-fragen-soll-ich-mir-bei-der-analyse-stellen
+was-dabest-nicht-kann-besorgt-infer
+lesestoff-8
+aufgaben-7
+bodenverdichtung-revisited
+anteil-von-beschäftigten-frauen-im-privaten-und-öffentlichen-sektor-revisited
+ihre-arbeit-einreichen-5
+weitere-infos
 aufgabensammlung
 werdeschlau
 grundgesamtheit-generieren
@@ -144,4 +155,4 @@ bootstrapping-konfidenzintervalle-und-hypothesentests
 unfaire-klausur-revisited
 artenvielfalt-in-grasländern
 verdichtung
-anteil-von-beschäftigten-frauen-im-privaten-und-öffentlichen-sektor
+world_bank

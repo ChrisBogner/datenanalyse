@@ -83,19 +83,19 @@ ggplot(data = emissions, mapping = aes(x = time, y = values, colour = geo)) +
 
 
 ## Fehlerbalken und Co.
-Um die Variabilität der Daten grafisch darzustellen, bieten sich Fehlerbalken, Bereiche etc. an. Dafür hat `ggplot2` spezielle geoms. Hier ein Beispiel aus dem `ggplot2` Buch @Wickham2020.
+Um die Variabilität der Daten grafisch darzustellen, bieten sich Fehlerbalken, Bereiche etc. an. Dafür hat `ggplot2` spezielle geoms. Hier ein Beispiel inspiriert vom dem Buch ggplot2 [@Wickham2020].
 ```{r, out.width = "90%"}
-y <- c(18, 11, 16)
-df <- tibble(x = 1:3, y = y, se = c(1.2, 0.5, 1.0))
+y <- c(10, 5, 23)
+df <- tibble(x = 1:3, y = y, se = c(0.9, 1.5, 3.3))
 
-base <- ggplot(df, aes(x, y, ymin = y - se, ymax = y + se))
-base + geom_pointrange()
-base + geom_errorbar()
+basis_plot <- ggplot(df, aes(x, y, ymin = y - se, ymax = y + se))
+basis_plot + geom_pointrange()
+basis_plot + geom_errorbar()
 ```
 
-Sie sehen, dass man `ggplot` Objekte so wie andere Objekte in R zuweisen kann, um mit ihnen später zu arbeiten. In diesem Fall ist `base` ein `ggplot` Objekt.
+Sie sehen, dass man `ggplot` Objekte so wie andere Objekte in R zuweisen kann, um mit ihnen später zu arbeiten. In diesem Fall ist `basis_plot` ein `ggplot` Objekt.
 ```{r}
-class(base)
+class(basis_plot)
 ```
 
 
@@ -105,8 +105,8 @@ Um mehrere Grafiken nebeneinander zu plotten, nutzen wir die Funktion `grid.arra
 ```{r, message = F, out.width = "90%"}
 library(gridExtra)
 
-p1 <- base + geom_pointrange()
-p2 <- base + geom_errorbar()
+p1 <- basis_plot + geom_pointrange()
+p2 <- basis_plot + geom_errorbar()
 
 alles <- grid.arrange(p1, p2, nrow = 1)
 ```

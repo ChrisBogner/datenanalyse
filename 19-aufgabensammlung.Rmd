@@ -348,7 +348,7 @@ Sie erhalten Daten aus dem Grasland-Monitoring im Yellowstone Nationalpark und d
 
 1. Setzen Sie nun beide Grafiken untereinander, platzieren Sie die Legenden (ja nach gewähltem Layout) sinnvoll und speichern Sie die Grafiken ab.
 
-1. Berechnen Sie den linearen Korrelationskoeffizienten zwischen der Biodiversität und dem Anteil von unbewachsenem Boden und ermitteln Sie das 95%- Bootstrap-Konfidenzintervall.
+1. Berechnen Sie den linearen Korrelationskoeffizienten zwischen der Biodiversität und dem Anteil von unbewachsenem Boden und ermitteln Sie das 95%-Bootstrap-Konfidenzintervall.
 
 1. Wenn Sie statt eines 95%-Konfidenzintervalls, das 90%-Konfidenzintervall berechnen, wird das Intervall breiter oder schmaler? Warum? 
 
@@ -359,7 +359,7 @@ Schwere landwirtschaftliche Maschinen können beim Bearbeiten des Bodens zu Bode
 2. Überprüfen Sie, ob sich die Lagerungsdichte auf den bearbeiteten Feldern erhöht hat. 
 
 
-### Anteil von beschäftigten Frauen im privaten und öffentlichen Sektor
+### Anteil von beschäftigten Frauen im privaten und öffentlichen Sektor {#world_bank}
 Diese Übung ist inspiriert von Anrew Heiss Blog: https://www.andrewheiss.com/blog/2018/12/05/test-any-hypothesis/
 
 Wir nutzen den Datensatz Worldwide Bureaucracy Indicators (WWBI). Diesen kann man bei der [Weltbank](https://datacatalog.worldbank.org/dataset/worldwide-bureaucracy-indicators) herunter laden.

@@ -44,7 +44,8 @@
 <li><a class="" href="stichproben.html"><span class="header-section-number">7</span> Stichproben und Variabilität</a></li>
 <li><a class="" href="bootstrapping-und-konfidenzintervalle.html"><span class="header-section-number">8</span> Bootstrapping und Konfidenzintervalle</a></li>
 <li><a class="" href="hypothesentsts.html"><span class="header-section-number">9</span> Hypothesentests mit dem Paket infer</a></li>
-<li><a class="" href="aufgabensammlung.html"><span class="header-section-number">10</span> Aufgabensammlung</a></li>
+<li><a class="" href="effekte.html"><span class="header-section-number">10</span> Schätzen von Effekten: Raus aus der \(p &lt; 0.05\)-Falle</a></li>
+<li><a class="" href="aufgabensammlung.html"><span class="header-section-number">11</span> Aufgabensammlung</a></li>
 <li><a class="" href="literatur.html">Literatur</a></li>
 </ul>
 
@@ -183,20 +184,20 @@ Grafiken speichern
 <h2>
 <span class="header-section-number">5.3</span> Fehlerbalken und Co.<a class="anchor" aria-label="anchor" href="#fehlerbalken-und-co."><i class="fas fa-link"></i></a>
 </h2>
-<p>Um die Variabilität der Daten grafisch darzustellen, bieten sich Fehlerbalken, Bereiche etc. an. Dafür hat <code>ggplot2</code> spezielle geoms. Hier ein Beispiel aus dem <code>ggplot2</code> Buch <span class="citation"><a href="literatur.html#ref-Wickham2020" role="doc-biblioref">Wickham</a> (<a href="literatur.html#ref-Wickham2020" role="doc-biblioref">2020</a>)</span>.</p>
+<p>Um die Variabilität der Daten grafisch darzustellen, bieten sich Fehlerbalken, Bereiche etc. an. Dafür hat <code>ggplot2</code> spezielle geoms. Hier ein Beispiel inspiriert vom dem Buch ggplot2 <span class="citation">(<a href="literatur.html#ref-Wickham2020" role="doc-biblioref">Wickham 2020</a>)</span>.</p>
 <div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">18</span>, <span class="fl">11</span>, <span class="fl">16</span><span class="op">)</span>
-<span class="va">df</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="op">(</span>x <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, y <span class="op">=</span> <span class="va">y</span>, se <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1.2</span>, <span class="fl">0.5</span>, <span class="fl">1.0</span><span class="op">)</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">5</span>, <span class="fl">23</span><span class="op">)</span>
+<span class="va">df</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="op">(</span>x <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, y <span class="op">=</span> <span class="va">y</span>, se <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.9</span>, <span class="fl">1.5</span>, <span class="fl">3.3</span><span class="op">)</span><span class="op">)</span>
 
-<span class="va">base</span> <span class="op">&lt;-</span> <span class="fu">ggplot</span><span class="op">(</span><span class="va">df</span>, <span class="fu">aes</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, ymin <span class="op">=</span> <span class="va">y</span> <span class="op">-</span> <span class="va">se</span>, ymax <span class="op">=</span> <span class="va">y</span> <span class="op">+</span> <span class="va">se</span><span class="op">)</span><span class="op">)</span>
-<span class="va">base</span> <span class="op">+</span> <span class="fu">geom_pointrange</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<span class="va">basis_plot</span> <span class="op">&lt;-</span> <span class="fu">ggplot</span><span class="op">(</span><span class="va">df</span>, <span class="fu">aes</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, ymin <span class="op">=</span> <span class="va">y</span> <span class="op">-</span> <span class="va">se</span>, ymax <span class="op">=</span> <span class="va">y</span> <span class="op">+</span> <span class="va">se</span><span class="op">)</span><span class="op">)</span>
+<span class="va">basis_plot</span> <span class="op">+</span> <span class="fu">geom_pointrange</span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="datenanalyse_files/figure-html/unnamed-chunk-41-1.png" width="90%"></div>
 <div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">base</span> <span class="op">+</span> <span class="fu">geom_errorbar</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="va">basis_plot</span> <span class="op">+</span> <span class="fu">geom_errorbar</span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="datenanalyse_files/figure-html/unnamed-chunk-41-2.png" width="90%"></div>
-<p>Sie sehen, dass man <code>ggplot</code> Objekte so wie andere Objekte in R zuweisen kann, um mit ihnen später zu arbeiten. In diesem Fall ist <code>base</code> ein <code>ggplot</code> Objekt.</p>
+<p>Sie sehen, dass man <code>ggplot</code> Objekte so wie andere Objekte in R zuweisen kann, um mit ihnen später zu arbeiten. In diesem Fall ist <code>basis_plot</code> ein <code>ggplot</code> Objekt.</p>
 <div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">base</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">basis_plot</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "gg"     "ggplot"</code></pre>
 </div>
 <div id="mehrere-grafiken-nebeneinander" class="section level2" number="5.4">
@@ -207,8 +208,8 @@ Grafiken speichern
 <div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">gridExtra</span><span class="op">)</span>
 
-<span class="va">p1</span> <span class="op">&lt;-</span> <span class="va">base</span> <span class="op">+</span> <span class="fu">geom_pointrange</span><span class="op">(</span><span class="op">)</span>
-<span class="va">p2</span> <span class="op">&lt;-</span> <span class="va">base</span> <span class="op">+</span> <span class="fu">geom_errorbar</span><span class="op">(</span><span class="op">)</span>
+<span class="va">p1</span> <span class="op">&lt;-</span> <span class="va">basis_plot</span> <span class="op">+</span> <span class="fu">geom_pointrange</span><span class="op">(</span><span class="op">)</span>
+<span class="va">p2</span> <span class="op">&lt;-</span> <span class="va">basis_plot</span> <span class="op">+</span> <span class="fu">geom_errorbar</span><span class="op">(</span><span class="op">)</span>
 
 <span class="va">alles</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/gridExtra/man/arrangeGrob.html">grid.arrange</a></span><span class="op">(</span><span class="va">p1</span>, <span class="va">p2</span>, nrow <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="datenanalyse_files/figure-html/unnamed-chunk-43-1.png" width="90%"></div>
@@ -373,7 +374,7 @@ Abbildung 5.3: Ergebnisse der Bundestagswahl 2017. Quelle: Der Bundeswahlleiter.
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Datenanalyse mit R</strong>: SoSe 2021" was written by Christina Bogner. It was last built on 2021-06-08.</p>
+    <p>"<strong>Datenanalyse mit R</strong>: SoSe 2021" was written by Christina Bogner. It was last built on 2021-06-09.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

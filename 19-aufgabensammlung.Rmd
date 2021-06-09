@@ -359,7 +359,7 @@ Schwere landwirtschaftliche Maschinen können beim Bearbeiten des Bodens zu Bode
 2. Überprüfen Sie, ob sich die Lagerungsdichte auf den bearbeiteten Feldern erhöht hat. 
 
 
-### Anteil von beschäftigten Frauen im privaten und öffentlichen Sektor {#world_bank}
+### Anteil von beschäftigten Frauen im privaten und öffentlichen Sektor {#world-bank}
 Diese Übung ist inspiriert von Anrew Heiss Blog: https://www.andrewheiss.com/blog/2018/12/05/test-any-hypothesis/
 
 Wir nutzen den Datensatz Worldwide Bureaucracy Indicators (WWBI). Diesen kann man bei der [Weltbank](https://datacatalog.worldbank.org/dataset/worldwide-bureaucracy-indicators) herunter laden.

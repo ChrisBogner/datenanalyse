@@ -148,7 +148,7 @@ Unterschied zwischen einem Hypothesentest und der Schätzung von Effekten erklä
 ##  9         1      11586 m          land    bus             114.       207.
 ## 10         1       8153 w          stadt   zu_fuss           8.06     297.
 ## # … with 190 more rows</code></pre>
-<p>Wir würden gerne den Unterschied der Arbeitszeit in der Bibliothek zwischen Männer und Frauen kennen. D.h. wir möchten diesen Unterschied schätzen und auch die Unsicherheit der Schätzung quantifizieren. Ich hoffe, der Wortlaut kommt Ihnen bekannt vor 🤓.</p>
+<p>Wir würden gerne den Unterschied der Arbeitszeit in der Bibliothek zwischen Männern und Frauen kennen. D.h. wir möchten diesen Unterschied schätzen und auch die Unsicherheit der Schätzung quantifizieren. Ich hoffe, der Wortlaut kommt Ihnen bekannt vor 🤓.</p>
 <p>Die wichtigste Funktion in <code>dabestr</code> heißt <code><a href="https://rdrr.io/pkg/dabestr/man/dabest.html">dabest()</a></code>. Sie erstellt einen <em>tidy</em> <code>tibble</code> im richtigen Format für die Schätzung und das Bootstrap. Aktuell können Sie mit <code>dabestr</code> folgende Effekte schätzen:</p>
 <ul>
 <li>Differenz zwischen Mittelwerten von Gruppen mit <code><a href="https://rdrr.io/pkg/dabestr/man/mean_diff.html">mean_diff()</a></code>.</li>
@@ -157,10 +157,9 @@ Unterschied zwischen einem Hypothesentest und der Schätzung von Effekten erklä
 <li>Hedges’ g mit <code><a href="https://rdrr.io/pkg/dabestr/man/mean_diff.html">hedges_g()</a></code>. Ähnlich wie Cohen’s d.</li>
 <li>Cliff’s delta mit <code><a href="https://rdrr.io/pkg/dabestr/man/mean_diff.html">cliffs_delta()</a></code>. Entwickelt für ordinalskalierte Daten, überprüft wie oft Datenpunkte in einer Gruppe größer sind als Datenpunkte in einer Vergleichsgruppe.</li>
 </ul>
-<p>Wir stellen unsere Daten mit Hilfe von <code><a href="https://rdrr.io/pkg/dabestr/man/dabest.html">dabest()</a></code> zusammen. Der Parameter <code>idx</code> gibt an, wie die Differenz berechnet wird, nämlich Frauen - Männer.</p>
+<p>Wir stellen unsere Daten mit Hilfe von <code><a href="https://rdrr.io/pkg/dabestr/man/dabest.html">dabest()</a></code> zusammen. Der Parameter <code>idx</code> gibt an, wie die Differenz berechnet wird, nämlich Männer - Frauen.</p>
 <div class="sourceCode" id="cb167"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">diff_zeit_bib</span> <span class="op">&lt;-</span> 
-  <span class="va">befragung</span> <span class="op">%&gt;%</span>
+<code class="sourceCode R"><span class="va">diff_zeit_bib</span> <span class="op">&lt;-</span> <span class="va">befragung</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/pkg/dabestr/man/dabest.html">dabest</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">geschlecht</span>, y <span class="op">=</span> <span class="va">zeit_bib</span>, 
          idx <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'w'</span>, <span class="st">'m'</span><span class="op">)</span>, 
          paired <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
@@ -171,7 +170,7 @@ Unterschied zwischen einem Hypothesentest und der Schätzung von Effekten erklä
 ## =============================================================
 ## 
 ## Good morning!
-## The current time is 09:09  on Mittwoch Juni 09, 2021.
+## The current time is 10:55  on Mittwoch Juni 09, 2021.
 ## 
 ## Dataset    :  .
 ## The first five rows are:
@@ -202,7 +201,7 @@ Unterschied zwischen einem Hypothesentest und der Schätzung von Effekten erklä
 ## =============================================================
 ## 
 ## Good morning!
-## The current time is 09:09  on Mittwoch Juni 09, 2021.
+## The current time is 10:55  on Mittwoch Juni 09, 2021.
 ## 
 ## Dataset    :  .
 ## X Variable :  geschlecht
@@ -226,7 +225,7 @@ Unterschied zwischen einem Hypothesentest und der Schätzung von Effekten erklä
 <li>die Schätzung der mittleren Differenz (dicker schwarzer Punkt) und als graue Fläche die Stichprobenverteilung aus dem Bootstrap.</li>
 <li>das 95%-Konfidenzintervall für die Schätzung (dicker schwarzer vertikaler Strich)</li>
 </ol>
-<p>Wir können nun erkennen, dass die Schätzung recht genau ist, da das Konfidenzintervall schmal ist. Frauen scheinen weniger Zeit in der Bibliothek zu verbringen, da die geschätzte Differenz negativ ist. Das können wir genau abfragen, mit <code>mean_diff_zeit_bib$result$difference</code>. Das sind -4.4117615 Minuten. Diese Unterschied ist für alle praktischen Belange irrelevant. Das Konfidenzintervall umfasst auch die Null, sodass kein Unterschied auch eine plausible Schätzung ist. Somit würden wir schließen, dass es nicht genug Evidenz für einen relevanten Unterschied in der Arbeitszeit in der Bibliothek zwischen Männern und Frauen gibt.</p>
+<p>Wir können nun erkennen, dass die Schätzung recht genau ist, da das Konfidenzintervall schmal ist. Frauen scheinen mehr Zeit in der Bibliothek zu verbringen, da die geschätzte Differenz negativ ist. Das können wir genau abfragen, mit <code>mean_diff_zeit_bib$result$difference</code>. Das sind -4.4 Minuten. Dieser Unterschied ist für alle praktischen Belange irrelevant. Das Konfidenzintervall umfasst auch die Null, sodass kein Unterschied auch eine plausible Schätzung ist. Somit würden wir schließen, dass es nicht genug Evidenz für einen relevanten Unterschied in der Arbeitszeit in der Bibliothek zwischen Männern und Frauen gibt.</p>
 </div>
 <div id="welche-fragen-soll-ich-mir-bei-der-analyse-stellen" class="section level2" number="10.3">
 <h2>
@@ -269,7 +268,7 @@ Unterschied zwischen einem Hypothesentest und der Schätzung von Effekten erklä
 <h3>
 <span class="header-section-number">10.6.2</span> Anteil von beschäftigten Frauen im privaten und öffentlichen Sektor, revisited<a class="anchor" aria-label="anchor" href="#anteil-von-besch%C3%A4ftigten-frauen-im-privaten-und-%C3%B6ffentlichen-sektor-revisited"><i class="fas fa-link"></i></a>
 </h3>
-<p>Wir sehen uns erneut die Daten der Weltbank aus der Aufgabe @ref(world_bank) an. Diesmal interessiert und die Schätzung des Anteils und ihr 95%-Bootstrap-Konfidenzintervall. Vergleichen Sie die Aussagen, die Sie mit dieser Lösung treffen können, mit der Aussage aus dem Hypothesentest.</p>
+<p>Wir sehen uns erneut die Daten der Weltbank aus der Aufgabe <a href="aufgabensammlung.html#world-bank">11.3.4</a> an. Diesmal interessiert und die Schätzung des Anteils und ihr 95%-Bootstrap-Konfidenzintervall. Vergleichen Sie die Aussagen, die Sie mit dieser Lösung treffen können, mit der Aussage aus dem Hypothesentest.</p>
 </div>
 </div>
 <div id="ihre-arbeit-einreichen-5" class="section level2" number="10.7">

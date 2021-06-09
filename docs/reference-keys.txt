@@ -155,4 +155,4 @@ bootstrapping-konfidenzintervalle-und-hypothesentests
 unfaire-klausur-revisited
 artenvielfalt-in-grasländern
 verdichtung
-world_bank
+world-bank

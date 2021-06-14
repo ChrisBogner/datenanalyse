@@ -1,7 +1,7 @@
 # Stichproben und Variabilität {#stichproben}
 
 ```{block, type = 'rmdoutcomes'}
-- Begriffe Stichprobenverteilung und Standardfehler erkären
+- Begriffe Stichprobenverteilung und Standardfehler erklären
 - Zufall bei wiederholter Stichprobenerhebung erkennen
 - Stichprobenverteilung darstellen
 - Einfluss der Stichprobengröße auf Stichprobenverteilung benennen
@@ -17,7 +17,7 @@ library(moderndive)
 
 ## Stichproben
 
-Wir nutzen wieder die selbst erstellten Daten aus der Aufgabe \@ref(werdeschlau). Die 12000 Studiere sind unsere **Grundgesamtheit**. Da wir die Daten selbst erstellt haben, wissen wir alles über sie. Das ist ein großer Vorteil von Computerexperimenten `r emo::ji('smile')`. Damit alle dieselben Daten erstellen, ist die Zeile `set.seed(123)` sehr wichtig. Sie sorgt dafür, dass der Generator für Zufallszahlen in einen zufälligen, aber reproduzierbaren Zustand versetzt wird. DIe Zahl in den Klammern ist nicht wichtig. Wichtig ist, dass alle dieselbe benutzen.
+Wir nutzen wieder die selbst erstellten Daten aus der Aufgabe \@ref(werdeschlau). Die 12000 Studierenden sind unsere **Grundgesamtheit**. Da wir die Daten selbst erstellt haben, wissen wir alles über sie. Das ist ein großer Vorteil von Computerexperimenten `r emo::ji('smile')`. Damit alle dieselben Daten erstellen, ist die Zeile `set.seed(123)` sehr wichtig. Sie sorgt dafür, dass der Generator für Zufallszahlen in einen zufälligen, aber reproduzierbaren Zustand versetzt wird. Die Zahl in den Klammern ist nicht wichtig. Wichtig ist, dass alle dieselbe benutzen.
 
 Für bessere Nachvollziehbarkeit, nummerieren wir unsere Studierenden diesmal durch.
 
@@ -48,7 +48,6 @@ zeit_bib <- 5 * 60 - 0.7 * anreise + rnorm(length(anreise), 0, 20)
 grundgesamtheit <- tibble(student_id, geschlecht, wohnort, verkehrsmittel, anreise, zeit_bib)
 
 grundgesamtheit
-
 ```
 Wir wollen nun 50 Studierende befragen. Durch die zufällige Auswahl an Befragten erzeugen wir eine **zufällige Stichprobe**.  Übersetzt in unser Computerexperiment bedeutet es, dass wir zufällig 50 Zeilen aus dem Datensatz `grundgesamtheit` ziehen und zwar so, dass sich diese Zeilen nicht wiederholen (d.h. niemand mehrfach befragt wird). Dazu nutzen wir die Funktion `rep_sample_n()`, die wiederholt (*rep*) *n* Zeilen zieht (*sample*), und zwar mit der Einstellung `replace = FALSE`, also ohne Zurücklegen. Wir befragen nur einmal, daher `reps = 1`. 
 
@@ -92,7 +91,7 @@ befragung_reps <- rep_sample_n(grundgesamtheit, size = befragung_size, replace =
 
 befragung_reps
 ```
-Jetzt wird uns angezeigt, dass es in dem Datensatz `befragung_reps` 33 replicates (Wiederholgungen) gibt. Diese sind einfach nacheinander in `befragung_reps` angeordent (blättern Sie durch den Datensatz). Dementsprechend hat der Datensatz 50 $\times$ 33 = 1650 Zeilen.
+Jetzt wird uns angezeigt, dass es in dem Datensatz `befragung_reps` 33 replicates (Wiederholgungen) gibt. Diese sind einfach nacheinander in `befragung_reps` angeordnet (blättern Sie durch den Datensatz). Dementsprechend hat der Datensatz 50 $\times$ 33 = 1650 Zeilen.
 
 Wie sieht es jetzt mit den Anteilen von Stadt- und Landbewohnern aus? Wir müssen nun zusätzlich zum `wohnort` auch noch nach `replicate` gruppieren.
 
@@ -104,7 +103,7 @@ wohnort_props <- befragung_reps %>%
 wohnort_props
 ```
 
-Erwartungsgemäß bringt jede Wiederholung der Befragung, die wir ja als zufälliges Herausgreifen der Studierenden ohne Mehrfachbefragung programmiert haben, etwas andere Ergebnisse. Sehen Sie sich die `studnet_id` in den replicates an, es werde unterschiedliche Studierende befragt! In einem Histogramm sieht das ganze so aus:
+Erwartungsgemäß bringt jede Wiederholung der Befragung, die wir ja als zufälliges Herausgreifen der Studierenden ohne Mehrfachbefragung programmiert haben, etwas andere Ergebnisse. Sehen Sie sich die `student_id` in den replicates an, es werde unterschiedliche Studierende befragt! In einem Histogramm sieht das ganze so aus:
 
 ```{r, out.width = '90%'}
 ggplot(data = wohnort_props, aes(x = prop)) + 
@@ -115,16 +114,16 @@ ggplot(data = wohnort_props, aes(x = prop)) +
 
 Die häufigsten Anteile sind um die 40% für Land und um die 60% für Stadt. Wir können es sogar etwas genauer ablesen, da wir `binwidth = 0.05` gewähnt haben, also Schritte von 5%. Es sind 35--40% für Land und 55--60% für Stadt.
 
-### Anzahl der Wiederholungen und Variabilität
+## Anzahl der Wiederholungen und Variabilität
 
-Was passiert, wenn wir unsere Umfrage nun 1000 Mal wiederholen? Wir können den ganzen Code recyclen und müssen nur die reps entsprechend verändern. Wir erstellen dafür eine extra Variable `befragung_reps`. Beim Histogramm sollten wir die `binwidth` etwas heruntersetzten, da wir jetzt sehr viel mehr Daten haben und diese detaillierter anzeigen lassen können. Zusätzlich wird die x-Achse "frei" gegeben, i.e. die Skalierung wird jetzt auf jeder Achse separat bestimmt `scales = 'free_x'` in `facet_wrap()`, um die Verteilungen besser zu sehen.
+Was passiert, wenn wir unsere Umfrage nun 1000 Mal wiederholen? Wir können den ganzen Code wiederverwenden und müssen nur die reps entsprechend verändern. Wir erstellen dafür eine extra Variable `befragung_num`. Beim Histogramm sollten wir die `binwidth` etwas heruntersetzten, da wir jetzt sehr viel mehr Daten haben und diese detaillierter anzeigen lassen können. Zusätzlich wird die x-Achse "frei" gegeben, i.e. die Skalierung wird jetzt auf jeder Achse separat bestimmt `scales = 'free_x'` in `facet_wrap()`, um die Verteilungen besser zu sehen.
 
 ```{r, out.width = '90%', message = F}
 set.seed(345)
 
-befragung_reps <- 1000
+befragung_num <- 1000
 
-befragung_reps <- rep_sample_n(grundgesamtheit, size = befragung_size, replace = FALSE, reps = befragung_reps)
+befragung_reps <- rep_sample_n(grundgesamtheit, size = befragung_size, replace = FALSE, reps = befragung_num)
 
 wohnort_props <- befragung_reps %>% 
   group_by(replicate, wohnort) %>% 
@@ -139,10 +138,10 @@ ggplot(data = wohnort_props, aes(x = prop)) +
 
 Die häufigsten Anteile beim Land liegen bei 40--42% und bei der Stadt bei 58--60%.
 
-Die Histogramme geben nun sehr gut die Verteilung der Anteile der Stadt- und Landbewohner wieder. Solche Verteilungen nennt man **Stichprobenverteilungen**. Sie zeigen die Verteilung einer statistischen Kenngröße (Statistik), in unserem Fall Anteil, die aus zufälligen Stichproben ausgerechnet wurde. Die Stichprobenverteilung beantwrotet die Frage: Wenn ich eine zufällige Menge (Stichprobengröße) an Daten (Zufallsstichprobe) aus der Grundgesamtheit herausgreife und eine Kenngröße (z.B. Anteil) berechne, welchen Wert werde ich im Mittel erhalten und wie stark wird der Wert schwanken.
+Die Histogramme geben nun sehr gut die Verteilung der Anteile der Stadt- und Landbewohner wieder. Solche Verteilungen nennt man **Stichprobenverteilungen**. Sie zeigen die Verteilung einer statistischen Kenngröße (Statistik), in unserem Fall Anteil, die aus zufälligen Stichproben ausgerechnet wurde. Die Stichprobenverteilung beantwortet die Frage: Wenn ich eine zufällige Menge (Stichprobengröße) an Daten (Zufallsstichprobe) aus der Grundgesamtheit herausgreife und eine Kenngröße (z.B. Anteil) berechne, welchen Wert werde ich im Mittel erhalten und wie stark wird der Wert schwanken.
 
 
-### Stichprobengröße
+## Stichprobengröße
 Was passiert, wenn wir die Größe der Stichproben variieren? Das würde Befragungen mit unterschiedlicher Anzahl von Teilnehmern entsprechen. Wir vergleichen 25, 50 und 100 Befragte und wiederholen jeweils 1000 Mal, um erneut Stichprobenverteilungen plotten zu können. Das ist eine repetitive Aufgabe und ich werde dafür eine Funktion definieren. Wie man das macht, wird in einer späteren Stunde erklärt.
 
 ```{r}
@@ -158,7 +157,7 @@ wohnort_props
 }
 ```
 
-Nun wenden wir diese selbst definierte Funktion an und füren die Befragungen durch.
+Nun wenden wir diese selbst definierte Funktion an und führen die Befragungen durch.
 ```{r, message = F}
 set.seed(123)
 
@@ -228,7 +227,7 @@ Kapitel 7 in @ModernDive
 Berechnen Sie die Anteile von Studierenden in der Grundgesamtheit, die in der Stadt bzw. auf dem Land leben. Wie gut waren die Schätzungen im Vergleich zum wahren Wert in der Grundgesamtheit?
 
 ### Lohnt eine Station zum Ausleihen von Farrähdern?
-In unserem fiktiven Beispiel der Uni Werdeschlau geht es eigenlich darum, ob sich eine Station zum Ausleihen von Fahrrädern lohnen würde. Daher ist die Frage interessant, wie viele Studierende mit dem Fahrrad zur Uni kommen. Wiederholen Sie die obige Analyse und ermitteln Sie statt der Anteile von Stadt- und Landbewohnern nun die Anteile der unterschiedlichen Verkehrsmittel. Die selbst definierte Funktion müssen Sie durch die folgende ersetzten.
+In unserem fiktiven Beispiel der Uni Werdeschlau geht es eigentlich darum, ob sich eine Station zum Ausleihen von Fahrrädern lohnen würde. Daher ist die Frage interessant, wie viele Studierende mit dem Fahrrad zur Uni kommen. Wiederholen Sie die obige Analyse und ermitteln Sie statt der Anteile von Stadt- und Landbewohnern nun die Anteile der unterschiedlichen Verkehrsmittel. Die selbst definierte Funktion müssen Sie durch die folgende ersetzten.
 ```{r}
 calculate_props_verkehr <- function(grund_data = grundgesamtheit, befragung_size, befragung_reps = 1000) {
   
@@ -242,7 +241,7 @@ verkehrsmittel_props
 }
 ```
 
-In der Lösung zu dieser Aufgabe erhalten Sie auch weiter Tipps zur Darstellung von Histogrammen und Dichtefunktionen `r emo::ji('sunglasses')`.
+In der Lösung zu dieser Aufgabe erhalten Sie auch weitere Tipps zur Darstellung von Histogrammen und Dichtefunktionen `r emo::ji('sunglasses')`.
 
 
 ## Ihre Arbeit einreichen

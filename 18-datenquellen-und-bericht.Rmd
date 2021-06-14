@@ -37,7 +37,10 @@ Sie haben einen Auszug aus den Daten von [gapminder](https://www.gapminder.org) 
 - Überblick über open data und Pakete für direkten Download auf [ROpenScie](https://ropensci.org/):
   [Daten](https://github.com/ropensci-archive/opendata)
   [Pakete](https://ropensci.org/packages/data-access/)
-  
+
+## Forschungsplan
+Für Ihren Bericht erstellen Sie bitte einen Forschungsplan, den Sie in ILAS hochladen. Nutzen Sie für den Forschungsplan das zur Verfügung gestellte Template. **Beachten Sie die Deadline in ILIAS.** Sie bekommen Feedback zu diesem Forschungsplan, bevor Sie Ihren eigentlichen Bericht erarbeiten. Damit sollten Missverständnisse bezüglich Inhalt und Schwere der Aufgabe vermieden werden. 
+
 ## Struktur des Abschlussberichts
 ### Struktur des Arbeitsverzeichnisses
 Für Ihren Bericht, legen Sie bitte ein eigenes R-Projekt an. Eine ausführliche Anleitung finden sie [hier](https://support.rstudio.com/hc/en-us/articles/200526207-Using-Projects). Ein Projekt hilft Ihnen, Ihre Arbeit gut zu organisieren und nicht den Überblick über verschiedene Dateien zu verlieren.
@@ -59,10 +62,14 @@ Strukturieren Sie Ihren Bericht wie folgt:
   
 Sie können Ergebnisse und Diskussion zu einem Abschnitt vereinen.
 
-Sie können den Bericht in Zweiergruppen anfertigen. Dazu rate ich sogar. In diesem Fall müssen Sie im Bericht Ihren eigenen Anteil klar mit Ihrem Namen ausweisen. Es müssen sowohl Text als auch Analyse (Code) von jedem Gruppenmitglied bearbeitet werden.
+Sie können den Bericht in Zweiergruppen anfertigen. Dazu rate ich sogar. In diesem Fall müssen Sie im Bericht **Ihren eigenen Anteil klar mit Ihrem Namen ausweisen**. Es müssen sowohl Text als auch Analyse (Code) von jedem Gruppenmitglied bearbeitet werden.
 
 Es gibt keine Längenvorgabe für Ihren Bericht. Seien Sie *concise*: so viel wie nötig aber nicht mehr.
 
 Am Ende *knit*en Sie den Bericht zu einem html-Dokument. Überlegen Sie, welche Code-Chunks im Bericht zu sehen sein müssen und vermeiden Sie Redundanz. Wichtig: das Notebook muss bei mir lauffähig sein, d.h. Sie müssen alle Zusatzskripte, Daten etc. mit richtigen relativen Pfaden im Projekt ansprechen.
 
-**Laden Sie den gesamten Projektordner als zip-Datei auf ILIAS hoch. Die Deadline steht auf ILIAS.**
+
+```{block, type='rmdalert'}
+Laden Sie den gesamten Projektordner als zip-Datei auf ILIAS hoch. Die Deadline steht auf ILIAS.
+```
+

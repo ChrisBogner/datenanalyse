@@ -45,7 +45,9 @@
 <li><a class="" href="bootstrapping-und-konfidenzintervalle.html"><span class="header-section-number">8</span> Bootstrapping und Konfidenzintervalle</a></li>
 <li><a class="" href="hypothesentsts.html"><span class="header-section-number">9</span> Hypothesentests mit dem Paket infer</a></li>
 <li><a class="active" href="effekte.html"><span class="header-section-number">10</span> Schätzen von Effekten: Raus aus der \(p &lt; 0.05\)-Falle</a></li>
-<li><a class="" href="aufgabensammlung.html"><span class="header-section-number">11</span> Aufgabensammlung</a></li>
+<li><a class="" href="regression.html"><span class="header-section-number">11</span> Lineare Regression</a></li>
+<li><a class="" href="daten-und-bericht.html"><span class="header-section-number">12</span> Datenquellen und Struktur des Abschlussberichts</a></li>
+<li><a class="" href="aufgabensammlung.html"><span class="header-section-number">13</span> Aufgabensammlung</a></li>
 <li><a class="" href="literatur.html">Literatur</a></li>
 </ul>
 
@@ -169,8 +171,8 @@ Unterschied zwischen einem Hypothesentest und der Schätzung von Effekten erklä
 <pre><code>## dabestr (Data Analysis with Bootstrap Estimation in R) v0.3.0
 ## =============================================================
 ## 
-## Good morning!
-## The current time is 10:55  on Mittwoch Juni 09, 2021.
+## Good evening!
+## The current time is 19:18  on Montag Juni 14, 2021.
 ## 
 ## Dataset    :  .
 ## The first five rows are:
@@ -200,8 +202,8 @@ Unterschied zwischen einem Hypothesentest und der Schätzung von Effekten erklä
 <pre><code>## dabestr (Data Analysis with Bootstrap Estimation in R) v0.3.0
 ## =============================================================
 ## 
-## Good morning!
-## The current time is 10:55  on Mittwoch Juni 09, 2021.
+## Good evening!
+## The current time is 19:18  on Montag Juni 14, 2021.
 ## 
 ## Dataset    :  .
 ## X Variable :  geschlecht
@@ -217,7 +219,7 @@ Unterschied zwischen einem Hypothesentest und der Schätzung von Effekten erklä
 <p>Die Schätzung des Unterschieds stellen wir in einem Gardner-Altman-Plot dar <span class="citation">(<a href="literatur.html#ref-Gardner1986" role="doc-biblioref">Gardner and Altman 1986</a>)</span>. Wir beschriften die Grafik gleich sinnvoll und schalten die Legende ab, da sie in diesem Fall redundant ist.</p>
 <div class="sourceCode" id="cb172"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">mean_diff_zeit_bib</span>, color.column <span class="op">=</span> <span class="va">geschlecht</span>, rawplot.ylabel <span class="op">=</span> <span class="st">'Zeit in der Bibliothek (min)'</span>, effsize.ylabel <span class="op">=</span> <span class="st">'Ungepaarte mittlere Differenz'</span>, show.legend <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="datenanalyse_files/figure-html/unnamed-chunk-128-1.png" width="90%"></div>
+<div class="inline-figure"><img src="datenanalyse_files/figure-html/unnamed-chunk-129-1.png" width="90%"></div>
 <p>In der Abbildung können Sie mehrere Dinge sehen:</p>
 <ol style="list-style-type: decimal">
 <li>
@@ -262,13 +264,13 @@ Unterschied zwischen einem Hypothesentest und der Schätzung von Effekten erklä
 <h3>
 <span class="header-section-number">10.6.1</span> Bodenverdichtung, revisited<a class="anchor" aria-label="anchor" href="#bodenverdichtung-revisited"><i class="fas fa-link"></i></a>
 </h3>
-<p>Wir kommen zurück zu Daten aus Aufgabe <a href="aufgabensammlung.html#verdichtung">11.3.3</a>. Wie stark hat sich die Lagerungsdichte auf den befahrenen Feldern verändert? Schätzen Sie den Effekt und geben Sie 95%-Konfidenzintervalle an. Vergleichen Sie die Aussagen, die Sie mit dieser Lösung treffen können, mit der Aussage aus dem Hypothesentest.</p>
+<p>Wir kommen zurück zu Daten aus Aufgabe <a href="aufgabensammlung.html#verdichtung">13.3.3</a>. Wie stark hat sich die Lagerungsdichte auf den befahrenen Feldern verändert? Schätzen Sie den Effekt und geben Sie 95%-Konfidenzintervalle an. Vergleichen Sie die Aussagen, die Sie mit dieser Lösung treffen können, mit der Aussage aus dem Hypothesentest.</p>
 </div>
 <div id="anteil-von-beschäftigten-frauen-im-privaten-und-öffentlichen-sektor-revisited" class="section level3" number="10.6.2">
 <h3>
 <span class="header-section-number">10.6.2</span> Anteil von beschäftigten Frauen im privaten und öffentlichen Sektor, revisited<a class="anchor" aria-label="anchor" href="#anteil-von-besch%C3%A4ftigten-frauen-im-privaten-und-%C3%B6ffentlichen-sektor-revisited"><i class="fas fa-link"></i></a>
 </h3>
-<p>Wir sehen uns erneut die Daten der Weltbank aus der Aufgabe <a href="aufgabensammlung.html#world-bank">11.3.4</a> an. Diesmal interessiert und die Schätzung des Anteils und ihr 95%-Bootstrap-Konfidenzintervall. Vergleichen Sie die Aussagen, die Sie mit dieser Lösung treffen können, mit der Aussage aus dem Hypothesentest.</p>
+<p>Wir sehen uns erneut die Daten der Weltbank aus der Aufgabe <a href="aufgabensammlung.html#world-bank">13.3.4</a> an. Diesmal interessiert und die Schätzung des Anteils und ihr 95%-Bootstrap-Konfidenzintervall. Vergleichen Sie die Aussagen, die Sie mit dieser Lösung treffen können, mit der Aussage aus dem Hypothesentest.</p>
 </div>
 </div>
 <div id="ihre-arbeit-einreichen-5" class="section level2" number="10.7">
@@ -294,7 +296,7 @@ Unterschied zwischen einem Hypothesentest und der Schätzung von Effekten erklä
 </div>
   <div class="chapter-nav">
 <div class="prev"><a href="hypothesentsts.html"><span class="header-section-number">9</span> Hypothesentests mit dem Paket infer</a></div>
-<div class="next"><a href="aufgabensammlung.html"><span class="header-section-number">11</span> Aufgabensammlung</a></div>
+<div class="next"><a href="regression.html"><span class="header-section-number">11</span> Lineare Regression</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
@@ -329,7 +331,7 @@ Unterschied zwischen einem Hypothesentest und der Schätzung von Effekten erklä
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Datenanalyse mit R</strong>: SoSe 2021" was written by Christina Bogner. It was last built on 2021-06-09.</p>
+    <p>"<strong>Datenanalyse mit R</strong>: SoSe 2021" was written by Christina Bogner. It was last built on 2021-06-14.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

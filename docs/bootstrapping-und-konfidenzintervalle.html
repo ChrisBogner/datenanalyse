@@ -45,7 +45,9 @@
 <li><a class="active" href="bootstrapping-und-konfidenzintervalle.html"><span class="header-section-number">8</span> Bootstrapping und Konfidenzintervalle</a></li>
 <li><a class="" href="hypothesentsts.html"><span class="header-section-number">9</span> Hypothesentests mit dem Paket infer</a></li>
 <li><a class="" href="effekte.html"><span class="header-section-number">10</span> Schätzen von Effekten: Raus aus der \(p &lt; 0.05\)-Falle</a></li>
-<li><a class="" href="aufgabensammlung.html"><span class="header-section-number">11</span> Aufgabensammlung</a></li>
+<li><a class="" href="regression.html"><span class="header-section-number">11</span> Lineare Regression</a></li>
+<li><a class="" href="daten-und-bericht.html"><span class="header-section-number">12</span> Datenquellen und Struktur des Abschlussberichts</a></li>
+<li><a class="" href="aufgabensammlung.html"><span class="header-section-number">13</span> Aufgabensammlung</a></li>
 <li><a class="" href="literatur.html">Literatur</a></li>
 </ul>
 
@@ -303,7 +305,7 @@ Abbildung 8.3: Berechnen einer Stichprobenverteilung durch wiederholtes Ziehen a
   <span class="fu">geom_vline</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>xintercept <span class="op">=</span> <span class="va">stat_bootstrap</span><span class="op">$</span><span class="va">ci_2.5</span>, col <span class="op">=</span> <span class="st">'ci'</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">geom_vline</span><span class="op">(</span>xintercept <span class="op">=</span> <span class="va">stat_bootstrap</span><span class="op">$</span><span class="va">ci_97.5</span>, col <span class="op">=</span> <span class="st">'brown'</span><span class="op">)</span> <span class="op">+</span> 
   <span class="fu">scale_color_manual</span><span class="op">(</span>name <span class="op">=</span> <span class="st">"Statistik"</span>, values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>grundgesamtheit <span class="op">=</span> <span class="st">'black'</span>, sd <span class="op">=</span> <span class="st">'orange'</span>, boot <span class="op">=</span> <span class="st">'red'</span>, ci <span class="op">=</span> <span class="st">'brown'</span>, stichprobe <span class="op">=</span> <span class="st">'gray90'</span><span class="op">)</span>, breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'stichprobe'</span>, <span class="st">'boot'</span>, <span class="st">'sd'</span>, <span class="st">'ci'</span>, <span class="st">'grundgesamtheit'</span><span class="op">)</span>, label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'Mittelwert Stichprobe'</span>, <span class="st">'Mittelwert Bootstrap'</span>, <span class="st">'Standardfehler Bootstrap'</span>, <span class="st">'95% Konfidenzintervall Bootstrap'</span>, <span class="st">'Mittelwert Population'</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="datenanalyse_files/figure-html/unnamed-chunk-99-1.png" width="90%"></div>
+<div class="inline-figure"><img src="datenanalyse_files/figure-html/unnamed-chunk-100-1.png" width="90%"></div>
 <p>Der Standardfehler des Bootstraps stimmt sehr gut mit dem Fehler <span class="math inline">\(s/\sqrt(n)\)</span> für den Schätzer des Mittelwerts überein. Da wir normalerweise die wahre Standardabweichung der Grundgesamtheit nicht kennen, wird in der Formel <span class="math inline">\(s/\sqrt(n)\)</span> die Standardabweichung der Stichprobe als Schätzung verwendet.</p>
 <div class="sourceCode" id="cb128"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">befragung</span> <span class="op">%&gt;%</span> 
@@ -345,7 +347,7 @@ Abbildung 8.3: Berechnen einer Stichprobenverteilung durch wiederholtes Ziehen a
 <p>Visualisieren der Stichprobenverteilung.</p>
 <div class="sourceCode" id="cb135"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://infer.tidymodels.org/reference/visualize.html">visualize</a></span><span class="op">(</span><span class="va">bootstrap_distribution</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="datenanalyse_files/figure-html/unnamed-chunk-104-1.png" width="672"></div>
+<div class="inline-figure"><img src="datenanalyse_files/figure-html/unnamed-chunk-105-1.png" width="672"></div>
 <p>Berechnen Konfidenzintervalle</p>
 <div class="sourceCode" id="cb136"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">percentile_ci</span> <span class="op">&lt;-</span> <span class="va">bootstrap_distribution</span> <span class="op">%&gt;%</span> 
@@ -360,7 +362,7 @@ Abbildung 8.3: Berechnen einer Stichprobenverteilung durch wiederholtes Ziehen a
 <code class="sourceCode R"><span class="fu"><a href="https://infer.tidymodels.org/reference/visualize.html">visualize</a></span><span class="op">(</span><span class="va">bootstrap_distribution</span><span class="op">)</span> <span class="op">+</span> 
   <span class="fu"><a href="https://infer.tidymodels.org/reference/shade_confidence_interval.html">shade_confidence_interval</a></span><span class="op">(</span>endpoints <span class="op">=</span> <span class="va">percentile_ci</span>, color <span class="op">=</span> <span class="st">"orange"</span>, fill <span class="op">=</span> <span class="st">"khaki"</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">geom_vline</span><span class="op">(</span>xintercept <span class="op">=</span> <span class="va">mean_grundgesamtheit</span><span class="op">$</span><span class="va">Mittelwert</span>, linetype <span class="op">=</span> <span class="st">'dashed'</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="datenanalyse_files/figure-html/unnamed-chunk-106-1.png" width="672"></div>
+<div class="inline-figure"><img src="datenanalyse_files/figure-html/unnamed-chunk-107-1.png" width="672"></div>
 <p>Die Konfidenzintervalle, die wir als Quantile aus der Bootstrap-Stichprobenverteilung berechnet haben, und die, die man mit der Formel <span class="math inline">\(\hat{\mu} \pm 1.96 \cdot s/\sqrt(n)\)</span> berechnen kann, sind sehr ähnlich. Das werden Sie in einer der Aufgaben (s.u.) nachrechnen. Das liegt daran, dass der <em>Zentrale Grenzwertsatz</em> garantiert, dass die Stichprobenverteilung des Schätzers des Mittelwerts eine Normalverteilung ist. Es gibt aber Schätzer, wie z.B. den des Medians, für den es keine theoretische Verteilung gibt. Daher gilt als Take-Home-Message, dass man Bootstrap zum Berechnen der Konfidenzintervalle gut einsetzten kann, egal ob es eine theoretische Verteilung des Schätzers gibt. Die Quantilmethode zur Berechnung der Bootstrap-Konfidenzintervalle liefert gute Ergebnisse. Wir werden im späteren Kapitel lernen, dass man Bootstrap auch für die Regressionsanalyse nutzen kann.</p>
 </div>
 <div id="bedeutung-der-konfidenzintervalle" class="section level2" number="8.4">
@@ -463,7 +465,7 @@ Abbildung 8.3: Berechnen einer Stichprobenverteilung durch wiederholtes Ziehen a
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Datenanalyse mit R</strong>: SoSe 2021" was written by Christina Bogner. It was last built on 2021-06-09.</p>
+    <p>"<strong>Datenanalyse mit R</strong>: SoSe 2021" was written by Christina Bogner. It was last built on 2021-06-14.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

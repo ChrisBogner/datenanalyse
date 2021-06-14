@@ -57,11 +57,11 @@ Infoblock
 Achtung, wichtig!
 ```
 
-<!-- <br> -->
+<br>
 
-<!-- ```{block, type='rmdexample'} -->
-<!-- Beispielblock -->
-<!-- ``` -->
+```{block, type='rmddef'}
+Definition
+```
 
 <br>
 

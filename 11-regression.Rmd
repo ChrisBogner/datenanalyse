@@ -172,7 +172,7 @@ Nun können wir die Werte gegeneinander plotten und uns die Residuen ansehen. Di
 ```{r, out.width = '90%'}
 ggplot(model_res, aes(x = anreise, y = zeit_bib)) +
   geom_segment(aes(xend = anreise, yend = fitted, lty = 'Residuen'), alpha = 0.2)  + 
-  geom_abline(intercept = coef(lin_mod)[1], slope = coef(lin_mod)[2], color = "lightgrey") +
+  geom_abline(intercept = coef(lin_mod)[1], slope = coef(lin_mod)[2], color = "lightblue") +
   geom_point(aes(col = 'observed')) +
   geom_point(aes(y = fitted, col = 'fitted'), shape = 1, size = 2) +
   labs(x = 'Anreisezeit (min)', y = 'Arbeitszeit in der Bibliothek (min)') +
@@ -227,7 +227,7 @@ Zum Schluss noch die wichtigsten Take-Home Messages.
 - Lineare Regression: linearer Einfluss der Kovariablen auf $y$.
 - Annahmen: Residuen $\varepsilon_i$ sind iid mit $$\mathrm{E}(\varepsilon_i) = 0, \qquad \mathrm{Var}(\varepsilon_i)=\sigma^2.$$
 - Normalregression zusätzlich: $\varepsilon_i \sim N(0,\sigma^2)$.
-- Überprüfung der Annahmen (vor allem) graphisch.
+- Überprüfung der Annahmen (vor allem) grafisch.
 - Konfidenzintervalle und Hypothesentests der Normalregression dürfen nur dann interpretiert werden, wenn die Annahmen erfüllt sind.
 ```
 

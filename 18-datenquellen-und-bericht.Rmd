@@ -55,12 +55,14 @@ Strukturieren Sie Ihren Bericht wie folgt:
 
   - Einführung (am Ende muss die Forschungsfrage stehen)
   - Material und Methoden: Datenbeschreibung, Beschreibung der Methode mit Literaturangaben, gegebenenfalls Beschreibung des Untersuchungsgebiets
-  - Ergebnisse
+  - Ergebnisse: Explorative Datenanalyse, weitere Analysen
   - Diskussion mit Einbezug von weiterer Fachliteratur
   - Schlussfolgerung
   - Literatur
   
 Sie können Ergebnisse und Diskussion zu einem Abschnitt vereinen.
+
+Jeder Bericht muss eine **Challenge** beinhalten. Das kann z.B. das Vorbereiten (*tidy* and *wrangle*) eines besonders komplizierten Datensatzes sein. Oder die Einarbeitung in ein spannendes Paket (z.B. räumliche Darstellung in eurostat) etc.
 
 Sie können den Bericht in Zweiergruppen anfertigen. Dazu rate ich sogar. In diesem Fall müssen Sie im Bericht **Ihren eigenen Anteil klar mit Ihrem Namen ausweisen**. Es müssen sowohl Text als auch Analyse (Code) von jedem Gruppenmitglied bearbeitet werden.
 

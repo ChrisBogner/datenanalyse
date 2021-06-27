@@ -1,0 +1,288 @@
+# Inferenz in linearer Regression  {#regression-inferenz}
+
+```{block, type = 'rmdoutcomes'}
+- Konfidenzintervalle für Modellparameter berechnen
+- Zusammenfassung eines linearen Modells in R interpretieren
+- Bestimmtheitsmaß $R^2$ erklären
+- Konfidenzintervalle für nicht normalverteilte Residuen berechnen
+```
+
+Im letzten Kapitel haben Sie die einfache Normalregression kennen gelernt. Bevor Sie die geschätzten Parameter und deren Konfidenzintervalle interpretieren, müssen Sie die Annahmen der Normalregression überprüfen (vor allem grafisch):
+
+- Der Zusammenhang zwischen der abhängigen und den erklärenden Variablen ist linear.
+- Residuen sind unabhängig.
+- Residuen haben einen Mittelwert von Null und sind homoskedastisch (gleiche Varianz).
+- Residuen sind normalverteilt
+
+In diesem Kapitel beschäftigen wir uns mit folgenden Fragen:
+
+- Wie schätzt man die Parameter?
+- Wie gut sind diese Schätzungen?
+- Wie gut ist das Modell?
+- Was macht man, wenn die Residuen nicht normalverteilt sind?
+
+## Zurück zum Beispiel: Anreisezeit und Arbeitszeit in der Bilbiothek
+
+### Parameter und Kofidenzinetervalle schätzen
+```{r, message = F, warning = F}
+library(tidyverse)
+library(infer)
+library(knitr)
+library(moderndive)
+```
+
+
+```{r, echo = F}
+set.seed(123)
+
+student_id <- 1:12000
+  
+anreise <- c(runif(n = 12000 * 0.8, min = 5, max = 40),
+             runif(n = 12000 * 0.2, min = 60, max = 120))
+
+geschlecht <- sample(c('m', 'w'), size = 12000, replace = TRUE)
+
+wohnort <- sapply(anreise, function(x) {
+  if(x < 30) 'stadt'
+  else 'land'
+})
+
+verkehrsmittel <- sapply(anreise, function(x) {
+  if(x <= 10) 'zu_fuss'
+  else if(x > 10 & x <= 15) sample(c('zu_fuss', 'fahrrad'), size = 1)
+  else if(x > 15 & x <= 45) sample(c('bus', 'fahrrad', 'auto'), size = 1)
+  else sample(c('bus', 'auto'), size = 1)
+})
+
+zeit_bib <- 5 * 60 - 0.7 * anreise + rnorm(length(anreise), 0, 20)
+
+grundgesamtheit <- tibble(student_id, geschlecht, wohnort, verkehrsmittel, anreise, zeit_bib)
+```
+
+
+```{r, echo = F}
+set.seed(345)
+
+befragung_size <- 200
+
+befragung <- rep_sample_n(grundgesamtheit, size = befragung_size, replace = FALSE, reps = 1)
+```
+
+Woher kommen die Schätzungen der Modellparameter und deren Konfidenzintervalle in unserem Modell? Dieses Kapitel basiert auf den theoretischen Herleitungen aus @Fahrmeir2009.
+
+```{r}
+lin_mod <- lm(zeit_bib ~ anreise, data = befragung)
+
+get_regression_table(lin_mod) %>% kable()
+```
+
+Eine sehr oft verwendete Methode, die Modellparameter zu schätzen, heißt **Methode der kleinsten Quadrate**. Sie beruht auf der Idee, dass diejenigen Modellparameter, $y$-Achsenabschnitt und die Steigung, die besten sind, bei denen die Summe der quadrierten Residuen die kleinste ist. Formal schreibt man:
+
+```{block, type='rmddef'}
+Gegeben sei das lineare Regressionsmodell
+
+$$y_i=\beta_0 + \beta_1 x_i + \varepsilon_i$$
+
+Um die unbekannten Parameter $\beta_0$ und $\beta_1$ zu bestimmen, minimiere die Summe der quadrierten Abweichungen
+
+$$\mathrm{KQ}(\beta_0, \beta_1)=\sum_{i=1}^n (y_i - (\beta_0 + \beta_1 x_i))^2=\sum_{i=n}^n \varepsilon_i^2  \rightarrow \operatorname*{min}_{\beta_0,\, \beta_1}$$
+
+Dann heißt
+$$ \boldsymbol{\hat{\beta}}=(\hat{\beta}_0, \hat{\beta}_1)$$
+
+der Kleinste-Quadrate-Schätzer für den Parametervektor $\boldsymbol{\beta} = (\beta_0, \beta_1)$.
+```
+
+Es geht also darum, die **Residuen zu minimieren**, d.h. die Abstände zwischen den beobachteten und den im Modell vorhergesagten Werten so klein wie möglich zu machen. 
+
+```{r, echo = F, out.width = '90%'}
+model_res <- befragung %>%
+  mutate(fitted = fitted(lin_mod), residuals = residuals(lin_mod))
+
+ggplot(model_res, aes(x = anreise, y = zeit_bib)) +
+  geom_segment(aes(xend = anreise, yend = fitted, lty = 'Residuen'), alpha = 0.2)  + 
+  geom_abline(intercept = coef(lin_mod)[1], slope = coef(lin_mod)[2], color = "lightblue") +
+  geom_point(aes(col = 'observed')) +
+  geom_point(aes(y = fitted, col = 'fitted'), shape = 1, size = 2) +
+  labs(x = 'Anreisezeit (min)', y = 'Arbeitszeit in der Bibliothek (min)') +
+  scale_color_manual(name = '', values = c(observed = 'black', fitted = 'blue'), breaks = c('observed', 'fitted'), label = c('Gemessene Werte', 'Angepasste Werte')) +
+  scale_linetype_manual(name = '', values = ('Residuen' = 'solid')) +
+  theme(legend.position = 'bottom')
+```
+
+Man quadriert die Residuen, damit sowohl die positiven als auch die negativen gleich wichtig sind und sich in der Summe nicht gegenseitig aufheben.
+
+Die methode der kleinsten Quadrate ergibt folgende Formeln für die Schätzung der Modellparameter einer Einfachregression:
+
+$$
+\begin{align*}
+\hat{\sigma}^2 &= \frac{1}{n-2} \sum_{i=n}^n \varepsilon_i^2 \\
+\hat{\beta}_0 &= \bar{y} - \hat{\beta}_1 \bar{x}\\
+\hat{\beta}_1 &= \frac{\sum^n_{i=1} (x_i - \bar{x})(y_i - \bar{y})}{\sum^n_{i=1} (x_i - \bar{x})^2}
+\end{align*}
+$$
+Die Residuen $\hat{\varepsilon}_i$ berechnen sich als die Differenz zwischen den beobachteten und den im Modell berechneten Werten:
+
+$$\hat{\varepsilon}_i = y_i - \hat{y}_i$$
+Und die angepassten Werte als Punkte auf der Regressionsgeraden:
+
+$$\hat{y}_i = \hat{\beta}_0 + \hat{\beta}_1 x_i$$
+
+Die geschätzten Modellparameter sind **Zufallsvariablen**. Unter der Annahme, dass die Residuen nomralverteilt sind:
+
+$$\varepsilon_i \sim \mathcal{N}(0,\sigma^2)$$
+gilt für diese Zufallsvariablen, dass sie selbst normalverteilt sind:
+
+$$\hat{\beta}_0 \sim \mathcal{N}(\beta_0, \sigma^2_{\hat{\beta}_0}),
+ \qquad \hat{\beta}_1 \sim \mathcal{N}(\beta_1, \sigma^2_{\hat{\beta}_1})$$
+ 
+Ihre Varianzen $\sigma^2_{\hat{\beta}_0}$ und $\sigma^2_{\hat{\beta}_1}$ müssen geschätzt werden:
+
+$$\hat{\sigma}_{\hat{\beta}_0} = \hat{\sigma} \frac{\sqrt{\textstyle \sum_{i=1}^n x_i^2}}{\sqrt{n \textstyle \sum_{i=1}^n (x_i-\bar{x})^2}}, \quad 
+\hat{\sigma}_{\hat{\beta}_1} = \frac{\hat{\sigma}}{\sqrt{\textstyle \sum_{i=1}^n (x_i-\bar{x})^2}}$$
+
+Wenn die Residuen normalverteilt sind, kann mann zeigen, dass die sogen. standardisierten Schätzer der $t$-Verteilung folgen:
+
+$$\frac{\hat{\beta}_0 - \beta_0}{\hat{\sigma}_{\hat{\beta}_0}} \sim t_{n-2}, \quad \frac{\hat{\beta}_1 - \beta_1}{\hat{\sigma}_{\hat{\beta}_1}} \sim t_{n-2}$$
+
+
+Somit wissen wir nun endlich, wie die Schätzungen für den $y$-Achsenabschnitt und die Steigung verteilt sind. Mit diesem Wissen können wir Konfidenzintervalle für diese Modellparameter berechnen:
+
+$$\hat{\beta}_0 \pm \hat{\sigma}_{\hat{\beta}_0} t_{1-\alpha/2, n-2}, \qquad \hat{\beta}_1 \pm \hat{\sigma}_{\hat{\beta}_1} t_{1-\alpha/2, n-2}$$
+
+Für $\alpha$ setzt man passendes Konfidenzlevel ein, z.B. 5%, um das 95%-Konfidenzintervall zu erhalten. 
+
+### Wie gut ist das Modell?
+
+Welcher Anteil der Streuung der Daten lässt sich durch die Regression erklären?
+
+Die Streuung im Modell besteht aus:
+
+$$
+\begin{align*}
+\mathit{SQT} &= \mathit{SQE} + \mathit{SQR}\\
+\sum^{n}_{i = 1} (y_i-\bar{y})^2 &= \sum^{n}_{i=1} (\hat{y}_i - \bar{y})^2 + \sum^{n}_{i=1} (y_i - \hat{y}_i)^2\\
+\end{align*}
+$$
+
+mit $y_i$: Messwerte, $\bar{y}$: Mittelwert, $\hat{y}_i$: angepasste Werte
+
+- $\mathit{SQT}$ Sum of squares total: Gesamtstreuung der Daten
+- $\mathit{SQE}$ Sum of squares explained: Streuung erklärt vom Modell
+- $\mathit{SQR}$ Sum of sqaures residual: Residualstreuung (vom Modell nicht erklärt)
+
+Die $\mathit{SQE}$ beschreibt die Variation der angepassten Werte um den Mittelwert und $\mathit{SQR}$ entspricht dem nicht erklärten Teil der Streuung. Das heißt, dass je kleiner die Residualstreuung, desto besser das Modell, weil es dann einen größeren Anteil der Streuung der Daten erklären kann. Das Verhältnis der Gesamtstreuung zur Residualstreuung nennt man das **Bestimmtheitsmaß** (oder auch Determinationskoeffizient). Dieser wird meistens mit $R^2$ bezeichnet und ist definiert als:
+
+$$R^2 = \frac{\mathit{SQE}}{\mathit{SQT}} = 1- \frac{\sum^{n}_{i=1} (y_i - \hat{y}_i)^2}{\sum^{n}_{i = 1} (y_i - \bar{y}_i)^2}$$
+
+$R^2$ liegt (normalerweise) zwischen 0 (schlechtes Modell) und 1 (perfekter Fit). $R^2 < 0$ zeigt eine falsche Modellwahl (z.B. kein Achsenabschnitt, wenn dieser aber nötig ist).
+
+Das $R^2$ hat die unangenehme Eigenschaft, bei einer multiplen Regression immer zu steigen, wenn man zusätzliche Prädiktoren hinzunimmt. Diese Prädiktoren können auch ohne jeden Zusammenhang zur abhängigen Variablen stehen. Um dieses Problem zu korrigieren, hat man das adjustierte Bestimmtheitsmaß $R^2_\text{ajd}$ eingeführt. Es "bestraft" für zusätzliche Prädiktoren
+$$R^2_\text{ajd} = 1 - (1 - R^2) \frac{n-1}{n - p - 1}$$
+
+mit $n$: Anzahl der Datenpunkte, $p$: Anzahl der Prädiktoren (ohne intercept). $R^2_\text{ajd}$ ist robuster als $R^2$ bei multipler Regression.
+
+Zurück zu unserem Beispiel. Wie viel Streuung erklärt nun unser Modell? Wir sehen uns die *tidy* Zusammenfassung an.
+
+```{r}
+get_regression_summaries(lin_mod) %>% kable()
+```
+
+- `r_squared`: Bestimmtheimtsmaß $R^2$
+- `adj_r_squared`: adjustiertes Bestimmtheitsmaß $R^2_\text{ajd}$
+- `mse`: mittlerer quadratischer Fehler `mean(residuals(lin_mod)^2)`
+- `rmse`: Wurzel aus `mse`
+- `simga`: Standardabweichung (i.e. Standardfehler) des Fehlerterms $\varepsilon$
+- `statistic`: Wert der $F$-Statistik für den Hypothesentest mit H$_0$: alle Modellparameter sind Null
+- `p-value`: $p$-Wert zum Hypothesentest
+- `df`: Freiheitsgrade, hier Anzahl der Prädiktoren
+- `nobst`: Anzahl der Datenpunkte
+
+Somit erklärt unser Modell 53% der Varianz der Daten.
+
+## Bootstrap für lineare Regression
+Die $t$-Verteilung der Schätzungen gilt *asymptotisch*, d.h. bei großen Datensäzten, auch für nicht-normalverteilte Fehler (unter bestimmten Bedingunngen, s. @Fahrmeir2009). Allerdings erfordern 
+**nicht-normalverteilte Fehler große Stichproben oder aber alternative Methoden**. Solch eine alternative Methode ist der Bootstrap.
+
+Bei einer Einfachregression, d.h. wenn es nur einen Prädiktor gibt, ist die Steigung häufig der interessante Parameter. Wenn wir uns also nicht für den $y$-Achsenabschnitt interessiert, dann können wir das altbekannte Framework von `infer` für das Bootstrap-Konfidenzinterval für die Steigung verwenden. Für unser Beispiel ginge es so:
+
+```{r}
+bootstrap_distn_slope <- befragung %>% 
+  specify(formula = zeit_bib ~ anreise) %>%
+  generate(reps = 10000, type = "bootstrap") %>% 
+  calculate(stat = "slope")
+
+percentile_ci <- bootstrap_distn_slope %>% 
+  get_confidence_interval(type = "percentile", level = 0.95)
+
+percentile_ci
+```
+
+Wir stellen die Ergebnisse wie gewohnt dar.
+```{r, out.width = '90%'}
+visualize(bootstrap_distn_slope) +
+    shade_confidence_interval(endpoints = percentile_ci) 
+```
+
+Verglichen mit dem Konfidenzintervall basierend auf der Normalverteilungsannahme, ist Bootstrap sehr ähnlich. Das liegt daran, dass die Normalverteilungsannahme ja erfüllt ist. In so einem Fall sind die Konfidenzintervalle sehr ähnlich.
+```{r}
+get_regression_table(lin_mod) %>% 
+filter(term == 'anreise') %>%
+  kable()
+```
+
+
+Wir können mit `infer` auch einen Hypothesentest durchführen, der untersucht, ob die Steigung von Null verschieden ist.
+
+- H$_0$: $\beta_1 = 0$
+- H$_1$: $\beta_1 \neq 0$
+
+```{r}
+null_distn_slope <- befragung %>% 
+  specify(formula = zeit_bib ~ anreise) %>%
+  hypothesize(null = "independence") %>% 
+  generate(reps = 10000) %>% 
+  calculate(stat = "slope")
+```
+
+Für die Darstellung brauchen wir noch die berechnete Steigung:
+```{r}
+observed_slope <- befragung %>% 
+  specify(formula = zeit_bib ~ anreise) %>% 
+  calculate(stat = "slope")
+
+observed_slope
+```
+
+Und nun die Visualisierung:
+```{r, out.width = '90%'}
+visualize(null_distn_slope) +
+  shade_p_value(obs_stat = observed_slope, direction = "both")
+
+null_distn_slope %>% 
+  get_p_value(obs_stat = observed_slope, direction = "both")
+```
+
+
+## Lesestoff
+Kapitel 10 in @ModernDive
+
+
+## Aufgabe
+
+### Artenreichtum auf den Galapagosinseln
+Wir beschäftigen uns mit dem Datensatz `gala` aus der Bibliothek `faraway`.
+
+1. Laden Sie den Datensatz und lesen Sie in der Hilfe nach, um was es sich dabei handelt.
+2. Untersuchen Sie die Hypothese, dass die Anzahl der endemischen Arten linear von der Gesamtartenzahl abhängt.
+3. Überprüfen Sie die Annahmen des linearen Modells.
+4. Vergleichen Sie das Konfidenzintervall, das auf der Normalverteilungsannahme beruht mit dem Bootstrap-Konfidenzintervall.
+1. Führen Sie den Hypothesentest analog zum Beispiel oben mit `infer` durch.
+1. Interpretieren Sie das Modell.
+
+
+## Ihre Arbeit einreichen
+- Speichern Sie Ihr Notebook ab und laden Sie nur die .Rmd Datei vom Server.
+- Laden Sie Ihre .Rmd Datei in ILIAS hoch. **Beachten Sie die Deadline!**
+- Sie erhalten die Musterlösung nach dem Hochladen.
+

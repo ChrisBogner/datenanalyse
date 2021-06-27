@@ -1,3 +1,4 @@
+% Encoding: UTF-8
 @book{Sauer2019,
   title = {{Moderne Datenanalyse mit R: Daten einlesen, aufbereiten, visualisieren, modellieren und kommunizieren}},
   shorttitle = {{Moderne Datenanalyse mit R}},
@@ -280,15 +281,8 @@ url = {https://r4ds.had.co.nz/}
   author = {Fahrmeir, L. and Kneib, T. and Lang, S.},
   year = {2009},
   publisher = {{Springer}},
-  url = {http://link.springer.com/book/10.1007/978-3-642-01837-4}
+  owner = {Chris},
+  timestamp = {2011.05.24}
 }
 
-
-
-
-
-
-
-
-
-
+@Comment{jabref-meta: databaseType:bibtex;}

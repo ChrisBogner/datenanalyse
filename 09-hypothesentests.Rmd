@@ -36,7 +36,7 @@ knitr::include_graphics('figures/one_test.png')
 
 
 ## Workflow in `infer`
-Das Paket `infer` bietet so ein einheitliches Framework für Hypothesentests (Abbildung \@ref(fig:ht)). Es hat 4 Verben, die den oben beschriebenen Prozess der Hypothesentests vereinheitlichen:
+Das Paket `infer` bietet so ein einheitliches Framework für Hypothesentests (Abbildung \@ref(fig:ht)). Es hat 4 Verben, die den oben beschriebenen Prozess der Hypothesentests vereinheitlichen und ein Verb für die Visualisierung der Ergebnisse:
 
 1. `specify()` Variablen festlegen
 1. `hypothesize()` Nullhypothese definieren

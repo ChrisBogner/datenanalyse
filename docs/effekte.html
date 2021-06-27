@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Kapitel 10 Schätzen von Effekten: Raus aus der \(p &lt; 0.05\)-Falle | Datenanalyse mit R</title>
 <meta name="author" content="Christina Bogner">
-<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.2"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.8/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.2"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.9/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.2.5.1/tabs.js"></script><script src="libs/bs3compat-0.2.5.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
@@ -46,8 +46,9 @@
 <li><a class="" href="hypothesentsts.html"><span class="header-section-number">9</span> Hypothesentests mit dem Paket infer</a></li>
 <li><a class="active" href="effekte.html"><span class="header-section-number">10</span> Schätzen von Effekten: Raus aus der \(p &lt; 0.05\)-Falle</a></li>
 <li><a class="" href="regression.html"><span class="header-section-number">11</span> Lineare Regression</a></li>
-<li><a class="" href="daten-und-bericht.html"><span class="header-section-number">12</span> Datenquellen und Struktur des Abschlussberichts</a></li>
-<li><a class="" href="aufgabensammlung.html"><span class="header-section-number">13</span> Aufgabensammlung</a></li>
+<li><a class="" href="regression-inferenz.html"><span class="header-section-number">12</span> Inferenz in linearer Regression</a></li>
+<li><a class="" href="daten-und-bericht.html"><span class="header-section-number">13</span> Datenquellen und Struktur des Abschlussberichts</a></li>
+<li><a class="" href="aufgabensammlung.html"><span class="header-section-number">14</span> Aufgabensammlung</a></li>
 <li><a class="" href="literatur.html">Literatur</a></li>
 </ul>
 
@@ -171,8 +172,8 @@ Unterschied zwischen einem Hypothesentest und der Schätzung von Effekten erklä
 <pre><code>## dabestr (Data Analysis with Bootstrap Estimation in R) v0.3.0
 ## =============================================================
 ## 
-## Good morning!
-## The current time is 10:54  on Mittwoch Juni 16, 2021.
+## Good evening!
+## The current time is 22:04  on Sonntag Juni 27, 2021.
 ## 
 ## Dataset    :  .
 ## The first five rows are:
@@ -202,8 +203,8 @@ Unterschied zwischen einem Hypothesentest und der Schätzung von Effekten erklä
 <pre><code>## dabestr (Data Analysis with Bootstrap Estimation in R) v0.3.0
 ## =============================================================
 ## 
-## Good morning!
-## The current time is 10:54  on Mittwoch Juni 16, 2021.
+## Good evening!
+## The current time is 22:04  on Sonntag Juni 27, 2021.
 ## 
 ## Dataset    :  .
 ## X Variable :  geschlecht
@@ -264,13 +265,13 @@ Unterschied zwischen einem Hypothesentest und der Schätzung von Effekten erklä
 <h3>
 <span class="header-section-number">10.6.1</span> Bodenverdichtung, revisited<a class="anchor" aria-label="anchor" href="#bodenverdichtung-revisited"><i class="fas fa-link"></i></a>
 </h3>
-<p>Wir kommen zurück zu Daten aus Aufgabe <a href="aufgabensammlung.html#verdichtung">13.3.3</a>. Wie stark hat sich die Lagerungsdichte auf den befahrenen Feldern verändert? Schätzen Sie den Effekt und geben Sie 95%-Konfidenzintervalle an. Vergleichen Sie die Aussagen, die Sie mit dieser Lösung treffen können, mit der Aussage aus dem Hypothesentest.</p>
+<p>Wir kommen zurück zu Daten aus Aufgabe <a href="aufgabensammlung.html#verdichtung">14.3.3</a>. Wie stark hat sich die Lagerungsdichte auf den befahrenen Feldern verändert? Schätzen Sie den Effekt und geben Sie 95%-Konfidenzintervalle an. Vergleichen Sie die Aussagen, die Sie mit dieser Lösung treffen können, mit der Aussage aus dem Hypothesentest.</p>
 </div>
 <div id="anteil-von-beschäftigten-frauen-im-privaten-und-öffentlichen-sektor-revisited" class="section level3" number="10.6.2">
 <h3>
 <span class="header-section-number">10.6.2</span> Anteil von beschäftigten Frauen im privaten und öffentlichen Sektor, revisited<a class="anchor" aria-label="anchor" href="#anteil-von-besch%C3%A4ftigten-frauen-im-privaten-und-%C3%B6ffentlichen-sektor-revisited"><i class="fas fa-link"></i></a>
 </h3>
-<p>Wir sehen uns erneut die Daten der Weltbank aus der Aufgabe <a href="aufgabensammlung.html#world-bank">13.3.4</a> an. Diesmal interessiert und die Schätzung des Anteils und ihr 95%-Bootstrap-Konfidenzintervall. Vergleichen Sie die Aussagen, die Sie mit dieser Lösung treffen können, mit der Aussage aus dem Hypothesentest.</p>
+<p>Wir sehen uns erneut die Daten der Weltbank aus der Aufgabe <a href="aufgabensammlung.html#world-bank">14.3.4</a> an. Diesmal interessiert und die Schätzung des Anteils und ihr 95%-Bootstrap-Konfidenzintervall. Vergleichen Sie die Aussagen, die Sie mit dieser Lösung treffen können, mit der Aussage aus dem Hypothesentest.</p>
 </div>
 </div>
 <div id="ihre-arbeit-einreichen-5" class="section level2" number="10.7">
@@ -331,7 +332,7 @@ Unterschied zwischen einem Hypothesentest und der Schätzung von Effekten erklä
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Datenanalyse mit R</strong>: SoSe 2021" was written by Christina Bogner. It was last built on 2021-06-16.</p>
+    <p>"<strong>Datenanalyse mit R</strong>: SoSe 2021" was written by Christina Bogner. It was last built on 2021-06-27.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

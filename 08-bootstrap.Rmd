@@ -192,7 +192,7 @@ grundgesamtheit %>%
 ## Bootstrap-Konfidenzintervalle mit `infer`
 Das Paket `infer` bietet eine sehr bequeme Möglichkeit, Konfidentintervalle mit Bootstrap zu berechnen und zu visualisieren. Das Vorgehen aus dem vorherigen Abschnitt übertragen wir nun in den Workflow mit `infer`.
 
-Brechnen der Bootstrap-Stichproben.
+Berechnen der Bootstrap-Stichproben.
 ```{r}
 set.seed(345)
 

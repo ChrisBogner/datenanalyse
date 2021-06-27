@@ -145,6 +145,15 @@ modell-interpretieren
 lesestoff-9
 aufgaben-8
 kategorielle-variable-als-prädiktor
+regression-inferenz
+zurück-zum-beispiel-anreisezeit-und-arbeitszeit-in-der-bilbiothek
+parameter-und-kofidenzinetervalle-schätzen
+wie-gut-ist-das-modell
+bootstrap-für-lineare-regression
+lesestoff-10
+aufgabe
+artenreichtum-auf-den-galapagosinseln
+ihre-arbeit-einreichen-6
 daten-und-bericht
 datenquellen
 statistsiches-bundesamt

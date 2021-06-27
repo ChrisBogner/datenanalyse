@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Kapitel 12 Inferenz in linearer Regression | Datenanalyse mit R</title>
+<meta name="author" content="Christina Bogner">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.2"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.9/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.2.5.1/tabs.js"></script><script src="libs/bs3compat-0.2.5.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/mark.js@8.11.1/dist/mark.min.js"></script><!-- CSS --><link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="font-awesome.min.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="SoSe 2021">Datenanalyse mit R</a>:
+        <small class="text-muted">SoSe 2021</small>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Vorwort</a></li>
+<li><a class="" href="einfuehrung.html"><span class="header-section-number">1</span> Der Kurs</a></li>
+<li><a class="" href="erste-schritte.html"><span class="header-section-number">2</span> Erste Schritte in R</a></li>
+<li><a class="" href="reproduzieren.html"><span class="header-section-number">3</span> R Markdown</a></li>
+<li><a class="" href="ggplot.html"><span class="header-section-number">4</span> Einführung in ggplot2</a></li>
+<li><a class="" href="daten-einlesen-und-visualisieren.html"><span class="header-section-number">5</span> Daten einlesen und visualisieren</a></li>
+<li><a class="" href="tidyverse.html"><span class="header-section-number">6</span> Der explorative Workflow mit tidyverse</a></li>
+<li><a class="" href="stichproben.html"><span class="header-section-number">7</span> Stichproben und Variabilität</a></li>
+<li><a class="" href="bootstrapping-und-konfidenzintervalle.html"><span class="header-section-number">8</span> Bootstrapping und Konfidenzintervalle</a></li>
+<li><a class="" href="hypothesentsts.html"><span class="header-section-number">9</span> Hypothesentests mit dem Paket infer</a></li>
+<li><a class="" href="effekte.html"><span class="header-section-number">10</span> Schätzen von Effekten: Raus aus der \(p &lt; 0.05\)-Falle</a></li>
+<li><a class="" href="regression.html"><span class="header-section-number">11</span> Lineare Regression</a></li>
+<li><a class="active" href="regression-inferenz.html"><span class="header-section-number">12</span> Inferenz in linearer Regression</a></li>
+<li><a class="" href="daten-und-bericht.html"><span class="header-section-number">13</span> Datenquellen und Struktur des Abschlussberichts</a></li>
+<li><a class="" href="aufgabensammlung.html"><span class="header-section-number">14</span> Aufgabensammlung</a></li>
+<li><a class="" href="literatur.html">Literatur</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/ChrisBogner/datenanalyse">View book source <i class="fab fa-github"></i></a></p>
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="regression-inferenz" class="section level1" number="12">
+<h1>
+<span class="header-section-number">Kapitel 12</span> Inferenz in linearer Regression<a class="anchor" aria-label="anchor" href="#regression-inferenz"><i class="fas fa-link"></i></a>
+</h1>
+<div class="rmdoutcomes">
+<ul>
+<li>
+Konfidenzintervalle für Modellparameter berechnen
+</li>
+<li>
+Zusammenfassung eines linearen Modells in R interpretieren
+</li>
+<li>
+Bestimmtheitsmaß <span class="math inline"><span class="math inline">\(R^2\)</span></span> erklären
+</li>
+<li>
+Konfidenzintervalle für nicht normalverteilte Residuen berechnen
+</li>
+</ul>
+</div>
+<p>Im letzten Kapitel haben Sie die einfache Normalregression kennen gelernt. Bevor Sie die geschätzten Parameter und deren Konfidenzintervalle interpretieren, müssen Sie die Annahmen der Normalregression überprüfen (vor allem grafisch):</p>
+<ul>
+<li>Der Zusammenhang zwischen der abhängigen und den erklärenden Variablen ist linear.</li>
+<li>Residuen sind unabhängig.</li>
+<li>Residuen haben einen Mittelwert von Null und sind homoskedastisch (gleiche Varianz).</li>
+<li>Residuen sind normalverteilt</li>
+</ul>
+<p>In diesem Kapitel beschäftigen wir uns mit folgenden Fragen:</p>
+<ul>
+<li>Wie schätzt man die Parameter?</li>
+<li>Wie gut sind diese Schätzungen?</li>
+<li>Wie gut ist das Modell?</li>
+<li>Was macht man, wenn die Residuen nicht normalverteilt sind?</li>
+</ul>
+<div id="zurück-zum-beispiel-anreisezeit-und-arbeitszeit-in-der-bilbiothek" class="section level2" number="12.1">
+<h2>
+<span class="header-section-number">12.1</span> Zurück zum Beispiel: Anreisezeit und Arbeitszeit in der Bilbiothek<a class="anchor" aria-label="anchor" href="#zur%C3%BCck-zum-beispiel-anreisezeit-und-arbeitszeit-in-der-bilbiothek"><i class="fas fa-link"></i></a>
+</h2>
+<div id="parameter-und-kofidenzinetervalle-schätzen" class="section level3" number="12.1.1">
+<h3>
+<span class="header-section-number">12.1.1</span> Parameter und Kofidenzinetervalle schätzen<a class="anchor" aria-label="anchor" href="#parameter-und-kofidenzinetervalle-sch%C3%A4tzen"><i class="fas fa-link"></i></a>
+</h3>
+<div class="sourceCode" id="cb191"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/tidymodels/infer">infer</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://yihui.org/knitr/">knitr</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/moderndive/moderndive/issues">moderndive</a></span><span class="op">)</span></code></pre></div>
+<p>Woher kommen die Schätzungen der Modellparameter und deren Konfidenzintervalle in unserem Modell? Dieses Kapitel basiert auf den theoretischen Herleitungen aus <span class="citation"><a href="literatur.html#ref-Fahrmeir2009" role="doc-biblioref">Fahrmeir, Kneib, and Lang</a> (<a href="literatur.html#ref-Fahrmeir2009" role="doc-biblioref">2009</a>)</span>.</p>
+<div class="sourceCode" id="cb192"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">lin_mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">zeit_bib</span> <span class="op">~</span> <span class="va">anreise</span>, data <span class="op">=</span> <span class="va">befragung</span><span class="op">)</span>
+
+<span class="fu"><a href="https://rdrr.io/pkg/moderndive/man/get_regression_table.html">get_regression_table</a></span><span class="op">(</span><span class="va">lin_mod</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div class="inline-table"><table class="table table-sm">
+<thead><tr>
+<th style="text-align:left;">
+term
+</th>
+<th style="text-align:right;">
+estimate
+</th>
+<th style="text-align:right;">
+std_error
+</th>
+<th style="text-align:right;">
+statistic
+</th>
+<th style="text-align:right;">
+p_value
+</th>
+<th style="text-align:right;">
+lower_ci
+</th>
+<th style="text-align:right;">
+upper_ci
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+intercept
+</td>
+<td style="text-align:right;">
+302.094
+</td>
+<td style="text-align:right;">
+2.282
+</td>
+<td style="text-align:right;">
+132.387
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+297.594
+</td>
+<td style="text-align:right;">
+306.594
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+anreise
+</td>
+<td style="text-align:right;">
+-0.766
+</td>
+<td style="text-align:right;">
+0.051
+</td>
+<td style="text-align:right;">
+-14.990
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+-0.867
+</td>
+<td style="text-align:right;">
+-0.665
+</td>
+</tr>
+</tbody>
+</table></div>
+<p>Eine sehr oft verwendete Methode, die Modellparameter zu schätzen, heißt <strong>Methode der kleinsten Quadrate</strong>. Sie beruht auf der Idee, dass diejenigen Modellparameter, <span class="math inline">\(y\)</span>-Achsenabschnitt und die Steigung, die besten sind, bei denen die Summe der quadrierten Residuen die kleinste ist. Formal schreibt man:</p>
+<div class="rmddef">
+<p>
+Gegeben sei das lineare Regressionsmodell
+</p>
+<p>
+<span class="math display"><span class="math display">\[y_i=\beta_0 + \beta_1 x_i + \varepsilon_i\]</span></span>
+</p>
+<p>
+Um die unbekannten Parameter <span class="math inline"><span class="math inline">\(\beta_0\)</span></span> und <span class="math inline"><span class="math inline">\(\beta_1\)</span></span> zu bestimmen, minimiere die Summe der quadrierten Abweichungen
+</p>
+<p>
+<span class="math display"><span class="math display">\[\mathrm{KQ}(\beta_0, \beta_1)=\sum_{i=1}^n (y_i - (\beta_0 + \beta_1 x_i))^2=\sum_{i=n}^n \varepsilon_i^2  \rightarrow \operatorname*{min}_{\beta_0,\, \beta_1}\]</span></span>
+</p>
+<p>
+Dann heißt <span class="math display"><span class="math display">\[ \boldsymbol{\hat{\beta}}=(\hat{\beta}_0, \hat{\beta}_1)\]</span></span>
+</p>
+<p>
+der Kleinste-Quadrate-Schätzer für den Parametervektor <span class="math inline"><span class="math inline">\(\boldsymbol{\beta} = (\beta_0, \beta_1)\)</span></span>.
+</p>
+</div>
+<p>Es geht also darum, die <strong>Residuen zu minimieren</strong>, d.h. die Abstände zwischen den beobachteten und den im Modell vorhergesagten Werten so klein wie möglich zu machen.</p>
+<div class="inline-figure"><img src="datenanalyse_files/figure-html/unnamed-chunk-155-1.png" width="90%"></div>
+<p>Man quadriert die Residuen, damit sowohl die positiven als auch die negativen gleich wichtig sind und sich in der Summe nicht gegenseitig aufheben.</p>
+<p>Die methode der kleinsten Quadrate ergibt folgende Formeln für die Schätzung der Modellparameter einer Einfachregression:</p>
+<p><span class="math display">\[
+\begin{align*}
+\hat{\sigma}^2 &amp;= \frac{1}{n-2} \sum_{i=n}^n \varepsilon_i^2 \\
+\hat{\beta}_0 &amp;= \bar{y} - \hat{\beta}_1 \bar{x}\\
+\hat{\beta}_1 &amp;= \frac{\sum^n_{i=1} (x_i - \bar{x})(y_i - \bar{y})}{\sum^n_{i=1} (x_i - \bar{x})^2}
+\end{align*}
+\]</span>
+Die Residuen <span class="math inline">\(\hat{\varepsilon}_i\)</span> berechnen sich als die Differenz zwischen den beobachteten und den im Modell berechneten Werten:</p>
+<p><span class="math display">\[\hat{\varepsilon}_i = y_i - \hat{y}_i\]</span>
+Und die angepassten Werte als Punkte auf der Regressionsgeraden:</p>
+<p><span class="math display">\[\hat{y}_i = \hat{\beta}_0 + \hat{\beta}_1 x_i\]</span></p>
+<p>Die geschätzten Modellparameter sind <strong>Zufallsvariablen</strong>. Unter der Annahme, dass die Residuen nomralverteilt sind:</p>
+<p><span class="math display">\[\varepsilon_i \sim \mathcal{N}(0,\sigma^2)\]</span>
+gilt für diese Zufallsvariablen, dass sie selbst normalverteilt sind:</p>
+<p><span class="math display">\[\hat{\beta}_0 \sim \mathcal{N}(\beta_0, \sigma^2_{\hat{\beta}_0}),
+ \qquad \hat{\beta}_1 \sim \mathcal{N}(\beta_1, \sigma^2_{\hat{\beta}_1})\]</span></p>
+<p>Ihre Varianzen <span class="math inline">\(\sigma^2_{\hat{\beta}_0}\)</span> und <span class="math inline">\(\sigma^2_{\hat{\beta}_1}\)</span> müssen geschätzt werden:</p>
+<p><span class="math display">\[\hat{\sigma}_{\hat{\beta}_0} = \hat{\sigma} \frac{\sqrt{\textstyle \sum_{i=1}^n x_i^2}}{\sqrt{n \textstyle \sum_{i=1}^n (x_i-\bar{x})^2}}, \quad 
+\hat{\sigma}_{\hat{\beta}_1} = \frac{\hat{\sigma}}{\sqrt{\textstyle \sum_{i=1}^n (x_i-\bar{x})^2}}\]</span></p>
+<p>Wenn die Residuen normalverteilt sind, kann mann zeigen, dass die sogen. standardisierten Schätzer der <span class="math inline">\(t\)</span>-Verteilung folgen:</p>
+<p><span class="math display">\[\frac{\hat{\beta}_0 - \beta_0}{\hat{\sigma}_{\hat{\beta}_0}} \sim t_{n-2}, \quad \frac{\hat{\beta}_1 - \beta_1}{\hat{\sigma}_{\hat{\beta}_1}} \sim t_{n-2}\]</span></p>
+<p>Somit wissen wir nun endlich, wie die Schätzungen für den <span class="math inline">\(y\)</span>-Achsenabschnitt und die Steigung verteilt sind. Mit diesem Wissen können wir Konfidenzintervalle für diese Modellparameter berechnen:</p>
+<p><span class="math display">\[\hat{\beta}_0 \pm \hat{\sigma}_{\hat{\beta}_0} t_{1-\alpha/2, n-2}, \qquad \hat{\beta}_1 \pm \hat{\sigma}_{\hat{\beta}_1} t_{1-\alpha/2, n-2}\]</span></p>
+<p>Für <span class="math inline">\(\alpha\)</span> setzt man passendes Konfidenzlevel ein, z.B. 5%, um das 95%-Konfidenzintervall zu erhalten.</p>
+</div>
+<div id="wie-gut-ist-das-modell" class="section level3" number="12.1.2">
+<h3>
+<span class="header-section-number">12.1.2</span> Wie gut ist das Modell?<a class="anchor" aria-label="anchor" href="#wie-gut-ist-das-modell"><i class="fas fa-link"></i></a>
+</h3>
+<p>Welcher Anteil der Streuung der Daten lässt sich durch die Regression erklären?</p>
+<p>Die Streuung im Modell besteht aus:</p>
+<p><span class="math display">\[
+\begin{align*}
+\mathit{SQT} &amp;= \mathit{SQE} + \mathit{SQR}\\
+\sum^{n}_{i = 1} (y_i-\bar{y})^2 &amp;= \sum^{n}_{i=1} (\hat{y}_i - \bar{y})^2 + \sum^{n}_{i=1} (y_i - \hat{y}_i)^2\\
+\end{align*}
+\]</span></p>
+<p>mit <span class="math inline">\(y_i\)</span>: Messwerte, <span class="math inline">\(\bar{y}\)</span>: Mittelwert, <span class="math inline">\(\hat{y}_i\)</span>: angepasste Werte</p>
+<ul>
+<li>
+<span class="math inline">\(\mathit{SQT}\)</span> Sum of squares total: Gesamtstreuung der Daten</li>
+<li>
+<span class="math inline">\(\mathit{SQE}\)</span> Sum of squares explained: Streuung erklärt vom Modell</li>
+<li>
+<span class="math inline">\(\mathit{SQR}\)</span> Sum of sqaures residual: Residualstreuung (vom Modell nicht erklärt)</li>
+</ul>
+<p>Die <span class="math inline">\(\mathit{SQE}\)</span> beschreibt die Variation der angepassten Werte um den Mittelwert und <span class="math inline">\(\mathit{SQR}\)</span> entspricht dem nicht erklärten Teil der Streuung. Das heißt, dass je kleiner die Residualstreuung, desto besser das Modell, weil es dann einen größeren Anteil der Streuung der Daten erklären kann. Das Verhältnis der Gesamtstreuung zur Residualstreuung nennt man das <strong>Bestimmtheitsmaß</strong> (oder auch Determinationskoeffizient). Dieser wird meistens mit <span class="math inline">\(R^2\)</span> bezeichnet und ist definiert als:</p>
+<p><span class="math display">\[R^2 = \frac{\mathit{SQE}}{\mathit{SQT}} = 1- \frac{\sum^{n}_{i=1} (y_i - \hat{y}_i)^2}{\sum^{n}_{i = 1} (y_i - \bar{y}_i)^2}\]</span></p>
+<p><span class="math inline">\(R^2\)</span> liegt (normalerweise) zwischen 0 (schlechtes Modell) und 1 (perfekter Fit). <span class="math inline">\(R^2 &lt; 0\)</span> zeigt eine falsche Modellwahl (z.B. kein Achsenabschnitt, wenn dieser aber nötig ist).</p>
+<p>Das <span class="math inline">\(R^2\)</span> hat die unangenehme Eigenschaft, bei einer multiplen Regression immer zu steigen, wenn man zusätzliche Prädiktoren hinzunimmt. Diese Prädiktoren können auch ohne jeden Zusammenhang zur abhängigen Variablen stehen. Um dieses Problem zu korrigieren, hat man das adjustierte Bestimmtheitsmaß <span class="math inline">\(R^2_\text{ajd}\)</span> eingeführt. Es “bestraft” für zusätzliche Prädiktoren
+<span class="math display">\[R^2_\text{ajd} = 1 - (1 - R^2) \frac{n-1}{n - p - 1}\]</span></p>
+<p>mit <span class="math inline">\(n\)</span>: Anzahl der Datenpunkte, <span class="math inline">\(p\)</span>: Anzahl der Prädiktoren (ohne intercept). <span class="math inline">\(R^2_\text{ajd}\)</span> ist robuster als <span class="math inline">\(R^2\)</span> bei multipler Regression.</p>
+<p>Zurück zu unserem Beispiel. Wie viel Streuung erklärt nun unser Modell? Wir sehen uns die <em>tidy</em> Zusammenfassung an.</p>
+<div class="sourceCode" id="cb193"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/moderndive/man/get_regression_summaries.html">get_regression_summaries</a></span><span class="op">(</span><span class="va">lin_mod</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div class="inline-table"><table class="table table-sm">
+<thead><tr>
+<th style="text-align:right;">
+r_squared
+</th>
+<th style="text-align:right;">
+adj_r_squared
+</th>
+<th style="text-align:right;">
+mse
+</th>
+<th style="text-align:right;">
+rmse
+</th>
+<th style="text-align:right;">
+sigma
+</th>
+<th style="text-align:right;">
+statistic
+</th>
+<th style="text-align:right;">
+p_value
+</th>
+<th style="text-align:right;">
+df
+</th>
+<th style="text-align:right;">
+nobs
+</th>
+</tr></thead>
+<tbody><tr>
+<td style="text-align:right;">
+0.532
+</td>
+<td style="text-align:right;">
+0.529
+</td>
+<td style="text-align:right;">
+430.4021
+</td>
+<td style="text-align:right;">
+20.74614
+</td>
+<td style="text-align:right;">
+20.851
+</td>
+<td style="text-align:right;">
+224.697
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+200
+</td>
+</tr></tbody>
+</table></div>
+<ul>
+<li>
+<code>r_squared</code>: Bestimmtheimtsmaß <span class="math inline">\(R^2\)</span>
+</li>
+<li>
+<code>adj_r_squared</code>: adjustiertes Bestimmtheitsmaß <span class="math inline">\(R^2_\text{ajd}\)</span>
+</li>
+<li>
+<code>mse</code>: mittlerer quadratischer Fehler <code><a href="https://rdrr.io/r/base/mean.html">mean(residuals(lin_mod)^2)</a></code>
+</li>
+<li>
+<code>rmse</code>: Wurzel aus <code>mse</code>
+</li>
+<li>
+<code>simga</code>: Standardabweichung (i.e. Standardfehler) des Fehlerterms <span class="math inline">\(\varepsilon\)</span>
+</li>
+<li>
+<code>statistic</code>: Wert der <span class="math inline">\(F\)</span>-Statistik für den Hypothesentest mit H<span class="math inline">\(_0\)</span>: alle Modellparameter sind Null</li>
+<li>
+<code>p-value</code>: <span class="math inline">\(p\)</span>-Wert zum Hypothesentest</li>
+<li>
+<code>df</code>: Freiheitsgrade, hier Anzahl der Prädiktoren</li>
+<li>
+<code>nobst</code>: Anzahl der Datenpunkte</li>
+</ul>
+<p>Somit erklärt unser Modell 53% der Varianz der Daten.</p>
+</div>
+</div>
+<div id="bootstrap-für-lineare-regression" class="section level2" number="12.2">
+<h2>
+<span class="header-section-number">12.2</span> Bootstrap für lineare Regression<a class="anchor" aria-label="anchor" href="#bootstrap-f%C3%BCr-lineare-regression"><i class="fas fa-link"></i></a>
+</h2>
+<p>Die <span class="math inline">\(t\)</span>-Verteilung der Schätzungen gilt <em>asymptotisch</em>, d.h. bei großen Datensäzten, auch für nicht-normalverteilte Fehler (unter bestimmten Bedingunngen, s. <span class="citation"><a href="literatur.html#ref-Fahrmeir2009" role="doc-biblioref">Fahrmeir, Kneib, and Lang</a> (<a href="literatur.html#ref-Fahrmeir2009" role="doc-biblioref">2009</a>)</span>). Allerdings erfordern
+<strong>nicht-normalverteilte Fehler große Stichproben oder aber alternative Methoden</strong>. Solch eine alternative Methode ist der Bootstrap.</p>
+<p>Bei einer Einfachregression, d.h. wenn es nur einen Prädiktor gibt, ist die Steigung häufig der interessante Parameter. Wenn wir uns also nicht für den <span class="math inline">\(y\)</span>-Achsenabschnitt interessiert, dann können wir das altbekannte Framework von <code>infer</code> für das Bootstrap-Konfidenzinterval für die Steigung verwenden. Für unser Beispiel ginge es so:</p>
+<div class="sourceCode" id="cb194"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">bootstrap_distn_slope</span> <span class="op">&lt;-</span> <span class="va">befragung</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://infer.tidymodels.org/reference/specify.html">specify</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="va">zeit_bib</span> <span class="op">~</span> <span class="va">anreise</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://infer.tidymodels.org/reference/generate.html">generate</a></span><span class="op">(</span>reps <span class="op">=</span> <span class="fl">10000</span>, type <span class="op">=</span> <span class="st">"bootstrap"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://infer.tidymodels.org/reference/calculate.html">calculate</a></span><span class="op">(</span>stat <span class="op">=</span> <span class="st">"slope"</span><span class="op">)</span>
+
+<span class="va">percentile_ci</span> <span class="op">&lt;-</span> <span class="va">bootstrap_distn_slope</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://infer.tidymodels.org/reference/get_confidence_interval.html">get_confidence_interval</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">"percentile"</span>, level <span class="op">=</span> <span class="fl">0.95</span><span class="op">)</span>
+
+<span class="va">percentile_ci</span></code></pre></div>
+<pre><code>## # A tibble: 1 x 2
+##   lower_ci upper_ci
+##      &lt;dbl&gt;    &lt;dbl&gt;
+## 1   -0.848   -0.687</code></pre>
+<p>Wir stellen die Ergebnisse wie gewohnt dar.</p>
+<div class="sourceCode" id="cb196"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://infer.tidymodels.org/reference/visualize.html">visualize</a></span><span class="op">(</span><span class="va">bootstrap_distn_slope</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://infer.tidymodels.org/reference/shade_confidence_interval.html">shade_confidence_interval</a></span><span class="op">(</span>endpoints <span class="op">=</span> <span class="va">percentile_ci</span><span class="op">)</span> </code></pre></div>
+<div class="inline-figure"><img src="datenanalyse_files/figure-html/unnamed-chunk-158-1.png" width="90%"></div>
+<p>Verglichen mit dem Konfidenzintervall basierend auf der Normalverteilungsannahme, ist Bootstrap sehr ähnlich. Das liegt daran, dass die Normalverteilungsannahme ja erfüllt ist. In so einem Fall sind die Konfidenzintervalle sehr ähnlich.</p>
+<div class="sourceCode" id="cb197"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/moderndive/man/get_regression_table.html">get_regression_table</a></span><span class="op">(</span><span class="va">lin_mod</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+<span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">term</span> <span class="op">==</span> <span class="st">'anreise'</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div class="inline-table"><table class="table table-sm">
+<thead><tr>
+<th style="text-align:left;">
+term
+</th>
+<th style="text-align:right;">
+estimate
+</th>
+<th style="text-align:right;">
+std_error
+</th>
+<th style="text-align:right;">
+statistic
+</th>
+<th style="text-align:right;">
+p_value
+</th>
+<th style="text-align:right;">
+lower_ci
+</th>
+<th style="text-align:right;">
+upper_ci
+</th>
+</tr></thead>
+<tbody><tr>
+<td style="text-align:left;">
+anreise
+</td>
+<td style="text-align:right;">
+-0.766
+</td>
+<td style="text-align:right;">
+0.051
+</td>
+<td style="text-align:right;">
+-14.99
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+-0.867
+</td>
+<td style="text-align:right;">
+-0.665
+</td>
+</tr></tbody>
+</table></div>
+<p>Wir können mit <code>infer</code> auch einen Hypothesentest durchführen, der untersucht, ob die Steigung von Null verschieden ist.</p>
+<ul>
+<li>H<span class="math inline">\(_0\)</span>: <span class="math inline">\(\beta_1 = 0\)</span>
+</li>
+<li>H<span class="math inline">\(_1\)</span>: <span class="math inline">\(\beta_1 \neq 0\)</span>
+</li>
+</ul>
+<div class="sourceCode" id="cb198"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">null_distn_slope</span> <span class="op">&lt;-</span> <span class="va">befragung</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://infer.tidymodels.org/reference/specify.html">specify</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="va">zeit_bib</span> <span class="op">~</span> <span class="va">anreise</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://infer.tidymodels.org/reference/hypothesize.html">hypothesize</a></span><span class="op">(</span>null <span class="op">=</span> <span class="st">"independence"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://infer.tidymodels.org/reference/generate.html">generate</a></span><span class="op">(</span>reps <span class="op">=</span> <span class="fl">10000</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://infer.tidymodels.org/reference/calculate.html">calculate</a></span><span class="op">(</span>stat <span class="op">=</span> <span class="st">"slope"</span><span class="op">)</span></code></pre></div>
+<pre><code>## Setting `type = "permute"` in `generate()`.</code></pre>
+<p>Für die Darstellung brauchen wir noch die berechnete Steigung:</p>
+<div class="sourceCode" id="cb200"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">observed_slope</span> <span class="op">&lt;-</span> <span class="va">befragung</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://infer.tidymodels.org/reference/specify.html">specify</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="va">zeit_bib</span> <span class="op">~</span> <span class="va">anreise</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://infer.tidymodels.org/reference/calculate.html">calculate</a></span><span class="op">(</span>stat <span class="op">=</span> <span class="st">"slope"</span><span class="op">)</span>
+
+<span class="va">observed_slope</span></code></pre></div>
+<pre><code>## # A tibble: 1 x 1
+##     stat
+##    &lt;dbl&gt;
+## 1 -0.766</code></pre>
+<p>Und nun die Visualisierung:</p>
+<div class="sourceCode" id="cb202"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://infer.tidymodels.org/reference/visualize.html">visualize</a></span><span class="op">(</span><span class="va">null_distn_slope</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://infer.tidymodels.org/reference/shade_p_value.html">shade_p_value</a></span><span class="op">(</span>obs_stat <span class="op">=</span> <span class="va">observed_slope</span>, direction <span class="op">=</span> <span class="st">"both"</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="datenanalyse_files/figure-html/unnamed-chunk-162-1.png" width="90%"></div>
+<div class="sourceCode" id="cb203"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">null_distn_slope</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://infer.tidymodels.org/reference/get_p_value.html">get_p_value</a></span><span class="op">(</span>obs_stat <span class="op">=</span> <span class="va">observed_slope</span>, direction <span class="op">=</span> <span class="st">"both"</span><span class="op">)</span></code></pre></div>
+<pre><code>## Warning: Please be cautious in reporting a p-value of 0. This result is an
+## approximation based on the number of `reps` chosen in the `generate()` step. See
+## `?get_p_value()` for more information.</code></pre>
+<pre><code>## # A tibble: 1 x 1
+##   p_value
+##     &lt;dbl&gt;
+## 1       0</code></pre>
+</div>
+<div id="lesestoff-10" class="section level2" number="12.3">
+<h2>
+<span class="header-section-number">12.3</span> Lesestoff<a class="anchor" aria-label="anchor" href="#lesestoff-10"><i class="fas fa-link"></i></a>
+</h2>
+<p>Kapitel 10 in <span class="citation"><a href="literatur.html#ref-ModernDive" role="doc-biblioref">Ismay and Kim</a> (<a href="literatur.html#ref-ModernDive" role="doc-biblioref">2021</a>)</span></p>
+</div>
+<div id="aufgabe" class="section level2" number="12.4">
+<h2>
+<span class="header-section-number">12.4</span> Aufgabe<a class="anchor" aria-label="anchor" href="#aufgabe"><i class="fas fa-link"></i></a>
+</h2>
+<div id="artenreichtum-auf-den-galapagosinseln" class="section level3" number="12.4.1">
+<h3>
+<span class="header-section-number">12.4.1</span> Artenreichtum auf den Galapagosinseln<a class="anchor" aria-label="anchor" href="#artenreichtum-auf-den-galapagosinseln"><i class="fas fa-link"></i></a>
+</h3>
+<p>Wir beschäftigen uns mit dem Datensatz <code>gala</code> aus der Bibliothek <code>faraway</code>.</p>
+<ol style="list-style-type: decimal">
+<li>Laden Sie den Datensatz und lesen Sie in der Hilfe nach, um was es sich dabei handelt.</li>
+<li>Untersuchen Sie die Hypothese, dass die Anzahl der endemischen Arten linear von der Gesamtartenzahl abhängt.</li>
+<li>Überprüfen Sie die Annahmen des linearen Modells.</li>
+<li>Vergleichen Sie das Konfidenzintervall, das auf der Normalverteilungsannahme beruht mit dem Bootstrap-Konfidenzintervall.</li>
+<li>Führen Sie den Hypothesentest analog zum Beispiel oben mit <code>infer</code> durch.</li>
+<li>Interpretieren Sie das Modell.</li>
+</ol>
+</div>
+</div>
+<div id="ihre-arbeit-einreichen-6" class="section level2" number="12.5">
+<h2>
+<span class="header-section-number">12.5</span> Ihre Arbeit einreichen<a class="anchor" aria-label="anchor" href="#ihre-arbeit-einreichen-6"><i class="fas fa-link"></i></a>
+</h2>
+<ul>
+<li>Speichern Sie Ihr Notebook ab und laden Sie nur die .Rmd Datei vom Server.</li>
+<li>Laden Sie Ihre .Rmd Datei in ILIAS hoch. <strong>Beachten Sie die Deadline!</strong>
+</li>
+<li>Sie erhalten die Musterlösung nach dem Hochladen.</li>
+</ul>
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="regression.html"><span class="header-section-number">11</span> Lineare Regression</a></div>
+<div class="next"><a href="daten-und-bericht.html"><span class="header-section-number">13</span> Datenquellen und Struktur des Abschlussberichts</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#regression-inferenz"><span class="header-section-number">12</span> Inferenz in linearer Regression</a></li>
+<li>
+<a class="nav-link" href="#zur%C3%BCck-zum-beispiel-anreisezeit-und-arbeitszeit-in-der-bilbiothek"><span class="header-section-number">12.1</span> Zurück zum Beispiel: Anreisezeit und Arbeitszeit in der Bilbiothek</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#parameter-und-kofidenzinetervalle-sch%C3%A4tzen"><span class="header-section-number">12.1.1</span> Parameter und Kofidenzinetervalle schätzen</a></li>
+<li><a class="nav-link" href="#wie-gut-ist-das-modell"><span class="header-section-number">12.1.2</span> Wie gut ist das Modell?</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#bootstrap-f%C3%BCr-lineare-regression"><span class="header-section-number">12.2</span> Bootstrap für lineare Regression</a></li>
+<li><a class="nav-link" href="#lesestoff-10"><span class="header-section-number">12.3</span> Lesestoff</a></li>
+<li>
+<a class="nav-link" href="#aufgabe"><span class="header-section-number">12.4</span> Aufgabe</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#artenreichtum-auf-den-galapagosinseln"><span class="header-section-number">12.4.1</span> Artenreichtum auf den Galapagosinseln</a></li></ul>
+</li>
+<li><a class="nav-link" href="#ihre-arbeit-einreichen-6"><span class="header-section-number">12.5</span> Ihre Arbeit einreichen</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/ChrisBogner/datenanalyse/blob/master/12-regression-inferenz.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/ChrisBogner/datenanalyse/edit/master/12-regression-inferenz.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Datenanalyse mit R</strong>: SoSe 2021" was written by Christina Bogner. It was last built on 2021-06-27.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+</html>

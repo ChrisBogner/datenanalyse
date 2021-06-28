@@ -78,7 +78,7 @@ $\mathrm{E}$ steht für Erwartungswert. So nennt man den theoretischen Mittelwer
 
 Als Beispiel für eine einfache lineare Regression nutzen wir wieder unsere simulierten Daten. Zunächst laden wir die Bibliotheken. Die Bibliothek `kntir` brauchen wir für das Layouten der Tabellen. 
 
-```{r}
+```{r, message = F, warning = F}
 library(tidyverse)
 library(infer)
 library(moderndive)
@@ -209,7 +209,10 @@ Für die Berechnung des Standardfehlers, des Hypothesentests und der Konfidenzin
 
 ```{r, out.width = '90%'}
 ggplot(model_res, aes(sample = residuals)) + 
-  stat_qq() + stat_qq_line()
+  stat_qq() +
+  stat_qq_line(col = 'blue') +
+  labs(x = 'Quantile aus der Normalverteilung',
+       y = 'Qunatile der Daten')
 ```
 
 Wenn die Residuen normalverteilt sind, dann liegen sie nahe der Geraden im QQ-Plot. Das ist hier der Fall. Die Annahme der Normalverteilung der Residuen ist also erfüllt und wir dürfen den Standardfehler, den p-Wert und die Konfidenzintervalle interpretieren.

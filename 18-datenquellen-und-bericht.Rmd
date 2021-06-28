@@ -7,7 +7,7 @@
 
 ## Datenquellen
 
-In diesem Abschnitt beschreibe ich einige mögliche Datenquellen, die Sie für Ihre Abschlussberichte nutzen können. Technische Unterstützung kann ich nur beim Paket eurostat anbieten. Andere Pakete müssen Sie selbstständig entdecken (Challenge `r emo::ji('sunglasses')`.
+In diesem Abschnitt beschreibe ich einige mögliche Datenquellen, die Sie für Ihre Abschlussberichte nutzen können. Technische Unterstützung kann ich nur beim Paket eurostat anbieten. Andere Pakete müssen Sie selbstständig entdecken (Challenge `r emo::ji('sunglasses')`).
 
 ### Statistsiches Bundesamt
 Das [Statistische Bundesamt](https://www.destatis.de/) bietet Daten zu und über Deutschland. In deren Datenbank [GENESIS](https://www-genesis.destatis.de/genesis/online?operation=sprachwechsel&language=de). Es ist wichtig, dass Sie beim Herunterladen (Werteabruf) das Format flat wählen. Dann bekommen Sie einen *tidy* Datensatz.

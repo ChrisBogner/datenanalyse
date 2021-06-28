@@ -536,7 +536,10 @@ anreise
 <p>Für die Berechnung des Standardfehlers, des Hypothesentests und der Konfidenzintervalle wird, zusätzlich zu den oben genannten Annahmen, vorausgesetzt, dass die Residuen normalverteilt sind. Nur wenn sie es tatsächlich sind, sind diese Berechnungen und der Hypothesentest korrekt, sonst möglicherweise nicht. Deswegen müssen wir, bevor wir diese Spalten interpretieren, überprüfen, ob die Residuen normalverteilt sind. Das machen wir mit einem QQ-Plot. Sie dürfen auch noch einen formalen <code><a href="https://rdrr.io/r/stats/shapiro.test.html">shapiro.test()</a></code> machen, wenn Sie möchten.</p>
 <div class="sourceCode" id="cb190"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span><span class="va">model_res</span>, <span class="fu">aes</span><span class="op">(</span>sample <span class="op">=</span> <span class="va">residuals</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
-  <span class="fu">stat_qq</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu">stat_qq_line</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+  <span class="fu">stat_qq</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">stat_qq_line</span><span class="op">(</span>col <span class="op">=</span> <span class="st">'blue'</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">'Quantile aus der Normalverteilung'</span>,
+       y <span class="op">=</span> <span class="st">'Qunatile der Daten'</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="datenanalyse_files/figure-html/unnamed-chunk-146-1.png" width="90%"></div>
 <p>Wenn die Residuen normalverteilt sind, dann liegen sie nahe der Geraden im QQ-Plot. Das ist hier der Fall. Die Annahme der Normalverteilung der Residuen ist also erfüllt und wir dürfen den Standardfehler, den p-Wert und die Konfidenzintervalle interpretieren.</p>
 </div>
@@ -634,7 +637,7 @@ Konfidenzintervalle und Hypothesentests der Normalregression dürfen nur dann in
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Datenanalyse mit R</strong>: SoSe 2021" was written by Christina Bogner. It was last built on 2021-06-27.</p>
+    <p>"<strong>Datenanalyse mit R</strong>: SoSe 2021" was written by Christina Bogner. It was last built on 2021-06-28.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

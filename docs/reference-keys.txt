@@ -149,10 +149,15 @@ regression-inferenz
 zurück-zum-beispiel-anreisezeit-und-arbeitszeit-in-der-bilbiothek
 parameter-und-kofidenzinetervalle-schätzen
 wie-gut-ist-das-modell
-bootstrap-für-lineare-regression
+bootstrap-mit-infer-konfidenzintervall-für-steigung
+bootstrap-mit-rsample-konfidenzintervalle-für-steigung-und-y--achsenabschnitt
+schritt-1-bootstrapstichproben-aus-befragung-generieren
+schritt-1-modell-auf-den-bootstrap-stichproben-anpassen
+schritt-3-konfidenzintervalle-berechnen
 lesestoff-10
-aufgabe
+aufgaben-9
 artenreichtum-auf-den-galapagosinseln
+artenreichtum-auf-den-galapagosinseln-revisited
 ihre-arbeit-einreichen-6
 daten-und-bericht
 datenquellen

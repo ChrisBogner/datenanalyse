@@ -180,7 +180,7 @@ $R^2$ liegt (normalerweise) zwischen 0 (schlechtes Modell) und 1 (perfekter Fit)
 Das $R^2$ hat die unangenehme Eigenschaft, bei einer multiplen Regression immer zu steigen, wenn man zusätzliche Prädiktoren hinzunimmt. Diese Prädiktoren können auch ohne jeden Zusammenhang zur abhängigen Variablen stehen. Um dieses Problem zu korrigieren, hat man das adjustierte Bestimmtheitsmaß $R^2_\text{ajd}$ eingeführt. Es "bestraft" für zusätzliche Prädiktoren
 $$R^2_\text{ajd} = 1 - (1 - R^2) \frac{n-1}{n - p - 1}$$
 
-mit $n$: Anzahl der Datenpunkte, $p$: Anzahl der Prädiktoren (ohne intercept). $R^2_\text{ajd}$ ist robuster als $R^2$ bei multipler Regression.
+mit $n$: Anzahl der Datenpunkte, $p$: Anzahl der Prädiktoren (ohne $y$-Achsenabschnitt). $R^2_\text{ajd}$ ist aussagekräftiger als $R^2$ bei multipler Regression.
 
 Zurück zu unserem Beispiel. Wie viel Streuung erklärt nun unser Modell? Wir sehen uns die *tidy* Zusammenfassung an.
 
@@ -200,9 +200,9 @@ get_regression_summaries(lin_mod) %>% kable()
 
 Somit erklärt unser Modell 53% der Varianz der Daten.
 
-## Bootstrap für lineare Regression
-Die $t$-Verteilung der Schätzungen gilt *asymptotisch*, d.h. bei großen Datensäzten, auch für nicht-normalverteilte Fehler (unter bestimmten Bedingunngen, s. @Fahrmeir2009). Allerdings erfordern 
-**nicht-normalverteilte Fehler große Stichproben oder aber alternative Methoden**. Solch eine alternative Methode ist der Bootstrap.
+## Bootstrap mit `infer`: Konfidenzintervall für Steigung
+Die $t$-Verteilung der Schätzungen gilt *asymptotisch*, d.h. bei großen Datensäzten, auch für nicht-normalverteilte Residuen (unter bestimmten Bedingungen, s. @Fahrmeir2009). Allerdings erfordern 
+**nicht-normalverteilte Residuen große Stichproben oder aber alternative Methoden**. Auch heteroskedastische Residuen führen zu falschen Konfidenzintervallen und Hypothesentests. Bootstrap ist robust gegen die Verletzung beider Annahmen (Normalvereilung und Homoskedastizität der Residuen). Allerdings müssen die Daten nach wie vor unabhängig sein (keine wiederholten Messungen, keine Zeitreihen!), damit Bootstrap korrekt arbeitet.
 
 Bei einer Einfachregression, d.h. wenn es nur einen Prädiktor gibt, ist die Steigung häufig der interessante Parameter. Wenn wir uns also nicht für den $y$-Achsenabschnitt interessiert, dann können wir das altbekannte Framework von `infer` für das Bootstrap-Konfidenzinterval für die Steigung verwenden. Für unser Beispiel ginge es so:
 
@@ -264,11 +264,120 @@ null_distn_slope %>%
 ```
 
 
+## Bootstrap mit `rsample`: Konfidenzintervalle für Steigung und $y-$-Achsenabschnitt
+Falls wir doch Konfidenzintervalle für beide Modellparameter brauchen oder aber ein lineares Modell mit mehreren Prädiktoren anpassen, können wir nicht mehr mit `infer` arbeiten. Es gibt aber ein ganzes Modelluniversum, zusammengestellt in der Paketsammlung `tidymodels` (https://www.tidymodels.org/). Darin gibt es nicht nur alle möglichen Modelle, sondern vor allem eine *tidy* und einheitliche Herangehensweise ans Modellieren. `tidymodels` ist jenseits dessen, was wir in diesem Kurs machen werden, außer der Bibliothek `rsample`, die uns beim Bootstrappen hilft.
+
+```{r}
+library(rsample)
+```
+
+Um Konfidenzintervalle sowohl für den $y$-Achsenabschnitt als auch für die Steigung zu bekommen, generieren wir Bootstrap-Stichproben aus der `befragung`, passen dann an jede solche Stichprobe unser lineares Modell an. Jedes dieser Modelle liefert uns einen $y$-Achsenabschnitt und eine Steigung. Dadurch bekommen wir eine Bootstrapverteilung dieser Modellparameter, so wie wir es bsiher mit dem Boostrap gemacht haben. Aus diesen Bootstrapverteilungen berechnen wir dann mit der Methode der Quantile unsere Konfidenzintervalle.
+
+### Schritt 1: Bootstrapstichproben aus `befragung` generieren
+
+Wir generieren 10000 Bootstrap-Stichproben aus dem Datensatz `befragung` mit Hilfe der Funktion `bootstraps()` aus der Bibliothek `rsample`.
+```{r}
+set.seed(123)
+
+bootstrap_reps <- 10000
+
+my_bootstraps <- bootstraps(befragung, times = bootstrap_reps)
+```
+
+Das Objekt `my_bootstraps` ist ein "verpacktes" (*nested*) Objekt. Jeder *split* ist eine Bootstrap-Stichprobe.
+
+```{r}
+my_bootstraps
+
+class(my_bootstraps)
+```
+Wir sehen uns so eine Bootstrap-Stichprobe mal an. Dazu nutzen wir die Funktion `analysis()`, die solche *splits* richtig behandelt. Jede Bootstrap-Stichprobe ist durch Ziehen mit Zurücklegen aus dem Datensatz `befragung` hervorgegangen.
+
+```{r}
+analysis(my_bootstraps$splits[[1]])
+```
+Wie viele Studierende wurden mehrfach gezogen? Wir sehen uns als Beispiel die erste Bootstrap-Stichproben an.
+
+```{r}
+analysis(my_bootstraps$splits[[1]]) %>%
+  group_by(student_id) %>%
+  summarise(n = n()) %>% 
+  arrange(desc(n))
+```
+
+### Schritt 1: Modell auf den Bootstrap-Stichproben anpassen
+
+Um unser ursprüngliches lineares Modell anzupassen, benutzen wir eine selbstgeschriebene Funktion, inspiriert von der Hilfe zu `rsample` (?int_pctl). Die Funktion `lm_est()` passt auf einer Bootstrap-Stichprobe das lineare Modell `zeit_bib ~ anreise` an. Um die Berechnung auf allen Bootstrap-Stichproben effizient zu machen, nutze ich die Funktion `map()`, die sich eine Bootstrap-Stichprobe nach der anderen vornimmt und das lineare Modell anpasst. Wir kommen in einer spätere Stunde auf solche effizienten Funktionen zurück.
+```{r}
+lm_est <- function(split, ...) {
+  lm(zeit_bib ~ anreise, data = analysis(split)) %>%
+    tidy()
+}
+
+model_res <- my_bootstraps %>%
+  mutate(results = map(splits, .f = lm_est))
+```
+
+Wir sehen uns das entstandene Objekt mit allen angepassten Modellen an. Und $\dots$ wir sehen nichts `r emo::ji('smile')`.
+```{r}
+model_res
+```
+
+Die Ergebnisse müssen wir noch "auspacken."
+```{r}
+model_coeffs <- model_res %>%
+  # Die Spalte splits los werden.
+  select(-splits) %>%
+  # Und das Ergebnis in ein tibble umwandeln.
+  unnest(results)
+
+model_coeffs
+```
+
+Jetzt können wir sehen, dass das Objekt `model_coeffs` die beiden Modellparameter, $y$-Achsenabschnitt und die Steigung enthält, und das jeweils so häufig, wie wir eben Bootstrap-Stichproben generiert haben. Somit haben wir jetzt eine Bootstrapverteilung dieser Modellparameter, die wir nun plotten können.
+```{r, out.width = '90%'}
+ggplot(model_coeffs, aes(x = estimate, group = term)) + 
+  geom_histogram(col = "white", nbins = 30) +
+  facet_wrap(~ term, scales = "free_x")
+```
+
+### Schritt 3: Konfidenzintervalle berechnen
+Die Verteilungen sind symmetrisch, weil ja die Annahmen der Normalregression erfüllt sind. Jetzt fehlen uns noch die Konfidenzintervalle, von denen wir erwarten, dass sie den Standardkonfidenzintervallen ähnlich sein werden.
+
+```{r}
+# Konfidenzintervalle mit Bootstrap
+percentile_ci <- int_pctl(model_res, results)
+
+# Standard-Konfidenzintervalle mit der Annahme der Normalverteilung der Residuen
+standard_ci <- tidy(lin_mod, conf.int = TRUE)
+
+percentile_ci %>% kable()
+standard_ci %>% kable()
+```
+
+Wir plotten alle Ergebnisse nun zusammen. Das müssen wir "händisch" machen, da uns ja nicht die tolle Funktion `visualize()` aus `infer` zur Verfügung steht. Wir fügen die Konfidenzintervalle als vertikale Linien zu den Histogrammen hinzu.
+
+```{r, out.width = '90%'}
+ggplot(model_coeffs, aes(x = estimate, group = term)) + 
+  geom_histogram(col = "white", nbins = 30) +
+  geom_vline(data = percentile_ci, aes(xintercept = .lower, group = term, col = 'percentile_ci_lower')) +
+  geom_vline(data = percentile_ci, aes(xintercept = .upper, group = term), col = 'blue') +
+  geom_vline(data = standard_ci, aes(xintercept = conf.low, group = term, col = 'conf.low')) +
+  geom_vline(data = standard_ci, aes(xintercept = conf.high, group = term), col = 'orange') +
+  scale_color_manual(name = "Confidence intervals", values = c(percentile_ci_lower = "blue", conf.low = 'orange'), labels = c('standard', 'bootstrap')) +
+  facet_wrap(~ term, scales = "free_x") +
+  theme(legend.position = 'bottom')
+
+```
+
+In diesem Beispiel ähneln sich die Konfideznintervalle, da die Annahmen der Normalregression ja erfüllt sind. Das wird in der Aufgabe, die Sie selbständig bearbeiten werden, nicht mehr der Fall sein. Selbstverständlich sollen Sie im Falle von erfüllten Annahmen einfach die Standardkonfidenzintervalle nutzen und brauchen kein Bootstrap. Sie werden aber sehen, dass eim Modellieren mit richtigen Daten die Annahmen der Normalverteilung und der Homoskedastizität sehr häufig verletzt sind. Mit dem Bootstrap sind Sie jetzt dafür gerüstet `r emo::ji('smile')`.
+
+
 ## Lesestoff
 Kapitel 10 in @ModernDive
 
 
-## Aufgabe
+## Aufgaben
 
 ### Artenreichtum auf den Galapagosinseln
 Wir beschäftigen uns mit dem Datensatz `gala` aus der Bibliothek `faraway`.
@@ -280,6 +389,9 @@ Wir beschäftigen uns mit dem Datensatz `gala` aus der Bibliothek `faraway`.
 1. Führen Sie den Hypothesentest analog zum Beispiel oben mit `infer` durch.
 1. Interpretieren Sie das Modell.
 
+### Artenreichtum auf den Galapagosinseln, revisited
+Wiederholen Sie die obere Aufgabe nun mit Hilfe der Bibliothek `rasample`. Tip: Wandeln Sie die Inselnamen, die nur als Zeilennamen existieren, in eine richtige Spalte um `gala <- gala %>%
+  rownames_to_column(var = "island")`.
 
 ## Ihre Arbeit einreichen
 - Speichern Sie Ihr Notebook ab und laden Sie nur die .Rmd Datei vom Server.

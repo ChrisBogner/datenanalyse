@@ -7,12 +7,12 @@
 - Konfidenzintervalle für nicht normalverteilte Residuen berechnen
 ```
 
-Im letzten Kapitel haben Sie die einfache Normalregression kennen gelernt. Bevor Sie die geschätzten Parameter und deren Konfidenzintervalle interpretieren, müssen Sie die Annahmen der Normalregression überprüfen (vor allem grafisch):
+Im letzten Kapitel haben Sie die einfache Normalregression kennen gelernt. Bevor Sie die geschätzten Parameter und deren Konfidenzintervalle interpretieren, müssen Sie die Annahmen der Normalregression überprüfen (vor allem grafisch). Diese Annahmen sind:
 
-- Der Zusammenhang zwischen der abhängigen und den erklärenden Variablen ist linear.
-- Residuen sind unabhängig.
-- Residuen haben einen Mittelwert von Null und sind homoskedastisch (gleiche Varianz).
-- Residuen sind normalverteilt
+1. Der Zusammenhang zwischen der abhängigen und den erklärenden Variablen ist linear.
+1. Residuen sind unabhängig.
+1. Residuen haben einen Mittelwert von Null und sind homoskedastisch (gleiche Varianz).
+1. Residuen sind normalverteilt
 
 In diesem Kapitel beschäftigen wir uns mit folgenden Fragen:
 
@@ -76,7 +76,7 @@ lin_mod <- lm(zeit_bib ~ anreise, data = befragung)
 get_regression_table(lin_mod) %>% kable()
 ```
 
-Eine sehr oft verwendete Methode, die Modellparameter zu schätzen, heißt **Methode der kleinsten Quadrate**. Sie beruht auf der Idee, dass diejenigen Modellparameter, $y$-Achsenabschnitt und die Steigung, die besten sind, bei denen die Summe der quadrierten Residuen die kleinste ist. Formal schreibt man:
+Eine sehr oft verwendete Methode, die Modellparameter zu schätzen, heißt **Methode der kleinsten Quadrate** (KQ). Sie beruht auf der Idee, dass diejenigen Modellparameter, $y$-Achsenabschnitt und die Steigung, die besten sind, bei denen die Summe der quadrierten Residuen die kleinste ist. Formal schreibt man:
 
 ```{block, type='rmddef'}
 Gegeben sei das lineare Regressionsmodell
@@ -112,7 +112,7 @@ ggplot(model_res, aes(x = anreise, y = zeit_bib)) +
 
 Man quadriert die Residuen, damit sowohl die positiven als auch die negativen gleich wichtig sind und sich in der Summe nicht gegenseitig aufheben.
 
-Die methode der kleinsten Quadrate ergibt folgende Formeln für die Schätzung der Modellparameter einer Einfachregression:
+Die Methode der kleinsten Quadrate ergibt folgende Formeln für die Schätzung der Modellparameter einer Einfachregression:
 
 $$
 \begin{align*}
@@ -124,11 +124,11 @@ $$
 Die Residuen $\hat{\varepsilon}_i$ berechnen sich als die Differenz zwischen den beobachteten und den im Modell berechneten Werten:
 
 $$\hat{\varepsilon}_i = y_i - \hat{y}_i$$
-Und die angepassten Werte als Punkte auf der Regressionsgeraden:
+und die angepassten Werte als Punkte auf der Regressionsgeraden:
 
 $$\hat{y}_i = \hat{\beta}_0 + \hat{\beta}_1 x_i$$
 
-Die geschätzten Modellparameter sind **Zufallsvariablen**. Unter der Annahme, dass die Residuen nomralverteilt sind:
+Die geschätzten Modellparameter sind **Zufallsvariablen**. Denn wenn die Daten etwas anders ausfallen (Zufallsstichproben!), bekommen wir andere Schätzungen für den $y$-Achsenabschnitt und die Steigung. Unter der Annahme, dass die Residuen normalverteilt sind, d.h.:
 
 $$\varepsilon_i \sim \mathcal{N}(0,\sigma^2)$$
 gilt für diese Zufallsvariablen, dass sie selbst normalverteilt sind:
@@ -144,7 +144,7 @@ $$\hat{\sigma}_{\hat{\beta}_0} = \hat{\sigma} \frac{\sqrt{\textstyle \sum_{i=1}^
 Wenn die Residuen normalverteilt sind, kann mann zeigen, dass die sogen. standardisierten Schätzer der $t$-Verteilung folgen:
 
 $$\frac{\hat{\beta}_0 - \beta_0}{\hat{\sigma}_{\hat{\beta}_0}} \sim t_{n-2}, \quad \frac{\hat{\beta}_1 - \beta_1}{\hat{\sigma}_{\hat{\beta}_1}} \sim t_{n-2}$$
-
+$n-2$ steht hier für die Anzahl der Freiheitsgrade in der $t$-Verteilung. $n$ ist die Anzahl der Datenpunkte im Modell.
 
 Somit wissen wir nun endlich, wie die Schätzungen für den $y$-Achsenabschnitt und die Steigung verteilt sind. Mit diesem Wissen können wir Konfidenzintervalle für diese Modellparameter berechnen:
 
@@ -171,7 +171,7 @@ mit $y_i$: Messwerte, $\bar{y}$: Mittelwert, $\hat{y}_i$: angepasste Werte
 - $\mathit{SQE}$ Sum of squares explained: Streuung erklärt vom Modell
 - $\mathit{SQR}$ Sum of sqaures residual: Residualstreuung (vom Modell nicht erklärt)
 
-Die $\mathit{SQE}$ beschreibt die Variation der angepassten Werte um den Mittelwert und $\mathit{SQR}$ entspricht dem nicht erklärten Teil der Streuung. Das heißt, dass je kleiner die Residualstreuung, desto besser das Modell, weil es dann einen größeren Anteil der Streuung der Daten erklären kann. Das Verhältnis der Gesamtstreuung zur Residualstreuung nennt man das **Bestimmtheitsmaß** (oder auch Determinationskoeffizient). Dieser wird meistens mit $R^2$ bezeichnet und ist definiert als:
+Die $\mathit{SQE}$ beschreibt die Variation der angepassten Werte um den Mittelwert der beobachteten Daten und $\mathit{SQR}$ entspricht dem nicht erklärten Teil der Streuung. Das heißt, je kleiner die Residualstreuung, desto besser das Modell, weil es dann einen größeren Anteil der Streuung der Daten erklären kann. Das Verhältnis der Gesamtstreuung zur Residualstreuung nennt man das **Bestimmtheitsmaß** (oder auch Determinationskoeffizient). Dieser wird meistens mit $R^2$ bezeichnet und ist definiert als:
 
 $$R^2 = \frac{\mathit{SQE}}{\mathit{SQT}} = 1- \frac{\sum^{n}_{i=1} (y_i - \hat{y}_i)^2}{\sum^{n}_{i = 1} (y_i - \bar{y}_i)^2}$$
 
@@ -202,9 +202,9 @@ Somit erklärt unser Modell 53% der Varianz der Daten.
 
 ## Bootstrap mit `infer`: Konfidenzintervall für Steigung
 Die $t$-Verteilung der Schätzungen gilt *asymptotisch*, d.h. bei großen Datensäzten, auch für nicht-normalverteilte Residuen (unter bestimmten Bedingungen, s. @Fahrmeir2009). Allerdings erfordern 
-**nicht-normalverteilte Residuen große Stichproben oder aber alternative Methoden**. Auch heteroskedastische Residuen führen zu falschen Konfidenzintervallen und Hypothesentests. Bootstrap ist robust gegen die Verletzung beider Annahmen (Normalvereilung und Homoskedastizität der Residuen). Allerdings müssen die Daten nach wie vor unabhängig sein (keine wiederholten Messungen, keine Zeitreihen!), damit Bootstrap korrekt arbeitet.
+**nicht-normalverteilte Residuen große Stichproben oder aber alternative Methoden** zum Berechnen der Konfidenzintervalle. Auch heteroskedastische Residuen führen zu falschen Konfidenzintervallen und Hypothesentests. Bootstrap ist robust gegen die Verletzung beider Annahmen (Normalvereilung und Homoskedastizität der Residuen). Allerdings müssen die Daten nach wie vor unabhängig sein (keine wiederholten Messungen, keine Zeitreihen!), damit Bootstrap korrekt arbeitet.
 
-Bei einer Einfachregression, d.h. wenn es nur einen Prädiktor gibt, ist die Steigung häufig der interessante Parameter. Wenn wir uns also nicht für den $y$-Achsenabschnitt interessiert, dann können wir das altbekannte Framework von `infer` für das Bootstrap-Konfidenzinterval für die Steigung verwenden. Für unser Beispiel ginge es so:
+Bei einer Einfachregression, d.h. wenn es nur einen Prädiktor gibt, ist die Steigung häufig der interessante Parameter. Wenn wir uns also nicht für den $y$-Achsenabschnitt interessieren, dann können wir das altbekannte Framework von `infer` für das Bootstrap-Konfidenzintervall für die Steigung verwenden. Für unser Beispiel ginge es so:
 
 ```{r}
 bootstrap_distn_slope <- befragung %>% 
@@ -224,7 +224,7 @@ visualize(bootstrap_distn_slope) +
     shade_confidence_interval(endpoints = percentile_ci) 
 ```
 
-Verglichen mit dem Konfidenzintervall basierend auf der Normalverteilungsannahme, ist Bootstrap sehr ähnlich. Das liegt daran, dass die Normalverteilungsannahme ja erfüllt ist. In so einem Fall sind die Konfidenzintervalle sehr ähnlich.
+Verglichen mit dem Konfidenzintervall basierend auf der Normalverteilungsannahme, ist Bootstrap hier sehr ähnlich. Das liegt daran, dass die Normalverteilungsannahme ja erfüllt ist. In so einem Fall sind die Konfidenzintervalle basierend auf der Normalverteilungsannahme und dem Bootstrap sehr ähnlich.
 ```{r}
 get_regression_table(lin_mod) %>% 
 filter(term == 'anreise') %>%

@@ -77,13 +77,13 @@ Konfidenzintervalle für nicht normalverteilte Residuen berechnen
 </li>
 </ul>
 </div>
-<p>Im letzten Kapitel haben Sie die einfache Normalregression kennen gelernt. Bevor Sie die geschätzten Parameter und deren Konfidenzintervalle interpretieren, müssen Sie die Annahmen der Normalregression überprüfen (vor allem grafisch):</p>
-<ul>
+<p>Im letzten Kapitel haben Sie die einfache Normalregression kennen gelernt. Bevor Sie die geschätzten Parameter und deren Konfidenzintervalle interpretieren, müssen Sie die Annahmen der Normalregression überprüfen (vor allem grafisch). Diese Annahmen sind:</p>
+<ol style="list-style-type: decimal">
 <li>Der Zusammenhang zwischen der abhängigen und den erklärenden Variablen ist linear.</li>
 <li>Residuen sind unabhängig.</li>
 <li>Residuen haben einen Mittelwert von Null und sind homoskedastisch (gleiche Varianz).</li>
 <li>Residuen sind normalverteilt</li>
-</ul>
+</ol>
 <p>In diesem Kapitel beschäftigen wir uns mit folgenden Fragen:</p>
 <ul>
 <li>Wie schätzt man die Parameter?</li>
@@ -182,7 +182,7 @@ anreise
 </tr>
 </tbody>
 </table></div>
-<p>Eine sehr oft verwendete Methode, die Modellparameter zu schätzen, heißt <strong>Methode der kleinsten Quadrate</strong>. Sie beruht auf der Idee, dass diejenigen Modellparameter, <span class="math inline">\(y\)</span>-Achsenabschnitt und die Steigung, die besten sind, bei denen die Summe der quadrierten Residuen die kleinste ist. Formal schreibt man:</p>
+<p>Eine sehr oft verwendete Methode, die Modellparameter zu schätzen, heißt <strong>Methode der kleinsten Quadrate</strong> (KQ). Sie beruht auf der Idee, dass diejenigen Modellparameter, <span class="math inline">\(y\)</span>-Achsenabschnitt und die Steigung, die besten sind, bei denen die Summe der quadrierten Residuen die kleinste ist. Formal schreibt man:</p>
 <div class="rmddef">
 <p>
 Gegeben sei das lineare Regressionsmodell
@@ -206,7 +206,7 @@ der Kleinste-Quadrate-Schätzer für den Parametervektor <span class="math inlin
 <p>Es geht also darum, die <strong>Residuen zu minimieren</strong>, d.h. die Abstände zwischen den beobachteten und den im Modell vorhergesagten Werten so klein wie möglich zu machen.</p>
 <div class="inline-figure"><img src="datenanalyse_files/figure-html/unnamed-chunk-155-1.png" width="90%"></div>
 <p>Man quadriert die Residuen, damit sowohl die positiven als auch die negativen gleich wichtig sind und sich in der Summe nicht gegenseitig aufheben.</p>
-<p>Die methode der kleinsten Quadrate ergibt folgende Formeln für die Schätzung der Modellparameter einer Einfachregression:</p>
+<p>Die Methode der kleinsten Quadrate ergibt folgende Formeln für die Schätzung der Modellparameter einer Einfachregression:</p>
 <p><span class="math display">\[
 \begin{align*}
 \hat{\sigma}^2 &amp;= \frac{1}{n-2} \sum_{i=n}^n \varepsilon_i^2 \\
@@ -216,9 +216,9 @@ der Kleinste-Quadrate-Schätzer für den Parametervektor <span class="math inlin
 \]</span>
 Die Residuen <span class="math inline">\(\hat{\varepsilon}_i\)</span> berechnen sich als die Differenz zwischen den beobachteten und den im Modell berechneten Werten:</p>
 <p><span class="math display">\[\hat{\varepsilon}_i = y_i - \hat{y}_i\]</span>
-Und die angepassten Werte als Punkte auf der Regressionsgeraden:</p>
+und die angepassten Werte als Punkte auf der Regressionsgeraden:</p>
 <p><span class="math display">\[\hat{y}_i = \hat{\beta}_0 + \hat{\beta}_1 x_i\]</span></p>
-<p>Die geschätzten Modellparameter sind <strong>Zufallsvariablen</strong>. Unter der Annahme, dass die Residuen nomralverteilt sind:</p>
+<p>Die geschätzten Modellparameter sind <strong>Zufallsvariablen</strong>. Denn wenn die Daten etwas anders ausfallen (Zufallsstichproben!), bekommen wir andere Schätzungen für den <span class="math inline">\(y\)</span>-Achsenabschnitt und die Steigung. Unter der Annahme, dass die Residuen normalverteilt sind, d.h.:</p>
 <p><span class="math display">\[\varepsilon_i \sim \mathcal{N}(0,\sigma^2)\]</span>
 gilt für diese Zufallsvariablen, dass sie selbst normalverteilt sind:</p>
 <p><span class="math display">\[\hat{\beta}_0 \sim \mathcal{N}(\beta_0, \sigma^2_{\hat{\beta}_0}),
@@ -227,7 +227,8 @@ gilt für diese Zufallsvariablen, dass sie selbst normalverteilt sind:</p>
 <p><span class="math display">\[\hat{\sigma}_{\hat{\beta}_0} = \hat{\sigma} \frac{\sqrt{\textstyle \sum_{i=1}^n x_i^2}}{\sqrt{n \textstyle \sum_{i=1}^n (x_i-\bar{x})^2}}, \quad 
 \hat{\sigma}_{\hat{\beta}_1} = \frac{\hat{\sigma}}{\sqrt{\textstyle \sum_{i=1}^n (x_i-\bar{x})^2}}\]</span></p>
 <p>Wenn die Residuen normalverteilt sind, kann mann zeigen, dass die sogen. standardisierten Schätzer der <span class="math inline">\(t\)</span>-Verteilung folgen:</p>
-<p><span class="math display">\[\frac{\hat{\beta}_0 - \beta_0}{\hat{\sigma}_{\hat{\beta}_0}} \sim t_{n-2}, \quad \frac{\hat{\beta}_1 - \beta_1}{\hat{\sigma}_{\hat{\beta}_1}} \sim t_{n-2}\]</span></p>
+<p><span class="math display">\[\frac{\hat{\beta}_0 - \beta_0}{\hat{\sigma}_{\hat{\beta}_0}} \sim t_{n-2}, \quad \frac{\hat{\beta}_1 - \beta_1}{\hat{\sigma}_{\hat{\beta}_1}} \sim t_{n-2}\]</span>
+<span class="math inline">\(n-2\)</span> steht hier für die Anzahl der Freiheitsgrade in der <span class="math inline">\(t\)</span>-Verteilung. <span class="math inline">\(n\)</span> ist die Anzahl der Datenpunkte im Modell.</p>
 <p>Somit wissen wir nun endlich, wie die Schätzungen für den <span class="math inline">\(y\)</span>-Achsenabschnitt und die Steigung verteilt sind. Mit diesem Wissen können wir Konfidenzintervalle für diese Modellparameter berechnen:</p>
 <p><span class="math display">\[\hat{\beta}_0 \pm \hat{\sigma}_{\hat{\beta}_0} t_{1-\alpha/2, n-2}, \qquad \hat{\beta}_1 \pm \hat{\sigma}_{\hat{\beta}_1} t_{1-\alpha/2, n-2}\]</span></p>
 <p>Für <span class="math inline">\(\alpha\)</span> setzt man passendes Konfidenzlevel ein, z.B. 5%, um das 95%-Konfidenzintervall zu erhalten.</p>
@@ -253,7 +254,7 @@ gilt für diese Zufallsvariablen, dass sie selbst normalverteilt sind:</p>
 <li>
 <span class="math inline">\(\mathit{SQR}\)</span> Sum of sqaures residual: Residualstreuung (vom Modell nicht erklärt)</li>
 </ul>
-<p>Die <span class="math inline">\(\mathit{SQE}\)</span> beschreibt die Variation der angepassten Werte um den Mittelwert und <span class="math inline">\(\mathit{SQR}\)</span> entspricht dem nicht erklärten Teil der Streuung. Das heißt, dass je kleiner die Residualstreuung, desto besser das Modell, weil es dann einen größeren Anteil der Streuung der Daten erklären kann. Das Verhältnis der Gesamtstreuung zur Residualstreuung nennt man das <strong>Bestimmtheitsmaß</strong> (oder auch Determinationskoeffizient). Dieser wird meistens mit <span class="math inline">\(R^2\)</span> bezeichnet und ist definiert als:</p>
+<p>Die <span class="math inline">\(\mathit{SQE}\)</span> beschreibt die Variation der angepassten Werte um den Mittelwert der beobachteten Daten und <span class="math inline">\(\mathit{SQR}\)</span> entspricht dem nicht erklärten Teil der Streuung. Das heißt, je kleiner die Residualstreuung, desto besser das Modell, weil es dann einen größeren Anteil der Streuung der Daten erklären kann. Das Verhältnis der Gesamtstreuung zur Residualstreuung nennt man das <strong>Bestimmtheitsmaß</strong> (oder auch Determinationskoeffizient). Dieser wird meistens mit <span class="math inline">\(R^2\)</span> bezeichnet und ist definiert als:</p>
 <p><span class="math display">\[R^2 = \frac{\mathit{SQE}}{\mathit{SQT}} = 1- \frac{\sum^{n}_{i=1} (y_i - \hat{y}_i)^2}{\sum^{n}_{i = 1} (y_i - \bar{y}_i)^2}\]</span></p>
 <p><span class="math inline">\(R^2\)</span> liegt (normalerweise) zwischen 0 (schlechtes Modell) und 1 (perfekter Fit). <span class="math inline">\(R^2 &lt; 0\)</span> zeigt eine falsche Modellwahl (z.B. kein Achsenabschnitt, wenn dieser aber nötig ist).</p>
 <p>Das <span class="math inline">\(R^2\)</span> hat die unangenehme Eigenschaft, bei einer multiplen Regression immer zu steigen, wenn man zusätzliche Prädiktoren hinzunimmt. Diese Prädiktoren können auch ohne jeden Zusammenhang zur abhängigen Variablen stehen. Um dieses Problem zu korrigieren, hat man das adjustierte Bestimmtheitsmaß <span class="math inline">\(R^2_\text{ajd}\)</span> eingeführt. Es “bestraft” für zusätzliche Prädiktoren
@@ -355,8 +356,8 @@ nobs
 <span class="header-section-number">12.2</span> Bootstrap mit <code>infer</code>: Konfidenzintervall für Steigung<a class="anchor" aria-label="anchor" href="#bootstrap-mit-infer-konfidenzintervall-f%C3%BCr-steigung"><i class="fas fa-link"></i></a>
 </h2>
 <p>Die <span class="math inline">\(t\)</span>-Verteilung der Schätzungen gilt <em>asymptotisch</em>, d.h. bei großen Datensäzten, auch für nicht-normalverteilte Residuen (unter bestimmten Bedingungen, s. <span class="citation"><a href="literatur.html#ref-Fahrmeir2009" role="doc-biblioref">Fahrmeir, Kneib, and Lang</a> (<a href="literatur.html#ref-Fahrmeir2009" role="doc-biblioref">2009</a>)</span>). Allerdings erfordern
-<strong>nicht-normalverteilte Residuen große Stichproben oder aber alternative Methoden</strong>. Auch heteroskedastische Residuen führen zu falschen Konfidenzintervallen und Hypothesentests. Bootstrap ist robust gegen die Verletzung beider Annahmen (Normalvereilung und Homoskedastizität der Residuen). Allerdings müssen die Daten nach wie vor unabhängig sein (keine wiederholten Messungen, keine Zeitreihen!), damit Bootstrap korrekt arbeitet.</p>
-<p>Bei einer Einfachregression, d.h. wenn es nur einen Prädiktor gibt, ist die Steigung häufig der interessante Parameter. Wenn wir uns also nicht für den <span class="math inline">\(y\)</span>-Achsenabschnitt interessiert, dann können wir das altbekannte Framework von <code>infer</code> für das Bootstrap-Konfidenzinterval für die Steigung verwenden. Für unser Beispiel ginge es so:</p>
+<strong>nicht-normalverteilte Residuen große Stichproben oder aber alternative Methoden</strong> zum Berechnen der Konfidenzintervalle. Auch heteroskedastische Residuen führen zu falschen Konfidenzintervallen und Hypothesentests. Bootstrap ist robust gegen die Verletzung beider Annahmen (Normalvereilung und Homoskedastizität der Residuen). Allerdings müssen die Daten nach wie vor unabhängig sein (keine wiederholten Messungen, keine Zeitreihen!), damit Bootstrap korrekt arbeitet.</p>
+<p>Bei einer Einfachregression, d.h. wenn es nur einen Prädiktor gibt, ist die Steigung häufig der interessante Parameter. Wenn wir uns also nicht für den <span class="math inline">\(y\)</span>-Achsenabschnitt interessieren, dann können wir das altbekannte Framework von <code>infer</code> für das Bootstrap-Konfidenzintervall für die Steigung verwenden. Für unser Beispiel ginge es so:</p>
 <div class="sourceCode" id="cb194"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">bootstrap_distn_slope</span> <span class="op">&lt;-</span> <span class="va">befragung</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://infer.tidymodels.org/reference/specify.html">specify</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="va">zeit_bib</span> <span class="op">~</span> <span class="va">anreise</span><span class="op">)</span> <span class="op">%&gt;%</span>
@@ -376,7 +377,7 @@ nobs
 <code class="sourceCode R"><span class="fu"><a href="https://infer.tidymodels.org/reference/visualize.html">visualize</a></span><span class="op">(</span><span class="va">bootstrap_distn_slope</span><span class="op">)</span> <span class="op">+</span>
     <span class="fu"><a href="https://infer.tidymodels.org/reference/shade_confidence_interval.html">shade_confidence_interval</a></span><span class="op">(</span>endpoints <span class="op">=</span> <span class="va">percentile_ci</span><span class="op">)</span> </code></pre></div>
 <div class="inline-figure"><img src="datenanalyse_files/figure-html/unnamed-chunk-158-1.png" width="90%"></div>
-<p>Verglichen mit dem Konfidenzintervall basierend auf der Normalverteilungsannahme, ist Bootstrap sehr ähnlich. Das liegt daran, dass die Normalverteilungsannahme ja erfüllt ist. In so einem Fall sind die Konfidenzintervalle sehr ähnlich.</p>
+<p>Verglichen mit dem Konfidenzintervall basierend auf der Normalverteilungsannahme, ist Bootstrap hier sehr ähnlich. Das liegt daran, dass die Normalverteilungsannahme ja erfüllt ist. In so einem Fall sind die Konfidenzintervalle basierend auf der Normalverteilungsannahme und dem Bootstrap sehr ähnlich.</p>
 <div class="sourceCode" id="cb197"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/moderndive/man/get_regression_table.html">get_regression_table</a></span><span class="op">(</span><span class="va">lin_mod</span><span class="op">)</span> <span class="op">%&gt;%</span> 
 <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">term</span> <span class="op">==</span> <span class="st">'anreise'</span><span class="op">)</span> <span class="op">%&gt;%</span>
@@ -870,7 +871,7 @@ anreise
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Datenanalyse mit R</strong>: SoSe 2021" was written by Christina Bogner. It was last built on 2021-06-28.</p>
+    <p>"<strong>Datenanalyse mit R</strong>: SoSe 2021" was written by Christina Bogner. It was last built on 2021-06-29.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

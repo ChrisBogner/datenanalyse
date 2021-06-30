@@ -5,7 +5,9 @@
 ```
 
 
-Das starre Konzept der statistischen Signifikanz, bei dem ein willkürlich gesetzter Grenzwert $\alpha$ darüber entscheidet, ob ein Ergebnis weiter beachtet wird oder nicht, wird seit Jahrzehnten kritisiert [@Wasserstein2019]. Es ist schließlich auch wirklich schwer zu verstehen, warum $p = 0.049$ qualitativ etwas anderes aussagen soll als $p = 0.051$. Und was machen wir mit $p = 0.05$? Die beste Lösung ist, so wie von der ASA (American Statistical Association) vorgeschlagen, den Begriff "signifikant" nicht mehr zu verwenden. Statt dessen berichten Sie den berechneten $p$-Wert und interpretieren ihn im wissenschaftlichen Kontext [@Wasserstein2019].
+Bei Hypothesentests wird häufig ein willkürlich festgelegter Schwellenwert, das Signifikanzniveau, häufig 5%, verwendet. Liegt der $p$-Wert darunter, wird die Nullhypothese verworfen. Liegt er darüber, wird sie beibehalten.
+
+Dieses starre Konzept der statistischen Signifikanz, bei dem ein willkürlich gesetzter Grenzwert $\alpha$ darüber entscheidet, ob ein Ergebnis weiter beachtet wird oder nicht, wird seit Jahrzehnten kritisiert [@Wasserstein2019]. Es ist schließlich auch wirklich schwer zu verstehen, warum $p = 0.049$ qualitativ etwas anderes aussagen soll als $p = 0.051$. Und was machen wir mit $p = 0.05$? Die beste Lösung ist, so wie von der ASA (American Statistical Association) vorgeschlagen, den Begriff "signifikant" nicht mehr zu verwenden. Statt dessen berichten Sie den berechneten $p$-Wert und interpretieren ihn im wissenschaftlichen Kontext [@Wasserstein2019].
 
 Ich würde nicht soweit gehen, statistische Tests abschaffen zu wollen. Sie sind manchmal nützlich, aber auch nicht häufiger als manchmal. Allerdings kann ich auch aus eigener Praxis sagen, dass sehr oft statistische Signifikanz mit wissenschaftlicher Relevanz verwechselt wird. Daher werden wir uns in diesem Kapitel damit beschäftigen, wie man die relevanten Aspekte, nämlich die Größe des Effekts, aus den beobachteten Daten schätzen kann.
 

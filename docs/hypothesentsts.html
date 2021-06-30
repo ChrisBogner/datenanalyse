@@ -87,7 +87,7 @@ Wir simulieren Daten aus diesem Modell ohne Effekt, d.h. Daten unter der Nullhyp
 <p><strong>Berechnen der Stichprobenverteilung</strong>
 Die vielen simulierten Teststatistiken ergeben eine Stichprobenverteilung.</p>
 <p><strong>Vergleich der beobachteten Teststatistik mit der Stichprobenverteilung – Entscheidung</strong>
-Nun können wir die Teststatistik <span class="math inline">\(\sigma^*\)</span> mit der Stichprobenverteilung der simulieren Teststatistiken vergleichen. Wir entscheiden, ob wir <span class="math inline">\(\sigma^*\)</span> in der Welt ohne Effekt, also unter der Nullhypothese häufig oder eher selten vorkommt. Wenn <span class="math inline">\(\sigma^*\)</span> selten vorkommt, verwerfen wir die Nullhypothese und sagen, dass es einen Effekt gibt. Mit anderen Worte, es ist dann unwahrscheinlich, dass das beobachtete <span class="math inline">\(\sigma^*\)</span> auf den Zufall zurück zu führen ist. Als Entscheidungshilfe nutzen wir das Signifikanzniveau <span class="math inline">\(\alpha\)</span>, das häufig auf 5% gesetzt wird.</p>
+Nun können wir die Teststatistik <span class="math inline">\(\sigma^*\)</span> mit der Stichprobenverteilung der simulieren Teststatistiken vergleichen. Wir entscheiden, ob wir <span class="math inline">\(\sigma^*\)</span> in der Welt ohne Effekt, also unter der Nullhypothese, häufig oder eher selten vorkommt. Der <span class="math inline">\(p\)</span>-Wert gibt an, wie wahrscheinlich es ist, unter der Nullhypothese einen Effekt zu beobachten, der mindestens so extrem ist, wie derjenige, den wir durch unsere Daten errechnet haben. Wenn <span class="math inline">\(\sigma^*\)</span> selten vorkommt, der <span class="math inline">\(p\)</span>-Wert also klein ist, verwerfen wir die Nullhypothese und sagen, dass es einen Effekt gibt. Mit anderen Worte, es ist dann unwahrscheinlich, dass das beobachtete <span class="math inline">\(\sigma^*\)</span> auf den Zufall zurück zu führen ist.</p>
 <p>Diese Schritte gelten wirklich für jeden beliebigen Test. Daher kann man verallgemeinert sagen, dass es nur einen Test (ein Testframework) gibt.</p>
 <div class="figure">
 <span style="display:block;" id="fig:one-test"></span>
@@ -239,13 +239,13 @@ Abbildung 9.2: Verallgemeinertes Vorgehen bei Hypothesentests (Quelle: <a href="
 ##   p_value
 ##     &lt;dbl&gt;
 ## 1  0.0008</code></pre>
-<p>Der <span class="math inline">\(p\)</span>-Wert ist sehr klein und kleiner als das Standard-Signifikanzniveau von 5%. Daher schließen wir, dass es sehr unwahrscheinlich ist, dieses Verhältnis von Stadt- und Landbewohnern unter den Studierenden zu beobachten, wenn es wirklich gleich viele Stad- und Landbewohner sind. Ergo, das Verhältnis von Stadt- zu Landbewohnern ist nicht eins zu eins.</p>
+<p>Der <span class="math inline">\(p\)</span>-Wert ist sehr klein, es ist also unwahrscheinlich, den Anteil von Stadtbewohnern von 0.62 zu beobachten, wenn wirklich gleich viele Stad- und Landbewohner sind, der Anteil also 0.5 beträgt. Daher schließen wir, dass das Verhältnis von Stadt- zu Landbewohnern ist nicht eins zu eins ist.</p>
 </div>
 <div id="präferenzen-für-den-wohnort" class="section level3" number="9.2.2">
 <h3>
 <span class="header-section-number">9.2.2</span> Präferenzen für den Wohnort<a class="anchor" aria-label="anchor" href="#pr%C3%A4ferenzen-f%C3%BCr-den-wohnort"><i class="fas fa-link"></i></a>
 </h3>
-<p>Haben weibliche und männliche Studierende unterschiedliche Präferenzen für den Wohnort? Das ist ein ähnlicher Fall wie in der Einführung zu Hypothesentests, als wir uns mit den Beförderungschancen von Fraune und Männern in den 70ern befasst haben. Wir haben hier zwei kategoriale Variablen, nämlich <code>wohnort</code> und <code>geschlecht</code> und wollen wissen, ob die beiden miteinander zusammenhängen. Daher lauten unsere Nullhypothese und Alternativhypothese:</p>
+<p>Haben weibliche und männliche Studierende unterschiedliche Präferenzen für den Wohnort? Das ist ein ähnlicher Fall wie in der Einführung zu Hypothesentests, als wir uns mit den Beförderungschancen von Frauen und Männern in den 70ern befasst haben. Wir haben hier zwei kategoriale Variablen, nämlich <code>wohnort</code> und <code>geschlecht</code> und wollen wissen, ob die beiden miteinander zusammenhängen. Daher lauten unsere Nullhypothese und Alternativhypothese:</p>
 <blockquote>
 <ul>
 <li>
@@ -400,7 +400,7 @@ Abbildung 9.2: Verallgemeinertes Vorgehen bei Hypothesentests (Quelle: <a href="
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Datenanalyse mit R</strong>: SoSe 2021" was written by Christina Bogner. It was last built on 2021-06-29.</p>
+    <p>"<strong>Datenanalyse mit R</strong>: SoSe 2021" was written by Christina Bogner. It was last built on 2021-06-30.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

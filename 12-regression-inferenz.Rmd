@@ -190,7 +190,7 @@ get_regression_summaries(lin_mod) %>% kable()
 
 - `r_squared`: Bestimmtheimtsmaß $R^2$
 - `adj_r_squared`: adjustiertes Bestimmtheitsmaß $R^2_\text{ajd}$
-- `mse`: mittlerer quadratischer Fehler `mean(residuals(lin_mod)^2)`
+- `mse`: mittlerer quadratischer Fehler, berechnet als `mean(residuals(lin_mod)^2)`
 - `rmse`: Wurzel aus `mse`
 - `simga`: Standardabweichung (i.e. Standardfehler) des Fehlerterms $\varepsilon$
 - `statistic`: Wert der $F$-Statistik für den Hypothesentest mit H$_0$: alle Modellparameter sind Null
@@ -206,25 +206,29 @@ Die $t$-Verteilung der Schätzungen gilt *asymptotisch*, d.h. bei großen Datens
 
 Bei einer Einfachregression, d.h. wenn es nur einen Prädiktor gibt, ist die Steigung häufig der interessante Parameter. Wenn wir uns also nicht für den $y$-Achsenabschnitt interessieren, dann können wir das altbekannte Framework von `infer` für das Bootstrap-Konfidenzintervall für die Steigung verwenden. Für unser Beispiel ginge es so:
 
+**Schritt 1: Bootstrap-Stichproben generieren und Statistik "Steigung" berechnen**
 ```{r}
 bootstrap_distn_slope <- befragung %>% 
   specify(formula = zeit_bib ~ anreise) %>%
   generate(reps = 10000, type = "bootstrap") %>% 
   calculate(stat = "slope")
+```
 
+**Schritt 2: Konfidenzintervall berechnen**
+```{r}
 percentile_ci <- bootstrap_distn_slope %>% 
   get_confidence_interval(type = "percentile", level = 0.95)
 
 percentile_ci
 ```
 
-Wir stellen die Ergebnisse wie gewohnt dar.
+**Schritt 3: Ergebnisse darstellen**
 ```{r, out.width = '90%'}
 visualize(bootstrap_distn_slope) +
     shade_confidence_interval(endpoints = percentile_ci) 
 ```
 
-Verglichen mit dem Konfidenzintervall basierend auf der Normalverteilungsannahme, ist Bootstrap hier sehr ähnlich. Das liegt daran, dass die Normalverteilungsannahme ja erfüllt ist. In so einem Fall sind die Konfidenzintervalle basierend auf der Normalverteilungsannahme und dem Bootstrap sehr ähnlich.
+Verglichen mit dem Konfidenzintervall basierend auf der Normalverteilungsannahme, ist Bootstrap hier sehr ähnlich. Das liegt daran, dass die Normalverteilungsannahme und die Homoskedastizitätsannahme ja erfüllt sind. In so einem Fall sind die Standardkonfidenzintervalle basierend auf der Normalverteilungsannahme und dem Bootstrap sehr ähnlich. Wir würden also im Normalfall einfach die Standardkonfidenzintervalle benutzten.
 ```{r}
 get_regression_table(lin_mod) %>% 
 filter(term == 'anreise') %>%
@@ -264,16 +268,16 @@ null_distn_slope %>%
 ```
 
 
-## Bootstrap mit `rsample`: Konfidenzintervalle für Steigung und $y-$-Achsenabschnitt
-Falls wir doch Konfidenzintervalle für beide Modellparameter brauchen oder aber ein lineares Modell mit mehreren Prädiktoren anpassen, können wir nicht mehr mit `infer` arbeiten. Es gibt aber ein ganzes Modelluniversum, zusammengestellt in der Paketsammlung `tidymodels` (https://www.tidymodels.org/). Darin gibt es nicht nur alle möglichen Modelle, sondern vor allem eine *tidy* und einheitliche Herangehensweise ans Modellieren. `tidymodels` ist jenseits dessen, was wir in diesem Kurs machen werden, außer der Bibliothek `rsample`, die uns beim Bootstrappen hilft.
+## Bootstrap mit `rsample`: Konfidenzintervalle für Steigung und $y$-Achsenabschnitt
+Falls wir doch Konfidenzintervalle für beide Modellparameter brauchen (und die Annahmen Normalverteilung und/oder Homoskedastizität verletzt sind) oder aber ein lineares Modell mit mehreren Prädiktoren anpassen, können wir nicht mehr mit `infer` arbeiten. Es gibt aber ein ganzes Modelluniversum, zusammengestellt in der Paketsammlung `tidymodels` (https://www.tidymodels.org/). Darin gibt es nicht nur alle möglichen Modelle, sondern vor allem eine *tidy* und einheitliche Herangehensweise ans Modellieren. `tidymodels` ist jenseits dessen, was wir in diesem Kurs machen werden. Wir werden aber die Bibliothek `rsample` nutzen, die uns beim Bootstrappen hilft.
 
 ```{r}
 library(rsample)
 ```
 
-Um Konfidenzintervalle sowohl für den $y$-Achsenabschnitt als auch für die Steigung zu bekommen, generieren wir Bootstrap-Stichproben aus der `befragung`, passen dann an jede solche Stichprobe unser lineares Modell an. Jedes dieser Modelle liefert uns einen $y$-Achsenabschnitt und eine Steigung. Dadurch bekommen wir eine Bootstrapverteilung dieser Modellparameter, so wie wir es bsiher mit dem Boostrap gemacht haben. Aus diesen Bootstrapverteilungen berechnen wir dann mit der Methode der Quantile unsere Konfidenzintervalle.
+Um Konfidenzintervalle sowohl für den $y$-Achsenabschnitt als auch für die Steigung zu bekommen, generieren wir Bootstrap-Stichproben aus der `befragung`, passen dann an jede solche Stichprobe unser lineares Modell an. Jedes dieser Modelle liefert uns einen $y$-Achsenabschnitt und eine Steigung. Dadurch bekommen wir Bootstrapverteilungen dieser Modellparameter, so wie sonst auch, wenn wir Bootstrap benutzt haben. Aus diesen Bootstrapverteilungen berechnen wir dann mit der Methode der Quantile unsere Konfidenzintervalle.
 
-### Schritt 1: Bootstrapstichproben aus `befragung` generieren
+**Schritt 1: Bootstrapstichproben aus `befragung` generieren**
 
 Wir generieren 10000 Bootstrap-Stichproben aus dem Datensatz `befragung` mit Hilfe der Funktion `bootstraps()` aus der Bibliothek `rsample`.
 ```{r}
@@ -291,13 +295,13 @@ my_bootstraps
 
 class(my_bootstraps)
 ```
-Wir sehen uns so eine Bootstrap-Stichprobe mal an. Dazu nutzen wir die Funktion `analysis()`, die solche *splits* richtig behandelt. Jede Bootstrap-Stichprobe ist durch Ziehen mit Zurücklegen aus dem Datensatz `befragung` hervorgegangen.
 
+Wir sehen uns so eine Bootstrap-Stichprobe mal an. Dazu nutzen wir die Funktion `analysis()`, die solche *splits* richtig behandelt. Jede Bootstrap-Stichprobe ist durch Ziehen mit Zurücklegen aus dem Datensatz `befragung` hervorgegangen, das ist ja beim Bootstrap immer so.
 ```{r}
 analysis(my_bootstraps$splits[[1]])
 ```
-Wie viele Studierende wurden mehrfach gezogen? Wir sehen uns als Beispiel die erste Bootstrap-Stichproben an.
 
+Wie viele Studierende wurden mehrfach gezogen? Wir sehen uns als Beispiel die erste Bootstrap-Stichproben an.
 ```{r}
 analysis(my_bootstraps$splits[[1]]) %>%
   group_by(student_id) %>%
@@ -305,7 +309,7 @@ analysis(my_bootstraps$splits[[1]]) %>%
   arrange(desc(n))
 ```
 
-### Schritt 1: Modell auf den Bootstrap-Stichproben anpassen
+**Schritt 1: Modell auf den Bootstrap-Stichproben anpassen**
 
 Um unser ursprüngliches lineares Modell anzupassen, benutzen wir eine selbstgeschriebene Funktion, inspiriert von der Hilfe zu `rsample` (?int_pctl). Die Funktion `lm_est()` passt auf einer Bootstrap-Stichprobe das lineare Modell `zeit_bib ~ anreise` an. Um die Berechnung auf allen Bootstrap-Stichproben effizient zu machen, nutze ich die Funktion `map()`, die sich eine Bootstrap-Stichprobe nach der anderen vornimmt und das lineare Modell anpasst. Wir kommen in einer spätere Stunde auf solche effizienten Funktionen zurück.
 ```{r}
@@ -334,14 +338,15 @@ model_coeffs <- model_res %>%
 model_coeffs
 ```
 
-Jetzt können wir sehen, dass das Objekt `model_coeffs` die beiden Modellparameter, $y$-Achsenabschnitt und die Steigung enthält, und das jeweils so häufig, wie wir eben Bootstrap-Stichproben generiert haben. Somit haben wir jetzt eine Bootstrapverteilung dieser Modellparameter, die wir nun plotten können.
+Jetzt können wir sehen, dass das Objekt `model_coeffs` die beiden Modellparameter, $y$-Achsenabschnitt und die Steigung, enthält und das jeweils so häufig, wie wir eben Bootstrap-Stichproben generiert haben. Somit haben wir jetzt eine Bootstrapverteilung dieser Modellparameter, die wir nun plotten können.
 ```{r, out.width = '90%'}
 ggplot(model_coeffs, aes(x = estimate, group = term)) + 
   geom_histogram(col = "white", nbins = 30) +
   facet_wrap(~ term, scales = "free_x")
 ```
 
-### Schritt 3: Konfidenzintervalle berechnen
+**Schritt 3: Konfidenzintervalle berechnen**
+
 Die Verteilungen sind symmetrisch, weil ja die Annahmen der Normalregression erfüllt sind. Jetzt fehlen uns noch die Konfidenzintervalle, von denen wir erwarten, dass sie den Standardkonfidenzintervallen ähnlich sein werden.
 
 ```{r}
@@ -355,8 +360,7 @@ percentile_ci %>% kable()
 standard_ci %>% kable()
 ```
 
-Wir plotten alle Ergebnisse nun zusammen. Das müssen wir "händisch" machen, da uns ja nicht die tolle Funktion `visualize()` aus `infer` zur Verfügung steht. Wir fügen die Konfidenzintervalle als vertikale Linien zu den Histogrammen hinzu.
-
+Wir plotten alle Ergebnisse nun zusammen. Das müssen wir "händisch" machen, da uns ja nicht die tolle Funktion `visualize()` aus `infer` zur Verfügung steht. Wir fügen die Konfidenzintervalle als vertikale Linien zu den Histogrammen der Bootstrapverteilungen hinzu.
 ```{r, out.width = '90%'}
 ggplot(model_coeffs, aes(x = estimate, group = term)) + 
   geom_histogram(col = "white", nbins = 30) +
@@ -367,10 +371,9 @@ ggplot(model_coeffs, aes(x = estimate, group = term)) +
   scale_color_manual(name = "Confidence intervals", values = c(percentile_ci_lower = "blue", conf.low = 'orange'), labels = c('standard', 'bootstrap')) +
   facet_wrap(~ term, scales = "free_x") +
   theme(legend.position = 'bottom')
-
 ```
 
-In diesem Beispiel ähneln sich die Konfideznintervalle, da die Annahmen der Normalregression ja erfüllt sind. Das wird in der Aufgabe, die Sie selbständig bearbeiten werden, nicht mehr der Fall sein. Selbstverständlich sollen Sie im Falle von erfüllten Annahmen einfach die Standardkonfidenzintervalle nutzen und brauchen kein Bootstrap. Sie werden aber sehen, dass eim Modellieren mit richtigen Daten die Annahmen der Normalverteilung und der Homoskedastizität sehr häufig verletzt sind. Mit dem Bootstrap sind Sie jetzt dafür gerüstet `r emo::ji('smile')`.
+In diesem Beispiel ähneln sich die Konfidenzintervalle, da die Annahmen der Normalregression erfüllt sind. Das wird in den Aufgaben (s.u.), die Sie selbständig bearbeiten werden, nicht mehr der Fall sein. Selbstverständlich sollen Sie im Falle von erfüllten Annahmen einfach die Standardkonfidenzintervalle nutzen und brauchen kein Bootstrap. Sie werden aber sehen, dass beim Modellieren mit richtigen Daten die Annahmen der Normalverteilung und der Homoskedastizität häufig verletzt sind. Mit dem Bootstrap sind Sie jetzt dafür gerüstet `r emo::ji('smile')`.
 
 
 ## Lesestoff

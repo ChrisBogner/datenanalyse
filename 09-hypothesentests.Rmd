@@ -26,7 +26,7 @@ Wir simulieren Daten aus diesem Modell ohne Effekt, d.h. Daten unter der Nullhyp
 Die vielen simulierten Teststatistiken ergeben eine Stichprobenverteilung.
 
 **Vergleich der beobachteten Teststatistik mit der Stichprobenverteilung -- Entscheidung**
-Nun können wir die Teststatistik $\sigma^*$ mit der Stichprobenverteilung der simulieren Teststatistiken vergleichen. Wir entscheiden, ob wir $\sigma^*$ in der Welt ohne Effekt, also unter der Nullhypothese häufig oder eher selten vorkommt. Wenn $\sigma^*$ selten vorkommt, verwerfen wir die Nullhypothese und sagen, dass es einen Effekt gibt. Mit anderen Worte, es ist dann unwahrscheinlich, dass das beobachtete $\sigma^*$ auf den Zufall zurück zu führen ist. Als Entscheidungshilfe nutzen wir das Signifikanzniveau $\alpha$, das häufig auf 5% gesetzt wird.
+Nun können wir die Teststatistik $\sigma^*$ mit der Stichprobenverteilung der simulieren Teststatistiken vergleichen. Wir entscheiden, ob wir $\sigma^*$ in der Welt ohne Effekt, also unter der Nullhypothese, häufig oder eher selten vorkommt. Der $p$-Wert gibt an, wie wahrscheinlich es ist, unter der Nullhypothese einen Effekt zu beobachten, der mindestens so extrem ist, wie derjenige, den wir durch unsere Daten errechnet haben. Wenn $\sigma^*$ selten vorkommt, der $p$-Wert also klein ist, verwerfen wir die Nullhypothese und sagen, dass es einen Effekt gibt. Mit anderen Worte, es ist dann unwahrscheinlich, dass das beobachtete $\sigma^*$ auf den Zufall zurück zu führen ist.
 
 Diese Schritte gelten wirklich für jeden beliebigen Test. Daher kann man verallgemeinert sagen, dass es nur einen Test (ein Testframework) gibt. 
 
@@ -140,10 +140,10 @@ Am Ende berechnen wir den $p$-Wert.
 null_distn %>%
   get_p_value(obs_stat = prop_hat, direction = "two-sided")
 ```
-Der $p$-Wert ist sehr klein und kleiner als das Standard-Signifikanzniveau von 5%. Daher schließen wir, dass es sehr unwahrscheinlich ist, dieses Verhältnis von Stadt- und Landbewohnern unter den Studierenden zu beobachten, wenn es wirklich gleich viele Stad- und Landbewohner sind. Ergo, das Verhältnis von Stadt- zu Landbewohnern ist nicht eins zu eins. 
+Der $p$-Wert ist sehr klein, es ist also unwahrscheinlich, den Anteil von Stadtbewohnern von `r prop_hat` zu beobachten, wenn wirklich gleich viele Stad- und Landbewohner sind, der Anteil also 0.5 beträgt. Daher schließen wir, dass das Verhältnis von Stadt- zu Landbewohnern ist nicht eins zu eins ist. 
 
 ### Präferenzen für den Wohnort
-Haben weibliche und männliche Studierende unterschiedliche Präferenzen für den Wohnort? Das ist ein ähnlicher Fall wie in der Einführung zu Hypothesentests, als wir uns mit den Beförderungschancen von Fraune und Männern in den 70ern befasst haben. Wir haben hier zwei kategoriale Variablen, nämlich `wohnort` und `geschlecht` und wollen wissen, ob die beiden miteinander zusammenhängen. Daher lauten unsere Nullhypothese und Alternativhypothese:
+Haben weibliche und männliche Studierende unterschiedliche Präferenzen für den Wohnort? Das ist ein ähnlicher Fall wie in der Einführung zu Hypothesentests, als wir uns mit den Beförderungschancen von Frauen und Männern in den 70ern befasst haben. Wir haben hier zwei kategoriale Variablen, nämlich `wohnort` und `geschlecht` und wollen wissen, ob die beiden miteinander zusammenhängen. Daher lauten unsere Nullhypothese und Alternativhypothese:
 
 >- $H_0$: `wohnort` und `geschlecht` sind unabhängig.
 >- $H_A$: `wohnort` und `geschlecht` hängen zusammen.

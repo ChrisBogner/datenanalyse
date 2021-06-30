@@ -331,7 +331,7 @@ nobs
 <code>adj_r_squared</code>: adjustiertes Bestimmtheitsmaß <span class="math inline">\(R^2_\text{ajd}\)</span>
 </li>
 <li>
-<code>mse</code>: mittlerer quadratischer Fehler <code><a href="https://rdrr.io/r/base/mean.html">mean(residuals(lin_mod)^2)</a></code>
+<code>mse</code>: mittlerer quadratischer Fehler, berechnet als <code><a href="https://rdrr.io/r/base/mean.html">mean(residuals(lin_mod)^2)</a></code>
 </li>
 <li>
 <code>rmse</code>: Wurzel aus <code>mse</code>
@@ -358,13 +358,15 @@ nobs
 <p>Die <span class="math inline">\(t\)</span>-Verteilung der Schätzungen gilt <em>asymptotisch</em>, d.h. bei großen Datensäzten, auch für nicht-normalverteilte Residuen (unter bestimmten Bedingungen, s. <span class="citation"><a href="literatur.html#ref-Fahrmeir2009" role="doc-biblioref">Fahrmeir, Kneib, and Lang</a> (<a href="literatur.html#ref-Fahrmeir2009" role="doc-biblioref">2009</a>)</span>). Allerdings erfordern
 <strong>nicht-normalverteilte Residuen große Stichproben oder aber alternative Methoden</strong> zum Berechnen der Konfidenzintervalle. Auch heteroskedastische Residuen führen zu falschen Konfidenzintervallen und Hypothesentests. Bootstrap ist robust gegen die Verletzung beider Annahmen (Normalvereilung und Homoskedastizität der Residuen). Allerdings müssen die Daten nach wie vor unabhängig sein (keine wiederholten Messungen, keine Zeitreihen!), damit Bootstrap korrekt arbeitet.</p>
 <p>Bei einer Einfachregression, d.h. wenn es nur einen Prädiktor gibt, ist die Steigung häufig der interessante Parameter. Wenn wir uns also nicht für den <span class="math inline">\(y\)</span>-Achsenabschnitt interessieren, dann können wir das altbekannte Framework von <code>infer</code> für das Bootstrap-Konfidenzintervall für die Steigung verwenden. Für unser Beispiel ginge es so:</p>
+<p><strong>Schritt 1: Bootstrap-Stichproben generieren und Statistik “Steigung” berechnen</strong></p>
 <div class="sourceCode" id="cb194"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">bootstrap_distn_slope</span> <span class="op">&lt;-</span> <span class="va">befragung</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://infer.tidymodels.org/reference/specify.html">specify</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="va">zeit_bib</span> <span class="op">~</span> <span class="va">anreise</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://infer.tidymodels.org/reference/generate.html">generate</a></span><span class="op">(</span>reps <span class="op">=</span> <span class="fl">10000</span>, type <span class="op">=</span> <span class="st">"bootstrap"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://infer.tidymodels.org/reference/calculate.html">calculate</a></span><span class="op">(</span>stat <span class="op">=</span> <span class="st">"slope"</span><span class="op">)</span>
-
-<span class="va">percentile_ci</span> <span class="op">&lt;-</span> <span class="va">bootstrap_distn_slope</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://infer.tidymodels.org/reference/calculate.html">calculate</a></span><span class="op">(</span>stat <span class="op">=</span> <span class="st">"slope"</span><span class="op">)</span></code></pre></div>
+<p><strong>Schritt 2: Konfidenzintervall berechnen</strong></p>
+<div class="sourceCode" id="cb195"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">percentile_ci</span> <span class="op">&lt;-</span> <span class="va">bootstrap_distn_slope</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://infer.tidymodels.org/reference/get_confidence_interval.html">get_confidence_interval</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">"percentile"</span>, level <span class="op">=</span> <span class="fl">0.95</span><span class="op">)</span>
 
 <span class="va">percentile_ci</span></code></pre></div>
@@ -372,13 +374,13 @@ nobs
 ##   lower_ci upper_ci
 ##      &lt;dbl&gt;    &lt;dbl&gt;
 ## 1   -0.848   -0.687</code></pre>
-<p>Wir stellen die Ergebnisse wie gewohnt dar.</p>
-<div class="sourceCode" id="cb196"><pre class="downlit sourceCode r">
+<p><strong>Schritt 3: Ergebnisse darstellen</strong></p>
+<div class="sourceCode" id="cb197"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://infer.tidymodels.org/reference/visualize.html">visualize</a></span><span class="op">(</span><span class="va">bootstrap_distn_slope</span><span class="op">)</span> <span class="op">+</span>
     <span class="fu"><a href="https://infer.tidymodels.org/reference/shade_confidence_interval.html">shade_confidence_interval</a></span><span class="op">(</span>endpoints <span class="op">=</span> <span class="va">percentile_ci</span><span class="op">)</span> </code></pre></div>
-<div class="inline-figure"><img src="datenanalyse_files/figure-html/unnamed-chunk-158-1.png" width="90%"></div>
-<p>Verglichen mit dem Konfidenzintervall basierend auf der Normalverteilungsannahme, ist Bootstrap hier sehr ähnlich. Das liegt daran, dass die Normalverteilungsannahme ja erfüllt ist. In so einem Fall sind die Konfidenzintervalle basierend auf der Normalverteilungsannahme und dem Bootstrap sehr ähnlich.</p>
-<div class="sourceCode" id="cb197"><pre class="downlit sourceCode r">
+<div class="inline-figure"><img src="datenanalyse_files/figure-html/unnamed-chunk-159-1.png" width="90%"></div>
+<p>Verglichen mit dem Konfidenzintervall basierend auf der Normalverteilungsannahme, ist Bootstrap hier sehr ähnlich. Das liegt daran, dass die Normalverteilungsannahme und die Homoskedastizitätsannahme ja erfüllt sind. In so einem Fall sind die Standardkonfidenzintervalle basierend auf der Normalverteilungsannahme und dem Bootstrap sehr ähnlich. Wir würden also im Normalfall einfach die Standardkonfidenzintervalle benutzten.</p>
+<div class="sourceCode" id="cb198"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/moderndive/man/get_regression_table.html">get_regression_table</a></span><span class="op">(</span><span class="va">lin_mod</span><span class="op">)</span> <span class="op">%&gt;%</span> 
 <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">term</span> <span class="op">==</span> <span class="st">'anreise'</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
@@ -437,7 +439,7 @@ anreise
 <li>H<span class="math inline">\(_1\)</span>: <span class="math inline">\(\beta_1 \neq 0\)</span>
 </li>
 </ul>
-<div class="sourceCode" id="cb198"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb199"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">null_distn_slope</span> <span class="op">&lt;-</span> <span class="va">befragung</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://infer.tidymodels.org/reference/specify.html">specify</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="va">zeit_bib</span> <span class="op">~</span> <span class="va">anreise</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://infer.tidymodels.org/reference/hypothesize.html">hypothesize</a></span><span class="op">(</span>null <span class="op">=</span> <span class="st">"independence"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
@@ -445,7 +447,7 @@ anreise
   <span class="fu"><a href="https://infer.tidymodels.org/reference/calculate.html">calculate</a></span><span class="op">(</span>stat <span class="op">=</span> <span class="st">"slope"</span><span class="op">)</span></code></pre></div>
 <pre><code>## Setting `type = "permute"` in `generate()`.</code></pre>
 <p>Für die Darstellung brauchen wir noch die berechnete Steigung:</p>
-<div class="sourceCode" id="cb200"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb201"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">observed_slope</span> <span class="op">&lt;-</span> <span class="va">befragung</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://infer.tidymodels.org/reference/specify.html">specify</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="va">zeit_bib</span> <span class="op">~</span> <span class="va">anreise</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://infer.tidymodels.org/reference/calculate.html">calculate</a></span><span class="op">(</span>stat <span class="op">=</span> <span class="st">"slope"</span><span class="op">)</span>
@@ -456,11 +458,11 @@ anreise
 ##    &lt;dbl&gt;
 ## 1 -0.766</code></pre>
 <p>Und nun die Visualisierung:</p>
-<div class="sourceCode" id="cb202"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb203"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://infer.tidymodels.org/reference/visualize.html">visualize</a></span><span class="op">(</span><span class="va">null_distn_slope</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://infer.tidymodels.org/reference/shade_p_value.html">shade_p_value</a></span><span class="op">(</span>obs_stat <span class="op">=</span> <span class="va">observed_slope</span>, direction <span class="op">=</span> <span class="st">"both"</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="datenanalyse_files/figure-html/unnamed-chunk-162-1.png" width="90%"></div>
-<div class="sourceCode" id="cb203"><pre class="downlit sourceCode r">
+<div class="inline-figure"><img src="datenanalyse_files/figure-html/unnamed-chunk-163-1.png" width="90%"></div>
+<div class="sourceCode" id="cb204"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">null_distn_slope</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://infer.tidymodels.org/reference/get_p_value.html">get_p_value</a></span><span class="op">(</span>obs_stat <span class="op">=</span> <span class="va">observed_slope</span>, direction <span class="op">=</span> <span class="st">"both"</span><span class="op">)</span></code></pre></div>
 <pre><code>## Warning: Please be cautious in reporting a p-value of 0. This result is an
@@ -471,27 +473,24 @@ anreise
 ##     &lt;dbl&gt;
 ## 1       0</code></pre>
 </div>
-<div id="bootstrap-mit-rsample-konfidenzintervalle-für-steigung-und-y--achsenabschnitt" class="section level2" number="12.3">
+<div id="bootstrap-mit-rsample-konfidenzintervalle-für-steigung-und-y-achsenabschnitt" class="section level2" number="12.3">
 <h2>
-<span class="header-section-number">12.3</span> Bootstrap mit <code>rsample</code>: Konfidenzintervalle für Steigung und <span class="math inline">\(y-\)</span>-Achsenabschnitt<a class="anchor" aria-label="anchor" href="#bootstrap-mit-rsample-konfidenzintervalle-f%C3%BCr-steigung-und-y--achsenabschnitt"><i class="fas fa-link"></i></a>
+<span class="header-section-number">12.3</span> Bootstrap mit <code>rsample</code>: Konfidenzintervalle für Steigung und <span class="math inline">\(y\)</span>-Achsenabschnitt<a class="anchor" aria-label="anchor" href="#bootstrap-mit-rsample-konfidenzintervalle-f%C3%BCr-steigung-und-y-achsenabschnitt"><i class="fas fa-link"></i></a>
 </h2>
-<p>Falls wir doch Konfidenzintervalle für beide Modellparameter brauchen oder aber ein lineares Modell mit mehreren Prädiktoren anpassen, können wir nicht mehr mit <code>infer</code> arbeiten. Es gibt aber ein ganzes Modelluniversum, zusammengestellt in der Paketsammlung <code>tidymodels</code> (<a href="https://www.tidymodels.org/" class="uri">https://www.tidymodels.org/</a>). Darin gibt es nicht nur alle möglichen Modelle, sondern vor allem eine <em>tidy</em> und einheitliche Herangehensweise ans Modellieren. <code>tidymodels</code> ist jenseits dessen, was wir in diesem Kurs machen werden, außer der Bibliothek <code>rsample</code>, die uns beim Bootstrappen hilft.</p>
-<div class="sourceCode" id="cb206"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rsample.tidymodels.org">rsample</a></span><span class="op">)</span></code></pre></div>
-<p>Um Konfidenzintervalle sowohl für den <span class="math inline">\(y\)</span>-Achsenabschnitt als auch für die Steigung zu bekommen, generieren wir Bootstrap-Stichproben aus der <code>befragung</code>, passen dann an jede solche Stichprobe unser lineares Modell an. Jedes dieser Modelle liefert uns einen <span class="math inline">\(y\)</span>-Achsenabschnitt und eine Steigung. Dadurch bekommen wir eine Bootstrapverteilung dieser Modellparameter, so wie wir es bsiher mit dem Boostrap gemacht haben. Aus diesen Bootstrapverteilungen berechnen wir dann mit der Methode der Quantile unsere Konfidenzintervalle.</p>
-<div id="schritt-1-bootstrapstichproben-aus-befragung-generieren" class="section level3" number="12.3.1">
-<h3>
-<span class="header-section-number">12.3.1</span> Schritt 1: Bootstrapstichproben aus <code>befragung</code> generieren<a class="anchor" aria-label="anchor" href="#schritt-1-bootstrapstichproben-aus-befragung-generieren"><i class="fas fa-link"></i></a>
-</h3>
-<p>Wir generieren 10000 Bootstrap-Stichproben aus dem Datensatz <code>befragung</code> mit Hilfe der Funktion <code><a href="https://rsample.tidymodels.org/reference/bootstraps.html">bootstraps()</a></code> aus der Bibliothek <code>rsample</code>.</p>
+<p>Falls wir doch Konfidenzintervalle für beide Modellparameter brauchen (und die Annahmen Normalverteilung und/oder Homoskedastizität verletzt sind) oder aber ein lineares Modell mit mehreren Prädiktoren anpassen, können wir nicht mehr mit <code>infer</code> arbeiten. Es gibt aber ein ganzes Modelluniversum, zusammengestellt in der Paketsammlung <code>tidymodels</code> (<a href="https://www.tidymodels.org/" class="uri">https://www.tidymodels.org/</a>). Darin gibt es nicht nur alle möglichen Modelle, sondern vor allem eine <em>tidy</em> und einheitliche Herangehensweise ans Modellieren. <code>tidymodels</code> ist jenseits dessen, was wir in diesem Kurs machen werden. Wir werden aber die Bibliothek <code>rsample</code> nutzen, die uns beim Bootstrappen hilft.</p>
 <div class="sourceCode" id="cb207"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rsample.tidymodels.org">rsample</a></span><span class="op">)</span></code></pre></div>
+<p>Um Konfidenzintervalle sowohl für den <span class="math inline">\(y\)</span>-Achsenabschnitt als auch für die Steigung zu bekommen, generieren wir Bootstrap-Stichproben aus der <code>befragung</code>, passen dann an jede solche Stichprobe unser lineares Modell an. Jedes dieser Modelle liefert uns einen <span class="math inline">\(y\)</span>-Achsenabschnitt und eine Steigung. Dadurch bekommen wir Bootstrapverteilungen dieser Modellparameter, so wie sonst auch, wenn wir Bootstrap benutzt haben. Aus diesen Bootstrapverteilungen berechnen wir dann mit der Methode der Quantile unsere Konfidenzintervalle.</p>
+<p><strong>Schritt 1: Bootstrapstichproben aus <code>befragung</code> generieren</strong></p>
+<p>Wir generieren 10000 Bootstrap-Stichproben aus dem Datensatz <code>befragung</code> mit Hilfe der Funktion <code><a href="https://rsample.tidymodels.org/reference/bootstraps.html">bootstraps()</a></code> aus der Bibliothek <code>rsample</code>.</p>
+<div class="sourceCode" id="cb208"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
 <span class="va">bootstrap_reps</span> <span class="op">&lt;-</span> <span class="fl">10000</span>
 
 <span class="va">my_bootstraps</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rsample.tidymodels.org/reference/bootstraps.html">bootstraps</a></span><span class="op">(</span><span class="va">befragung</span>, times <span class="op">=</span> <span class="va">bootstrap_reps</span><span class="op">)</span></code></pre></div>
 <p>Das Objekt <code>my_bootstraps</code> ist ein “verpacktes” (<em>nested</em>) Objekt. Jeder <em>split</em> ist eine Bootstrap-Stichprobe.</p>
-<div class="sourceCode" id="cb208"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb209"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">my_bootstraps</span></code></pre></div>
 <pre><code>## # Bootstrap sampling 
 ## # A tibble: 10,000 x 2
@@ -508,11 +507,11 @@ anreise
 ##  9 &lt;split [200/79]&gt; Bootstrap00009
 ## 10 &lt;split [200/73]&gt; Bootstrap00010
 ## # … with 9,990 more rows</code></pre>
-<div class="sourceCode" id="cb210"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb211"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">my_bootstraps</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "bootstraps" "rset"       "tbl_df"     "tbl"        "data.frame"</code></pre>
-<p>Wir sehen uns so eine Bootstrap-Stichprobe mal an. Dazu nutzen wir die Funktion <code><a href="https://rsample.tidymodels.org/reference/as.data.frame.rsplit.html">analysis()</a></code>, die solche <em>splits</em> richtig behandelt. Jede Bootstrap-Stichprobe ist durch Ziehen mit Zurücklegen aus dem Datensatz <code>befragung</code> hervorgegangen.</p>
-<div class="sourceCode" id="cb212"><pre class="downlit sourceCode r">
+<p>Wir sehen uns so eine Bootstrap-Stichprobe mal an. Dazu nutzen wir die Funktion <code><a href="https://rsample.tidymodels.org/reference/as.data.frame.rsplit.html">analysis()</a></code>, die solche <em>splits</em> richtig behandelt. Jede Bootstrap-Stichprobe ist durch Ziehen mit Zurücklegen aus dem Datensatz <code>befragung</code> hervorgegangen, das ist ja beim Bootstrap immer so.</p>
+<div class="sourceCode" id="cb213"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rsample.tidymodels.org/reference/as.data.frame.rsplit.html">analysis</a></span><span class="op">(</span><span class="va">my_bootstraps</span><span class="op">$</span><span class="va">splits</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 200 x 7
 ## # Groups:   replicate [1]
@@ -530,7 +529,7 @@ anreise
 ## 10         1       5395 w          stadt   bus              25.9      297.
 ## # … with 190 more rows</code></pre>
 <p>Wie viele Studierende wurden mehrfach gezogen? Wir sehen uns als Beispiel die erste Bootstrap-Stichproben an.</p>
-<div class="sourceCode" id="cb214"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb215"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rsample.tidymodels.org/reference/as.data.frame.rsplit.html">analysis</a></span><span class="op">(</span><span class="va">my_bootstraps</span><span class="op">$</span><span class="va">splits</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">group_by</span><span class="op">(</span><span class="va">student_id</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">summarise</span><span class="op">(</span>n <span class="op">=</span> <span class="fu">n</span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
@@ -549,13 +548,9 @@ anreise
 ##  9       5641     3
 ## 10       5971     3
 ## # … with 118 more rows</code></pre>
-</div>
-<div id="schritt-1-modell-auf-den-bootstrap-stichproben-anpassen" class="section level3" number="12.3.2">
-<h3>
-<span class="header-section-number">12.3.2</span> Schritt 1: Modell auf den Bootstrap-Stichproben anpassen<a class="anchor" aria-label="anchor" href="#schritt-1-modell-auf-den-bootstrap-stichproben-anpassen"><i class="fas fa-link"></i></a>
-</h3>
+<p><strong>Schritt 1: Modell auf den Bootstrap-Stichproben anpassen</strong></p>
 <p>Um unser ursprüngliches lineares Modell anzupassen, benutzen wir eine selbstgeschriebene Funktion, inspiriert von der Hilfe zu <code>rsample</code> (?int_pctl). Die Funktion <code>lm_est()</code> passt auf einer Bootstrap-Stichprobe das lineare Modell <code>zeit_bib ~ anreise</code> an. Um die Berechnung auf allen Bootstrap-Stichproben effizient zu machen, nutze ich die Funktion <code>map()</code>, die sich eine Bootstrap-Stichprobe nach der anderen vornimmt und das lineare Modell anpasst. Wir kommen in einer spätere Stunde auf solche effizienten Funktionen zurück.</p>
-<div class="sourceCode" id="cb216"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb217"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">lm_est</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">split</span>, <span class="va">...</span><span class="op">)</span> <span class="op">{</span>
   <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">zeit_bib</span> <span class="op">~</span> <span class="va">anreise</span>, data <span class="op">=</span> <span class="fu"><a href="https://rsample.tidymodels.org/reference/as.data.frame.rsplit.html">analysis</a></span><span class="op">(</span><span class="va">split</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
     <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html">tidy</a></span><span class="op">(</span><span class="op">)</span>
@@ -564,7 +559,7 @@ anreise
 <span class="va">model_res</span> <span class="op">&lt;-</span> <span class="va">my_bootstraps</span> <span class="op">%&gt;%</span>
   <span class="fu">mutate</span><span class="op">(</span>results <span class="op">=</span> <span class="fu">map</span><span class="op">(</span><span class="va">splits</span>, .f <span class="op">=</span> <span class="va">lm_est</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p>Wir sehen uns das entstandene Objekt mit allen angepassten Modellen an. Und <span class="math inline">\(\dots\)</span> wir sehen nichts 😄.</p>
-<div class="sourceCode" id="cb217"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb218"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">model_res</span></code></pre></div>
 <pre><code>## # Bootstrap sampling 
 ## # A tibble: 10,000 x 3
@@ -582,7 +577,7 @@ anreise
 ## 10 &lt;split [200/73]&gt; Bootstrap00010 &lt;tibble [2 × 5]&gt;
 ## # … with 9,990 more rows</code></pre>
 <p>Die Ergebnisse müssen wir noch “auspacken.”</p>
-<div class="sourceCode" id="cb219"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb220"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">model_coeffs</span> <span class="op">&lt;-</span> <span class="va">model_res</span> <span class="op">%&gt;%</span>
   <span class="co"># Die Spalte splits los werden.</span>
   <span class="fu">select</span><span class="op">(</span><span class="op">-</span><span class="va">splits</span><span class="op">)</span> <span class="op">%&gt;%</span>
@@ -604,21 +599,17 @@ anreise
 ##  9 Bootstrap00005 (Intercept)  299.       2.18       137.  2.89e-198
 ## 10 Bootstrap00005 anreise       -0.742    0.0493     -15.1 1.19e- 34
 ## # … with 19,990 more rows</code></pre>
-<p>Jetzt können wir sehen, dass das Objekt <code>model_coeffs</code> die beiden Modellparameter, <span class="math inline">\(y\)</span>-Achsenabschnitt und die Steigung enthält, und das jeweils so häufig, wie wir eben Bootstrap-Stichproben generiert haben. Somit haben wir jetzt eine Bootstrapverteilung dieser Modellparameter, die wir nun plotten können.</p>
-<div class="sourceCode" id="cb221"><pre class="downlit sourceCode r">
+<p>Jetzt können wir sehen, dass das Objekt <code>model_coeffs</code> die beiden Modellparameter, <span class="math inline">\(y\)</span>-Achsenabschnitt und die Steigung, enthält und das jeweils so häufig, wie wir eben Bootstrap-Stichproben generiert haben. Somit haben wir jetzt eine Bootstrapverteilung dieser Modellparameter, die wir nun plotten können.</p>
+<div class="sourceCode" id="cb222"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span><span class="va">model_coeffs</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">estimate</span>, group <span class="op">=</span> <span class="va">term</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
   <span class="fu">geom_histogram</span><span class="op">(</span>col <span class="op">=</span> <span class="st">"white"</span>, nbins <span class="op">=</span> <span class="fl">30</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">facet_wrap</span><span class="op">(</span><span class="op">~</span> <span class="va">term</span>, scales <span class="op">=</span> <span class="st">"free_x"</span><span class="op">)</span></code></pre></div>
 <pre><code>## Warning: Ignoring unknown parameters: nbins</code></pre>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
-<div class="inline-figure"><img src="datenanalyse_files/figure-html/unnamed-chunk-171-1.png" width="90%"></div>
-</div>
-<div id="schritt-3-konfidenzintervalle-berechnen" class="section level3" number="12.3.3">
-<h3>
-<span class="header-section-number">12.3.3</span> Schritt 3: Konfidenzintervalle berechnen<a class="anchor" aria-label="anchor" href="#schritt-3-konfidenzintervalle-berechnen"><i class="fas fa-link"></i></a>
-</h3>
+<div class="inline-figure"><img src="datenanalyse_files/figure-html/unnamed-chunk-172-1.png" width="90%"></div>
+<p><strong>Schritt 3: Konfidenzintervalle berechnen</strong></p>
 <p>Die Verteilungen sind symmetrisch, weil ja die Annahmen der Normalregression erfüllt sind. Jetzt fehlen uns noch die Konfidenzintervalle, von denen wir erwarten, dass sie den Standardkonfidenzintervallen ähnlich sein werden.</p>
-<div class="sourceCode" id="cb224"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb225"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Konfidenzintervalle mit Bootstrap</span>
 <span class="va">percentile_ci</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rsample.tidymodels.org/reference/int_pctl.html">int_pctl</a></span><span class="op">(</span><span class="va">model_res</span>, <span class="va">results</span><span class="op">)</span>
 
@@ -690,7 +681,7 @@ percentile
 </tr>
 </tbody>
 </table></div>
-<div class="sourceCode" id="cb225"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb226"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">standard_ci</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <div class="inline-table"><table class="table table-sm">
 <thead><tr>
@@ -765,8 +756,8 @@ anreise
 </tr>
 </tbody>
 </table></div>
-<p>Wir plotten alle Ergebnisse nun zusammen. Das müssen wir “händisch” machen, da uns ja nicht die tolle Funktion <code><a href="https://infer.tidymodels.org/reference/visualize.html">visualize()</a></code> aus <code>infer</code> zur Verfügung steht. Wir fügen die Konfidenzintervalle als vertikale Linien zu den Histogrammen hinzu.</p>
-<div class="sourceCode" id="cb226"><pre class="downlit sourceCode r">
+<p>Wir plotten alle Ergebnisse nun zusammen. Das müssen wir “händisch” machen, da uns ja nicht die tolle Funktion <code><a href="https://infer.tidymodels.org/reference/visualize.html">visualize()</a></code> aus <code>infer</code> zur Verfügung steht. Wir fügen die Konfidenzintervalle als vertikale Linien zu den Histogrammen der Bootstrapverteilungen hinzu.</p>
+<div class="sourceCode" id="cb227"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span><span class="va">model_coeffs</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">estimate</span>, group <span class="op">=</span> <span class="va">term</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
   <span class="fu">geom_histogram</span><span class="op">(</span>col <span class="op">=</span> <span class="st">"white"</span>, nbins <span class="op">=</span> <span class="fl">30</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">geom_vline</span><span class="op">(</span>data <span class="op">=</span> <span class="va">percentile_ci</span>, <span class="fu">aes</span><span class="op">(</span>xintercept <span class="op">=</span> <span class="va">.lower</span>, group <span class="op">=</span> <span class="va">term</span>, col <span class="op">=</span> <span class="st">'percentile_ci_lower'</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
@@ -778,9 +769,8 @@ anreise
   <span class="fu">theme</span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">'bottom'</span><span class="op">)</span></code></pre></div>
 <pre><code>## Warning: Ignoring unknown parameters: nbins</code></pre>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
-<div class="inline-figure"><img src="datenanalyse_files/figure-html/unnamed-chunk-173-1.png" width="90%"></div>
-<p>In diesem Beispiel ähneln sich die Konfideznintervalle, da die Annahmen der Normalregression ja erfüllt sind. Das wird in der Aufgabe, die Sie selbständig bearbeiten werden, nicht mehr der Fall sein. Selbstverständlich sollen Sie im Falle von erfüllten Annahmen einfach die Standardkonfidenzintervalle nutzen und brauchen kein Bootstrap. Sie werden aber sehen, dass eim Modellieren mit richtigen Daten die Annahmen der Normalverteilung und der Homoskedastizität sehr häufig verletzt sind. Mit dem Bootstrap sind Sie jetzt dafür gerüstet 😄.</p>
-</div>
+<div class="inline-figure"><img src="datenanalyse_files/figure-html/unnamed-chunk-174-1.png" width="90%"></div>
+<p>In diesem Beispiel ähneln sich die Konfidenzintervalle, da die Annahmen der Normalregression erfüllt sind. Das wird in den Aufgaben (s.u.), die Sie selbständig bearbeiten werden, nicht mehr der Fall sein. Selbstverständlich sollen Sie im Falle von erfüllten Annahmen einfach die Standardkonfidenzintervalle nutzen und brauchen kein Bootstrap. Sie werden aber sehen, dass beim Modellieren mit richtigen Daten die Annahmen der Normalverteilung und der Homoskedastizität häufig verletzt sind. Mit dem Bootstrap sind Sie jetzt dafür gerüstet 😄.</p>
 </div>
 <div id="lesestoff-10" class="section level2" number="12.4">
 <h2>
@@ -839,13 +829,7 @@ anreise
 </ul>
 </li>
 <li><a class="nav-link" href="#bootstrap-mit-infer-konfidenzintervall-f%C3%BCr-steigung"><span class="header-section-number">12.2</span> Bootstrap mit infer: Konfidenzintervall für Steigung</a></li>
-<li>
-<a class="nav-link" href="#bootstrap-mit-rsample-konfidenzintervalle-f%C3%BCr-steigung-und-y--achsenabschnitt"><span class="header-section-number">12.3</span> Bootstrap mit rsample: Konfidenzintervalle für Steigung und \(y-\)-Achsenabschnitt</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#schritt-1-bootstrapstichproben-aus-befragung-generieren"><span class="header-section-number">12.3.1</span> Schritt 1: Bootstrapstichproben aus befragung generieren</a></li>
-<li><a class="nav-link" href="#schritt-1-modell-auf-den-bootstrap-stichproben-anpassen"><span class="header-section-number">12.3.2</span> Schritt 1: Modell auf den Bootstrap-Stichproben anpassen</a></li>
-<li><a class="nav-link" href="#schritt-3-konfidenzintervalle-berechnen"><span class="header-section-number">12.3.3</span> Schritt 3: Konfidenzintervalle berechnen</a></li>
-</ul>
-</li>
+<li><a class="nav-link" href="#bootstrap-mit-rsample-konfidenzintervalle-f%C3%BCr-steigung-und-y-achsenabschnitt"><span class="header-section-number">12.3</span> Bootstrap mit rsample: Konfidenzintervalle für Steigung und \(y\)-Achsenabschnitt</a></li>
 <li><a class="nav-link" href="#lesestoff-10"><span class="header-section-number">12.4</span> Lesestoff</a></li>
 <li>
 <a class="nav-link" href="#aufgaben-9"><span class="header-section-number">12.5</span> Aufgaben</a><ul class="nav navbar-nav">
@@ -871,7 +855,7 @@ anreise
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Datenanalyse mit R</strong>: SoSe 2021" was written by Christina Bogner. It was last built on 2021-06-29.</p>
+    <p>"<strong>Datenanalyse mit R</strong>: SoSe 2021" was written by Christina Bogner. It was last built on 2021-06-30.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

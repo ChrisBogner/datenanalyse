@@ -53,7 +53,8 @@ zeit_bib <- 5 * 60 - 0.7 * anreise + rnorm(length(anreise), 0, 20)
 
 grundgesamtheit <- tibble(student_id, geschlecht, wohnort, verkehrsmittel, anreise, zeit_bib)
 
-grundgesamtheit
+datatable(grundgesamtheit, options = list(scrollX = T)) %>%
+  formatRound(c('zeit_bib', 'anreise'), 1)
 ```
 
 
@@ -64,7 +65,8 @@ befragung_size <- 200
 
 befragung <- rep_sample_n(grundgesamtheit, size = befragung_size, replace = FALSE, reps = 1)
 
-befragung
+datatable(befragung, options = list(scrollX = T)) %>%
+  formatRound(c('zeit_bib', 'anreise'), 1)
 ```
 
 Wir würden gerne den Unterschied der Arbeitszeit in der Bibliothek zwischen Männern und Frauen kennen. D.h. wir möchten diesen Unterschied schätzen und auch die Unsicherheit der Schätzung quantifizieren. Ich hoffe, der Wortlaut kommt Ihnen bekannt vor `r emo::ji('nerd_face')`.
@@ -143,6 +145,7 @@ Wir kommen zurück zu Daten aus Aufgabe \@ref(verdichtung). Wie stark hat sich d
 
 ### Anteil von beschäftigten Frauen im privaten und öffentlichen Sektor, revisited
 Wir sehen uns erneut die Daten der Weltbank aus der Aufgabe \@ref(world-bank) an. Diesmal interessiert und die Schätzung des Anteils und ihr 95%-Bootstrap-Konfidenzintervall. Vergleichen Sie die Aussagen, die Sie mit dieser Lösung treffen können, mit der Aussage aus dem Hypothesentest.
+
 
 ## Ihre Arbeit einreichen
 - Speichern Sie Ihr Notebook ab und laden Sie nur die .Rmd Datei vom Server.

@@ -2,6 +2,8 @@
 library(fontawesome)
 library(kableExtra)
 library(tidyverse)
+library(DT)
+library(emo)
 
 knitr::knit_hooks$set(document = function(x) {
   sub('\\usepackage{graphicx, color}',

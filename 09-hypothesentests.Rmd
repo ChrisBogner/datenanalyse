@@ -11,22 +11,22 @@ Ich weiß nicht, wie es Ihnen ergangen ist, aber ich habe in meiner Grundausbild
 
 Diese vielen Tests stammen noch aus der Urzeit der Statistik, als Rechenzeit, wenn überhaupt vorhanden, unbezahlbar war. Daher haben die Väter der Statistik (war damals überwiegend eine reine Männerclique `r emo::ji('angry')`) viele Näherungsverfahren entwickelt. Diese Näherungsverfahren leiten eine theoretische Verteilung für verschiedene Teststatistiken ab. Tests, die auf solchen Näherungen basieren, haben häufig starke Annahmen über die Daten, wie z.B. dass die Daten normalverteilt sein müssen, oder dass der Datensatz groß sein muss, damit die Näherung stimmt.
 
-Heute ist für die meisten unserer Analysen ausreichen Rechenkapazität vorhanden. Daher müssen wir nicht mehr auf solche Näherungen zurück greifen, sondern können Computersimulationen benutzen. Diese Computersimulationen setzt man ein, um bei Hypothesentests Daten unter der Normalverteilung zu generieren. Abbildung \@ref(fig:one-test) zeigt das allgemeine Vorgehen, wie es für jeden beliebigen Test gültig ist. Dieses Vorgehen kann man auf folgende Schritte "runterkochen":
+Heute ist für die meisten unserer Analysen ausreichen Rechenkapazität vorhanden. Daher müssen wir nicht mehr auf solche Näherungen zurück greifen, sondern können Computersimulationen benutzen. Diese Computersimulationen setzt man ein, um bei Hypothesentests Daten unter der Nullhypothese zu generieren. Abbildung \@ref(fig:one-test) zeigt das allgemeine Vorgehen, wie es für jeden beliebigen Test gültig ist. Dieses Vorgehen kann man auf folgende Schritte "runterkochen":
 
 **Teststatistik aus Stichprobe berechnen** 
 Wir haben eine Stichprobe (*data* in der Abbildung \@ref(fig:one-test)), die wir mit Hilfe einer Teststatistik zusammen fassen. Wir nennen diese Teststatistik $\sigma^*$. Sie kann z.B. der Mittelwert der Differenzen zwischen einer Behandlung und einer Kontrolle in einem Experiment sein.
 
 **Nullhypothese formulieren**
-Wir denken gut über unsere Forschungsfrage nach und überlegen uns, welches Modell am besten die Nullhypothese $H_0$, also eine Situation ohne jeglichen Effekt, wiedergibt. Im Falle des Mittelwerts eben eine Welt, in der der besagte Mittelwert null ist, es also keinen Behandlungseffekt in unserem Experiment gibt. Das Modell für $H_0$ kann eine Permutation der Daten sein (Permutationstests) oder aus einer theoretischen Verteilung stammen (z.B. Normalverteilung). Es kann auch ein richtig kompliziertes Modell sein. Letzteres ist nicht Bestandteil diese Kurses.
+Wir denken gut über unsere Forschungsfrage nach und überlegen uns, welches Modell am besten die Nullhypothese $H_0$, also eine Situation ohne jeglichen Effekt, wiedergibt. Im Falle des Mittelwerts ist es eine Welt, in der der besagte Mittelwert Null ist, es also keinen Behandlungseffekt in unserem Experiment gibt. Das Modell für $H_0$ kann eine Permutation der Daten sein (Permutationstests) oder aus einer theoretischen Verteilung stammen (z.B. Normalverteilung). Es kann auch ein richtig kompliziertes Modell sein. Letzteres ist nicht Bestandteil diese Kurses.
 
 **Simulation der Daten unter der Nullhypothese**
-Wir simulieren Daten aus diesem Modell ohne Effekt, d.h. Daten unter der Nullhypothese und berechnen aus jedem simulierten Datensatz dieselbe Teststatistik wie aus der echten Stichprobe.
+Wir simulieren Daten aus diesem Modell ohne Effekt, d.h. Daten unter der Nullhypothese, und berechnen aus jedem simulierten Datensatz dieselbe Teststatistik wie aus der echten Stichprobe.
 
 **Berechnen der Stichprobenverteilung**
 Die vielen simulierten Teststatistiken ergeben eine Stichprobenverteilung.
 
 **Vergleich der beobachteten Teststatistik mit der Stichprobenverteilung -- Entscheidung**
-Nun können wir die Teststatistik $\sigma^*$ mit der Stichprobenverteilung der simulieren Teststatistiken vergleichen. Wir entscheiden, ob wir $\sigma^*$ in der Welt ohne Effekt, also unter der Nullhypothese, häufig oder eher selten vorkommt. Der $p$-Wert gibt an, wie wahrscheinlich es ist, unter der Nullhypothese einen Effekt zu beobachten, der mindestens so extrem ist, wie derjenige, den wir durch unsere Daten errechnet haben. Wenn $\sigma^*$ selten vorkommt, der $p$-Wert also klein ist, verwerfen wir die Nullhypothese und sagen, dass es einen Effekt gibt. Mit anderen Worte, es ist dann unwahrscheinlich, dass das beobachtete $\sigma^*$ auf den Zufall zurück zu führen ist.
+Nun können wir die aus unseren Daten berechnete Teststatistik $\sigma^*$ mit der Stichprobenverteilung der Teststatistik der simulieren Daten vergleichen. Wir entscheiden, ob $\sigma^*$ in der Welt ohne Effekt, also unter der Nullhypothese, häufig oder eher selten vorkommt. Der $p$-Wert gibt an, wie wahrscheinlich es ist, unter der Nullhypothese einen Effekt zu beobachten, der mindestens so extrem ist, wie derjenige, den wir durch unsere Daten errechnet haben, sprich mindestens so extrem wie $\sigma^*$. Wenn $\sigma^*$ selten vorkommt, der $p$-Wert also klein ist, verwerfen wir die Nullhypothese und sagen, dass es einen Effekt gibt. Mit anderen Worte, es ist dann unwahrscheinlich, dass das beobachtete $\sigma^*$ auf den Zufall zurück zu führen ist.
 
 Diese Schritte gelten wirklich für jeden beliebigen Test. Daher kann man verallgemeinert sagen, dass es nur einen Test (ein Testframework) gibt. 
 
@@ -41,7 +41,7 @@ Das Paket `infer` bietet so ein einheitliches Framework für Hypothesentests (Ab
 1. `specify()` Variablen festlegen
 1. `hypothesize()` Nullhypothese definieren
 1. `generate()` Daten unter der Nullhypothese generieren
-1. `calculate()` Stichprobenverteilung (d.g. Verteilung der Teststatistik) berechnen
+1. `calculate()` Stichprobenverteilung (d.h. Verteilung der Teststatistik) berechnen
 1. `visualize()` Stichprobenverteilung darstellen
 
 Mit `get_p_value` kann man den $p$-Wert berechnen und mit `shade_p_value` diesen darstellen lassen.
@@ -51,15 +51,15 @@ knitr::include_graphics('figures/ht-diagram.png')
 ```
 
 ### Stadt- und Landbewohner in Werdeschlau
-Wir möchten gerne wissen, ob sich unter den Studierenden in Werdeschlau genauso viele Stadt- und Landbewohner gibt.
+Wir möchten gerne wissen, ob sich unter den Studierenden in Werdeschlau genauso viele Stadt- wie Landbewohner gibt oder ob sich die Anteile der Stadt- und Landbewohner unterscheiden.
 
-Wir simulieren erneut unsere Grundgesamtheit.
-
+Zunächst laden wir die nötigen Bibliotheken.
 ```{r, message = F, error = F}
 library(tidyverse)
 library(infer)
 ```
 
+Wir simulieren erneut unsere Grundgesamtheit.
 ```{r}
 set.seed(123)
 
@@ -86,8 +86,10 @@ zeit_bib <- 5 * 60 - 0.7 * anreise + rnorm(length(anreise), 0, 20)
 
 grundgesamtheit <- tibble(student_id, geschlecht, wohnort, verkehrsmittel, anreise, zeit_bib)
 
-grundgesamtheit
+datatable(grundgesamtheit, options = list(scrollX = T)) %>%
+  formatRound(c('zeit_bib', 'anreise'), 1)
 ```
+
 
 Nun befragen wir 200 Studierende.
 
@@ -98,7 +100,8 @@ befragung_size <- 200
 
 befragung <- rep_sample_n(grundgesamtheit, size = befragung_size, replace = FALSE, reps = 1)
 
-befragung
+datatable(befragung, options = list(scrollX = T)) %>%
+  formatRound(c('zeit_bib', 'anreise'), 1)
 ```
 
 Wir berechnen den Anteil der Stadtbewohner in der Befragung.
@@ -169,7 +172,7 @@ null_distn <- befragung %>%
 null_distn
 ```
 
-Nun Plotten wir die Stichprobenverteilung, die auf Permutation basiert, und färben den $p$-Wert ein.
+Nun Plotten wir die Stichprobenverteilung, die auf Permutation basiert, und färben den $p$-Wert ein. Der rote Balken zeigt der Wert der Statistik in den Daten, `d_hat`.
 ```{r, out.width = '90%'}
 visualize(null_distn) +
   shade_p_value(obs_stat = d_hat, direction = "two-sided")
@@ -181,7 +184,11 @@ null_distn %>%
   get_p_value(obs_stat = d_hat, direction = "two-sided")
 ```
 
-Der $p$-Wert ist größer als das Standard-Signifikanzniveau von 5%, daher können wir die Nullhypothese nicht ablehnen und behalten sie bei. An dieser Stelle ist es wichtig, nicht am Signifikanzniveau zu drehen, es etwas auf 10% zu setzten, oder irgendwie Datenpunkte heraus zu filtern. Das wäre **$p$-Hacking**. So nennt man das künstliche Drücken des $p$-Werts unter die 5%-Schranke, um statistische Signifikanz zu erzeugen. Viel besser ist es, zu berichten, dass die beobachteten Differenzen in der Präferenz von Frauen und Männern für den Wohnort zufällig sein können, und den $p$-Wert mit anzugeben. BTW, der wahre Unterschied aus der Grundgesamtheit ist extrem klein.
+Der $p$-Wert ist auch in diesem Fall klein. Wir würden also wie im oberen Beispiel schließen, dass es unwahrscheinlich ist, dass die Unterschiede zwischen Männern und Frauen bei der Präferenz des Wohnorts zufällig sind. 
+
+An dieser Stelle ein kleiner Ausflug in die Welt der **statistischen Signfikanz**. Sehr häufig wird für die Entscheidung, ob eine Nullhypothese abgelehnt wird, ein willkürlicher Schwellenwert, das Signifikanzniveau $\alpha$ (meistens 5%) genutzt. Wenn der $p$-Wert darunter liegt, wird die Nullhypothese verworfen, ansonsten wird sie beibehalten. Es gibt also eine **Dichotomisierung**, eine Klassifizierung der $p$-Werte in statistisch signifikant und statistisch nicht signifikant. Dieses Vorgehen wird seit vielen Jahren stark kritisiert [@Wasserstein2019]. Und an unserem Beispiel wird auch klar, warum. Hier ist der $p$-Wert etwas größer als das Signifikanzniveau und wir müssten die Nullhypothese beibehalten, wegen einer winzigen Überschreitung von 0.42%. Das macht wissenschaftlich keinen Sinn und ist extrem unbefriedigend. Zudem sorgt die "Jagd" nach signifikanten Ergebnissen für allerlei Missbrauch. Man könnte z.B. im Nachhinein das Signifikanzniveau höher setzten. Das nennt man **$p$-Hacking**. Um diesem Missbrauch vorzubeugen und um mehr Informationen aus einem Hypothesentest zu ziehen, berichten Sie einfach den $p$-Wert und ordenen ihn ein. Ist so ein Effekt, wie er in den Daten beobachtet wurde, selten oder häufig unter der Annahme der Nullhypothese? 
+
+BTW, der wahre Unterschied aus der Grundgesamtheit zwischen den Mannern und Frauen ist extrem klein. Nur weil etwas signifikant oder nicht signifikant ist, ist es noch lange nicht relevant. Das zu beurteilen braucht es Fachwissen (*domain knowledge*) und eine richtige Einordnung der Ergebnisse. Daher ist die Berechnung von Effektgrößen (s. nächstes Kapitel) sehr viel spannender als das Durchführen von Hypothesentests.
 ```{r}
 grundgesamtheit %>% 
   specify(wohnort ~ geschlecht, success = "stadt") %>%
@@ -200,10 +207,10 @@ Führen Sie einen Hypothesentest durch, ob die Anreisezeit und die Zeit in der B
 Tipps: `specify(anreise ~ zeit_bib)` und `calculate(stat = "correlation")`. Sehr hilfreich dazu ist auch die Webseite von `infer` (s.u.).
 
 ### Hängt die Wahl des Verkehrsmittels vom Wohnort ab?
-Vielleicht können Sie sich noch erinnern, dass wir in einer der früheren Stunden die Kontingenztabelle durchgenommen haben (s. Vorlesung Zusammenhangsmaße). In einer solchen Tabelle fasst man die Häufigkeiten von zwei kategoriellen Variablen zusammen. Anhand von so einer Tabelle kann man entscheiden, ob es einen Zusammenhang zwischen diesen beiden Variablen gibt. Die Statistik, die man für so eine Tabelle ausrechnet, heißt Kontingenzkoeffizient. In einem Hypothesentest, genannt $\chi^2$-Test, kann man überprüfen, ob dieser Zusammenhang signifikant ist.
+Vielleicht können Sie sich noch erinnern, dass wir in einer der früheren Stunden die Kontingenztabelle durchgenommen haben (s. Vorlesung Zusammenhangsmaße). In einer solchen Tabelle fasst man die Häufigkeiten von zwei kategoriellen Variablen zusammen. Anhand von so einer Tabelle kann man entscheiden, ob es einen Zusammenhang zwischen diesen beiden Variablen gibt. Die Statistik, die man für so eine Tabelle ausrechnet, heißt Kontingenzkoeffizient. In einem Hypothesentest, genannt $\chi^2$-Test, kann man überprüfen, ob dieser Zusammenhang zufällig ist.
 
-Überprüfen Sie nun, ob es einen Zusamenhang gibt zwischen der Wahl des Verkehrsmittels und dem Wohnort der befragten Studierenden. Tipps: `specify(formula = wohnort ~ verkehrsmittel)` und `calculate(stat = "Chisq")`. Auch hier lohnt ein Blick auf die Webseite von `infer` (s.u.)
-.
+Überprüfen Sie nun, ob es einen Zusamenhang gibt zwischen der Wahl des Verkehrsmittels und dem Wohnort der befragten Studierenden. Tipps: `specify(formula = wohnort ~ verkehrsmittel)` und `calculate(stat = "Chisq")`. Auch hier lohnt ein Blick auf die Webseite von `infer` (s.u.).
+
 ## Ihre Arbeit einreichen
 - Speichern Sie Ihr Notebook ab und laden Sie nur die .Rmd Datei vom Server.
 - Laden Sie Ihre .Rmd Datei in ILIAS hoch. **Beachten Sie die Deadline!**

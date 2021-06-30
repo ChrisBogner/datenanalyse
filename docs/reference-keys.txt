@@ -121,6 +121,7 @@ lesestoff-7
 aufgaben-6
 sind-anreisezeit-und-zeit-in-der-bibliothek-correliert
 hängt-die-wahl-des-verkehrsmittels-vom-wohnort-ab
+ihre-arbeit-einreichen-5
 weiterführende-literatur-und-videos-1
 effekte
 größe-des-effekts
@@ -131,7 +132,7 @@ lesestoff-8
 aufgaben-7
 bodenverdichtung-revisited
 anteil-von-beschäftigten-frauen-im-privaten-und-öffentlichen-sektor-revisited
-ihre-arbeit-einreichen-5
+ihre-arbeit-einreichen-6
 weitere-infos
 regression
 begriff-regression
@@ -155,7 +156,7 @@ lesestoff-10
 aufgaben-9
 artenreichtum-auf-den-galapagosinseln
 artenreichtum-auf-den-galapagosinseln-revisited
-ihre-arbeit-einreichen-6
+ihre-arbeit-einreichen-7
 daten-und-bericht
 datenquellen
 statistsiches-bundesamt

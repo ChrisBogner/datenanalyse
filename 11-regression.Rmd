@@ -112,7 +112,8 @@ zeit_bib <- 5 * 60 - 0.7 * anreise + rnorm(length(anreise), 0, 20)
 
 grundgesamtheit <- tibble(student_id, geschlecht, wohnort, verkehrsmittel, anreise, zeit_bib)
 
-grundgesamtheit
+datatable(grundgesamtheit, options = list(scrollX = T)) %>%
+  formatRound(c('zeit_bib', 'anreise'), 1)
 ```
 
 Und befragen 200 Studierende.
@@ -124,7 +125,8 @@ befragung_size <- 200
 
 befragung <- rep_sample_n(grundgesamtheit, size = befragung_size, replace = FALSE, reps = 1)
 
-befragung
+datatable(befragung, options = list(scrollX = T)) %>%
+  formatRound(c('zeit_bib', 'anreise'), 1)
 ```
 
 ### Modell anpassen

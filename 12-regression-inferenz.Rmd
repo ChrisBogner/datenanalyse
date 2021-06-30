@@ -309,7 +309,7 @@ analysis(my_bootstraps$splits[[1]]) %>%
   arrange(desc(n))
 ```
 
-**Schritt 1: Modell auf den Bootstrap-Stichproben anpassen**
+**Schritt 2: Modell auf den Bootstrap-Stichproben anpassen**
 
 Um unser ursprüngliches lineares Modell anzupassen, benutzen wir eine selbstgeschriebene Funktion, inspiriert von der Hilfe zu `rsample` (?int_pctl). Die Funktion `lm_est()` passt auf einer Bootstrap-Stichprobe das lineare Modell `zeit_bib ~ anreise` an. Um die Berechnung auf allen Bootstrap-Stichproben effizient zu machen, nutze ich die Funktion `map()`, die sich eine Bootstrap-Stichprobe nach der anderen vornimmt und das lineare Modell anpasst. Wir kommen in einer spätere Stunde auf solche effizienten Funktionen zurück.
 ```{r}
@@ -353,7 +353,7 @@ Die Verteilungen sind symmetrisch, weil ja die Annahmen der Normalregression erf
 # Konfidenzintervalle mit Bootstrap
 percentile_ci <- int_pctl(model_res, results)
 
-# Standard-Konfidenzintervalle mit der Annahme der Normalverteilung der Residuen
+# Standard-Konfidenzintervalle mit der Annahme der Normalverteilung und Homoskedastizität der Residuen
 standard_ci <- tidy(lin_mod, conf.int = TRUE)
 
 percentile_ci %>% kable()
@@ -393,10 +393,10 @@ Wir beschäftigen uns mit dem Datensatz `gala` aus der Bibliothek `faraway`.
 1. Interpretieren Sie das Modell.
 
 ### Artenreichtum auf den Galapagosinseln, revisited
-Wiederholen Sie die obere Aufgabe nun mit Hilfe der Bibliothek `rasample`. Tip: Wandeln Sie die Inselnamen, die nur als Zeilennamen existieren, in eine richtige Spalte um `gala <- gala %>%
-  rownames_to_column(var = "island")`.
+Wiederholen Sie die obere Aufgabe nun mit Hilfe der Bibliothek `rasample`. Tip: Wandeln Sie die Inselnamen, die nur als Zeilennamen existieren, in eine richtige Spalte um `gala <- gala %>% rownames_to_column(var = "island")`.
 
 ## Ihre Arbeit einreichen
+
 - Speichern Sie Ihr Notebook ab und laden Sie nur die .Rmd Datei vom Server.
 - Laden Sie Ihre .Rmd Datei in ILIAS hoch. **Beachten Sie die Deadline!**
 - Sie erhalten die Musterlösung nach dem Hochladen.

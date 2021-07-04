@@ -18,10 +18,6 @@ fig:sampling-world
 fig:sampling-bootstrap
 fig:one-test
 fig:ht
-einfuehrung
-zuordnung-zum-modul-und-leistungsnachweis
-lernziele-des-kurses
-was-mir-im-umgang-miteinander-wichtig-ist
 erste-schritte
 was-ist
 was-ist-rstudio

@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Kapitel 8 Bootstrapping und Konfidenzintervalle | Datenanalyse mit R</title>
+<title>Kapitel 7 Bootstrapping und Konfidenzintervalle | Datenanalyse mit R</title>
 <meta name="author" content="Christina Bogner">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.2"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.9/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
@@ -39,20 +39,24 @@
       <nav aria-label="Table of contents"><h2>Table of contents</h2>
         <ul class="book-toc list-unstyled">
 <li><a class="" href="index.html">Vorwort</a></li>
-<li><a class="" href="einfuehrung.html"><span class="header-section-number">1</span> Der Kurs</a></li>
-<li><a class="" href="erste-schritte.html"><span class="header-section-number">2</span> Erste Schritte in R</a></li>
-<li><a class="" href="reproduzieren.html"><span class="header-section-number">3</span> R Markdown</a></li>
-<li><a class="" href="ggplot.html"><span class="header-section-number">4</span> Einführung in ggplot2</a></li>
-<li><a class="" href="daten-einlesen-und-visualisieren.html"><span class="header-section-number">5</span> Daten einlesen und visualisieren</a></li>
-<li><a class="" href="tidyverse.html"><span class="header-section-number">6</span> Der explorative Workflow mit tidyverse</a></li>
-<li><a class="" href="stichproben.html"><span class="header-section-number">7</span> Stichproben und Variabilität</a></li>
-<li><a class="active" href="bootstrapping-und-konfidenzintervalle.html"><span class="header-section-number">8</span> Bootstrapping und Konfidenzintervalle</a></li>
-<li><a class="" href="hypothesentsts.html"><span class="header-section-number">9</span> Hypothesentests mit dem Paket infer</a></li>
-<li><a class="" href="effekte.html"><span class="header-section-number">10</span> Schätzen von Effekten: Raus aus der \(p &lt; 0.05\)-Falle</a></li>
-<li><a class="" href="regression.html"><span class="header-section-number">11</span> Lineare Regression</a></li>
-<li><a class="" href="regression-inferenz.html"><span class="header-section-number">12</span> Inferenz in linearer Regression</a></li>
-<li><a class="" href="daten-und-bericht.html"><span class="header-section-number">13</span> Datenquellen und Struktur des Abschlussberichts</a></li>
-<li><a class="" href="aufgabensammlung.html"><span class="header-section-number">14</span> Aufgabensammlung</a></li>
+<li><a class="" href="einfuehrung.html">Der Kurs</a></li>
+<li class="book-part">Teil I: Daten explorieren</li>
+<li><a class="" href="erste-schritte.html"><span class="header-section-number">1</span> Erste Schritte in R</a></li>
+<li><a class="" href="reproduzieren.html"><span class="header-section-number">2</span> R Markdown</a></li>
+<li><a class="" href="ggplot.html"><span class="header-section-number">3</span> Einführung in ggplot2</a></li>
+<li><a class="" href="daten-einlesen-und-visualisieren.html"><span class="header-section-number">4</span> Daten einlesen und visualisieren</a></li>
+<li><a class="" href="tidyverse.html"><span class="header-section-number">5</span> Der explorative Workflow mit tidyverse</a></li>
+<li class="book-part">Teil II: Statistische Inferenz</li>
+<li><a class="" href="stichproben.html"><span class="header-section-number">6</span> Stichproben und Variabilität</a></li>
+<li><a class="active" href="bootstrapping-und-konfidenzintervalle.html"><span class="header-section-number">7</span> Bootstrapping und Konfidenzintervalle</a></li>
+<li><a class="" href="hypothesentsts.html"><span class="header-section-number">8</span> Hypothesentests mit dem Paket infer</a></li>
+<li><a class="" href="effekte.html"><span class="header-section-number">9</span> Schätzen von Effekten: Raus aus der \(p &lt; 0.05\)-Falle</a></li>
+<li class="book-part">Teil III: Statistische Modellierung</li>
+<li><a class="" href="regression.html"><span class="header-section-number">10</span> Lineare Regression</a></li>
+<li><a class="" href="regression-inferenz.html"><span class="header-section-number">11</span> Inferenz in linearer Regression</a></li>
+<li class="book-part">Appendix</li>
+<li><a class="" href="daten-und-bericht.html"><span class="header-section-number">A</span> Datenquellen und Struktur des Abschlussberichts</a></li>
+<li><a class="" href="aufgabensammlung.html"><span class="header-section-number">B</span> Aufgabensammlung</a></li>
 <li><a class="" href="literatur.html">Literatur</a></li>
 </ul>
 
@@ -61,9 +65,9 @@
         </div>
       </nav>
 </div>
-  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="bootstrapping-und-konfidenzintervalle" class="section level1" number="8">
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="bootstrapping-und-konfidenzintervalle" class="section level1" number="7">
 <h1>
-<span class="header-section-number">Kapitel 8</span> Bootstrapping und Konfidenzintervalle<a class="anchor" aria-label="anchor" href="#bootstrapping-und-konfidenzintervalle"><i class="fas fa-link"></i></a>
+<span class="header-section-number">Kapitel 7</span> Bootstrapping und Konfidenzintervalle<a class="anchor" aria-label="anchor" href="#bootstrapping-und-konfidenzintervalle"><i class="fas fa-link"></i></a>
 </h1>
 <div class="rmdoutcomes">
 <ul>
@@ -75,8 +79,8 @@ Bootstrap-Konfidenzintervalle für Mittelwert berechnen
 </li>
 </ul>
 </div>
-<p>Im Kapitel <a href="stichproben.html#stichproben">7</a> haben Sie gesehen, dass Statistiken aus zufällig gezogenen Stichproben, dem Zufall unterliegen. Sie sind <strong>Zufallsvariablen</strong>. Diesen Zufall haben wir mit Hilfe der Stichprobenverteilung dieser Statistiken quantifiziert, in dem wir den <strong>Standardfehler</strong>, die Standardabweichung aus der Stichprobenverteilung, berechnet haben.</p>
-<p>Die Statistik, die wir im Kapitel <a href="stichproben.html#stichproben">7</a> berechnet haben, war der Anteil von Studierenden, die entweder in der Stadt oder auf dem Land wohnen. Mit jeder Stichprobe, aus der wir diesen Anteil berechnet haben, haben wir eigentlich <strong>geschätzt</strong>, wie groß der wahre Anteil der Stadt- und Landbewohner in der Grundgesamtheit (allen 12000 Studierenden von Werdeschlau) ist. Der aus der Stichprobe berechnete Anteil ist also ein <strong>Schätzer</strong> für den wahren Anteil in der Grundgesamtheit. Dieser Schätzer ist eine Zufallsvariable (s.o.) und wie jede andere Zufallsvariable ist er durch seine Verteilung, nämlich die <strong>Stichprobenverteilung</strong> charakterisiert.</p>
+<p>Im Kapitel <a href="stichproben.html#stichproben">6</a> haben Sie gesehen, dass Statistiken aus zufällig gezogenen Stichproben, dem Zufall unterliegen. Sie sind <strong>Zufallsvariablen</strong>. Diesen Zufall haben wir mit Hilfe der Stichprobenverteilung dieser Statistiken quantifiziert, in dem wir den <strong>Standardfehler</strong>, die Standardabweichung aus der Stichprobenverteilung, berechnet haben.</p>
+<p>Die Statistik, die wir im Kapitel <a href="stichproben.html#stichproben">6</a> berechnet haben, war der Anteil von Studierenden, die entweder in der Stadt oder auf dem Land wohnen. Mit jeder Stichprobe, aus der wir diesen Anteil berechnet haben, haben wir eigentlich <strong>geschätzt</strong>, wie groß der wahre Anteil der Stadt- und Landbewohner in der Grundgesamtheit (allen 12000 Studierenden von Werdeschlau) ist. Der aus der Stichprobe berechnete Anteil ist also ein <strong>Schätzer</strong> für den wahren Anteil in der Grundgesamtheit. Dieser Schätzer ist eine Zufallsvariable (s.o.) und wie jede andere Zufallsvariable ist er durch seine Verteilung, nämlich die <strong>Stichprobenverteilung</strong> charakterisiert.</p>
 <p>Wir können jetzt also eine Menge statistischer Begriffe mit Hilfe unseres Beispiels mit Leben füllen:</p>
 <div class="rmdalert">
 <ul>
@@ -99,9 +103,9 @@ Bootstrap-Konfidenzintervalle für Mittelwert berechnen
 </div>
 <p>Die Begriffe Statistik, Schätzer, Schätzfunktion und Stichprobenfunktion werden als Synonyme verwendet. Die Statistik ist ja auch eine Funktion, da sie mit einer Formel eine Zahl aus Daten (Stichprobe) berechnet. Sie fasst die Stichprobe also zusammen.</p>
 <p>Im echten Leben werden Sie kaum wiederholt befragen (Stichproben ziehen) können. Das ist vollkommen unrealistisch und nur für Computerexperimente ein tolles Werkzeug. In diesem Kapitel wird es darum gehen, wie man nun im richtigen Leben mit <strong>einer Stichprobe</strong> einen Parameter der Grundgesamtheit schätzen kann und dabei seine Variabilität quantifiziert.</p>
-<div id="bootstrapping-die-münchhausenmethode" class="section level2" number="8.1">
+<div id="bootstrapping-die-münchhausenmethode" class="section level2" number="7.1">
 <h2>
-<span class="header-section-number">8.1</span> Bootstrapping, die Münchhausenmethode<a class="anchor" aria-label="anchor" href="#bootstrapping-die-m%C3%BCnchhausenmethode"><i class="fas fa-link"></i></a>
+<span class="header-section-number">7.1</span> Bootstrapping, die Münchhausenmethode<a class="anchor" aria-label="anchor" href="#bootstrapping-die-m%C3%BCnchhausenmethode"><i class="fas fa-link"></i></a>
 </h2>
 <p>Wenn wir nur eine Stichprobe haben, werden wir den Parameter der Grundgesamtheit daraus schätzen. Der Schätzer kann der Mittelwert oder eben auch der Anteil sein, so wie bei unseren vorherigen Beispielen mit Mittelwert der Anreisezeit oder dem Anteil der Studierenden aus der Stadt bzw. vom Land.</p>
 <p>Da jede Stichprobe dem Zufall unterliegt und der Schätzer somit eine Zufallsvariable darstellt, würden wir gerne wissen, wie gut wir schätzen.</p>
@@ -109,32 +113,32 @@ Bootstrap-Konfidenzintervalle für Mittelwert berechnen
 <p>Gibt es einen plausiblen Bereich für den Mittelwert der Anreisezeit? Plausibel meint, dass wenn wir sehr oft verschiedene zufällige Stichprobe ziehen, dieser Bereich in sagen wir mal 95% der Fälle den wahren Mittelwert einschließt. Solche Plausibilitätsbereiche nennt man <strong>Konfidenzintervalle</strong>.</p>
 </blockquote>
 <p>Es gibt mehrere Methoden, solche Konfidenzintervalle zu berechnen. Wenn man die Verteilung des Schätzers kennt, wie z.B. beim Mittelwert (Normalverteilung), dann kann man daraus den Standardfehler berechnen (nennen wir diesen <span class="math inline">\(SE\)</span>). Ein 95%-Konfidenzintervall wäre dann <span class="math inline">\(\hat{\mu} \pm 1.96 \cdot SE\)</span>, wobei <span class="math inline">\(\hat{\mu}\)</span> der geschätzter Mittelwert ist. Das Hütchen steht für <em>geschätzt</em>. Diese Formel haben Sie bestimmt schon in der Grundvorlesung Statistik gesehen.</p>
-<p>Es gibt aber Schätzer, für die keine theoretische Verteilung bekannt ist. Da muss man eine andere Methode anwenden. Eine bekannte Methode heißt Bootstrapping (Bootstrap-Verfahren), manchmal auch Münchhausenmethode. Sie klingt auf den ersten Blick wie ein Selbstbetrug, so als ob man sich selbst an den Haaren aus dem Sumpf zieht (Abblildung <a href="bootstrapping-und-konfidenzintervalle.html#fig:meunch">8.1</a>), hat aber sehr gut fundierte mathematische Wurzeln. Bootstrap wurde von <span class="citation"><a href="literatur.html#ref-Efron1979" role="doc-biblioref">Efron</a> (<a href="literatur.html#ref-Efron1979" role="doc-biblioref">1979</a>)</span> Ende der 70er vorgestellt und hat sich seit dem als eine der wichtigsten <em>Resampling</em>-Strategien etabliert.</p>
+<p>Es gibt aber Schätzer, für die keine theoretische Verteilung bekannt ist. Da muss man eine andere Methode anwenden. Eine bekannte Methode heißt Bootstrapping (Bootstrap-Verfahren), manchmal auch Münchhausenmethode. Sie klingt auf den ersten Blick wie ein Selbstbetrug, so als ob man sich selbst an den Haaren aus dem Sumpf zieht (Abblildung <a href="bootstrapping-und-konfidenzintervalle.html#fig:meunch">7.1</a>), hat aber sehr gut fundierte mathematische Wurzeln. Bootstrap wurde von <span class="citation"><a href="literatur.html#ref-Efron1979" role="doc-biblioref">Efron</a> (<a href="literatur.html#ref-Efron1979" role="doc-biblioref">1979</a>)</span> Ende der 70er vorgestellt und hat sich seit dem als eine der wichtigsten <em>Resampling</em>-Strategien etabliert.</p>
 <div class="figure">
 <span style="display:block;" id="fig:meunch"></span>
 <img src="figures/M%C3%BCnchhausen-Sumpf-Hosemann.png" alt="Münchhausen zieht sich aus dem Sumpf (Theodor Hosemann (1807-1875), Public domain, via Wikimedia Commons)" width="80%"><p class="caption">
-Abbildung 8.1: Münchhausen zieht sich aus dem Sumpf (Theodor Hosemann (1807-1875), Public domain, via Wikimedia Commons)
+Abbildung 7.1: Münchhausen zieht sich aus dem Sumpf (Theodor Hosemann (1807-1875), Public domain, via Wikimedia Commons)
 </p>
 </div>
-<p>Das Prinzip beim Bootstrap ist, dass die Stichprobe die Rolle der Grundgesamtheit übernimmt. Abbildung <a href="bootstrapping-und-konfidenzintervalle.html#fig:sampling-world">8.2</a> zeigt das Vorgehen aus dem Kapitel <a href="stichproben.html#stichproben">7</a>. Wir ziehen mehrere echte Stichproben aus einer Grundgesamtheit, erhalten eine Stichprobenverteilung und können den Parameter der Grundgesamtheit schätzen.</p>
+<p>Das Prinzip beim Bootstrap ist, dass die Stichprobe die Rolle der Grundgesamtheit übernimmt. Abbildung <a href="bootstrapping-und-konfidenzintervalle.html#fig:sampling-world">7.2</a> zeigt das Vorgehen aus dem Kapitel <a href="stichproben.html#stichproben">6</a>. Wir ziehen mehrere echte Stichproben aus einer Grundgesamtheit, erhalten eine Stichprobenverteilung und können den Parameter der Grundgesamtheit schätzen.</p>
 <div class="figure">
 <span style="display:block;" id="fig:sampling-world"></span>
 <img src="figures/sampling_world.png" alt="Berechnen einer Stichprobenverteilung durch wiederholtes Stichproben ziehen. Abbildung aus [@Hesterberg2015], dort Figure 4. Die Publikation ist open-access und darf für nicht-kommerzielle Zwecke verwendet werden." width="80%"><p class="caption">
-Abbildung 8.2: Berechnen einer Stichprobenverteilung durch wiederholtes Stichproben ziehen. Abbildung aus <span class="citation">(<a href="literatur.html#ref-Hesterberg2015" role="doc-biblioref">Hesterberg 2015</a>)</span>, dort Figure 4. Die Publikation ist open-access und darf für nicht-kommerzielle Zwecke verwendet werden.
+Abbildung 7.2: Berechnen einer Stichprobenverteilung durch wiederholtes Stichproben ziehen. Abbildung aus <span class="citation">(<a href="literatur.html#ref-Hesterberg2015" role="doc-biblioref">Hesterberg 2015</a>)</span>, dort Figure 4. Die Publikation ist open-access und darf für nicht-kommerzielle Zwecke verwendet werden.
 </p>
 </div>
-<p>In Abbildung <a href="bootstrapping-und-konfidenzintervalle.html#fig:sampling-bootstrap">8.3</a> haben wir nur eine Stichprobe. Wir gehen davon aus, dass diese Stipchprobe eine Miniatur der Grundgesamtheit ist, also zufällig gezogen wurde und repräsentative ist. Mit dieser Grundidee im Kopf, ersetzten wir die Grundgesamtheit durch dies Stichprobe und verfahren (fast) genauso, um die Stichprobenverteilung zu ermitteln. Der einzige Unterschied ist, dass wir aus dieser einen Stichprobe <strong>mit Zurücklegen</strong> neue Stichproben (Bootstrap-Stichproben) ziehen.</p>
+<p>In Abbildung <a href="bootstrapping-und-konfidenzintervalle.html#fig:sampling-bootstrap">7.3</a> haben wir nur eine Stichprobe. Wir gehen davon aus, dass diese Stipchprobe eine Miniatur der Grundgesamtheit ist, also zufällig gezogen wurde und repräsentative ist. Mit dieser Grundidee im Kopf, ersetzten wir die Grundgesamtheit durch dies Stichprobe und verfahren (fast) genauso, um die Stichprobenverteilung zu ermitteln. Der einzige Unterschied ist, dass wir aus dieser einen Stichprobe <strong>mit Zurücklegen</strong> neue Stichproben (Bootstrap-Stichproben) ziehen.</p>
 <div class="figure">
 <span style="display:block;" id="fig:sampling-bootstrap"></span>
 <img src="figures/sampling_bootstrap.png" alt="Berechnen einer Stichprobenverteilung durch wiederholtes Ziehen aus einer Stichprobe mit Zurücklegen. Abbildung aus [@Hesterberg2015], dort Figure 5. Die Publikation ist open-access und darf für nicht-kommerzielle Zwecke verwendet werden." width="80%"><p class="caption">
-Abbildung 8.3: Berechnen einer Stichprobenverteilung durch wiederholtes Ziehen aus einer Stichprobe mit Zurücklegen. Abbildung aus <span class="citation">(<a href="literatur.html#ref-Hesterberg2015" role="doc-biblioref">Hesterberg 2015</a>)</span>, dort Figure 5. Die Publikation ist open-access und darf für nicht-kommerzielle Zwecke verwendet werden.
+Abbildung 7.3: Berechnen einer Stichprobenverteilung durch wiederholtes Ziehen aus einer Stichprobe mit Zurücklegen. Abbildung aus <span class="citation">(<a href="literatur.html#ref-Hesterberg2015" role="doc-biblioref">Hesterberg 2015</a>)</span>, dort Figure 5. Die Publikation ist open-access und darf für nicht-kommerzielle Zwecke verwendet werden.
 </p>
 </div>
 <p>Die Konfidenzintervalle berechnet man aus der Stichprobenverteilung der Bootstrap-Stichproben, indem man z.B. das 2.5% und das 97.5% Quantil berechnet. Zwischen diesen beiden Quantilen sind 95% der Werte enthalten. Dieses Intervall nennt man das 95%-Konfidenzintervall.</p>
 </div>
-<div id="konfidenzintervall-für-den-mittelwert-der-anreisezeit" class="section level2" number="8.2">
+<div id="konfidenzintervall-für-den-mittelwert-der-anreisezeit" class="section level2" number="7.2">
 <h2>
-<span class="header-section-number">8.2</span> Konfidenzintervall für den Mittelwert der Anreisezeit<a class="anchor" aria-label="anchor" href="#konfidenzintervall-f%C3%BCr-den-mittelwert-der-anreisezeit"><i class="fas fa-link"></i></a>
+<span class="header-section-number">7.2</span> Konfidenzintervall für den Mittelwert der Anreisezeit<a class="anchor" aria-label="anchor" href="#konfidenzintervall-f%C3%BCr-den-mittelwert-der-anreisezeit"><i class="fas fa-link"></i></a>
 </h2>
 <p>Wir sehen uns das Ganze anhand des Beispiels der Studierenden aus Werdeschlau. Zunächst wieder der Code für die Grundgesamtheit.</p>
 <div class="sourceCode" id="cb111"><pre class="downlit sourceCode r">
@@ -336,9 +340,9 @@ Abbildung 8.3: Berechnen einer Stichprobenverteilung durch wiederholtes Ziehen a
 ##      &lt;dbl&gt;
 ## 1     2.09</code></pre>
 </div>
-<div id="bootstrap-konfidenzintervalle-mit-infer" class="section level2" number="8.3">
+<div id="bootstrap-konfidenzintervalle-mit-infer" class="section level2" number="7.3">
 <h2>
-<span class="header-section-number">8.3</span> Bootstrap-Konfidenzintervalle mit <code>infer</code><a class="anchor" aria-label="anchor" href="#bootstrap-konfidenzintervalle-mit-infer"><i class="fas fa-link"></i></a>
+<span class="header-section-number">7.3</span> Bootstrap-Konfidenzintervalle mit <code>infer</code><a class="anchor" aria-label="anchor" href="#bootstrap-konfidenzintervalle-mit-infer"><i class="fas fa-link"></i></a>
 </h2>
 <p>Das Paket <code>infer</code> bietet eine sehr bequeme Möglichkeit, Konfidentintervalle mit Bootstrap zu berechnen und zu visualisieren. Das Vorgehen aus dem vorherigen Abschnitt übertragen wir nun in den Workflow mit <code>infer</code>.</p>
 <p>Berechnen der Bootstrap-Stichproben.</p>
@@ -370,9 +374,9 @@ Abbildung 8.3: Berechnen einer Stichprobenverteilung durch wiederholtes Ziehen a
 <div class="inline-figure"><img src="datenanalyse_files/figure-html/unnamed-chunk-107-1.png" width="672"></div>
 <p>Die Konfidenzintervalle, die wir als Quantile aus der Bootstrap-Stichprobenverteilung berechnet haben, und die, die man mit der Formel <span class="math inline">\(\hat{\mu} \pm 1.96 \cdot s/\sqrt(n)\)</span> berechnen kann, sind sehr ähnlich. Das werden Sie in einer der Aufgaben (s.u.) nachrechnen. Das liegt daran, dass der <em>Zentrale Grenzwertsatz</em> garantiert, dass die Stichprobenverteilung des Schätzers des Mittelwerts eine Normalverteilung ist. Es gibt aber Schätzer, wie z.B. den des Medians, für den es keine theoretische Verteilung gibt. Daher gilt als Take-Home-Message, dass man Bootstrap zum Berechnen der Konfidenzintervalle gut einsetzten kann, egal ob es eine theoretische Verteilung des Schätzers gibt. Die Quantilmethode zur Berechnung der Bootstrap-Konfidenzintervalle liefert gute Ergebnisse. Wir werden im späteren Kapitel lernen, dass man Bootstrap auch für die Regressionsanalyse nutzen kann.</p>
 </div>
-<div id="bedeutung-der-konfidenzintervalle" class="section level2" number="8.4">
+<div id="bedeutung-der-konfidenzintervalle" class="section level2" number="7.4">
 <h2>
-<span class="header-section-number">8.4</span> Bedeutung der Konfidenzintervalle<a class="anchor" aria-label="anchor" href="#bedeutung-der-konfidenzintervalle"><i class="fas fa-link"></i></a>
+<span class="header-section-number">7.4</span> Bedeutung der Konfidenzintervalle<a class="anchor" aria-label="anchor" href="#bedeutung-der-konfidenzintervalle"><i class="fas fa-link"></i></a>
 </h2>
 <p>Ein Konfidenzintervall hängt von der Stichprobe ab, ist also vom Zufall betroffen. Man kann also sagen, dass die Grenzen des Konfidenzintervalls Zufallsvariablen sind. Das Konfidenzintervall wird nicht immer den wahren Parameter der Grundgesamtheit einschließen. Die Definition eines 95%-Konfidenzintervalls kann wie folgt formuliert werden:</p>
 <blockquote>
@@ -380,19 +384,19 @@ Abbildung 8.3: Berechnen einer Stichprobenverteilung durch wiederholtes Ziehen a
 </blockquote>
 <p>Das Konfidenzintervall ist unsere Abschätzung der Lage des wahren Parameters der Grundgesamtheit. Eine andere Abschätzung haben wir nicht (es sei denn, es gibt wiederum eine theoretische Verteilung). Die Interpretation wird oft so abgekürzt, dass man sagt, man sei zu 95% sicher, dass das 95%-Konfidenzintervall den wahren Parameter enthält. Das ist nicht richtig (s. Definition oben). Es ist besser zu sagen, dass in 95% der Fälle, das Konfidenzintervall den wahren Parameter der Grundgesamtheit enthält. Was mit 95% der Fälle gemeint ist, wissen Sie ja, wenn Sie sich an die genaue Definition erinnern 😄.</p>
 </div>
-<div id="lesestoff-6" class="section level2" number="8.5">
+<div id="lesestoff-6" class="section level2" number="7.5">
 <h2>
-<span class="header-section-number">8.5</span> Lesestoff<a class="anchor" aria-label="anchor" href="#lesestoff-6"><i class="fas fa-link"></i></a>
+<span class="header-section-number">7.5</span> Lesestoff<a class="anchor" aria-label="anchor" href="#lesestoff-6"><i class="fas fa-link"></i></a>
 </h2>
 <p>Kapitel 8 in <span class="citation"><a href="literatur.html#ref-ModernDive" role="doc-biblioref">Ismay and Kim</a> (<a href="literatur.html#ref-ModernDive" role="doc-biblioref">2021</a>)</span></p>
 </div>
-<div id="aufgaben-5" class="section level2" number="8.6">
+<div id="aufgaben-5" class="section level2" number="7.6">
 <h2>
-<span class="header-section-number">8.6</span> Aufgaben<a class="anchor" aria-label="anchor" href="#aufgaben-5"><i class="fas fa-link"></i></a>
+<span class="header-section-number">7.6</span> Aufgaben<a class="anchor" aria-label="anchor" href="#aufgaben-5"><i class="fas fa-link"></i></a>
 </h2>
-<div id="konfidenzintervall-aus-dem-zentralen-grenzwertsatz" class="section level3" number="8.6.1">
+<div id="konfidenzintervall-aus-dem-zentralen-grenzwertsatz" class="section level3" number="7.6.1">
 <h3>
-<span class="header-section-number">8.6.1</span> Konfidenzintervall aus dem Zentralen Grenzwertsatz<a class="anchor" aria-label="anchor" href="#konfidenzintervall-aus-dem-zentralen-grenzwertsatz"><i class="fas fa-link"></i></a>
+<span class="header-section-number">7.6.1</span> Konfidenzintervall aus dem Zentralen Grenzwertsatz<a class="anchor" aria-label="anchor" href="#konfidenzintervall-aus-dem-zentralen-grenzwertsatz"><i class="fas fa-link"></i></a>
 </h3>
 <p>Der Zentrale Grenzwertsatz besagt, dass die Stichprobenverteilung des Schätzers des Mittelwerts sich asymptotisch (also bei vielen Stichproben) der Normalverteilung nähert. Daher kann man für die Konfidenzintervalle auch die folgende Formel nutzen: <span class="math inline">\(\hat{\mu} \pm 1.96 \cdot SE\)</span>, wobei <span class="math inline">\(\hat{\mu}\)</span> der geschätzter Mittelwert ist. Das Hütchen steht für <em>geschätzt</em>.</p>
 <ul>
@@ -400,22 +404,22 @@ Abbildung 8.3: Berechnen einer Stichprobenverteilung durch wiederholtes Ziehen a
 <li>Stellen Sie die Stichprobenverteilung mit diesem Konfidenzintervall dar und vergleichen Sie mit dem Konfidenzintervall, das wir mit der Quantil-Methode berechnet haben.</li>
 </ul>
 </div>
-<div id="anteile-an-stadt--und-landbewohnern" class="section level3" number="8.6.2">
+<div id="anteile-an-stadt--und-landbewohnern" class="section level3" number="7.6.2">
 <h3>
-<span class="header-section-number">8.6.2</span> Anteile an Stadt- und Landbewohnern<a class="anchor" aria-label="anchor" href="#anteile-an-stadt--und-landbewohnern"><i class="fas fa-link"></i></a>
+<span class="header-section-number">7.6.2</span> Anteile an Stadt- und Landbewohnern<a class="anchor" aria-label="anchor" href="#anteile-an-stadt--und-landbewohnern"><i class="fas fa-link"></i></a>
 </h3>
 <p>Wiederholen Sie die Analyse, die wir mit dem Paket <code>infer</code> für die Schätzung des Mittelwerts der Anreisezeit gemacht haben, nun für die Anteile an Stadt- und Landbewohnern. Tip: <code><a href="https://infer.tidymodels.org/reference/specify.html">specify(response = wohnort, success = 'stadt')</a></code>.</p>
 </div>
-<div id="wie-hängt-das-konfidenzintervall-von-der-stichprobengröße-ab" class="section level3" number="8.6.3">
+<div id="wie-hängt-das-konfidenzintervall-von-der-stichprobengröße-ab" class="section level3" number="7.6.3">
 <h3>
-<span class="header-section-number">8.6.3</span> Wie hängt das Konfidenzintervall von der Stichprobengröße ab?<a class="anchor" aria-label="anchor" href="#wie-h%C3%A4ngt-das-konfidenzintervall-von-der-stichprobengr%C3%B6%C3%9Fe-ab"><i class="fas fa-link"></i></a>
+<span class="header-section-number">7.6.3</span> Wie hängt das Konfidenzintervall von der Stichprobengröße ab?<a class="anchor" aria-label="anchor" href="#wie-h%C3%A4ngt-das-konfidenzintervall-von-der-stichprobengr%C3%B6%C3%9Fe-ab"><i class="fas fa-link"></i></a>
 </h3>
 <p>Wiederholen Sie die Analyse für den Mittelwert der Anreisezeit für eine Stichprobe von 30 Studierenden. Wie verändert sich das Konfidenzintervall?</p>
 </div>
 </div>
-<div id="ihre-arbeit-einreichen-4" class="section level2" number="8.7">
+<div id="ihre-arbeit-einreichen-4" class="section level2" number="7.7">
 <h2>
-<span class="header-section-number">8.7</span> Ihre Arbeit einreichen<a class="anchor" aria-label="anchor" href="#ihre-arbeit-einreichen-4"><i class="fas fa-link"></i></a>
+<span class="header-section-number">7.7</span> Ihre Arbeit einreichen<a class="anchor" aria-label="anchor" href="#ihre-arbeit-einreichen-4"><i class="fas fa-link"></i></a>
 </h2>
 <ul>
 <li>Speichern Sie Ihr Notebook ab und laden Sie nur die .Rmd Datei vom Server.</li>
@@ -424,35 +428,35 @@ Abbildung 8.3: Berechnen einer Stichprobenverteilung durch wiederholtes Ziehen a
 <li>Sie erhalten die Musterlösung nach dem Hochladen.</li>
 </ul>
 </div>
-<div id="weiterführende-literatur-1" class="section level2" number="8.8">
+<div id="weiterführende-literatur-1" class="section level2" number="7.8">
 <h2>
-<span class="header-section-number">8.8</span> Weiterführende Literatur<a class="anchor" aria-label="anchor" href="#weiterf%C3%BChrende-literatur-1"><i class="fas fa-link"></i></a>
+<span class="header-section-number">7.8</span> Weiterführende Literatur<a class="anchor" aria-label="anchor" href="#weiterf%C3%BChrende-literatur-1"><i class="fas fa-link"></i></a>
 </h2>
 <p>Kapitel 17.3 in <span class="citation"><a href="literatur.html#ref-Sauer2019" role="doc-biblioref">Sauer</a> (<a href="literatur.html#ref-Sauer2019" role="doc-biblioref">2019</a>)</span></p>
 
 </div>
 </div>
   <div class="chapter-nav">
-<div class="prev"><a href="stichproben.html"><span class="header-section-number">7</span> Stichproben und Variabilität</a></div>
-<div class="next"><a href="hypothesentsts.html"><span class="header-section-number">9</span> Hypothesentests mit dem Paket infer</a></div>
+<div class="prev"><a href="stichproben.html"><span class="header-section-number">6</span> Stichproben und Variabilität</a></div>
+<div class="next"><a href="hypothesentsts.html"><span class="header-section-number">8</span> Hypothesentests mit dem Paket infer</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
-<li><a class="nav-link" href="#bootstrapping-und-konfidenzintervalle"><span class="header-section-number">8</span> Bootstrapping und Konfidenzintervalle</a></li>
-<li><a class="nav-link" href="#bootstrapping-die-m%C3%BCnchhausenmethode"><span class="header-section-number">8.1</span> Bootstrapping, die Münchhausenmethode</a></li>
-<li><a class="nav-link" href="#konfidenzintervall-f%C3%BCr-den-mittelwert-der-anreisezeit"><span class="header-section-number">8.2</span> Konfidenzintervall für den Mittelwert der Anreisezeit</a></li>
-<li><a class="nav-link" href="#bootstrap-konfidenzintervalle-mit-infer"><span class="header-section-number">8.3</span> Bootstrap-Konfidenzintervalle mit infer</a></li>
-<li><a class="nav-link" href="#bedeutung-der-konfidenzintervalle"><span class="header-section-number">8.4</span> Bedeutung der Konfidenzintervalle</a></li>
-<li><a class="nav-link" href="#lesestoff-6"><span class="header-section-number">8.5</span> Lesestoff</a></li>
+<li><a class="nav-link" href="#bootstrapping-und-konfidenzintervalle"><span class="header-section-number">7</span> Bootstrapping und Konfidenzintervalle</a></li>
+<li><a class="nav-link" href="#bootstrapping-die-m%C3%BCnchhausenmethode"><span class="header-section-number">7.1</span> Bootstrapping, die Münchhausenmethode</a></li>
+<li><a class="nav-link" href="#konfidenzintervall-f%C3%BCr-den-mittelwert-der-anreisezeit"><span class="header-section-number">7.2</span> Konfidenzintervall für den Mittelwert der Anreisezeit</a></li>
+<li><a class="nav-link" href="#bootstrap-konfidenzintervalle-mit-infer"><span class="header-section-number">7.3</span> Bootstrap-Konfidenzintervalle mit infer</a></li>
+<li><a class="nav-link" href="#bedeutung-der-konfidenzintervalle"><span class="header-section-number">7.4</span> Bedeutung der Konfidenzintervalle</a></li>
+<li><a class="nav-link" href="#lesestoff-6"><span class="header-section-number">7.5</span> Lesestoff</a></li>
 <li>
-<a class="nav-link" href="#aufgaben-5"><span class="header-section-number">8.6</span> Aufgaben</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#konfidenzintervall-aus-dem-zentralen-grenzwertsatz"><span class="header-section-number">8.6.1</span> Konfidenzintervall aus dem Zentralen Grenzwertsatz</a></li>
-<li><a class="nav-link" href="#anteile-an-stadt--und-landbewohnern"><span class="header-section-number">8.6.2</span> Anteile an Stadt- und Landbewohnern</a></li>
-<li><a class="nav-link" href="#wie-h%C3%A4ngt-das-konfidenzintervall-von-der-stichprobengr%C3%B6%C3%9Fe-ab"><span class="header-section-number">8.6.3</span> Wie hängt das Konfidenzintervall von der Stichprobengröße ab?</a></li>
+<a class="nav-link" href="#aufgaben-5"><span class="header-section-number">7.6</span> Aufgaben</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#konfidenzintervall-aus-dem-zentralen-grenzwertsatz"><span class="header-section-number">7.6.1</span> Konfidenzintervall aus dem Zentralen Grenzwertsatz</a></li>
+<li><a class="nav-link" href="#anteile-an-stadt--und-landbewohnern"><span class="header-section-number">7.6.2</span> Anteile an Stadt- und Landbewohnern</a></li>
+<li><a class="nav-link" href="#wie-h%C3%A4ngt-das-konfidenzintervall-von-der-stichprobengr%C3%B6%C3%9Fe-ab"><span class="header-section-number">7.6.3</span> Wie hängt das Konfidenzintervall von der Stichprobengröße ab?</a></li>
 </ul>
 </li>
-<li><a class="nav-link" href="#ihre-arbeit-einreichen-4"><span class="header-section-number">8.7</span> Ihre Arbeit einreichen</a></li>
-<li><a class="nav-link" href="#weiterf%C3%BChrende-literatur-1"><span class="header-section-number">8.8</span> Weiterführende Literatur</a></li>
+<li><a class="nav-link" href="#ihre-arbeit-einreichen-4"><span class="header-section-number">7.7</span> Ihre Arbeit einreichen</a></li>
+<li><a class="nav-link" href="#weiterf%C3%BChrende-literatur-1"><span class="header-section-number">7.8</span> Weiterführende Literatur</a></li>
 </ul>
 
       <div class="book-extra">
@@ -470,7 +474,7 @@ Abbildung 8.3: Berechnen einer Stichprobenverteilung durch wiederholtes Ziehen a
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Datenanalyse mit R</strong>: SoSe 2021" was written by Christina Bogner. It was last built on 2021-06-30.</p>
+    <p>"<strong>Datenanalyse mit R</strong>: SoSe 2021" was written by Christina Bogner. It was last built on 2021-07-04.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

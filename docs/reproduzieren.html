@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Kapitel 3 R Markdown | Datenanalyse mit R</title>
+<title>Kapitel 2 R Markdown | Datenanalyse mit R</title>
 <meta name="author" content="Christina Bogner">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.2"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.9/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
@@ -39,20 +39,24 @@
       <nav aria-label="Table of contents"><h2>Table of contents</h2>
         <ul class="book-toc list-unstyled">
 <li><a class="" href="index.html">Vorwort</a></li>
-<li><a class="" href="einfuehrung.html"><span class="header-section-number">1</span> Der Kurs</a></li>
-<li><a class="" href="erste-schritte.html"><span class="header-section-number">2</span> Erste Schritte in R</a></li>
-<li><a class="active" href="reproduzieren.html"><span class="header-section-number">3</span> R Markdown</a></li>
-<li><a class="" href="ggplot.html"><span class="header-section-number">4</span> Einführung in ggplot2</a></li>
-<li><a class="" href="daten-einlesen-und-visualisieren.html"><span class="header-section-number">5</span> Daten einlesen und visualisieren</a></li>
-<li><a class="" href="tidyverse.html"><span class="header-section-number">6</span> Der explorative Workflow mit tidyverse</a></li>
-<li><a class="" href="stichproben.html"><span class="header-section-number">7</span> Stichproben und Variabilität</a></li>
-<li><a class="" href="bootstrapping-und-konfidenzintervalle.html"><span class="header-section-number">8</span> Bootstrapping und Konfidenzintervalle</a></li>
-<li><a class="" href="hypothesentsts.html"><span class="header-section-number">9</span> Hypothesentests mit dem Paket infer</a></li>
-<li><a class="" href="effekte.html"><span class="header-section-number">10</span> Schätzen von Effekten: Raus aus der \(p &lt; 0.05\)-Falle</a></li>
-<li><a class="" href="regression.html"><span class="header-section-number">11</span> Lineare Regression</a></li>
-<li><a class="" href="regression-inferenz.html"><span class="header-section-number">12</span> Inferenz in linearer Regression</a></li>
-<li><a class="" href="daten-und-bericht.html"><span class="header-section-number">13</span> Datenquellen und Struktur des Abschlussberichts</a></li>
-<li><a class="" href="aufgabensammlung.html"><span class="header-section-number">14</span> Aufgabensammlung</a></li>
+<li><a class="" href="einfuehrung.html">Der Kurs</a></li>
+<li class="book-part">Teil I: Daten explorieren</li>
+<li><a class="" href="erste-schritte.html"><span class="header-section-number">1</span> Erste Schritte in R</a></li>
+<li><a class="active" href="reproduzieren.html"><span class="header-section-number">2</span> R Markdown</a></li>
+<li><a class="" href="ggplot.html"><span class="header-section-number">3</span> Einführung in ggplot2</a></li>
+<li><a class="" href="daten-einlesen-und-visualisieren.html"><span class="header-section-number">4</span> Daten einlesen und visualisieren</a></li>
+<li><a class="" href="tidyverse.html"><span class="header-section-number">5</span> Der explorative Workflow mit tidyverse</a></li>
+<li class="book-part">Teil II: Statistische Inferenz</li>
+<li><a class="" href="stichproben.html"><span class="header-section-number">6</span> Stichproben und Variabilität</a></li>
+<li><a class="" href="bootstrapping-und-konfidenzintervalle.html"><span class="header-section-number">7</span> Bootstrapping und Konfidenzintervalle</a></li>
+<li><a class="" href="hypothesentsts.html"><span class="header-section-number">8</span> Hypothesentests mit dem Paket infer</a></li>
+<li><a class="" href="effekte.html"><span class="header-section-number">9</span> Schätzen von Effekten: Raus aus der \(p &lt; 0.05\)-Falle</a></li>
+<li class="book-part">Teil III: Statistische Modellierung</li>
+<li><a class="" href="regression.html"><span class="header-section-number">10</span> Lineare Regression</a></li>
+<li><a class="" href="regression-inferenz.html"><span class="header-section-number">11</span> Inferenz in linearer Regression</a></li>
+<li class="book-part">Appendix</li>
+<li><a class="" href="daten-und-bericht.html"><span class="header-section-number">A</span> Datenquellen und Struktur des Abschlussberichts</a></li>
+<li><a class="" href="aufgabensammlung.html"><span class="header-section-number">B</span> Aufgabensammlung</a></li>
 <li><a class="" href="literatur.html">Literatur</a></li>
 </ul>
 
@@ -61,9 +65,9 @@
         </div>
       </nav>
 </div>
-  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="reproduzieren" class="section level1" number="3">
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="reproduzieren" class="section level1" number="2">
 <h1>
-<span class="header-section-number">Kapitel 3</span> R Markdown<a class="anchor" aria-label="anchor" href="#reproduzieren"><i class="fas fa-link"></i></a>
+<span class="header-section-number">Kapitel 2</span> R Markdown<a class="anchor" aria-label="anchor" href="#reproduzieren"><i class="fas fa-link"></i></a>
 </h1>
 <div class="rmdoutcomes">
 <ul>
@@ -81,82 +85,82 @@ Einen einfachen ersten reproduzierbaren Bericht schreiben
 </li>
 </ul>
 </div>
-<div id="warum-reproduzierbarkeit-in-der-forschung-wichtig-ist" class="section level2" number="3.1">
+<div id="warum-reproduzierbarkeit-in-der-forschung-wichtig-ist" class="section level2" number="2.1">
 <h2>
-<span class="header-section-number">3.1</span> Warum Reproduzierbarkeit in der Forschung wichtig ist<a class="anchor" aria-label="anchor" href="#warum-reproduzierbarkeit-in-der-forschung-wichtig-ist"><i class="fas fa-link"></i></a>
+<span class="header-section-number">2.1</span> Warum Reproduzierbarkeit in der Forschung wichtig ist<a class="anchor" aria-label="anchor" href="#warum-reproduzierbarkeit-in-der-forschung-wichtig-ist"><i class="fas fa-link"></i></a>
 </h2>
 <iframe width="640" height="360" src="https://www.youtube.com/embed/4rBX6r5emgQ?list=PLjTlxb-wKvXOU4WW4p3qc4VKWTI4gLNUf" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
 </div>
-<div id="literate-programming-idee-von-donald-knuth" class="section level2" number="3.2">
+<div id="literate-programming-idee-von-donald-knuth" class="section level2" number="2.2">
 <h2>
-<span class="header-section-number">3.2</span> <em>Literate Programming</em> Idee von Donald Knuth<a class="anchor" aria-label="anchor" href="#literate-programming-idee-von-donald-knuth"><i class="fas fa-link"></i></a>
+<span class="header-section-number">2.2</span> <em>Literate Programming</em> Idee von Donald Knuth<a class="anchor" aria-label="anchor" href="#literate-programming-idee-von-donald-knuth"><i class="fas fa-link"></i></a>
 </h2>
 <p>Die Idee, dass man den Code und die dazugehörige Interpretation (Text, Bericht etc.) nicht von einander trennen sollte, geht auf <span class="citation"><a href="literatur.html#ref-Knuth1984" role="doc-biblioref">Knuth</a> (<a href="literatur.html#ref-Knuth1984" role="doc-biblioref">1984</a>)</span> zurück. Mit <em>Literate Programming</em> meinte Knuth, dass Programme auch nichts anderes wie literarische Werke sind. Er setzte den Fokus darauf, mit Programmen menschlichen Benutzern zu erklären, was man den Computer machen lassen möchte. Also weg vom computer- hin zum mensch-zentrierten Zugang. So wird Programmieren und in unserem Fall die Datenanalyse verständlich und vor allem reproduzierbar.</p>
 <p>Leider ist es in unserer modernen Forschungslandschaft immer noch nicht Standard. Das Trennen von Analyseergebnissen und Berichten (Forschungsartikeln) sorgt für viele (unentdeckte und unnötige) Fehler und Frust.</p>
 </div>
-<div id="reproduzierbare-berichte-mit-r-markdown" class="section level2" number="3.3">
+<div id="reproduzierbare-berichte-mit-r-markdown" class="section level2" number="2.3">
 <h2>
-<span class="header-section-number">3.3</span> Reproduzierbare Berichte mit R Markdown<a class="anchor" aria-label="anchor" href="#reproduzierbare-berichte-mit-r-markdown"><i class="fas fa-link"></i></a>
+<span class="header-section-number">2.3</span> Reproduzierbare Berichte mit R Markdown<a class="anchor" aria-label="anchor" href="#reproduzierbare-berichte-mit-r-markdown"><i class="fas fa-link"></i></a>
 </h2>
 <p>R hat sein eigenes System von reproduzierbaren Berichten, genannt <strong>R Markdown</strong> <span class="citation">(<a href="literatur.html#ref-RMarkdownGuide" role="doc-biblioref">Xie, Allaire, and Grolemund 2021</a>)</span>. Es ist benutzerfreundlich und ermöglicht unterschiedliche Formate von Berichten, wie HTML-Dokumente, PDF-Dateien, Präsentationsfolien usw.</p>
 <p>Es wird Sie vielleicht überraschen, aber das Skript, das Sie gerade lesen ist nichts anderes als ein “literarisch” programmiertes Buch in R Bookdown <span class="citation">(<a href="literatur.html#ref-RMarkdownGuide" role="doc-biblioref">Xie, Allaire, and Grolemund 2021</a>)</span>, einem R-Paket speziell für lange R Markdown-Dokumente.</p>
 <p>Wir werden vor allem mit R Notebooks arbeiten, die eine gute Interaktion zwischen dem geschriebenen Text und dem R-Code ermöglichen. Das Notebook kann sowohl in ein HTML-Dokument als auch in PDF oder Word als endgültiges Dokument umgewandelt werden. Diesen Prozess nennt man <em>knit</em>.</p>
 </div>
-<div id="ein-neues-r-notebook-erstellen" class="section level2" number="3.4">
+<div id="ein-neues-r-notebook-erstellen" class="section level2" number="2.4">
 <h2>
-<span class="header-section-number">3.4</span> Ein neues R Notebook erstellen<a class="anchor" aria-label="anchor" href="#ein-neues-r-notebook-erstellen"><i class="fas fa-link"></i></a>
+<span class="header-section-number">2.4</span> Ein neues R Notebook erstellen<a class="anchor" aria-label="anchor" href="#ein-neues-r-notebook-erstellen"><i class="fas fa-link"></i></a>
 </h2>
-<p>Um ein neues R Notebook zu erstellen, klicken Sie das leine grüne Plus oben links und wählen Sie R Notebook aus. Sie können es erst einmal bei untitled belassen (Abbildung <a href="reproduzieren.html#fig:r-notebook">3.1</a>).</p>
+<p>Um ein neues R Notebook zu erstellen, klicken Sie das leine grüne Plus oben links und wählen Sie R Notebook aus. Sie können es erst einmal bei untitled belassen (Abbildung <a href="reproduzieren.html#fig:r-notebook">2.1</a>).</p>
 <div class="figure">
 <span style="display:block;" id="fig:r-notebook"></span>
 <img src="figures/r-notebook.png" alt="Neues R Notebook anlegen" width="60%"><p class="caption">
-Abbildung 3.1: Neues R Notebook anlegen
+Abbildung 2.1: Neues R Notebook anlegen
 </p>
 </div>
 <p>Wenn Sie ein neues Notebook erstellen, enthält das Template etwas Code. Lesen Sie sich das ruhig noch einmal durch, da es ein paar hilfreiche Tastenkürzel und Tipps. Danach können Sie den Text unterhalb des Headers löschen.</p>
 </div>
-<div id="header" class="section level2" number="3.5">
+<div id="header" class="section level2" number="2.5">
 <h2>
-<span class="header-section-number">3.5</span> Der Header eines Notebooks<a class="anchor" aria-label="anchor" href="#header"><i class="fas fa-link"></i></a>
+<span class="header-section-number">2.5</span> Der Header eines Notebooks<a class="anchor" aria-label="anchor" href="#header"><i class="fas fa-link"></i></a>
 </h2>
-<p>Ein R Notebook (und jedes andere R Markdown Dokument) besteht aus einem Header (Kopf) und dem eigentlichen Text und Code. Der Header hat dabei ein bestimmtes Layout, auf das Sie unbedingt achten müssen (Rechtschreibung!). Der Header ist <strong>immer</strong> zwischen drei Minuszeichen <code>---</code> eingeschlossen. Bei komplizierteren Headern gibt es auch Einrückungen (mit der Tab-Taste), die auch Bedeutung haben (s. weiterführende Literatur). Wir bleiben bei einem einfachen Header ohne Einrückungen (Abbildung <a href="reproduzieren.html#fig:rmarkdown-file">3.2</a>).</p>
+<p>Ein R Notebook (und jedes andere R Markdown Dokument) besteht aus einem Header (Kopf) und dem eigentlichen Text und Code. Der Header hat dabei ein bestimmtes Layout, auf das Sie unbedingt achten müssen (Rechtschreibung!). Der Header ist <strong>immer</strong> zwischen drei Minuszeichen <code>---</code> eingeschlossen. Bei komplizierteren Headern gibt es auch Einrückungen (mit der Tab-Taste), die auch Bedeutung haben (s. weiterführende Literatur). Wir bleiben bei einem einfachen Header ohne Einrückungen (Abbildung <a href="reproduzieren.html#fig:rmarkdown-file">2.2</a>).</p>
 Um einen neuen R-Chunk hinzuzufügen, klicken Sie auf das kleine grüne <code>C+</code> oben rechts oder verwenden Sie das Tastenkürzel <strong>Str+Alt+i</strong>:
 <div class="figure">
 <span style="display:block;" id="fig:rmarkdown-file"></span>
 <img src="figures/new_chunk.png" alt="Einen neuen Chunk hinzufügen" width="100%"><p class="caption">
-Abbildung 3.2: Einen neuen Chunk hinzufügen
+Abbildung 2.2: Einen neuen Chunk hinzufügen
 </p>
 </div>
 <p>Text kann einfach unterhalb des Headers und <em>außerhalb der Chunks</em> getippt werden. Die wichtigsten Layoutelemente für den Text finden Sie <a href="https://rmarkdown.rstudio.com/authoring_basics.html">hier</a>. R Markdown unterstützt mathematische Notation in Latex-Stil. Eine Einführung in Latex würde an dieser Stelle aber zu weit führen.</p>
-<p>Das R Notebook hat den Vorteil, dass man über den Button <code>Preview</code> oben in der Leiste sofort die Ergebnisse anzeigen lassen kann. Sie müssen also nicht <code>knitten</code>. Falls Sie es doch möchten, klicken Sie auf das kleine Dreieck neben dem Preview und suchen Sie sich ein Output-Format aus. Ein einmal “geknittetes” Notebook ist kein Notebook mehr (kein Preview). Damit es wierder zum Nobebook wird, müssen Sie im Header <code>output: html_notebbok</code> einstellen (Abbildung <a href="reproduzieren.html#fig:rmarkdown-file">3.2</a>).</p>
+<p>Das R Notebook hat den Vorteil, dass man über den Button <code>Preview</code> oben in der Leiste sofort die Ergebnisse anzeigen lassen kann. Sie müssen also nicht <code>knitten</code>. Falls Sie es doch möchten, klicken Sie auf das kleine Dreieck neben dem Preview und suchen Sie sich ein Output-Format aus. Ein einmal “geknittetes” Notebook ist kein Notebook mehr (kein Preview). Damit es wierder zum Nobebook wird, müssen Sie im Header <code>output: html_notebbok</code> einstellen (Abbildung <a href="reproduzieren.html#fig:rmarkdown-file">2.2</a>).</p>
 </div>
-<div id="wichtigste-regeln-für-reproduzierbarkeit" class="section level2" number="3.6">
+<div id="wichtigste-regeln-für-reproduzierbarkeit" class="section level2" number="2.6">
 <h2>
-<span class="header-section-number">3.6</span> Wichtigste Regeln für Reproduzierbarkeit<a class="anchor" aria-label="anchor" href="#wichtigste-regeln-f%C3%BCr-reproduzierbarkeit"><i class="fas fa-link"></i></a>
+<span class="header-section-number">2.6</span> Wichtigste Regeln für Reproduzierbarkeit<a class="anchor" aria-label="anchor" href="#wichtigste-regeln-f%C3%BCr-reproduzierbarkeit"><i class="fas fa-link"></i></a>
 </h2>
 <iframe width="640" height="360" src="https://www.youtube.com/embed/pjL2uP-fmPY?list=PLjTlxb-wKvXOU4WW4p3qc4VKWTI4gLNUf" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
 </div>
-<div id="lesestoff-1" class="section level2" number="3.7">
+<div id="lesestoff-1" class="section level2" number="2.7">
 <h2>
-<span class="header-section-number">3.7</span> Lesestoff<a class="anchor" aria-label="anchor" href="#lesestoff-1"><i class="fas fa-link"></i></a>
+<span class="header-section-number">2.7</span> Lesestoff<a class="anchor" aria-label="anchor" href="#lesestoff-1"><i class="fas fa-link"></i></a>
 </h2>
 <p>Intro zu Kapitel 2 (Basics), Kapitel 3.2.1 und 3.2.2 in <span class="citation"><a href="literatur.html#ref-RMarkdownGuide" role="doc-biblioref">Xie, Allaire, and Grolemund</a> (<a href="literatur.html#ref-RMarkdownGuide" role="doc-biblioref">2021</a>)</span></p>
 </div>
-<div id="weiterführende-literatur" class="section level2" number="3.8">
+<div id="weiterführende-literatur" class="section level2" number="2.8">
 <h2>
-<span class="header-section-number">3.8</span> Weiterführende Literatur<a class="anchor" aria-label="anchor" href="#weiterf%C3%BChrende-literatur"><i class="fas fa-link"></i></a>
+<span class="header-section-number">2.8</span> Weiterführende Literatur<a class="anchor" aria-label="anchor" href="#weiterf%C3%BChrende-literatur"><i class="fas fa-link"></i></a>
 </h2>
 <p>r4ds, Kapitel 27 <span class="citation">(<a href="literatur.html#ref-r4ds" role="doc-biblioref">Wickham and Grolemund 2021</a>)</span></p>
 </div>
-<div id="aufgaben-1" class="section level2" number="3.9">
+<div id="aufgaben-1" class="section level2" number="2.9">
 <h2>
-<span class="header-section-number">3.9</span> Aufgaben<a class="anchor" aria-label="anchor" href="#aufgaben-1"><i class="fas fa-link"></i></a>
+<span class="header-section-number">2.9</span> Aufgaben<a class="anchor" aria-label="anchor" href="#aufgaben-1"><i class="fas fa-link"></i></a>
 </h2>
-<div id="erstes-notebook" class="section level3" number="3.9.1">
+<div id="erstes-notebook" class="section level3" number="2.9.1">
 <h3>
-<span class="header-section-number">3.9.1</span> Erstes Notebook<a class="anchor" aria-label="anchor" href="#erstes-notebook"><i class="fas fa-link"></i></a>
+<span class="header-section-number">2.9.1</span> Erstes Notebook<a class="anchor" aria-label="anchor" href="#erstes-notebook"><i class="fas fa-link"></i></a>
 </h3>
 <ul>
 <li>Erstellen Sie ein R Notebook.</li>
@@ -173,11 +177,11 @@ Abbildung 3.2: Einen neuen Chunk hinzufügen
 </ul>
 </li>
 </ul>
-<p>Nutzen Sie die unter <a href="reproduzieren.html#header">3.5</a> verlinkte Liste der Layoutelemente.</p>
+<p>Nutzen Sie die unter <a href="reproduzieren.html#header">2.5</a> verlinkte Liste der Layoutelemente.</p>
 </div>
-<div id="erste-schritte-als-notebook" class="section level3" number="3.9.2">
+<div id="erste-schritte-als-notebook" class="section level3" number="2.9.2">
 <h3>
-<span class="header-section-number">3.9.2</span> Erste Schritte als Notebook<a class="anchor" aria-label="anchor" href="#erste-schritte-als-notebook"><i class="fas fa-link"></i></a>
+<span class="header-section-number">2.9.2</span> Erste Schritte als Notebook<a class="anchor" aria-label="anchor" href="#erste-schritte-als-notebook"><i class="fas fa-link"></i></a>
 </h3>
 <ul>
 <li>Wandeln Sie beide R-Skripte der ersten Sessions in R Notebooks um.</li>
@@ -185,9 +189,9 @@ Abbildung 3.2: Einen neuen Chunk hinzufügen
 <li>Gliedern Sie Ihre Notebooks mit passenden Layoutelementen.</li>
 </ul>
 </div>
-<div id="exploration-eines-datensatzes" class="section level3" number="3.9.3">
+<div id="exploration-eines-datensatzes" class="section level3" number="2.9.3">
 <h3>
-<span class="header-section-number">3.9.3</span> Exploration eines Datensatzes<a class="anchor" aria-label="anchor" href="#exploration-eines-datensatzes"><i class="fas fa-link"></i></a>
+<span class="header-section-number">2.9.3</span> Exploration eines Datensatzes<a class="anchor" aria-label="anchor" href="#exploration-eines-datensatzes"><i class="fas fa-link"></i></a>
 </h3>
 <p>Arbeiten Sie das Kapitel 1.4 Explore your first datasets in <span class="citation"><a href="literatur.html#ref-ModernDive" role="doc-biblioref">Ismay and Kim</a> (<a href="literatur.html#ref-ModernDive" role="doc-biblioref">2021</a>)</span> durch.</p>
 
@@ -195,25 +199,25 @@ Abbildung 3.2: Einen neuen Chunk hinzufügen
 </div>
 </div>
   <div class="chapter-nav">
-<div class="prev"><a href="erste-schritte.html"><span class="header-section-number">2</span> Erste Schritte in R</a></div>
-<div class="next"><a href="ggplot.html"><span class="header-section-number">4</span> Einführung in ggplot2</a></div>
+<div class="prev"><a href="erste-schritte.html"><span class="header-section-number">1</span> Erste Schritte in R</a></div>
+<div class="next"><a href="ggplot.html"><span class="header-section-number">3</span> Einführung in ggplot2</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
-<li><a class="nav-link" href="#reproduzieren"><span class="header-section-number">3</span> R Markdown</a></li>
-<li><a class="nav-link" href="#warum-reproduzierbarkeit-in-der-forschung-wichtig-ist"><span class="header-section-number">3.1</span> Warum Reproduzierbarkeit in der Forschung wichtig ist</a></li>
-<li><a class="nav-link" href="#literate-programming-idee-von-donald-knuth"><span class="header-section-number">3.2</span> Literate Programming Idee von Donald Knuth</a></li>
-<li><a class="nav-link" href="#reproduzierbare-berichte-mit-r-markdown"><span class="header-section-number">3.3</span> Reproduzierbare Berichte mit R Markdown</a></li>
-<li><a class="nav-link" href="#ein-neues-r-notebook-erstellen"><span class="header-section-number">3.4</span> Ein neues R Notebook erstellen</a></li>
-<li><a class="nav-link" href="#header"><span class="header-section-number">3.5</span> Der Header eines Notebooks</a></li>
-<li><a class="nav-link" href="#wichtigste-regeln-f%C3%BCr-reproduzierbarkeit"><span class="header-section-number">3.6</span> Wichtigste Regeln für Reproduzierbarkeit</a></li>
-<li><a class="nav-link" href="#lesestoff-1"><span class="header-section-number">3.7</span> Lesestoff</a></li>
-<li><a class="nav-link" href="#weiterf%C3%BChrende-literatur"><span class="header-section-number">3.8</span> Weiterführende Literatur</a></li>
+<li><a class="nav-link" href="#reproduzieren"><span class="header-section-number">2</span> R Markdown</a></li>
+<li><a class="nav-link" href="#warum-reproduzierbarkeit-in-der-forschung-wichtig-ist"><span class="header-section-number">2.1</span> Warum Reproduzierbarkeit in der Forschung wichtig ist</a></li>
+<li><a class="nav-link" href="#literate-programming-idee-von-donald-knuth"><span class="header-section-number">2.2</span> Literate Programming Idee von Donald Knuth</a></li>
+<li><a class="nav-link" href="#reproduzierbare-berichte-mit-r-markdown"><span class="header-section-number">2.3</span> Reproduzierbare Berichte mit R Markdown</a></li>
+<li><a class="nav-link" href="#ein-neues-r-notebook-erstellen"><span class="header-section-number">2.4</span> Ein neues R Notebook erstellen</a></li>
+<li><a class="nav-link" href="#header"><span class="header-section-number">2.5</span> Der Header eines Notebooks</a></li>
+<li><a class="nav-link" href="#wichtigste-regeln-f%C3%BCr-reproduzierbarkeit"><span class="header-section-number">2.6</span> Wichtigste Regeln für Reproduzierbarkeit</a></li>
+<li><a class="nav-link" href="#lesestoff-1"><span class="header-section-number">2.7</span> Lesestoff</a></li>
+<li><a class="nav-link" href="#weiterf%C3%BChrende-literatur"><span class="header-section-number">2.8</span> Weiterführende Literatur</a></li>
 <li>
-<a class="nav-link" href="#aufgaben-1"><span class="header-section-number">3.9</span> Aufgaben</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#erstes-notebook"><span class="header-section-number">3.9.1</span> Erstes Notebook</a></li>
-<li><a class="nav-link" href="#erste-schritte-als-notebook"><span class="header-section-number">3.9.2</span> Erste Schritte als Notebook</a></li>
-<li><a class="nav-link" href="#exploration-eines-datensatzes"><span class="header-section-number">3.9.3</span> Exploration eines Datensatzes</a></li>
+<a class="nav-link" href="#aufgaben-1"><span class="header-section-number">2.9</span> Aufgaben</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#erstes-notebook"><span class="header-section-number">2.9.1</span> Erstes Notebook</a></li>
+<li><a class="nav-link" href="#erste-schritte-als-notebook"><span class="header-section-number">2.9.2</span> Erste Schritte als Notebook</a></li>
+<li><a class="nav-link" href="#exploration-eines-datensatzes"><span class="header-section-number">2.9.3</span> Exploration eines Datensatzes</a></li>
 </ul>
 </li>
 </ul>
@@ -233,7 +237,7 @@ Abbildung 3.2: Einen neuen Chunk hinzufügen
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Datenanalyse mit R</strong>: SoSe 2021" was written by Christina Bogner. It was last built on 2021-06-30.</p>
+    <p>"<strong>Datenanalyse mit R</strong>: SoSe 2021" was written by Christina Bogner. It was last built on 2021-07-04.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

@@ -1,13 +1,11 @@
-# Der Kurs {#einfuehrung}
-## Zuordnung zum Modul und Leistungsnachweis
+# Der Kurs {-#einfuehrung}
+## Zuordnung zum Modul und Leistungsnachweis {-}
 
 Dieser Kurs gehört zum Modul *Fachmethodik I* oder *Fachmethodik II* und ist aus 4 SWS Praktikum und 2 SWS Seminar aufgebaut. Das wichtigste Ziel besteht darin, Ihnen einen sicheren Umgang mit `R` beizubringen.
 
 Den Leistungsnachweis bildet ein benoteter Praktikumsbericht.
 
-
-
-## Lernziele des Kurses
+## Lernziele des Kurses {-}
 
 ```{block, type='rmdoutcomes'}
 - Daten für Analysen vorbereiten
@@ -18,7 +16,7 @@ Den Leistungsnachweis bildet ein benoteter Praktikumsbericht.
 - Ergebnisse reproduzierbar im Praktikumsbericht darstellen
 ```
 
-## Was mir im Umgang miteinander wichtig ist
+## Was mir im Umgang miteinander wichtig ist {-}
 
 - Pünktlichkeit bei Livesitzungen
 - Gute Vorbereitung durch erledigen der Hausaufgaben

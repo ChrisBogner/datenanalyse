@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Kapitel 10 Schätzen von Effekten: Raus aus der \(p &lt; 0.05\)-Falle | Datenanalyse mit R</title>
+<title>Kapitel 9 Schätzen von Effekten: Raus aus der \(p &lt; 0.05\)-Falle | Datenanalyse mit R</title>
 <meta name="author" content="Christina Bogner">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.2"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.9/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
@@ -39,20 +39,24 @@
       <nav aria-label="Table of contents"><h2>Table of contents</h2>
         <ul class="book-toc list-unstyled">
 <li><a class="" href="index.html">Vorwort</a></li>
-<li><a class="" href="einfuehrung.html"><span class="header-section-number">1</span> Der Kurs</a></li>
-<li><a class="" href="erste-schritte.html"><span class="header-section-number">2</span> Erste Schritte in R</a></li>
-<li><a class="" href="reproduzieren.html"><span class="header-section-number">3</span> R Markdown</a></li>
-<li><a class="" href="ggplot.html"><span class="header-section-number">4</span> Einführung in ggplot2</a></li>
-<li><a class="" href="daten-einlesen-und-visualisieren.html"><span class="header-section-number">5</span> Daten einlesen und visualisieren</a></li>
-<li><a class="" href="tidyverse.html"><span class="header-section-number">6</span> Der explorative Workflow mit tidyverse</a></li>
-<li><a class="" href="stichproben.html"><span class="header-section-number">7</span> Stichproben und Variabilität</a></li>
-<li><a class="" href="bootstrapping-und-konfidenzintervalle.html"><span class="header-section-number">8</span> Bootstrapping und Konfidenzintervalle</a></li>
-<li><a class="" href="hypothesentsts.html"><span class="header-section-number">9</span> Hypothesentests mit dem Paket infer</a></li>
-<li><a class="active" href="effekte.html"><span class="header-section-number">10</span> Schätzen von Effekten: Raus aus der \(p &lt; 0.05\)-Falle</a></li>
-<li><a class="" href="regression.html"><span class="header-section-number">11</span> Lineare Regression</a></li>
-<li><a class="" href="regression-inferenz.html"><span class="header-section-number">12</span> Inferenz in linearer Regression</a></li>
-<li><a class="" href="daten-und-bericht.html"><span class="header-section-number">13</span> Datenquellen und Struktur des Abschlussberichts</a></li>
-<li><a class="" href="aufgabensammlung.html"><span class="header-section-number">14</span> Aufgabensammlung</a></li>
+<li><a class="" href="einfuehrung.html">Der Kurs</a></li>
+<li class="book-part">Teil I: Daten explorieren</li>
+<li><a class="" href="erste-schritte.html"><span class="header-section-number">1</span> Erste Schritte in R</a></li>
+<li><a class="" href="reproduzieren.html"><span class="header-section-number">2</span> R Markdown</a></li>
+<li><a class="" href="ggplot.html"><span class="header-section-number">3</span> Einführung in ggplot2</a></li>
+<li><a class="" href="daten-einlesen-und-visualisieren.html"><span class="header-section-number">4</span> Daten einlesen und visualisieren</a></li>
+<li><a class="" href="tidyverse.html"><span class="header-section-number">5</span> Der explorative Workflow mit tidyverse</a></li>
+<li class="book-part">Teil II: Statistische Inferenz</li>
+<li><a class="" href="stichproben.html"><span class="header-section-number">6</span> Stichproben und Variabilität</a></li>
+<li><a class="" href="bootstrapping-und-konfidenzintervalle.html"><span class="header-section-number">7</span> Bootstrapping und Konfidenzintervalle</a></li>
+<li><a class="" href="hypothesentsts.html"><span class="header-section-number">8</span> Hypothesentests mit dem Paket infer</a></li>
+<li><a class="active" href="effekte.html"><span class="header-section-number">9</span> Schätzen von Effekten: Raus aus der \(p &lt; 0.05\)-Falle</a></li>
+<li class="book-part">Teil III: Statistische Modellierung</li>
+<li><a class="" href="regression.html"><span class="header-section-number">10</span> Lineare Regression</a></li>
+<li><a class="" href="regression-inferenz.html"><span class="header-section-number">11</span> Inferenz in linearer Regression</a></li>
+<li class="book-part">Appendix</li>
+<li><a class="" href="daten-und-bericht.html"><span class="header-section-number">A</span> Datenquellen und Struktur des Abschlussberichts</a></li>
+<li><a class="" href="aufgabensammlung.html"><span class="header-section-number">B</span> Aufgabensammlung</a></li>
 <li><a class="" href="literatur.html">Literatur</a></li>
 </ul>
 
@@ -61,9 +65,9 @@
         </div>
       </nav>
 </div>
-  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="effekte" class="section level1" number="10">
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="effekte" class="section level1" number="9">
 <h1>
-<span class="header-section-number">Kapitel 10</span> Schätzen von Effekten: Raus aus der <span class="math inline">\(p &lt; 0.05\)</span>-Falle<a class="anchor" aria-label="anchor" href="#effekte"><i class="fas fa-link"></i></a>
+<span class="header-section-number">Kapitel 9</span> Schätzen von Effekten: Raus aus der <span class="math inline">\(p &lt; 0.05\)</span>-Falle<a class="anchor" aria-label="anchor" href="#effekte"><i class="fas fa-link"></i></a>
 </h1>
 <div class="rmdoutcomes">
 <ul>
@@ -75,16 +79,16 @@ Unterschied zwischen einem Hypothesentest und der Schätzung von Effekten erklä
 <p>Bei Hypothesentests wird häufig ein willkürlich festgelegter Schwellenwert, das Signifikanzniveau, häufig 5%, verwendet. Liegt der <span class="math inline">\(p\)</span>-Wert darunter, wird die Nullhypothese verworfen. Liegt er darüber, wird sie beibehalten.</p>
 <p>Dieses starre Konzept der statistischen Signifikanz, bei dem ein willkürlich gesetzter Grenzwert <span class="math inline">\(\alpha\)</span> darüber entscheidet, ob ein Ergebnis weiter beachtet wird oder nicht, wird seit Jahrzehnten kritisiert <span class="citation">(<a href="literatur.html#ref-Wasserstein2019" role="doc-biblioref">Wasserstein, Schirm, and Lazar 2019</a>)</span>. Es ist schließlich auch wirklich schwer zu verstehen, warum <span class="math inline">\(p = 0.049\)</span> qualitativ etwas anderes aussagen soll als <span class="math inline">\(p = 0.051\)</span>. Und was machen wir mit <span class="math inline">\(p = 0.05\)</span>? Die beste Lösung ist, so wie von der ASA (American Statistical Association) vorgeschlagen, den Begriff “signifikant” nicht mehr zu verwenden. Statt dessen berichten Sie den berechneten <span class="math inline">\(p\)</span>-Wert und interpretieren ihn im wissenschaftlichen Kontext <span class="citation">(<a href="literatur.html#ref-Wasserstein2019" role="doc-biblioref">Wasserstein, Schirm, and Lazar 2019</a>)</span>.</p>
 <p>Ich würde nicht soweit gehen, statistische Tests abschaffen zu wollen. Sie sind manchmal nützlich, aber auch nicht häufiger als manchmal. Allerdings kann ich auch aus eigener Praxis sagen, dass sehr oft statistische Signifikanz mit wissenschaftlicher Relevanz verwechselt wird. Daher werden wir uns in diesem Kapitel damit beschäftigen, wie man die relevanten Aspekte, nämlich die Größe des Effekts, aus den beobachteten Daten schätzen kann.</p>
-<div id="größe-des-effekts" class="section level2" number="10.1">
+<div id="größe-des-effekts" class="section level2" number="9.1">
 <h2>
-<span class="header-section-number">10.1</span> Größe des Effekts<a class="anchor" aria-label="anchor" href="#gr%C3%B6%C3%9Fe-des-effekts"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.1</span> Größe des Effekts<a class="anchor" aria-label="anchor" href="#gr%C3%B6%C3%9Fe-des-effekts"><i class="fas fa-link"></i></a>
 </h2>
 <p>Daten sind immer mit Unsicherheiten behaftet. Modelle und Tests haben Annahmen, z.B. dass die gewählte Statistik oder das Modell der Nullhypothese für die Forschungsfrage geeignet sind. Diese Unsicherheit gilt es richtig zu erfassen und zu berichten. Daher ist es wichtig, für jede Schätzung entweder ein Konfidenzintervall anzugeben oder den Standardfehler <span class="citation">(<a href="literatur.html#ref-Wasserstein2019" role="doc-biblioref">Wasserstein, Schirm, and Lazar 2019</a>)</span>.</p>
 <p>Wir werden zum Schätzen von Effekten für einfache statistische Analysen das Paket <code>dabestr</code> (<a href="https://github.com/ACCLAB/dabestr" class="uri">https://github.com/ACCLAB/dabestr</a>) benutzen. Es bietet die Möglichkeit, Effekte zu schätzen, Bootstrap-Konfidenzintervalle zu berechnen und das Ganze in sehr ansprechenden Grafiken zu visualisieren. Zu dem Paket gibt es eine Publikation, <span class="citation"><a href="literatur.html#ref-Ho2019" role="doc-biblioref">Ho et al.</a> (<a href="literatur.html#ref-Ho2019" role="doc-biblioref">2019</a>)</span>, die ich sehr empfehlen kann.</p>
 </div>
-<div id="schätzen-des-effekts-mit-dem-bootstrap-dabestr" class="section level2" number="10.2">
+<div id="schätzen-des-effekts-mit-dem-bootstrap-dabestr" class="section level2" number="9.2">
 <h2>
-<span class="header-section-number">10.2</span> Schätzen des Effekts mit dem Bootstrap – <code>dabestr</code><a class="anchor" aria-label="anchor" href="#sch%C3%A4tzen-des-effekts-mit-dem-bootstrap-dabestr"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.2</span> Schätzen des Effekts mit dem Bootstrap – <code>dabestr</code><a class="anchor" aria-label="anchor" href="#sch%C3%A4tzen-des-effekts-mit-dem-bootstrap-dabestr"><i class="fas fa-link"></i></a>
 </h2>
 <p>Wir laden die nötigen Bibliotheken.</p>
 <div class="sourceCode" id="cb160"><pre class="downlit sourceCode r">
@@ -153,7 +157,7 @@ Unterschied zwischen einem Hypothesentest und der Schätzung von Effekten erklä
 ## =============================================================
 ## 
 ## Good afternoon!
-## The current time is 13:10  on Mittwoch Juni 30, 2021.
+## The current time is 16:21  on Sonntag Juli 04, 2021.
 ## 
 ## Dataset    :  .
 ## The first five rows are:
@@ -184,7 +188,7 @@ Unterschied zwischen einem Hypothesentest und der Schätzung von Effekten erklä
 ## =============================================================
 ## 
 ## Good afternoon!
-## The current time is 13:10  on Mittwoch Juni 30, 2021.
+## The current time is 16:21  on Sonntag Juli 04, 2021.
 ## 
 ## Dataset    :  .
 ## X Variable :  geschlecht
@@ -210,9 +214,9 @@ Unterschied zwischen einem Hypothesentest und der Schätzung von Effekten erklä
 </ol>
 <p>Wir können nun erkennen, dass die Schätzung recht genau ist, da das Konfidenzintervall schmal ist. Frauen scheinen mehr Zeit in der Bibliothek zu verbringen, da die geschätzte Differenz negativ ist. Das können wir genau abfragen, mit <code>mean_diff_zeit_bib$result$difference</code>. Das sind -4.4 Minuten. Dieser Unterschied ist für alle praktischen Belange irrelevant. Das Konfidenzintervall umfasst auch die Null, sodass kein Unterschied auch eine plausible Schätzung ist. Somit würden wir schließen, dass es nicht genug Evidenz für einen relevanten Unterschied in der Arbeitszeit in der Bibliothek zwischen Männern und Frauen gibt.</p>
 </div>
-<div id="welche-fragen-soll-ich-mir-bei-der-analyse-stellen" class="section level2" number="10.3">
+<div id="welche-fragen-soll-ich-mir-bei-der-analyse-stellen" class="section level2" number="9.3">
 <h2>
-<span class="header-section-number">10.3</span> Welche Fragen soll ich mir bei der Analyse stellen?<a class="anchor" aria-label="anchor" href="#welche-fragen-soll-ich-mir-bei-der-analyse-stellen"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.3</span> Welche Fragen soll ich mir bei der Analyse stellen?<a class="anchor" aria-label="anchor" href="#welche-fragen-soll-ich-mir-bei-der-analyse-stellen"><i class="fas fa-link"></i></a>
 </h2>
 <p>Bei der statistischen Analyse Ihrer Daten, sollten Sie sich vom “statistischen Denken” leiten lassen. <span class="citation"><a href="literatur.html#ref-Wasserstein2019" role="doc-biblioref">Wasserstein, Schirm, and Lazar</a> (<a href="literatur.html#ref-Wasserstein2019" role="doc-biblioref">2019</a>)</span> beschreibt es als</p>
 <blockquote>
@@ -225,38 +229,38 @@ Unterschied zwischen einem Hypothesentest und der Schätzung von Effekten erklä
 <li>Passt das Modell zu meiner Forschungsfrage? Ist es korrekt formuliert?</li>
 </ol>
 </div>
-<div id="was-dabest-nicht-kann-besorgt-infer" class="section level2" number="10.4">
+<div id="was-dabest-nicht-kann-besorgt-infer" class="section level2" number="9.4">
 <h2>
-<span class="header-section-number">10.4</span> Was <code>dabest</code> nicht kann, besorgt <code>infer</code><a class="anchor" aria-label="anchor" href="#was-dabest-nicht-kann-besorgt-infer"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.4</span> Was <code>dabest</code> nicht kann, besorgt <code>infer</code><a class="anchor" aria-label="anchor" href="#was-dabest-nicht-kann-besorgt-infer"><i class="fas fa-link"></i></a>
 </h2>
 <p>Aktuell kann <code>dabestr</code> nicht mit Anteilen (<em>proportions</em>) arbeiten. Daher werden wir bei solchen Aufgaben auf unser bewährtes Framework in <code>infer</code> zurück greifen.</p>
 </div>
-<div id="lesestoff-8" class="section level2" number="10.5">
+<div id="lesestoff-8" class="section level2" number="9.5">
 <h2>
-<span class="header-section-number">10.5</span> Lesestoff<a class="anchor" aria-label="anchor" href="#lesestoff-8"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.5</span> Lesestoff<a class="anchor" aria-label="anchor" href="#lesestoff-8"><i class="fas fa-link"></i></a>
 </h2>
 <p><span class="citation"><a href="literatur.html#ref-Ho2019" role="doc-biblioref">Ho et al.</a> (<a href="literatur.html#ref-Ho2019" role="doc-biblioref">2019</a>)</span></p>
 </div>
-<div id="aufgaben-7" class="section level2" number="10.6">
+<div id="aufgaben-7" class="section level2" number="9.6">
 <h2>
-<span class="header-section-number">10.6</span> Aufgaben<a class="anchor" aria-label="anchor" href="#aufgaben-7"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.6</span> Aufgaben<a class="anchor" aria-label="anchor" href="#aufgaben-7"><i class="fas fa-link"></i></a>
 </h2>
-<div id="bodenverdichtung-revisited" class="section level3" number="10.6.1">
+<div id="bodenverdichtung-revisited" class="section level3" number="9.6.1">
 <h3>
-<span class="header-section-number">10.6.1</span> Bodenverdichtung, revisited<a class="anchor" aria-label="anchor" href="#bodenverdichtung-revisited"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.6.1</span> Bodenverdichtung, revisited<a class="anchor" aria-label="anchor" href="#bodenverdichtung-revisited"><i class="fas fa-link"></i></a>
 </h3>
-<p>Wir kommen zurück zu Daten aus Aufgabe <a href="aufgabensammlung.html#verdichtung">14.3.3</a>. Wie stark hat sich die Lagerungsdichte auf den befahrenen Feldern verändert? Schätzen Sie den Effekt und geben Sie 95%-Konfidenzintervalle an. Vergleichen Sie die Aussagen, die Sie mit dieser Lösung treffen können, mit der Aussage aus dem Hypothesentest.</p>
+<p>Wir kommen zurück zu Daten aus Aufgabe <a href="aufgabensammlung.html#verdichtung">B.3.3</a>. Wie stark hat sich die Lagerungsdichte auf den befahrenen Feldern verändert? Schätzen Sie den Effekt und geben Sie 95%-Konfidenzintervalle an. Vergleichen Sie die Aussagen, die Sie mit dieser Lösung treffen können, mit der Aussage aus dem Hypothesentest.</p>
 </div>
-<div id="anteil-von-beschäftigten-frauen-im-privaten-und-öffentlichen-sektor-revisited" class="section level3" number="10.6.2">
+<div id="anteil-von-beschäftigten-frauen-im-privaten-und-öffentlichen-sektor-revisited" class="section level3" number="9.6.2">
 <h3>
-<span class="header-section-number">10.6.2</span> Anteil von beschäftigten Frauen im privaten und öffentlichen Sektor, revisited<a class="anchor" aria-label="anchor" href="#anteil-von-besch%C3%A4ftigten-frauen-im-privaten-und-%C3%B6ffentlichen-sektor-revisited"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.6.2</span> Anteil von beschäftigten Frauen im privaten und öffentlichen Sektor, revisited<a class="anchor" aria-label="anchor" href="#anteil-von-besch%C3%A4ftigten-frauen-im-privaten-und-%C3%B6ffentlichen-sektor-revisited"><i class="fas fa-link"></i></a>
 </h3>
-<p>Wir sehen uns erneut die Daten der Weltbank aus der Aufgabe <a href="aufgabensammlung.html#world-bank">14.3.4</a> an. Diesmal interessiert und die Schätzung des Anteils und ihr 95%-Bootstrap-Konfidenzintervall. Vergleichen Sie die Aussagen, die Sie mit dieser Lösung treffen können, mit der Aussage aus dem Hypothesentest.</p>
+<p>Wir sehen uns erneut die Daten der Weltbank aus der Aufgabe <a href="aufgabensammlung.html#world-bank">B.3.4</a> an. Diesmal interessiert und die Schätzung des Anteils und ihr 95%-Bootstrap-Konfidenzintervall. Vergleichen Sie die Aussagen, die Sie mit dieser Lösung treffen können, mit der Aussage aus dem Hypothesentest.</p>
 </div>
 </div>
-<div id="ihre-arbeit-einreichen-6" class="section level2" number="10.7">
+<div id="ihre-arbeit-einreichen-6" class="section level2" number="9.7">
 <h2>
-<span class="header-section-number">10.7</span> Ihre Arbeit einreichen<a class="anchor" aria-label="anchor" href="#ihre-arbeit-einreichen-6"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.7</span> Ihre Arbeit einreichen<a class="anchor" aria-label="anchor" href="#ihre-arbeit-einreichen-6"><i class="fas fa-link"></i></a>
 </h2>
 <ul>
 <li>Speichern Sie Ihr Notebook ab und laden Sie nur die .Rmd Datei vom Server.</li>
@@ -265,9 +269,9 @@ Unterschied zwischen einem Hypothesentest und der Schätzung von Effekten erklä
 <li>Sie erhalten die Musterlösung nach dem Hochladen.</li>
 </ul>
 </div>
-<div id="weitere-infos" class="section level2" number="10.8">
+<div id="weitere-infos" class="section level2" number="9.8">
 <h2>
-<span class="header-section-number">10.8</span> Weitere Infos<a class="anchor" aria-label="anchor" href="#weitere-infos"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.8</span> Weitere Infos<a class="anchor" aria-label="anchor" href="#weitere-infos"><i class="fas fa-link"></i></a>
 </h2>
 <ul>
 <li>Vignette von <code>dabestr</code>: <a href="https://cran.r-project.org/web/packages/dabestr/vignettes/using-dabestr.html" class="uri">https://cran.r-project.org/web/packages/dabestr/vignettes/using-dabestr.html</a>
@@ -275,26 +279,29 @@ Unterschied zwischen einem Hypothesentest und der Schätzung von Effekten erklä
 </ul>
 </div>
 </div>
+
+
+
   <div class="chapter-nav">
-<div class="prev"><a href="hypothesentsts.html"><span class="header-section-number">9</span> Hypothesentests mit dem Paket infer</a></div>
-<div class="next"><a href="regression.html"><span class="header-section-number">11</span> Lineare Regression</a></div>
+<div class="prev"><a href="hypothesentsts.html"><span class="header-section-number">8</span> Hypothesentests mit dem Paket infer</a></div>
+<div class="next"><a href="regression.html"><span class="header-section-number">10</span> Lineare Regression</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
-<li><a class="nav-link" href="#effekte"><span class="header-section-number">10</span> Schätzen von Effekten: Raus aus der \(p &lt; 0.05\)-Falle</a></li>
-<li><a class="nav-link" href="#gr%C3%B6%C3%9Fe-des-effekts"><span class="header-section-number">10.1</span> Größe des Effekts</a></li>
-<li><a class="nav-link" href="#sch%C3%A4tzen-des-effekts-mit-dem-bootstrap-dabestr"><span class="header-section-number">10.2</span> Schätzen des Effekts mit dem Bootstrap – dabestr</a></li>
-<li><a class="nav-link" href="#welche-fragen-soll-ich-mir-bei-der-analyse-stellen"><span class="header-section-number">10.3</span> Welche Fragen soll ich mir bei der Analyse stellen?</a></li>
-<li><a class="nav-link" href="#was-dabest-nicht-kann-besorgt-infer"><span class="header-section-number">10.4</span> Was dabest nicht kann, besorgt infer</a></li>
-<li><a class="nav-link" href="#lesestoff-8"><span class="header-section-number">10.5</span> Lesestoff</a></li>
+<li><a class="nav-link" href="#effekte"><span class="header-section-number">9</span> Schätzen von Effekten: Raus aus der \(p &lt; 0.05\)-Falle</a></li>
+<li><a class="nav-link" href="#gr%C3%B6%C3%9Fe-des-effekts"><span class="header-section-number">9.1</span> Größe des Effekts</a></li>
+<li><a class="nav-link" href="#sch%C3%A4tzen-des-effekts-mit-dem-bootstrap-dabestr"><span class="header-section-number">9.2</span> Schätzen des Effekts mit dem Bootstrap – dabestr</a></li>
+<li><a class="nav-link" href="#welche-fragen-soll-ich-mir-bei-der-analyse-stellen"><span class="header-section-number">9.3</span> Welche Fragen soll ich mir bei der Analyse stellen?</a></li>
+<li><a class="nav-link" href="#was-dabest-nicht-kann-besorgt-infer"><span class="header-section-number">9.4</span> Was dabest nicht kann, besorgt infer</a></li>
+<li><a class="nav-link" href="#lesestoff-8"><span class="header-section-number">9.5</span> Lesestoff</a></li>
 <li>
-<a class="nav-link" href="#aufgaben-7"><span class="header-section-number">10.6</span> Aufgaben</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#bodenverdichtung-revisited"><span class="header-section-number">10.6.1</span> Bodenverdichtung, revisited</a></li>
-<li><a class="nav-link" href="#anteil-von-besch%C3%A4ftigten-frauen-im-privaten-und-%C3%B6ffentlichen-sektor-revisited"><span class="header-section-number">10.6.2</span> Anteil von beschäftigten Frauen im privaten und öffentlichen Sektor, revisited</a></li>
+<a class="nav-link" href="#aufgaben-7"><span class="header-section-number">9.6</span> Aufgaben</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#bodenverdichtung-revisited"><span class="header-section-number">9.6.1</span> Bodenverdichtung, revisited</a></li>
+<li><a class="nav-link" href="#anteil-von-besch%C3%A4ftigten-frauen-im-privaten-und-%C3%B6ffentlichen-sektor-revisited"><span class="header-section-number">9.6.2</span> Anteil von beschäftigten Frauen im privaten und öffentlichen Sektor, revisited</a></li>
 </ul>
 </li>
-<li><a class="nav-link" href="#ihre-arbeit-einreichen-6"><span class="header-section-number">10.7</span> Ihre Arbeit einreichen</a></li>
-<li><a class="nav-link" href="#weitere-infos"><span class="header-section-number">10.8</span> Weitere Infos</a></li>
+<li><a class="nav-link" href="#ihre-arbeit-einreichen-6"><span class="header-section-number">9.7</span> Ihre Arbeit einreichen</a></li>
+<li><a class="nav-link" href="#weitere-infos"><span class="header-section-number">9.8</span> Weitere Infos</a></li>
 </ul>
 
       <div class="book-extra">
@@ -312,7 +319,7 @@ Unterschied zwischen einem Hypothesentest und der Schätzung von Effekten erklä
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Datenanalyse mit R</strong>: SoSe 2021" was written by Christina Bogner. It was last built on 2021-06-30.</p>
+    <p>"<strong>Datenanalyse mit R</strong>: SoSe 2021" was written by Christina Bogner. It was last built on 2021-07-04.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

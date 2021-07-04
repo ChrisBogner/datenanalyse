@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Kapitel 6 Der explorative Workflow mit tidyverse | Datenanalyse mit R</title>
+<title>Kapitel 5 Der explorative Workflow mit tidyverse | Datenanalyse mit R</title>
 <meta name="author" content="Christina Bogner">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.2"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.9/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
@@ -39,20 +39,24 @@
       <nav aria-label="Table of contents"><h2>Table of contents</h2>
         <ul class="book-toc list-unstyled">
 <li><a class="" href="index.html">Vorwort</a></li>
-<li><a class="" href="einfuehrung.html"><span class="header-section-number">1</span> Der Kurs</a></li>
-<li><a class="" href="erste-schritte.html"><span class="header-section-number">2</span> Erste Schritte in R</a></li>
-<li><a class="" href="reproduzieren.html"><span class="header-section-number">3</span> R Markdown</a></li>
-<li><a class="" href="ggplot.html"><span class="header-section-number">4</span> Einführung in ggplot2</a></li>
-<li><a class="" href="daten-einlesen-und-visualisieren.html"><span class="header-section-number">5</span> Daten einlesen und visualisieren</a></li>
-<li><a class="active" href="tidyverse.html"><span class="header-section-number">6</span> Der explorative Workflow mit tidyverse</a></li>
-<li><a class="" href="stichproben.html"><span class="header-section-number">7</span> Stichproben und Variabilität</a></li>
-<li><a class="" href="bootstrapping-und-konfidenzintervalle.html"><span class="header-section-number">8</span> Bootstrapping und Konfidenzintervalle</a></li>
-<li><a class="" href="hypothesentsts.html"><span class="header-section-number">9</span> Hypothesentests mit dem Paket infer</a></li>
-<li><a class="" href="effekte.html"><span class="header-section-number">10</span> Schätzen von Effekten: Raus aus der \(p &lt; 0.05\)-Falle</a></li>
-<li><a class="" href="regression.html"><span class="header-section-number">11</span> Lineare Regression</a></li>
-<li><a class="" href="regression-inferenz.html"><span class="header-section-number">12</span> Inferenz in linearer Regression</a></li>
-<li><a class="" href="daten-und-bericht.html"><span class="header-section-number">13</span> Datenquellen und Struktur des Abschlussberichts</a></li>
-<li><a class="" href="aufgabensammlung.html"><span class="header-section-number">14</span> Aufgabensammlung</a></li>
+<li><a class="" href="einfuehrung.html">Der Kurs</a></li>
+<li class="book-part">Teil I: Daten explorieren</li>
+<li><a class="" href="erste-schritte.html"><span class="header-section-number">1</span> Erste Schritte in R</a></li>
+<li><a class="" href="reproduzieren.html"><span class="header-section-number">2</span> R Markdown</a></li>
+<li><a class="" href="ggplot.html"><span class="header-section-number">3</span> Einführung in ggplot2</a></li>
+<li><a class="" href="daten-einlesen-und-visualisieren.html"><span class="header-section-number">4</span> Daten einlesen und visualisieren</a></li>
+<li><a class="active" href="tidyverse.html"><span class="header-section-number">5</span> Der explorative Workflow mit tidyverse</a></li>
+<li class="book-part">Teil II: Statistische Inferenz</li>
+<li><a class="" href="stichproben.html"><span class="header-section-number">6</span> Stichproben und Variabilität</a></li>
+<li><a class="" href="bootstrapping-und-konfidenzintervalle.html"><span class="header-section-number">7</span> Bootstrapping und Konfidenzintervalle</a></li>
+<li><a class="" href="hypothesentsts.html"><span class="header-section-number">8</span> Hypothesentests mit dem Paket infer</a></li>
+<li><a class="" href="effekte.html"><span class="header-section-number">9</span> Schätzen von Effekten: Raus aus der \(p &lt; 0.05\)-Falle</a></li>
+<li class="book-part">Teil III: Statistische Modellierung</li>
+<li><a class="" href="regression.html"><span class="header-section-number">10</span> Lineare Regression</a></li>
+<li><a class="" href="regression-inferenz.html"><span class="header-section-number">11</span> Inferenz in linearer Regression</a></li>
+<li class="book-part">Appendix</li>
+<li><a class="" href="daten-und-bericht.html"><span class="header-section-number">A</span> Datenquellen und Struktur des Abschlussberichts</a></li>
+<li><a class="" href="aufgabensammlung.html"><span class="header-section-number">B</span> Aufgabensammlung</a></li>
 <li><a class="" href="literatur.html">Literatur</a></li>
 </ul>
 
@@ -61,9 +65,9 @@
         </div>
       </nav>
 </div>
-  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="tidyverse" class="section level1" number="6">
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="tidyverse" class="section level1" number="5">
 <h1>
-<span class="header-section-number">Kapitel 6</span> Der explorative Workflow mit tidyverse<a class="anchor" aria-label="anchor" href="#tidyverse"><i class="fas fa-link"></i></a>
+<span class="header-section-number">Kapitel 5</span> Der explorative Workflow mit tidyverse<a class="anchor" aria-label="anchor" href="#tidyverse"><i class="fas fa-link"></i></a>
 </h1>
 <div class="rmdoutcomes">
 <ul>
@@ -80,9 +84,9 @@ Funktionen des Pakets <code>dplyr</code> für Datentransformation anwenden
 </div>
 <p><code>tidyverse</code> ist eine Sammlung von R-Pakete, die explizit für Datenanalyse entwickelt wurden (<a href="https://www.tidyverse.org/" class="uri">https://www.tidyverse.org/</a>). <code>tidyverse</code> versucht durch gemeinsame Philosophie in Design, Grammatik und Datenstruktur die Datenanalyse zu erleichtern (<a href="https://design.tidyverse.org/" class="uri">https://design.tidyverse.org/</a>). Auch wenn <code>tidyverse</code> auf den ersten Blick etwas fremd erscheint, es ist ein Teil von R, kein eigenes Universum. Es ist also völlig in Ordnung, R-Basisfunktionen mit Funktionen aus <code>tidyverse</code> zu mischen.</p>
 <p>Das wichtigste Einführungsbuch zu <code>tidyverse</code> ist sicherlich <strong>R4DS</strong>: “R for Data Science” <span class="citation">(<a href="literatur.html#ref-r4ds" role="doc-biblioref">Wickham and Grolemund 2021</a>)</span>, das Sie kostenlos online lesen können (<a href="https://r4ds.had.co.nz/" class="uri">https://r4ds.had.co.nz/</a>).</p>
-<div id="grundpakete" class="section level2" number="6.1">
+<div id="grundpakete" class="section level2" number="5.1">
 <h2>
-<span class="header-section-number">6.1</span> Grundpakete<a class="anchor" aria-label="anchor" href="#grundpakete"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.1</span> Grundpakete<a class="anchor" aria-label="anchor" href="#grundpakete"><i class="fas fa-link"></i></a>
 </h2>
 <p><code>tidyverse</code> enthält folgende Grundpakete, die alle installiert werden, wenn Sie <code><a href="https://rdrr.io/r/utils/install.packages.html">install.packages('tidyverse')</a></code> ausführen.</p>
 <div class="inline-table"><table class="table table-sm">
@@ -129,13 +133,13 @@ Funktionen des Pakets <code>dplyr</code> für Datentransformation anwenden
 </table></div>
 <p>Jedes dieser Pakete hat ein Cheat Sheet, eine übersichtliche Zusammenstellung der Funktionen des Pakets. Sie bekommen die Cheet Sheats über die <code>tidyverse</code>-Seite (<a href="https://www.tidyverse.org/packages/" class="uri">https://www.tidyverse.org/packages/</a>), indem Sie auf das jeweilige Paket klicken und zum Abschnitt ‘Cheatsheet’ scrollen.</p>
 </div>
-<div id="der-explorative-workflow" class="section level2" number="6.2">
+<div id="der-explorative-workflow" class="section level2" number="5.2">
 <h2>
-<span class="header-section-number">6.2</span> Der explorative Workflow<a class="anchor" aria-label="anchor" href="#der-explorative-workflow"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.2</span> Der explorative Workflow<a class="anchor" aria-label="anchor" href="#der-explorative-workflow"><i class="fas fa-link"></i></a>
 </h2>
-<div id="daten-einlesen-revisited" class="section level3" number="6.2.1">
+<div id="daten-einlesen-revisited" class="section level3" number="5.2.1">
 <h3>
-<span class="header-section-number">6.2.1</span> Daten einlesen, revisited<a class="anchor" aria-label="anchor" href="#daten-einlesen-revisited"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.2.1</span> Daten einlesen, revisited<a class="anchor" aria-label="anchor" href="#daten-einlesen-revisited"><i class="fas fa-link"></i></a>
 </h3>
 <p>Als erstes laden wir die Bibliothek <code>tidyverse</code>.</p>
 <div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
@@ -228,9 +232,9 @@ Funktionen des Pakets <code>dplyr</code> für Datentransformation anwenden
 <p>Das Objekt <code>temp_humid</code> ist ein <code>tibble</code>, ein <code>data.frame</code> mit “modernem” Verhalten. Z.B. gibt die Funktion <code><a href="https://rdrr.io/r/base/print.html">print()</a></code> nur die ersten 10 Zeilen aus, die Datentypen in den Spalten werden in hellgrau zwischen ‘&lt;&gt;’ mit angegeben etc. Mehr zu Tibbles finden Sie in Kapitel 10 “Tibbles” in R4DS.</p>
 </div>
 </div>
-<div id="geschickter-umgang-mit-zeit-und-datum" class="section level2" number="6.3">
+<div id="geschickter-umgang-mit-zeit-und-datum" class="section level2" number="5.3">
 <h2>
-<span class="header-section-number">6.3</span> Geschickter Umgang mit Zeit und Datum<a class="anchor" aria-label="anchor" href="#geschickter-umgang-mit-zeit-und-datum"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.3</span> Geschickter Umgang mit Zeit und Datum<a class="anchor" aria-label="anchor" href="#geschickter-umgang-mit-zeit-und-datum"><i class="fas fa-link"></i></a>
 </h2>
 <p>Ein weiteres Paket, dass zwar nicht zum Kern von <code>tidyverse</code> gehört, jedoch trotzdem extrem nützlich ist, heißt <code>lubridate</code>. Es hilft, Text sehr einfach in richtige Datums-Objekte zu transformieren (in Base-R muss man sich dafür kryptischen Datumsformate merken). Wir transformieren die Spalte <code>temp_humid$MESS_DATUM</code> in ein richtiges Datum mit Uhrzeit. Die Funktion <code><a href="http://lubridate.tidyverse.org/reference/ymd_hms.html">ymd_h()</a></code> kann <code>character</code> in ein richtiges Datumsformat transformieren, wenn das Datum als <strong>y</strong>ear, <strong>m</strong>onth, <strong>d</strong>ay, <strong>h</strong>our codiert ist. Es gibt noch weitere Varianten der Codierung, die Sie bei Bedarf in der Hilfe nachschlagen sollten.</p>
 <div class="sourceCode" id="cb53"><pre class="downlit sourceCode r">
@@ -253,9 +257,9 @@ Funktionen des Pakets <code>dplyr</code> für Datentransformation anwenden
 ##  9        2261 2018-11-19 08:00:00     3  -1.1    99 eor  
 ## 10        2261 2018-11-19 09:00:00     3  -0.6    97 eor  
 ## # … with 39,590 more rows</code></pre>
-<div id="daten-zusammenfassen" class="section level3" number="6.3.1">
+<div id="daten-zusammenfassen" class="section level3" number="5.3.1">
 <h3>
-<span class="header-section-number">6.3.1</span> Daten zusammenfassen<a class="anchor" aria-label="anchor" href="#daten-zusammenfassen"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.3.1</span> Daten zusammenfassen<a class="anchor" aria-label="anchor" href="#daten-zusammenfassen"><i class="fas fa-link"></i></a>
 </h3>
 <p>Die drei Wetterstationen haben folgende IDs:</p>
 <div class="sourceCode" id="cb55"><pre class="downlit sourceCode r">
@@ -275,9 +279,9 @@ Funktionen des Pakets <code>dplyr</code> für Datentransformation anwenden
 <p>Die Zeichenkombination <code>%&gt;%</code> heißt Pipe-Operator (<em>pipe</em>) und wird als ‘und dann’ gelesen (<em>then</em>). Der Ausdruck <code>temp_humid %&gt;% group_by(STATIONS_ID) %&gt;% count()</code> heißt also: nimm das Objekt <code>temp_humid</code>, gruppiere es nach der Variablen <code>STATION_ID</code> und dann zähle die Einträge pro Gruppe zusammen. Der Pipe-Operator ist die Kernphilosophie von <code>tidyverse</code> und wird Ihnen überall begegnen. Der Operator stammt aus dem Paket <code>magrittr</code> (<a href="https://magrittr.tidyverse.org/" class="uri">https://magrittr.tidyverse.org/</a>). Seine Hauptaufgabe ist es, den Code übersichtlicher und besser lesbar zu machen (vielleicht nicht gleich zu Beginn der Lernkurve aber schon sehr bald 😎).</p>
 </div>
 </div>
-<div id="die-grammatik-der-datenmanipulation-dplyr" class="section level2" number="6.4">
+<div id="die-grammatik-der-datenmanipulation-dplyr" class="section level2" number="5.4">
 <h2>
-<span class="header-section-number">6.4</span> Die Grammatik der Datenmanipulation – <code>dplyr</code><a class="anchor" aria-label="anchor" href="#die-grammatik-der-datenmanipulation-dplyr"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.4</span> Die Grammatik der Datenmanipulation – <code>dplyr</code><a class="anchor" aria-label="anchor" href="#die-grammatik-der-datenmanipulation-dplyr"><i class="fas fa-link"></i></a>
 </h2>
 <p>Die Funktion <code>count()</code> gehört zum Paket <code>dplyr</code>, das für Datentransformationen zuständig ist. Es ist mal wieder eine Grammatik. Dieses Paket enthält 5 Grundfunktionen (alle nach Verben benannt, damit man gleich weiß, was frau tut 😄):</p>
 <div class="inline-table"><table class="table table-sm">
@@ -377,9 +381,9 @@ Funktionen des Pakets <code>dplyr</code> für Datentransformation anwenden
 ##         &lt;dbl&gt; &lt;int&gt;
 ## 1        2261 13200
 ## 2        2667 13200</code></pre>
-<div id="daten-plotten" class="section level3" number="6.4.1">
+<div id="daten-plotten" class="section level3" number="5.4.1">
 <h3>
-<span class="header-section-number">6.4.1</span> Daten plotten<a class="anchor" aria-label="anchor" href="#daten-plotten"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.4.1</span> Daten plotten<a class="anchor" aria-label="anchor" href="#daten-plotten"><i class="fas fa-link"></i></a>
 </h3>
 <p>Wir sehen uns die Daten erst mal an, bevor wir weiter machen. Wir plotten die Temperatur. Weil es sich um Zeitreihen handelt, möchten wir sie eher untereinander als nebeneinander haben. Daher setzen wir bei <code>facet_wrap()</code> den Parameter <code>nrow = 3</code>.</p>
 <div class="sourceCode" id="cb66"><pre class="downlit sourceCode r">
@@ -389,9 +393,9 @@ Funktionen des Pakets <code>dplyr</code> für Datentransformation anwenden
   <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">'Zeit'</span>, y <span class="op">=</span> <span class="st">'Temperatur (°C)'</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="datenanalyse_files/figure-html/unnamed-chunk-61-1.png" width="90%"></div>
 </div>
-<div id="neue-variablen-erstellen-mit-mutate" class="section level3" number="6.4.2">
+<div id="neue-variablen-erstellen-mit-mutate" class="section level3" number="5.4.2">
 <h3>
-<span class="header-section-number">6.4.2</span> Neue Variablen erstellen mit <code>mutate()</code><a class="anchor" aria-label="anchor" href="#neue-variablen-erstellen-mit-mutate"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.4.2</span> Neue Variablen erstellen mit <code>mutate()</code><a class="anchor" aria-label="anchor" href="#neue-variablen-erstellen-mit-mutate"><i class="fas fa-link"></i></a>
 </h3>
 <p>Wir wollen nun die Monatsmittelwerte und die Standardabweichungen für die Temperatur berechnen und diese darstellen. Als erstes erstellen wir zwei neue Spalten, die jeweils das Jahr und den Monat beinhalten. Die beiden neuen Spalten werden am Ende von <code>temp_humid</code> angehängt. Um neue Spalten zu erstellen, nutzen wir die Funktion <code>mutate()</code>. Die Funktionen <code><a href="http://lubridate.tidyverse.org/reference/year.html">year()</a></code>und <code><a href="http://lubridate.tidyverse.org/reference/month.html">month()</a></code> gehören zur Bibliothek <code>lubridate</code> und extrahieren jeweils das Jahr und den Monat aus <code>MESS_DATUM</code>.</p>
 <div class="sourceCode" id="cb67"><pre class="downlit sourceCode r">
@@ -524,15 +528,15 @@ Funktionen des Pakets <code>dplyr</code> für Datentransformation anwenden
 <div class="inline-figure"><img src="datenanalyse_files/figure-html/unnamed-chunk-71-1.png" width="90%"></div>
 </div>
 </div>
-<div id="lesestoff-4" class="section level2" number="6.5">
+<div id="lesestoff-4" class="section level2" number="5.5">
 <h2>
-<span class="header-section-number">6.5</span> Lesestoff<a class="anchor" aria-label="anchor" href="#lesestoff-4"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.5</span> Lesestoff<a class="anchor" aria-label="anchor" href="#lesestoff-4"><i class="fas fa-link"></i></a>
 </h2>
 <p>Kapitel 3 in <span class="citation"><a href="literatur.html#ref-ModernDive" role="doc-biblioref">Ismay and Kim</a> (<a href="literatur.html#ref-ModernDive" role="doc-biblioref">2021</a>)</span></p>
 </div>
-<div id="weiterführende-literatur-und-videos" class="section level2" number="6.6">
+<div id="weiterführende-literatur-und-videos" class="section level2" number="5.6">
 <h2>
-<span class="header-section-number">6.6</span> Weiterführende Literatur und Videos<a class="anchor" aria-label="anchor" href="#weiterf%C3%BChrende-literatur-und-videos"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.6</span> Weiterführende Literatur und Videos<a class="anchor" aria-label="anchor" href="#weiterf%C3%BChrende-literatur-und-videos"><i class="fas fa-link"></i></a>
 </h2>
 <ul>
 <li><p>R4DS <span class="citation"><a href="literatur.html#ref-r4ds" role="doc-biblioref">Wickham and Grolemund</a> (<a href="literatur.html#ref-r4ds" role="doc-biblioref">2021</a>)</span>: Kapitel 5 “Data transformation”</p></li>
@@ -543,28 +547,31 @@ Funktionen des Pakets <code>dplyr</code> für Datentransformation anwenden
 
 </div>
 </div>
+
+
+
   <div class="chapter-nav">
-<div class="prev"><a href="daten-einlesen-und-visualisieren.html"><span class="header-section-number">5</span> Daten einlesen und visualisieren</a></div>
-<div class="next"><a href="stichproben.html"><span class="header-section-number">7</span> Stichproben und Variabilität</a></div>
+<div class="prev"><a href="daten-einlesen-und-visualisieren.html"><span class="header-section-number">4</span> Daten einlesen und visualisieren</a></div>
+<div class="next"><a href="stichproben.html"><span class="header-section-number">6</span> Stichproben und Variabilität</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
-<li><a class="nav-link" href="#tidyverse"><span class="header-section-number">6</span> Der explorative Workflow mit tidyverse</a></li>
-<li><a class="nav-link" href="#grundpakete"><span class="header-section-number">6.1</span> Grundpakete</a></li>
+<li><a class="nav-link" href="#tidyverse"><span class="header-section-number">5</span> Der explorative Workflow mit tidyverse</a></li>
+<li><a class="nav-link" href="#grundpakete"><span class="header-section-number">5.1</span> Grundpakete</a></li>
 <li>
-<a class="nav-link" href="#der-explorative-workflow"><span class="header-section-number">6.2</span> Der explorative Workflow</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#daten-einlesen-revisited"><span class="header-section-number">6.2.1</span> Daten einlesen, revisited</a></li></ul>
+<a class="nav-link" href="#der-explorative-workflow"><span class="header-section-number">5.2</span> Der explorative Workflow</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#daten-einlesen-revisited"><span class="header-section-number">5.2.1</span> Daten einlesen, revisited</a></li></ul>
 </li>
 <li>
-<a class="nav-link" href="#geschickter-umgang-mit-zeit-und-datum"><span class="header-section-number">6.3</span> Geschickter Umgang mit Zeit und Datum</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#daten-zusammenfassen"><span class="header-section-number">6.3.1</span> Daten zusammenfassen</a></li></ul>
+<a class="nav-link" href="#geschickter-umgang-mit-zeit-und-datum"><span class="header-section-number">5.3</span> Geschickter Umgang mit Zeit und Datum</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#daten-zusammenfassen"><span class="header-section-number">5.3.1</span> Daten zusammenfassen</a></li></ul>
 </li>
 <li>
-<a class="nav-link" href="#die-grammatik-der-datenmanipulation-dplyr"><span class="header-section-number">6.4</span> Die Grammatik der Datenmanipulation – dplyr</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#daten-plotten"><span class="header-section-number">6.4.1</span> Daten plotten</a></li>
-<li><a class="nav-link" href="#neue-variablen-erstellen-mit-mutate"><span class="header-section-number">6.4.2</span> Neue Variablen erstellen mit mutate()</a></li>
+<a class="nav-link" href="#die-grammatik-der-datenmanipulation-dplyr"><span class="header-section-number">5.4</span> Die Grammatik der Datenmanipulation – dplyr</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#daten-plotten"><span class="header-section-number">5.4.1</span> Daten plotten</a></li>
+<li><a class="nav-link" href="#neue-variablen-erstellen-mit-mutate"><span class="header-section-number">5.4.2</span> Neue Variablen erstellen mit mutate()</a></li>
 </ul>
 </li>
-<li><a class="nav-link" href="#lesestoff-4"><span class="header-section-number">6.5</span> Lesestoff</a></li>
-<li><a class="nav-link" href="#weiterf%C3%BChrende-literatur-und-videos"><span class="header-section-number">6.6</span> Weiterführende Literatur und Videos</a></li>
+<li><a class="nav-link" href="#lesestoff-4"><span class="header-section-number">5.5</span> Lesestoff</a></li>
+<li><a class="nav-link" href="#weiterf%C3%BChrende-literatur-und-videos"><span class="header-section-number">5.6</span> Weiterführende Literatur und Videos</a></li>
 </ul>
 
       <div class="book-extra">
@@ -582,7 +589,7 @@ Funktionen des Pakets <code>dplyr</code> für Datentransformation anwenden
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Datenanalyse mit R</strong>: SoSe 2021" was written by Christina Bogner. It was last built on 2021-06-30.</p>
+    <p>"<strong>Datenanalyse mit R</strong>: SoSe 2021" was written by Christina Bogner. It was last built on 2021-07-04.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Kapitel 5 Daten einlesen und visualisieren | Datenanalyse mit R</title>
+<title>Kapitel 4 Daten einlesen und visualisieren | Datenanalyse mit R</title>
 <meta name="author" content="Christina Bogner">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.2"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.9/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
@@ -39,20 +39,24 @@
       <nav aria-label="Table of contents"><h2>Table of contents</h2>
         <ul class="book-toc list-unstyled">
 <li><a class="" href="index.html">Vorwort</a></li>
-<li><a class="" href="einfuehrung.html"><span class="header-section-number">1</span> Der Kurs</a></li>
-<li><a class="" href="erste-schritte.html"><span class="header-section-number">2</span> Erste Schritte in R</a></li>
-<li><a class="" href="reproduzieren.html"><span class="header-section-number">3</span> R Markdown</a></li>
-<li><a class="" href="ggplot.html"><span class="header-section-number">4</span> Einführung in ggplot2</a></li>
-<li><a class="active" href="daten-einlesen-und-visualisieren.html"><span class="header-section-number">5</span> Daten einlesen und visualisieren</a></li>
-<li><a class="" href="tidyverse.html"><span class="header-section-number">6</span> Der explorative Workflow mit tidyverse</a></li>
-<li><a class="" href="stichproben.html"><span class="header-section-number">7</span> Stichproben und Variabilität</a></li>
-<li><a class="" href="bootstrapping-und-konfidenzintervalle.html"><span class="header-section-number">8</span> Bootstrapping und Konfidenzintervalle</a></li>
-<li><a class="" href="hypothesentsts.html"><span class="header-section-number">9</span> Hypothesentests mit dem Paket infer</a></li>
-<li><a class="" href="effekte.html"><span class="header-section-number">10</span> Schätzen von Effekten: Raus aus der \(p &lt; 0.05\)-Falle</a></li>
-<li><a class="" href="regression.html"><span class="header-section-number">11</span> Lineare Regression</a></li>
-<li><a class="" href="regression-inferenz.html"><span class="header-section-number">12</span> Inferenz in linearer Regression</a></li>
-<li><a class="" href="daten-und-bericht.html"><span class="header-section-number">13</span> Datenquellen und Struktur des Abschlussberichts</a></li>
-<li><a class="" href="aufgabensammlung.html"><span class="header-section-number">14</span> Aufgabensammlung</a></li>
+<li><a class="" href="einfuehrung.html">Der Kurs</a></li>
+<li class="book-part">Teil I: Daten explorieren</li>
+<li><a class="" href="erste-schritte.html"><span class="header-section-number">1</span> Erste Schritte in R</a></li>
+<li><a class="" href="reproduzieren.html"><span class="header-section-number">2</span> R Markdown</a></li>
+<li><a class="" href="ggplot.html"><span class="header-section-number">3</span> Einführung in ggplot2</a></li>
+<li><a class="active" href="daten-einlesen-und-visualisieren.html"><span class="header-section-number">4</span> Daten einlesen und visualisieren</a></li>
+<li><a class="" href="tidyverse.html"><span class="header-section-number">5</span> Der explorative Workflow mit tidyverse</a></li>
+<li class="book-part">Teil II: Statistische Inferenz</li>
+<li><a class="" href="stichproben.html"><span class="header-section-number">6</span> Stichproben und Variabilität</a></li>
+<li><a class="" href="bootstrapping-und-konfidenzintervalle.html"><span class="header-section-number">7</span> Bootstrapping und Konfidenzintervalle</a></li>
+<li><a class="" href="hypothesentsts.html"><span class="header-section-number">8</span> Hypothesentests mit dem Paket infer</a></li>
+<li><a class="" href="effekte.html"><span class="header-section-number">9</span> Schätzen von Effekten: Raus aus der \(p &lt; 0.05\)-Falle</a></li>
+<li class="book-part">Teil III: Statistische Modellierung</li>
+<li><a class="" href="regression.html"><span class="header-section-number">10</span> Lineare Regression</a></li>
+<li><a class="" href="regression-inferenz.html"><span class="header-section-number">11</span> Inferenz in linearer Regression</a></li>
+<li class="book-part">Appendix</li>
+<li><a class="" href="daten-und-bericht.html"><span class="header-section-number">A</span> Datenquellen und Struktur des Abschlussberichts</a></li>
+<li><a class="" href="aufgabensammlung.html"><span class="header-section-number">B</span> Aufgabensammlung</a></li>
 <li><a class="" href="literatur.html">Literatur</a></li>
 </ul>
 
@@ -61,9 +65,9 @@
         </div>
       </nav>
 </div>
-  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="daten-einlesen-und-visualisieren" class="section level1" number="5">
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="daten-einlesen-und-visualisieren" class="section level1" number="4">
 <h1>
-<span class="header-section-number">Kapitel 5</span> Daten einlesen und visualisieren<a class="anchor" aria-label="anchor" href="#daten-einlesen-und-visualisieren"><i class="fas fa-link"></i></a>
+<span class="header-section-number">Kapitel 4</span> Daten einlesen und visualisieren<a class="anchor" aria-label="anchor" href="#daten-einlesen-und-visualisieren"><i class="fas fa-link"></i></a>
 </h1>
 <div class="rmdoutcomes">
 <ul>
@@ -81,9 +85,9 @@ Grafiken speichern
 </li>
 </ul>
 </div>
-<div id="daten-aus-textdateien-in-r-einlesen" class="section level2" number="5.1">
+<div id="daten-aus-textdateien-in-r-einlesen" class="section level2" number="4.1">
 <h2>
-<span class="header-section-number">5.1</span> Daten aus Textdateien in R einlesen<a class="anchor" aria-label="anchor" href="#daten-aus-textdateien-in-r-einlesen"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.1</span> Daten aus Textdateien in R einlesen<a class="anchor" aria-label="anchor" href="#daten-aus-textdateien-in-r-einlesen"><i class="fas fa-link"></i></a>
 </h2>
 <p>Um Daten aus Textdateien (z.B. aus .csv, .txt, .dat) in R zu importieren (i.e. einzulesen) werden wir die Bibliothek <code>readr</code> aus <code>tidyverse</code> benutzen. Wir laden erst einmal <code>tidyverse</code>.</p>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
@@ -144,9 +148,9 @@ Grafiken speichern
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">emissions</span><span class="op">$</span><span class="va">geo</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 33</code></pre>
 </div>
-<div id="legende-verschieben-und-facetten" class="section level2" number="5.2">
+<div id="legende-verschieben-und-facetten" class="section level2" number="4.2">
 <h2>
-<span class="header-section-number">5.2</span> Legende verschieben und Facetten<a class="anchor" aria-label="anchor" href="#legende-verschieben-und-facetten"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.2</span> Legende verschieben und Facetten<a class="anchor" aria-label="anchor" href="#legende-verschieben-und-facetten"><i class="fas fa-link"></i></a>
 </h2>
 <p>Wir stellen die Zeitreihen der Emissionen eingefärbt nach Land dar. Die Länder stehen in der Variablen <code>geo</code>.</p>
 <div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
@@ -187,9 +191,9 @@ Grafiken speichern
 <pre><code>## Warning: Removed 203 row(s) containing missing values (geom_path).</code></pre>
 <div class="inline-figure"><img src="datenanalyse_files/figure-html/unnamed-chunk-41-1.png" width="90%"></div>
 </div>
-<div id="fehlerbalken-und-co." class="section level2" number="5.3">
+<div id="fehlerbalken-und-co." class="section level2" number="4.3">
 <h2>
-<span class="header-section-number">5.3</span> Fehlerbalken und Co.<a class="anchor" aria-label="anchor" href="#fehlerbalken-und-co."><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.3</span> Fehlerbalken und Co.<a class="anchor" aria-label="anchor" href="#fehlerbalken-und-co."><i class="fas fa-link"></i></a>
 </h2>
 <p>Um die Variabilität der Daten grafisch darzustellen, bieten sich Fehlerbalken, Bereiche etc. an. Dafür hat <code>ggplot2</code> spezielle geoms. Hier ein Beispiel inspiriert vom dem Buch ggplot2 <span class="citation">(<a href="literatur.html#ref-Wickham2020" role="doc-biblioref">Wickham 2020</a>)</span>.</p>
 <div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
@@ -207,9 +211,9 @@ Grafiken speichern
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">basis_plot</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "gg"     "ggplot"</code></pre>
 </div>
-<div id="mehrere-grafiken-nebeneinander" class="section level2" number="5.4">
+<div id="mehrere-grafiken-nebeneinander" class="section level2" number="4.4">
 <h2>
-<span class="header-section-number">5.4</span> Mehrere Grafiken nebeneinander<a class="anchor" aria-label="anchor" href="#mehrere-grafiken-nebeneinander"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.4</span> Mehrere Grafiken nebeneinander<a class="anchor" aria-label="anchor" href="#mehrere-grafiken-nebeneinander"><i class="fas fa-link"></i></a>
 </h2>
 <p>Um mehrere Grafiken nebeneinander zu plotten, nutzen wir die Funktion <code><a href="https://rdrr.io/pkg/gridExtra/man/arrangeGrob.html">grid.arrange()</a></code> aus der Bibliothek <code>gridExtra</code>. Um sie zu nutzen, müssen wir die <code>ggplot</code> Objekte abspeichern und dann mit Hilfe der Funktion <code>grid.arrange</code>, wie der Name schon sagt, “arrangieren.” In diesem Fall wollen wir in der Gesamtgrafik eine Zeile (<code>nrow = 1</code>), sodass die Grafiken nebeneinander stehen.</p>
 <div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
@@ -225,38 +229,38 @@ Grafiken speichern
 <code class="sourceCode R"><span class="va">alles</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/gridExtra/man/arrangeGrob.html">grid.arrange</a></span><span class="op">(</span><span class="va">p1</span>, <span class="va">p2</span>, nrow <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="datenanalyse_files/figure-html/unnamed-chunk-45-1.png" width="90%"></div>
 </div>
-<div id="grafiken-abspeichern" class="section level2" number="5.5">
+<div id="grafiken-abspeichern" class="section level2" number="4.5">
 <h2>
-<span class="header-section-number">5.5</span> Grafiken abspeichern<a class="anchor" aria-label="anchor" href="#grafiken-abspeichern"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.5</span> Grafiken abspeichern<a class="anchor" aria-label="anchor" href="#grafiken-abspeichern"><i class="fas fa-link"></i></a>
 </h2>
 <div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">ggsave</span><span class="op">(</span>filename <span class="op">=</span> <span class="st">'Fehlerbalken.pdf'</span>, plot <span class="op">=</span> <span class="va">alles</span>, device <span class="op">=</span> <span class="st">'pdf'</span>, width <span class="op">=</span> <span class="fl">7</span>, height <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></code></pre></div>
 </div>
-<div id="weitere-statistsiche-zusammenfassungen-in-grafiken" class="section level2" number="5.6">
+<div id="weitere-statistsiche-zusammenfassungen-in-grafiken" class="section level2" number="4.6">
 <h2>
-<span class="header-section-number">5.6</span> Weitere statistsiche Zusammenfassungen in Grafiken<a class="anchor" aria-label="anchor" href="#weitere-statistsiche-zusammenfassungen-in-grafiken"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.6</span> Weitere statistsiche Zusammenfassungen in Grafiken<a class="anchor" aria-label="anchor" href="#weitere-statistsiche-zusammenfassungen-in-grafiken"><i class="fas fa-link"></i></a>
 </h2>
 <p>Arbeiten Sie selbständig das Kapitel 5: Statistical summaries in <span class="citation"><a href="literatur.html#ref-Wickham2020" role="doc-biblioref">Wickham</a> (<a href="literatur.html#ref-Wickham2020" role="doc-biblioref">2020</a>)</span> (<a href="https://ggplot2-book.org/statistical-summaries.html" class="uri">https://ggplot2-book.org/statistical-summaries.html</a>).</p>
 </div>
-<div id="lesestoff-3" class="section level2" number="5.7">
+<div id="lesestoff-3" class="section level2" number="4.7">
 <h2>
-<span class="header-section-number">5.7</span> Lesestoff<a class="anchor" aria-label="anchor" href="#lesestoff-3"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.7</span> Lesestoff<a class="anchor" aria-label="anchor" href="#lesestoff-3"><i class="fas fa-link"></i></a>
 </h2>
 <p>Kapitel 2.2 bis 2.9 in <span class="citation"><a href="literatur.html#ref-ModernDive" role="doc-biblioref">Ismay and Kim</a> (<a href="literatur.html#ref-ModernDive" role="doc-biblioref">2021</a>)</span></p>
 </div>
-<div id="aufgaben-3" class="section level2" number="5.8">
+<div id="aufgaben-3" class="section level2" number="4.8">
 <h2>
-<span class="header-section-number">5.8</span> Aufgaben<a class="anchor" aria-label="anchor" href="#aufgaben-3"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.8</span> Aufgaben<a class="anchor" aria-label="anchor" href="#aufgaben-3"><i class="fas fa-link"></i></a>
 </h2>
-<div id="grafiken-richtig-beschriften-1" class="section level3" number="5.8.1">
+<div id="grafiken-richtig-beschriften-1" class="section level3" number="4.8.1">
 <h3>
-<span class="header-section-number">5.8.1</span> Grafiken richtig beschriften<a class="anchor" aria-label="anchor" href="#grafiken-richtig-beschriften-1"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.8.1</span> Grafiken richtig beschriften<a class="anchor" aria-label="anchor" href="#grafiken-richtig-beschriften-1"><i class="fas fa-link"></i></a>
 </h3>
 <p>Beschriften Sie die finale Grafik der Zeitreihen (Achsen, Titel, Legende).</p>
 </div>
-<div id="bestandesaufnahme" class="section level3" number="5.8.2">
+<div id="bestandesaufnahme" class="section level3" number="4.8.2">
 <h3>
-<span class="header-section-number">5.8.2</span> Bestandesaufnahme im Wald<a class="anchor" aria-label="anchor" href="#bestandesaufnahme"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.8.2</span> Bestandesaufnahme im Wald<a class="anchor" aria-label="anchor" href="#bestandesaufnahme"><i class="fas fa-link"></i></a>
 </h3>
 <p>Ar Stat arbeitet als HiWi in der AG Ökosystemforschung und soll im Nationalpark Eifel eine Bestandsaufnahme durchführen (d.h. Baumhöhen und -durchmesser vermessen). Er notiert den BHD (Brusthöhendurchmesser) und die Art der Bäume.</p>
 <ol style="list-style-type: decimal">
@@ -270,34 +274,34 @@ Grafiken speichern
 <li>Speichern Sie die Tabelle mit <code>write_delim()</code> ab. Schlagen Sie in der Hilfe nach, wie diese Funktion arbeitet!</li>
 </ol>
 </div>
-<div id="wahlbeteiligung" class="section level3" number="5.8.3">
+<div id="wahlbeteiligung" class="section level3" number="4.8.3">
 <h3>
-<span class="header-section-number">5.8.3</span> Wahlbeteiligung bei der Bundestagswahl 2017<a class="anchor" aria-label="anchor" href="#wahlbeteiligung"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.8.3</span> Wahlbeteiligung bei der Bundestagswahl 2017<a class="anchor" aria-label="anchor" href="#wahlbeteiligung"><i class="fas fa-link"></i></a>
 </h3>
-<p>Bauen Sie die Grafik nach (Abbildung <a href="daten-einlesen-und-visualisieren.html#fig:wahlbeteiligung">5.1</a>).</p>
+<p>Bauen Sie die Grafik nach (Abbildung <a href="daten-einlesen-und-visualisieren.html#fig:wahlbeteiligung">4.1</a>).</p>
 <div class="figure">
 <span style="display:block;" id="fig:wahlbeteiligung"></span>
 <img src="datenanalyse_files/figure-html/wahlbeteiligung-1.png" alt="Wahlbeteiligung bei den Bundestagswahlen. Quelle: Der Bundeswahlleiter." width="90%"><p class="caption">
-Abbildung 5.1: Wahlbeteiligung bei den Bundestagswahlen. Quelle: Der Bundeswahlleiter.
+Abbildung 4.1: Wahlbeteiligung bei den Bundestagswahlen. Quelle: Der Bundeswahlleiter.
 </p>
 </div>
 <ol style="list-style-type: decimal">
 <li>Lesen Sie den Datensatz <span style="font-family: sans-serif; font-size: medium">Wahlbeteiligung.csv</span> in R ein und ordnen Sie ihn dem Objekt <code>beteiligung</code> zu.</li>
 <li>Sehen Sie sich den Datensatz an und fassen Sie ihn zusammen.</li>
-<li>Stellen Sie die Wahlbeteiligung als Funktion der Zeit dar, wie in Abbildung <a href="daten-einlesen-und-visualisieren.html#fig:wahlbeteiligung">5.1</a> gezeigt.</li>
+<li>Stellen Sie die Wahlbeteiligung als Funktion der Zeit dar, wie in Abbildung <a href="daten-einlesen-und-visualisieren.html#fig:wahlbeteiligung">4.1</a> gezeigt.</li>
 <li>Beschriften Sie die Grafik.</li>
 <li>Speichern Sie die Grafik als pdf ab.</li>
 </ol>
 </div>
-<div id="zweitstimme" class="section level3" number="5.8.4">
+<div id="zweitstimme" class="section level3" number="4.8.4">
 <h3>
-<span class="header-section-number">5.8.4</span> Zweitstimme bei der Bundestagswahl 2017<a class="anchor" aria-label="anchor" href="#zweitstimme"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.8.4</span> Zweitstimme bei der Bundestagswahl 2017<a class="anchor" aria-label="anchor" href="#zweitstimme"><i class="fas fa-link"></i></a>
 </h3>
-<p>Bauen Sie die Grafik nach (Abbildung <a href="daten-einlesen-und-visualisieren.html#fig:zweitstimme">5.2</a>).</p>
+<p>Bauen Sie die Grafik nach (Abbildung <a href="daten-einlesen-und-visualisieren.html#fig:zweitstimme">4.2</a>).</p>
 <div class="figure">
 <span style="display:block;" id="fig:zweitstimme"></span>
 <img src="datenanalyse_files/figure-html/zweitstimme-1.png" alt="Zweitstimme bei der Bundestagswahl 2017. Quelle: Der Bundeswahlleiter." width="90%"><p class="caption">
-Abbildung 5.2: Zweitstimme bei der Bundestagswahl 2017. Quelle: Der Bundeswahlleiter.
+Abbildung 4.2: Zweitstimme bei der Bundestagswahl 2017. Quelle: Der Bundeswahlleiter.
 </p>
 </div>
 <ol style="list-style-type: decimal">
@@ -315,22 +319,22 @@ Abbildung 5.2: Zweitstimme bei der Bundestagswahl 2017. Quelle: Der Bundeswahlle
 <li>Speichern Sie die Grafik als pdf ab.</li>
 </ol>
 </div>
-<div id="zweigrafiken" class="section level3" number="5.8.5">
+<div id="zweigrafiken" class="section level3" number="4.8.5">
 <h3>
-<span class="header-section-number">5.8.5</span> Ergebnisse der Bundestagswahl in einer Grafik<a class="anchor" aria-label="anchor" href="#zweigrafiken"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.8.5</span> Ergebnisse der Bundestagswahl in einer Grafik<a class="anchor" aria-label="anchor" href="#zweigrafiken"><i class="fas fa-link"></i></a>
 </h3>
-<p>Stellen Sie beide Grafiken untereinander dar wie in Abbildung (<a href="daten-einlesen-und-visualisieren.html#fig:zweigrafiken">5.3</a>) gezeigt.</p>
+<p>Stellen Sie beide Grafiken untereinander dar wie in Abbildung (<a href="daten-einlesen-und-visualisieren.html#fig:zweigrafiken">4.3</a>) gezeigt.</p>
 <div class="figure">
 <span style="display:block;" id="fig:zweigrafiken"></span>
 <img src="datenanalyse_files/figure-html/zweigrafiken-1.png" alt="Ergebnisse der Bundestagswahl 2017. Quelle: Der Bundeswahlleiter." width="90%"><p class="caption">
-Abbildung 5.3: Ergebnisse der Bundestagswahl 2017. Quelle: Der Bundeswahlleiter.
+Abbildung 4.3: Ergebnisse der Bundestagswahl 2017. Quelle: Der Bundeswahlleiter.
 </p>
 </div>
 </div>
 </div>
-<div id="ihre-arbeit-einreichen-2" class="section level2" number="5.9">
+<div id="ihre-arbeit-einreichen-2" class="section level2" number="4.9">
 <h2>
-<span class="header-section-number">5.9</span> Ihre Arbeit einreichen<a class="anchor" aria-label="anchor" href="#ihre-arbeit-einreichen-2"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.9</span> Ihre Arbeit einreichen<a class="anchor" aria-label="anchor" href="#ihre-arbeit-einreichen-2"><i class="fas fa-link"></i></a>
 </h2>
 <ul>
 <li>Speichern Sie Ihr Notebook ab und laden Sie nur die .Rmd Datei vom Server.</li>
@@ -341,29 +345,29 @@ Abbildung 5.3: Ergebnisse der Bundestagswahl 2017. Quelle: Der Bundeswahlleiter.
 </div>
 </div>
   <div class="chapter-nav">
-<div class="prev"><a href="ggplot.html"><span class="header-section-number">4</span> Einführung in ggplot2</a></div>
-<div class="next"><a href="tidyverse.html"><span class="header-section-number">6</span> Der explorative Workflow mit tidyverse</a></div>
+<div class="prev"><a href="ggplot.html"><span class="header-section-number">3</span> Einführung in ggplot2</a></div>
+<div class="next"><a href="tidyverse.html"><span class="header-section-number">5</span> Der explorative Workflow mit tidyverse</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
-<li><a class="nav-link" href="#daten-einlesen-und-visualisieren"><span class="header-section-number">5</span> Daten einlesen und visualisieren</a></li>
-<li><a class="nav-link" href="#daten-aus-textdateien-in-r-einlesen"><span class="header-section-number">5.1</span> Daten aus Textdateien in R einlesen</a></li>
-<li><a class="nav-link" href="#legende-verschieben-und-facetten"><span class="header-section-number">5.2</span> Legende verschieben und Facetten</a></li>
-<li><a class="nav-link" href="#fehlerbalken-und-co."><span class="header-section-number">5.3</span> Fehlerbalken und Co.</a></li>
-<li><a class="nav-link" href="#mehrere-grafiken-nebeneinander"><span class="header-section-number">5.4</span> Mehrere Grafiken nebeneinander</a></li>
-<li><a class="nav-link" href="#grafiken-abspeichern"><span class="header-section-number">5.5</span> Grafiken abspeichern</a></li>
-<li><a class="nav-link" href="#weitere-statistsiche-zusammenfassungen-in-grafiken"><span class="header-section-number">5.6</span> Weitere statistsiche Zusammenfassungen in Grafiken</a></li>
-<li><a class="nav-link" href="#lesestoff-3"><span class="header-section-number">5.7</span> Lesestoff</a></li>
+<li><a class="nav-link" href="#daten-einlesen-und-visualisieren"><span class="header-section-number">4</span> Daten einlesen und visualisieren</a></li>
+<li><a class="nav-link" href="#daten-aus-textdateien-in-r-einlesen"><span class="header-section-number">4.1</span> Daten aus Textdateien in R einlesen</a></li>
+<li><a class="nav-link" href="#legende-verschieben-und-facetten"><span class="header-section-number">4.2</span> Legende verschieben und Facetten</a></li>
+<li><a class="nav-link" href="#fehlerbalken-und-co."><span class="header-section-number">4.3</span> Fehlerbalken und Co.</a></li>
+<li><a class="nav-link" href="#mehrere-grafiken-nebeneinander"><span class="header-section-number">4.4</span> Mehrere Grafiken nebeneinander</a></li>
+<li><a class="nav-link" href="#grafiken-abspeichern"><span class="header-section-number">4.5</span> Grafiken abspeichern</a></li>
+<li><a class="nav-link" href="#weitere-statistsiche-zusammenfassungen-in-grafiken"><span class="header-section-number">4.6</span> Weitere statistsiche Zusammenfassungen in Grafiken</a></li>
+<li><a class="nav-link" href="#lesestoff-3"><span class="header-section-number">4.7</span> Lesestoff</a></li>
 <li>
-<a class="nav-link" href="#aufgaben-3"><span class="header-section-number">5.8</span> Aufgaben</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#grafiken-richtig-beschriften-1"><span class="header-section-number">5.8.1</span> Grafiken richtig beschriften</a></li>
-<li><a class="nav-link" href="#bestandesaufnahme"><span class="header-section-number">5.8.2</span> Bestandesaufnahme im Wald</a></li>
-<li><a class="nav-link" href="#wahlbeteiligung"><span class="header-section-number">5.8.3</span> Wahlbeteiligung bei der Bundestagswahl 2017</a></li>
-<li><a class="nav-link" href="#zweitstimme"><span class="header-section-number">5.8.4</span> Zweitstimme bei der Bundestagswahl 2017</a></li>
-<li><a class="nav-link" href="#zweigrafiken"><span class="header-section-number">5.8.5</span> Ergebnisse der Bundestagswahl in einer Grafik</a></li>
+<a class="nav-link" href="#aufgaben-3"><span class="header-section-number">4.8</span> Aufgaben</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#grafiken-richtig-beschriften-1"><span class="header-section-number">4.8.1</span> Grafiken richtig beschriften</a></li>
+<li><a class="nav-link" href="#bestandesaufnahme"><span class="header-section-number">4.8.2</span> Bestandesaufnahme im Wald</a></li>
+<li><a class="nav-link" href="#wahlbeteiligung"><span class="header-section-number">4.8.3</span> Wahlbeteiligung bei der Bundestagswahl 2017</a></li>
+<li><a class="nav-link" href="#zweitstimme"><span class="header-section-number">4.8.4</span> Zweitstimme bei der Bundestagswahl 2017</a></li>
+<li><a class="nav-link" href="#zweigrafiken"><span class="header-section-number">4.8.5</span> Ergebnisse der Bundestagswahl in einer Grafik</a></li>
 </ul>
 </li>
-<li><a class="nav-link" href="#ihre-arbeit-einreichen-2"><span class="header-section-number">5.9</span> Ihre Arbeit einreichen</a></li>
+<li><a class="nav-link" href="#ihre-arbeit-einreichen-2"><span class="header-section-number">4.9</span> Ihre Arbeit einreichen</a></li>
 </ul>
 
       <div class="book-extra">
@@ -381,7 +385,7 @@ Abbildung 5.3: Ergebnisse der Bundestagswahl 2017. Quelle: Der Bundeswahlleiter.
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Datenanalyse mit R</strong>: SoSe 2021" was written by Christina Bogner. It was last built on 2021-06-30.</p>
+    <p>"<strong>Datenanalyse mit R</strong>: SoSe 2021" was written by Christina Bogner. It was last built on 2021-07-04.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Kapitel 12 Inferenz in linearer Regression | Datenanalyse mit R</title>
+<title>Kapitel 11 Inferenz in linearer Regression | Datenanalyse mit R</title>
 <meta name="author" content="Christina Bogner">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.2"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.9/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
@@ -39,20 +39,24 @@
       <nav aria-label="Table of contents"><h2>Table of contents</h2>
         <ul class="book-toc list-unstyled">
 <li><a class="" href="index.html">Vorwort</a></li>
-<li><a class="" href="einfuehrung.html"><span class="header-section-number">1</span> Der Kurs</a></li>
-<li><a class="" href="erste-schritte.html"><span class="header-section-number">2</span> Erste Schritte in R</a></li>
-<li><a class="" href="reproduzieren.html"><span class="header-section-number">3</span> R Markdown</a></li>
-<li><a class="" href="ggplot.html"><span class="header-section-number">4</span> Einführung in ggplot2</a></li>
-<li><a class="" href="daten-einlesen-und-visualisieren.html"><span class="header-section-number">5</span> Daten einlesen und visualisieren</a></li>
-<li><a class="" href="tidyverse.html"><span class="header-section-number">6</span> Der explorative Workflow mit tidyverse</a></li>
-<li><a class="" href="stichproben.html"><span class="header-section-number">7</span> Stichproben und Variabilität</a></li>
-<li><a class="" href="bootstrapping-und-konfidenzintervalle.html"><span class="header-section-number">8</span> Bootstrapping und Konfidenzintervalle</a></li>
-<li><a class="" href="hypothesentsts.html"><span class="header-section-number">9</span> Hypothesentests mit dem Paket infer</a></li>
-<li><a class="" href="effekte.html"><span class="header-section-number">10</span> Schätzen von Effekten: Raus aus der \(p &lt; 0.05\)-Falle</a></li>
-<li><a class="" href="regression.html"><span class="header-section-number">11</span> Lineare Regression</a></li>
-<li><a class="active" href="regression-inferenz.html"><span class="header-section-number">12</span> Inferenz in linearer Regression</a></li>
-<li><a class="" href="daten-und-bericht.html"><span class="header-section-number">13</span> Datenquellen und Struktur des Abschlussberichts</a></li>
-<li><a class="" href="aufgabensammlung.html"><span class="header-section-number">14</span> Aufgabensammlung</a></li>
+<li><a class="" href="einfuehrung.html">Der Kurs</a></li>
+<li class="book-part">Teil I: Daten explorieren</li>
+<li><a class="" href="erste-schritte.html"><span class="header-section-number">1</span> Erste Schritte in R</a></li>
+<li><a class="" href="reproduzieren.html"><span class="header-section-number">2</span> R Markdown</a></li>
+<li><a class="" href="ggplot.html"><span class="header-section-number">3</span> Einführung in ggplot2</a></li>
+<li><a class="" href="daten-einlesen-und-visualisieren.html"><span class="header-section-number">4</span> Daten einlesen und visualisieren</a></li>
+<li><a class="" href="tidyverse.html"><span class="header-section-number">5</span> Der explorative Workflow mit tidyverse</a></li>
+<li class="book-part">Teil II: Statistische Inferenz</li>
+<li><a class="" href="stichproben.html"><span class="header-section-number">6</span> Stichproben und Variabilität</a></li>
+<li><a class="" href="bootstrapping-und-konfidenzintervalle.html"><span class="header-section-number">7</span> Bootstrapping und Konfidenzintervalle</a></li>
+<li><a class="" href="hypothesentsts.html"><span class="header-section-number">8</span> Hypothesentests mit dem Paket infer</a></li>
+<li><a class="" href="effekte.html"><span class="header-section-number">9</span> Schätzen von Effekten: Raus aus der \(p &lt; 0.05\)-Falle</a></li>
+<li class="book-part">Teil III: Statistische Modellierung</li>
+<li><a class="" href="regression.html"><span class="header-section-number">10</span> Lineare Regression</a></li>
+<li><a class="active" href="regression-inferenz.html"><span class="header-section-number">11</span> Inferenz in linearer Regression</a></li>
+<li class="book-part">Appendix</li>
+<li><a class="" href="daten-und-bericht.html"><span class="header-section-number">A</span> Datenquellen und Struktur des Abschlussberichts</a></li>
+<li><a class="" href="aufgabensammlung.html"><span class="header-section-number">B</span> Aufgabensammlung</a></li>
 <li><a class="" href="literatur.html">Literatur</a></li>
 </ul>
 
@@ -61,9 +65,9 @@
         </div>
       </nav>
 </div>
-  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="regression-inferenz" class="section level1" number="12">
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="regression-inferenz" class="section level1" number="11">
 <h1>
-<span class="header-section-number">Kapitel 12</span> Inferenz in linearer Regression<a class="anchor" aria-label="anchor" href="#regression-inferenz"><i class="fas fa-link"></i></a>
+<span class="header-section-number">Kapitel 11</span> Inferenz in linearer Regression<a class="anchor" aria-label="anchor" href="#regression-inferenz"><i class="fas fa-link"></i></a>
 </h1>
 <div class="rmdoutcomes">
 <ul>
@@ -95,13 +99,13 @@ Konfidenzintervalle für nicht normalverteilte Residuen berechnen
 <li>Wie gut ist das Modell?</li>
 <li>Was macht man, wenn die Residuen nicht normalverteilt sind?</li>
 </ul>
-<div id="zurück-zum-beispiel-anreisezeit-und-arbeitszeit-in-der-bilbiothek" class="section level2" number="12.1">
+<div id="zurück-zum-beispiel-anreisezeit-und-arbeitszeit-in-der-bilbiothek" class="section level2" number="11.1">
 <h2>
-<span class="header-section-number">12.1</span> Zurück zum Beispiel: Anreisezeit und Arbeitszeit in der Bilbiothek<a class="anchor" aria-label="anchor" href="#zur%C3%BCck-zum-beispiel-anreisezeit-und-arbeitszeit-in-der-bilbiothek"><i class="fas fa-link"></i></a>
+<span class="header-section-number">11.1</span> Zurück zum Beispiel: Anreisezeit und Arbeitszeit in der Bilbiothek<a class="anchor" aria-label="anchor" href="#zur%C3%BCck-zum-beispiel-anreisezeit-und-arbeitszeit-in-der-bilbiothek"><i class="fas fa-link"></i></a>
 </h2>
-<div id="parameter-und-kofidenzinetervalle-schätzen" class="section level3" number="12.1.1">
+<div id="parameter-und-kofidenzinetervalle-schätzen" class="section level3" number="11.1.1">
 <h3>
-<span class="header-section-number">12.1.1</span> Parameter und Kofidenzinetervalle schätzen<a class="anchor" aria-label="anchor" href="#parameter-und-kofidenzinetervalle-sch%C3%A4tzen"><i class="fas fa-link"></i></a>
+<span class="header-section-number">11.1.1</span> Parameter und Kofidenzinetervalle schätzen<a class="anchor" aria-label="anchor" href="#parameter-und-kofidenzinetervalle-sch%C3%A4tzen"><i class="fas fa-link"></i></a>
 </h3>
 <div class="sourceCode" id="cb185"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
@@ -237,9 +241,9 @@ gilt für diese Zufallsvariablen, dass sie selbst normalverteilt sind:</p>
 <p><span class="math display">\[\hat{\beta}_0 \pm \hat{\sigma}_{\hat{\beta}_0} t_{1-\alpha/2, n-2}, \qquad \hat{\beta}_1 \pm \hat{\sigma}_{\hat{\beta}_1} t_{1-\alpha/2, n-2}\]</span></p>
 <p>Für <span class="math inline">\(\alpha\)</span> setzt man passendes Konfidenzlevel ein, z.B. 5%, um das 95%-Konfidenzintervall zu erhalten.</p>
 </div>
-<div id="wie-gut-ist-das-modell" class="section level3" number="12.1.2">
+<div id="wie-gut-ist-das-modell" class="section level3" number="11.1.2">
 <h3>
-<span class="header-section-number">12.1.2</span> Wie gut ist das Modell?<a class="anchor" aria-label="anchor" href="#wie-gut-ist-das-modell"><i class="fas fa-link"></i></a>
+<span class="header-section-number">11.1.2</span> Wie gut ist das Modell?<a class="anchor" aria-label="anchor" href="#wie-gut-ist-das-modell"><i class="fas fa-link"></i></a>
 </h3>
 <p>Welcher Anteil der Streuung der Daten lässt sich durch die Regression erklären?</p>
 <p>Die Streuung im Modell besteht aus:</p>
@@ -355,9 +359,9 @@ nobs
 <p>Somit erklärt unser Modell 53% der Varianz der Daten.</p>
 </div>
 </div>
-<div id="bootstrap-mit-infer-konfidenzintervall-für-steigung" class="section level2" number="12.2">
+<div id="bootstrap-mit-infer-konfidenzintervall-für-steigung" class="section level2" number="11.2">
 <h2>
-<span class="header-section-number">12.2</span> Bootstrap mit <code>infer</code>: Konfidenzintervall für Steigung<a class="anchor" aria-label="anchor" href="#bootstrap-mit-infer-konfidenzintervall-f%C3%BCr-steigung"><i class="fas fa-link"></i></a>
+<span class="header-section-number">11.2</span> Bootstrap mit <code>infer</code>: Konfidenzintervall für Steigung<a class="anchor" aria-label="anchor" href="#bootstrap-mit-infer-konfidenzintervall-f%C3%BCr-steigung"><i class="fas fa-link"></i></a>
 </h2>
 <p>Die <span class="math inline">\(t\)</span>-Verteilung der Schätzungen gilt <em>asymptotisch</em>, d.h. bei großen Datensäzten, auch für nicht-normalverteilte Residuen (unter bestimmten Bedingungen, s. <span class="citation"><a href="literatur.html#ref-Fahrmeir2009" role="doc-biblioref">Fahrmeir, Kneib, and Lang</a> (<a href="literatur.html#ref-Fahrmeir2009" role="doc-biblioref">2009</a>)</span>). Allerdings erfordern
 <strong>nicht-normalverteilte Residuen große Stichproben oder aber alternative Methoden</strong> zum Berechnen der Konfidenzintervalle. Auch heteroskedastische Residuen führen zu falschen Konfidenzintervallen und Hypothesentests. Bootstrap ist robust gegen die Verletzung beider Annahmen (Normalvereilung und Homoskedastizität der Residuen). Allerdings müssen die Daten nach wie vor unabhängig sein (keine wiederholten Messungen, keine Zeitreihen!), damit Bootstrap korrekt arbeitet.</p>
@@ -477,9 +481,9 @@ anreise
 ##     &lt;dbl&gt;
 ## 1       0</code></pre>
 </div>
-<div id="bootstrap-mit-rsample-konfidenzintervalle-für-steigung-und-y-achsenabschnitt" class="section level2" number="12.3">
+<div id="bootstrap-mit-rsample-konfidenzintervalle-für-steigung-und-y-achsenabschnitt" class="section level2" number="11.3">
 <h2>
-<span class="header-section-number">12.3</span> Bootstrap mit <code>rsample</code>: Konfidenzintervalle für Steigung und <span class="math inline">\(y\)</span>-Achsenabschnitt<a class="anchor" aria-label="anchor" href="#bootstrap-mit-rsample-konfidenzintervalle-f%C3%BCr-steigung-und-y-achsenabschnitt"><i class="fas fa-link"></i></a>
+<span class="header-section-number">11.3</span> Bootstrap mit <code>rsample</code>: Konfidenzintervalle für Steigung und <span class="math inline">\(y\)</span>-Achsenabschnitt<a class="anchor" aria-label="anchor" href="#bootstrap-mit-rsample-konfidenzintervalle-f%C3%BCr-steigung-und-y-achsenabschnitt"><i class="fas fa-link"></i></a>
 </h2>
 <p>Falls wir doch Konfidenzintervalle für beide Modellparameter brauchen (und die Annahmen Normalverteilung und/oder Homoskedastizität verletzt sind) oder aber ein lineares Modell mit mehreren Prädiktoren anpassen, können wir nicht mehr mit <code>infer</code> arbeiten. Es gibt aber ein ganzes Modelluniversum, zusammengestellt in der Paketsammlung <code>tidymodels</code> (<a href="https://www.tidymodels.org/" class="uri">https://www.tidymodels.org/</a>). Darin gibt es nicht nur alle möglichen Modelle, sondern vor allem eine <em>tidy</em> und einheitliche Herangehensweise ans Modellieren. <code>tidymodels</code> ist jenseits dessen, was wir in diesem Kurs machen werden. Wir werden aber die Bibliothek <code>rsample</code> nutzen, die uns beim Bootstrappen hilft.</p>
 <div class="sourceCode" id="cb201"><pre class="downlit sourceCode r">
@@ -776,19 +780,19 @@ anreise
 <div class="inline-figure"><img src="datenanalyse_files/figure-html/unnamed-chunk-174-1.png" width="90%"></div>
 <p>In diesem Beispiel ähneln sich die Konfidenzintervalle, da die Annahmen der Normalregression erfüllt sind. Das wird in den Aufgaben (s.u.), die Sie selbständig bearbeiten werden, nicht mehr der Fall sein. Selbstverständlich sollen Sie im Falle von erfüllten Annahmen einfach die Standardkonfidenzintervalle nutzen und brauchen kein Bootstrap. Sie werden aber sehen, dass beim Modellieren mit richtigen Daten die Annahmen der Normalverteilung und der Homoskedastizität häufig verletzt sind. Mit dem Bootstrap sind Sie jetzt dafür gerüstet 😄.</p>
 </div>
-<div id="lesestoff-10" class="section level2" number="12.4">
+<div id="lesestoff-10" class="section level2" number="11.4">
 <h2>
-<span class="header-section-number">12.4</span> Lesestoff<a class="anchor" aria-label="anchor" href="#lesestoff-10"><i class="fas fa-link"></i></a>
+<span class="header-section-number">11.4</span> Lesestoff<a class="anchor" aria-label="anchor" href="#lesestoff-10"><i class="fas fa-link"></i></a>
 </h2>
 <p>Kapitel 10 in <span class="citation"><a href="literatur.html#ref-ModernDive" role="doc-biblioref">Ismay and Kim</a> (<a href="literatur.html#ref-ModernDive" role="doc-biblioref">2021</a>)</span></p>
 </div>
-<div id="aufgaben-9" class="section level2" number="12.5">
+<div id="aufgaben-9" class="section level2" number="11.5">
 <h2>
-<span class="header-section-number">12.5</span> Aufgaben<a class="anchor" aria-label="anchor" href="#aufgaben-9"><i class="fas fa-link"></i></a>
+<span class="header-section-number">11.5</span> Aufgaben<a class="anchor" aria-label="anchor" href="#aufgaben-9"><i class="fas fa-link"></i></a>
 </h2>
-<div id="artenreichtum-auf-den-galapagosinseln" class="section level3" number="12.5.1">
+<div id="artenreichtum-auf-den-galapagosinseln" class="section level3" number="11.5.1">
 <h3>
-<span class="header-section-number">12.5.1</span> Artenreichtum auf den Galapagosinseln<a class="anchor" aria-label="anchor" href="#artenreichtum-auf-den-galapagosinseln"><i class="fas fa-link"></i></a>
+<span class="header-section-number">11.5.1</span> Artenreichtum auf den Galapagosinseln<a class="anchor" aria-label="anchor" href="#artenreichtum-auf-den-galapagosinseln"><i class="fas fa-link"></i></a>
 </h3>
 <p>Wir beschäftigen uns mit dem Datensatz <code>gala</code> aus der Bibliothek <code>faraway</code>.</p>
 <ol style="list-style-type: decimal">
@@ -800,16 +804,16 @@ anreise
 <li>Interpretieren Sie das Modell.</li>
 </ol>
 </div>
-<div id="artenreichtum-auf-den-galapagosinseln-revisited" class="section level3" number="12.5.2">
+<div id="artenreichtum-auf-den-galapagosinseln-revisited" class="section level3" number="11.5.2">
 <h3>
-<span class="header-section-number">12.5.2</span> Artenreichtum auf den Galapagosinseln, revisited<a class="anchor" aria-label="anchor" href="#artenreichtum-auf-den-galapagosinseln-revisited"><i class="fas fa-link"></i></a>
+<span class="header-section-number">11.5.2</span> Artenreichtum auf den Galapagosinseln, revisited<a class="anchor" aria-label="anchor" href="#artenreichtum-auf-den-galapagosinseln-revisited"><i class="fas fa-link"></i></a>
 </h3>
 <p>Wiederholen Sie die obere Aufgabe nun mit Hilfe der Bibliothek <code>rasample</code>. Tip: Wandeln Sie die Inselnamen, die nur als Zeilennamen existieren, in eine richtige Spalte um <code>gala &lt;- gala %&gt;% rownames_to_column(var = "island")</code>.</p>
 </div>
 </div>
-<div id="ihre-arbeit-einreichen-7" class="section level2" number="12.6">
+<div id="ihre-arbeit-einreichen-7" class="section level2" number="11.6">
 <h2>
-<span class="header-section-number">12.6</span> Ihre Arbeit einreichen<a class="anchor" aria-label="anchor" href="#ihre-arbeit-einreichen-7"><i class="fas fa-link"></i></a>
+<span class="header-section-number">11.6</span> Ihre Arbeit einreichen<a class="anchor" aria-label="anchor" href="#ihre-arbeit-einreichen-7"><i class="fas fa-link"></i></a>
 </h2>
 <ul>
 <li>Speichern Sie Ihr Notebook ab und laden Sie nur die .Rmd Datei vom Server.</li>
@@ -819,29 +823,32 @@ anreise
 </ul>
 </div>
 </div>
+
+
+
   <div class="chapter-nav">
-<div class="prev"><a href="regression.html"><span class="header-section-number">11</span> Lineare Regression</a></div>
-<div class="next"><a href="daten-und-bericht.html"><span class="header-section-number">13</span> Datenquellen und Struktur des Abschlussberichts</a></div>
+<div class="prev"><a href="regression.html"><span class="header-section-number">10</span> Lineare Regression</a></div>
+<div class="next"><a href="daten-und-bericht.html"><span class="header-section-number">A</span> Datenquellen und Struktur des Abschlussberichts</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
-<li><a class="nav-link" href="#regression-inferenz"><span class="header-section-number">12</span> Inferenz in linearer Regression</a></li>
+<li><a class="nav-link" href="#regression-inferenz"><span class="header-section-number">11</span> Inferenz in linearer Regression</a></li>
 <li>
-<a class="nav-link" href="#zur%C3%BCck-zum-beispiel-anreisezeit-und-arbeitszeit-in-der-bilbiothek"><span class="header-section-number">12.1</span> Zurück zum Beispiel: Anreisezeit und Arbeitszeit in der Bilbiothek</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#parameter-und-kofidenzinetervalle-sch%C3%A4tzen"><span class="header-section-number">12.1.1</span> Parameter und Kofidenzinetervalle schätzen</a></li>
-<li><a class="nav-link" href="#wie-gut-ist-das-modell"><span class="header-section-number">12.1.2</span> Wie gut ist das Modell?</a></li>
+<a class="nav-link" href="#zur%C3%BCck-zum-beispiel-anreisezeit-und-arbeitszeit-in-der-bilbiothek"><span class="header-section-number">11.1</span> Zurück zum Beispiel: Anreisezeit und Arbeitszeit in der Bilbiothek</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#parameter-und-kofidenzinetervalle-sch%C3%A4tzen"><span class="header-section-number">11.1.1</span> Parameter und Kofidenzinetervalle schätzen</a></li>
+<li><a class="nav-link" href="#wie-gut-ist-das-modell"><span class="header-section-number">11.1.2</span> Wie gut ist das Modell?</a></li>
 </ul>
 </li>
-<li><a class="nav-link" href="#bootstrap-mit-infer-konfidenzintervall-f%C3%BCr-steigung"><span class="header-section-number">12.2</span> Bootstrap mit infer: Konfidenzintervall für Steigung</a></li>
-<li><a class="nav-link" href="#bootstrap-mit-rsample-konfidenzintervalle-f%C3%BCr-steigung-und-y-achsenabschnitt"><span class="header-section-number">12.3</span> Bootstrap mit rsample: Konfidenzintervalle für Steigung und \(y\)-Achsenabschnitt</a></li>
-<li><a class="nav-link" href="#lesestoff-10"><span class="header-section-number">12.4</span> Lesestoff</a></li>
+<li><a class="nav-link" href="#bootstrap-mit-infer-konfidenzintervall-f%C3%BCr-steigung"><span class="header-section-number">11.2</span> Bootstrap mit infer: Konfidenzintervall für Steigung</a></li>
+<li><a class="nav-link" href="#bootstrap-mit-rsample-konfidenzintervalle-f%C3%BCr-steigung-und-y-achsenabschnitt"><span class="header-section-number">11.3</span> Bootstrap mit rsample: Konfidenzintervalle für Steigung und \(y\)-Achsenabschnitt</a></li>
+<li><a class="nav-link" href="#lesestoff-10"><span class="header-section-number">11.4</span> Lesestoff</a></li>
 <li>
-<a class="nav-link" href="#aufgaben-9"><span class="header-section-number">12.5</span> Aufgaben</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#artenreichtum-auf-den-galapagosinseln"><span class="header-section-number">12.5.1</span> Artenreichtum auf den Galapagosinseln</a></li>
-<li><a class="nav-link" href="#artenreichtum-auf-den-galapagosinseln-revisited"><span class="header-section-number">12.5.2</span> Artenreichtum auf den Galapagosinseln, revisited</a></li>
+<a class="nav-link" href="#aufgaben-9"><span class="header-section-number">11.5</span> Aufgaben</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#artenreichtum-auf-den-galapagosinseln"><span class="header-section-number">11.5.1</span> Artenreichtum auf den Galapagosinseln</a></li>
+<li><a class="nav-link" href="#artenreichtum-auf-den-galapagosinseln-revisited"><span class="header-section-number">11.5.2</span> Artenreichtum auf den Galapagosinseln, revisited</a></li>
 </ul>
 </li>
-<li><a class="nav-link" href="#ihre-arbeit-einreichen-7"><span class="header-section-number">12.6</span> Ihre Arbeit einreichen</a></li>
+<li><a class="nav-link" href="#ihre-arbeit-einreichen-7"><span class="header-section-number">11.6</span> Ihre Arbeit einreichen</a></li>
 </ul>
 
       <div class="book-extra">
@@ -859,7 +866,7 @@ anreise
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Datenanalyse mit R</strong>: SoSe 2021" was written by Christina Bogner. It was last built on 2021-06-30.</p>
+    <p>"<strong>Datenanalyse mit R</strong>: SoSe 2021" was written by Christina Bogner. It was last built on 2021-07-04.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

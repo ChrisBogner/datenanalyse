@@ -17,7 +17,7 @@ Es gibt im wesentlichen zwei Gründe, warum man modelliert.
 Wir werden uns in diesem Kurs nur mit dem explikativen (erklärenden) Modellieren beschäftigen.
 
 ## Begriff Regression
-Woher kommt der Begriff *Regression*? Diesen prägte Sir Francis Galdon (1822-1911) [@Fahrmeir2009]. Galton interessierte sich unter anderem für den Zusammenhang zwischen der durchschnittlichen Körpergröße der Eltern und der Körpergröße ihrer erwachsenen Kinder. Leider war er nicht nur einer der Väter der Statistik, sondern auch ein Rassist.
+Woher kommt der Begriff *Regression*? Diesen prägte Sir Francis Galton (1822-1911) [@Fahrmeir2009]. Galton interessierte sich unter anderem für den Zusammenhang zwischen der durchschnittlichen Körpergröße der Eltern und der Körpergröße ihrer erwachsenen Kinder. Leider war er nicht nur einer der Väter der Statistik, sondern auch ein Rassist.
 
 Galton stellte fest, dass Kinder von unterdurchschnittlich kleinen Eltern eher größer waren und umgekehrt, Kinder von überdurchschnittlich großen Eltern eher kleiner waren. Diesen Effekt nannte er Regression (Rückkehr) zur Mitte.
 

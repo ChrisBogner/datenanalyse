@@ -290,7 +290,7 @@ Abbildung 8.2: Verallgemeinertes Vorgehen bei Hypothesentests (Quelle: <a href="
 ## 1  0.0542</code></pre>
 <p>Der <span class="math inline">\(p\)</span>-Wert ist auch in diesem Fall klein. Wir würden also wie im oberen Beispiel schließen, dass es unwahrscheinlich ist, dass die Unterschiede zwischen Männern und Frauen bei der Präferenz des Wohnorts zufällig sind.</p>
 <p>An dieser Stelle ein kleiner Ausflug in die Welt der <strong>statistischen Signfikanz</strong>. Sehr häufig wird für die Entscheidung, ob eine Nullhypothese abgelehnt wird, ein willkürlicher Schwellenwert, das Signifikanzniveau <span class="math inline">\(\alpha\)</span> (meistens 5%) genutzt. Wenn der <span class="math inline">\(p\)</span>-Wert darunter liegt, wird die Nullhypothese verworfen, ansonsten wird sie beibehalten. Es gibt also eine <strong>Dichotomisierung</strong>, eine Klassifizierung der <span class="math inline">\(p\)</span>-Werte in statistisch signifikant und statistisch nicht signifikant. Dieses Vorgehen wird seit vielen Jahren stark kritisiert <span class="citation">(<a href="literatur.html#ref-Wasserstein2019" role="doc-biblioref">Wasserstein, Schirm, and Lazar 2019</a>)</span>. Und an unserem Beispiel wird auch klar, warum. Hier ist der <span class="math inline">\(p\)</span>-Wert etwas größer als das Signifikanzniveau und wir müssten die Nullhypothese beibehalten, wegen einer winzigen Überschreitung von 0.42%. Das macht wissenschaftlich keinen Sinn und ist extrem unbefriedigend. Zudem sorgt die “Jagd” nach signifikanten Ergebnissen für allerlei Missbrauch. Man könnte z.B. im Nachhinein das Signifikanzniveau höher setzten. Das nennt man <strong><span class="math inline">\(p\)</span>-Hacking</strong>. Um diesem Missbrauch vorzubeugen und um mehr Informationen aus einem Hypothesentest zu ziehen, berichten Sie einfach den <span class="math inline">\(p\)</span>-Wert und ordenen ihn ein. Ist so ein Effekt, wie er in den Daten beobachtet wurde, selten oder häufig unter der Annahme der Nullhypothese?</p>
-<p>BTW, der wahre Unterschied aus der Grundgesamtheit zwischen den Mannern und Frauen ist extrem klein. Nur weil etwas signifikant oder nicht signifikant ist, ist es noch lange nicht relevant. Das zu beurteilen braucht es Fachwissen (<em>domain knowledge</em>) und eine richtige Einordnung der Ergebnisse. Daher ist die Berechnung von Effektgrößen (s. nächstes Kapitel) sehr viel spannender als das Durchführen von Hypothesentests.</p>
+<p>BTW, der wahre Unterschied aus der Grundgesamtheit zwischen den Männern und Frauen ist extrem klein. Nur weil etwas signifikant oder nicht signifikant ist, ist es noch lange nicht relevant. Das zu beurteilen braucht es Fachwissen (<em>domain knowledge</em>) und eine richtige Einordnung der Ergebnisse. Daher ist die Berechnung von Effektgrößen (s. nächstes Kapitel) sehr viel spannender als das Durchführen von Hypothesentests.</p>
 <div class="sourceCode" id="cb158"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">grundgesamtheit</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://infer.tidymodels.org/reference/specify.html">specify</a></span><span class="op">(</span><span class="va">wohnort</span> <span class="op">~</span> <span class="va">geschlecht</span>, success <span class="op">=</span> <span class="st">"stadt"</span><span class="op">)</span> <span class="op">%&gt;%</span>
@@ -343,13 +343,7 @@ Abbildung 8.2: Verallgemeinertes Vorgehen bei Hypothesentests (Quelle: <a href="
 <span class="header-section-number">8.6</span> Weiterführende Literatur und Videos<a class="anchor" aria-label="anchor" href="#weiterf%C3%BChrende-literatur-und-videos-1"><i class="fas fa-link"></i></a>
 </h2>
 <p>Webseite von <code>infer</code>: <a href="https://infer.netlify.app/" class="uri">https://infer.netlify.app/</a></p>
-<p>Vortrag des Autors von <code>infer</code>.</p>
-<p>
-<a href="https://www.rstudio.com/resources/rstudioconf-2018/infer-a-package-for-tidy-statistical-inference/?wvideo=lkx9sw1ed2"><img src="https://embed-fastly.wistia.com/deliveries/8934494267e19f3cfbc24dcc1cb1c43067a2f722.jpg?image_play_button_size=2x&amp;image_crop_resized=960x540&amp;image_play_button=1&amp;image_play_button_color=4287c7e0" style="width: 400px; height: 225px;" width="400" height="225"></a>
-</p>
-<p>
-<a href="https://www.rstudio.com/resources/rstudioconf-2018/infer-a-package-for-tidy-statistical-inference/?wvideo=lkx9sw1ed2">infer: a package for tidy statistical inference - RStudio</a>
-</p>
+<p><a href="https://www.rstudio.com/resources/rstudioconf-2018/infer-a-package-for-tidy-statistical-inference/?wvideo=lkx9sw1ed2">Vortrag</a> des Autors von <code>infer</code>.</p>
 
 </div>
 </div>
@@ -393,7 +387,7 @@ Abbildung 8.2: Verallgemeinertes Vorgehen bei Hypothesentests (Quelle: <a href="
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Datenanalyse mit R</strong>: SoSe 2021" was written by Christina Bogner. It was last built on 2021-07-04.</p>
+    <p>"<strong>Datenanalyse mit R</strong>: SoSe 2021" was written by Christina Bogner. It was last built on 2021-07-20.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

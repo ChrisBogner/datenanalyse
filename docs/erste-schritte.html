@@ -106,107 +106,35 @@ Ihren ersten Olot erstellen
 <li>Spatial: Analyse von räumlichen Daten</li>
 <li>TimeSeries: Zeitreihenanalyse</li>
 </ul>
-<p>Zu Beginn des Kurses, werden wir jedoch nicht auf Ihren lokalen Rechnern arbeiten, sondern auf der RStudio Server Pro, der extra für die digitale Lehre mit R an der UzK eingeführt wurde. Das ermöglicht einen schnelleren Einstieg in R und bietet eine fast-live Unterstützung durch den Dozenten beim Programmieren. Daher biete ich zu diesem frühen Zeitpunkt im Kurs keine Unterstützung bei der Installation von R auf Ihren Privatrechnern. Für die ganz Ungeduldigen, gibt es hier eine kurze <em>Einleitung zur Installation</em>.</p>
-<iframe width="640" height="360" src="https://www.youtube.com/embed/kygOqp_zijk?list=PLG4WP9jv27SeMbBjhVcyXrGKQgnaex-0o" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-</iframe>
+<p>Zu Beginn des Kurses, werden wir jedoch nicht auf Ihren lokalen Rechnern arbeiten, sondern auf der RStudio Server Pro, der extra für die digitale Lehre mit R an der UzK eingeführt wurde. Das ermöglicht einen schnelleren Einstieg in R und bietet eine fast-live Unterstützung durch den Dozenten beim Programmieren. Daher biete ich zu diesem frühen Zeitpunkt im Kurs keine Unterstützung bei der Installation von R auf Ihren Privatrechnern. Für die ganz Ungeduldigen, gibt es hier eine kurze <a href="https://www.youtube.com/watch?v=kygOqp_zijk&amp;list=PLG4WP9jv27SeMbBjhVcyXrGKQgnaex-0o&amp;t=14s">Einleitung zur Installation</a>.</p>
 </div>
 <div id="was-ist-rstudio" class="section level2" number="1.2">
 <h2>
 <span class="header-section-number">1.2</span> Was ist RStudio?<a class="anchor" aria-label="anchor" href="#was-ist-rstudio"><i class="fas fa-link"></i></a>
 </h2>
-<p>RStudio Desktop ist eine Entwicklungsumgebung für R. Sie können die <em>open source</em> Version kostenlos für Ihren Rechner <a href="https://rstudio.com/products/rstudio/#rstudio-desktop">hier</a> herunterladen.</p>
-<p>Es gibt eine live Einführung in RStudio im Kurs. Zusätzlich können Sie hier ein Video dazu ansehen.</p>
-<iframe width="640" height="360" src="https://www.youtube.com/embed/r5wOhFVWXUE?list=PLG4WP9jv27SeMbBjhVcyXrGKQgnaex-0o" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-</iframe>
-</div>
-<div id="rstudio-server-pro" class="section level2" number="1.3">
-<h2>
-<span class="header-section-number">1.3</span> RStudio Server Pro<a class="anchor" aria-label="anchor" href="#rstudio-server-pro"><i class="fas fa-link"></i></a>
-</h2>
-<div id="einloggen-und-eine-session-starten" class="section level3" number="1.3.1">
-<h3>
-<span class="header-section-number">1.3.1</span> Einloggen und eine Session starten<a class="anchor" aria-label="anchor" href="#einloggen-und-eine-session-starten"><i class="fas fa-link"></i></a>
-</h3>
-<p>Zu Beginn des Kurses werden wir auf dem RStudio Server Pro (RSSP) arbeiten. Jede(r) von Ihnen wird ein persönliches Login für den Server erhalten. <strong>Dieses Login darf nicht weiter gegeben werden.</strong> Damit ich mich im Falle von Programmierfehlern in Ihre Konto einloggen darf, müssen Sie eine Einwilligung unterschreiben und per Email an mich.</p>
-<p>Bevor Sie sich auf dem RSSP einloggen können, müssen Sie Ihre VPN-Verbindung aktivieren (aus dem Uni-Netz geht es auch ohne). Auf den Seiten der Rechenzentrums finden Sie eine <a href="https://rrzk.uni-koeln.de/internetzugang-web/netzzugang/vpn">Anleitung</a> zur Einrichtung des VPN-Zugangs.</p>
-<p>Anschließend können Sie sich <a href="https://cheops-rstudio-edu.rrz.uni-koeln.de:8787/auth-sign-in">hier</a> einloggen. Alternativ können Sie die Adresse des Servers <a href="https://cheops-rstudio-edu.rrz.uni-koeln.de:8787/auth-sign-in.htm" class="uri">https://cheops-rstudio-edu.rrz.uni-koeln.de:8787/auth-sign-in.htm</a> in Ihren Browser kopieren. Nach dem Einloggen sehen Sie die Home-Oberfläche, aus der Sie eine neue Sitzung starten können (Abbildung <a href="erste-schritte.html#fig:rserver">1.1</a>).</p>
-<div class="figure">
-<span style="display:block;" id="fig:rserver"></span>
-<img src="figures/RServer_Oberflaeche.png" alt="RStudio Server Pro Home" width="100%"><p class="caption">
-Abbildung 1.1: RStudio Server Pro Home
-</p>
-</div>
-<p>Um eine neue Sitzung zu starten, klicken Sie auf den blauen Button <code>+ New Session</code> oder auf <code>New Session</code> neben dem R-Symbol und stellen Sie Folgendes ein (Sie dürfen der Session einen anderen Namen geben, wenn Sie möchten):</p>
-<div class="figure">
-<span style="display:block;" id="fig:neue-sesssion"></span>
-<img src="figures/neue_session.png" alt="Einstellungen für neue Session" width="100%"><p class="caption">
-Abbildung 1.2: Einstellungen für neue Session
-</p>
-</div>
-<p>Anschließend sehen Sie die neue Sitzung, auf die Sie nur noch klicken müssen, damit es los geht:</p>
-<div class="figure">
-<span style="display:block;" id="fig:neue-session-pending"></span>
-<img src="figures/neue_session_pending.png" alt="Neue Sitzung erstellt" width="100%"><p class="caption">
-Abbildung 1.3: Neue Sitzung erstellt
-</p>
-</div>
-<p>Der große Vorteil des RSSPs ist, dass ich direkt in Ihre Projekte eingreifen kann, wenn es mal zu Fehlern kommt. Während ich in Ihrem Projekt arbeite, werden Sie kurz aus der R-Sitzung ausgeloggt. Ihnen stehen auf dem Server unbegrenzt Arbeitsstunden zur Verfügung.</p>
-<p>Sowohl auf dem RSSP als auch in einer lokalen Installation, ist Ihr RStudio so aufgebaut wie in Abbildung <a href="erste-schritte.html#fig:rstudio">1.4</a>.</p>
+<p>RStudio Desktop ist eine Entwicklungsumgebung für R. Sie können die <em>open source</em> Version kostenlos für Ihren Rechner <a href="https://rstudio.com/products/rstudio/#rstudio-desktop">hier</a> herunterladen. Es gibt eine live Einführung in RStudio im Kurs. Zusätzlich können Sie hier ein <a href="https://www.youtube.com/watch?v=r5wOhFVWXUE&amp;list=PLG4WP9jv27SeMbBjhVcyXrGKQgnaex-0o">Video</a> dazu ansehen.</p>
+Die Oberfläche von RStudio ist in vier Bereiche unterteilt (Abbildung <a href="erste-schritte.html#fig:rstudio">1.1</a>).
 <div class="figure">
 <span style="display:block;" id="fig:rstudio"></span>
 <img src="figures/RStudio.png" alt="Aufbau von RStudio" width="100%"><p class="caption">
-Abbildung 1.4: Aufbau von RStudio
-</p>
-</div>
-</div>
-<div id="dateimanagement" class="section level3" number="1.3.2">
-<h3>
-<span class="header-section-number">1.3.2</span> Dateimanagement<a class="anchor" aria-label="anchor" href="#dateimanagement"><i class="fas fa-link"></i></a>
-</h3>
-<p>Sie werden regelmäßig Dateien in die Sitzungen auf den RSSP hoch laden und auch herunter laden müssen. Für eine übersichtliche Organisation bietet es sich an, einen Ordner für Dateien anzulegen. Klicken Sie dafür auf <code>New Folder</code> auf dem Reiter <code>Files</code> rechts unten und geben Sie dem Ordnder den Namen <code>data</code>.</p>
-<p>Um Dateien hoch zu laden, klicken Sie auf den Button <code>Upload</code> auf dem Reiter <code>Files</code> rechts unten (Abbildung <a href="erste-schritte.html#fig:files-upload">1.5</a>).</p>
-<div class="figure">
-<span style="display:block;" id="fig:files-upload"></span>
-<img src="figures/files_upload.png" alt="Dateien hoch laden" width="100%"><p class="caption">
-Abbildung 1.5: Dateien hoch laden
-</p>
-</div>
-<p>Anschließend klicken Sie auf den Button <code>Browse</code> unter der Überschrift “File to upload” und navigieren zu der Datei, die Sie hoch laden möchten (Abbildung <a href="erste-schritte.html#fig:files-upload-browse">1.6</a>).</p>
-<div class="figure">
-<span style="display:block;" id="fig:files-upload-browse"></span>
-<img src="figures/files_browse.png" alt="Dateien zum Hochladen auswählen" width="100%"><p class="caption">
-Abbildung 1.6: Dateien zum Hochladen auswählen
-</p>
-</div>
-<p>Um Dateien herunter zu laden, markieren Sie zunächst die Datei oder die Dateien, die Sie herunterladen möchten. Dann klicken Sie auf den Button <code>More</code> im Reiter <code>Files</code> und dann auf Export und anschließend auf Download (Abbildungen <a href="erste-schritte.html#fig:files-export">1.7</a> und <a href="erste-schritte.html#fig:files-download">1.8</a>). Speichern Sie die Datei(en) auf Ihrem Rechner.</p>
-<div class="figure">
-<span style="display:block;" id="fig:files-export"></span>
-<img src="figures/files_export.png" alt="Dateien zum herunter laden auswählen und herunter laden" width="100%"><p class="caption">
-Abbildung 1.7: Dateien zum herunter laden auswählen und herunter laden
-</p>
-</div>
-<div class="figure">
-<span style="display:block;" id="fig:files-download"></span>
-<img src="figures/files_download.png" alt="Dateien zum Herunterladen speichern" width="100%"><p class="caption">
-Abbildung 1.8: Dateien zum Herunterladen speichern
+Abbildung 1.1: Aufbau von RStudio
 </p>
 </div>
 <p>Sie sollten auch auf Ihrem eigenen Rechner einen Ordner für die Veranstaltung anlegen und darin jeweils einen Ordner für Daten und Skripte.</p>
 </div>
-</div>
-<div id="lesestoff" class="section level2" number="1.4">
+<div id="lesestoff" class="section level2" number="1.3">
 <h2>
-<span class="header-section-number">1.4</span> Lesestoff<a class="anchor" aria-label="anchor" href="#lesestoff"><i class="fas fa-link"></i></a>
+<span class="header-section-number">1.3</span> Lesestoff<a class="anchor" aria-label="anchor" href="#lesestoff"><i class="fas fa-link"></i></a>
 </h2>
 <p>Kapitel 1.1 und 1.2 in <span class="citation"><a href="literatur.html#ref-ModernDive" role="doc-biblioref">Ismay and Kim</a> (<a href="literatur.html#ref-ModernDive" role="doc-biblioref">2021</a>)</span>.</p>
 </div>
-<div id="aufgaben" class="section level2" number="1.5">
+<div id="aufgaben" class="section level2" number="1.4">
 <h2>
-<span class="header-section-number">1.5</span> Aufgaben<a class="anchor" aria-label="anchor" href="#aufgaben"><i class="fas fa-link"></i></a>
+<span class="header-section-number">1.4</span> Aufgaben<a class="anchor" aria-label="anchor" href="#aufgaben"><i class="fas fa-link"></i></a>
 </h2>
-<div id="ars-haushaltsbuch" class="section level3" number="1.5.1">
+<div id="ars-haushaltsbuch" class="section level3" number="1.4.1">
 <h3>
-<span class="header-section-number">1.5.1</span> Ars Haushaltsbuch<a class="anchor" aria-label="anchor" href="#ars-haushaltsbuch"><i class="fas fa-link"></i></a>
+<span class="header-section-number">1.4.1</span> Ars Haushaltsbuch<a class="anchor" aria-label="anchor" href="#ars-haushaltsbuch"><i class="fas fa-link"></i></a>
 </h3>
 <p>Der angehende Datenanalyst Ar Stat möchte dem Rat seiner Mutter folgen und ein Haushaltsbuch anlegen. Als erstes möchte er sich einen Überblick über seine Ausgaben in der Uni-Mensa verschaffen und erstellt die folgende Tabelle:</p>
 <p><br></p>
@@ -276,9 +204,9 @@ Freitag
 <li>Wie verändern sich die Ergebnisse aus den Teilaufgaben 1 bis 3 Warum?</li>
 </ol>
 </div>
-<div id="rob2" class="section level3" number="1.5.2">
+<div id="rob2" class="section level3" number="1.4.2">
 <h3>
-<span class="header-section-number">1.5.2</span> Fehlende Werte<a class="anchor" aria-label="anchor" href="#rob2"><i class="fas fa-link"></i></a>
+<span class="header-section-number">1.4.2</span> Fehlende Werte<a class="anchor" aria-label="anchor" href="#rob2"><i class="fas fa-link"></i></a>
 </h3>
 <p>R kodiert fehlende Werte mit <code>NA</code>. Ar Stat hat am Montag der darauffolgenden Woche in der Mensa gegessen, aber vergessen die Ausgaben zu notieren.</p>
 <div class="inline-table"><table class="table table-striped" style="width: auto !important; ">
@@ -350,9 +278,9 @@ NA
 <li>Korrigieren Sie die Berechnung der Summe entsprechend.</li>
 </ul>
 </div>
-<div id="firstplot" class="section level3" number="1.5.3">
+<div id="firstplot" class="section level3" number="1.4.3">
 <h3>
-<span class="header-section-number">1.5.3</span> Ihr erster Plot<a class="anchor" aria-label="anchor" href="#firstplot"><i class="fas fa-link"></i></a>
+<span class="header-section-number">1.4.3</span> Ihr erster Plot<a class="anchor" aria-label="anchor" href="#firstplot"><i class="fas fa-link"></i></a>
 </h3>
 <p>Vor allem am Anfang kann die Lernkurve in R recht flach verlaufen. Daher sollten Sie nicht vergessen, warum Sie R lernen, nämlich um echte Datensätze zu analysieren.</p>
 <p>Auch wenn Sie den Code unten noch nicht (ganz) verstehen, kopieren Sie ihn in Ihr R und lassen Sie ihn laufen.</p>
@@ -376,9 +304,9 @@ NA
 <li>Wie würden Sie den Zusammenhang zwischen den Variablen <code>GDP per capita</code> und <code>Life expectancy</code> beschreiben?</li>
 </ul>
 </div>
-<div id="r-als-taschenrechner" class="section level3" number="1.5.4">
+<div id="r-als-taschenrechner" class="section level3" number="1.4.4">
 <h3>
-<span class="header-section-number">1.5.4</span> R als Taschenrechner<a class="anchor" aria-label="anchor" href="#r-als-taschenrechner"><i class="fas fa-link"></i></a>
+<span class="header-section-number">1.4.4</span> R als Taschenrechner<a class="anchor" aria-label="anchor" href="#r-als-taschenrechner"><i class="fas fa-link"></i></a>
 </h3>
 <p>R ist ein großer Taschenrechner mit vielen voreingebauten Funktionen. Es gelten die üblichen Rechenregeln wie z.B. Punkt-vor-Strich und die Klammern.</p>
 <ul>
@@ -393,9 +321,9 @@ NA
 <li>Berechnen Sie die Summe von 2,34 und 4,98.</li>
 </ul>
 </div>
-<div id="zuweisungen" class="section level3" number="1.5.5">
+<div id="zuweisungen" class="section level3" number="1.4.5">
 <h3>
-<span class="header-section-number">1.5.5</span> Zuweisungen<a class="anchor" aria-label="anchor" href="#zuweisungen"><i class="fas fa-link"></i></a>
+<span class="header-section-number">1.4.5</span> Zuweisungen<a class="anchor" aria-label="anchor" href="#zuweisungen"><i class="fas fa-link"></i></a>
 </h3>
 <p>In R arbeitet man mit Objekten. Ein Objekt kann alles Mögliche sein: eine Variable, Daten, Vektoren etc. Wenn also das Ergebnis einer Berechnung oder ein Datenobjekt im R-Arbeitsbereich (<em>workspace</em>) zur Verfügung stehen soll, muss daraus ein Objekt erstellt werden.</p>
 <p>Objekte erstellt man, indem man ihnen Namen gibt. Diesen Vorgang nennt man <strong>Zuweisung</strong> (<em>assignment</em>). Im Beispiel unten wird ein Objekt, in diesem Fall ein Skalar, namens <code>x</code> erzeugt mit dem Wert 42. Um den Wert von <code>x</code> anzuzeigen, tippen Sie <code>x</code> ein.</p>
@@ -421,9 +349,9 @@ NA
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">my_a</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">32</span>, <span class="fl">54</span>, <span class="fl">1.2</span>, <span class="fl">398</span><span class="op">)</span></code></pre></div>
 </div>
-<div id="funktionsaufruf" class="section level3" number="1.5.6">
+<div id="funktionsaufruf" class="section level3" number="1.4.6">
 <h3>
-<span class="header-section-number">1.5.6</span> Funktionsaufruf<a class="anchor" aria-label="anchor" href="#funktionsaufruf"><i class="fas fa-link"></i></a>
+<span class="header-section-number">1.4.6</span> Funktionsaufruf<a class="anchor" aria-label="anchor" href="#funktionsaufruf"><i class="fas fa-link"></i></a>
 </h3>
 <p>In R gibt es eine Vielzahl von vordefinierten Funktionen. Ein Funktionsaufruf hat immer die gleiche Form: <em>mach_das(damit)</em> oder <em>mach_das(damit, und_mit_dieser_einstellung)</em>. Z.B. wird die Summe auf einem Objekt <code>mein_objekt</code> mit <code><a href="https://rdrr.io/r/base/sum.html">sum(mein_objekt)</a></code> berechnet.</p>
 <ul>
@@ -441,9 +369,9 @@ NA
 <li>Berechnen Sie die Standardabweichung von <code>my_a</code>.</li>
 </ul>
 </div>
-<div id="objekte-ansprechen" class="section level3" number="1.5.7">
+<div id="objekte-ansprechen" class="section level3" number="1.4.7">
 <h3>
-<span class="header-section-number">1.5.7</span> Objekte ansprechen<a class="anchor" aria-label="anchor" href="#objekte-ansprechen"><i class="fas fa-link"></i></a>
+<span class="header-section-number">1.4.7</span> Objekte ansprechen<a class="anchor" aria-label="anchor" href="#objekte-ansprechen"><i class="fas fa-link"></i></a>
 </h3>
 <p>Um das “Innenleben” der Objekte in R anzusprechen, gibt es verschieden Möglichkeiten. In diesem Tutorial konzentrieren wir uns auf Vektoren. Um die einzelnen Komponenten im Vektor anzusprechen, benutzt man eckige Klammern <code>[ ]</code>. Um eine bestimmte Komponente zu adressieren (anzusprechen), schreibt man die Platznummer der Komponente in die Klammer. Wenn man im Vektor <code>my_c</code>, z.B. die dritte Komponente extrahieren möchte, dann schreibt man <code>my_c[3]</code></p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
@@ -459,9 +387,9 @@ NA
 </ul>
 </div>
 </div>
-<div id="ihre-arbeit-einreichen" class="section level2" number="1.6">
+<div id="ihre-arbeit-einreichen" class="section level2" number="1.5">
 <h2>
-<span class="header-section-number">1.6</span> Ihre Arbeit einreichen<a class="anchor" aria-label="anchor" href="#ihre-arbeit-einreichen"><i class="fas fa-link"></i></a>
+<span class="header-section-number">1.5</span> Ihre Arbeit einreichen<a class="anchor" aria-label="anchor" href="#ihre-arbeit-einreichen"><i class="fas fa-link"></i></a>
 </h2>
 <ul>
 <li>Speichern Sie Ihre .R Datei auf dem Server ab.</li>
@@ -482,25 +410,19 @@ NA
 <li><a class="nav-link" href="#erste-schritte"><span class="header-section-number">1</span> Erste Schritte in R</a></li>
 <li><a class="nav-link" href="#was-ist"><span class="header-section-number">1.1</span> Was ist ?</a></li>
 <li><a class="nav-link" href="#was-ist-rstudio"><span class="header-section-number">1.2</span> Was ist RStudio?</a></li>
+<li><a class="nav-link" href="#lesestoff"><span class="header-section-number">1.3</span> Lesestoff</a></li>
 <li>
-<a class="nav-link" href="#rstudio-server-pro"><span class="header-section-number">1.3</span> RStudio Server Pro</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#einloggen-und-eine-session-starten"><span class="header-section-number">1.3.1</span> Einloggen und eine Session starten</a></li>
-<li><a class="nav-link" href="#dateimanagement"><span class="header-section-number">1.3.2</span> Dateimanagement</a></li>
+<a class="nav-link" href="#aufgaben"><span class="header-section-number">1.4</span> Aufgaben</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#ars-haushaltsbuch"><span class="header-section-number">1.4.1</span> Ars Haushaltsbuch</a></li>
+<li><a class="nav-link" href="#rob2"><span class="header-section-number">1.4.2</span> Fehlende Werte</a></li>
+<li><a class="nav-link" href="#firstplot"><span class="header-section-number">1.4.3</span> Ihr erster Plot</a></li>
+<li><a class="nav-link" href="#r-als-taschenrechner"><span class="header-section-number">1.4.4</span> R als Taschenrechner</a></li>
+<li><a class="nav-link" href="#zuweisungen"><span class="header-section-number">1.4.5</span> Zuweisungen</a></li>
+<li><a class="nav-link" href="#funktionsaufruf"><span class="header-section-number">1.4.6</span> Funktionsaufruf</a></li>
+<li><a class="nav-link" href="#objekte-ansprechen"><span class="header-section-number">1.4.7</span> Objekte ansprechen</a></li>
 </ul>
 </li>
-<li><a class="nav-link" href="#lesestoff"><span class="header-section-number">1.4</span> Lesestoff</a></li>
-<li>
-<a class="nav-link" href="#aufgaben"><span class="header-section-number">1.5</span> Aufgaben</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#ars-haushaltsbuch"><span class="header-section-number">1.5.1</span> Ars Haushaltsbuch</a></li>
-<li><a class="nav-link" href="#rob2"><span class="header-section-number">1.5.2</span> Fehlende Werte</a></li>
-<li><a class="nav-link" href="#firstplot"><span class="header-section-number">1.5.3</span> Ihr erster Plot</a></li>
-<li><a class="nav-link" href="#r-als-taschenrechner"><span class="header-section-number">1.5.4</span> R als Taschenrechner</a></li>
-<li><a class="nav-link" href="#zuweisungen"><span class="header-section-number">1.5.5</span> Zuweisungen</a></li>
-<li><a class="nav-link" href="#funktionsaufruf"><span class="header-section-number">1.5.6</span> Funktionsaufruf</a></li>
-<li><a class="nav-link" href="#objekte-ansprechen"><span class="header-section-number">1.5.7</span> Objekte ansprechen</a></li>
-</ul>
-</li>
-<li><a class="nav-link" href="#ihre-arbeit-einreichen"><span class="header-section-number">1.6</span> Ihre Arbeit einreichen</a></li>
+<li><a class="nav-link" href="#ihre-arbeit-einreichen"><span class="header-section-number">1.5</span> Ihre Arbeit einreichen</a></li>
 </ul>
 
       <div class="book-extra">
@@ -518,7 +440,7 @@ NA
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Datenanalyse mit R</strong>: SoSe 2021" was written by Christina Bogner. It was last built on 2021-07-04.</p>
+    <p>"<strong>Datenanalyse mit R</strong>: SoSe 2021" was written by Christina Bogner. It was last built on 2021-07-20.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

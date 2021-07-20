@@ -8,8 +8,7 @@
 ```
 
 ## Warum Reproduzierbarkeit in der Forschung wichtig ist
-
-<iframe width="640" height="360" src="https://www.youtube.com/embed/4rBX6r5emgQ?list=PLjTlxb-wKvXOU4WW4p3qc4VKWTI4gLNUf" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+Als Motivation für dieses Thema empfehle ich das [Video](https://www.youtube.com/watch?v=4rBX6r5emgQ&list=PLjTlxb-wKvXOU4WW4p3qc4VKWTI4gLNUf) von Prof. Roger Peng der John Hopkins Bloogmerg School of Public Health.
 
 ## *Literate Programming* Idee von Donald Knuth
 Die Idee, dass man den Code und die dazugehörige Interpretation (Text, Bericht etc.) nicht von einander trennen sollte, geht auf @Knuth1984 zurück. Mit *Literate Programming* meinte Knuth, dass Programme auch nichts anderes wie literarische Werke sind. Er setzte den Fokus darauf, mit Programmen menschlichen Benutzern zu erklären, was man den Computer machen lassen möchte. Also weg vom computer- hin zum mensch-zentrierten Zugang. So wird Programmieren und in unserem Fall die Datenanalyse verständlich und vor allem reproduzierbar. 
@@ -26,7 +25,7 @@ Wir werden vor allem mit R Notebooks arbeiten, die eine gute Interaktion zwische
 ## Ein neues R Notebook erstellen
 Um ein neues R Notebook zu erstellen, klicken Sie das leine grüne Plus oben links und wählen Sie R Notebook aus. Sie können es erst einmal bei untitled belassen (Abbildung \@ref(fig:r-notebook)).
 
-```{r r-notebook, echo = F, fig.cap = 'Neues R Notebook anlegen', fig.width = 6, out.width = "60%"}
+```{r r-notebook, echo = F, fig.cap = 'Neues R Notebook anlegen', fig.width = 6, out.width = "40%"}
 knitr::include_graphics('figures/r-notebook.png')
 ```
 
@@ -46,8 +45,7 @@ Text kann einfach unterhalb des Headers und *außerhalb der Chunks* getippt werd
 Das R Notebook hat den Vorteil, dass man über den Button `Preview` oben in der Leiste sofort die Ergebnisse anzeigen lassen kann. Sie müssen also nicht `knitten`. Falls Sie es doch möchten, klicken Sie auf das kleine Dreieck neben dem Preview und suchen Sie sich ein Output-Format aus. Ein einmal "geknittetes" Notebook ist kein Notebook mehr (kein Preview). Damit es wierder zum Nobebook wird, müssen Sie im Header `output: html_notebbok` einstellen (Abbildung \@ref(fig:rmarkdown-file)).
 
 ## Wichtigste Regeln für Reproduzierbarkeit
-
-<iframe width="640" height="360" src="https://www.youtube.com/embed/pjL2uP-fmPY?list=PLjTlxb-wKvXOU4WW4p3qc4VKWTI4gLNUf" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+Ein weiteres [Video](https://www.youtube.com/watch?v=pjL2uP-fmPY&list=PLjTlxb-wKvXOU4WW4p3qc4VKWTI4gLNUf) von Prof. Peng widmet sich den wichtigsten Regeln für Reproduzierbarkeit.
 
 
 ## Lesestoff

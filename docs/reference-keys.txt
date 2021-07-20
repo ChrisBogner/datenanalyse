@@ -1,11 +1,4 @@
-fig:rserver
-fig:neue-sesssion
-fig:neue-session-pending
 fig:rstudio
-fig:files-upload
-fig:files-upload-browse
-fig:files-export
-fig:files-download
 tab:unnamed-chunk-14
 tab:unnamed-chunk-15
 fig:r-notebook
@@ -21,9 +14,6 @@ fig:ht
 erste-schritte
 was-ist
 was-ist-rstudio
-rstudio-server-pro
-einloggen-und-eine-session-starten
-dateimanagement
 lesestoff
 aufgaben
 ars-haushaltsbuch
@@ -188,3 +178,5 @@ unfaire-klausur-revisited
 artenvielfalt-in-grasländern
 verdichtung
 world-bank
+funktionen-und-iterationen
+iterationen-im-kapitel-refstichproben

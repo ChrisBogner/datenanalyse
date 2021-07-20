@@ -116,22 +116,22 @@ Bootstrap-Konfidenzintervalle für Mittelwert berechnen
 <p>Es gibt aber Schätzer, für die keine theoretische Verteilung bekannt ist. Da muss man eine andere Methode anwenden. Eine bekannte Methode heißt Bootstrapping (Bootstrap-Verfahren), manchmal auch Münchhausenmethode. Sie klingt auf den ersten Blick wie ein Selbstbetrug, so als ob man sich selbst an den Haaren aus dem Sumpf zieht (Abblildung <a href="bootstrapping-und-konfidenzintervalle.html#fig:meunch">7.1</a>), hat aber sehr gut fundierte mathematische Wurzeln. Bootstrap wurde von <span class="citation"><a href="literatur.html#ref-Efron1979" role="doc-biblioref">Efron</a> (<a href="literatur.html#ref-Efron1979" role="doc-biblioref">1979</a>)</span> Ende der 70er vorgestellt und hat sich seit dem als eine der wichtigsten <em>Resampling</em>-Strategien etabliert.</p>
 <div class="figure">
 <span style="display:block;" id="fig:meunch"></span>
-<img src="figures/M%C3%BCnchhausen-Sumpf-Hosemann.png" alt="Münchhausen zieht sich aus dem Sumpf (Theodor Hosemann (1807-1875), Public domain, via Wikimedia Commons)" width="80%"><p class="caption">
-Abbildung 7.1: Münchhausen zieht sich aus dem Sumpf (Theodor Hosemann (1807-1875), Public domain, via Wikimedia Commons)
+<img src="figures/M%C3%BCnchhausen-Sumpf-Hosemann.png" alt="Münchhausen zieht sich aus dem Sumpf (Theodor Hosemann (1807-1875), Public domain, via Wikimedia Commons), [Link zum Bild](https://upload.wikimedia.org/wikipedia/commons/a/ad/M%C3%BCnchhausen-Sumpf-Hosemann.png)" width="80%"><p class="caption">
+Abbildung 7.1: Münchhausen zieht sich aus dem Sumpf (Theodor Hosemann (1807-1875), Public domain, via Wikimedia Commons), <a href="https://upload.wikimedia.org/wikipedia/commons/a/ad/M%C3%BCnchhausen-Sumpf-Hosemann.png">Link zum Bild</a>
 </p>
 </div>
 <p>Das Prinzip beim Bootstrap ist, dass die Stichprobe die Rolle der Grundgesamtheit übernimmt. Abbildung <a href="bootstrapping-und-konfidenzintervalle.html#fig:sampling-world">7.2</a> zeigt das Vorgehen aus dem Kapitel <a href="stichproben.html#stichproben">6</a>. Wir ziehen mehrere echte Stichproben aus einer Grundgesamtheit, erhalten eine Stichprobenverteilung und können den Parameter der Grundgesamtheit schätzen.</p>
 <div class="figure">
 <span style="display:block;" id="fig:sampling-world"></span>
-<img src="figures/sampling_world.png" alt="Berechnen einer Stichprobenverteilung durch wiederholtes Stichproben ziehen. Abbildung aus [@Hesterberg2015], dort Figure 4. Die Publikation ist open-access und darf für nicht-kommerzielle Zwecke verwendet werden." width="80%"><p class="caption">
-Abbildung 7.2: Berechnen einer Stichprobenverteilung durch wiederholtes Stichproben ziehen. Abbildung aus <span class="citation">(<a href="literatur.html#ref-Hesterberg2015" role="doc-biblioref">Hesterberg 2015</a>)</span>, dort Figure 4. Die Publikation ist open-access und darf für nicht-kommerzielle Zwecke verwendet werden.
+<img src="figures/sampling_world.png" alt="Berechnen einer Stichprobenverteilung durch wiederholtes Stichproben ziehen. Abbildung aus [@Hesterberg2015], dort Figure 4. Die Publikation ist open-access und darf für nicht-kommerzielle Zwecke verwendet werden. [Link zur Lizenz](https://www.tandfonline.com/action/showCopyRight?scroll=top&amp;doi=10.1080%2F00031305.2015.1089789)" width="80%"><p class="caption">
+Abbildung 7.2: Berechnen einer Stichprobenverteilung durch wiederholtes Stichproben ziehen. Abbildung aus <span class="citation">(<a href="literatur.html#ref-Hesterberg2015" role="doc-biblioref">Hesterberg 2015</a>)</span>, dort Figure 4. Die Publikation ist open-access und darf für nicht-kommerzielle Zwecke verwendet werden. <a href="https://www.tandfonline.com/action/showCopyRight?scroll=top&amp;doi=10.1080%2F00031305.2015.1089789">Link zur Lizenz</a>
 </p>
 </div>
 <p>In Abbildung <a href="bootstrapping-und-konfidenzintervalle.html#fig:sampling-bootstrap">7.3</a> haben wir nur eine Stichprobe. Wir gehen davon aus, dass diese Stipchprobe eine Miniatur der Grundgesamtheit ist, also zufällig gezogen wurde und repräsentative ist. Mit dieser Grundidee im Kopf, ersetzten wir die Grundgesamtheit durch dies Stichprobe und verfahren (fast) genauso, um die Stichprobenverteilung zu ermitteln. Der einzige Unterschied ist, dass wir aus dieser einen Stichprobe <strong>mit Zurücklegen</strong> neue Stichproben (Bootstrap-Stichproben) ziehen.</p>
 <div class="figure">
 <span style="display:block;" id="fig:sampling-bootstrap"></span>
-<img src="figures/sampling_bootstrap.png" alt="Berechnen einer Stichprobenverteilung durch wiederholtes Ziehen aus einer Stichprobe mit Zurücklegen. Abbildung aus [@Hesterberg2015], dort Figure 5. Die Publikation ist open-access und darf für nicht-kommerzielle Zwecke verwendet werden." width="80%"><p class="caption">
-Abbildung 7.3: Berechnen einer Stichprobenverteilung durch wiederholtes Ziehen aus einer Stichprobe mit Zurücklegen. Abbildung aus <span class="citation">(<a href="literatur.html#ref-Hesterberg2015" role="doc-biblioref">Hesterberg 2015</a>)</span>, dort Figure 5. Die Publikation ist open-access und darf für nicht-kommerzielle Zwecke verwendet werden.
+<img src="figures/sampling_bootstrap.png" alt="Berechnen einer Stichprobenverteilung durch wiederholtes Ziehen aus einer Stichprobe mit Zurücklegen. Abbildung aus [@Hesterberg2015], dort Figure 5. Die Publikation ist open-access und darf für nicht-kommerzielle Zwecke verwendet werden. [Link zur Lizenz](https://www.tandfonline.com/action/showCopyRight?scroll=top&amp;doi=10.1080%2F00031305.2015.1089789)" width="80%"><p class="caption">
+Abbildung 7.3: Berechnen einer Stichprobenverteilung durch wiederholtes Ziehen aus einer Stichprobe mit Zurücklegen. Abbildung aus <span class="citation">(<a href="literatur.html#ref-Hesterberg2015" role="doc-biblioref">Hesterberg 2015</a>)</span>, dort Figure 5. Die Publikation ist open-access und darf für nicht-kommerzielle Zwecke verwendet werden. <a href="https://www.tandfonline.com/action/showCopyRight?scroll=top&amp;doi=10.1080%2F00031305.2015.1089789">Link zur Lizenz</a>
 </p>
 </div>
 <p>Die Konfidenzintervalle berechnet man aus der Stichprobenverteilung der Bootstrap-Stichproben, indem man z.B. das 2.5% und das 97.5% Quantil berechnet. Zwischen diesen beiden Quantilen sind 95% der Werte enthalten. Dieses Intervall nennt man das 95%-Konfidenzintervall.</p>
@@ -474,7 +474,7 @@ Abbildung 7.3: Berechnen einer Stichprobenverteilung durch wiederholtes Ziehen a
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Datenanalyse mit R</strong>: SoSe 2021" was written by Christina Bogner. It was last built on 2021-07-04.</p>
+    <p>"<strong>Datenanalyse mit R</strong>: SoSe 2021" was written by Christina Bogner. It was last built on 2021-07-20.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

@@ -22,75 +22,14 @@ Sie können R für Ihren Computer auf der offiziellen R-Seite https://www.r-proj
 - Spatial: Analyse von räumlichen Daten
 - TimeSeries: Zeitreihenanalyse
 
-Zu Beginn des Kurses, werden wir jedoch nicht auf Ihren lokalen Rechnern arbeiten, sondern auf der RStudio Server Pro, der extra für die digitale Lehre mit R an der UzK eingeführt wurde. Das ermöglicht einen schnelleren Einstieg in R und bietet eine fast-live Unterstützung durch den Dozenten beim Programmieren. Daher biete ich zu diesem frühen Zeitpunkt im Kurs keine Unterstützung bei der Installation von R auf Ihren Privatrechnern. Für die ganz Ungeduldigen, gibt es hier eine kurze *Einleitung zur Installation*.
-
-<iframe width="640" height="360" src="https://www.youtube.com/embed/kygOqp_zijk?list=PLG4WP9jv27SeMbBjhVcyXrGKQgnaex-0o" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
+Zu Beginn des Kurses, werden wir jedoch nicht auf Ihren lokalen Rechnern arbeiten, sondern auf der RStudio Server Pro, der extra für die digitale Lehre mit R an der UzK eingeführt wurde. Das ermöglicht einen schnelleren Einstieg in R und bietet eine fast-live Unterstützung durch den Dozenten beim Programmieren. Daher biete ich zu diesem frühen Zeitpunkt im Kurs keine Unterstützung bei der Installation von R auf Ihren Privatrechnern. Für die ganz Ungeduldigen, gibt es hier eine kurze [Einleitung zur Installation](https://www.youtube.com/watch?v=kygOqp_zijk&list=PLG4WP9jv27SeMbBjhVcyXrGKQgnaex-0o&t=14s).
 
 ## Was ist RStudio?
-RStudio Desktop ist eine Entwicklungsumgebung für R. Sie können die *open source* Version kostenlos für Ihren Rechner [hier](https://rstudio.com/products/rstudio/#rstudio-desktop) herunterladen.
+RStudio Desktop ist eine Entwicklungsumgebung für R. Sie können die *open source* Version kostenlos für Ihren Rechner [hier](https://rstudio.com/products/rstudio/#rstudio-desktop) herunterladen. Es gibt eine live Einführung in RStudio im Kurs. Zusätzlich können Sie hier ein [Video](https://www.youtube.com/watch?v=r5wOhFVWXUE&list=PLG4WP9jv27SeMbBjhVcyXrGKQgnaex-0o) dazu ansehen.
 
-Es gibt eine live Einführung in RStudio im Kurs. Zusätzlich können Sie hier ein Video dazu ansehen.
-
-<iframe width="640" height="360" src="https://www.youtube.com/embed/r5wOhFVWXUE?list=PLG4WP9jv27SeMbBjhVcyXrGKQgnaex-0o" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-
-## RStudio Server Pro
-### Einloggen und eine Session starten
-Zu Beginn des Kurses werden wir auf dem RStudio Server Pro (RSSP) arbeiten. Jede(r) von Ihnen wird ein persönliches Login für den Server erhalten. **Dieses Login darf nicht weiter gegeben werden.** Damit ich mich im Falle von Programmierfehlern in Ihre Konto einloggen darf, müssen Sie eine Einwilligung unterschreiben und per Email an mich.
-
-Bevor Sie sich auf dem RSSP einloggen können, müssen Sie Ihre VPN-Verbindung aktivieren (aus dem Uni-Netz geht es auch ohne). Auf den Seiten der Rechenzentrums finden Sie eine [Anleitung](https://rrzk.uni-koeln.de/internetzugang-web/netzzugang/vpn) zur Einrichtung des VPN-Zugangs.
-
-Anschließend können Sie sich [hier](https://cheops-rstudio-edu.rrz.uni-koeln.de:8787/auth-sign-in) einloggen. Alternativ können Sie die Adresse des Servers https://cheops-rstudio-edu.rrz.uni-koeln.de:8787/auth-sign-in.htm in Ihren Browser kopieren. Nach dem Einloggen sehen Sie die Home-Oberfläche, aus der Sie eine neue Sitzung starten können (Abbildung \@ref(fig:rserver)).
-
-```{r rserver, echo = F, fig.cap = 'RStudio Server Pro Home', fig.width = 6, out.width = "100%"}
-knitr::include_graphics('figures/RServer_Oberflaeche.png')
-```
-
-Um eine neue Sitzung zu starten, klicken Sie auf den blauen Button `+ New Session` oder auf `New Session` neben dem R-Symbol und stellen Sie Folgendes ein (Sie dürfen der Session einen anderen Namen geben, wenn Sie möchten):
-
-```{r neue-sesssion, echo = F, fig.cap = 'Einstellungen für neue Session', fig.width = 6, out.width = "100%"}
-knitr::include_graphics('figures/neue_session.png')
-```
-
-Anschließend sehen Sie die neue Sitzung, auf die Sie nur noch klicken müssen, damit es los geht:
-
-```{r neue-session-pending, echo = F, fig.cap = "Neue Sitzung erstellt", fig.with = 6, out.width = "100%"}
-knitr::include_graphics('figures/neue_session_pending.png')
-```
-
-
-Der große Vorteil des RSSPs ist, dass ich direkt in Ihre Projekte eingreifen kann, wenn es mal zu Fehlern kommt. Während ich in Ihrem Projekt arbeite, werden Sie kurz aus der R-Sitzung ausgeloggt. Ihnen stehen auf dem Server unbegrenzt Arbeitsstunden zur Verfügung.
-
-Sowohl auf dem RSSP als auch in einer lokalen Installation, ist Ihr RStudio so aufgebaut wie in Abbildung \@ref(fig:rstudio).
-
+Die Oberfläche von RStudio ist in vier Bereiche unterteilt (Abbildung \@ref(fig:rstudio)).
 ```{r rstudio, echo = F, fig.cap = 'Aufbau von RStudio', fig.width = 6, out.width = "100%"}
 knitr::include_graphics('figures/RStudio.png')
-```
-
-### Dateimanagement
-Sie werden regelmäßig Dateien in die Sitzungen auf den RSSP hoch laden und auch herunter laden müssen. Für eine übersichtliche Organisation bietet es sich an, einen Ordner für Dateien anzulegen. Klicken Sie dafür auf `New Folder` auf dem Reiter `Files` rechts unten und geben Sie dem Ordnder den Namen `data`.
-
-Um Dateien hoch zu laden, klicken Sie auf den Button `Upload` auf dem Reiter `Files` rechts unten (Abbildung \@ref(fig:files-upload)).
-
-```{r files-upload, echo = F, fig.cap = 'Dateien hoch laden', fig.width = 6, out.width = "100%"}
-knitr::include_graphics('figures/files_upload.png')
-```
-
-Anschließend klicken Sie auf den Button `Browse` unter der Überschrift "File to upload" und navigieren zu der Datei, die Sie hoch laden möchten (Abbildung \@ref(fig:files-upload-browse)).
-
-```{r files-upload-browse, echo = F, fig.cap = 'Dateien zum Hochladen auswählen', fig.width = 6, out.width = "100%"}
-knitr::include_graphics('figures/files_browse.png')
-```
-
-Um Dateien herunter zu laden, markieren Sie zunächst die Datei oder die Dateien, die Sie herunterladen möchten. Dann klicken Sie auf den Button `More` im Reiter `Files` und dann auf Export und anschließend auf Download (Abbildungen \@ref(fig:files-export) und \@ref(fig:files-download)). Speichern Sie die Datei(en) auf Ihrem Rechner.
-
-```{r files-export, echo = F, fig.cap = 'Dateien zum herunter laden auswählen und herunter laden', fig.width = 6, out.width = "100%"}
-knitr::include_graphics('figures/files_export.png')
-```
-
-```{r files-download, echo = F, fig.cap = 'Dateien zum Herunterladen speichern', fig.width = 6, out.width = "100%"}
-knitr::include_graphics('figures/files_download.png')
 ```
 
 Sie sollten auch auf Ihrem eigenen Rechner einen Ordner für die Veranstaltung anlegen und darin jeweils einen Ordner für Daten und Skripte.

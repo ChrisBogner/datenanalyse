@@ -263,7 +263,4 @@ Kapitel 3 in @ModernDive
 
 - R4DS @r4ds: Kapitel 5 "Data transformation"
 
-- Eine live Analyse des Hauptautors von `tidyverse`, Hadley Wickham. Empfehlenswert, auch wenn er viel zu schnell tippt `r emo::ji('smile')`.
-
-<iframe width="639" height="302" src="https://www.youtube.com/embed/go5Au01Jrvs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
+- Eine [live Analyse](https://www.youtube.com/watch?v=go5Au01Jrvs) des Hauptautors von `tidyverse`, Hadley Wickham. Empfehlenswert, auch wenn er viel zu schnell tippt `r emo::ji('smile')`.

@@ -403,7 +403,40 @@ Wir sehen uns die Kontingenztabelle dazu an.</p>
 <li>Stellen Sie die Histogramme dieser Indikatoren dar.</li>
 <li>Gibt es Unterschied zwischen den Anteilen der beschäftigen Frauen im privaten und öffentlichen Sektor?</li>
 </ol>
-<!-- ### Wasserentnahme mit Datenquelle EUROSTAT direkt --><!-- Wir können die Datenbank EUROSTAT direkt über ihr API (Application Programming Interface) ansprechen. Leider ist das herunter geladene Datenformat sehr umständlich. Um uns Programmierarbeit zu sparen, nutzen wir das Paket eurostat, das die Daten aus der Datenbank herunterlädt und gleich ordentlich formatiert. --><!-- 1. Installieren Sie das Paket eurostat und sehen Sie sich das Tutorial für das Paket an (https://ropengov.github.io/eurostat/articles/website/eurostat_tutorial.html) --><!-- 2. Durchsuchen Sie die Datenbank nach allen Datensätzen, die das Wort "water" enthalten und darin das Wort "abstraction". --><!-- 3. Laden Sie den entsprechenden Datensatz herunter (env_wat_abs). --><!-- 4. Das Paket skimr bietet Zusammenfassungsfunktionen für Datensätze, die man auch in der Pipe benutzen kann. Installieren Sie das Paket und wenden Sie die Funktion `skim()` auf den heruntergeladenen Datensatz an. --><!-- 4. Welche Wasserquellen und Nutzer sind im Datensatz enthalten (https://appsso.eurostat.ec.europa.eu/nui/show.do?dataset=env_wat_abs&lang=en)? --><!-- 4. Stellen Sie die Wasserentnahme pro Einwohner dar (Gesamtentnahme aus allen Quellen: wat_proc == 'ABST' & wat_src == 'FRW'). --><!-- 4. Berechnen Sie die Gesamtmenge des entnommenen Wassers für alle Länder je Quelle (Fresh surface water und Fresh ground water). --><!-- 4. Stellen Sie diese Daten als Punktdiagramm, als Balkendiagramm und als Flächendiagramm dar. Was ist das Problem mit dem Flächendiagramm? -->
+</div>
+</div>
+<div id="funktionen-und-iterationen" class="section level2" number="13.4">
+<h2>
+<span class="header-section-number">B.4</span> Funktionen und Iterationen<a class="anchor" aria-label="anchor" href="#funktionen-und-iterationen"><i class="fas fa-link"></i></a>
+</h2>
+<div id="iterationen-im-kapitel-refstichproben" class="section level3" number="13.4.1">
+<h3>
+<span class="header-section-number">B.4.1</span> Iterationen im Kapitel <a href="stichproben.html#stichproben">6</a><a class="anchor" aria-label="anchor" href="#iterationen-im-kapitel-refstichproben"><i class="fas fa-link"></i></a>
+</h3>
+<p>Im Kapitel <a href="stichproben.html#stichproben">6</a> haben wir die Funktion <code>calculate_props()</code> definiert. Schreiben Sie den folgenden Code mit Hilfe der Funktion <code>map()</code> um:</p>
+<div class="sourceCode" id="cb240"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
+
+<span class="co"># Stichprobengröße 25</span>
+<span class="va">wohnort_props_25</span> <span class="op">&lt;-</span> <span class="fu">calculate_props</span><span class="op">(</span>grund_data <span class="op">=</span> <span class="va">grundgesamtheit</span>, befragung_size <span class="op">=</span> <span class="fl">25</span>, befragung_reps <span class="op">=</span> <span class="fl">1000</span><span class="op">)</span>
+  
+<span class="co"># Stichprobengröße 50</span>
+<span class="va">wohnort_props_50</span> <span class="op">&lt;-</span> <span class="fu">calculate_props</span><span class="op">(</span>grund_data <span class="op">=</span> <span class="va">grundgesamtheit</span>, befragung_size <span class="op">=</span> <span class="fl">50</span>, befragung_reps <span class="op">=</span> <span class="fl">1000</span><span class="op">)</span>
+
+<span class="co"># Stichprobengröße 100</span>
+<span class="va">wohnort_props_100</span> <span class="op">&lt;-</span> <span class="fu">calculate_props</span><span class="op">(</span>grund_data <span class="op">=</span> <span class="va">grundgesamtheit</span>, befragung_size <span class="op">=</span> <span class="fl">100</span>, befragung_reps <span class="op">=</span> <span class="fl">1000</span><span class="op">)</span></code></pre></div>
+<p>Tipp: Übergeben Sie <code>map()</code> einen Vektor mit den Größen der Stichproben.</p>
+<!-- ### Wasserentnahme mit Datenquelle EUROSTAT direkt -->
+<!-- Wir können die Datenbank EUROSTAT direkt über ihr API (Application Programming Interface) ansprechen. Leider ist das herunter geladene Datenformat sehr umständlich. Um uns Programmierarbeit zu sparen, nutzen wir das Paket eurostat, das die Daten aus der Datenbank herunterlädt und gleich ordentlich formatiert. -->
+<!-- 1. Installieren Sie das Paket eurostat und sehen Sie sich das Tutorial für das Paket an (https://ropengov.github.io/eurostat/articles/website/eurostat_tutorial.html) -->
+<!-- 2. Durchsuchen Sie die Datenbank nach allen Datensätzen, die das Wort "water" enthalten und darin das Wort "abstraction". -->
+<!-- 3. Laden Sie den entsprechenden Datensatz herunter (env_wat_abs). -->
+<!-- 4. Das Paket skimr bietet Zusammenfassungsfunktionen für Datensätze, die man auch in der Pipe benutzen kann. Installieren Sie das Paket und wenden Sie die Funktion `skim()` auf den heruntergeladenen Datensatz an. -->
+<!-- 4. Welche Wasserquellen und Nutzer sind im Datensatz enthalten (https://appsso.eurostat.ec.europa.eu/nui/show.do?dataset=env_wat_abs&lang=en)? -->
+<!-- 4. Stellen Sie die Wasserentnahme pro Einwohner dar (Gesamtentnahme aus allen Quellen: wat_proc == 'ABST' & wat_src == 'FRW'). -->
+<!-- 4. Berechnen Sie die Gesamtmenge des entnommenen Wassers für alle Länder je Quelle (Fresh surface water und Fresh ground water). -->
+<!-- 4. Stellen Sie diese Daten als Punktdiagramm, als Balkendiagramm und als Flächendiagramm dar. Was ist das Problem mit dem Flächendiagramm? -->
+
 </div>
 </div>
 </div>
@@ -446,6 +479,9 @@ Wir sehen uns die Kontingenztabelle dazu an.</p>
 <li><a class="nav-link" href="#world-bank"><span class="header-section-number">B.3.4</span> Anteil von beschäftigten Frauen im privaten und öffentlichen Sektor</a></li>
 </ul>
 </li>
+<li>
+<a class="nav-link" href="#funktionen-und-iterationen"><span class="header-section-number">B.4</span> Funktionen und Iterationen</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#iterationen-im-kapitel-refstichproben"><span class="header-section-number">B.4.1</span> Iterationen im Kapitel @ref(stichproben)</a></li></ul>
+</li>
 </ul>
 
       <div class="book-extra">
@@ -463,7 +499,7 @@ Wir sehen uns die Kontingenztabelle dazu an.</p>
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Datenanalyse mit R</strong>: SoSe 2021" was written by Christina Bogner. It was last built on 2021-07-04.</p>
+    <p>"<strong>Datenanalyse mit R</strong>: SoSe 2021" was written by Christina Bogner. It was last built on 2021-07-20.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

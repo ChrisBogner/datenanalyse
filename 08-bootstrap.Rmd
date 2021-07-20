@@ -34,19 +34,19 @@ Es gibt mehrere Methoden, solche Konfidenzintervalle zu berechnen. Wenn man die 
 
 Es gibt aber Schätzer, für die keine theoretische Verteilung bekannt ist. Da muss man eine andere Methode anwenden. Eine bekannte Methode heißt Bootstrapping (Bootstrap-Verfahren), manchmal auch Münchhausenmethode. Sie klingt auf den ersten Blick wie ein Selbstbetrug, so als ob man sich selbst an den Haaren aus dem Sumpf zieht (Abblildung \@ref(fig:meunch)), hat aber sehr gut fundierte mathematische Wurzeln. Bootstrap wurde von @Efron1979 Ende der 70er vorgestellt und hat sich seit dem als eine der wichtigsten *Resampling*-Strategien etabliert.
 
-```{r meunch, echo = F, fig.cap = 'Münchhausen zieht sich aus dem Sumpf (Theodor Hosemann (1807-1875), Public domain, via Wikimedia Commons)', fig.width = 6, out.width = "80%"}
+```{r meunch, echo = F, fig.cap = 'Münchhausen zieht sich aus dem Sumpf (Theodor Hosemann (1807-1875), Public domain, via Wikimedia Commons), [Link zum Bild](https://upload.wikimedia.org/wikipedia/commons/a/ad/M%C3%BCnchhausen-Sumpf-Hosemann.png)', fig.width = 6, out.width = "80%"}
 knitr::include_graphics('figures/Münchhausen-Sumpf-Hosemann.png')
 ```
 
 Das Prinzip beim Bootstrap ist, dass die Stichprobe die Rolle der Grundgesamtheit übernimmt. Abbildung \@ref(fig:sampling-world) zeigt das Vorgehen aus dem Kapitel \@ref(stichproben). Wir ziehen mehrere echte Stichproben aus einer Grundgesamtheit, erhalten eine Stichprobenverteilung und können den Parameter der Grundgesamtheit schätzen.
 
-```{r sampling-world, echo = F, fig.cap = 'Berechnen einer Stichprobenverteilung durch wiederholtes Stichproben ziehen. Abbildung aus [@Hesterberg2015], dort Figure 4. Die Publikation ist open-access und darf für nicht-kommerzielle Zwecke verwendet werden.', fig.width = 6, out.width = "80%"}
+```{r sampling-world, echo = F, fig.cap = 'Berechnen einer Stichprobenverteilung durch wiederholtes Stichproben ziehen. Abbildung aus [@Hesterberg2015], dort Figure 4. Die Publikation ist open-access und darf für nicht-kommerzielle Zwecke verwendet werden. [Link zur Lizenz](https://www.tandfonline.com/action/showCopyRight?scroll=top&doi=10.1080%2F00031305.2015.1089789)', fig.width = 6, out.width = "80%"}
 knitr::include_graphics('figures/sampling_world.png')
 ```
 
 In Abbildung \@ref(fig:sampling-bootstrap) haben wir nur eine Stichprobe. Wir gehen davon aus, dass diese Stipchprobe eine Miniatur der Grundgesamtheit ist, also zufällig gezogen wurde und repräsentative ist. Mit dieser Grundidee im Kopf, ersetzten wir die Grundgesamtheit durch dies Stichprobe und verfahren (fast) genauso, um die Stichprobenverteilung zu ermitteln. Der einzige Unterschied ist, dass wir aus dieser einen Stichprobe **mit Zurücklegen** neue Stichproben (Bootstrap-Stichproben) ziehen.
 
-```{r sampling-bootstrap, echo = F, fig.cap = 'Berechnen einer Stichprobenverteilung durch wiederholtes Ziehen aus einer Stichprobe mit Zurücklegen. Abbildung aus [@Hesterberg2015], dort Figure 5. Die Publikation ist open-access und darf für nicht-kommerzielle Zwecke verwendet werden.', fig.width = 6, out.width = "80%"}
+```{r sampling-bootstrap, echo = F, fig.cap = 'Berechnen einer Stichprobenverteilung durch wiederholtes Ziehen aus einer Stichprobe mit Zurücklegen. Abbildung aus [@Hesterberg2015], dort Figure 5. Die Publikation ist open-access und darf für nicht-kommerzielle Zwecke verwendet werden. [Link zur Lizenz](https://www.tandfonline.com/action/showCopyRight?scroll=top&doi=10.1080%2F00031305.2015.1089789)', fig.width = 6, out.width = "80%"}
 knitr::include_graphics('figures/sampling_bootstrap.png')
 ```
 

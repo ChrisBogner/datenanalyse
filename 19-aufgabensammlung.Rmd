@@ -372,6 +372,26 @@ Wir nutzen den Datensatz Worldwide Bureaucracy Indicators (WWBI). Diesen kann ma
 4. Stellen Sie die Histogramme dieser Indikatoren dar.
 4. Gibt es Unterschied zwischen den Anteilen der beschäftigen Frauen im privaten und öffentlichen Sektor?
 
+
+## Funktionen und Iterationen
+
+### Iterationen im Kapitel \@ref(stichproben)
+Im Kapitel \@ref(stichproben) haben wir die Funktion `calculate_props()` definiert. Schreiben Sie den folgenden Code mit Hilfe der Funktion `map()` um:
+```{r, eval = F}
+set.seed(123)
+
+# Stichprobengröße 25
+wohnort_props_25 <- calculate_props(grund_data = grundgesamtheit, befragung_size = 25, befragung_reps = 1000)
+  
+# Stichprobengröße 50
+wohnort_props_50 <- calculate_props(grund_data = grundgesamtheit, befragung_size = 50, befragung_reps = 1000)
+
+# Stichprobengröße 100
+wohnort_props_100 <- calculate_props(grund_data = grundgesamtheit, befragung_size = 100, befragung_reps = 1000)
+```
+
+Tipp: Übergeben Sie `map()` einen Vektor mit den Größen der Stichproben.
+
 <!-- ### Wasserentnahme mit Datenquelle EUROSTAT direkt -->
 
 <!-- Wir können die Datenbank EUROSTAT direkt über ihr API (Application Programming Interface) ansprechen. Leider ist das herunter geladene Datenformat sehr umständlich. Um uns Programmierarbeit zu sparen, nutzen wir das Paket eurostat, das die Daten aus der Datenbank herunterlädt und gleich ordentlich formatiert. -->

@@ -7,7 +7,7 @@
 - Konfidenzintervalle für nicht normalverteilte Residuen berechnen
 ```
 
-Im letzten Kapitel haben Sie die einfache Normalregression kennen gelernt. Bevor Sie die geschätzten Parameter und deren Konfidenzintervalle interpretieren, müssen Sie die Annahmen der Normalregression überprüfen (vor allem grafisch). Diese Annahmen sind:
+Im letzten Kapitel haben wir die einfache Normalregression kennen gelernt. Bevor wir die geschätzten Parameter und deren Konfidenzintervalle interpretieren, müssen wir die Annahmen der Normalregression überprüfen (vor allem grafisch). Diese Annahmen sind:
 
 1. Der Zusammenhang zwischen der abhängigen und den erklärenden Variablen ist linear.
 1. Residuen sind unabhängig.

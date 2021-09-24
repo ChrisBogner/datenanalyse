@@ -30,7 +30,7 @@ Nun können wir die aus unseren Daten berechnete Teststatistik $\sigma^*$ mit de
 
 Diese Schritte gelten wirklich für jeden beliebigen Test. Daher kann man verallgemeinert sagen, dass es nur einen Test (ein Testframework) gibt. 
 
-```{r one-test, echo = F, fig.cap = 'Logik hinter den Hypothesentests aus der Sicht der modernen Datenanlyse (Quelle: http://allendowney.blogspot.com/2016/06/there-is-still-only-one-test.html).', fig.width = 6, out.width = "80%"}
+```{r one-test, echo = F, fig.cap = 'Logik hinter den Hypothesentests aus der Sicht der modernen Datenanlyse (Quelle: http://allendowney.blogspot.com/2016/06/there-is-still-only-one-test.html, Nutzung mit Erlaubnis des Autors Prof. Allen Downey).', fig.width = 6, out.width = "80%"}
 knitr::include_graphics('figures/one_test.png')
 ```
 

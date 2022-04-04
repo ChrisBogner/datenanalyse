@@ -9,7 +9,7 @@ Den Leistungsnachweis bildet ein benoteter Praktikumsbericht.
 
 ```{block, type='rmdoutcomes'}
 - Daten für Analysen vorbereiten
-- Daten visualisieren
+- Daten einlesen und visualisieren
 - Code und Dokumentation in R Markdown schreiben
 - eigene Funktionen schreiben
 - reproduzierbare Datenanalysen durchführen

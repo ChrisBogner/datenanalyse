@@ -4,25 +4,21 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Kapitel 2 R Markdown | Datenanalyse mit R</title>
+<title>Kapitel 2 R Markdown für reproduzierbare Forschung | Datenanalyse mit R</title>
 <meta name="author" content="Christina Bogner">
 <meta name="description" content="Wichtigkeit der Reproduzierbarkeit erklären  Begriff literate programming definieren  Aufbau einer RMarkdown-Datei erklären  Einen einfachen ersten reproduzierbaren Bericht schreiben   2.1 Warum...">
 <meta name="generator" content="bookdown 0.24.3 with bs4_book()">
-<meta property="og:title" content="Kapitel 2 R Markdown | Datenanalyse mit R">
+<meta property="og:title" content="Kapitel 2 R Markdown für reproduzierbare Forschung | Datenanalyse mit R">
 <meta property="og:type" content="book">
 <meta property="og:description" content="Wichtigkeit der Reproduzierbarkeit erklären  Begriff literate programming definieren  Aufbau einer RMarkdown-Datei erklären  Einen einfachen ersten reproduzierbaren Bericht schreiben   2.1 Warum...">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Kapitel 2 R Markdown | Datenanalyse mit R">
+<meta name="twitter:title" content="Kapitel 2 R Markdown für reproduzierbare Forschung | Datenanalyse mit R">
 <meta name="twitter:description" content="Wichtigkeit der Reproduzierbarkeit erklären  Begriff literate programming definieren  Aufbau einer RMarkdown-Datei erklären  Einen einfachen ersten reproduzierbaren Bericht schreiben   2.1 Warum...">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
-<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script><link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
-<script src="libs/datatables-binding-0.20/datatables.js"></script><link href="libs/dt-core-1.11.3/css/jquery.dataTables.min.css" rel="stylesheet">
-<link href="libs/dt-core-1.11.3/css/jquery.dataTables.extra.css" rel="stylesheet">
-<script src="libs/dt-core-1.11.3/js/jquery.dataTables.min.js"></script><link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet">
-<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="font-awesome.min.css">
 </head>
 <body data-spy="scroll" data-target="#toc">
@@ -33,8 +29,8 @@
 
     <div class="d-flex align-items-start justify-content-between">
       <h1>
-        <a href="index.html" title="SoSe 2021">Datenanalyse mit R</a>:
-        <small class="text-muted">SoSe 2021</small>
+        <a href="index.html" title="SoSe 2022">Datenanalyse mit R</a>:
+        <small class="text-muted">SoSe 2022</small>
       </h1>
       <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
     </div>
@@ -50,21 +46,8 @@
 <li><a class="" href="einfuehrung.html">Der Kurs</a></li>
 <li class="book-part">Teil I: Daten explorieren</li>
 <li><a class="" href="erste-schritte.html"><span class="header-section-number">1</span> Erste Schritte in R</a></li>
-<li><a class="active" href="reproduzieren.html"><span class="header-section-number">2</span> R Markdown</a></li>
-<li><a class="" href="ggplot.html"><span class="header-section-number">3</span> Einführung in ggplot2</a></li>
-<li><a class="" href="daten-einlesen-und-visualisieren.html"><span class="header-section-number">4</span> Daten einlesen und visualisieren</a></li>
-<li><a class="" href="tidyverse.html"><span class="header-section-number">5</span> Der explorative Workflow mit tidyverse</a></li>
-<li class="book-part">Teil II: Statistische Inferenz</li>
-<li><a class="" href="stichproben.html"><span class="header-section-number">6</span> Stichproben und Variabilität</a></li>
-<li><a class="" href="bootstrapping-und-konfidenzintervalle.html"><span class="header-section-number">7</span> Bootstrapping und Konfidenzintervalle</a></li>
-<li><a class="" href="hypothesentsts.html"><span class="header-section-number">8</span> Hypothesentests mit dem Paket infer</a></li>
-<li><a class="" href="effekte.html"><span class="header-section-number">9</span> Schätzen von Effekten: Raus aus der \(p &lt; 0.05\)-Falle</a></li>
-<li class="book-part">Teil III: Statistische Modellierung</li>
-<li><a class="" href="regression.html"><span class="header-section-number">10</span> Lineare Regression</a></li>
-<li><a class="" href="regression-inferenz.html"><span class="header-section-number">11</span> Inferenz in linearer Regression</a></li>
-<li class="book-part">Appendix</li>
-<li><a class="" href="daten-und-bericht.html"><span class="header-section-number">A</span> Datenquellen und Struktur des Abschlussberichts</a></li>
-<li><a class="" href="aufgabensammlung.html"><span class="header-section-number">B</span> Aufgabensammlung</a></li>
+<li><a class="active" href="reproduzieren.html"><span class="header-section-number">2</span> R Markdown für reproduzierbare Forschung</a></li>
+<li><a class="" href="aufgabensammlung.html"><span class="header-section-number">3</span> Aufgabensammlung</a></li>
 <li><a class="" href="literatur.html">Literatur</a></li>
 </ul>
 
@@ -75,7 +58,7 @@
 </div>
   </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="reproduzieren" class="section level1" number="2">
 <h1>
-<span class="header-section-number">Kapitel 2</span> R Markdown<a class="anchor" aria-label="anchor" href="#reproduzieren"><i class="fas fa-link"></i></a>
+<span class="header-section-number">Kapitel 2</span> R Markdown für reproduzierbare Forschung<a class="anchor" aria-label="anchor" href="#reproduzieren"><i class="fas fa-link"></i></a>
 </h1>
 <div class="rmdoutcomes">
 <ul>
@@ -206,11 +189,11 @@ Abbildung 2.2: Einen neuen Chunk hinzufügen
 </div>
   <div class="chapter-nav">
 <div class="prev"><a href="erste-schritte.html"><span class="header-section-number">1</span> Erste Schritte in R</a></div>
-<div class="next"><a href="ggplot.html"><span class="header-section-number">3</span> Einführung in ggplot2</a></div>
+<div class="next"><a href="aufgabensammlung.html"><span class="header-section-number">3</span> Aufgabensammlung</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
-<li><a class="nav-link" href="#reproduzieren"><span class="header-section-number">2</span> R Markdown</a></li>
+<li><a class="nav-link" href="#reproduzieren"><span class="header-section-number">2</span> R Markdown für reproduzierbare Forschung</a></li>
 <li><a class="nav-link" href="#warum-reproduzierbarkeit-in-der-forschung-wichtig-ist"><span class="header-section-number">2.1</span> Warum Reproduzierbarkeit in der Forschung wichtig ist</a></li>
 <li><a class="nav-link" href="#literate-programming-idee-von-donald-knuth"><span class="header-section-number">2.2</span> Literate Programming Idee von Donald Knuth</a></li>
 <li><a class="nav-link" href="#reproduzierbare-berichte-mit-r-markdown"><span class="header-section-number">2.3</span> Reproduzierbare Berichte mit R Markdown</a></li>
@@ -243,7 +226,7 @@ Abbildung 2.2: Einen neuen Chunk hinzufügen
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Datenanalyse mit R</strong>: SoSe 2021" was written by Christina Bogner. It was last built on 2022-03-31.</p>
+    <p>"<strong>Datenanalyse mit R</strong>: SoSe 2022" was written by Christina Bogner. It was last built on 2022-04-04.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

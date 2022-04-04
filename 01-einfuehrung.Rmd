@@ -9,17 +9,18 @@ Den Leistungsnachweis bildet ein benoteter Praktikumsbericht.
 
 ```{block, type='rmdoutcomes'}
 - Daten für Analysen vorbereiten
-- eigene wiederverwendbare Skripte schreiben
-- eigene Funktionen schreiben
-- einfache Datenanalysen durchführen
 - Daten visualisieren
+- Code und Dokumentation in R Markdown schreiben
+- eigene Funktionen schreiben
+- reproduzierbare Datenanalysen durchführen
+- gelernte Methoden auf einen neuen Datensatz anwenden
 - Ergebnisse reproduzierbar im Praktikumsbericht darstellen
 ```
 
 ## Was mir im Umgang miteinander wichtig ist {-}
 
-- Pünktlichkeit bei Livesitzungen
-- Gute Vorbereitung durch erledigen der Hausaufgaben
+- Pünktlichkeit bei Präsenz- und Zoomsitzungen
+- Gute Vorbereitung durch Erledigen der Hausaufgaben
 - Respektieren anderer Meinungen
 - Offenheit gegenüber neuen Sichtweisen, Themen und Methoden
 - Geduld mit sich selbst und den anderen `r emo::ji('smile')`

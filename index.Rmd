@@ -1,7 +1,7 @@
 ---
 knit: "bookdown::render_book"
 title: "Datenanalyse mit R"
-subtitle: "SoSe 2021"
+subtitle: "SoSe 2022"
 author: "Christina Bogner"
 date: "`r format(Sys.time(), '%Y-%m-%d')`"
 site: bookdown::bookdown_site
@@ -22,7 +22,7 @@ description: "Begleitskript zur Veranstaltung Datenanalyse mit R, inspiriert von
 ## Organisatorisches {-}
 
 ```{block, type='rmdinfo'}
-Die Coronaviruspandemie verändert unser Leben und unser Lernen. Die UzK bittet Lehrende, das SoSe 2021 als Hybridsemester zu gestalten. Wir werden unseren Kurs komplett online durchführen. Bitte seien Sie nachsichtig, wenn nicht alles so klappt wie in Präsenzveranstaltungen. Wir müssen aktuell alle sehr viel dazu lernen in Sachen digitale Lehre. Sie können sicher sein, dass das Geographische Institut bemüht ist, die Lehre so effizient wie möglich weiter laufen zu lassen, damit Sie in Ihrem Studium fortfahren können.
+Die Coronaviruspandemie hat unser Leben und unser Lernen verändert. Die vergangenen digitalen Semester haben ein paar nützliche Werkzeuge etabliert, die ich gerne in die Präsenzlehre übernehmen möchte.
 ```
 
 In dieser Veranstaltung werden wir folgende Werkzeuge verwenden:
@@ -31,15 +31,14 @@ In dieser Veranstaltung werden wir folgende Werkzeuge verwenden:
 
 **Campuswire**: die Chatplattform dient der allgemeinen Kommunikation und der Selbstorganisation des Lernens. Verwenden Sie diese, um Fragen mit Ihren Kommilitonen*innen und mir zu diskutieren. Sie sollten eine Einladungsmail zu Campuswire erhalten haben.
 
-**Zoom**: die Videokonferenz-Software werden wir für Liveveranstaltungen nutzen. Die Anmeldemodalitäten sind auf den Kursseiten in ILIAS erklärt.
+**Zoom**: die Videokonferenz-Software bleibt unser Notfall-Werkzeug, falls keine Präsenz möglich ist.
 
-**RStudio Server Pro**: der Server bietet die Möglichkeit, online in R und RStudio zu arbeiten.
 
 ## Verwendete Literatur {-}
 
-Wir werden in diesem Kurs hauptsächlich das freie, englischsprachige Buch [ModernDive: Statistical Inference via Data Science](https://moderndive.com/) benutzen [@ModernDive]. Bitte lassen Sie sich nicht davon abschrecken, dass das Buch englischsprachig ist. Es ist sehr gut verständlich und bietet einen modernen Zugang zur Datenanalyse. Als ein weiteres Buch werden wir @Sauer2019 nutzen.
+Wir werden in diesem Kurs hauptsächlich das freie, englischsprachige Buch [ModernDive: Statistical Inference via Data Science](https://moderndive.com/) benutzen [@ModernDive]. Bitte lassen Sie sich nicht davon abschrecken, dass das Buch englischsprachig ist. Es ist sehr gut verständlich und bietet einen modernen Zugang zur Datenanalyse. Als ein weiteres Buch empfehle ich @Sauer2019.
 
-Ab und an werde ich Ihnen auch andere Literatur empfehlen. Für Ihren Abschlussbericht werden Sie auch selbständig weitere Literatur recherchieren.
+Gelegentlich werde ich Ihnen auch andere Literatur empfehlen. Für Ihren Abschlussbericht werden Sie auch selbstständig weitere Literatur recherchieren.
 
 ## Sinn und Unsinn dieses Skripts {-}
 
@@ -123,4 +122,4 @@ sessionInfo()
 
 ![](figures/Cc-by-nc-sa_icon.svg){width=30%}
 
-Diese Skript ist lizensiert unter [Creative Commons Namensnennung - Nicht-kommerziell - Weitergabe unter gleichen Bedingungen 4.0 International.](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.de/)
+Dieses Skript ist lizenziert unter [Creative Commons Namensnennung - Nicht-kommerziell - Weitergabe unter gleichen Bedingungen 4.0 International.](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.de/)

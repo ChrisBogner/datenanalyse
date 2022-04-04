@@ -6,15 +6,23 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Kapitel 7 Bootstrapping und Konfidenzintervalle | Datenanalyse mit R</title>
 <meta name="author" content="Christina Bogner">
-<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.2"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="Funktionsweise von Bootstrap erklären  Bootstrap-Konfidenzintervalle für Mittelwert berechnen  Im Kapitel 6 haben Sie gesehen, dass Statistiken aus zufällig gezogenen Stichproben, dem Zufall...">
+<meta name="generator" content="bookdown 0.24.3 with bs4_book()">
+<meta property="og:title" content="Kapitel 7 Bootstrapping und Konfidenzintervalle | Datenanalyse mit R">
+<meta property="og:type" content="book">
+<meta property="og:description" content="Funktionsweise von Bootstrap erklären  Bootstrap-Konfidenzintervalle für Mittelwert berechnen  Im Kapitel 6 haben Sie gesehen, dass Statistiken aus zufällig gezogenen Stichproben, dem Zufall...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Kapitel 7 Bootstrapping und Konfidenzintervalle | Datenanalyse mit R">
+<meta name="twitter:description" content="Funktionsweise von Bootstrap erklären  Bootstrap-Konfidenzintervalle für Mittelwert berechnen  Im Kapitel 6 haben Sie gesehen, dass Statistiken aus zufällig gezogenen Stichproben, dem Zufall...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.0/transition.js"></script><script src="libs/bs3compat-0.3.0/tabs.js"></script><script src="libs/bs3compat-0.3.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 <script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script><link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
-<script src="libs/datatables-binding-0.19/datatables.js"></script><link href="libs/dt-core-1.10.20/css/jquery.dataTables.min.css" rel="stylesheet">
-<link href="libs/dt-core-1.10.20/css/jquery.dataTables.extra.css" rel="stylesheet">
-<script src="libs/dt-core-1.10.20/js/jquery.dataTables.min.js"></script><link href="libs/crosstalk-1.1.1/css/crosstalk.css" rel="stylesheet">
-<script src="libs/crosstalk-1.1.1/js/crosstalk.min.js"></script><script src="https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/mark.js@8.11.1/dist/mark.min.js"></script><!-- CSS --><link rel="stylesheet" href="style.css">
+<script src="libs/datatables-binding-0.20/datatables.js"></script><link href="libs/dt-core-1.11.3/css/jquery.dataTables.min.css" rel="stylesheet">
+<link href="libs/dt-core-1.11.3/css/jquery.dataTables.extra.css" rel="stylesheet">
+<script src="libs/dt-core-1.11.3/js/jquery.dataTables.min.js"></script><link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet">
+<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="font-awesome.min.css">
 </head>
 <body data-spy="scroll" data-target="#toc">
@@ -168,7 +176,7 @@ Abbildung 7.3: Berechnen einer Stichprobenverteilung durch wiederholtes Ziehen a
 
 <span class="va">zeit_bib</span> <span class="op">&lt;-</span> <span class="fl">5</span> <span class="op">*</span> <span class="fl">60</span> <span class="op">-</span> <span class="fl">0.7</span> <span class="op">*</span> <span class="va">anreise</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">anreise</span><span class="op">)</span>, <span class="fl">0</span>, <span class="fl">20</span><span class="op">)</span>
 
-<span class="va">grundgesamtheit</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="op">(</span><span class="va">student_id</span>, <span class="va">geschlecht</span>, <span class="va">wohnort</span>, <span class="va">verkehrsmittel</span>, <span class="va">anreise</span>, <span class="va">zeit_bib</span><span class="op">)</span>
+<span class="va">grundgesamtheit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span><span class="va">student_id</span>, <span class="va">geschlecht</span>, <span class="va">wohnort</span>, <span class="va">verkehrsmittel</span>, <span class="va">anreise</span>, <span class="va">zeit_bib</span><span class="op">)</span>
 
 <span class="va">grundgesamtheit</span></code></pre></div>
 <pre><code>## # A tibble: 12,000 × 6
@@ -211,8 +219,8 @@ Abbildung 7.3: Berechnen einer Stichprobenverteilung durch wiederholtes Ziehen a
 ## # … with 190 more rows</code></pre>
 <p>Wir berechnen den wahren Mittelwert der Anreisezeit und den Mittelwert aus der Befragung.</p>
 <div class="sourceCode" id="cb116"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">mean_grundgesamtheit</span> <span class="op">&lt;-</span> <span class="va">grundgesamtheit</span> <span class="op">%&gt;%</span> 
-  <span class="fu">summarise</span><span class="op">(</span>Mittelwert <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">anreise</span><span class="op">)</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">mean_grundgesamtheit</span> <span class="op">&lt;-</span> <span class="va">grundgesamtheit</span> <span class="op"><a href="https://infer.tidymodels.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>Mittelwert <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">anreise</span><span class="op">)</span><span class="op">)</span>
 
 <span class="va">mean_grundgesamtheit</span></code></pre></div>
 <pre><code>## # A tibble: 1 × 1
@@ -220,8 +228,8 @@ Abbildung 7.3: Berechnen einer Stichprobenverteilung durch wiederholtes Ziehen a
 ##        &lt;dbl&gt;
 ## 1       36.0</code></pre>
 <div class="sourceCode" id="cb118"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">mean_befragung</span> <span class="op">&lt;-</span> <span class="va">befragung</span> <span class="op">%&gt;%</span> 
-  <span class="fu">summarise</span><span class="op">(</span>Mittelwert <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">anreise</span><span class="op">)</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">mean_befragung</span> <span class="op">&lt;-</span> <span class="va">befragung</span> <span class="op"><a href="https://infer.tidymodels.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>Mittelwert <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">anreise</span><span class="op">)</span><span class="op">)</span>
 
 <span class="va">mean_befragung</span></code></pre></div>
 <pre><code>## # A tibble: 1 × 2
@@ -255,12 +263,12 @@ Abbildung 7.3: Berechnen einer Stichprobenverteilung durch wiederholtes Ziehen a
 ## # … with 1,999,990 more rows</code></pre>
 <p>Studierende kommen jetzt mehrfach vor, da wir ja mit Zurücklegen gezogen haben. Wir sehen uns das in den erste 50 Bootstrap-Stichproben an.</p>
 <div class="sourceCode" id="cb122"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">befragung_reps_bootstrap</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">replicate</span> <span class="op">%in%</span> <span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">50</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu">group_by</span><span class="op">(</span><span class="va">replicate</span>, <span class="va">student_id</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu">tally</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">n</span> <span class="op">!=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu">arrange</span><span class="op">(</span><span class="fu">desc</span><span class="op">(</span><span class="va">n</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="va">befragung_reps_bootstrap</span> <span class="op"><a href="https://infer.tidymodels.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">replicate</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">50</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://infer.tidymodels.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">replicate</span>, <span class="va">student_id</span><span class="op">)</span> <span class="op"><a href="https://infer.tidymodels.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">tally</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://infer.tidymodels.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">n</span> <span class="op">!=</span> <span class="fl">1</span><span class="op">)</span> <span class="op"><a href="https://infer.tidymodels.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 2,657 × 3
 ## # Groups:   replicate [50]
 ##    replicate student_id     n
@@ -278,9 +286,9 @@ Abbildung 7.3: Berechnen einer Stichprobenverteilung durch wiederholtes Ziehen a
 ## # … with 2,647 more rows</code></pre>
 <p>Nun berechnen wir die Mittelwerte aus den Bootstrap-Stichproben.</p>
 <div class="sourceCode" id="cb124"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">res_means_bootstrap</span> <span class="op">&lt;-</span> <span class="va">befragung_reps_bootstrap</span> <span class="op">%&gt;%</span>
-  <span class="fu">group_by</span><span class="op">(</span><span class="va">replicate</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu">summarise</span><span class="op">(</span>Mittelwert <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">anreise</span><span class="op">)</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">res_means_bootstrap</span> <span class="op">&lt;-</span> <span class="va">befragung_reps_bootstrap</span> <span class="op"><a href="https://infer.tidymodels.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">replicate</span><span class="op">)</span> <span class="op"><a href="https://infer.tidymodels.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>Mittelwert <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">anreise</span><span class="op">)</span><span class="op">)</span>
 
 <span class="va">res_means_bootstrap</span></code></pre></div>
 <pre><code>## # A tibble: 10,000 × 2
@@ -299,42 +307,42 @@ Abbildung 7.3: Berechnen einer Stichprobenverteilung durch wiederholtes Ziehen a
 ## # … with 9,990 more rows</code></pre>
 <p>Der Standardfehler des Bootstraps und das 95%-Konfidenzintervall basierend auf Quantilen berechnen sich wie folgt:</p>
 <div class="sourceCode" id="cb126"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">stat_bootstrap</span> <span class="op">&lt;-</span> <span class="va">res_means_bootstrap</span> <span class="op">%&gt;%</span> 
-  <span class="fu">summarize</span><span class="op">(</span>mean <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">Mittelwert</span><span class="op">)</span>, sd <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">Mittelwert</span><span class="op">)</span>, ci_2.5 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">Mittelwert</span>, probs <span class="op">=</span> <span class="fl">0.025</span><span class="op">)</span>, ci_97.5 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">Mittelwert</span>, probs <span class="op">=</span> <span class="fl">0.975</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="va">stat_bootstrap</span> <span class="op">&lt;-</span> <span class="va">res_means_bootstrap</span> <span class="op"><a href="https://infer.tidymodels.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>mean <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">Mittelwert</span><span class="op">)</span>, sd <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">Mittelwert</span><span class="op">)</span>, ci_2.5 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">Mittelwert</span>, probs <span class="op">=</span> <span class="fl">0.025</span><span class="op">)</span>, ci_97.5 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">Mittelwert</span>, probs <span class="op">=</span> <span class="fl">0.975</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p>Wir stellen die Stichprobenverteilung mit dem Standardfehler des Bootstraps und dem 95%-Konfidenzintervall dar. Das ist eine umfangreiche Grafik und wir gehen in der Übung Schritt für Schritt vor. Die Funktion <code>scale_color_manual</code> erlaubt es uns, die Legende anzupassen.</p>
 <div class="sourceCode" id="cb127"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span><span class="va">res_means_bootstrap</span>, <span class="fu">aes</span><span class="op">(</span><span class="va">Mittelwert</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
-  <span class="fu">geom_histogram</span><span class="op">(</span>bins <span class="op">=</span> <span class="fl">50</span> , color<span class="op">=</span><span class="st">"white"</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">labs</span><span class="op">(</span>y <span class="op">=</span> <span class="st">'Häufigkeit'</span>, x <span class="op">=</span> <span class="st">'Mittelwerte der Anreise (min)'</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">geom_vline</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>xintercept <span class="op">=</span> <span class="va">mean_grundgesamtheit</span><span class="op">$</span><span class="va">Mittelwert</span>, col <span class="op">=</span> <span class="st">'grundgesamtheit'</span><span class="op">)</span>, linetype <span class="op">=</span> <span class="st">"dashed"</span>, size <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">+</span> 
-  <span class="fu">geom_vline</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>xintercept <span class="op">=</span> <span class="va">stat_bootstrap</span><span class="op">$</span><span class="va">mean</span>, col <span class="op">=</span> <span class="st">'boot'</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
-  <span class="fu">geom_vline</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>xintercept <span class="op">=</span> <span class="va">mean_befragung</span><span class="op">$</span><span class="va">Mittelwert</span>, col <span class="op">=</span> <span class="st">'stichprobe'</span><span class="op">)</span>, linetype <span class="op">=</span> <span class="st">'dashed'</span>, size <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">geom_vline</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>xintercept <span class="op">=</span> <span class="va">stat_bootstrap</span><span class="op">$</span><span class="va">mean</span> <span class="op">+</span> <span class="va">stat_bootstrap</span><span class="op">$</span><span class="va">sd</span>, col <span class="op">=</span> <span class="st">'sd'</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
-  <span class="fu">geom_vline</span><span class="op">(</span>xintercept <span class="op">=</span> <span class="va">stat_bootstrap</span><span class="op">$</span><span class="va">mean</span> <span class="op">-</span> <span class="va">stat_bootstrap</span><span class="op">$</span><span class="va">sd</span>, col <span class="op">=</span> <span class="st">'orange'</span><span class="op">)</span> <span class="op">+</span> 
-  <span class="fu">geom_vline</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>xintercept <span class="op">=</span> <span class="va">stat_bootstrap</span><span class="op">$</span><span class="va">ci_2.5</span>, col <span class="op">=</span> <span class="st">'ci'</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">geom_vline</span><span class="op">(</span>xintercept <span class="op">=</span> <span class="va">stat_bootstrap</span><span class="op">$</span><span class="va">ci_97.5</span>, col <span class="op">=</span> <span class="st">'brown'</span><span class="op">)</span> <span class="op">+</span> 
-  <span class="fu">scale_color_manual</span><span class="op">(</span>name <span class="op">=</span> <span class="st">"Statistik"</span>, values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>grundgesamtheit <span class="op">=</span> <span class="st">'black'</span>, sd <span class="op">=</span> <span class="st">'orange'</span>, boot <span class="op">=</span> <span class="st">'red'</span>, ci <span class="op">=</span> <span class="st">'brown'</span>, stichprobe <span class="op">=</span> <span class="st">'gray90'</span><span class="op">)</span>, breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'stichprobe'</span>, <span class="st">'boot'</span>, <span class="st">'sd'</span>, <span class="st">'ci'</span>, <span class="st">'grundgesamtheit'</span><span class="op">)</span>, label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'Mittelwert Stichprobe'</span>, <span class="st">'Mittelwert Bootstrap'</span>, <span class="st">'Standardfehler Bootstrap'</span>, <span class="st">'95% Konfidenzintervall Bootstrap'</span>, <span class="st">'Mittelwert Population'</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">res_means_bootstrap</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">Mittelwert</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>bins <span class="op">=</span> <span class="fl">50</span> , color<span class="op">=</span><span class="st">"white"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>y <span class="op">=</span> <span class="st">'Häufigkeit'</span>, x <span class="op">=</span> <span class="st">'Mittelwerte der Anreise (min)'</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_vline</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>xintercept <span class="op">=</span> <span class="va">mean_grundgesamtheit</span><span class="op">$</span><span class="va">Mittelwert</span>, col <span class="op">=</span> <span class="st">'grundgesamtheit'</span><span class="op">)</span>, linetype <span class="op">=</span> <span class="st">"dashed"</span>, size <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_vline</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>xintercept <span class="op">=</span> <span class="va">stat_bootstrap</span><span class="op">$</span><span class="va">mean</span>, col <span class="op">=</span> <span class="st">'boot'</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_vline</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>xintercept <span class="op">=</span> <span class="va">mean_befragung</span><span class="op">$</span><span class="va">Mittelwert</span>, col <span class="op">=</span> <span class="st">'stichprobe'</span><span class="op">)</span>, linetype <span class="op">=</span> <span class="st">'dashed'</span>, size <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_vline</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>xintercept <span class="op">=</span> <span class="va">stat_bootstrap</span><span class="op">$</span><span class="va">mean</span> <span class="op">+</span> <span class="va">stat_bootstrap</span><span class="op">$</span><span class="va">sd</span>, col <span class="op">=</span> <span class="st">'sd'</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_vline</a></span><span class="op">(</span>xintercept <span class="op">=</span> <span class="va">stat_bootstrap</span><span class="op">$</span><span class="va">mean</span> <span class="op">-</span> <span class="va">stat_bootstrap</span><span class="op">$</span><span class="va">sd</span>, col <span class="op">=</span> <span class="st">'orange'</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_vline</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>xintercept <span class="op">=</span> <span class="va">stat_bootstrap</span><span class="op">$</span><span class="va">ci_2.5</span>, col <span class="op">=</span> <span class="st">'ci'</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_vline</a></span><span class="op">(</span>xintercept <span class="op">=</span> <span class="va">stat_bootstrap</span><span class="op">$</span><span class="va">ci_97.5</span>, col <span class="op">=</span> <span class="st">'brown'</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_color_manual</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"Statistik"</span>, values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>grundgesamtheit <span class="op">=</span> <span class="st">'black'</span>, sd <span class="op">=</span> <span class="st">'orange'</span>, boot <span class="op">=</span> <span class="st">'red'</span>, ci <span class="op">=</span> <span class="st">'brown'</span>, stichprobe <span class="op">=</span> <span class="st">'gray90'</span><span class="op">)</span>, breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'stichprobe'</span>, <span class="st">'boot'</span>, <span class="st">'sd'</span>, <span class="st">'ci'</span>, <span class="st">'grundgesamtheit'</span><span class="op">)</span>, label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'Mittelwert Stichprobe'</span>, <span class="st">'Mittelwert Bootstrap'</span>, <span class="st">'Standardfehler Bootstrap'</span>, <span class="st">'95% Konfidenzintervall Bootstrap'</span>, <span class="st">'Mittelwert Population'</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="datenanalyse_files/figure-html/unnamed-chunk-100-1.png" width="90%"></div>
 <p>Der Standardfehler des Bootstraps stimmt sehr gut mit dem Fehler <span class="math inline">\(s/\sqrt(n)\)</span> für den Schätzer des Mittelwerts überein. Da wir normalerweise die wahre Standardabweichung der Grundgesamtheit nicht kennen, wird in der Formel <span class="math inline">\(s/\sqrt(n)\)</span> die Standardabweichung der Stichprobe als Schätzung verwendet.</p>
 <div class="sourceCode" id="cb128"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">befragung</span> <span class="op">%&gt;%</span> 
-  <span class="fu">summarize</span><span class="op">(</span>sd_error <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">anreise</span><span class="op">)</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">anreise</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="va">befragung</span> <span class="op"><a href="https://infer.tidymodels.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>sd_error <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">anreise</span><span class="op">)</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">anreise</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 1 × 2
 ##   replicate sd_error
 ##       &lt;int&gt;    &lt;dbl&gt;
 ## 1         1     2.04</code></pre>
 <p>Standardfehler des Bootstraps.</p>
 <div class="sourceCode" id="cb130"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">res_means_bootstrap</span> <span class="op">%&gt;%</span> 
-  <span class="fu">summarize</span><span class="op">(</span>sd_error <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">Mittelwert</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="va">res_means_bootstrap</span> <span class="op"><a href="https://infer.tidymodels.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>sd_error <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">Mittelwert</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 1 × 1
 ##   sd_error
 ##      &lt;dbl&gt;
 ## 1     2.06</code></pre>
 <p>Und der wahre Standardfehler, wenn man die Standardabweichung der Grundgesamtheit kennt.</p>
 <div class="sourceCode" id="cb132"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">grundgesamtheit</span> <span class="op">%&gt;%</span> 
-  <span class="fu">summarize</span><span class="op">(</span>sd_error <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">anreise</span><span class="op">)</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">befragung</span><span class="op">$</span><span class="va">anreise</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="va">grundgesamtheit</span> <span class="op"><a href="https://infer.tidymodels.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>sd_error <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">anreise</span><span class="op">)</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">befragung</span><span class="op">$</span><span class="va">anreise</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 1 × 1
 ##   sd_error
 ##      &lt;dbl&gt;
@@ -349,9 +357,9 @@ Abbildung 7.3: Berechnen einer Stichprobenverteilung durch wiederholtes Ziehen a
 <div class="sourceCode" id="cb134"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">345</span><span class="op">)</span>
 
-<span class="va">bootstrap_distribution</span> <span class="op">&lt;-</span> <span class="va">befragung</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://infer.tidymodels.org/reference/specify.html">specify</a></span><span class="op">(</span>response <span class="op">=</span> <span class="va">anreise</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://infer.tidymodels.org/reference/generate.html">generate</a></span><span class="op">(</span>reps <span class="op">=</span> <span class="fl">10000</span>, type <span class="op">=</span> <span class="st">'bootstrap'</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+<span class="va">bootstrap_distribution</span> <span class="op">&lt;-</span> <span class="va">befragung</span> <span class="op"><a href="https://infer.tidymodels.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://infer.tidymodels.org/reference/specify.html">specify</a></span><span class="op">(</span>response <span class="op">=</span> <span class="va">anreise</span><span class="op">)</span> <span class="op"><a href="https://infer.tidymodels.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://infer.tidymodels.org/reference/generate.html">generate</a></span><span class="op">(</span>reps <span class="op">=</span> <span class="fl">10000</span>, type <span class="op">=</span> <span class="st">'bootstrap'</span><span class="op">)</span> <span class="op"><a href="https://infer.tidymodels.org/reference/pipe.html">%&gt;%</a></span> 
   <span class="fu"><a href="https://infer.tidymodels.org/reference/calculate.html">calculate</a></span><span class="op">(</span>stat <span class="op">=</span> <span class="st">'mean'</span><span class="op">)</span></code></pre></div>
 <p>Visualisieren der Stichprobenverteilung.</p>
 <div class="sourceCode" id="cb135"><pre class="downlit sourceCode r">
@@ -359,7 +367,7 @@ Abbildung 7.3: Berechnen einer Stichprobenverteilung durch wiederholtes Ziehen a
 <div class="inline-figure"><img src="datenanalyse_files/figure-html/unnamed-chunk-105-1.png" width="672"></div>
 <p>Berechnen Konfidenzintervalle</p>
 <div class="sourceCode" id="cb136"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">percentile_ci</span> <span class="op">&lt;-</span> <span class="va">bootstrap_distribution</span> <span class="op">%&gt;%</span> 
+<code class="sourceCode R"><span class="va">percentile_ci</span> <span class="op">&lt;-</span> <span class="va">bootstrap_distribution</span> <span class="op"><a href="https://infer.tidymodels.org/reference/pipe.html">%&gt;%</a></span> 
   <span class="fu"><a href="https://infer.tidymodels.org/reference/get_confidence_interval.html">get_confidence_interval</a></span><span class="op">(</span>level <span class="op">=</span> <span class="fl">0.95</span>, type <span class="op">=</span> <span class="st">"percentile"</span><span class="op">)</span>
 <span class="va">percentile_ci</span></code></pre></div>
 <pre><code>## # A tibble: 1 × 2
@@ -370,7 +378,7 @@ Abbildung 7.3: Berechnen einer Stichprobenverteilung durch wiederholtes Ziehen a
 <div class="sourceCode" id="cb138"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://infer.tidymodels.org/reference/visualize.html">visualize</a></span><span class="op">(</span><span class="va">bootstrap_distribution</span><span class="op">)</span> <span class="op">+</span> 
   <span class="fu"><a href="https://infer.tidymodels.org/reference/shade_confidence_interval.html">shade_confidence_interval</a></span><span class="op">(</span>endpoints <span class="op">=</span> <span class="va">percentile_ci</span>, color <span class="op">=</span> <span class="st">"orange"</span>, fill <span class="op">=</span> <span class="st">"khaki"</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">geom_vline</span><span class="op">(</span>xintercept <span class="op">=</span> <span class="va">mean_grundgesamtheit</span><span class="op">$</span><span class="va">Mittelwert</span>, linetype <span class="op">=</span> <span class="st">'dashed'</span><span class="op">)</span></code></pre></div>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_vline</a></span><span class="op">(</span>xintercept <span class="op">=</span> <span class="va">mean_grundgesamtheit</span><span class="op">$</span><span class="va">Mittelwert</span>, linetype <span class="op">=</span> <span class="st">'dashed'</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="datenanalyse_files/figure-html/unnamed-chunk-107-1.png" width="672"></div>
 <p>Die Konfidenzintervalle, die wir als Quantile aus der Bootstrap-Stichprobenverteilung berechnet haben, und die, die man mit der Formel <span class="math inline">\(\hat{\mu} \pm 1.96 \cdot s/\sqrt(n)\)</span> berechnen kann, sind sehr ähnlich. Das werden Sie in einer der Aufgaben (s.u.) nachrechnen. Das liegt daran, dass der <em>Zentrale Grenzwertsatz</em> garantiert, dass die Stichprobenverteilung des Schätzers des Mittelwerts eine Normalverteilung ist. Es gibt aber Schätzer, wie z.B. den des Medians, für den es keine theoretische Verteilung gibt. Daher gilt als Take-Home-Message, dass man Bootstrap zum Berechnen der Konfidenzintervalle gut einsetzten kann, egal ob es eine theoretische Verteilung des Schätzers gibt. Die Quantilmethode zur Berechnung der Bootstrap-Konfidenzintervalle liefert gute Ergebnisse. Wir werden im späteren Kapitel lernen, dass man Bootstrap auch für die Regressionsanalyse nutzen kann.</p>
 </div>
@@ -400,7 +408,7 @@ Abbildung 7.3: Berechnen einer Stichprobenverteilung durch wiederholtes Ziehen a
 </h3>
 <p>Der Zentrale Grenzwertsatz besagt, dass die Stichprobenverteilung des Schätzers des Mittelwerts sich asymptotisch (also bei vielen Stichproben) der Normalverteilung nähert. Daher kann man für die Konfidenzintervalle auch die folgende Formel nutzen: <span class="math inline">\(\hat{\mu} \pm 1.96 \cdot SE\)</span>, wobei <span class="math inline">\(\hat{\mu}\)</span> der geschätzter Mittelwert ist. Das Hütchen steht für <em>geschätzt</em>.</p>
 <ul>
-<li>Berechnen Sie die Konfidenzintervalle mit dieser Formel für die Stichprobenverteilung aus dem Bootstrap für den Mittelwert der Anreisezeit. Dazu passen Sie in der Funktion <code>get_confidence_interval</code> den Typ des Konfidenzintervalls an <code>type = "se"</code> und geben Sie den Mittelwert der Befragung an: <code><a href="https://infer.tidymodels.org/reference/get_confidence_interval.html">get_confidence_interval(type = "se", point_estimate = mean_befragung$Mittelwert)</a></code>.</li>
+<li>Berechnen Sie die Konfidenzintervalle mit dieser Formel für die Stichprobenverteilung aus dem Bootstrap für den Mittelwert der Anreisezeit. Dazu passen Sie in der Funktion <code>get_confidence_interval</code> den Typ des Konfidenzintervalls an <code>type = "se"</code> und geben Sie den Mittelwert der Befragung an: <code>get_confidence_interval(type = "se", point_estimate = mean_befragung$Mittelwert)</code>.</li>
 <li>Stellen Sie die Stichprobenverteilung mit diesem Konfidenzintervall dar und vergleichen Sie mit dem Konfidenzintervall, das wir mit der Quantil-Methode berechnet haben.</li>
 </ul>
 </div>
@@ -408,7 +416,7 @@ Abbildung 7.3: Berechnen einer Stichprobenverteilung durch wiederholtes Ziehen a
 <h3>
 <span class="header-section-number">7.6.2</span> Anteile an Stadt- und Landbewohnern<a class="anchor" aria-label="anchor" href="#anteile-an-stadt--und-landbewohnern"><i class="fas fa-link"></i></a>
 </h3>
-<p>Wiederholen Sie die Analyse, die wir mit dem Paket <code>infer</code> für die Schätzung des Mittelwerts der Anreisezeit gemacht haben, nun für die Anteile an Stadt- und Landbewohnern. Tip: <code><a href="https://infer.tidymodels.org/reference/specify.html">specify(response = wohnort, success = 'stadt')</a></code>.</p>
+<p>Wiederholen Sie die Analyse, die wir mit dem Paket <code>infer</code> für die Schätzung des Mittelwerts der Anreisezeit gemacht haben, nun für die Anteile an Stadt- und Landbewohnern. Tip: <code>specify(response = wohnort, success = 'stadt')</code>.</p>
 </div>
 <div id="wie-hängt-das-konfidenzintervall-von-der-stichprobengröße-ab" class="section level3" number="7.6.3">
 <h3>
@@ -474,7 +482,7 @@ Abbildung 7.3: Berechnen einer Stichprobenverteilung durch wiederholtes Ziehen a
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Datenanalyse mit R</strong>: SoSe 2021" was written by Christina Bogner. It was last built on 2021-09-24.</p>
+    <p>"<strong>Datenanalyse mit R</strong>: SoSe 2021" was written by Christina Bogner. It was last built on 2022-03-31.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
@@ -494,6 +502,22 @@ Abbildung 7.3: Berechnen einer Stichprobenverteilung durch wiederholtes Ziehen a
     script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
 </script>
 </body>
 </html>

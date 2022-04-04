@@ -6,15 +6,23 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Kapitel 6 Stichproben und Variabilität | Datenanalyse mit R</title>
 <meta name="author" content="Christina Bogner">
-<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.2"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="Begriffe Stichprobenverteilung und Standardfehler erklären  Zufall bei wiederholter Stichprobenerhebung erkennen  Stichprobenverteilung darstellen  Einfluss der Stichprobengröße auf...">
+<meta name="generator" content="bookdown 0.24.3 with bs4_book()">
+<meta property="og:title" content="Kapitel 6 Stichproben und Variabilität | Datenanalyse mit R">
+<meta property="og:type" content="book">
+<meta property="og:description" content="Begriffe Stichprobenverteilung und Standardfehler erklären  Zufall bei wiederholter Stichprobenerhebung erkennen  Stichprobenverteilung darstellen  Einfluss der Stichprobengröße auf...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Kapitel 6 Stichproben und Variabilität | Datenanalyse mit R">
+<meta name="twitter:description" content="Begriffe Stichprobenverteilung und Standardfehler erklären  Zufall bei wiederholter Stichprobenerhebung erkennen  Stichprobenverteilung darstellen  Einfluss der Stichprobengröße auf...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.0/transition.js"></script><script src="libs/bs3compat-0.3.0/tabs.js"></script><script src="libs/bs3compat-0.3.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 <script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script><link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
-<script src="libs/datatables-binding-0.19/datatables.js"></script><link href="libs/dt-core-1.10.20/css/jquery.dataTables.min.css" rel="stylesheet">
-<link href="libs/dt-core-1.10.20/css/jquery.dataTables.extra.css" rel="stylesheet">
-<script src="libs/dt-core-1.10.20/js/jquery.dataTables.min.js"></script><link href="libs/crosstalk-1.1.1/css/crosstalk.css" rel="stylesheet">
-<script src="libs/crosstalk-1.1.1/js/crosstalk.min.js"></script><script src="https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/mark.js@8.11.1/dist/mark.min.js"></script><!-- CSS --><link rel="stylesheet" href="style.css">
+<script src="libs/datatables-binding-0.20/datatables.js"></script><link href="libs/dt-core-1.11.3/css/jquery.dataTables.min.css" rel="stylesheet">
+<link href="libs/dt-core-1.11.3/css/jquery.dataTables.extra.css" rel="stylesheet">
+<script src="libs/dt-core-1.11.3/js/jquery.dataTables.min.js"></script><link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet">
+<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="font-awesome.min.css">
 </head>
 <body data-spy="scroll" data-target="#toc">
@@ -93,7 +101,7 @@ Einfluss der Stichprobengröße auf Stichprobenverteilung benennen
 <h2>
 <span class="header-section-number">6.1</span> Stichproben<a class="anchor" aria-label="anchor" href="#stichproben-1"><i class="fas fa-link"></i></a>
 </h2>
-<p>Wir nutzen wieder die selbst erstellten Daten aus der Aufgabe <a href="aufgabensammlung.html#werdeschlau">B.1</a>. Die 12000 Studierenden sind unsere <strong>Grundgesamtheit</strong>. Da wir die Daten selbst erstellt haben, wissen wir alles über sie. Das ist ein großer Vorteil von Computerexperimenten 😄. Damit alle dieselben Daten erstellen, ist die Zeile <code><a href="https://rdrr.io/r/base/Random.html">set.seed(123)</a></code> sehr wichtig. Sie sorgt dafür, dass der Generator für Zufallszahlen in einen zufälligen, aber reproduzierbaren Zustand versetzt wird. Die Zahl in den Klammern ist nicht wichtig. Wichtig ist, dass alle dieselbe benutzen.</p>
+<p>Wir nutzen wieder die selbst erstellten Daten aus der Aufgabe <a href="aufgabensammlung.html#werdeschlau">B.1</a>. Die 12000 Studierenden sind unsere <strong>Grundgesamtheit</strong>. Da wir die Daten selbst erstellt haben, wissen wir alles über sie. Das ist ein großer Vorteil von Computerexperimenten 😄. Damit alle dieselben Daten erstellen, ist die Zeile <code>set.seed(123)</code> sehr wichtig. Sie sorgt dafür, dass der Generator für Zufallszahlen in einen zufälligen, aber reproduzierbaren Zustand versetzt wird. Die Zahl in den Klammern ist nicht wichtig. Wichtig ist, dass alle dieselbe benutzen.</p>
 <p>Für bessere Nachvollziehbarkeit, nummerieren wir unsere Studierenden diesmal durch.</p>
 <div class="sourceCode" id="cb85"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
@@ -119,7 +127,7 @@ Einfluss der Stichprobengröße auf Stichprobenverteilung benennen
 
 <span class="va">zeit_bib</span> <span class="op">&lt;-</span> <span class="fl">5</span> <span class="op">*</span> <span class="fl">60</span> <span class="op">-</span> <span class="fl">0.7</span> <span class="op">*</span> <span class="va">anreise</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">anreise</span><span class="op">)</span>, <span class="fl">0</span>, <span class="fl">20</span><span class="op">)</span>
 
-<span class="va">grundgesamtheit</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="op">(</span><span class="va">student_id</span>, <span class="va">geschlecht</span>, <span class="va">wohnort</span>, <span class="va">verkehrsmittel</span>, <span class="va">anreise</span>, <span class="va">zeit_bib</span><span class="op">)</span>
+<span class="va">grundgesamtheit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span><span class="va">student_id</span>, <span class="va">geschlecht</span>, <span class="va">wohnort</span>, <span class="va">verkehrsmittel</span>, <span class="va">anreise</span>, <span class="va">zeit_bib</span><span class="op">)</span>
 
 <span class="va">grundgesamtheit</span></code></pre></div>
 <pre><code>## # A tibble: 12,000 × 6
@@ -164,20 +172,20 @@ Einfluss der Stichprobengröße auf Stichprobenverteilung benennen
 <p>Die Variable <code>replicate</code> zeigt immer 1. Das bedeutet, dass wir die Befragung einmal wiederholt (repliziert) haben und alle Datenpunkte zu dieser Wiederholung gehören.</p>
 <p>Wir wollen nun wissen, wie viele Studierende unter den Befragten in der Stadt oder auf dem Land wohnen.</p>
 <div class="sourceCode" id="cb89"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">befragung</span> <span class="op">%&gt;%</span> 
-  <span class="fu">group_by</span><span class="op">(</span><span class="va">wohnort</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu">count</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="va">befragung</span> <span class="op"><a href="https://rdrr.io/pkg/moderndive/man/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">wohnort</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/moderndive/man/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 2 × 2
 ## # Groups:   wohnort [2]
 ##   wohnort     n
 ##   &lt;chr&gt;   &lt;int&gt;
 ## 1 land       21
 ## 2 stadt      29</code></pre>
-<p>Das Ganze möchten wir als Anteile ausdrücken. Die Funktion <code>n()</code> kann innerhalb der Funktion <code>summarise()</code> zum Auszählen genutzt werden. Wir teilen durch die Stichprobengröße.</p>
+<p>Das Ganze möchten wir als Anteile ausdrücken. Die Funktion <code><a href="https://dplyr.tidyverse.org/reference/context.html">n()</a></code> kann innerhalb der Funktion <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise()</a></code> zum Auszählen genutzt werden. Wir teilen durch die Stichprobengröße.</p>
 <div class="sourceCode" id="cb91"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">befragung</span> <span class="op">%&gt;%</span> 
-  <span class="fu">group_by</span><span class="op">(</span><span class="va">wohnort</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu">summarise</span><span class="op">(</span>prop <span class="op">=</span> <span class="fu">n</span><span class="op">(</span><span class="op">)</span><span class="op">/</span><span class="va">befragung_size</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="va">befragung</span> <span class="op"><a href="https://rdrr.io/pkg/moderndive/man/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">wohnort</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/moderndive/man/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>prop <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">/</span><span class="va">befragung_size</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 2 × 2
 ##   wohnort  prop
 ##   &lt;chr&gt;   &lt;dbl&gt;
@@ -210,9 +218,9 @@ Einfluss der Stichprobengröße auf Stichprobenverteilung benennen
 <p>Jetzt wird uns angezeigt, dass es in dem Datensatz <code>befragung_reps</code> 33 replicates (Wiederholgungen) gibt. Diese sind einfach nacheinander in <code>befragung_reps</code> angeordnet (blättern Sie durch den Datensatz). Dementsprechend hat der Datensatz 50 <span class="math inline">\(\times\)</span> 33 = 1650 Zeilen.</p>
 <p>Wie sieht es jetzt mit den Anteilen von Stadt- und Landbewohnern aus? Wir müssen nun zusätzlich zum <code>wohnort</code> auch noch nach <code>replicate</code> gruppieren.</p>
 <div class="sourceCode" id="cb95"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">wohnort_props</span> <span class="op">&lt;-</span> <span class="va">befragung_reps</span> <span class="op">%&gt;%</span> 
-  <span class="fu">group_by</span><span class="op">(</span><span class="va">replicate</span>, <span class="va">wohnort</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu">summarise</span><span class="op">(</span>prop <span class="op">=</span> <span class="fu">n</span><span class="op">(</span><span class="op">)</span><span class="op">/</span><span class="va">befragung_size</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">wohnort_props</span> <span class="op">&lt;-</span> <span class="va">befragung_reps</span> <span class="op"><a href="https://rdrr.io/pkg/moderndive/man/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">replicate</span>, <span class="va">wohnort</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/moderndive/man/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>prop <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">/</span><span class="va">befragung_size</span><span class="op">)</span>
 
 <span class="va">wohnort_props</span></code></pre></div>
 <pre><code>## # A tibble: 66 × 3
@@ -232,10 +240,10 @@ Einfluss der Stichprobengröße auf Stichprobenverteilung benennen
 ## # … with 56 more rows</code></pre>
 <p>Erwartungsgemäß bringt jede Wiederholung der Befragung, die wir ja als zufälliges Herausgreifen der Studierenden ohne Mehrfachbefragung programmiert haben, etwas andere Ergebnisse. Sehen Sie sich die <code>student_id</code> in den replicates an, es werde unterschiedliche Studierende befragt! In einem Histogramm sieht das ganze so aus:</p>
 <div class="sourceCode" id="cb97"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">wohnort_props</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">prop</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
-  <span class="fu">geom_histogram</span><span class="op">(</span>binwidth <span class="op">=</span> <span class="fl">0.05</span>, boundary <span class="op">=</span> <span class="fl">0.4</span>, col <span class="op">=</span> <span class="st">'white'</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">facet_wrap</span><span class="op">(</span><span class="op">~</span> <span class="va">wohnort</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">'Anteile beim Wohnort'</span>, title <span class="op">=</span> <span class="st">'Verteilung der Wohnorte'</span>, y <span class="op">=</span> <span class="st">'Häufigkeit'</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">wohnort_props</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">prop</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>binwidth <span class="op">=</span> <span class="fl">0.05</span>, boundary <span class="op">=</span> <span class="fl">0.4</span>, col <span class="op">=</span> <span class="st">'white'</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span><span class="op">~</span> <span class="va">wohnort</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">'Anteile beim Wohnort'</span>, title <span class="op">=</span> <span class="st">'Verteilung der Wohnorte'</span>, y <span class="op">=</span> <span class="st">'Häufigkeit'</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="datenanalyse_files/figure-html/unnamed-chunk-81-1.png" width="90%"></div>
 <p>Die häufigsten Anteile sind um die 40% für Land und um die 60% für Stadt. Wir können es sogar etwas genauer ablesen, da wir <code>binwidth = 0.05</code> gewähnt haben, also Schritte von 5%. Es sind 35–40% für Land und 55–60% für Stadt.</p>
 </div>
@@ -243,7 +251,7 @@ Einfluss der Stichprobengröße auf Stichprobenverteilung benennen
 <h2>
 <span class="header-section-number">6.2</span> Anzahl der Wiederholungen und Variabilität<a class="anchor" aria-label="anchor" href="#anzahl-der-wiederholungen-und-variabilit%C3%A4t"><i class="fas fa-link"></i></a>
 </h2>
-<p>Was passiert, wenn wir unsere Umfrage nun 1000 Mal wiederholen? Wir können den ganzen Code wiederverwenden und müssen nur die reps entsprechend verändern. Wir erstellen dafür eine extra Variable <code>befragung_num</code>. Beim Histogramm sollten wir die <code>binwidth</code> etwas heruntersetzten, da wir jetzt sehr viel mehr Daten haben und diese detaillierter anzeigen lassen können. Zusätzlich wird die x-Achse “frei” gegeben, i.e. die Skalierung wird jetzt auf jeder Achse separat bestimmt <code>scales = 'free_x'</code> in <code>facet_wrap()</code>, um die Verteilungen besser zu sehen.</p>
+<p>Was passiert, wenn wir unsere Umfrage nun 1000 Mal wiederholen? Wir können den ganzen Code wiederverwenden und müssen nur die reps entsprechend verändern. Wir erstellen dafür eine extra Variable <code>befragung_num</code>. Beim Histogramm sollten wir die <code>binwidth</code> etwas heruntersetzten, da wir jetzt sehr viel mehr Daten haben und diese detaillierter anzeigen lassen können. Zusätzlich wird die x-Achse “frei” gegeben, i.e. die Skalierung wird jetzt auf jeder Achse separat bestimmt <code>scales = 'free_x'</code> in <code><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap()</a></code>, um die Verteilungen besser zu sehen.</p>
 <div class="sourceCode" id="cb98"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">345</span><span class="op">)</span>
 
@@ -251,15 +259,15 @@ Einfluss der Stichprobengröße auf Stichprobenverteilung benennen
 
 <span class="va">befragung_reps</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://infer.tidymodels.org/reference/rep_sample_n.html">rep_sample_n</a></span><span class="op">(</span><span class="va">grundgesamtheit</span>, size <span class="op">=</span> <span class="va">befragung_size</span>, replace <span class="op">=</span> <span class="cn">FALSE</span>, reps <span class="op">=</span> <span class="va">befragung_num</span><span class="op">)</span>
 
-<span class="va">wohnort_props</span> <span class="op">&lt;-</span> <span class="va">befragung_reps</span> <span class="op">%&gt;%</span> 
-  <span class="fu">group_by</span><span class="op">(</span><span class="va">replicate</span>, <span class="va">wohnort</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu">summarise</span><span class="op">(</span>prop <span class="op">=</span> <span class="fu">n</span><span class="op">(</span><span class="op">)</span><span class="op">/</span><span class="va">befragung_size</span><span class="op">)</span>
+<span class="va">wohnort_props</span> <span class="op">&lt;-</span> <span class="va">befragung_reps</span> <span class="op"><a href="https://rdrr.io/pkg/moderndive/man/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">replicate</span>, <span class="va">wohnort</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/moderndive/man/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>prop <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">/</span><span class="va">befragung_size</span><span class="op">)</span>
 
 
-<span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">wohnort_props</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">prop</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
-  <span class="fu">geom_histogram</span><span class="op">(</span>binwidth <span class="op">=</span> <span class="fl">0.02</span>, boundary <span class="op">=</span> <span class="fl">0.4</span>, col <span class="op">=</span> <span class="st">'white'</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">facet_wrap</span><span class="op">(</span><span class="op">~</span> <span class="va">wohnort</span>, scales <span class="op">=</span> <span class="st">'free_x'</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">'Anteile beim Wohnort'</span>, title <span class="op">=</span> <span class="st">'Verteilung der Wohnorte'</span>, y <span class="op">=</span> <span class="st">'Häufigkeit'</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">wohnort_props</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">prop</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>binwidth <span class="op">=</span> <span class="fl">0.02</span>, boundary <span class="op">=</span> <span class="fl">0.4</span>, col <span class="op">=</span> <span class="st">'white'</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span><span class="op">~</span> <span class="va">wohnort</span>, scales <span class="op">=</span> <span class="st">'free_x'</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">'Anteile beim Wohnort'</span>, title <span class="op">=</span> <span class="st">'Verteilung der Wohnorte'</span>, y <span class="op">=</span> <span class="st">'Häufigkeit'</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="datenanalyse_files/figure-html/unnamed-chunk-82-1.png" width="90%"></div>
 <p>Die häufigsten Anteile beim Land liegen bei 40–42% und bei der Stadt bei 58–60%.</p>
 <p>Die Histogramme geben nun sehr gut die Verteilung der Anteile der Stadt- und Landbewohner wieder. Solche Verteilungen nennt man <strong>Stichprobenverteilungen</strong>. Sie zeigen die Verteilung einer statistischen Kenngröße (Statistik), in unserem Fall Anteil, die aus zufälligen Stichproben ausgerechnet wurde. Die Stichprobenverteilung beantwortet die Frage: Wenn ich eine zufällige Menge (Stichprobengröße) an Daten (Zufallsstichprobe) aus der Grundgesamtheit herausgreife und eine Kenngröße (z.B. Anteil) berechne, welchen Wert werde ich im Mittel erhalten und wie stark wird der Wert schwanken.</p>
@@ -274,9 +282,9 @@ Einfluss der Stichprobengröße auf Stichprobenverteilung benennen
   
   <span class="va">befragung</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://infer.tidymodels.org/reference/rep_sample_n.html">rep_sample_n</a></span><span class="op">(</span><span class="va">grund_data</span>, size <span class="op">=</span> <span class="va">befragung_size</span>, replace <span class="op">=</span> <span class="cn">FALSE</span>, reps <span class="op">=</span> <span class="va">befragung_reps</span><span class="op">)</span>
 
-<span class="va">wohnort_props</span> <span class="op">&lt;-</span> <span class="va">befragung</span> <span class="op">%&gt;%</span> 
-  <span class="fu">group_by</span><span class="op">(</span><span class="va">replicate</span>, <span class="va">wohnort</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu">summarise</span><span class="op">(</span>prop <span class="op">=</span> <span class="fu">n</span><span class="op">(</span><span class="op">)</span><span class="op">/</span><span class="va">befragung_size</span><span class="op">)</span>
+<span class="va">wohnort_props</span> <span class="op">&lt;-</span> <span class="va">befragung</span> <span class="op"><a href="https://rdrr.io/pkg/moderndive/man/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">replicate</span>, <span class="va">wohnort</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/moderndive/man/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>prop <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">/</span><span class="va">befragung_size</span><span class="op">)</span>
 
 <span class="va">wohnort_props</span>
 <span class="op">}</span></code></pre></div>
@@ -294,46 +302,46 @@ Einfluss der Stichprobengröße auf Stichprobenverteilung benennen
 <span class="va">wohnort_props_100</span> <span class="op">&lt;-</span> <span class="fu">calculate_props</span><span class="op">(</span>grund_data <span class="op">=</span> <span class="va">grundgesamtheit</span>, befragung_size <span class="op">=</span> <span class="fl">100</span>, befragung_reps <span class="op">=</span> <span class="fl">1000</span><span class="op">)</span></code></pre></div>
 <p>Wir stellen die drei Stichprobenverteilungen dar. Die binwidth ist jeweils eine andere.</p>
 <div class="sourceCode" id="cb101"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">wohnort_props_25</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">prop</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
-  <span class="fu">geom_histogram</span><span class="op">(</span>binwidth <span class="op">=</span> <span class="fl">0.05</span>, boundary <span class="op">=</span> <span class="fl">0.4</span>, col <span class="op">=</span> <span class="st">'white'</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">facet_wrap</span><span class="op">(</span><span class="op">~</span> <span class="va">wohnort</span>, scales <span class="op">=</span> <span class="st">'free_x'</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">'Anteile beim Wohnort'</span>, title <span class="op">=</span> <span class="st">'Verteilung der Wohnorte, Stichprobengröße = 25'</span>, y <span class="op">=</span> <span class="st">'Häufigkeit'</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">wohnort_props_25</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">prop</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>binwidth <span class="op">=</span> <span class="fl">0.05</span>, boundary <span class="op">=</span> <span class="fl">0.4</span>, col <span class="op">=</span> <span class="st">'white'</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span><span class="op">~</span> <span class="va">wohnort</span>, scales <span class="op">=</span> <span class="st">'free_x'</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">'Anteile beim Wohnort'</span>, title <span class="op">=</span> <span class="st">'Verteilung der Wohnorte, Stichprobengröße = 25'</span>, y <span class="op">=</span> <span class="st">'Häufigkeit'</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="datenanalyse_files/figure-html/unnamed-chunk-85-1.png" width="90%"></div>
 <div class="sourceCode" id="cb102"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">wohnort_props_50</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">prop</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
-  <span class="fu">geom_histogram</span><span class="op">(</span>binwidth <span class="op">=</span> <span class="fl">0.02</span>, boundary <span class="op">=</span> <span class="fl">0.4</span>, col <span class="op">=</span> <span class="st">'white'</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">facet_wrap</span><span class="op">(</span><span class="op">~</span> <span class="va">wohnort</span>, scales <span class="op">=</span> <span class="st">'free_x'</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">'Anteile beim Wohnort'</span>, title <span class="op">=</span> <span class="st">'Verteilung der Wohnorte, Stichprobengröße = 50'</span>, y <span class="op">=</span> <span class="st">'Häufigkeit'</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">wohnort_props_50</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">prop</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>binwidth <span class="op">=</span> <span class="fl">0.02</span>, boundary <span class="op">=</span> <span class="fl">0.4</span>, col <span class="op">=</span> <span class="st">'white'</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span><span class="op">~</span> <span class="va">wohnort</span>, scales <span class="op">=</span> <span class="st">'free_x'</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">'Anteile beim Wohnort'</span>, title <span class="op">=</span> <span class="st">'Verteilung der Wohnorte, Stichprobengröße = 50'</span>, y <span class="op">=</span> <span class="st">'Häufigkeit'</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="datenanalyse_files/figure-html/unnamed-chunk-85-2.png" width="90%"></div>
 <div class="sourceCode" id="cb103"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">wohnort_props_100</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">prop</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
-  <span class="fu">geom_histogram</span><span class="op">(</span>binwidth <span class="op">=</span> <span class="fl">0.02</span>, boundary <span class="op">=</span> <span class="fl">0.4</span>, col <span class="op">=</span> <span class="st">'white'</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">facet_wrap</span><span class="op">(</span><span class="op">~</span> <span class="va">wohnort</span>, scales <span class="op">=</span> <span class="st">'free_x'</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">'Anteile beim Wohnort'</span>, title <span class="op">=</span> <span class="st">'Verteilung der Wohnorte, Stichprobengröße = 100'</span>, y <span class="op">=</span> <span class="st">'Häufigkeit'</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">wohnort_props_100</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">prop</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>binwidth <span class="op">=</span> <span class="fl">0.02</span>, boundary <span class="op">=</span> <span class="fl">0.4</span>, col <span class="op">=</span> <span class="st">'white'</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span><span class="op">~</span> <span class="va">wohnort</span>, scales <span class="op">=</span> <span class="st">'free_x'</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">'Anteile beim Wohnort'</span>, title <span class="op">=</span> <span class="st">'Verteilung der Wohnorte, Stichprobengröße = 100'</span>, y <span class="op">=</span> <span class="st">'Häufigkeit'</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="datenanalyse_files/figure-html/unnamed-chunk-85-3.png" width="90%"></div>
 <p>Wie kann man diese Stichprobenverteilungen charakterisieren? Nun, es sind in erster Linie Daten und wie bei jedem Datensatz kann man auch hier einen Mittelwert und eine Stadanrdabweichung angeben. Die Standardabweichung der Stichprobenverteilung heißt <strong>Standardfehler</strong> und fasst den Einfluss der Variabilität (zufälliges Herausgreifen der Studierenden) zusammen.</p>
 <div class="sourceCode" id="cb104"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">wohnort_props_25</span> <span class="op">%&gt;%</span> 
-  <span class="fu">group_by</span><span class="op">(</span><span class="va">wohnort</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu">summarise</span><span class="op">(</span>prop_sd <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">prop</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="va">wohnort_props_25</span> <span class="op"><a href="https://rdrr.io/pkg/moderndive/man/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">wohnort</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/moderndive/man/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>prop_sd <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">prop</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 2 × 2
 ##   wohnort prop_sd
 ##   &lt;chr&gt;     &lt;dbl&gt;
 ## 1 land      0.102
 ## 2 stadt     0.102</code></pre>
 <div class="sourceCode" id="cb106"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">wohnort_props_50</span> <span class="op">%&gt;%</span> 
-  <span class="fu">group_by</span><span class="op">(</span><span class="va">wohnort</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu">summarise</span><span class="op">(</span>prop_sd <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">prop</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="va">wohnort_props_50</span> <span class="op"><a href="https://rdrr.io/pkg/moderndive/man/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">wohnort</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/moderndive/man/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>prop_sd <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">prop</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 2 × 2
 ##   wohnort prop_sd
 ##   &lt;chr&gt;     &lt;dbl&gt;
 ## 1 land     0.0679
 ## 2 stadt    0.0679</code></pre>
 <div class="sourceCode" id="cb108"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">wohnort_props_100</span> <span class="op">%&gt;%</span> 
-  <span class="fu">group_by</span><span class="op">(</span><span class="va">wohnort</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu">summarise</span><span class="op">(</span>prop_sd <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">prop</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="va">wohnort_props_100</span> <span class="op"><a href="https://rdrr.io/pkg/moderndive/man/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">wohnort</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/moderndive/man/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>prop_sd <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">prop</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 2 × 2
 ##   wohnort prop_sd
 ##   &lt;chr&gt;     &lt;dbl&gt;
@@ -385,9 +393,9 @@ Der Zufall macht sich durch eine Streuung (erfasst durch den Standardfehler) in 
   
   <span class="va">befragung</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://infer.tidymodels.org/reference/rep_sample_n.html">rep_sample_n</a></span><span class="op">(</span><span class="va">grund_data</span>, size <span class="op">=</span> <span class="va">befragung_size</span>, replace <span class="op">=</span> <span class="cn">FALSE</span>, reps <span class="op">=</span> <span class="va">befragung_reps</span><span class="op">)</span>
 
-<span class="va">verkehrsmittel_props</span> <span class="op">&lt;-</span> <span class="va">befragung</span> <span class="op">%&gt;%</span> 
-  <span class="fu">group_by</span><span class="op">(</span><span class="va">replicate</span>, <span class="va">verkehrsmittel</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu">summarise</span><span class="op">(</span>prop <span class="op">=</span> <span class="fu">n</span><span class="op">(</span><span class="op">)</span><span class="op">/</span><span class="va">befragung_size</span><span class="op">)</span>
+<span class="va">verkehrsmittel_props</span> <span class="op">&lt;-</span> <span class="va">befragung</span> <span class="op"><a href="https://rdrr.io/pkg/moderndive/man/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">replicate</span>, <span class="va">verkehrsmittel</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/moderndive/man/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>prop <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">/</span><span class="va">befragung_size</span><span class="op">)</span>
 
 <span class="va">verkehrsmittel_props</span>
 <span class="op">}</span></code></pre></div>
@@ -442,7 +450,7 @@ Der Zufall macht sich durch eine Streuung (erfasst durch den Standardfehler) in 
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Datenanalyse mit R</strong>: SoSe 2021" was written by Christina Bogner. It was last built on 2021-09-24.</p>
+    <p>"<strong>Datenanalyse mit R</strong>: SoSe 2021" was written by Christina Bogner. It was last built on 2022-03-31.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
@@ -462,6 +470,22 @@ Der Zufall macht sich durch eine Streuung (erfasst durch den Standardfehler) in 
     script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
 </script>
 </body>
 </html>

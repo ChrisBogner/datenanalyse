@@ -6,15 +6,23 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>B Aufgabensammlung | Datenanalyse mit R</title>
 <meta name="author" content="Christina Bogner">
-<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.2"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="Diese Aufgabensammlung enthält zusätzlich Aufgaben, die z.B. im Seminar bearbeitet werden. Aufgaben zu den einzelnen Kapiteln finden Sie am Ende des jeweiligen Kapitels.  B.1 Tutorial...">
+<meta name="generator" content="bookdown 0.24.3 with bs4_book()">
+<meta property="og:title" content="B Aufgabensammlung | Datenanalyse mit R">
+<meta property="og:type" content="book">
+<meta property="og:description" content="Diese Aufgabensammlung enthält zusätzlich Aufgaben, die z.B. im Seminar bearbeitet werden. Aufgaben zu den einzelnen Kapiteln finden Sie am Ende des jeweiligen Kapitels.  B.1 Tutorial...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="B Aufgabensammlung | Datenanalyse mit R">
+<meta name="twitter:description" content="Diese Aufgabensammlung enthält zusätzlich Aufgaben, die z.B. im Seminar bearbeitet werden. Aufgaben zu den einzelnen Kapiteln finden Sie am Ende des jeweiligen Kapitels.  B.1 Tutorial...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.0/transition.js"></script><script src="libs/bs3compat-0.3.0/tabs.js"></script><script src="libs/bs3compat-0.3.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 <script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script><link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
-<script src="libs/datatables-binding-0.19/datatables.js"></script><link href="libs/dt-core-1.10.20/css/jquery.dataTables.min.css" rel="stylesheet">
-<link href="libs/dt-core-1.10.20/css/jquery.dataTables.extra.css" rel="stylesheet">
-<script src="libs/dt-core-1.10.20/js/jquery.dataTables.min.js"></script><link href="libs/crosstalk-1.1.1/css/crosstalk.css" rel="stylesheet">
-<script src="libs/crosstalk-1.1.1/js/crosstalk.min.js"></script><script src="https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/mark.js@8.11.1/dist/mark.min.js"></script><!-- CSS --><link rel="stylesheet" href="style.css">
+<script src="libs/datatables-binding-0.20/datatables.js"></script><link href="libs/dt-core-1.11.3/css/jquery.dataTables.min.css" rel="stylesheet">
+<link href="libs/dt-core-1.11.3/css/jquery.dataTables.extra.css" rel="stylesheet">
+<script src="libs/dt-core-1.11.3/js/jquery.dataTables.min.js"></script><link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet">
+<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="font-awesome.min.css">
 </head>
 <body data-spy="scroll" data-target="#toc">
@@ -109,7 +117,7 @@
 <p>Wir setzen <code>geschlecht</code>, <code>wohnort</code>, <code>verkehrsmittel</code>, <code>anreise</code> und <code>zeit_bib</code> zu einer Datenmatrix (<code>tibble</code>) zusammen und nennen das Objekt <code>grundgesamtheit</code>.</p>
 <p><em>Lassen Sie den folgenden Code laufen.</em></p>
 <div class="sourceCode" id="cb225"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">grundgesamtheit</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="op">(</span><span class="va">geschlecht</span>, <span class="va">wohnort</span>, <span class="va">verkehrsmittel</span>, <span class="va">anreise</span>, <span class="va">zeit_bib</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="va">grundgesamtheit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span><span class="va">geschlecht</span>, <span class="va">wohnort</span>, <span class="va">verkehrsmittel</span>, <span class="va">anreise</span>, <span class="va">zeit_bib</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="befragung-simulieren" class="section level3" number="13.1.2">
 <h3>
@@ -136,10 +144,10 @@
 <p>Von hier an arbeiten wir mit unserer Stichprobe <code>befragung</code>. Sehen wir uns mal die empirische Verteilung, d.h. die Verteilung in der Stichprobe an.</p>
 <p>Plotten Sie ein Histogramm der Anreisezeiten in unserer Stichprobe. <em>Lassen Sie den Code laufen und passen Sie die bins sinnvoll an.</em></p>
 <div class="sourceCode" id="cb227"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">befragung</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">anreise</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">geom_histogram</span><span class="op">(</span>bins <span class="op">=</span> <span class="fl">5</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">xlab</span><span class="op">(</span><span class="st">'Tagliche Anreise (min)'</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">ylab</span><span class="op">(</span><span class="st">'Häufigkeit'</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">befragung</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">anreise</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>bins <span class="op">=</span> <span class="fl">5</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="st">'Tagliche Anreise (min)'</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="st">'Häufigkeit'</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="lage--und-streuungsmaße" class="section level3" number="13.1.4">
 <h3>
@@ -182,19 +190,19 @@
   <span class="va">median_all</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html">median</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">anreise</span><span class="op">)</span>
 <span class="op">}</span>
 
-<span class="va">kennzahlen</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="op">(</span><span class="va">mean_all</span>, <span class="va">median_all</span><span class="op">)</span></code></pre></div>
+<span class="va">kennzahlen</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span><span class="va">mean_all</span>, <span class="va">median_all</span><span class="op">)</span></code></pre></div>
 <p>Stellen Sie die Mittelwerte <code>mean_all</code> als Histogramm dar. <em>Lassen Sie den Code laufen und passen Sie die bins sinnvoll an.</em></p>
 <div class="sourceCode" id="cb231"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">kennzahlen</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">mean_all</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">geom_histogram</span><span class="op">(</span>bins <span class="op">=</span> <span class="fl">5</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">xlab</span><span class="op">(</span><span class="st">'Mittelwerte der taglichen Anreise (min)'</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">ylab</span><span class="op">(</span><span class="st">'Häufigkeit'</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">kennzahlen</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">mean_all</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>bins <span class="op">=</span> <span class="fl">5</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="st">'Mittelwerte der taglichen Anreise (min)'</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="st">'Häufigkeit'</span><span class="op">)</span></code></pre></div>
 <p>Stellen Sie die Mediane <code>median_all</code> als Histogramm dar. <em>Lassen Sie den Code laufen und passen Sie die bins sinnvoll an.</em></p>
 <div class="sourceCode" id="cb232"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">kennzahlen</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">median_all</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">geom_histogram</span><span class="op">(</span>bins <span class="op">=</span> <span class="fl">5</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">xlab</span><span class="op">(</span><span class="st">'Mediane der taglichen Anreise (min)'</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">ylab</span><span class="op">(</span><span class="st">'Häufigkeit'</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">kennzahlen</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">median_all</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>bins <span class="op">=</span> <span class="fl">5</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="st">'Mediane der taglichen Anreise (min)'</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="st">'Häufigkeit'</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="zusammenhangsmaße-für-nominalskalierte-merkmale" class="section level3" number="13.1.6">
 <h3>
@@ -231,10 +239,10 @@ Wir sehen uns die Kontingenztabelle dazu an.</p>
 <p>Zuerst stellen wir die Daten dar.</p>
 <p><em>Lassen Sie den folgenden Code laufen.</em></p>
 <div class="sourceCode" id="cb237"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">befragung</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">anreise</span>, y <span class="op">=</span> <span class="va">zeit_bib</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">xlab</span><span class="op">(</span><span class="st">'Tägliche Anreise (min)'</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">ylab</span><span class="op">(</span><span class="st">'Zeit in der Bibliothek pro Woche (min)'</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">befragung</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">anreise</span>, y <span class="op">=</span> <span class="va">zeit_bib</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="st">'Tägliche Anreise (min)'</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="st">'Zeit in der Bibliothek pro Woche (min)'</span><span class="op">)</span></code></pre></div>
 <p>Der Zusammenhang zwischen den beiden Variablen ist (ziemlich) linear und negativ.</p>
 <p>Wir berechnen beide Korrelationsmaße, den Pearson Korrelationskoeffizienten für lineare Zusammenhänge und den Spearman Korrelationskoeffizient für monotone Zusammenhänge.</p>
 <p><em>Lassen Sie den Code laufen.</em></p>
@@ -248,7 +256,7 @@ Wir sehen uns die Kontingenztabelle dazu an.</p>
 <p><strong>Gut gemacht! Lassen Sie den Code laufen.</strong></p>
 <div class="sourceCode" id="cb239"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://guangchuangyu.github.io/emojifont">emojifont</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/GuangchuangYu/emojifont">emojifont</a></span><span class="op">)</span>
 <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/pkg/emojifont/man/geom_fontawesome.html">geom_fontawesome</a></span><span class="op">(</span><span class="st">"fa-coffee"</span>, color<span class="op">=</span><span class="st">'lightblue'</span>, size <span class="op">=</span> <span class="fl">80</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_void</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span><span class="st">"It's time for coffee"</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="aufgabe-einreichen" class="section level3" number="13.1.8">
@@ -274,7 +282,7 @@ Wir sehen uns die Kontingenztabelle dazu an.</p>
 <p>An dem Kurs “Einführung in R” nehmen 49 Studierende teil. Der Leistungsnachweis besteht aus Hausaufgaben, die insgesamt mit 100 Punkten bewertet werden. Ab 50 Punkten gilt der Kurs als bestanden.</p>
 <ol style="list-style-type: decimal">
 <li>Lesen Sie den Datensatz <span style="font-family: sans-serif; font-size: medium">R-HAs.txt</span>, der die Endpunkte enthält, ein.</li>
-<li>Ermitteln Sie, wie viele Teilnehmer bestanden und wie viele nicht bestanden haben. Nutzen Sie dazu die Funktion <code>mutate()</code> und die Funktion <code><a href="https://rdrr.io/r/base/ifelse.html">ifelse()</a></code>.</li>
+<li>Ermitteln Sie, wie viele Teilnehmer bestanden und wie viele nicht bestanden haben. Nutzen Sie dazu die Funktion <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> und die Funktion <code><a href="https://rdrr.io/r/base/ifelse.html">ifelse()</a></code>.</li>
 </ol>
 </div>
 <div id="klausur" class="section level3" number="13.2.2">
@@ -284,7 +292,7 @@ Wir sehen uns die Kontingenztabelle dazu an.</p>
 <p>Ar belegt im 4. Semester die Veranstaltung “Spaß mit R.” Bei der Klausur gibt es 2 Aufgabengruppen mit jeweils 60 Punkten. Aufgabengruppe 1 wird an Studierende auf ungeraden Sitzplätzen und Aufgabengruppe 2 an Studierende auf geraden Sitzplätzen ausgegeben.</p>
 <ol style="list-style-type: decimal">
 <li>Lesen Sie den Datensatz <span style="font-family: sans-serif; font-size: medium">Klausurpunkte.txt</span> ein.</li>
-<li>Überprüfen Sie Ars Vermutung, dass die Aufgabengruppe 1 im Schnitt leichter war als Aufgabengruppe 2 (d.h. in der Gruppe 1 im Schnitt mehr Punkte erzielt wurden). Nutzen Sie die Funktionen <code>mutate()</code>, um eine Spalte mit der Gruppenzugehörigkeit zu ermitteln und <code>summarize()</code>, um den Mittelwert zu berechnen. Tipp: mit dem Operator <code><a href="https://rdrr.io/r/base/Arithmetic.html">%%</a></code> können Sie überprüfen, ob eine Zahl z.B. durch 2 teilbar ist.</li>
+<li>Überprüfen Sie Ars Vermutung, dass die Aufgabengruppe 1 im Schnitt leichter war als Aufgabengruppe 2 (d.h. in der Gruppe 1 im Schnitt mehr Punkte erzielt wurden). Nutzen Sie die Funktionen <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code>, um eine Spalte mit der Gruppenzugehörigkeit zu ermitteln und <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize()</a></code>, um den Mittelwert zu berechnen. Tipp: mit dem Operator <code>%%</code> können Sie überprüfen, ob eine Zahl z.B. durch 2 teilbar ist.</li>
 </ol>
 </div>
 <div id="fledermäuse" class="section level3" number="13.2.3">
@@ -308,7 +316,7 @@ Wir sehen uns die Kontingenztabelle dazu an.</p>
 </h3>
 <p>Wir gehen davon aus, dass das Alter der Fledermäuse mit ihrer Größe zusammenhängt. Pauschal legen wir fest, dass ein Tier, das kleiner als 5 cm groß ist, ein Jungtier ist.</p>
 <ul>
-<li>Klassifizieren Sie die Tiere in J (Jungtier) und E (Erwachsen). Erstellen Sie dazu mit <code>mutate()</code> ein eigene Spalte.</li>
+<li>Klassifizieren Sie die Tiere in J (Jungtier) und E (Erwachsen). Erstellen Sie dazu mit <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> ein eigene Spalte.</li>
 <li>Wie viele Jungtiere gibt es im Datensatz?</li>
 <li>Sind die Jungtiere weiblich oder männlich?</li>
 </ul>
@@ -368,7 +376,7 @@ Wir sehen uns die Kontingenztabelle dazu an.</p>
 <ol style="list-style-type: decimal">
 <li><p>Laden Sie den Datensatz in R und sehen Sie sich seine Struktur an. Von welchem Typ sind die einzelnen Variablen? Entspricht das Ihren Erwartungen? Diese Aufgabe dient dazu, das Einlesen von Excel-Dateien mit <code>tidyverse</code> zu erarbeiten. Tipp: nutzen Sie die Funktion <code>read_xls()</code> in der Bibliothek <code>readxl</code>. Lesen Sie in der Hilfe nach, wie Sie <em>ein bestimmtes</em> Tabellenblatt aus Excel einlesen können.</p></li>
 <li><p>Kurze explorative Analyse: Berechnen Sie die Anzahl der Messungen, den Mittelwert und die Standardabweichung der Artenzahl <code>R</code> pro Transekt.</p></li>
-<li><p>Plotten Sie die Artenzahl gegen die Variable <code>BARESOIL</code> (Anteil von unbewachsenem Boden). Färben Sie die Punkte je nach Transekt unterschiedlich ein. Tipp: Transekt als <code>as_factor()</code> konvertieren.</p></li>
+<li><p>Plotten Sie die Artenzahl gegen die Variable <code>BARESOIL</code> (Anteil von unbewachsenem Boden). Färben Sie die Punkte je nach Transekt unterschiedlich ein. Tipp: Transekt als <code><a href="https://forcats.tidyverse.org/reference/as_factor.html">as_factor()</a></code> konvertieren.</p></li>
 <li><p>Fügen Sie eine glättende Linie ohne Konfidenzband hinzu, die alle Punkte unabhängig vom Transekt berücksichtigt (<a href="https://ggplot2-book.org/collective-geoms.html">Abschnitt 4.2</a> im Buch ggplot2 <span class="citation">(<a href="literatur.html#ref-Wickham2020" role="doc-biblioref">Wickham 2020</a>)</span>). Damit eine einzige glättende Linie für alle Transekte hinzugefügt wird, müssen Sie die aes für Farbe statt in <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot()</a></code> in <code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point()</a></code> angeben.</p></li>
 <li><p>Beschriften Sie die Grafik (auch die Legende!) sinnvoll und speichern Sie sie als pdf ab.</p></li>
 <li><p>Stellen Sie die Artenzahl je Transekt als Zeitreihe dar. Die Symbole sollen sowohl Punkte als auch Linien sein. Skalieren Sie die Größe der Punkte je nach Anteil des unbewachsenen Bodens (<a href="https://ggplot2-book.org/scale-other.html?q=size#size">Abschnitt 12.1</a> im Buch ggplot2 <span class="citation">(<a href="literatur.html#ref-Wickham2020" role="doc-biblioref">Wickham 2020</a>)</span>). Denken Sie nach, an welcher Stelle die aes <code>size</code> stehen muss, damit <em>nur</em> die Punkte skaliert werden.</p></li>
@@ -413,7 +421,7 @@ Wir sehen uns die Kontingenztabelle dazu an.</p>
 <h3>
 <span class="header-section-number">B.4.1</span> Iterationen im Kapitel <a href="stichproben.html#stichproben">6</a><a class="anchor" aria-label="anchor" href="#iterationen-im-kapitel-refstichproben"><i class="fas fa-link"></i></a>
 </h3>
-<p>Im Kapitel <a href="stichproben.html#stichproben">6</a> haben wir die Funktion <code>calculate_props()</code> definiert. Schreiben Sie den folgenden Code mit Hilfe der Funktion <code>map()</code> um:</p>
+<p>Im Kapitel <a href="stichproben.html#stichproben">6</a> haben wir die Funktion <code>calculate_props()</code> definiert. Schreiben Sie den folgenden Code mit Hilfe der Funktion <code><a href="https://purrr.tidyverse.org/reference/map.html">map()</a></code> um:</p>
 <div class="sourceCode" id="cb240"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
@@ -425,7 +433,7 @@ Wir sehen uns die Kontingenztabelle dazu an.</p>
 
 <span class="co"># Stichprobengröße 100</span>
 <span class="va">wohnort_props_100</span> <span class="op">&lt;-</span> <span class="fu">calculate_props</span><span class="op">(</span>grund_data <span class="op">=</span> <span class="va">grundgesamtheit</span>, befragung_size <span class="op">=</span> <span class="fl">100</span>, befragung_reps <span class="op">=</span> <span class="fl">1000</span><span class="op">)</span></code></pre></div>
-<p>Tipp: Übergeben Sie <code>map()</code> einen Vektor mit den Größen der Stichproben.</p>
+<p>Tipp: Übergeben Sie <code><a href="https://purrr.tidyverse.org/reference/map.html">map()</a></code> einen Vektor mit den Größen der Stichproben.</p>
 <!-- ### Wasserentnahme mit Datenquelle EUROSTAT direkt -->
 <!-- Wir können die Datenbank EUROSTAT direkt über ihr API (Application Programming Interface) ansprechen. Leider ist das herunter geladene Datenformat sehr umständlich. Um uns Programmierarbeit zu sparen, nutzen wir das Paket eurostat, das die Daten aus der Datenbank herunterlädt und gleich ordentlich formatiert. -->
 <!-- 1. Installieren Sie das Paket eurostat und sehen Sie sich das Tutorial für das Paket an (https://ropengov.github.io/eurostat/articles/website/eurostat_tutorial.html) -->
@@ -499,7 +507,7 @@ Wir sehen uns die Kontingenztabelle dazu an.</p>
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Datenanalyse mit R</strong>: SoSe 2021" was written by Christina Bogner. It was last built on 2021-09-24.</p>
+    <p>"<strong>Datenanalyse mit R</strong>: SoSe 2021" was written by Christina Bogner. It was last built on 2022-03-31.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
@@ -519,6 +527,22 @@ Wir sehen uns die Kontingenztabelle dazu an.</p>
     script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
 </script>
 </body>
 </html>

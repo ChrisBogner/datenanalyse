@@ -71,7 +71,7 @@ Nutzen Sie die unter \@ref(header) verlinkte Liste der Layoutelemente.
 ### Erste Schritte als Notebook
 - Wandeln Sie das R-Skript der ersten Session in ein R Notebooks um.
 - Fügen Sie mehr Erklärungstext zu den einzelnen Schritten hinzu
-- Gliedern Sie Ihre Notebooks mit passenden Layoutelementen.
+- Gliedern Sie Ihr Notebook mit passenden Layoutelementen.
 
 ### Exploration eines Datensatzes
 Arbeiten Sie das Kapitel 1.4 Explore your first datasets in @ModernDive durch.

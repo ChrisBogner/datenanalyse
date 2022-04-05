@@ -42,7 +42,7 @@ knitr::include_graphics('figures/new_chunk.png')
 
 Text kann einfach unterhalb des Headers und *außerhalb der Chunks* getippt werden. Die wichtigsten Layoutelemente für den Text finden Sie [hier](https://rmarkdown.rstudio.com/authoring_basics.html). R Markdown unterstützt mathematische Notation in Latex-Stil. Eine Einführung in Latex würde an dieser Stelle aber zu weit führen.
 
-Das R Notebook hat den Vorteil, dass man über den Button `Preview` oben in der Leiste sofort die Ergebnisse anzeigen lassen kann. Sie müssen also nicht `knitten`. Falls Sie es doch möchten, klicken Sie auf das kleine Dreieck neben dem Preview und suchen Sie sich ein Output-Format aus. Ein einmal "geknittetes" Notebook ist kein Notebook mehr (kein Preview). Damit es wierder zum Nobebook wird, müssen Sie im Header `output: html_notebbok` einstellen (Abbildung \@ref(fig:rmarkdown-file)).
+Das R Notebook hat den Vorteil, dass man über den Button `Preview` oben in der Leiste sofort die Ergebnisse anzeigen lassen kann. Sie müssen also nicht `knitten`. Falls Sie es doch möchten, klicken Sie auf das kleine Dreieck neben dem Preview und suchen Sie sich ein Output-Format aus. Ein einmal "geknittetes" Notebook ist kein Notebook mehr (kein Preview). Damit es wieder zum Nobebook wird, müssen Sie im Header `output: html_notebbok` einstellen (Abbildung \@ref(fig:rmarkdown-file)).
 
 ## Wichtigste Regeln für Reproduzierbarkeit
 Ein weiteres [Video](https://www.youtube.com/watch?v=pjL2uP-fmPY&list=PLjTlxb-wKvXOU4WW4p3qc4VKWTI4gLNUf) von Prof. Peng widmet sich den wichtigsten Regeln für Reproduzierbarkeit.
@@ -69,7 +69,7 @@ r4ds, Kapitel 27 [@r4ds]
 Nutzen Sie die unter \@ref(header) verlinkte Liste der Layoutelemente.
 
 ### Erste Schritte als Notebook
-- Wandeln Sie beide R-Skripte der ersten Sessions in R Notebooks um.
+- Wandeln Sie das R-Skript der ersten Session in ein R Notebooks um.
 - Fügen Sie mehr Erklärungstext zu den einzelnen Schritten hinzu
 - Gliedern Sie Ihre Notebooks mit passenden Layoutelementen.
 

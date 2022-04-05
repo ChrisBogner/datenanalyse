@@ -7,7 +7,7 @@
 
 ## Aufbau eines Visualisierungsbefehls
 
-Das Paket `ggplot2` ist ein sehr mächtiges Visualisierungswerkzeug. Der Name steht für "the grammar of graphics". Das Bedeutet, dass man mit Hilfe von verschiedenen Funktion in `ggplot2` seine Grafik Schritt für Schritt aufbaut, wie einen (grammatikalisch korrekten) Satz. In aller Kürze bedeutet das:
+Das Paket `ggplot2` ist ein sehr mächtiges Visualisierungswerkzeug. Der Name steht für "the grammar of graphics". Das Bedeutet, dass man mithilfe von verschiedenen Funktion in `ggplot2` seine Grafik Schritt für Schritt aufbaut, wie einen (grammatikalisch korrekten) Satz. In aller Kürze bedeutet das:
 
 > Eine statistische Grafik ist eine Zuordnung (`mapping`) von Variablen in einem Datensatz (`data`) zu (ästhetischen) Attributen (`aes`) von geometrischen Objekten (`geom`).
 
@@ -19,9 +19,9 @@ Wir müssen also für das Visualisieren Folgendes festlegen:
 
 1. `geom`: geometrische Objekte, die dargestellt werden sollen, z.B. Punkte, Linien, Boxen, Säulen etc.
 
-Wir laden zunächst die nötigen Bibliotheken und filtern den Datensatz `gapminder`, um nur die Daten aus dem Jahr 2007 zu visualisieren. Die Bibliothek `ggplot2` ist in `tidyverse` enthalten und wird mitgeladen.
+Wir laden zunächst die nötigen Bibliotheken und filtern den Datensatz `gapminder`, um nur die Daten aus dem Jahr 2007 zu visualisieren.
 ```{r, message = F}
-library(tidyverse)
+library(ggplot2)
 library(gapminder)
 
 gapminder2007 <- gapminder %>% 

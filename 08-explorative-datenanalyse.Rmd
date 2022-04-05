@@ -1,4 +1,4 @@
-# Der explorative Workflow mit tidyverse {#tidyverse}
+# Explorative Datenanalyse mit tidyverse {#explorative-datenanalyse}
 
 ```{block, type = 'rmdoutcomes'}
 - Kernpakete aus `tidyverse` benennen

@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Kapitel 3 Datentypen in R | Datenanalyse mit R</title>
+<meta name="author" content="Christina Bogner">
+<meta name="description" content="einen Datensatz aus einem Paket mit data() laden  einen Datensatz explorieren  data.frame() und tibble() erstellen  Datensätze zusammenfassen  In diesem Kapitel geht es um eine kurze Exploration...">
+<meta name="generator" content="bookdown 0.24.3 with bs4_book()">
+<meta property="og:title" content="Kapitel 3 Datentypen in R | Datenanalyse mit R">
+<meta property="og:type" content="book">
+<meta property="og:description" content="einen Datensatz aus einem Paket mit data() laden  einen Datensatz explorieren  data.frame() und tibble() erstellen  Datensätze zusammenfassen  In diesem Kapitel geht es um eine kurze Exploration...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Kapitel 3 Datentypen in R | Datenanalyse mit R">
+<meta name="twitter:description" content="einen Datensatz aus einem Paket mit data() laden  einen Datensatz explorieren  data.frame() und tibble() erstellen  Datensätze zusammenfassen  In diesem Kapitel geht es um eine kurze Exploration...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="font-awesome.min.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="SoSe 2022">Datenanalyse mit R</a>:
+        <small class="text-muted">SoSe 2022</small>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Vorwort</a></li>
+<li><a class="" href="einfuehrung.html">Der Kurs</a></li>
+<li class="book-part">Teil I: Daten explorieren</li>
+<li><a class="" href="erste-schritte.html"><span class="header-section-number">1</span> Erste Schritte in R</a></li>
+<li><a class="" href="reproduzieren.html"><span class="header-section-number">2</span> R Markdown für reproduzierbare Forschung</a></li>
+<li><a class="active" href="daten.html"><span class="header-section-number">3</span> Datentypen in R</a></li>
+<li><a class="" href="ggplot.html"><span class="header-section-number">4</span> Einführung in ggplot2</a></li>
+<li><a class="" href="aufgabensammlung.html"><span class="header-section-number">5</span> Aufgabensammlung</a></li>
+<li><a class="" href="literatur.html">Literatur</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/ChrisBogner/datenanalyse">View book source <i class="fab fa-github"></i></a></p>
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="daten" class="section level1" number="3">
+<h1>
+<span class="header-section-number">Kapitel 3</span> Datentypen in R<a class="anchor" aria-label="anchor" href="#daten"><i class="fas fa-link"></i></a>
+</h1>
+<div class="rmdoutcomes">
+<ul>
+<li>
+einen Datensatz aus einem Paket mit <code><a href="https://rdrr.io/r/utils/data.html">data()</a></code> laden
+</li>
+<li>
+einen Datensatz explorieren
+</li>
+<li>
+<code><a href="https://rdrr.io/r/base/data.frame.html">data.frame()</a></code> und <code><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble()</a></code> erstellen
+</li>
+<li>
+Datensätze zusammenfassen
+</li>
+</ul>
+</div>
+<p>In diesem Kapitel geht es um eine kurze Exploration des Datensatzes <code>gapminder</code> und die Vorstellung von Datenobjekten und -typen in R.</p>
+<p>Zuerst laden wir die notwendigen Pakete mithilfe der Funktion <code><a href="https://rdrr.io/r/base/library.html">library()</a></code> und geben den Paketnamen (ausnahmsweise) ohne Anführungszeichen an.</p>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jennybc/gapminder">gapminder</a></span><span class="op">)</span></code></pre></div>
+<p>Man kann nur solche Pakete laden, die man bereits installiert hat. Um ein Paket zu installieren, nutzen wir die Funktion <code><a href="https://rdrr.io/r/utils/install.packages.html">install.packages()</a></code> und geben den Namen des Pakets in Anführungszeichen an.</p>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">'gapminder'</span><span class="op">)</span></code></pre></div>
+<div id="datenobjekte" class="section level2" number="3.1">
+<h2>
+<span class="header-section-number">3.1</span> Datenobjekte<a class="anchor" aria-label="anchor" href="#datenobjekte"><i class="fas fa-link"></i></a>
+</h2>
+<p>Nun laden wir den Datensatz <code>gapminder</code> aus dem gleichnamigen Paket mithilfe der Funktion <code><a href="https://rdrr.io/r/utils/data.html">data()</a></code>. Diese Funktion lädt Datensätze, die bereits in R base oder mit einem Paket installiert wurden.</p>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">gapminder</span><span class="op">)</span></code></pre></div>
+<p>Um sich die Daten anzeigen zu lassen, geben wir den Namen des Datensatzes ein.</p>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">gapminder</span></code></pre></div>
+<pre><code>## # A tibble: 1,704 × 6
+##    country     continent  year lifeExp      pop gdpPercap
+##    &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;
+##  1 Afghanistan Asia       1952    28.8  8425333      779.
+##  2 Afghanistan Asia       1957    30.3  9240934      821.
+##  3 Afghanistan Asia       1962    32.0 10267083      853.
+##  4 Afghanistan Asia       1967    34.0 11537966      836.
+##  5 Afghanistan Asia       1972    36.1 13079460      740.
+##  6 Afghanistan Asia       1977    38.4 14880372      786.
+##  7 Afghanistan Asia       1982    39.9 12881816      978.
+##  8 Afghanistan Asia       1987    40.8 13867957      852.
+##  9 Afghanistan Asia       1992    41.7 16317921      649.
+## 10 Afghanistan Asia       1997    41.8 22227415      635.
+## # … with 1,694 more rows</code></pre>
+<p>Daten werden in R in Form von tabellenartigen Objekten abgelegt, sogen. <code>data.frame</code> oder <code>tibble</code>. Letztere sind die modernere Variante. Im Englischen würde man beides als dataframe bezeichnen.</p>
+<p>Der Typ des Objekts steht oben, wenn man sich das Objekt anzeigen lässt. Im Fall des Objekts <code>gapminder</code> handelt es sich um ein <code>tibble</code>. Tibbles und Dataframes sind zweidimensional: erste Dimension sind die Zeilen, zweite die Spalten. Wir können die Anzahl der Zeilen und Spalten direkt in der ersten Zeile der Ausgabe ablesen: 1704 Zeilen und 6 Spalten. Alternativ kann man mit dem Befehl <code><a href="https://rdrr.io/r/base/dim.html">dim()</a></code> die Größe des Objekts abfragen.</p>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">gapminder</span><span class="op">)</span></code></pre></div>
+</div>
+<div id="der--operator" class="section level2" number="3.2">
+<h2>
+<span class="header-section-number">3.2</span> Der <code>$</code>-Operator<a class="anchor" aria-label="anchor" href="#der--operator"><i class="fas fa-link"></i></a>
+</h2>
+<p>In einem <code>tibble</code> oder <code>data.frame</code> stellen Spalten verschiedene Variablen dar. So ist etwa die erste Spalte <code>country</code> eine Variable, die Ländernamen enthält. In einer Zelle befindet sich jeweils ein Wert. In jeder Zeile stehen Einträge für verschiedene Variablen, die logisch zusammengehören: in der ersten Zeile befinden sich Daten zu Afghanistan, das in Asien liegt, aus dem Jahr 1952 zu Lebenserwartung, Bevölkerungsgröße und Bruttoinlandsprodukt pro Einwohner. Solche Datenstrukturen nennt man <strong>tidy</strong>. Spalten (i.e. Variablen) haben in der Regel Namen, und können mit diesen direkt angesprochen werden. Dazu benutzt man das Dollarzeichen, den <strong><code>$</code>-Operator</strong>. Um z.B. die Variable <code>country</code> anzusprechen, tippen wir:</p>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">gapminder</span><span class="op">$</span><span class="va">country</span></code></pre></div>
+<p>Eine einzelne Spalte eines <code>tibble</code> ist ein Vektor und wird nicht so schön dargestellt wie das Tibble selbst. Um nur die ersten 6 Zeilen zu sehen, kann man die Funktion <code><a href="https://rdrr.io/r/utils/head.html">head()</a></code> benutzen.</p>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">gapminder</span><span class="op">$</span><span class="va">country</span><span class="op">)</span></code></pre></div>
+</div>
+<div id="datentypen" class="section level2" number="3.3">
+<h2>
+<span class="header-section-number">3.3</span> Datentypen<a class="anchor" aria-label="anchor" href="#datentypen"><i class="fas fa-link"></i></a>
+</h2>
+<p>Die Datentypen der einzelnen Variablen sieht man in der zweiten Zeile der Ausgabe, wenn man sich das Tibble anzeigen lässt:</p>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">gapminder</span></code></pre></div>
+<pre><code>## # A tibble: 1,704 × 6
+##    country     continent  year lifeExp      pop gdpPercap
+##    &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;
+##  1 Afghanistan Asia       1952    28.8  8425333      779.
+##  2 Afghanistan Asia       1957    30.3  9240934      821.
+##  3 Afghanistan Asia       1962    32.0 10267083      853.
+##  4 Afghanistan Asia       1967    34.0 11537966      836.
+##  5 Afghanistan Asia       1972    36.1 13079460      740.
+##  6 Afghanistan Asia       1977    38.4 14880372      786.
+##  7 Afghanistan Asia       1982    39.9 12881816      978.
+##  8 Afghanistan Asia       1987    40.8 13867957      852.
+##  9 Afghanistan Asia       1992    41.7 16317921      649.
+## 10 Afghanistan Asia       1997    41.8 22227415      635.
+## # … with 1,694 more rows</code></pre>
+<p>Die Variablen <code>country</code> und <code>continent</code> sind sogenannte Faktoren (abgekürzt mit <code>&lt;fct&gt;</code>). Es handelt sich hier um nominalskalierte Daten, i.e. eine endliche, abzählbare Anzahl von unterschiedlichen Messwerten ist möglich.</p>
+<p>Alternativ können wir nach dem Datentypen mithilfe der Funktion <code><a href="https://rdrr.io/r/base/class.html">class()</a></code> fragen.</p>
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">gapminder</span><span class="op">$</span><span class="va">country</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] "factor"</code></pre>
+<p>Die einzelnen Werte eines <code>factor</code> kann man sich mit der Funktion <code><a href="https://rdrr.io/r/base/levels.html">levels()</a></code> anzeigen lassen.</p>
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/levels.html">levels</a></span><span class="op">(</span><span class="va">gapminder</span><span class="op">$</span><span class="va">country</span><span class="op">)</span></code></pre></div>
+<p>Die Variable <code>year</code> ist numerisch, beinhaltet aber nur ganze Zahlen und ist daher eine <code>integer</code> Variable (abgekürzt mit <code>&lt;int&gt;</code>).</p>
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">gapminder</span><span class="op">$</span><span class="va">year</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] "integer"</code></pre>
+<p>Die Variable <code>lifeExp</code> ist numerisch und verhältnisskaliert (abgekürzt mit <code>&lt;dbl&gt;</code> für double). Letzteres bedeutet, dass es für dies Variable einen absoluten Nullpunkt gibt, nämlich Lebenserwartung von null Jahren.</p>
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">gapminder</span><span class="op">$</span><span class="va">lifeExp</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] "numeric"</code></pre>
+<p>Um einen installierten Datensatz kennenzulernen, empfiehlt es sich, die Hilfeseiten dazu zu lesen.</p>
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="op">?</span><span class="va">gapminder</span></code></pre></div>
+</div>
+<div id="kurze-exploration" class="section level2" number="3.4">
+<h2>
+<span class="header-section-number">3.4</span> Kurze Exploration<a class="anchor" aria-label="anchor" href="#kurze-exploration"><i class="fas fa-link"></i></a>
+</h2>
+<p>Die Funktion <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code> zeigt einen ersten Überblick über die Daten. Je nach Datentyp fasst diese Funktion die Daten unterschiedlich zusammen.</p>
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">gapminder</span><span class="op">)</span></code></pre></div>
+<pre><code>##         country        continent        year         lifeExp     
+##  Afghanistan:  12   Africa  :624   Min.   :1952   Min.   :23.60  
+##  Albania    :  12   Americas:300   1st Qu.:1966   1st Qu.:48.20  
+##  Algeria    :  12   Asia    :396   Median :1980   Median :60.71  
+##  Angola     :  12   Europe  :360   Mean   :1980   Mean   :59.47  
+##  Argentina  :  12   Oceania : 24   3rd Qu.:1993   3rd Qu.:70.85  
+##  Australia  :  12                  Max.   :2007   Max.   :82.60  
+##  (Other)    :1632                                                
+##       pop              gdpPercap       
+##  Min.   :6.001e+04   Min.   :   241.2  
+##  1st Qu.:2.794e+06   1st Qu.:  1202.1  
+##  Median :7.024e+06   Median :  3531.8  
+##  Mean   :2.960e+07   Mean   :  7215.3  
+##  3rd Qu.:1.959e+07   3rd Qu.:  9325.5  
+##  Max.   :1.319e+09   Max.   :113523.1  
+## </code></pre>
+<p>Alternative kann man sich einen ersten Eindruck von den Daten mithilfe der Funktion <code><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse()</a></code> verschaffen. Sie zeigt die ersten paar Einträge des Datensatzes.</p>
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">gapminder</span><span class="op">)</span></code></pre></div>
+<pre><code>## Rows: 1,704
+## Columns: 6
+## $ country   &lt;fct&gt; "Afghanistan", "Afghanistan", "Afghanistan", "Afghanistan", …
+## $ continent &lt;fct&gt; Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, …
+## $ year      &lt;int&gt; 1952, 1957, 1962, 1967, 1972, 1977, 1982, 1987, 1992, 1997, …
+## $ lifeExp   &lt;dbl&gt; 28.801, 30.332, 31.997, 34.020, 36.088, 38.438, 39.854, 40.8…
+## $ pop       &lt;int&gt; 8425333, 9240934, 10267083, 11537966, 13079460, 14880372, 12…
+## $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.1134, …</code></pre>
+</div>
+<div id="visualisieren" class="section level2" number="3.5">
+<h2>
+<span class="header-section-number">3.5</span> Visualisieren<a class="anchor" aria-label="anchor" href="#visualisieren"><i class="fas fa-link"></i></a>
+</h2>
+<p>Einen Plot des Datensatzes haben wir schon einmal erzeugt.</p>
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">gapminder2007</span> <span class="op">&lt;-</span> <span class="va">gapminder</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">year</span> <span class="op">==</span> <span class="fl">2007</span><span class="op">)</span>
+
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">gapminder2007</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">gdpPercap</span>, y <span class="op">=</span> <span class="va">lifeExp</span>, color <span class="op">=</span> <span class="va">continent</span>, size <span class="op">=</span> <span class="va">pop</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_log10</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="st">'GDP per capita'</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="st">'Life expectancy'</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">'Gapminder data for the year 2007'</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="datenanalyse_files/figure-html/unnamed-chunk-39-1.png" width="90%"></div>
+<p>Die Variable <code>year</code> ist numerisch und kein <code>factor</code>. Daher kann man da keine Levels sehen. Wenn man aber trotzdem die einzelnen Jahre sich anzeigen lassen möchte, dann hilft die Funktion <code><a href="https://rdrr.io/r/base/unique.html">unique()</a></code>.</p>
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">gapminder</span><span class="op">$</span><span class="va">year</span><span class="op">)</span></code></pre></div>
+<pre><code>##  [1] 1952 1957 1962 1967 1972 1977 1982 1987 1992 1997 2002 2007</code></pre>
+<p>Wir sehen, dass es Einträge seit 1952 gibt. Wir verändern den Code so, dass das Jahr 1952 dargestellt wird.</p>
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">gapminder1952</span> <span class="op">&lt;-</span> <span class="va">gapminder</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">year</span> <span class="op">==</span> <span class="fl">1952</span><span class="op">)</span>
+
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">gapminder1952</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">gdpPercap</span>, y <span class="op">=</span> <span class="va">lifeExp</span>, color <span class="op">=</span> <span class="va">continent</span>, size <span class="op">=</span> <span class="va">pop</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_log10</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="st">'GDP per capita'</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="st">'Life expectancy'</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">'Gapminder data for the year 1952'</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="datenanalyse_files/figure-html/unnamed-chunk-41-1.png" width="90%"></div>
+</div>
+<div id="lesestoff-3" class="section level2" number="3.6">
+<h2>
+<span class="header-section-number">3.6</span> Lesestoff<a class="anchor" aria-label="anchor" href="#lesestoff-3"><i class="fas fa-link"></i></a>
+</h2>
+<p>r4ds, Kapitel 10 <span class="citation">(<a href="literatur.html#ref-r4ds" role="doc-biblioref">Wickham and Grolemund 2021</a>)</span></p>
+</div>
+<div id="aufgaben-2" class="section level2" number="3.7">
+<h2>
+<span class="header-section-number">3.7</span> Aufgaben<a class="anchor" aria-label="anchor" href="#aufgaben-2"><i class="fas fa-link"></i></a>
+</h2>
+<div id="plot-der-lebenserwartung" class="section level3" number="3.7.1">
+<h3>
+<span class="header-section-number">3.7.1</span> Plot der Lebenserwartung<a class="anchor" aria-label="anchor" href="#plot-der-lebenserwartung"><i class="fas fa-link"></i></a>
+</h3>
+<p>Stellen Sie statt der Variablen <code>gdpPercap</code>, die Bevölkerungsgröße <code>pop</code> auf der <span class="math inline">\(x\)</span>-Achse dar. Wie verändern sich die Legenden? Die Skalierung der Symbole mit der Bevölkerungsgröße ist nicht sinnvoll. Verändern Sie die Skalierung zu Bruttoinlandsprodukt, indem Sie <code>size = pop</code> ersetzen mit <code>size = gdpPercap</code>.</p>
+</div>
+<div id="abflugdaten" class="section level3" number="3.7.2">
+<h3>
+<span class="header-section-number">3.7.2</span> Abflugdaten<a class="anchor" aria-label="anchor" href="#abflugdaten"><i class="fas fa-link"></i></a>
+</h3>
+<p>Arbeiten Sie das Kapitel 1.4 Explore your first datasets in <span class="citation"><a href="literatur.html#ref-ModernDive" role="doc-biblioref">Ismay and Kim</a> (<a href="literatur.html#ref-ModernDive" role="doc-biblioref">2021</a>)</span> durch. Eventuell müssen Sie das Paket <code>nycflights13</code> installieren.</p>
+</div>
+<div id="pinguine" class="section level3" number="3.7.3">
+<h3>
+<span class="header-section-number">3.7.3</span> Pinguine<a class="anchor" aria-label="anchor" href="#pinguine"><i class="fas fa-link"></i></a>
+</h3>
+<p>Der Datensatz <code>penguins</code> aus dem Paket <code>palmerpenguins</code> eignet sich hervorragend zum Üben der Exploration. Die <a href="https://allisonhorst.github.io/palmerpenguins/">Website</a> zum Datensatz erklärt, wie er entstanden ist.</p>
+<div class="figure">
+<span style="display:block;" id="fig:penguins"></span>
+<img src="figures/lter_penguins.png" alt="Artwork by `@allison_horst`" width="100%"><p class="caption">
+Abbildung 3.1: Artwork by <code>@allison_horst</code>
+</p>
+</div>
+<p>Führen Sie eine ähnliche Exploration durch, wie wir sie für den Datensatz gapminder gemacht haben. Zum Visualisieren der Pinguine, nutzen Sie den folgenden Code:</p>
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">penguins</span>, 
+       mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">flipper_length_mm</span>, y <span class="op">=</span> <span class="va">body_mass_g</span>, col <span class="op">=</span> <span class="va">species</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="st">'Flipper length (mm)'</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="st">'Body mass (g)'</span><span class="op">)</span></code></pre></div>
+
+</div>
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="reproduzieren.html"><span class="header-section-number">2</span> R Markdown für reproduzierbare Forschung</a></div>
+<div class="next"><a href="ggplot.html"><span class="header-section-number">4</span> Einführung in ggplot2</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#daten"><span class="header-section-number">3</span> Datentypen in R</a></li>
+<li><a class="nav-link" href="#datenobjekte"><span class="header-section-number">3.1</span> Datenobjekte</a></li>
+<li><a class="nav-link" href="#der--operator"><span class="header-section-number">3.2</span> Der $-Operator</a></li>
+<li><a class="nav-link" href="#datentypen"><span class="header-section-number">3.3</span> Datentypen</a></li>
+<li><a class="nav-link" href="#kurze-exploration"><span class="header-section-number">3.4</span> Kurze Exploration</a></li>
+<li><a class="nav-link" href="#visualisieren"><span class="header-section-number">3.5</span> Visualisieren</a></li>
+<li><a class="nav-link" href="#lesestoff-3"><span class="header-section-number">3.6</span> Lesestoff</a></li>
+<li>
+<a class="nav-link" href="#aufgaben-2"><span class="header-section-number">3.7</span> Aufgaben</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#plot-der-lebenserwartung"><span class="header-section-number">3.7.1</span> Plot der Lebenserwartung</a></li>
+<li><a class="nav-link" href="#abflugdaten"><span class="header-section-number">3.7.2</span> Abflugdaten</a></li>
+<li><a class="nav-link" href="#pinguine"><span class="header-section-number">3.7.3</span> Pinguine</a></li>
+</ul>
+</li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/ChrisBogner/datenanalyse/blob/master/031-daten.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/ChrisBogner/datenanalyse/edit/master/031-daten.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Datenanalyse mit R</strong>: SoSe 2022" was written by Christina Bogner. It was last built on 2022-04-10.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,162 @@
+# Datentypen in R {#daten}
+
+```{block, type = 'rmdoutcomes'}
+- einen Datensatz aus einem Paket mit `data()` laden
+- einen Datensatz explorieren
+- `data.frame()` und `tibble()` erstellen
+- Datensätze zusammenfassen
+```
+
+In diesem Kapitel geht es um eine kurze Exploration des Datensatzes `gapminder` und die Vorstellung von Datenobjekten und -typen in R.
+
+Zuerst laden wir die notwendigen Pakete mithilfe der Funktion `library()` und geben den Paketnamen (ausnahmsweise) ohne Anführungszeichen an.
+```{r}
+library(ggplot2)
+library(gapminder)
+```
+
+Man kann nur solche Pakete laden, die man bereits installiert hat. Um ein Paket zu installieren, nutzen wir die Funktion `install.packages()` und geben den Namen des Pakets in Anführungszeichen an.
+```{r, eval = F}
+install.packages('gapminder')
+```
+
+## Datenobjekte
+Nun laden wir den Datensatz `gapminder` aus dem gleichnamigen Paket mithilfe der Funktion `data()`. Diese Funktion lädt Datensätze, die bereits in R base oder mit einem Paket installiert wurden.
+```{r}
+data(gapminder)
+```
+
+Um sich die Daten anzeigen zu lassen, geben wir den Namen des Datensatzes ein.
+```{r}
+gapminder
+```
+
+Daten werden in R in Form von tabellenartigen Objekten abgelegt, sogen. `data.frame` oder `tibble`. Letztere sind die modernere Variante. Im Englischen würde man beides als dataframe bezeichnen.
+
+Der Typ des Objekts steht oben, wenn man sich das Objekt anzeigen lässt. Im Fall des Objekts `gapminder` handelt es sich um ein `tibble`. Tibbles und Dataframes sind zweidimensional: erste Dimension sind die Zeilen, zweite die Spalten. Wir können die Anzahl der Zeilen und Spalten direkt in der ersten Zeile der Ausgabe ablesen: 1704 Zeilen und 6 Spalten. Alternativ kann man mit dem Befehl `dim()` die Größe des Objekts abfragen.
+
+```{r, eval = F}
+dim(gapminder)
+```
+
+
+## Der `$`-Operator
+In einem `tibble` oder `data.frame` stellen Spalten verschiedene Variablen dar. So ist etwa die erste Spalte `country` eine Variable, die Ländernamen enthält. In einer Zelle befindet sich jeweils ein Wert. In jeder Zeile stehen Einträge für verschiedene Variablen, die logisch zusammengehören: in der ersten Zeile befinden sich Daten zu Afghanistan, das in Asien liegt, aus dem Jahr 1952 zu Lebenserwartung, Bevölkerungsgröße und Bruttoinlandsprodukt pro Einwohner. Solche Datenstrukturen nennt man **tidy**. Spalten (i.e. Variablen) haben in der Regel Namen, und können mit diesen direkt angesprochen werden. Dazu benutzt man das Dollarzeichen, den **`$`-Operator**. Um z.B. die Variable `country` anzusprechen, tippen wir:
+```{r, eval = F}
+gapminder$country
+```
+
+Eine einzelne Spalte eines `tibble` ist ein Vektor und wird nicht so schön dargestellt wie das Tibble selbst. Um nur die ersten 6 Zeilen zu sehen, kann man die Funktion `head()` benutzen.
+```{r, eval = F}
+head(gapminder$country)
+```
+
+## Datentypen
+Die Datentypen der einzelnen Variablen sieht man in der zweiten Zeile der Ausgabe, wenn man sich das Tibble anzeigen lässt:
+
+```{r}
+gapminder
+```
+
+Die Variablen `country` und `continent` sind sogenannte Faktoren (abgekürzt mit `<fct>`). Es handelt sich hier um nominalskalierte Daten, i.e. eine endliche, abzählbare Anzahl von unterschiedlichen Messwerten ist möglich. 
+
+Alternativ können wir nach dem Datentypen mithilfe der Funktion `class()` fragen.
+```{r}
+class(gapminder$country)
+```
+
+Die einzelnen Werte eines `factor` kann man sich mit der Funktion `levels()` anzeigen lassen.
+
+```{r, eval = F}
+levels(gapminder$country)
+```
+
+Die Variable `year` ist numerisch, beinhaltet aber nur ganze Zahlen und ist daher eine `integer` Variable (abgekürzt mit `<int>`).
+```{r}
+class(gapminder$year)
+```
+
+Die Variable `lifeExp` ist numerisch und verhältnisskaliert (abgekürzt mit `<dbl>` für double). Letzteres bedeutet, dass es für dies Variable einen absoluten Nullpunkt gibt, nämlich Lebenserwartung von null Jahren.
+```{r}
+class(gapminder$lifeExp)
+```
+
+Um einen installierten Datensatz kennenzulernen, empfiehlt es sich, die Hilfeseiten dazu zu lesen.
+```{r, eval = F}
+?gapminder
+```
+
+## Kurze Exploration
+Die Funktion `summary()` zeigt einen ersten Überblick über die Daten. Je nach Datentyp fasst diese Funktion die Daten unterschiedlich zusammen.
+```{r}
+summary(gapminder)
+```
+
+Alternative kann man sich einen ersten Eindruck von den Daten mithilfe der Funktion `glimpse()` verschaffen. Sie zeigt die ersten paar Einträge des Datensatzes. 
+
+```{r}
+glimpse(gapminder)
+```
+
+
+## Visualisieren
+Einen Plot des Datensatzes haben wir schon einmal erzeugt.
+
+```{r, out.width = '90%'}
+gapminder2007 <- gapminder %>% 
+  filter(year == 2007)
+
+ggplot(gapminder2007, aes(x = gdpPercap, y = lifeExp, color = continent, size = pop)) +
+  geom_point() +
+  scale_x_log10() +
+  xlab('GDP per capita') +
+  ylab('Life expectancy') +
+  labs(title = 'Gapminder data for the year 2007')
+```
+
+Die Variable `year` ist numerisch und kein `factor`. Daher kann man da keine Levels sehen. Wenn man aber trotzdem die einzelnen Jahre sich anzeigen lassen möchte, dann hilft die Funktion `unique()`.
+```{r}
+unique(gapminder$year)
+```
+
+Wir sehen, dass es Einträge seit 1952 gibt. Wir verändern den Code so, dass das Jahr 1952 dargestellt wird.
+```{r, out.width = '90%'}
+gapminder1952 <- gapminder %>% 
+  filter(year == 1952)
+
+ggplot(gapminder1952, aes(x = gdpPercap, y = lifeExp, color = continent, size = pop)) +
+  geom_point() +
+  scale_x_log10() +
+  xlab('GDP per capita') +
+  ylab('Life expectancy') +
+  labs(title = 'Gapminder data for the year 1952')
+```
+
+
+## Lesestoff
+r4ds, Kapitel 10 [@r4ds]
+
+## Aufgaben
+
+### Plot der Lebenserwartung
+Stellen Sie statt der Variablen `gdpPercap`, die Bevölkerungsgröße `pop` auf der $x$-Achse dar. Wie verändern sich die Legenden? Die Skalierung der Symbole mit der Bevölkerungsgröße ist nicht sinnvoll. Verändern Sie die Skalierung zu Bruttoinlandsprodukt, indem Sie `size = pop` ersetzen mit `size = gdpPercap`.
+
+### Abflugdaten
+Arbeiten Sie das Kapitel 1.4 Explore your first datasets in @ModernDive durch. Eventuell müssen Sie das Paket `nycflights13` installieren.
+
+### Pinguine
+Der Datensatz `penguins` aus dem Paket `palmerpenguins` eignet sich hervorragend zum Üben der Exploration. Die [Website](https://allisonhorst.github.io/palmerpenguins/) zum Datensatz erklärt, wie er entstanden ist.
+
+```{r penguins, echo = F, fig.cap = 'Artwork by `@allison_horst`', fig.width = 6, out.width = "100%"}
+knitr::include_graphics('figures/lter_penguins.png')
+```
+
+Führen Sie eine ähnliche Exploration durch, wie wir sie für den Datensatz gapminder gemacht haben. Zum Visualisieren der Pinguine, nutzen Sie den folgenden Code:
+```{r, eval = F}
+ggplot(data = penguins, 
+       mapping = aes(x = flipper_length_mm, y = body_mass_g, col = species)) +
+  geom_point() +
+  xlab('Flipper length (mm)') +
+  ylab('Body mass (g)')
+```
+

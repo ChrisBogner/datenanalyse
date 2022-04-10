@@ -2,12 +2,12 @@
 
 ```{block, type = 'rmdoutcomes'}
 - Aufbau des Aufrufs der Funktion `ggplot()` kennen
-- 5 wichtigste Grafiktypen kennen und einsetzten
+- fünf wichtigste Grafiktypen kennen und einsetzten
 ```
 
 ## Aufbau eines Visualisierungsbefehls
 
-Das Paket `ggplot2` ist ein sehr mächtiges Visualisierungswerkzeug. Der Name steht für "the grammar of graphics". Das Bedeutet, dass man mithilfe von verschiedenen Funktion in `ggplot2` seine Grafik Schritt für Schritt aufbaut, wie einen (grammatikalisch korrekten) Satz. In aller Kürze bedeutet das:
+Das Paket `ggplot2` ist ein sehr mächtiges Visualisierungswerkzeug. Der Name steht für "the grammar of graphics". Das bedeutet, dass man mithilfe von verschiedenen Funktion in `ggplot2` seine Grafik Schritt für Schritt aufbaut, wie einen (grammatikalisch korrekten) Satz. In aller Kürze bedeutet das:
 
 > Eine statistische Grafik ist eine Zuordnung (`mapping`) von Variablen in einem Datensatz (`data`) zu (ästhetischen) Attributen (`aes`) von geometrischen Objekten (`geom`).
 
@@ -15,7 +15,7 @@ Wir müssen also für das Visualisieren Folgendes festlegen:
 
 1. `data`: der Datensatz, der die Variablen enthält, die wir darstellen möchten.
 
-1. `aes`: (ästhetische) Attribute für die geometrischen Objekte, die dargestellt werden sollen. Diese Attribute sind, z.B. die x und y Koordinaten, Farbe, Form und Größe der geometrischen Obekte
+1. `aes`: (ästhetische) Attribute für die geometrischen Objekte, die dargestellt werden sollen. Diese Attribute sind, z.B. die x und y Koordinaten, Farbe, Form und Größe der geometrischen Objekte
 
 1. `geom`: geometrische Objekte, die dargestellt werden sollen, z.B. Punkte, Linien, Boxen, Säulen etc.
 
@@ -42,14 +42,14 @@ In Worten könnte man es vielleicht wie folgt umschreiben:
 1. ordne folgende Attribute zu:
     a. auf die x-Achse die Variable `gdpPercap`
     a. auf die y-Achse die Variable `lifeExp`
-    a. färbe ein mit Hilfe der Variablen `continent`
-    a. bestimme die Größe der Symbole mit Hilfe der Variablen `pop`
+    a. färbe ein mithilfe der Variablen `continent`
+    a. bestimme die Größe der Symbole mithilfe der Variablen `pop`
   
 2. Stelle das Ganze als geometrisches Objekte Punkte dar (`geom_point()`)
 
-Sie sehen, dass diese Zuordnungen klar nach einer Legende verlangen, die dann auch automatisch sowohl für die Farbe als auch für die Größe der Symbole, erstellt wird.
+Sie sehen, dass diese Zuordnungen klar nach einer Legende verlangen, die dann auch automatisch, sowohl für die Farbe als auch für die Größe der Symbole, erstellt wird.
 
-Die Anweisungen zur Visualisierung in `ggplot2` werden mit einem `+` verbunden. Man kann (und in diesem Fall soll) weitere Anweisungen geben. Z.B. sind die Beschriftungen der beiden Achsen so nichtssagend und müssen verbessert werden. Wir hängen mit eine `+`-Zeichen weitere Befehle hinzu:
+Die Anweisungen zur Visualisierung in `ggplot2` werden mit einem `+` verbunden. Man kann (und in diesem Fall soll) weitere Anweisungen geben. Z.B. sind die Beschriftungen der beiden Achsen so nichtssagend und müssen verbessert werden. Wir hängen mit einem `+`-Zeichen weitere Befehle hinzu:
 ```{r, out.width = "90%"}
 ggplot(data = gapminder2007, mapping = aes(x = gdpPercap, y = lifeExp, color = continent, size = pop)) +
   geom_point() + 
@@ -66,7 +66,7 @@ Das `geom_point()` produziert eine xy-Grafik (*scatter plot*). Weiter wichtige G
 - `geom_bar()`: Säulen
 
 ## Liniendiagramm {#scatter}
-Es macht wenig Sinn, die obere Grafik mit Linien darzustellen. Allerdings eignen sich Linien sehr gut, um einen zeitlichen Verlauf zu visualisieren. Daher filtern wir aus dem Datensatz `gapminder` die Zeitreihen für Frankreich und Deutschland heraus. Weil wir jetzt zwei Länder haben möchten, muss beim Filtern ein Vektor mit Ländernamen angegeben werden und statt `==` der Operator `%in%`. Wir werden später noch ausführlich auf diese Operatoren zurück kommen.
+Es ergibt wenig Sinn, die obere Grafik mit Linien darzustellen. Allerdings eignen sich Linien ausgezeichnet, um einen zeitlichen Verlauf zu visualisieren. Daher filtern wir aus dem Datensatz `gapminder` die Zeitreihen für Frankreich und Deutschland heraus. Weil wir jetzt zwei Länder haben möchten, muss beim Filtern ein Vektor mit Ländernamen angegeben werden und statt `==` der Operator `%in%`. Wir werden später noch ausführlich auf diese Operatoren zurückkommen.
 
 ```{r}
 france_germany <- gapminder %>% 

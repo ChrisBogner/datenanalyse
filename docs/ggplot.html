@@ -4,16 +4,16 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Kapitel 3 Einführung in ggplot2 | Datenanalyse mit R</title>
+<title>Kapitel 4 Einführung in ggplot2 | Datenanalyse mit R</title>
 <meta name="author" content="Christina Bogner">
-<meta name="description" content="Aufbau des Aufrufs der Funktion ggplot() kennen  5 wichtigste Grafiktypen kennen und einsetzten   3.1 Aufbau eines Visualisierungsbefehls Das Paket ggplot2 ist ein sehr mächtiges...">
+<meta name="description" content="Aufbau des Aufrufs der Funktion ggplot() kennen  fünf wichtigste Grafiktypen kennen und einsetzten   4.1 Aufbau eines Visualisierungsbefehls Das Paket ggplot2 ist ein sehr mächtiges...">
 <meta name="generator" content="bookdown 0.24.3 with bs4_book()">
-<meta property="og:title" content="Kapitel 3 Einführung in ggplot2 | Datenanalyse mit R">
+<meta property="og:title" content="Kapitel 4 Einführung in ggplot2 | Datenanalyse mit R">
 <meta property="og:type" content="book">
-<meta property="og:description" content="Aufbau des Aufrufs der Funktion ggplot() kennen  5 wichtigste Grafiktypen kennen und einsetzten   3.1 Aufbau eines Visualisierungsbefehls Das Paket ggplot2 ist ein sehr mächtiges...">
+<meta property="og:description" content="Aufbau des Aufrufs der Funktion ggplot() kennen  fünf wichtigste Grafiktypen kennen und einsetzten   4.1 Aufbau eines Visualisierungsbefehls Das Paket ggplot2 ist ein sehr mächtiges...">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Kapitel 3 Einführung in ggplot2 | Datenanalyse mit R">
-<meta name="twitter:description" content="Aufbau des Aufrufs der Funktion ggplot() kennen  5 wichtigste Grafiktypen kennen und einsetzten   3.1 Aufbau eines Visualisierungsbefehls Das Paket ggplot2 ist ein sehr mächtiges...">
+<meta name="twitter:title" content="Kapitel 4 Einführung in ggplot2 | Datenanalyse mit R">
+<meta name="twitter:description" content="Aufbau des Aufrufs der Funktion ggplot() kennen  fünf wichtigste Grafiktypen kennen und einsetzten   4.1 Aufbau eines Visualisierungsbefehls Das Paket ggplot2 ist ein sehr mächtiges...">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
@@ -47,10 +47,9 @@
 <li class="book-part">Teil I: Daten explorieren</li>
 <li><a class="" href="erste-schritte.html"><span class="header-section-number">1</span> Erste Schritte in R</a></li>
 <li><a class="" href="reproduzieren.html"><span class="header-section-number">2</span> R Markdown für reproduzierbare Forschung</a></li>
-<li><a class="active" href="ggplot.html"><span class="header-section-number">3</span> Einführung in ggplot2</a></li>
-<li><a class="" href="daten-einlesen-und-visualisieren.html"><span class="header-section-number">4</span> Daten einlesen und visualisieren</a></li>
-<li><a class="" href="explorative-datenanalyse.html"><span class="header-section-number">5</span> Explorative Datenanalyse mit tidyverse</a></li>
-<li><a class="" href="aufgabensammlung.html"><span class="header-section-number">6</span> Aufgabensammlung</a></li>
+<li><a class="" href="daten.html"><span class="header-section-number">3</span> Datentypen in R</a></li>
+<li><a class="active" href="ggplot.html"><span class="header-section-number">4</span> Einführung in ggplot2</a></li>
+<li><a class="" href="aufgabensammlung.html"><span class="header-section-number">5</span> Aufgabensammlung</a></li>
 <li><a class="" href="literatur.html">Literatur</a></li>
 </ul>
 
@@ -59,9 +58,9 @@
         </div>
       </nav>
 </div>
-  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="ggplot" class="section level1" number="3">
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="ggplot" class="section level1" number="4">
 <h1>
-<span class="header-section-number">Kapitel 3</span> Einführung in ggplot2<a class="anchor" aria-label="anchor" href="#ggplot"><i class="fas fa-link"></i></a>
+<span class="header-section-number">Kapitel 4</span> Einführung in ggplot2<a class="anchor" aria-label="anchor" href="#ggplot"><i class="fas fa-link"></i></a>
 </h1>
 <div class="rmdoutcomes">
 <ul>
@@ -69,41 +68,41 @@
 Aufbau des Aufrufs der Funktion <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot()</a></code> kennen
 </li>
 <li>
-5 wichtigste Grafiktypen kennen und einsetzten
+fünf wichtigste Grafiktypen kennen und einsetzten
 </li>
 </ul>
 </div>
-<div id="aufbau-eines-visualisierungsbefehls" class="section level2" number="3.1">
+<div id="aufbau-eines-visualisierungsbefehls" class="section level2" number="4.1">
 <h2>
-<span class="header-section-number">3.1</span> Aufbau eines Visualisierungsbefehls<a class="anchor" aria-label="anchor" href="#aufbau-eines-visualisierungsbefehls"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.1</span> Aufbau eines Visualisierungsbefehls<a class="anchor" aria-label="anchor" href="#aufbau-eines-visualisierungsbefehls"><i class="fas fa-link"></i></a>
 </h2>
-<p>Das Paket <code>ggplot2</code> ist ein sehr mächtiges Visualisierungswerkzeug. Der Name steht für “the grammar of graphics.” Das Bedeutet, dass man mithilfe von verschiedenen Funktion in <code>ggplot2</code> seine Grafik Schritt für Schritt aufbaut, wie einen (grammatikalisch korrekten) Satz. In aller Kürze bedeutet das:</p>
+<p>Das Paket <code>ggplot2</code> ist ein sehr mächtiges Visualisierungswerkzeug. Der Name steht für “the grammar of graphics.” Das bedeutet, dass man mithilfe von verschiedenen Funktion in <code>ggplot2</code> seine Grafik Schritt für Schritt aufbaut, wie einen (grammatikalisch korrekten) Satz. In aller Kürze bedeutet das:</p>
 <blockquote>
 <p>Eine statistische Grafik ist eine Zuordnung (<code>mapping</code>) von Variablen in einem Datensatz (<code>data</code>) zu (ästhetischen) Attributen (<code>aes</code>) von geometrischen Objekten (<code>geom</code>).</p>
 </blockquote>
 <p>Wir müssen also für das Visualisieren Folgendes festlegen:</p>
 <ol style="list-style-type: decimal">
 <li><p><code>data</code>: der Datensatz, der die Variablen enthält, die wir darstellen möchten.</p></li>
-<li><p><code>aes</code>: (ästhetische) Attribute für die geometrischen Objekte, die dargestellt werden sollen. Diese Attribute sind, z.B. die x und y Koordinaten, Farbe, Form und Größe der geometrischen Obekte</p></li>
+<li><p><code>aes</code>: (ästhetische) Attribute für die geometrischen Objekte, die dargestellt werden sollen. Diese Attribute sind, z.B. die x und y Koordinaten, Farbe, Form und Größe der geometrischen Objekte</p></li>
 <li><p><code>geom</code>: geometrische Objekte, die dargestellt werden sollen, z.B. Punkte, Linien, Boxen, Säulen etc.</p></li>
 </ol>
 <p>Wir laden zunächst die nötigen Bibliotheken und filtern den Datensatz <code>gapminder</code>, um nur die Daten aus dem Jahr 2007 zu visualisieren.</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jennybc/gapminder">gapminder</a></span><span class="op">)</span>
 
 <span class="va">gapminder2007</span> <span class="op">&lt;-</span> <span class="va">gapminder</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">year</span> <span class="op">==</span> <span class="fl">2007</span><span class="op">)</span></code></pre></div>
 </div>
-<div id="punktdiagramm" class="section level2" number="3.2">
+<div id="punktdiagramm" class="section level2" number="4.2">
 <h2>
-<span class="header-section-number">3.2</span> Punktdiagramm<a class="anchor" aria-label="anchor" href="#punktdiagramm"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.2</span> Punktdiagramm<a class="anchor" aria-label="anchor" href="#punktdiagramm"><i class="fas fa-link"></i></a>
 </h2>
 <p>Ein typischer Befehl zur Visualisierung würde also so aussehen:</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">gapminder2007</span>, mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">gdpPercap</span>, y <span class="op">=</span> <span class="va">lifeExp</span>, color <span class="op">=</span> <span class="va">continent</span>, size <span class="op">=</span> <span class="va">pop</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="datenanalyse_files/figure-html/unnamed-chunk-25-1.png" width="90%"></div>
+<div class="inline-figure"><img src="datenanalyse_files/figure-html/unnamed-chunk-46-1.png" width="90%"></div>
 <p>In Worten könnte man es vielleicht wie folgt umschreiben:</p>
 <ol style="list-style-type: decimal">
 <li><p>Nimm den Datensatz (<code>data</code>) <code>gapminder</code> und</p></li>
@@ -114,26 +113,26 @@ Aufbau des Aufrufs der Funktion <code><a href="https://ggplot2.tidyverse.org/ref
 </li>
 <li>auf die y-Achse die Variable <code>lifeExp</code>
 </li>
-<li>färbe ein mit Hilfe der Variablen <code>continent</code>
+<li>färbe ein mithilfe der Variablen <code>continent</code>
 </li>
-<li>bestimme die Größe der Symbole mit Hilfe der Variablen <code>pop</code>
+<li>bestimme die Größe der Symbole mithilfe der Variablen <code>pop</code>
 </li>
 </ol>
 </li>
 <li><p>Stelle das Ganze als geometrisches Objekte Punkte dar (<code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point()</a></code>)</p></li>
 </ol>
-<p>Sie sehen, dass diese Zuordnungen klar nach einer Legende verlangen, die dann auch automatisch sowohl für die Farbe als auch für die Größe der Symbole, erstellt wird.</p>
-<p>Die Anweisungen zur Visualisierung in <code>ggplot2</code> werden mit einem <code>+</code> verbunden. Man kann (und in diesem Fall soll) weitere Anweisungen geben. Z.B. sind die Beschriftungen der beiden Achsen so nichtssagend und müssen verbessert werden. Wir hängen mit eine <code>+</code>-Zeichen weitere Befehle hinzu:</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<p>Sie sehen, dass diese Zuordnungen klar nach einer Legende verlangen, die dann auch automatisch, sowohl für die Farbe als auch für die Größe der Symbole, erstellt wird.</p>
+<p>Die Anweisungen zur Visualisierung in <code>ggplot2</code> werden mit einem <code>+</code> verbunden. Man kann (und in diesem Fall soll) weitere Anweisungen geben. Z.B. sind die Beschriftungen der beiden Achsen so nichtssagend und müssen verbessert werden. Wir hängen mit einem <code>+</code>-Zeichen weitere Befehle hinzu:</p>
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">gapminder2007</span>, mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">gdpPercap</span>, y <span class="op">=</span> <span class="va">lifeExp</span>, color <span class="op">=</span> <span class="va">continent</span>, size <span class="op">=</span> <span class="va">pop</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> 
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">'Bruttoinlandsprodukt pro Kopf (US$)'</span>, y <span class="op">=</span> <span class="st">'Lebenserwartung (Jahre)'</span>,
        color <span class="op">=</span> <span class="st">'Kontinent'</span>, size <span class="op">=</span> <span class="st">'Bevölkerung'</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="datenanalyse_files/figure-html/unnamed-chunk-26-1.png" width="90%"></div>
+<div class="inline-figure"><img src="datenanalyse_files/figure-html/unnamed-chunk-47-1.png" width="90%"></div>
 </div>
-<div id="weitere-geoms" class="section level2" number="3.3">
+<div id="weitere-geoms" class="section level2" number="4.3">
 <h2>
-<span class="header-section-number">3.3</span> Weitere geoms<a class="anchor" aria-label="anchor" href="#weitere-geoms"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.3</span> Weitere geoms<a class="anchor" aria-label="anchor" href="#weitere-geoms"><i class="fas fa-link"></i></a>
 </h2>
 <p>Das <code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point()</a></code> produziert eine xy-Grafik (<em>scatter plot</em>). Weiter wichtige Grafiktypen sind</p>
 <ul>
@@ -147,84 +146,84 @@ Aufbau des Aufrufs der Funktion <code><a href="https://ggplot2.tidyverse.org/ref
 <code><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar()</a></code>: Säulen</li>
 </ul>
 </div>
-<div id="scatter" class="section level2" number="3.4">
+<div id="scatter" class="section level2" number="4.4">
 <h2>
-<span class="header-section-number">3.4</span> Liniendiagramm<a class="anchor" aria-label="anchor" href="#scatter"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.4</span> Liniendiagramm<a class="anchor" aria-label="anchor" href="#scatter"><i class="fas fa-link"></i></a>
 </h2>
-<p>Es macht wenig Sinn, die obere Grafik mit Linien darzustellen. Allerdings eignen sich Linien sehr gut, um einen zeitlichen Verlauf zu visualisieren. Daher filtern wir aus dem Datensatz <code>gapminder</code> die Zeitreihen für Frankreich und Deutschland heraus. Weil wir jetzt zwei Länder haben möchten, muss beim Filtern ein Vektor mit Ländernamen angegeben werden und statt <code>==</code> der Operator <code>%in%</code>. Wir werden später noch ausführlich auf diese Operatoren zurück kommen.</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<p>Es ergibt wenig Sinn, die obere Grafik mit Linien darzustellen. Allerdings eignen sich Linien ausgezeichnet, um einen zeitlichen Verlauf zu visualisieren. Daher filtern wir aus dem Datensatz <code>gapminder</code> die Zeitreihen für Frankreich und Deutschland heraus. Weil wir jetzt zwei Länder haben möchten, muss beim Filtern ein Vektor mit Ländernamen angegeben werden und statt <code>==</code> der Operator <code>%in%</code>. Wir werden später noch ausführlich auf diese Operatoren zurückkommen.</p>
+<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">france_germany</span> <span class="op">&lt;-</span> <span class="va">gapminder</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">country</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'France'</span>, <span class="st">'Germany'</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">france_germany</span>, mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">year</span>, y <span class="op">=</span> <span class="va">gdpPercap</span>, color <span class="op">=</span> <span class="va">country</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="datenanalyse_files/figure-html/unnamed-chunk-28-1.png" width="90%"></div>
+<div class="inline-figure"><img src="datenanalyse_files/figure-html/unnamed-chunk-49-1.png" width="90%"></div>
 </div>
-<div id="histogramm" class="section level2" number="3.5">
+<div id="histogramm" class="section level2" number="4.5">
 <h2>
-<span class="header-section-number">3.5</span> Histogramm<a class="anchor" aria-label="anchor" href="#histogramm"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.5</span> Histogramm<a class="anchor" aria-label="anchor" href="#histogramm"><i class="fas fa-link"></i></a>
 </h2>
 <p>Wie ist das GDP im Jahre 2007 in Afrika und Europa verteilt? Dazu nutzen wir das Histogramm und filtern die Daten vorher entsprechend. Als Ästhetik eignet sich hier <code>fill</code> besser als <code>color</code>.</p>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">africa_europe</span> <span class="op">&lt;-</span> <span class="va">gapminder2007</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">continent</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'Africa'</span>, <span class="st">'Europe'</span><span class="op">)</span><span class="op">)</span>
 
 <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">africa_europe</span>, mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">gdpPercap</span>, fill <span class="op">=</span> <span class="va">continent</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>bins <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="datenanalyse_files/figure-html/unnamed-chunk-29-1.png" width="90%"></div>
+<div class="inline-figure"><img src="datenanalyse_files/figure-html/unnamed-chunk-50-1.png" width="90%"></div>
 </div>
-<div id="boxplot" class="section level2" number="3.6">
+<div id="boxplot" class="section level2" number="4.6">
 <h2>
-<span class="header-section-number">3.6</span> Boxplot<a class="anchor" aria-label="anchor" href="#boxplot"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.6</span> Boxplot<a class="anchor" aria-label="anchor" href="#boxplot"><i class="fas fa-link"></i></a>
 </h2>
 <p>Wie ist das GDP im Jahre 2007 auf verschiedenen Kontinenten verteilt? Ein Histogramm mit allen Kontinenten würde schnell sehr unübersichtlich werden. Das geht mit einem Boxplot besser.</p>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">gapminder2007</span>, mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">continent</span>, y <span class="op">=</span> <span class="va">gdpPercap</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="datenanalyse_files/figure-html/unnamed-chunk-30-1.png" width="90%"></div>
+<div class="inline-figure"><img src="datenanalyse_files/figure-html/unnamed-chunk-51-1.png" width="90%"></div>
 </div>
-<div id="säulendiagramm" class="section level2" number="3.7">
+<div id="säulendiagramm" class="section level2" number="4.7">
 <h2>
-<span class="header-section-number">3.7</span> Säulendiagramm<a class="anchor" aria-label="anchor" href="#s%C3%A4ulendiagramm"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.7</span> Säulendiagramm<a class="anchor" aria-label="anchor" href="#s%C3%A4ulendiagramm"><i class="fas fa-link"></i></a>
 </h2>
 <p>Wie viele Einträge gibt es pro Kontinent? Das Säulendiagramm zählt für uns die Einträge im Datensatz zusammen</p>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">gapminder</span>, mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">continent</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="datenanalyse_files/figure-html/unnamed-chunk-31-1.png" width="90%"></div>
+<div class="inline-figure"><img src="datenanalyse_files/figure-html/unnamed-chunk-52-1.png" width="90%"></div>
 </div>
-<div id="lesestoff-2" class="section level2" number="3.8">
+<div id="lesestoff-4" class="section level2" number="4.8">
 <h2>
-<span class="header-section-number">3.8</span> Lesestoff<a class="anchor" aria-label="anchor" href="#lesestoff-2"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.8</span> Lesestoff<a class="anchor" aria-label="anchor" href="#lesestoff-4"><i class="fas fa-link"></i></a>
 </h2>
 <p>Kapitel 2.1 in <span class="citation"><a href="literatur.html#ref-ModernDive" role="doc-biblioref">Ismay and Kim</a> (<a href="literatur.html#ref-ModernDive" role="doc-biblioref">2021</a>)</span></p>
 </div>
-<div id="aufgaben-2" class="section level2" number="3.9">
+<div id="aufgaben-3" class="section level2" number="4.9">
 <h2>
-<span class="header-section-number">3.9</span> Aufgaben<a class="anchor" aria-label="anchor" href="#aufgaben-2"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.9</span> Aufgaben<a class="anchor" aria-label="anchor" href="#aufgaben-3"><i class="fas fa-link"></i></a>
 </h2>
-<div id="grafiken-richtig-beschriften" class="section level3" number="3.9.1">
+<div id="grafiken-richtig-beschriften" class="section level3" number="4.9.1">
 <h3>
-<span class="header-section-number">3.9.1</span> Grafiken richtig beschriften<a class="anchor" aria-label="anchor" href="#grafiken-richtig-beschriften"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.9.1</span> Grafiken richtig beschriften<a class="anchor" aria-label="anchor" href="#grafiken-richtig-beschriften"><i class="fas fa-link"></i></a>
 </h3>
-<p>Bis auf die Grafik in <a href="ggplot.html#scatter">3.4</a> fehlen bei den Grafiken oben ordentliche Achsenbeschriftungen und Titel für die Legenden. Ergänzen Sie den Code entsprechend.</p>
+<p>Bis auf die Grafik in <a href="ggplot.html#scatter">4.4</a> fehlen bei den Grafiken oben ordentliche Achsenbeschriftungen und Titel für die Legenden. Ergänzen Sie den Code entsprechend.</p>
 </div>
-<div id="zeitreihen" class="section level3" number="3.9.2">
+<div id="zeitreihen" class="section level3" number="4.9.2">
 <h3>
-<span class="header-section-number">3.9.2</span> Zeitreihen<a class="anchor" aria-label="anchor" href="#zeitreihen"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.9.2</span> Zeitreihen<a class="anchor" aria-label="anchor" href="#zeitreihen"><i class="fas fa-link"></i></a>
 </h3>
 <p>Stellen Sie den zeitlichen Verlauf der Lebenserwartung in fünf europäischen Ländern Ihrer Wahl dar. Färben Sie die Linien nach Ländern.</p>
 </div>
-<div id="boxplots" class="section level3" number="3.9.3">
+<div id="boxplots" class="section level3" number="4.9.3">
 <h3>
-<span class="header-section-number">3.9.3</span> Boxplots<a class="anchor" aria-label="anchor" href="#boxplots"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.9.3</span> Boxplots<a class="anchor" aria-label="anchor" href="#boxplots"><i class="fas fa-link"></i></a>
 </h3>
 <p>Stellen Sie die Lebenserwartung im Jahr 1952 und im Jahr 2007 pro Kontinent dar. Das sind zwei verschiedene Boxplots.</p>
 </div>
 </div>
-<div id="ihre-arbeit-einreichen-1" class="section level2" number="3.10">
+<div id="ihre-arbeit-einreichen-1" class="section level2" number="4.10">
 <h2>
-<span class="header-section-number">3.10</span> Ihre Arbeit einreichen<a class="anchor" aria-label="anchor" href="#ihre-arbeit-einreichen-1"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.10</span> Ihre Arbeit einreichen<a class="anchor" aria-label="anchor" href="#ihre-arbeit-einreichen-1"><i class="fas fa-link"></i></a>
 </h2>
 <ul>
 <li>Speichern Sie Ihr Notebook ab und laden Sie nur die .Rmd Datei vom Server.</li>
@@ -235,28 +234,28 @@ Aufbau des Aufrufs der Funktion <code><a href="https://ggplot2.tidyverse.org/ref
 </div>
 </div>
   <div class="chapter-nav">
-<div class="prev"><a href="reproduzieren.html"><span class="header-section-number">2</span> R Markdown für reproduzierbare Forschung</a></div>
-<div class="next"><a href="daten-einlesen-und-visualisieren.html"><span class="header-section-number">4</span> Daten einlesen und visualisieren</a></div>
+<div class="prev"><a href="daten.html"><span class="header-section-number">3</span> Datentypen in R</a></div>
+<div class="next"><a href="aufgabensammlung.html"><span class="header-section-number">5</span> Aufgabensammlung</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
-<li><a class="nav-link" href="#ggplot"><span class="header-section-number">3</span> Einführung in ggplot2</a></li>
-<li><a class="nav-link" href="#aufbau-eines-visualisierungsbefehls"><span class="header-section-number">3.1</span> Aufbau eines Visualisierungsbefehls</a></li>
-<li><a class="nav-link" href="#punktdiagramm"><span class="header-section-number">3.2</span> Punktdiagramm</a></li>
-<li><a class="nav-link" href="#weitere-geoms"><span class="header-section-number">3.3</span> Weitere geoms</a></li>
-<li><a class="nav-link" href="#scatter"><span class="header-section-number">3.4</span> Liniendiagramm</a></li>
-<li><a class="nav-link" href="#histogramm"><span class="header-section-number">3.5</span> Histogramm</a></li>
-<li><a class="nav-link" href="#boxplot"><span class="header-section-number">3.6</span> Boxplot</a></li>
-<li><a class="nav-link" href="#s%C3%A4ulendiagramm"><span class="header-section-number">3.7</span> Säulendiagramm</a></li>
-<li><a class="nav-link" href="#lesestoff-2"><span class="header-section-number">3.8</span> Lesestoff</a></li>
+<li><a class="nav-link" href="#ggplot"><span class="header-section-number">4</span> Einführung in ggplot2</a></li>
+<li><a class="nav-link" href="#aufbau-eines-visualisierungsbefehls"><span class="header-section-number">4.1</span> Aufbau eines Visualisierungsbefehls</a></li>
+<li><a class="nav-link" href="#punktdiagramm"><span class="header-section-number">4.2</span> Punktdiagramm</a></li>
+<li><a class="nav-link" href="#weitere-geoms"><span class="header-section-number">4.3</span> Weitere geoms</a></li>
+<li><a class="nav-link" href="#scatter"><span class="header-section-number">4.4</span> Liniendiagramm</a></li>
+<li><a class="nav-link" href="#histogramm"><span class="header-section-number">4.5</span> Histogramm</a></li>
+<li><a class="nav-link" href="#boxplot"><span class="header-section-number">4.6</span> Boxplot</a></li>
+<li><a class="nav-link" href="#s%C3%A4ulendiagramm"><span class="header-section-number">4.7</span> Säulendiagramm</a></li>
+<li><a class="nav-link" href="#lesestoff-4"><span class="header-section-number">4.8</span> Lesestoff</a></li>
 <li>
-<a class="nav-link" href="#aufgaben-2"><span class="header-section-number">3.9</span> Aufgaben</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#grafiken-richtig-beschriften"><span class="header-section-number">3.9.1</span> Grafiken richtig beschriften</a></li>
-<li><a class="nav-link" href="#zeitreihen"><span class="header-section-number">3.9.2</span> Zeitreihen</a></li>
-<li><a class="nav-link" href="#boxplots"><span class="header-section-number">3.9.3</span> Boxplots</a></li>
+<a class="nav-link" href="#aufgaben-3"><span class="header-section-number">4.9</span> Aufgaben</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#grafiken-richtig-beschriften"><span class="header-section-number">4.9.1</span> Grafiken richtig beschriften</a></li>
+<li><a class="nav-link" href="#zeitreihen"><span class="header-section-number">4.9.2</span> Zeitreihen</a></li>
+<li><a class="nav-link" href="#boxplots"><span class="header-section-number">4.9.3</span> Boxplots</a></li>
 </ul>
 </li>
-<li><a class="nav-link" href="#ihre-arbeit-einreichen-1"><span class="header-section-number">3.10</span> Ihre Arbeit einreichen</a></li>
+<li><a class="nav-link" href="#ihre-arbeit-einreichen-1"><span class="header-section-number">4.10</span> Ihre Arbeit einreichen</a></li>
 </ul>
 
       <div class="book-extra">
@@ -274,7 +273,7 @@ Aufbau des Aufrufs der Funktion <code><a href="https://ggplot2.tidyverse.org/ref
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Datenanalyse mit R</strong>: SoSe 2022" was written by Christina Bogner. It was last built on 2022-04-05.</p>
+    <p>"<strong>Datenanalyse mit R</strong>: SoSe 2022" was written by Christina Bogner. It was last built on 2022-04-10.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

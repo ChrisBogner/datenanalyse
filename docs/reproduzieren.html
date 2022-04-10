@@ -47,7 +47,9 @@
 <li class="book-part">Teil I: Daten explorieren</li>
 <li><a class="" href="erste-schritte.html"><span class="header-section-number">1</span> Erste Schritte in R</a></li>
 <li><a class="active" href="reproduzieren.html"><span class="header-section-number">2</span> R Markdown für reproduzierbare Forschung</a></li>
-<li><a class="" href="aufgabensammlung.html"><span class="header-section-number">3</span> Aufgabensammlung</a></li>
+<li><a class="" href="daten.html"><span class="header-section-number">3</span> Datentypen in R</a></li>
+<li><a class="" href="ggplot.html"><span class="header-section-number">4</span> Einführung in ggplot2</a></li>
+<li><a class="" href="aufgabensammlung.html"><span class="header-section-number">5</span> Aufgabensammlung</a></li>
 <li><a class="" href="literatur.html">Literatur</a></li>
 </ul>
 
@@ -131,9 +133,9 @@ Abbildung 2.2: Einen neuen Chunk hinzufügen
 </h2>
 <p>Ein weiteres <a href="https://www.youtube.com/watch?v=pjL2uP-fmPY&amp;list=PLjTlxb-wKvXOU4WW4p3qc4VKWTI4gLNUf">Video</a> von Prof. Peng widmet sich den wichtigsten Regeln für Reproduzierbarkeit.</p>
 </div>
-<div id="lesestoff-1" class="section level2" number="2.7">
+<div id="lesestoff-2" class="section level2" number="2.7">
 <h2>
-<span class="header-section-number">2.7</span> Lesestoff<a class="anchor" aria-label="anchor" href="#lesestoff-1"><i class="fas fa-link"></i></a>
+<span class="header-section-number">2.7</span> Lesestoff<a class="anchor" aria-label="anchor" href="#lesestoff-2"><i class="fas fa-link"></i></a>
 </h2>
 <p>Intro zu Kapitel 2 (Basics), Kapitel 3.2.1 und 3.2.2 in <span class="citation"><a href="literatur.html#ref-RMarkdownGuide" role="doc-biblioref">Xie, Allaire, and Grolemund</a> (<a href="literatur.html#ref-RMarkdownGuide" role="doc-biblioref">2021</a>)</span></p>
 </div>
@@ -174,22 +176,15 @@ Abbildung 2.2: Einen neuen Chunk hinzufügen
 </h3>
 <ul>
 <li>Wandeln Sie das R-Skript der ersten Session in ein R Notebooks um.</li>
-<li>Fügen Sie mehr Erklärungstext zu den einzelnen Schritten hinzu</li>
-<li>Gliedern Sie Ihre Notebooks mit passenden Layoutelementen.</li>
+<li>Fügen Sie mehr Erklärungstext zu den einzelnen Schritten hinzu.</li>
+<li>Gliedern Sie Ihr Notebook mit passenden Layoutelementen.</li>
 </ul>
-</div>
-<div id="exploration-eines-datensatzes" class="section level3" number="2.9.3">
-<h3>
-<span class="header-section-number">2.9.3</span> Exploration eines Datensatzes<a class="anchor" aria-label="anchor" href="#exploration-eines-datensatzes"><i class="fas fa-link"></i></a>
-</h3>
-<p>Arbeiten Sie das Kapitel 1.4 Explore your first datasets in <span class="citation"><a href="literatur.html#ref-ModernDive" role="doc-biblioref">Ismay and Kim</a> (<a href="literatur.html#ref-ModernDive" role="doc-biblioref">2021</a>)</span> durch.</p>
-
 </div>
 </div>
 </div>
   <div class="chapter-nav">
 <div class="prev"><a href="erste-schritte.html"><span class="header-section-number">1</span> Erste Schritte in R</a></div>
-<div class="next"><a href="aufgabensammlung.html"><span class="header-section-number">3</span> Aufgabensammlung</a></div>
+<div class="next"><a href="daten.html"><span class="header-section-number">3</span> Datentypen in R</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
@@ -200,13 +195,12 @@ Abbildung 2.2: Einen neuen Chunk hinzufügen
 <li><a class="nav-link" href="#ein-neues-r-notebook-erstellen"><span class="header-section-number">2.4</span> Ein neues R Notebook erstellen</a></li>
 <li><a class="nav-link" href="#header"><span class="header-section-number">2.5</span> Der Header eines Notebooks</a></li>
 <li><a class="nav-link" href="#wichtigste-regeln-f%C3%BCr-reproduzierbarkeit"><span class="header-section-number">2.6</span> Wichtigste Regeln für Reproduzierbarkeit</a></li>
-<li><a class="nav-link" href="#lesestoff-1"><span class="header-section-number">2.7</span> Lesestoff</a></li>
+<li><a class="nav-link" href="#lesestoff-2"><span class="header-section-number">2.7</span> Lesestoff</a></li>
 <li><a class="nav-link" href="#weiterf%C3%BChrende-literatur"><span class="header-section-number">2.8</span> Weiterführende Literatur</a></li>
 <li>
 <a class="nav-link" href="#aufgaben-1"><span class="header-section-number">2.9</span> Aufgaben</a><ul class="nav navbar-nav">
 <li><a class="nav-link" href="#erstes-notebook"><span class="header-section-number">2.9.1</span> Erstes Notebook</a></li>
 <li><a class="nav-link" href="#erste-schritte-als-notebook"><span class="header-section-number">2.9.2</span> Erste Schritte als Notebook</a></li>
-<li><a class="nav-link" href="#exploration-eines-datensatzes"><span class="header-section-number">2.9.3</span> Exploration eines Datensatzes</a></li>
 </ul>
 </li>
 </ul>
@@ -226,7 +220,7 @@ Abbildung 2.2: Einen neuen Chunk hinzufügen
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Datenanalyse mit R</strong>: SoSe 2022" was written by Christina Bogner. It was last built on 2022-04-05.</p>
+    <p>"<strong>Datenanalyse mit R</strong>: SoSe 2022" was written by Christina Bogner. It was last built on 2022-04-10.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

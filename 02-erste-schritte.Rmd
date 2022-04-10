@@ -216,3 +216,5 @@ Elemente in solchen Vektoren kann man mit Namen in eckigen Klammern ansprechen. 
 Beachten Sie die Deadline für das Hochladen der Hausaufgaben!
 ```
 
+## Lesestoff
+r4ds, Kapitel 4 [@r4ds]

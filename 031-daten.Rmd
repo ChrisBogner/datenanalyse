@@ -92,7 +92,7 @@ Die Funktion `summary()` zeigt einen ersten Überblick über die Daten. Je nach 
 summary(gapminder)
 ```
 
-Alternative kann man sich einen ersten Eindruck von den Daten mithilfe der Funktion `glimpse()` verschaffen. Sie zeigt die ersten paar Einträge des Datensatzes. 
+Alternativ kann man sich einen ersten Eindruck von den Daten mithilfe der Funktion `glimpse()` verschaffen. Sie zeigt die ersten paar Einträge des Datensatzes. 
 
 ```{r}
 glimpse(gapminder)

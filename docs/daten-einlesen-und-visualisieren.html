@@ -260,13 +260,13 @@ Grafiken speichern
 <p>Ar Stat arbeitet als HiWi in der AG Ökosystemforschung und soll im Nationalpark Eifel eine Bestandsaufnahme durchführen (d.h. Baumhöhen und -durchmesser vermessen). Er notiert den BHD (Brusthöhendurchmesser) und die Art der Bäume.</p>
 <ol style="list-style-type: decimal">
 <li>Lesen Sie den Datensatz <span style="font-family: sans-serif; font-size: medium">BHD.txt</span> ein und ordnen Sie ihn der Variable <code>BHD</code> zu.</li>
-<li>Erstellen Sie einen Vektor <code>Nr</code> mit durchlaufenden Baumnummern. Von welcher Art sind die Elemente des Vektors <code>a</code>?</li>
-<li>Fügen Sie die Datensätze <code>BHD</code> und <code>Nr</code> zu einem <code>tibble</code> zusammen und benennen Sie die Spalten sinnvoll.</li>
-<li>Löschen Sie den Vektor <code>Nr</code>.</li>
+<li>Erstellen Sie einen Vektor <code>Nr</code> mit durchlaufenden Baumnummern. Von welcher Art sind die Elemente des Vektors <code>Nr</code>? Tipp: Verwenden Sie das Zeichen <code>:</code>, um durchlaufende Nummern zu erzeugen.</li>
+<li>Fügen Sie die Datensätze <code>BHD</code> und <code>Nr</code> zu einem <code>tibble</code> zusammen und benennen Sie die Spalten dabei sinnvoll.</li>
+<li>Löschen Sie den Vektor <code>Nr</code>. Tipp: Hilfe zu Funktion <code><a href="https://rdrr.io/r/base/rm.html">rm()</a></code> lesen.</li>
 <li>Lesen Sie den Datensatz <span style="font-family: sans-serif; font-size: medium">Art.txt</span> ein und ordnen Sie ihn der Variablen <code>art</code> zu.</li>
-<li>Fügen Sie die Art in das <code>tibble</code> ein.</li>
+<li>Fügen Sie die Art in das <code>tibble</code> ein. Tipp: <code>tibble(altes_tibble, neue_spalte = XY)</code>.</li>
 <li>Erstellen Sie eine Tabelle mit der Anzahl der jeweiligen Arten. Nutzen Sie die Funktion <code><a href="https://rdrr.io/r/base/table.html">table()</a></code>.</li>
-<li>Speichern Sie die Tabelle mit <code><a href="https://readr.tidyverse.org/reference/write_delim.html">write_delim()</a></code> ab. Schlagen Sie in der Hilfe nach, wie diese Funktion arbeitet!</li>
+<li>Speichern Sie die Tabelle mit <code><a href="https://readr.tidyverse.org/reference/write_delim.html">write_delim()</a></code> ab. Schlagen Sie in der Hilfe nach, wie diese Funktion arbeitet! Tipp: Vorher muss der Datensatz zu einem data.frame umgewandelt werden. Nutzen Sie die funktion <code><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame()</a></code>.</li>
 </ol>
 </div>
 <div id="wahlbeteiligung" class="section level3" number="5.8.3">
@@ -380,7 +380,7 @@ Abbildung 5.3: Ergebnisse der Bundestagswahl 2017. Quelle: Der Bundeswahlleiter.
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Datenanalyse mit R</strong>: SoSe 2022" was written by Christina Bogner. It was last built on 2022-04-15.</p>
+    <p>"<strong>Datenanalyse mit R</strong>: SoSe 2022" was written by Christina Bogner. It was last built on 2022-04-19.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

@@ -150,13 +150,13 @@ Ar Stat arbeitet als HiWi in der AG Ökosystemforschung und soll im Nationalpark
 
 
 1.  Lesen Sie den Datensatz `r file.name("BHD.txt")` ein und ordnen Sie ihn der Variable `BHD` zu.
-2. Erstellen Sie einen Vektor `Nr` mit durchlaufenden Baumnummern. Von welcher Art sind die Elemente des Vektors `a`?
-3. Fügen Sie die Datensätze `BHD` und `Nr` zu einem `tibble` zusammen und benennen Sie die Spalten sinnvoll.
-4. Löschen Sie den Vektor `Nr`.
+2. Erstellen Sie einen Vektor `Nr` mit durchlaufenden Baumnummern. Von welcher Art sind die Elemente des Vektors `Nr`? Tipp: Verwenden Sie das Zeichen `:`, um durchlaufende Nummern zu erzeugen.
+3. Fügen Sie die Datensätze `BHD` und `Nr` zu einem `tibble` zusammen und benennen Sie die Spalten dabei sinnvoll.
+4. Löschen Sie den Vektor `Nr`. Tipp: Hilfe zu Funktion `rm()` lesen.
 4. Lesen Sie den Datensatz `r file.name("Art.txt")` ein und ordnen Sie ihn der Variablen `art` zu.
-5. Fügen Sie die Art in das `tibble` ein.
+5. Fügen Sie die Art in das `tibble` ein. Tipp: `tibble(altes_tibble, neue_spalte = XY)`.
 6. Erstellen Sie eine Tabelle mit der Anzahl der jeweiligen Arten. Nutzen Sie die Funktion `table()`.
-7. Speichern Sie die Tabelle mit `write_delim()` ab. Schlagen Sie in der Hilfe nach, wie diese Funktion arbeitet!
+7. Speichern Sie die Tabelle mit `write_delim()` ab. Schlagen Sie in der Hilfe nach, wie diese Funktion arbeitet! Tipp: Vorher muss der Datensatz zu einem data.frame umgewandelt werden. Nutzen Sie die funktion `as.data.frame()`.
 
 ### Wahlbeteiligung bei der Bundestagswahl 2017 {#wahlbeteiligung} 
 

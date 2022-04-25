@@ -33,7 +33,7 @@ Jedes dieser Pakete hat ein Cheat Sheet, eine übersichtliche Zusammenstellung d
 
 ### Daten einlesen, revisited
 
-Als erstes laden wir die Bibliothek `tidyverse`.
+Als Erstes laden wir die Bibliothek `tidyverse`.
 
 ```{r, message = F, warning = F}
 library(tidyverse)
@@ -42,7 +42,7 @@ library(tidyverse)
 
 Sie kennen bereits die Funktion `read_delim()` zum Einlesen von Textdateien. Die Funktion ist die allgemeinste Funktion der `read_*` Familie aus `readr` in `tidyverse`; `read_csv()` und `read_csv2()` sind jeweils für komma- und strichpunkt-getrennte Datensätze gedacht. In der Basisinstallation von R (also außerhalb von `tidyverse`) gibt die sehr umfangreiche Funktion `read.table()`, die ebenfalls zum Einlesen von Textdateien verwendet wird. Man könnte berechtigterweise fragen, warum neue Funktion (`read_*`) für etwas erfinden, was es schon gibt. Die Autoren von `tidyverse` versprechen Konsistenz und Geschwindigkeit. Ersteres war schon immer ein Problem von R, da es nicht von Computerspezialisten, sondern von Anwendern erfunden wurde. Daher ist eine Vereinheitlichung durch `tidyverse` mehr als willkommen. Und Geschwindigkeit ist spätestens bei größeren Datensätzen ein wichtiger Punkt.
 
-Wir sehen uns Daten des Deutschen Wetterdienstes an, die ich am 24. Mai 2020 herunter geladen habe (https://www.dwd.de/DE/leistungen/klimadatendeutschland/klimadatendeutschland.html). Auch das ist eine tolle Datenquelle für Berichte `r emo::ji('smile')`. Der Datensatz enthält Stundenwerte für relative Luftfeuchte (%) und Lufttemperatur (°C) von drei Wetterstationen, nämlich Hof, Frankfurt und Köln-Bonn. Die Daten sind in der Datei `r file.name("Drei_Stationen.csv")` gespeichert.
+Wir sehen uns Daten des Deutschen Wetterdienstes an, die ich am 24. Mai 2020 heruntergeladen habe (https://www.dwd.de/DE/leistungen/klimadatendeutschland/klimadatendeutschland.html). Auch das ist eine tolle Datenquelle für Berichte `r emo::ji('smile')`. Der Datensatz enthält Stundenwerte für relative Luftfeuchte (%) und Lufttemperatur (°C) von drei Wetterstationen, nämlich Hof, Frankfurt und Köln-Bonn. Die Daten sind in der Datei `r file.name("Drei_Stationen.csv")` gespeichert.
 
 Beim Einlesen zeigt Ihnen `read_delim()` bereits, welche Spalten und welche Datentypen es erkennt, mit `trim_ws = T` werden Leerzeichen aus Spalten entfernt.
 
@@ -81,7 +81,7 @@ class(temp_humid)
 Das Objekt `temp_humid` ist ein `tibble`, ein `data.frame` mit "modernem" Verhalten. Z.B. gibt die Funktion `print()` nur die ersten 10 Zeilen aus, die Datentypen in den Spalten werden in hellgrau zwischen '<>' mit angegeben etc. Mehr zu Tibbles finden Sie in Kapitel 10 "Tibbles" in R4DS.
 
 ## Geschickter Umgang mit Zeit und Datum
-Ein weiteres Paket, dass zwar nicht zum Kern von `tidyverse` gehört, jedoch trotzdem extrem nützlich ist, heißt `lubridate`. Es hilft, Text sehr einfach in richtige Datums-Objekte zu transformieren (in Base-R muss man sich dafür kryptischen Datumsformate merken). Wir transformieren die Spalte `temp_humid$MESS_DATUM` in ein richtiges Datum mit Uhrzeit. Die Funktion `ymd_h()` kann `character` in ein richtiges Datumsformat transformieren, wenn das Datum als **y**ear, **m**onth, **d**ay, **h**our codiert ist. Es gibt noch weitere Varianten der Codierung, die Sie bei Bedarf in der Hilfe nachschlagen sollten.
+Ein weiteres Paket, das zwar nicht zum Kern von `tidyverse` gehört, jedoch trotzdem extrem nützlich ist, heißt `lubridate`. Es hilft, Text sehr einfach in richtige Datums-Objekte zu transformieren (in Base-R muss man sich dafür kryptischen Datumsformate merken). Wir transformieren die Spalte `temp_humid$MESS_DATUM` in ein richtiges Datum mit Uhrzeit. Die Funktion `ymd_h()` kann `character` in ein richtiges Datumsformat transformieren, wenn das Datum als **y**ear, **m**onth, **d**ay, **h**our codiert ist. Es gibt noch weitere Varianten der Codierung, die Sie bei Bedarf in der Hilfe nachschlagen sollten.
 
 ```{r, message = F, warning = F}
 library(lubridate)
@@ -107,7 +107,7 @@ temp_humid %>%
   count()
 ```
 
-Die Zeichenkombination `%>%` heißt Pipe-Operator (*pipe*) und wird als 'und dann' gelesen (*then*). Der Ausdruck `temp_humid %>% group_by(STATIONS_ID) %>% count()` heißt also: nimm das Objekt `temp_humid`, gruppiere es nach der Variablen `STATION_ID` und dann zähle die Einträge pro Gruppe zusammen. Der Pipe-Operator ist die Kernphilosophie von `tidyverse` und wird Ihnen überall begegnen. Der Operator stammt aus dem Paket `magrittr` (https://magrittr.tidyverse.org/). Seine Hauptaufgabe ist es, den Code übersichtlicher und besser lesbar zu machen (vielleicht nicht gleich zu Beginn der Lernkurve aber schon sehr bald `r emo::ji('sunglasses')`).
+Die Zeichenkombination `%>%` heißt Pipe-Operator (*pipe*) und wird als 'und dann' gelesen (*then*). Der Ausdruck `temp_humid %>% group_by(STATIONS_ID) %>% count()` heißt also: nimm das Objekt `temp_humid`, gruppiere es nach der Variablen `STATION_ID` und dann zähle die Einträge pro Gruppe zusammen. Der Pipe-Operator ist die Kernphilosophie von `tidyverse` und wird Ihnen überall begegnen. Der Operator stammt aus dem Paket `magrittr` (https://magrittr.tidyverse.org/). Seine Hauptaufgabe ist es, den Code übersichtlicher und besser lesbar zu machen (vielleicht nicht gleich zu Beginn der Lernkurve, aber schon bald `r emo::ji('sunglasses')`).
 
 ## Die Grammatik der Datenmanipulation -- `dplyr`
 Die Funktion `count()` gehört zum Paket `dplyr`, das für Datentransformationen zuständig ist. Es ist mal wieder eine Grammatik. Dieses Paket enthält 5 Grundfunktionen (alle nach Verben benannt, damit man gleich weiß, was frau tut `r emo::ji('smile')`):
@@ -128,7 +128,7 @@ temp_humid %>%
   count()
 ```
 
-Beim Filtern läuft eine logische Abfrage. D.h. es wird bei jeden Eintrag in `STATION_ID` nachgesehen, ob da der Wert 2667 steht. Wenn da 2667 steht, dann gibt `==` ein `TRUE` zurück, wenn da etwas anderes steht, dann gibt `==` ein `FALSE` zurück. Und die Funktion `filter()` behält nur die Zeilen, bei denen `==` ein `TRUE` zurück gegeben hat.
+Beim Filtern läuft eine logische Abfrage. D.h. es wird bei jeden Eintrag in `STATION_ID` nachgesehen, ob da der Wert 2667 steht. Wenn da 2667 steht, dann gibt `==` ein `TRUE` zurück, wenn da etwas anderes steht, dann gibt `==` ein `FALSE` zurück. Und die Funktion `filter()` behält nur die Zeilen, bei denen `==` ein `TRUE` zurückgegeben hat.
 
 Weiter wichtige logische und relationale Operatoren finden Sie hier in der Hilfe zu `filter()`. Hier ein paar einfache Beispiele
 
@@ -173,7 +173,7 @@ ggplot(data = temp_humid, aes(x = MESS_DATUM, y = TT_TU)) +
 
 ### Neue Variablen erstellen mit `mutate()`
 
-Wir wollen nun die Monatsmittelwerte und die Standardabweichungen für die Temperatur berechnen und diese darstellen. Als erstes erstellen wir zwei neue Spalten, die jeweils das Jahr und den Monat beinhalten. Die beiden neuen Spalten werden am Ende von `temp_humid` angehängt. Um neue Spalten zu erstellen, nutzen wir die Funktion `mutate()`. Die Funktionen `year()`und `month()` gehören zur Bibliothek `lubridate` und extrahieren jeweils das Jahr und den Monat aus `MESS_DATUM`.
+Wir wollen die Monatsmittelwerte und die Standardabweichungen für die Temperatur berechnen und diese darstellen. Als Erstes erstellen wir zwei neue Spalten, die jeweils das Jahr und den Monat beinhalten. Die beiden neuen Spalten werden am Ende von `temp_humid` angehängt. Um neue Spalten zu erstellen, nutzen wir die Funktion `mutate()`. Die Funktionen `year()`und `month()` gehören zur Bibliothek `lubridate` und extrahieren jeweils das Jahr und den Monat aus `MESS_DATUM`.
 
 ```{r}
 temp_humid <- temp_humid %>% 
@@ -183,7 +183,7 @@ temp_humid <- temp_humid %>%
 temp_humid
 ```
 
-Jetzt können wir einen neuen Datensatz mit den Mittelwerten erstellen. Dafür gruppieren wir erst einmal die Daten nach `STATIONS_ID`, `year` und `month`. Die Mittelwerte sollen ja je Station, Jahr und Monat berechnet werden. Beim Gruppieren gibt man die Variablen ohne Anführungszeichen und ohne einen Vektor zu bilden einfach durch Kommas getrennt an.
+Jetzt können wir einen neuen Datensatz mit den Mittelwerten erstellen. Dafür gruppieren wir erst einmal die Daten nach `STATIONS_ID`, `year` und `month`. Die Mittelwerte sollen ja je Station, Jahr und Monat berechnet werden. Beim Gruppieren gibt man die Variablen ohne Anführungszeichen und ohne einen Vektor zu bilden, einfach durch Kommas getrennt an.
 
 ```{r}
 monthly_means <- temp_humid %>%
@@ -207,7 +207,7 @@ monthly_means <- ungroup(monthly_means)
 ```
 
 
-Um die Daten als Zeitreihen zu plotten, erstellen wir noch eine ordentliche Zeit-Spalte. Die Funktion `parse_date_time()` kann aus Character richtige Datums-Zeitobjekte erstellen. Sie ist allgemeiner als die oben verwendete `ymd_h()` Funktion, da man hier das Format explizit angeben kann. In unserem Fall ist das Format 'ym' für Jahr und Monat.
+Um die Daten als Zeitreihen zu plotten, erstellen wir noch eine ordentliche Zeit-Spalte. Die Funktion `parse_date_time()` kann aus *character* richtige Datums-Zeitobjekte erstellen. Sie ist allgemeiner als die oben verwendete `ymd_h()` Funktion, da man hier das Format explizit angeben kann. In unserem Fall ist das Format 'ym' für Jahr und Monat.
 
 ```{r}
 monthly_means <- monthly_means %>%
@@ -216,7 +216,7 @@ monthly_means <- monthly_means %>%
 monthly_means
 ```
 
-Der Code `paste0(year, month)` "klebt" die Daten in der Variablen `year` und `month` zusammen. Das ist nötig, da die Funktion `parse_date_time()` einen Charaktervektor als Input erwartet und keine zwei getrennten Spalten. Da das Datum außer dem Jahr und dem Monat noch einen Tag braucht, hat `parse_date_time()` den ersten eines jeden Monats genommen.
+Der Code `paste0(year, month)` "klebt" die Daten in der Variablen `year` und `month` zusammen. Das ist nötig, da die Funktion `parse_date_time()` einen Charaktervektor als Input erwartet und keine zwei getrennten Spalten. Da das Datum außer dem Jahr und dem Monat noch einen Tag braucht, hat `parse_date_time()` den Ersten eines jeden Monats genommen.
 
 ```{r, out.width = "90%"}
 ggplot(data = monthly_means, aes(x = year_month, y = mean_T, col = factor(STATIONS_ID))) + 

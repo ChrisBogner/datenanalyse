@@ -73,6 +73,17 @@ wahlbeteiligung
 zweitstimme
 zweigrafiken
 ihre-arbeit-einreichen-2
+explorative-datenanalyse
+grundpakete
+der-explorative-workflow
+daten-einlesen-revisited
+geschickter-umgang-mit-zeit-und-datum
+daten-zusammenfassen
+die-grammatik-der-datenmanipulation-dplyr
+daten-plotten
+neue-variablen-erstellen-mit-mutate
+lesestoff-6
+weiterführende-literatur-und-videos
 aufgabensammlung
 werdeschlau
 grundgesamtheit-generieren

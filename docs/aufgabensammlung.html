@@ -7,18 +7,44 @@
 <title>Kapitel 7 Aufgabensammlung | Datenanalyse mit R</title>
 <meta name="author" content="Christina Bogner">
 <meta name="description" content="Diese Aufgabensammlung enthält zusätzlich Aufgaben, die z.B. im Seminar bearbeitet werden. Aufgaben zu den einzelnen Kapiteln finden Sie am Ende des jeweiligen Kapitels.  7.1 Tutorial...">
-<meta name="generator" content="bookdown 0.24.3 with bs4_book()">
+<meta name="generator" content="bookdown 0.26 with bs4_book()">
 <meta property="og:title" content="Kapitel 7 Aufgabensammlung | Datenanalyse mit R">
 <meta property="og:type" content="book">
 <meta property="og:description" content="Diese Aufgabensammlung enthält zusätzlich Aufgaben, die z.B. im Seminar bearbeitet werden. Aufgaben zu den einzelnen Kapiteln finden Sie am Ende des jeweiligen Kapitels.  7.1 Tutorial...">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Kapitel 7 Aufgabensammlung | Datenanalyse mit R">
 <meta name="twitter:description" content="Diese Aufgabensammlung enthält zusätzlich Aufgaben, die z.B. im Seminar bearbeitet werden. Aufgaben zu den einzelnen Kapiteln finden Sie am Ende des jeweiligen Kapitels.  7.1 Tutorial...">
-<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<style type="text/css">
+    /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+        }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style>
+<link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="font-awesome.min.css">
 </head>
 <body data-spy="scroll" data-target="#toc">
@@ -117,7 +143,7 @@
 <li>Befragte oder</li>
 <li>Modalwerte?</li>
 </ul>
-<p>Falls Sie nicht sicher sind: Lesen Sie Kapitel 2 in Mittag (2017) “Statistik!”</p>
+<p>Falls Sie nicht sicher sind: Lesen Sie Kapitel 2 in Mittag (2017) “Statistik”!</p>
 <p><br></p>
 <p>Um unsere Stichprobe zu erstellen, ziehen wir ohne Zurücklegen aus unserer Grundgesamtheit. Sagen wir mal, die Kapazitäten der Befragenden reichen für 200 Befragungen.</p>
 <p><em>Lassen Sie den folgenden Code laufen.</em></p>
@@ -251,7 +277,7 @@ Wir sehen uns die Kontingenztabelle dazu an.</p>
 <span class="header-section-number">7.1.8</span> Aufgabe einreichen<a class="anchor" aria-label="anchor" href="#aufgabe-einreichen"><i class="fas fa-link"></i></a>
 </h3>
 <ul>
-<li>Speichern Sie Ihr Notebook und laden Sie es vom Server herunter.</li>
+<li>Speichern Sie Ihr Notebook.</li>
 <li>Laden Sie Ihr Notebook in ILIAS hoch. Sie bekommen eine Musterlösung</li>
 <li>Vergleichen Sie Ihre Lösung mit der Musterlösung.</li>
 </ul>
@@ -276,7 +302,7 @@ Wir sehen uns die Kontingenztabelle dazu an.</p>
 <h3>
 <span class="header-section-number">7.2.2</span> Unfaire Klausur?<a class="anchor" aria-label="anchor" href="#klausur"><i class="fas fa-link"></i></a>
 </h3>
-<p>Ar belegt im 4. Semester die Veranstaltung “Spaß mit R.” Bei der Klausur gibt es 2 Aufgabengruppen mit jeweils 60 Punkten. Aufgabengruppe 1 wird an Studierende auf ungeraden Sitzplätzen und Aufgabengruppe 2 an Studierende auf geraden Sitzplätzen ausgegeben.</p>
+<p>Ar belegt im 4. Semester die Veranstaltung “Spaß mit R”. Bei der Klausur gibt es 2 Aufgabengruppen mit jeweils 60 Punkten. Aufgabengruppe 1 wird an Studierende auf ungeraden Sitzplätzen und Aufgabengruppe 2 an Studierende auf geraden Sitzplätzen ausgegeben.</p>
 <ol style="list-style-type: decimal">
 <li>Lesen Sie den Datensatz <span style="font-family: sans-serif; font-size: medium">Klausurpunkte.txt</span> ein.</li>
 <li>Überprüfen Sie Ars Vermutung, dass die Aufgabengruppe 1 im Schnitt leichter war als Aufgabengruppe 2 (d.h. in der Gruppe 1 im Schnitt mehr Punkte erzielt wurden). Nutzen Sie die Funktionen <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code>, um eine Spalte mit der Gruppenzugehörigkeit zu ermitteln und <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize()</a></code>, um den Mittelwert zu berechnen. Tipp: mit dem Operator <code>%%</code> können Sie überprüfen, ob eine Zahl z.B. durch 2 teilbar ist.</li>
@@ -289,7 +315,7 @@ Wir sehen uns die Kontingenztabelle dazu an.</p>
 <p>Ar Stat untersucht im Rahmen eines ökologischen Praktikums Fledermäuse in Ecuador. Er misst die Größe der Tiere und bestimmt ihr Geschlecht.</p>
 <ul>
 <li>Laden Sie den Datensatz <span style="font-family: sans-serif; font-size: medium">Fledermaus.txt</span>. Dieser enthält die Größe der Tiere in cm.</li>
-<li>Die ersten 20 untersuchten Tiere sind Männchen. Erstellen Sie einen <code>factor</code> “geschlecht,” der das Geschlecht der Tiere enthält. Benutzen Sie dazu die Funktionen <code><a href="https://rdrr.io/r/base/rep.html">rep()</a></code>.</li>
+<li>Die ersten 20 untersuchten Tiere sind Männchen. Erstellen Sie einen <code>factor</code> “geschlecht”, der das Geschlecht der Tiere enthält. Benutzen Sie dazu die Funktionen <code><a href="https://rdrr.io/r/base/rep.html">rep()</a></code>.</li>
 <li>Fügen Sie die Informationen über die Größe und das Geschlecht in einem <code>tibble</code> zusammen und bennen Sie die Spalten entsprechend.</li>
 <li>Bei dem 3. Individuum hat sich Ar vertippt. Die Größe des Tieres lautet in Wirklichkeit 5,37 cm. Korrigieren Sie den Fehler.</li>
 <li>Speichern Sie den korrigierten Datensatz ab.</li>
@@ -324,7 +350,7 @@ Wir sehen uns die Kontingenztabelle dazu an.</p>
 <h3>
 <span class="header-section-number">7.2.6</span> Umweltdaten entlang der dänischen Küste<a class="anchor" aria-label="anchor" href="#umweltdaten-entlang-der-d%C3%A4nischen-k%C3%BCste"><i class="fas fa-link"></i></a>
 </h3>
-<p>Die Datei <span style="font-family: sans-serif; font-size: medium">Temperatur.csv</span> aus <span class="citation"><a href="literatur.html#ref-Zuur2009a" role="doc-biblioref">Zuur, Ieno, and Meesters</a> (<a href="literatur.html#ref-Zuur2009a" role="doc-biblioref">2009</a>)</span> enthält Messungen von Temperatur, Salinität und Chlorophyl a an 31 Orten entlang der dänischen Küste. Der Datensatz kann <a href="https://highstat.com/index.php/a-beginner-s-guide-to-r">hier</a> heruntergeladen werden. Die Daten stammen vom dänischen Institut RIKZ (Monitoringprogramm MWTL: Monitoring Waterstaatkundige Toestand des Lands). Die Messungen wurden zwischen 1990 und 2005 durchgeführt mit einer Häufigkeit von 0–4 mal pro Monat je nach Jahreszeit.</p>
+<p>Die Datei <span style="font-family: sans-serif; font-size: medium">Temperatur.csv</span> aus <span class="citation">Zuur, Ieno, and Meesters (<a href="literatur.html#ref-Zuur2009a" role="doc-biblioref">2009</a>)</span> enthält Messungen von Temperatur, Salinität und Chlorophyl a an 31 Orten entlang der dänischen Küste. Der Datensatz kann <a href="https://highstat.com/index.php/a-beginner-s-guide-to-r">hier</a> heruntergeladen werden. Die Daten stammen vom dänischen Institut RIKZ (Monitoringprogramm MWTL: Monitoring Waterstaatkundige Toestand des Lands). Die Messungen wurden zwischen 1990 und 2005 durchgeführt mit einer Häufigkeit von 0–4 mal pro Monat je nach Jahreszeit.</p>
 <ol style="list-style-type: decimal">
 <li>Lesen Sie den Datensatz <span style="font-family: sans-serif; font-size: medium">Temperatur.csv</span> ein.</li>
 <li>Konvertieren Sie die Spalte Date in ein richtiges Datumsformat und plotten Sie die Temperaturen pro Station (<code><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap()</a></code>) als Zeitreihen.</li>
@@ -359,7 +385,7 @@ Wir sehen uns die Kontingenztabelle dazu an.</p>
 <h3>
 <span class="header-section-number">7.3.2</span> Artenvielfalt in Grasländern<a class="anchor" aria-label="anchor" href="#artenvielfalt-in-grasl%C3%A4ndern"><i class="fas fa-link"></i></a>
 </h3>
-<p>Sie erhalten Daten aus dem Grasland-Monitoring im Yellowstone Nationalpark und dem National Bison Range (USA) aus <span class="citation"><a href="literatur.html#ref-Zuur2009a" role="doc-biblioref">Zuur, Ieno, and Meesters</a> (<a href="literatur.html#ref-Zuur2009a" role="doc-biblioref">2009</a>)</span> und <span class="citation"><a href="literatur.html#ref-Sikkink2007" role="doc-biblioref">Sikkink et al.</a> (<a href="literatur.html#ref-Sikkink2007" role="doc-biblioref">2007</a>)</span>. Der Datensatz kann <a href="https://highstat.com/index.php/a-beginner-s-guide-to-r">hier</a> heruntergeladen werden. Das Ziel des Monitorings ist die Untersuchung möglicher Änderungen der Biodiversität und deren Zusammenhang mit Umweltfaktoren. Biodiversität wurde durch die Anzahl unterschiedlicher Arten quantifiziert (Spalte <code>R</code>). Insgesamt haben die Forscher ca. 90 Arten in 8 Transekten kartiert. Die Aufnahmen wurden alle 4 bis 10 Jahre wiederholt. Insgesamt liegen 58 Beobachtungen vor. Die Daten sind in der Datei <span style="font-family: sans-serif; font-size: medium">Vegetation2.xls</span> gespeichert.</p>
+<p>Sie erhalten Daten aus dem Grasland-Monitoring im Yellowstone Nationalpark und dem National Bison Range (USA) aus <span class="citation">Zuur, Ieno, and Meesters (<a href="literatur.html#ref-Zuur2009a" role="doc-biblioref">2009</a>)</span> und <span class="citation">Sikkink et al. (<a href="literatur.html#ref-Sikkink2007" role="doc-biblioref">2007</a>)</span>. Der Datensatz kann <a href="https://highstat.com/index.php/a-beginner-s-guide-to-r">hier</a> heruntergeladen werden. Das Ziel des Monitorings ist die Untersuchung möglicher Änderungen der Biodiversität und deren Zusammenhang mit Umweltfaktoren. Biodiversität wurde durch die Anzahl unterschiedlicher Arten quantifiziert (Spalte <code>R</code>). Insgesamt haben die Forscher ca. 90 Arten in 8 Transekten kartiert. Die Aufnahmen wurden alle 4 bis 10 Jahre wiederholt. Insgesamt liegen 58 Beobachtungen vor. Die Daten sind in der Datei <span style="font-family: sans-serif; font-size: medium">Vegetation2.xls</span> gespeichert.</p>
 <ol style="list-style-type: decimal">
 <li><p>Laden Sie den Datensatz in R und sehen Sie sich seine Struktur an. Von welchem Typ sind die einzelnen Variablen? Entspricht das Ihren Erwartungen? Diese Aufgabe dient dazu, das Einlesen von Excel-Dateien mit <code>tidyverse</code> zu erarbeiten. Tipp: nutzen Sie die Funktion <code>read_xls()</code> in der Bibliothek <code>readxl</code>. Lesen Sie in der Hilfe nach, wie Sie <em>ein bestimmtes</em> Tabellenblatt aus Excel einlesen können.</p></li>
 <li><p>Kurze explorative Analyse: Berechnen Sie die Anzahl der Messungen, den Mittelwert und die Standardabweichung der Artenzahl <code>R</code> pro Transekt.</p></li>
@@ -394,7 +420,7 @@ Wir sehen uns die Kontingenztabelle dazu an.</p>
 <li>Die Daten sind in der Datei <span style="font-family: sans-serif; font-size: medium">WWBIData.csv</span> gespeichert. Sehen Sie sich die beiden anderen csv-Dateien an. Was steht drin?</li>
 <li>Lesen Sie den Datensatz <span style="font-family: sans-serif; font-size: medium">WWBIData.csv</span> ein.</li>
 <li>Gemeinsame Übung: Wir bereinigen den Datensatz und machen ihn <em>tidy</em>.</li>
-<li>Filtern Sie Daten für das Jahr 2012 und die Indikatoren “BI.PWK.PRVS.FE.ZS” und “BI.PWK.PUBS.FE.ZS.” Enfernen Sie NAs. Was bedeuten diese Indikatoren?</li>
+<li>Filtern Sie Daten für das Jahr 2012 und die Indikatoren “BI.PWK.PRVS.FE.ZS” und “BI.PWK.PUBS.FE.ZS”. Enfernen Sie NAs. Was bedeuten diese Indikatoren?</li>
 <li>Stellen Sie die Histogramme dieser Indikatoren dar.</li>
 <li>Gibt es Unterschied zwischen den Anteilen der beschäftigen Frauen im privaten und öffentlichen Sektor?</li>
 </ol>
@@ -494,7 +520,7 @@ Wir sehen uns die Kontingenztabelle dazu an.</p>
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Datenanalyse mit R</strong>: SoSe 2022" was written by Christina Bogner. It was last built on 2022-04-25.</p>
+    <p>"<strong>Datenanalyse mit R</strong>: SoSe 2022" was written by Christina Bogner. It was last built on 2022-05-03.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

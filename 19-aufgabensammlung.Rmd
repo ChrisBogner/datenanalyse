@@ -254,7 +254,7 @@ ggplot() + geom_fontawesome("fa-coffee", color='lightblue', size = 80) + theme_v
 ```
 
 ### Aufgabe einreichen
-- Speichern Sie Ihr Notebook und laden Sie es vom Server herunter.
+- Speichern Sie Ihr Notebook.
 - Laden Sie Ihr Notebook in ILIAS hoch. Sie bekommen eine Musterlösung
 - Vergleichen Sie Ihre Lösung mit der Musterlösung.
 

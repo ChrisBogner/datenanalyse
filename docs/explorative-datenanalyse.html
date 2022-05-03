@@ -7,18 +7,44 @@
 <title>Kapitel 6 Explorative Datenanalyse mit tidyverse | Datenanalyse mit R</title>
 <meta name="author" content="Christina Bogner">
 <meta name="description" content="Kernpakete aus tidyverse benennen  ein einfaches Workflow (Daten einlesen, zusammenfassen, darstellen) mit tidyverse durchführen  Funktionen des Pakets dplyr für Datentransformation anwenden ...">
-<meta name="generator" content="bookdown 0.24.3 with bs4_book()">
+<meta name="generator" content="bookdown 0.26 with bs4_book()">
 <meta property="og:title" content="Kapitel 6 Explorative Datenanalyse mit tidyverse | Datenanalyse mit R">
 <meta property="og:type" content="book">
 <meta property="og:description" content="Kernpakete aus tidyverse benennen  ein einfaches Workflow (Daten einlesen, zusammenfassen, darstellen) mit tidyverse durchführen  Funktionen des Pakets dplyr für Datentransformation anwenden ...">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Kapitel 6 Explorative Datenanalyse mit tidyverse | Datenanalyse mit R">
 <meta name="twitter:description" content="Kernpakete aus tidyverse benennen  ein einfaches Workflow (Daten einlesen, zusammenfassen, darstellen) mit tidyverse durchführen  Funktionen des Pakets dplyr für Datentransformation anwenden ...">
-<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<style type="text/css">
+    /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+        }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style>
+<link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="font-awesome.min.css">
 </head>
 <body data-spy="scroll" data-target="#toc">
@@ -70,10 +96,12 @@
 Kernpakete aus <code>tidyverse</code> benennen
 </li>
 <li>
-ein einfaches Workflow (Daten einlesen, zusammenfassen, darstellen) mit <code>tidyverse</code> durchführen
+ein einfaches Workflow (Daten einlesen, zusammenfassen, darstellen)
+mit <code>tidyverse</code> durchführen
 </li>
 <li>
-Funktionen des Pakets <code>dplyr</code> für Datentransformation anwenden
+Funktionen des Pakets <code>dplyr</code> für Datentransformation
+anwenden
 </li>
 </ul>
 </div>
@@ -278,6 +306,10 @@ Funktionen des Pakets <code>dplyr</code> für Datentransformation anwenden
 </h2>
 <p>Die Funktion <code><a href="https://dplyr.tidyverse.org/reference/count.html">count()</a></code> gehört zum Paket <code>dplyr</code>, das für Datentransformationen zuständig ist. Es ist mal wieder eine Grammatik. Dieses Paket enthält 5 Grundfunktionen (alle nach Verben benannt, damit man gleich weiß, was frau tut 😄):</p>
 <div class="inline-table"><table class="table table-sm">
+<colgroup>
+<col width="50%">
+<col width="50%">
+</colgroup>
 <thead><tr class="header">
 <th align="left">Funktion</th>
 <th align="left">Bedeutung</th>
@@ -526,14 +558,14 @@ Funktionen des Pakets <code>dplyr</code> für Datentransformation anwenden
 <h2>
 <span class="header-section-number">6.5</span> Lesestoff<a class="anchor" aria-label="anchor" href="#lesestoff-6"><i class="fas fa-link"></i></a>
 </h2>
-<p>Kapitel 3 in <span class="citation"><a href="literatur.html#ref-ModernDive" role="doc-biblioref">Ismay and Kim</a> (<a href="literatur.html#ref-ModernDive" role="doc-biblioref">2021</a>)</span></p>
+<p>Kapitel 3 in <span class="citation">Ismay and Kim (<a href="literatur.html#ref-ModernDive" role="doc-biblioref">2021</a>)</span></p>
 </div>
 <div id="weiterführende-literatur-und-videos" class="section level2" number="6.6">
 <h2>
 <span class="header-section-number">6.6</span> Weiterführende Literatur und Videos<a class="anchor" aria-label="anchor" href="#weiterf%C3%BChrende-literatur-und-videos"><i class="fas fa-link"></i></a>
 </h2>
 <ul>
-<li><p>R4DS <span class="citation"><a href="literatur.html#ref-r4ds" role="doc-biblioref">Wickham and Grolemund</a> (<a href="literatur.html#ref-r4ds" role="doc-biblioref">2021</a>)</span>: Kapitel 5 “Data transformation”</p></li>
+<li><p>R4DS <span class="citation">Wickham and Grolemund (<a href="literatur.html#ref-r4ds" role="doc-biblioref">2021</a>)</span>: Kapitel 5 “Data transformation”</p></li>
 <li><p>Eine <a href="https://www.youtube.com/watch?v=go5Au01Jrvs">live Analyse</a> des Hauptautors von <code>tidyverse</code>, Hadley Wickham. Empfehlenswert, auch wenn er viel zu schnell tippt 😄.</p></li>
 </ul>
 </div>
@@ -577,7 +609,7 @@ Funktionen des Pakets <code>dplyr</code> für Datentransformation anwenden
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Datenanalyse mit R</strong>: SoSe 2022" was written by Christina Bogner. It was last built on 2022-04-25.</p>
+    <p>"<strong>Datenanalyse mit R</strong>: SoSe 2022" was written by Christina Bogner. It was last built on 2022-05-03.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

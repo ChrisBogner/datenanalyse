@@ -7,18 +7,44 @@
 <title>Kapitel 2 R Markdown für reproduzierbare Forschung | Datenanalyse mit R</title>
 <meta name="author" content="Christina Bogner">
 <meta name="description" content="Wichtigkeit der Reproduzierbarkeit erklären  Begriff literate programming definieren  Aufbau einer RMarkdown-Datei erklären  Einen einfachen ersten reproduzierbaren Bericht schreiben   2.1 Warum...">
-<meta name="generator" content="bookdown 0.24.3 with bs4_book()">
+<meta name="generator" content="bookdown 0.26 with bs4_book()">
 <meta property="og:title" content="Kapitel 2 R Markdown für reproduzierbare Forschung | Datenanalyse mit R">
 <meta property="og:type" content="book">
 <meta property="og:description" content="Wichtigkeit der Reproduzierbarkeit erklären  Begriff literate programming definieren  Aufbau einer RMarkdown-Datei erklären  Einen einfachen ersten reproduzierbaren Bericht schreiben   2.1 Warum...">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Kapitel 2 R Markdown für reproduzierbare Forschung | Datenanalyse mit R">
 <meta name="twitter:description" content="Wichtigkeit der Reproduzierbarkeit erklären  Begriff literate programming definieren  Aufbau einer RMarkdown-Datei erklären  Einen einfachen ersten reproduzierbaren Bericht schreiben   2.1 Warum...">
-<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<style type="text/css">
+    /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+        }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style>
+<link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="font-awesome.min.css">
 </head>
 <body data-spy="scroll" data-target="#toc">
@@ -90,7 +116,7 @@ Einen einfachen ersten reproduzierbaren Bericht schreiben
 <h2>
 <span class="header-section-number">2.2</span> <em>Literate Programming</em> Idee von Donald Knuth<a class="anchor" aria-label="anchor" href="#literate-programming-idee-von-donald-knuth"><i class="fas fa-link"></i></a>
 </h2>
-<p>Die Idee, dass man den Code und die dazugehörige Interpretation (Text, Bericht etc.) nicht voneinander trennen sollte, geht auf <span class="citation"><a href="literatur.html#ref-Knuth1984" role="doc-biblioref">Knuth</a> (<a href="literatur.html#ref-Knuth1984" role="doc-biblioref">1984</a>)</span> zurück. Mit <em>Literate Programming</em> meinte Knuth, dass Programme auch nichts anderes wie literarische Werke sind. Er setzte den Fokus darauf, mit Programmen menschlichen Benutzern zu erklären, was man den Computer machen lassen möchte. Also weg vom computer- hin zum mensch-zentrierten Zugang. So wird Programmieren und in unserem Fall die Datenanalyse verständlich und vor allem reproduzierbar.</p>
+<p>Die Idee, dass man den Code und die dazugehörige Interpretation (Text, Bericht etc.) nicht voneinander trennen sollte, geht auf <span class="citation">Knuth (<a href="literatur.html#ref-Knuth1984" role="doc-biblioref">1984</a>)</span> zurück. Mit <em>Literate Programming</em> meinte Knuth, dass Programme auch nichts anderes wie literarische Werke sind. Er setzte den Fokus darauf, mit Programmen menschlichen Benutzern zu erklären, was man den Computer machen lassen möchte. Also weg vom computer- hin zum mensch-zentrierten Zugang. So wird Programmieren und in unserem Fall die Datenanalyse verständlich und vor allem reproduzierbar.</p>
 <p>Leider ist es in unserer modernen Forschungslandschaft immer noch nicht Standard. Das Trennen von Analyseergebnissen und Berichten (Forschungsartikeln) sorgt für viele (unentdeckte und unnötige) Fehler und Frust.</p>
 </div>
 <div id="reproduzierbare-berichte-mit-r-markdown" class="section level2" number="2.3">
@@ -139,7 +165,7 @@ Abbildung 2.2: Einen neuen Chunk hinzufügen
 <h2>
 <span class="header-section-number">2.7</span> Lesestoff<a class="anchor" aria-label="anchor" href="#lesestoff-2"><i class="fas fa-link"></i></a>
 </h2>
-<p>Intro zu Kapitel 2 (Basics), Kapitel 3.2.1 und 3.2.2 in <span class="citation"><a href="literatur.html#ref-RMarkdownGuide" role="doc-biblioref">Xie, Allaire, and Grolemund</a> (<a href="literatur.html#ref-RMarkdownGuide" role="doc-biblioref">2021</a>)</span></p>
+<p>Intro zu Kapitel 2 (Basics), Kapitel 3.2.1 und 3.2.2 in <span class="citation">Xie, Allaire, and Grolemund (<a href="literatur.html#ref-RMarkdownGuide" role="doc-biblioref">2021</a>)</span></p>
 </div>
 <div id="weiterführende-literatur" class="section level2" number="2.8">
 <h2>
@@ -222,7 +248,7 @@ Abbildung 2.2: Einen neuen Chunk hinzufügen
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Datenanalyse mit R</strong>: SoSe 2022" was written by Christina Bogner. It was last built on 2022-04-25.</p>
+    <p>"<strong>Datenanalyse mit R</strong>: SoSe 2022" was written by Christina Bogner. It was last built on 2022-05-03.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

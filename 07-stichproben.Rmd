@@ -175,7 +175,7 @@ Wir stellen die drei Stichprobenverteilungen dar. Die Einstellung für `binwidth
 
 ```{r, out.width = '90%'}
 ggplot(data = wohnort_props_25, aes(x = prop)) + 
-  geom_histogram(binwidth = 0.05, boundary = 0.4, col = 'white') +
+  geom_histogram(binwidth = 0.04, boundary = 0.4, col = 'white') +
   facet_wrap(~ wohnort, scales = 'free_x') +
   labs(x = 'Anteile beim Wohnort', title = 'Verteilung der Wohnorte, Stichprobengröße = 25', y = 'Häufigkeit')
 

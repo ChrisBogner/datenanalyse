@@ -228,7 +228,7 @@ Kapitel 7 in @ModernDive
 Berechnen Sie die Anteile von Studierenden in der Grundgesamtheit, die in der Stadt bzw. auf dem Land leben. Wie gut waren die Schätzungen im Vergleich zum wahren Wert in der Grundgesamtheit?
 
 ### Lohnt eine Station zum Ausleihen von Fahrrädern?
-In unserem fiktiven Beispiel der Uni Werdeschlau geht es eigentlich darum, ob sich eine Station zum Ausleihen von Fahrrädern lohnen würde. Daher ist die Frage interessant, wie viele Studierende mit dem Fahrrad zur Uni kommen. Wiederholen Sie die obige Analyse und ermitteln Sie statt der Anteile von Stadt- und Landbewohnern nun die Anteile der unterschiedlichen Verkehrsmittel. Die selbst definierte Funktion müssen Sie durch die folgende ersetzen.
+In unserem fiktiven Beispiel der Uni Werdeschlau geht es eigentlich darum, ob sich eine Station zum Parken und Reparieren (also eine Servicestation) von Fahrrädern lohnen würde. Daher ist die Frage interessant, wie viele Studierende mit dem Fahrrad zur Uni kommen. Wiederholen Sie die obige Analyse und ermitteln Sie statt der Anteile von Stadt- und Landbewohnern nun die Anteile der unterschiedlichen Verkehrsmittel. Die selbst definierte Funktion müssen Sie durch die folgende ersetzen.
 ```{r}
 calculate_props_verkehr <- function(grund_data = grundgesamtheit, befragung_size, befragung_reps = 1000) {
   

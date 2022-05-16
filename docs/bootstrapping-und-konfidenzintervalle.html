@@ -114,9 +114,9 @@ Bootstrap-Konfidenzintervalle für Mittelwert berechnen
 </li>
 </ul>
 </div>
-<p>Im Kapitel <a href="stichproben.html#stichproben">7</a> haben Sie gesehen, dass Statistiken aus zufällig gezogenen Stichproben, dem Zufall unterliegen. Sie sind <strong>Zufallsvariablen</strong>. Diesen Zufall haben wir mit Hilfe der Stichprobenverteilung dieser Statistiken quantifiziert, in dem wir den <strong>Standardfehler</strong>, die Standardabweichung aus der Stichprobenverteilung, berechnet haben.</p>
+<p>Im Kapitel <a href="stichproben.html#stichproben">7</a> haben Sie gesehen, dass Statistiken aus zufällig gezogenen Stichproben, dem Zufall unterliegen. Sie sind <strong>Zufallsvariablen</strong>. Diesen Zufall haben wir mithilfe der Stichprobenverteilung dieser Statistiken quantifiziert, in dem wir den <strong>Standardfehler</strong>, die Standardabweichung aus der Stichprobenverteilung, berechnet haben.</p>
 <p>Die Statistik, die wir im Kapitel <a href="stichproben.html#stichproben">7</a> berechnet haben, war der Anteil von Studierenden, die entweder in der Stadt oder auf dem Land wohnen. Mit jeder Stichprobe, aus der wir diesen Anteil berechnet haben, haben wir eigentlich <strong>geschätzt</strong>, wie groß der wahre Anteil der Stadt- und Landbewohner in der Grundgesamtheit (allen 12000 Studierenden von Werdeschlau) ist. Der aus der Stichprobe berechnete Anteil ist also ein <strong>Schätzer</strong> für den wahren Anteil in der Grundgesamtheit. Dieser Schätzer ist eine Zufallsvariable (s.o.) und wie jede andere Zufallsvariable ist er durch seine Verteilung, nämlich die <strong>Stichprobenverteilung</strong> charakterisiert.</p>
-<p>Wir können jetzt also eine Menge statistischer Begriffe mit Hilfe unseres Beispiels mit Leben füllen:</p>
+<p>Wir können jetzt also eine Menge statistischer Begriffe mithilfe unseres Beispiels mit Leben füllen:</p>
 <div class="rmdalert">
 <ul>
 <li>
@@ -141,7 +141,7 @@ systematischen Fehler).
 </li>
 <li>
 <strong>Inferenz</strong>: schließen auf die Grundgesamtheit darf
-man, wenn die Stichprobe zufällig erhoben wurde und repräsentative für
+man, wenn die Stichprobe zufällig erhoben wurde und repräsentativ für
 die Fragestellung ist.
 </li>
 </ul>
@@ -157,8 +157,8 @@ die Fragestellung ist.
 <blockquote>
 <p>Gibt es einen plausiblen Bereich für den Mittelwert der Anreisezeit? Plausibel meint, dass wenn wir sehr oft verschiedene zufällige Stichprobe ziehen, dieser Bereich in sagen wir mal 95% der Fälle den wahren Mittelwert einschließt. Solche Plausibilitätsbereiche nennt man <strong>Konfidenzintervalle</strong>.</p>
 </blockquote>
-<p>Es gibt mehrere Methoden, solche Konfidenzintervalle zu berechnen. Wenn man die Verteilung des Schätzers kennt, wie z.B. beim Mittelwert (Normalverteilung), dann kann man daraus den Standardfehler berechnen (nennen wir diesen <span class="math inline">\(SE\)</span>). Ein 95%-Konfidenzintervall wäre dann <span class="math inline">\(\hat{\mu} \pm 1.96 \cdot SE\)</span>, wobei <span class="math inline">\(\hat{\mu}\)</span> der geschätzter Mittelwert ist. Das Hütchen steht für <em>geschätzt</em>. Diese Formel haben Sie bestimmt schon in der Grundvorlesung Statistik gesehen.</p>
-<p>Es gibt aber Schätzer, für die keine theoretische Verteilung bekannt ist. Da muss man eine andere Methode anwenden. Eine bekannte Methode heißt Bootstrapping (Bootstrap-Verfahren), manchmal auch Münchhausenmethode. Sie klingt auf den ersten Blick wie ein Selbstbetrug, so als ob man sich selbst an den Haaren aus dem Sumpf zieht (Abblildung <a href="bootstrapping-und-konfidenzintervalle.html#fig:meunch">8.1</a>), hat aber sehr gut fundierte mathematische Wurzeln. Bootstrap wurde von <span class="citation">Efron (<a href="literatur.html#ref-Efron1979" role="doc-biblioref">1979</a>)</span> Ende der 70er vorgestellt und hat sich seit dem als eine der wichtigsten <em>Resampling</em>-Strategien etabliert.</p>
+<p>Es gibt mehrere Methoden, solche Konfidenzintervalle zu berechnen. Wenn man die Verteilung des Schätzers kennt, wie beim Mittelwert (Normalverteilung), dann kann man daraus den Standardfehler berechnen (nennen wir diesen <span class="math inline">\(SE\)</span>). Ein 95%-Konfidenzintervall wäre dann <span class="math inline">\(\hat{\mu} \pm 1.96 \cdot SE\)</span>, wobei <span class="math inline">\(\hat{\mu}\)</span> der geschätzte Mittelwert ist. Das Hütchen steht für <em>geschätzt</em>. Diese Formel haben Sie bestimmt schon in der Grundvorlesung Statistik gesehen.</p>
+<p>Es gibt aber Schätzer, für die keine theoretische Verteilung bekannt ist. Da muss man eine andere Methode anwenden. Eine bekannte Methode heißt Bootstrapping (Bootstrap-Verfahren), manchmal auch Münchhausenmethode. Sie klingt auf den ersten Blick wie ein Selbstbetrug, so als ob man sich selbst an den Haaren aus dem Sumpf zieht (Abblildung <a href="bootstrapping-und-konfidenzintervalle.html#fig:meunch">8.1</a>), hat aber fundierte mathematische Wurzeln. Bootstrap wurde von <span class="citation">Efron (<a href="literatur.html#ref-Efron1979" role="doc-biblioref">1979</a>)</span> Ende der 70er vorgestellt und hat sich seitdem als eine der wichtigsten <em>Resampling</em>-Strategien etabliert.</p>
 <div class="figure">
 <span style="display:block;" id="fig:meunch"></span>
 <img src="figures/M%C3%BCnchhausen-Sumpf-Hosemann.png" alt="Münchhausen zieht sich aus dem Sumpf (Theodor Hosemann (1807-1875), Public domain, via Wikimedia Commons), [Link zum Bild](https://upload.wikimedia.org/wikipedia/commons/a/ad/M%C3%BCnchhausen-Sumpf-Hosemann.png)" width="80%"><p class="caption">
@@ -172,7 +172,7 @@ Abbildung 8.1: Münchhausen zieht sich aus dem Sumpf (Theodor Hosemann (1807-187
 Abbildung 8.2: Berechnen einer Stichprobenverteilung durch wiederholtes Stichproben ziehen. Abbildung aus <span class="citation">(<a href="literatur.html#ref-Hesterberg2015" role="doc-biblioref">Hesterberg 2015</a>)</span>, dort Figure 4. Die Publikation ist open-access und darf für nicht-kommerzielle Zwecke verwendet werden. <a href="https://www.tandfonline.com/action/showCopyRight?scroll=top&amp;doi=10.1080%2F00031305.2015.1089789">Link zur Lizenz</a>
 </p>
 </div>
-<p>In Abbildung <a href="bootstrapping-und-konfidenzintervalle.html#fig:sampling-bootstrap">8.3</a> haben wir nur eine Stichprobe. Wir gehen davon aus, dass diese Stipchprobe eine Miniatur der Grundgesamtheit ist, also zufällig gezogen wurde und repräsentative ist. Mit dieser Grundidee im Kopf, ersetzten wir die Grundgesamtheit durch dies Stichprobe und verfahren (fast) genauso, um die Stichprobenverteilung zu ermitteln. Der einzige Unterschied ist, dass wir aus dieser einen Stichprobe <strong>mit Zurücklegen</strong> neue Stichproben (Bootstrap-Stichproben) ziehen.</p>
+<p>In Abbildung <a href="bootstrapping-und-konfidenzintervalle.html#fig:sampling-bootstrap">8.3</a> haben wir nur eine Stichprobe. Wir gehen davon aus, dass diese Stichprobe eine Miniatur der Grundgesamtheit ist, also zufällig gezogen wurde und repräsentative ist. Mit dieser Grundidee im Kopf, ersetzten wir die Grundgesamtheit durch diese Stichprobe und verfahren (fast) genauso, um die Stichprobenverteilung zu ermitteln. Der einzige Unterschied ist, dass wir aus dieser einen Stichprobe <strong>mit Zurücklegen</strong> neue Stichproben (Bootstrap-Stichproben) ziehen.</p>
 <div class="figure">
 <span style="display:block;" id="fig:sampling-bootstrap"></span>
 <img src="figures/sampling_bootstrap.png" alt="Berechnen einer Stichprobenverteilung durch wiederholtes Ziehen aus einer Stichprobe mit Zurücklegen. Abbildung aus [@Hesterberg2015], dort Figure 5. Die Publikation ist open-access und darf für nicht-kommerzielle Zwecke verwendet werden. [Link zur Lizenz](https://www.tandfonline.com/action/showCopyRight?scroll=top&amp;doi=10.1080%2F00031305.2015.1089789)" width="80%"><p class="caption">
@@ -185,7 +185,7 @@ Abbildung 8.3: Berechnen einer Stichprobenverteilung durch wiederholtes Ziehen a
 <h2>
 <span class="header-section-number">8.2</span> Konfidenzintervall für den Mittelwert der Anreisezeit<a class="anchor" aria-label="anchor" href="#konfidenzintervall-f%C3%BCr-den-mittelwert-der-anreisezeit"><i class="fas fa-link"></i></a>
 </h2>
-<p>Wir sehen uns das Ganze anhand des Beispiels der Studierenden aus Werdeschlau. Zunächst wieder der Code für die Grundgesamtheit.</p>
+<p>Wir sehen uns das Ganze anhand des Beispiels der Studierenden aus Werdeschlau an. Zunächst wieder der Code für die Simulation der Grundgesamtheit.</p>
 <div class="sourceCode" id="cb139"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/tidymodels/infer">infer</a></span><span class="op">)</span></code></pre></div>
@@ -321,7 +321,7 @@ Abbildung 8.3: Berechnen einer Stichprobenverteilung durch wiederholtes Ziehen a
 ##  9         6      10118     5
 ## 10         8      11425     5
 ## # … with 2,647 more rows</code></pre>
-<p>Nun berechnen wir die Mittelwerte aus den Bootstrap-Stichproben.</p>
+<p>Jetzt berechnen wir die Mittelwerte aus den Bootstrap-Stichproben.</p>
 <div class="sourceCode" id="cb152"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">res_means_bootstrap</span> <span class="op">&lt;-</span> <span class="va">befragung_reps_bootstrap</span> <span class="op"><a href="https://infer.tidymodels.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">replicate</span><span class="op">)</span> <span class="op"><a href="https://infer.tidymodels.org/reference/pipe.html">%&gt;%</a></span> 
@@ -360,7 +360,7 @@ Abbildung 8.3: Berechnen einer Stichprobenverteilung durch wiederholtes Ziehen a
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_vline</a></span><span class="op">(</span>xintercept <span class="op">=</span> <span class="va">stat_bootstrap</span><span class="op">$</span><span class="va">ci_97.5</span>, col <span class="op">=</span> <span class="st">'brown'</span><span class="op">)</span> <span class="op">+</span> 
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_color_manual</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"Statistik"</span>, values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>grundgesamtheit <span class="op">=</span> <span class="st">'black'</span>, sd <span class="op">=</span> <span class="st">'orange'</span>, boot <span class="op">=</span> <span class="st">'red'</span>, ci <span class="op">=</span> <span class="st">'brown'</span>, stichprobe <span class="op">=</span> <span class="st">'gray90'</span><span class="op">)</span>, breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'stichprobe'</span>, <span class="st">'boot'</span>, <span class="st">'sd'</span>, <span class="st">'ci'</span>, <span class="st">'grundgesamtheit'</span><span class="op">)</span>, label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'Mittelwert Stichprobe'</span>, <span class="st">'Mittelwert Bootstrap'</span>, <span class="st">'Standardfehler Bootstrap'</span>, <span class="st">'95% Konfidenzintervall Bootstrap'</span>, <span class="st">'Mittelwert Population'</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="datenanalyse_files/figure-html/unnamed-chunk-124-1.png" width="90%"></div>
-<p>Der Standardfehler des Bootstraps stimmt sehr gut mit dem Fehler <span class="math inline">\(s/\sqrt(n)\)</span> für den Schätzer des Mittelwerts überein. Da wir normalerweise die wahre Standardabweichung der Grundgesamtheit nicht kennen, wird in der Formel <span class="math inline">\(s/\sqrt(n)\)</span> die Standardabweichung der Stichprobe als Schätzung verwendet.</p>
+<p>Der Standardfehler des Bootstraps stimmt gut mit dem Fehler <span class="math inline">\(s/\sqrt(n)\)</span> für den Schätzer des Mittelwerts überein. Diese Formel nutzt die Normalverteilung des Schätzers aus. Da wir normalerweise die wahre Standardabweichung der Grundgesamtheit nicht kennen, wird in der Formel <span class="math inline">\(s/\sqrt(n)\)</span> die Standardabweichung der Stichprobe als Schätzung verwendet.</p>
 <div class="sourceCode" id="cb156"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">befragung</span> <span class="op"><a href="https://infer.tidymodels.org/reference/pipe.html">%&gt;%</a></span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>sd_error <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">anreise</span><span class="op">)</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">anreise</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
@@ -389,7 +389,7 @@ Abbildung 8.3: Berechnen einer Stichprobenverteilung durch wiederholtes Ziehen a
 <h2>
 <span class="header-section-number">8.3</span> Bootstrap-Konfidenzintervalle mit <code>infer</code><a class="anchor" aria-label="anchor" href="#bootstrap-konfidenzintervalle-mit-infer"><i class="fas fa-link"></i></a>
 </h2>
-<p>Das Paket <code>infer</code> bietet eine sehr bequeme Möglichkeit, Konfidentintervalle mit Bootstrap zu berechnen und zu visualisieren. Das Vorgehen aus dem vorherigen Abschnitt übertragen wir nun in den Workflow mit <code>infer</code>.</p>
+<p>Das Paket <code>infer</code> bietet eine sehr bequeme Möglichkeit, Konfidenzintervalle mit Bootstrap zu berechnen und zu visualisieren. Das Vorgehen aus dem vorherigen Abschnitt übertragen wir nun in den Workflow mit <code>infer</code>.</p>
 <p>Berechnen der Bootstrap-Stichproben.</p>
 <div class="sourceCode" id="cb162"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">345</span><span class="op">)</span>
@@ -417,7 +417,7 @@ Abbildung 8.3: Berechnen einer Stichprobenverteilung durch wiederholtes Ziehen a
   <span class="fu"><a href="https://infer.tidymodels.org/reference/shade_confidence_interval.html">shade_confidence_interval</a></span><span class="op">(</span>endpoints <span class="op">=</span> <span class="va">percentile_ci</span>, color <span class="op">=</span> <span class="st">"orange"</span>, fill <span class="op">=</span> <span class="st">"khaki"</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_vline</a></span><span class="op">(</span>xintercept <span class="op">=</span> <span class="va">mean_grundgesamtheit</span><span class="op">$</span><span class="va">Mittelwert</span>, linetype <span class="op">=</span> <span class="st">'dashed'</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="datenanalyse_files/figure-html/unnamed-chunk-131-1.png" width="672"></div>
-<p>Die Konfidenzintervalle, die wir als Quantile aus der Bootstrap-Stichprobenverteilung berechnet haben, und die, die man mit der Formel <span class="math inline">\(\hat{\mu} \pm 1.96 \cdot s/\sqrt(n)\)</span> berechnen kann, sind sehr ähnlich. Das werden Sie in einer der Aufgaben (s.u.) nachrechnen. Das liegt daran, dass der <em>Zentrale Grenzwertsatz</em> garantiert, dass die Stichprobenverteilung des Schätzers des Mittelwerts eine Normalverteilung ist. Es gibt aber Schätzer, wie z.B. den des Medians, für den es keine theoretische Verteilung gibt. Daher gilt als Take-Home-Message, dass man Bootstrap zum Berechnen der Konfidenzintervalle gut einsetzten kann, egal ob es eine theoretische Verteilung des Schätzers gibt. Die Quantilmethode zur Berechnung der Bootstrap-Konfidenzintervalle liefert gute Ergebnisse. Wir werden im späteren Kapitel lernen, dass man Bootstrap auch für die Regressionsanalyse nutzen kann.</p>
+<p>Die Konfidenzintervalle, die wir als Quantile aus der Bootstrap-Stichprobenverteilung berechnet haben, und die, die man mit der Formel <span class="math inline">\(\hat{\mu} \pm 1.96 \cdot s/\sqrt(n)\)</span> berechnen kann, sind ähnlich. Das werden Sie in einer der Aufgaben (s.u.) nachrechnen. Das liegt daran, dass der <em>Zentrale Grenzwertsatz</em> garantiert, dass die Stichprobenverteilung des Schätzers des Mittelwerts eine Normalverteilung ist. Es gibt aber Schätzer, wie den des Medians, für den es keine theoretische Verteilung gibt. Daher gilt als Take-Home-Message, dass man Bootstrap zum Berechnen der Konfidenzintervalle gut einsetzen kann, egal ob es eine theoretische Verteilung des Schätzers gibt. Die Quantilmethode zur Berechnung der Bootstrap-Konfidenzintervalle liefert gute Ergebnisse. Wir werden im späteren Kapitel lernen, dass man Bootstrap auch für die Regressionsanalyse nutzen kann.</p>
 </div>
 <div id="bedeutung-der-konfidenzintervalle" class="section level2" number="8.4">
 <h2>
@@ -427,7 +427,7 @@ Abbildung 8.3: Berechnen einer Stichprobenverteilung durch wiederholtes Ziehen a
 <blockquote>
 <p>Wenn wir sehr oft die Stichproben neu ziehen und jedes Mal ein 95%-Konfidenzintervall berechnen, dann erwarten wir, dass in 95% der Fälle diese Konfidenzintervalle den wahren Parameter der Grundgesamtheit enthalten.</p>
 </blockquote>
-<p>Das Konfidenzintervall ist unsere Abschätzung der Lage des wahren Parameters der Grundgesamtheit. Eine andere Abschätzung haben wir nicht (es sei denn, es gibt wiederum eine theoretische Verteilung). Die Interpretation wird oft so abgekürzt, dass man sagt, man sei zu 95% sicher, dass das 95%-Konfidenzintervall den wahren Parameter enthält. Das ist nicht richtig (s. Definition oben). Es ist besser zu sagen, dass in 95% der Fälle, das Konfidenzintervall den wahren Parameter der Grundgesamtheit enthält. Was mit 95% der Fälle gemeint ist, wissen Sie ja, wenn Sie sich an die genaue Definition erinnern 😄.</p>
+<p>Das Konfidenzintervall ist unsere Abschätzung der Lage des wahren Parameters der Grundgesamtheit. Die Interpretation wird oft so abgekürzt, dass man sagt, man sei zu 95% sicher, dass das 95%-Konfidenzintervall den wahren Parameter enthält. Das ist nicht richtig (s. Definition oben). Es ist besser zu sagen, dass in 95% der Fälle, das Konfidenzintervall den wahren Parameter der Grundgesamtheit enthält. Was mit 95% der Fälle gemeint ist, wissen Sie ja, wenn Sie sich an die genaue Definition erinnern 😄.</p>
 </div>
 <div id="lesestoff-8" class="section level2" number="8.5">
 <h2>
@@ -443,7 +443,7 @@ Abbildung 8.3: Berechnen einer Stichprobenverteilung durch wiederholtes Ziehen a
 <h3>
 <span class="header-section-number">8.6.1</span> Konfidenzintervall aus dem Zentralen Grenzwertsatz<a class="anchor" aria-label="anchor" href="#konfidenzintervall-aus-dem-zentralen-grenzwertsatz"><i class="fas fa-link"></i></a>
 </h3>
-<p>Der Zentrale Grenzwertsatz besagt, dass die Stichprobenverteilung des Schätzers des Mittelwerts sich asymptotisch (also bei vielen Stichproben) der Normalverteilung nähert. Daher kann man für die Konfidenzintervalle auch die folgende Formel nutzen: <span class="math inline">\(\hat{\mu} \pm 1.96 \cdot SE\)</span>, wobei <span class="math inline">\(\hat{\mu}\)</span> der geschätzter Mittelwert ist. Das Hütchen steht für <em>geschätzt</em>.</p>
+<p>Der Zentrale Grenzwertsatz besagt, dass die Stichprobenverteilung des Schätzers des Mittelwerts sich asymptotisch (also bei vielen Stichproben) der Normalverteilung nähert. Daher kann man für die Konfidenzintervalle auch die folgende Formel nutzen: <span class="math inline">\(\hat{\mu} \pm 1.96 \cdot SE\)</span>, wobei <span class="math inline">\(\hat{\mu}\)</span> der geschätzte Mittelwert ist. Das Hütchen steht für <em>geschätzt</em>.</p>
 <ul>
 <li>Berechnen Sie die Konfidenzintervalle mit dieser Formel für die Stichprobenverteilung aus dem Bootstrap für den Mittelwert der Anreisezeit. Dazu passen Sie in der Funktion <code>get_confidence_interval</code> den Typ des Konfidenzintervalls an <code>type = "se"</code> und geben Sie den Mittelwert der Befragung an: <code>get_confidence_interval(type = "se", point_estimate = mean_befragung$Mittelwert)</code>.</li>
 <li>Stellen Sie die Stichprobenverteilung mit diesem Konfidenzintervall dar und vergleichen Sie mit dem Konfidenzintervall, das wir mit der Quantil-Methode berechnet haben.</li>
@@ -453,7 +453,7 @@ Abbildung 8.3: Berechnen einer Stichprobenverteilung durch wiederholtes Ziehen a
 <h3>
 <span class="header-section-number">8.6.2</span> Anteile an Stadt- und Landbewohnern<a class="anchor" aria-label="anchor" href="#anteile-an-stadt--und-landbewohnern"><i class="fas fa-link"></i></a>
 </h3>
-<p>Wiederholen Sie die Analyse, die wir mit dem Paket <code>infer</code> für die Schätzung des Mittelwerts der Anreisezeit gemacht haben, nun für die Anteile an Stadt- und Landbewohnern. Tip: <code>specify(response = wohnort, success = 'stadt')</code>.</p>
+<p>Wiederholen Sie die Analyse, die wir mit dem Paket <code>infer</code> für die Schätzung des Mittelwerts der Anreisezeit gemacht haben, nun für die Anteile an Stadt- und Landbewohnern. Tipp: <code>specify(response = wohnort, success = 'stadt')</code>.</p>
 </div>
 <div id="wie-hängt-das-konfidenzintervall-von-der-stichprobengröße-ab" class="section level3" number="8.6.3">
 <h3>
@@ -468,7 +468,7 @@ Abbildung 8.3: Berechnen einer Stichprobenverteilung durch wiederholtes Ziehen a
 </h2>
 <ul>
 <li>Speichern Sie Ihr Notebook ab und laden Sie nur die .Rmd Datei vom Server.</li>
-<li>Laden Sie Ihre .Rmd Datei in ILIAS hoch. <strong>Beachten Sie die Deadline!</strong>
+<li>Laden Sie Ihre .Rmd Datei in ILIAS hoch. <strong>Beachten Sie die Frist!</strong>
 </li>
 <li>Sie erhalten die Musterlösung nach dem Hochladen.</li>
 </ul>
@@ -519,7 +519,7 @@ Abbildung 8.3: Berechnen einer Stichprobenverteilung durch wiederholtes Ziehen a
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Datenanalyse mit R</strong>: SoSe 2022" was written by Christina Bogner. It was last built on 2022-05-11.</p>
+    <p>"<strong>Datenanalyse mit R</strong>: SoSe 2022" was written by Christina Bogner. It was last built on 2022-05-16.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

@@ -7,14 +7,16 @@
 
 Bei Hypothesentests wird häufig ein willkürlich festgelegter Schwellenwert, das Signifikanzniveau, häufig 5%, verwendet. Liegt der $p$-Wert darunter, wird die Nullhypothese verworfen. Liegt er darüber, wird sie beibehalten.
 
-Dieses starre Konzept der statistischen Signifikanz, bei dem ein willkürlich gesetzter Grenzwert $\alpha$ darüber entscheidet, ob ein Ergebnis weiter beachtet wird oder nicht, wird seit Jahrzehnten kritisiert [@Wasserstein2019]. Es ist schließlich auch wirklich schwer zu verstehen, warum $p = 0.049$ qualitativ etwas anderes aussagen soll als $p = 0.051$. Und was machen wir mit $p = 0.05$? Die beste Lösung ist, so wie von der ASA (American Statistical Association) vorgeschlagen, den Begriff "signifikant" nicht mehr zu verwenden. Statt dessen berichten Sie den berechneten $p$-Wert und interpretieren ihn im wissenschaftlichen Kontext [@Wasserstein2019].
+Dieses starre Konzept der statistischen Signifikanz, bei dem ein willkürlich gesetzter Grenzwert $\alpha$ darüber entscheidet, ob ein Ergebnis weiter beachtet wird oder nicht, wird seit Jahrzehnten kritisiert [@Wasserstein2019]. Es ist schließlich auch wirklich schwer zu verstehen, warum $p = 0.049$ qualitativ etwas anderes aussagen soll als $p = 0.051$. Und was machen wir mit $p = 0.05$? Die beste Lösung ist, so wie von der ASA (American Statistical Association) vorgeschlagen, den Begriff "signifikant" nicht mehr zu verwenden. Stattdessen berichten Sie den berechneten $p$-Wert und interpretieren ihn im wissenschaftlichen Kontext [@Wasserstein2019].
 
-Ich würde nicht soweit gehen, statistische Tests abschaffen zu wollen. Sie sind manchmal nützlich, aber auch nicht häufiger als manchmal. Allerdings kann ich auch aus eigener Praxis sagen, dass sehr oft statistische Signifikanz mit wissenschaftlicher Relevanz verwechselt wird. Daher werden wir uns in diesem Kapitel damit beschäftigen, wie man die relevanten Aspekte, nämlich die Größe des Effekts, aus den beobachteten Daten schätzen kann.
+Ich würde nicht so weit gehen, statistische Tests abschaffen zu wollen. Sie sind manchmal nützlich, aber auch nicht häufiger als manchmal. Allerdings kann ich auch aus eigener Praxis sagen, dass häufig statistische Signifikanz mit wissenschaftlicher Relevanz verwechselt wird. Daher werden wir uns in diesem Kapitel damit beschäftigen, wie man die relevanten Aspekte, nämlich die Größe des Effekts, aus den beobachteten Daten schätzen kann.
 
 ## Größe des Effekts
 Daten sind immer mit Unsicherheiten behaftet. Modelle und Tests haben Annahmen, z.B. dass die gewählte Statistik oder das Modell der Nullhypothese für die Forschungsfrage geeignet sind. Diese Unsicherheit gilt es richtig zu erfassen und zu berichten. Daher ist es wichtig, für jede Schätzung entweder ein Konfidenzintervall anzugeben oder den Standardfehler [@Wasserstein2019].
 
-Wir werden zum Schätzen von Effekten für einfache statistische Analysen das Paket `dabestr` (https://github.com/ACCLAB/dabestr) benutzen. Es bietet die Möglichkeit, Effekte zu schätzen, Bootstrap-Konfidenzintervalle zu berechnen und das Ganze in sehr ansprechenden Grafiken zu visualisieren. Zu dem Paket gibt es eine Publikation, @Ho2019, die ich sehr empfehlen kann.
+Wir werden zum Schätzen von Effekten für einfache statistische Analysen das Paket `dabestr` (https://github.com/ACCLAB/dabestr) benutzen. Es bietet die Möglichkeit, Effekte zu schätzen, Bootstrap-Konfidenzintervalle zu berechnen und das Ganze in sehr ansprechenden Grafiken zu visualisieren. Zu dem Paket gibt es eine Publikation, @Ho2019, die ich sehr empfehlen kann. Konfidenzintervalle und die (einige einfache) Effekte können wir auch mit `infer` berechnen. Der größte Vorteil von `dabestr` sind die tollen Grafiken.
+
+Effekte ist ein sehr allgemeiner Begriff. In unterschiedlichen Kontexten und Fächern werden unterschiedliche Formeln dafür verwendet. `dabestr`bietet eine Reihe davon an (s.u.). Im Zweifelsfall lesen Sie nach, wie "Effekte" für Ihre Fragestellung definiert werden.
 
 ## Schätzen des Effekts mit dem Bootstrap -- `dabestr`
 Wir laden die nötigen Bibliotheken.
@@ -76,10 +78,10 @@ Die wichtigste Funktion in `dabestr` heißt `dabest()`. Sie erstellt einen *tidy
 - Differenz zwischen Mittelwerten von Gruppen mit `mean_diff()`.
 - Differenz zwischen Medianen von Gruppen mit `median_diff()`.
 - Cohen’s d mit `cohens_d()`. Cohen’s d ist die Differenz zwischen Mittelwerten geteilt durch die Standardabweichung der Daten.
-- Hedges’ g mit `hedges_g()`. Ähnlich wie Cohen’s d.
-- Cliff’s delta mit `cliffs_delta()`. Entwickelt für ordinalskalierte Daten, überprüft wie oft Datenpunkte in einer Gruppe größer sind als Datenpunkte in einer Vergleichsgruppe. 
+- Hedges’ g mit `hedges_g()`. Ähnlich wie Cohen’s d, aber etwas besser für kleine Datensätze.
+- Cliff’s delta mit `cliffs_delta()`. Entwickelt für ordinalskalierte Daten, überprüft, wie oft Datenpunkte in einer Gruppe größer sind als Datenpunkte in einer Vergleichsgruppe. 
 
-Wir stellen unsere Daten mit Hilfe von `dabest()` zusammen. Der Parameter `idx` gibt an, wie die Differenz berechnet wird, nämlich Männer - Frauen.
+Wir stellen unsere Daten mithilfe von `dabest()` zusammen. Der Parameter `idx` gibt an, wie die Differenz berechnet wird, nämlich Männer - Frauen.
 
 ```{r}
 diff_zeit_bib <- befragung %>%
@@ -120,11 +122,11 @@ In der Abbildung können Sie mehrere Dinge sehen:
 Wir können nun erkennen, dass die Schätzung recht genau ist, da das Konfidenzintervall schmal ist. Frauen scheinen mehr Zeit in der Bibliothek zu verbringen, da die geschätzte Differenz negativ ist. Das können wir genau abfragen, mit `mean_diff_zeit_bib$result$difference`. Das sind `r round(mean_diff_zeit_bib$result$difference, 1)` Minuten. Dieser Unterschied ist für alle praktischen Belange irrelevant. Das Konfidenzintervall umfasst auch die Null, sodass kein Unterschied auch eine plausible Schätzung ist. Somit würden wir schließen, dass es nicht genug Evidenz für einen relevanten Unterschied in der Arbeitszeit in der Bibliothek zwischen Männern und Frauen gibt.
 
 ## Welche Fragen soll ich mir bei der Analyse stellen?
-Bei der statistischen Analyse Ihrer Daten, sollten Sie sich vom "statistischen Denken" leiten lassen. @Wasserstein2019 beschreibt es als 
+Bei der statistischen Analyse Ihrer Daten sollten Sie sich vom "statistischen Denken" leiten lassen. @Wasserstein2019 beschreibt es als 
 
 > Accept uncertainty. Be thoughtful, open, and modest.
 
-Denken Sie immer daran, dass Unsicherheit jedem Forschungsunterfangen inne wohnt. Wenn Sie Ihre Daten interpretieren, stellen Sie sich folgende Fragen [@Anderson2019]:
+Denken Sie immer daran, dass Unsicherheit jedem Forschungsunterfangen innewohnt. Wenn Sie Ihre Daten interpretieren, stellen Sie sich folgende Fragen [@Anderson2019]:
 
 1. Welche praktische Bedeutung hat meine Schätzung des Effekts? Ist er überhaupt relevant?
 1. Wie präzise ist die Schätzung?
@@ -132,7 +134,7 @@ Denken Sie immer daran, dass Unsicherheit jedem Forschungsunterfangen inne wohnt
 
 
 ## Was `dabest` nicht kann, besorgt `infer`
-Aktuell kann `dabestr` nicht mit Anteilen (*proportions*) arbeiten. Daher werden wir bei solchen Aufgaben auf unser bewährtes Framework in `infer` zurück greifen.
+Aktuell kann `dabestr` nicht mit Anteilen (*proportions*) arbeiten. Daher werden wir bei solchen Aufgaben auf unser bewährtes Framework in `infer` zurückgreifen.
 
 ## Lesestoff
 @Ho2019

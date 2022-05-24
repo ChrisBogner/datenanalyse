@@ -7,17 +7,17 @@
 
 
 ## Es gibt nur einen Test
-Ich weiß nicht, wie es Ihnen ergangen ist, aber ich habe in meiner Grundausbildung in Statistik verschiedene Tests kennen gelernt: $t$-Test für gepaarte und ungepaarte Stichproben, $F$-Test für die Varianz, $z$-Test etc. Am Ende war ich verwirrt und wusste nicht mehr, welchen ich wann nehmen soll. Am Ende des Tages musste ich, wenn ich einen neuen Datensatz hatte und einen Test brauchte, lange nachdenken, welchen ich nutzen soll.
+Ich weiß nicht, wie es Ihnen ergangen ist, aber ich habe in meiner Grundausbildung in Statistik verschiedene Tests kennengelernt: $t$-Test für gepaarte und ungepaarte Stichproben, $F$-Test für die Varianz, $z$-Test etc. Am Ende war ich verwirrt und wusste nicht mehr, welchen ich wann nehmen soll. Am Ende des Tages musste ich, wenn ich einen neuen Datensatz hatte und einen Test brauchte, lange nachdenken, welchen ich nutzen soll.
 
-Diese vielen Tests stammen noch aus der Urzeit der Statistik, als Rechenzeit, wenn überhaupt vorhanden, unbezahlbar war. Daher haben die Väter der Statistik (war damals überwiegend eine reine Männerclique `r emo::ji('angry')`) viele Näherungsverfahren entwickelt. Diese Näherungsverfahren leiten eine theoretische Verteilung für verschiedene Teststatistiken ab. Tests, die auf solchen Näherungen basieren, haben häufig starke Annahmen über die Daten, wie z.B. dass die Daten normalverteilt sein müssen, oder dass der Datensatz groß sein muss, damit die Näherung stimmt.
+Diese vielen Tests stammen noch aus der Urzeit der Statistik, als Rechenzeit, wenn überhaupt vorhanden, unbezahlbar war. Daher haben die Väter der Statistik (war damals überwiegend eine reine Männerclique `r emo::ji('angry')`) viele Näherungsverfahren entwickelt. Diese Näherungsverfahren leiten eine theoretische Verteilung für verschiedene Teststatistiken ab. Tests, die auf solchen Näherungen basieren, haben häufig starke Annahmen über die Daten, wie dass die Daten normalverteilt sein müssen, oder dass der Datensatz groß sein muss, damit die Näherung stimmt.
 
-Heute ist für die meisten unserer Analysen ausreichen Rechenkapazität vorhanden. Daher müssen wir nicht mehr auf solche Näherungen zurück greifen, sondern können Computersimulationen benutzen. Diese Computersimulationen setzt man ein, um bei Hypothesentests Daten unter der Nullhypothese zu generieren. Abbildung \@ref(fig:one-test) zeigt das allgemeine Vorgehen, wie es für jeden beliebigen Test gültig ist. Dieses Vorgehen kann man auf folgende Schritte "runterkochen":
+Heute ist für die meisten unserer Analysen ausreichend Rechenkapazität vorhanden. Daher müssen wir nicht mehr auf solche Näherungen zurückgreifen, sondern können Computersimulationen benutzen. Diese Computersimulationen setzt man ein, um bei Hypothesentests Daten unter der Nullhypothese zu generieren. Abbildung \@ref(fig:one-test) zeigt das allgemeine Vorgehen, wie es für jeden beliebigen Test gültig ist. Dieses Vorgehen kann man auf folgende Schritte "runterkochen":
 
 **Teststatistik aus Stichprobe berechnen** 
-Wir haben eine Stichprobe (*data* in der Abbildung \@ref(fig:one-test)), die wir mit Hilfe einer Teststatistik zusammen fassen. Wir nennen diese Teststatistik $\sigma^*$. Sie kann z.B. der Mittelwert der Differenzen zwischen einer Behandlung und einer Kontrolle in einem Experiment sein.
+Wir haben eine Stichprobe (*data* in der Abbildung \@ref(fig:one-test)), die wir mithilfe einer Teststatistik zusammen fassen. Wir nennen diese Teststatistik $\sigma^*$. Sie kann z.B. der Mittelwert der Differenzen zwischen einer Behandlung und einer Kontrolle in einem Experiment sein.
 
 **Nullhypothese formulieren**
-Wir denken gut über unsere Forschungsfrage nach und überlegen uns, welches Modell am besten die Nullhypothese $H_0$, also eine Situation ohne jeglichen Effekt, wiedergibt. Im Falle des Mittelwerts ist es eine Welt, in der der besagte Mittelwert Null ist, es also keinen Behandlungseffekt in unserem Experiment gibt. Das Modell für $H_0$ kann eine Permutation der Daten sein (Permutationstests) oder aus einer theoretischen Verteilung stammen (z.B. Normalverteilung). Es kann auch ein richtig kompliziertes Modell sein. Letzteres ist nicht Bestandteil diese Kurses.
+Wir denken gut über unsere Forschungsfrage nach und überlegen uns, welches Modell am besten die Nullhypothese $H_0$, also eine Situation ohne jeglichen Effekt, wiedergibt. Im Falle des Mittelwerts ist es eine Welt, in der der besagte Mittelwert Null ist, es also keinen Behandlungseffekt in unserem Experiment gibt. Das Modell für $H_0$ kann eine Permutation der Daten sein (Permutationstests) oder aus einer theoretischen Verteilung stammen (z.B. Normalverteilung). Es kann auch ein richtig kompliziertes Modell sein. Letzteres ist nicht Bestandteil dieses Kurses.
 
 **Simulation der Daten unter der Nullhypothese**
 Wir simulieren Daten aus diesem Modell ohne Effekt, d.h. Daten unter der Nullhypothese, und berechnen aus jedem simulierten Datensatz dieselbe Teststatistik wie aus der echten Stichprobe.
@@ -26,7 +26,7 @@ Wir simulieren Daten aus diesem Modell ohne Effekt, d.h. Daten unter der Nullhyp
 Die vielen simulierten Teststatistiken ergeben eine Stichprobenverteilung.
 
 **Vergleich der beobachteten Teststatistik mit der Stichprobenverteilung -- Entscheidung**
-Nun können wir die aus unseren Daten berechnete Teststatistik $\sigma^*$ mit der Stichprobenverteilung der Teststatistik der simulieren Daten vergleichen. Wir entscheiden, ob $\sigma^*$ in der Welt ohne Effekt, also unter der Nullhypothese, häufig oder eher selten vorkommt. Der $p$-Wert gibt an, wie wahrscheinlich es ist, unter der Nullhypothese einen Effekt zu beobachten, der mindestens so extrem ist, wie derjenige, den wir durch unsere Daten errechnet haben, sprich mindestens so extrem wie $\sigma^*$. Wenn $\sigma^*$ selten vorkommt, der $p$-Wert also klein ist, verwerfen wir die Nullhypothese und sagen, dass es einen Effekt gibt. Mit anderen Worte, es ist dann unwahrscheinlich, dass das beobachtete $\sigma^*$ auf den Zufall zurück zu führen ist.
+Nun können wir die aus unseren Daten berechnete Teststatistik $\sigma^*$ mit der Stichprobenverteilung der Teststatistik der simulieren Daten vergleichen. Wir entscheiden, ob $\sigma^*$ in der Welt ohne Effekt, also unter der Nullhypothese, häufig oder eher selten vorkommt. Der $p$-Wert gibt an, wie wahrscheinlich es ist, unter der Nullhypothese einen Effekt zu beobachten, der mindestens so extrem ist, wie derjenige, den wir durch unsere Daten errechnet haben, sprich mindestens so extrem wie $\sigma^*$. Wenn $\sigma^*$ selten vorkommt, der $p$-Wert also klein ist, verwerfen wir die Nullhypothese und sagen, dass es einen Effekt gibt. Mit anderen Worten, es ist dann unwahrscheinlich, dass das beobachtete $\sigma^*$ auf den Zufall zurückzuführen ist.
 
 Diese Schritte gelten wirklich für jeden beliebigen Test. Daher kann man verallgemeinert sagen, dass es nur einen Test (ein Testframework) gibt. 
 
@@ -119,7 +119,7 @@ Die Nullhypothese und die Alternativhypothese lauten:
 >- $H_0$: es gibt keinen Unterschied in der Anzahl der Stadt- und Landbewohner, d.h. Anteil der Stadtbewohner $p = 0.5$.
 >- $H_A$: Anteil der Stadtbewohner $p \neq 0.5$
 
-Wir setzten das Ganz nun mit `infer` um.
+Wir setzten das Ganz jetzt mit `infer` um.
 
 ```{r}
 set.seed(123)
@@ -130,7 +130,7 @@ null_distn <- befragung %>%
   generate(reps = 10000) %>%
   calculate(stat = "prop")
 ```
-Das Paket `infer` setzt in `generate()` die Art der Simulation automatisch (*bootstrap*, *simulate* oder *permute*). Für sogen. Punkthypothesen `null = "point"` bei kategoriellen Variablen, z.B. *$H_0$: Anteil der Stadtbewohner = 0.5*, simuliert `generate()` neue Daten mit Hilfe der Funktion `sample()` und nutzt die in `hypothesize()` definierten Anteil `p` als Wahrscheinlichket für `success`. D.h. in unserem Fall simuliert `generate()` 10000 neue Stichproben mit der Wahrscheinlichkeit von 0.5 für Stadtbewohner (`success = 'stadt'`), wie von $H_0$ verlangt `r emo::ji('smile')`.
+Das Paket `infer` setzt in `generate()` die Art der Simulation automatisch (*bootstrap*, *simulate* oder *permute*). Für sogen. Punkthypothesen `null = "point"` bei kategoriellen Variablen, z.B. *$H_0$: Anteil der Stadtbewohner = 0.5*, simuliert `generate()` neue Daten mit Hilfe der Funktion `sample()` und nutzt die in `hypothesize()` definierten Anteil `p` als Wahrscheinlichket für `success`. D.h. in unserem Fall simuliert `generate()` 10000 neue Stichproben mit der Wahrscheinlichkeit von 0.5 für Stadtbewohner (`success = 'stadt'`) wie von $H_0$ verlangt `r emo::ji('smile')`.
 
 Wir sehen uns die Stichprobenverteilung an.
 ```{r, out.width = '90%'}
@@ -172,7 +172,7 @@ null_distn <- befragung %>%
 null_distn
 ```
 
-Nun Plotten wir die Stichprobenverteilung, die auf Permutation basiert, und färben den $p$-Wert ein. Der rote Balken zeigt der Wert der Statistik in den Daten, `d_hat`.
+Nun plotten wir die Stichprobenverteilung, die auf Permutation basiert, und färben den $p$-Wert ein. Der rote Balken zeigt der Wert der Statistik in den Daten, `d_hat`.
 ```{r, out.width = '90%'}
 visualize(null_distn) +
   shade_p_value(obs_stat = d_hat, direction = "two-sided")
@@ -188,20 +188,20 @@ Der $p$-Wert ist auch in diesem Fall klein. Wir würden also wie im oberen Beisp
 
 An dieser Stelle ein kleiner Ausflug in die Welt der **statistischen Signfikanz**. Sehr häufig wird für die Entscheidung, ob eine Nullhypothese abgelehnt wird, ein willkürlicher Schwellenwert, das Signifikanzniveau $\alpha$ (meistens 5%) genutzt. Wenn der $p$-Wert darunter liegt, wird die Nullhypothese verworfen, ansonsten wird sie beibehalten. Es gibt also eine **Dichotomisierung**, eine Klassifizierung der $p$-Werte in statistisch signifikant und statistisch nicht signifikant. Dieses Vorgehen wird seit vielen Jahren stark kritisiert [@Wasserstein2019]. Und an unserem Beispiel wird auch klar, warum. Hier ist der $p$-Wert etwas größer als das Signifikanzniveau und wir müssten die Nullhypothese beibehalten, wegen einer winzigen Überschreitung von 0.42%. Das macht wissenschaftlich keinen Sinn und ist extrem unbefriedigend. Zudem sorgt die "Jagd" nach signifikanten Ergebnissen für allerlei Missbrauch. Man könnte z.B. im Nachhinein das Signifikanzniveau höher setzten. Das nennt man **$p$-Hacking**. Um diesem Missbrauch vorzubeugen und um mehr Informationen aus einem Hypothesentest zu ziehen, berichten Sie einfach den $p$-Wert und ordenen ihn ein. Ist so ein Effekt, wie er in den Daten beobachtet wurde, selten oder häufig unter der Annahme der Nullhypothese? 
 
-BTW, der wahre Unterschied aus der Grundgesamtheit zwischen den Männern und Frauen ist extrem klein. Nur weil etwas signifikant oder nicht signifikant ist, ist es noch lange nicht relevant. Das zu beurteilen braucht es Fachwissen (*domain knowledge*) und eine richtige Einordnung der Ergebnisse. Daher ist die Berechnung von Effektgrößen (s. nächstes Kapitel) sehr viel spannender als das Durchführen von Hypothesentests.
+BTW, der wahre Unterschied aus der Grundgesamtheit zwischen den Männern und Frauen ist extrem klein. Nur weil etwas signifikant oder nicht signifikant ist, ist es noch lange nicht relevant. Das zu beurteilen, braucht es Fachwissen (*domain knowledge*) und eine richtige Einordnung der Ergebnisse. Daher ist die Berechnung von Effektgrößen (s. nächstes Kapitel) sehr viel spannender als das Durchführen von Hypothesentests.
 ```{r}
 grundgesamtheit %>% 
   specify(wohnort ~ geschlecht, success = "stadt") %>%
   calculate(stat = "diff in props", order = c("w", "m"))
 ```
 
-$p$-Werte werden häufig miss- oder überinterpretiert. Es geht soweit, dass nur wissenschaftliche Ergebnisse mit signifikanten Ausgängen bei Hypothesentests als wertvoll und publizierbar angesehen werden. Davor kann man nur dringend warnen. Diese Einstellung führt zur Verzerrung der wissenschaftlichen Ergebnissen. Ich lade Sie ein, mehr dazu bei @Wasserstein2016 und im Kapitel 9.6 in @ModernDive nachzulesen.
+$p$-Werte werden häufig miss- oder überinterpretiert. Es geht so weit, dass nur wissenschaftliche Ergebnisse mit signifikanten Ausgängen bei Hypothesentests als wertvoll und publizierbar angesehen werden. Davor kann man nur dringend warnen. Diese Einstellung führt zur Verzerrung der wissenschaftlichen Ergebnisse. Ich lade Sie ein, mehr dazu bei @Wasserstein2016 und im Kapitel 9.6 in @ModernDive nachzulesen.
 
 ## Lesestoff
 Kapitel 9.3 bis 9.6 in @ModernDive
 
 ## Aufgaben
-### Sind Anreisezeit und Zeit in der Bibliothek correliert?
+### Sind Anreisezeit und Zeit in der Bibliothek korreliert?
 Führen Sie einen Hypothesentest durch, ob die Anreisezeit und die Zeit in der Bibliothek (`zeit_bib`) korreliert sind. Formulieren Sie die Null- und die Alternativhypothese mit Ihren eigenen Worten, bevor Sie den Test durchführen.
 
 Tipps: `specify(anreise ~ zeit_bib)` und `calculate(stat = "correlation")`. Sehr hilfreich dazu ist auch die Webseite von `infer` (s.u.).
@@ -209,7 +209,7 @@ Tipps: `specify(anreise ~ zeit_bib)` und `calculate(stat = "correlation")`. Sehr
 ### Hängt die Wahl des Verkehrsmittels vom Wohnort ab?
 Vielleicht können Sie sich noch erinnern, dass wir in einer der früheren Stunden die Kontingenztabelle durchgenommen haben (s. Vorlesung Zusammenhangsmaße). In einer solchen Tabelle fasst man die Häufigkeiten von zwei kategoriellen Variablen zusammen. Anhand von so einer Tabelle kann man entscheiden, ob es einen Zusammenhang zwischen diesen beiden Variablen gibt. Die Statistik, die man für so eine Tabelle ausrechnet, heißt Kontingenzkoeffizient. In einem Hypothesentest, genannt $\chi^2$-Test, kann man überprüfen, ob dieser Zusammenhang zufällig ist.
 
-Überprüfen Sie nun, ob es einen Zusamenhang gibt zwischen der Wahl des Verkehrsmittels und dem Wohnort der befragten Studierenden. Tipps: `specify(formula = wohnort ~ verkehrsmittel)` und `calculate(stat = "Chisq")`. Auch hier lohnt ein Blick auf die Webseite von `infer` (s.u.).
+Überprüfen Sie nun, ob es einen Zusammenhang gibt zwischen der Wahl des Verkehrsmittels und dem Wohnort der befragten Studierenden. Tipps: `specify(formula = wohnort ~ verkehrsmittel)` und `calculate(stat = "Chisq")`. Auch hier lohnt ein Blick auf die Webseite von `infer` (s.u.).
 
 ## Ihre Arbeit einreichen
 - Speichern Sie Ihr Notebook ab und laden Sie nur die .Rmd Datei vom Server.
@@ -220,5 +220,6 @@ Vielleicht können Sie sich noch erinnern, dass wir in einer der früheren Stund
 Webseite von `infer`: https://infer.netlify.app/
 
 [Vortrag](https://www.rstudio.com/resources/rstudioconf-2018/infer-a-package-for-tidy-statistical-inference/?wvideo=lkx9sw1ed2) des Autors von `infer`.
+
 
 

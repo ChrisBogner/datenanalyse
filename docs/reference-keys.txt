@@ -117,7 +117,7 @@ stadt--und-landbewohner-in-werdeschlau
 präferenzen-für-den-wohnort
 lesestoff-9
 aufgaben-7
-sind-anreisezeit-und-zeit-in-der-bibliothek-correliert
+sind-anreisezeit-und-zeit-in-der-bibliothek-korreliert
 hängt-die-wahl-des-verkehrsmittels-vom-wohnort-ab
 ihre-arbeit-einreichen-5
 weiterführende-literatur-und-videos-1

@@ -152,7 +152,7 @@ die Fragestellung ist.
 <h2>
 <span class="header-section-number">8.1</span> Bootstrapping, die Münchhausenmethode<a class="anchor" aria-label="anchor" href="#bootstrapping-die-m%C3%BCnchhausenmethode"><i class="fas fa-link"></i></a>
 </h2>
-<p>Wenn wir nur eine Stichprobe haben, werden wir den Parameter der Grundgesamtheit daraus schätzen. Der Schätzer kann der Mittelwert oder eben auch der Anteil sein, so wie bei unseren vorherigen Beispielen mit Mittelwert der Anreisezeit oder dem Anteil der Studierenden aus der Stadt bzw. vom Land.</p>
+<p>Wenn wir nur eine Stichprobe haben, werden wir den Parameter der Grundgesamtheit daraus schätzen. Der Schätzer kann der Mittelwert oder eben auch der Anteil sein, so wie bei unseren vorherigen Beispielen mit dem Mittelwert der Anreisezeit oder dem Anteil der Studierenden aus der Stadt bzw. vom Land.</p>
 <p>Da jede Stichprobe dem Zufall unterliegt und der Schätzer somit eine Zufallsvariable darstellt, würden wir gerne wissen, wie gut wir schätzen.</p>
 <blockquote>
 <p>Gibt es einen plausiblen Bereich für den Mittelwert der Anreisezeit? Plausibel meint, dass wenn wir sehr oft verschiedene zufällige Stichprobe ziehen, dieser Bereich in sagen wir mal 95% der Fälle den wahren Mittelwert einschließt. Solche Plausibilitätsbereiche nennt man <strong>Konfidenzintervalle</strong>.</p>
@@ -273,7 +273,7 @@ Abbildung 8.3: Berechnen einer Stichprobenverteilung durch wiederholtes Ziehen a
 ##   replicate Mittelwert
 ##       &lt;int&gt;      &lt;dbl&gt;
 ## 1         1       34.1</code></pre>
-<p>Wir ziehen nun unsere Bootstrap-Stichproben aus der einen Stichprobe, nämlich der <code>befragung</code>. Achten Sie darauf, wie ähnlich der Code zum Ziehen von echten Stichproben ist. Wir ändern nur <code>replace = TRUE</code>.</p>
+<p>Wir ziehen jetzt unsere Bootstrap-Stichproben aus der einen Stichprobe, nämlich der <code>befragung</code>. Achten Sie darauf, wie ähnlich der Code zum Ziehen von echten Stichproben ist. Wir ändern nur <code>replace = TRUE</code>.</p>
 <div class="sourceCode" id="cb148"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">345</span><span class="op">)</span>
 
@@ -519,7 +519,7 @@ Abbildung 8.3: Berechnen einer Stichprobenverteilung durch wiederholtes Ziehen a
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Datenanalyse mit R</strong>: SoSe 2022" was written by Christina Bogner. It was last built on 2022-05-16.</p>
+    <p>"<strong>Datenanalyse mit R</strong>: SoSe 2022" was written by Christina Bogner. It was last built on 2022-05-24.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

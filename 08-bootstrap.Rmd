@@ -24,7 +24,7 @@ Die Begriffe Statistik, Schätzer, Schätzfunktion und Stichprobenfunktion werde
 Im echten Leben werden Sie kaum wiederholt befragen (Stichproben ziehen) können. Das ist vollkommen unrealistisch und nur für Computerexperimente ein tolles Werkzeug. In diesem Kapitel wird es darum gehen, wie man nun im richtigen Leben mit **einer Stichprobe** einen Parameter der Grundgesamtheit schätzen kann und dabei seine Variabilität quantifiziert.
 
 ## Bootstrapping, die Münchhausenmethode
-Wenn wir nur eine Stichprobe haben, werden wir den Parameter der Grundgesamtheit daraus schätzen. Der Schätzer kann der Mittelwert oder eben auch der Anteil sein, so wie bei unseren vorherigen Beispielen mit Mittelwert der Anreisezeit oder dem Anteil der Studierenden aus der Stadt bzw. vom Land.
+Wenn wir nur eine Stichprobe haben, werden wir den Parameter der Grundgesamtheit daraus schätzen. Der Schätzer kann der Mittelwert oder eben auch der Anteil sein, so wie bei unseren vorherigen Beispielen mit dem Mittelwert der Anreisezeit oder dem Anteil der Studierenden aus der Stadt bzw. vom Land.
 
 Da jede Stichprobe dem Zufall unterliegt und der Schätzer somit eine Zufallsvariable darstellt, würden wir gerne wissen, wie gut wir schätzen. 
 
@@ -114,7 +114,7 @@ mean_befragung <- befragung %>%
 mean_befragung
 ```
 
-Wir ziehen nun unsere Bootstrap-Stichproben aus der einen Stichprobe, nämlich der `befragung`. Achten Sie darauf, wie ähnlich der Code zum Ziehen von echten Stichproben ist. Wir ändern nur `replace = TRUE`.
+Wir ziehen jetzt unsere Bootstrap-Stichproben aus der einen Stichprobe, nämlich der `befragung`. Achten Sie darauf, wie ähnlich der Code zum Ziehen von echten Stichproben ist. Wir ändern nur `replace = TRUE`.
 
 ```{r}
 set.seed(345)

@@ -7,9 +7,9 @@
 - einfache lineare Regression selbst in R durchführen
 ```
 
-In diesem Kapitel werden wir in die statistische Modellierung einsteigen. Bisher haben Sie gelernt, wie man mit Hilfe von modernen Resamplingverfahren oder Simulationen Hypothesentests durchführt und Konfidenzintervalle berechnet. Wir werden in späteren Kapiteln auch für die Modellierung Bootstrap verwenden.
+In diesem Kapitel werden wir in die statistische Modellierung einsteigen. Bisher haben Sie gelernt, wie man mithilfe von modernen Resamplingverfahren oder Simulationen Hypothesentests durchführt und Konfidenzintervalle berechnet. Wir werden in späteren Kapiteln auch für die Modellierung Bootstrap verwenden.
 
-Es gibt im wesentlichen zwei Gründe, warum man modelliert.
+Es gibt im Wesentlichen zwei Gründe, warum man modelliert.
 
 1. Wir vermuten einen Zusammenhang zwischen Variablen und wollen diesen überprüfen (explikatives Modellieren).
 1. Wir wollen ein Modell zur Vorhersage entwickeln (prädiktives Modellieren).
@@ -54,7 +54,7 @@ Modellkomponenten:
 Es geht bei der Regression also darum, die systematische Komponente zu modellieren. Der Zusammenhang zwischen Prädiktoren und der Zielvariablen ist nie exakt, es gibt also einen Fehlerterm. Die Zielgröße ist eine Zufallsvariable, deren Verteilung von den Prädiktoren abhängt.
 
 ## Einfache lineare Regression
-Bei einer einfachen linearen Regression gibt es nur einen Prädiktor. Der Zusammenhang zwischen der Zielvariablen und diesem Prädiktor ist linear. Somit hat das Model die Form einer Geraden. Eine Gerade kann man ja mit Hilfe des $y$-Achsenabschnitts und der Steigung beschreiben. Und genauso sieht das einfache lineare Regressionsmodell aus.
+Bei einer einfachen linearen Regression gibt es nur einen Prädiktor. Der Zusammenhang zwischen der Zielvariablen und diesem Prädiktor ist linear. Somit hat das Model die Form einer Geraden. Eine Gerade kann man ja mithilfe des $y$-Achsenabschnitts und der Steigung beschreiben. Und genauso sieht das einfache lineare Regressionsmodell aus.
 
 ```{block, type='rmddef'}
 Gegeben sind **Datenpaare**: $(y_i,x_i), \quad i=1,\dots,n$ \quad zu metrischen Variablen $y$ und $x$.
@@ -73,7 +73,7 @@ $\beta_0$ heißt $y$-Achsenabschnitt und $\beta_1$ Steigung des Modells.
 
 $\varepsilon_i$ steht für Fehler, die wir im Modell machen. Das sind die Unterschiede, genannt **Residuen**, zwischen dem, was das Modell in dem systematischen Teil (Geradengleichung) $\beta_0 + \beta_1x_i$ ausrechnet und dem tatsächlich gemessenen Wert $y_i$.
 
-$\mathrm{E}$ steht für Erwartungswert. So nennt man den theoretischen Mittelwert einer Zufallsvariablen. Und $\mathrm{Var}$ steht für Varianz. Beim einfachen linearen Regressionsmodell nimmt man also an, dass die Fehler im Mittel Null sind. Sie werden natürlich nie alle Null sein, sondern sie werden variieren. Der Fehlerterm ist also eine Zufallsvariable, dessen Varianz fest sein soll. Eine feste Varianz nennt man Homoskedastizität und die Fehler entsprechend homoskedastisch. Eine Varianz, die schwankt, bezeichnet man als Heteroskedastizität. Das bedeutet unter anderem, dass die Fehler für kleine und große Werte im Modell ähnlich sein müssen. Um auf Galtons Beispiel zurück zu kommen, das Modell soll sowohl die Größe der großen als auch der kleinen Kinder gleich gut erklären.
+$\mathrm{E}$ steht für Erwartungswert. So nennt man den theoretischen Mittelwert einer Zufallsvariablen. Und $\mathrm{Var}$ steht für Varianz. Beim einfachen linearen Regressionsmodell nimmt man also an, dass die Fehler im Mittel Null sind. Sie werden natürlich nie alle Null sein, sondern sie werden variieren. Der Fehlerterm ist also eine Zufallsvariable, dessen Varianz fest sein soll. Eine feste Varianz nennt man Homoskedastizität und die Fehler entsprechend homoskedastisch. Eine Varianz, die schwankt, bezeichnet man als Heteroskedastizität. Das bedeutet unter anderem, dass die Fehler für kleine und große Werte im Modell ähnlich sein müssen. Um auf Galtons Beispiel zurückzukommen, das Modell soll sowohl die Größe der großen als auch der kleinen Kinder gleich gut erklären.
 
 ## Beispiel: Zusammenhang zwischen der Anreisezeit und der Arbeitszeit in der Bibliothek
 
@@ -86,7 +86,7 @@ library(moderndive)
 library(knitr)
 ```
 
-Wir generieren wieder unsere Liebliengsgrundgesamtheit.
+Wir generieren wieder unsere Lieblingsgrundgesamtheit.
 ```{r}
 set.seed(123)
 
@@ -143,7 +143,7 @@ Die Struktur eines solchen linearen Modellobjekts ist richtig kompliziert. Daher
 str(lin_mod)
 ```
 
-Als erstes sehen wir uns die Zusammenfassung des Modells an. Die nicht tidy-Form enthält sehr viel Information, die man am Anfang gar nicht braucht. Und sie glänzt mit vielen Signifikanz-Sternchen, die wir am liebsten gleich verbannen würden.
+Als Erstes sehen wir uns die Zusammenfassung des Modells an. Die nicht tidy-Form enthält sehr viel Information, die man am Anfang gar nicht braucht. Und sie glänzt mit vielen Signifikanz-Sternchen, die wir am liebsten gleich verbannen würden.
 ```{r}
 summary(lin_mod)
 ```
@@ -153,7 +153,7 @@ Daher empfehle ich die tidy-Form. Wir nutzen die Funktion `get_regression_table`
 get_regression_table(lin_mod) %>% kable()
 ```
 
-Sie sehen in der ersten Spalte `(Intercept)` und `anreise`. Das sind der $y$-Achsenabschnitt $\beta_0$ und die Steigung $\beta_1$ des Modells. Das heißt unser Modell lautet ausgeschrieben:
+Sie sehen in der ersten Spalte `(Intercept)` und `anreise`. Das sind der $y$-Achsenabschnitt $\beta_0$ und die Steigung $\beta_1$ des Modells. Das heißt, unser Modell lautet ausgeschrieben:
 
 $$\widehat{\text{zeit_bib}_i} = 302.094 - 0.766 \cdot \text{anreise_i}$$
 Der Index $i$ steht hier für die unterschiedlichen Studierenden, denn jede(r) hat natürlich eine eigene Anreise- und Arbeitszeit in der Bibliothek. Wir lernen also, dass mit steigender Anreisezeit, die Arbeitszeit in der Bibliothek sinkt. Und zwar können wir es sogar noch genauer sagen: mit jeder zusätzlichen Minute Anreisezeit, sinkt die Arbeitszeit in der Bibliothek um 0.766 Minuten. Auf die übrigen Spalten kommen wir später zu sprechen.
@@ -185,7 +185,7 @@ ggplot(model_res, aes(x = anreise, y = zeit_bib)) +
 ```
 
 ### Modellannahmen überprüfen
-Bei der linearen Regression nehmen wir an, das der Zusammenhang zwischen der Zielvariablen und dem Prädiktor linear ist. Das können wir an der oberen Grafik bereits erkennen. Weiterin nehmen wir an, dass die Residuen im Mittel um die Null schwanken und homoskedastisch sind, d.h. ihre Varianz ist gleich. Diese Annahmen müssen wir überprüfen, bevor es ans Interpretieren der Modellparameter geht. Das macht man hauptsächlich grafisch. Wir plotten die Residuen gegen die angepassten Werte.
+Bei der linearen Regression nehmen wir an, dass der Zusammenhang zwischen der Zielvariablen und dem Prädiktor linear ist. Das können wir an der oberen Grafik bereits erkennen. Weiterhin nehmen wir an, dass die Residuen im Mittel um die Null schwanken und homoskedastisch sind, d.h. ihre Varianz ist gleich. Diese Annahmen müssen wir überprüfen, bevor es ans Interpretieren der Modellparameter geht. Das macht man hauptsächlich grafisch. Wir plotten die Residuen gegen die angepassten Werte.
 
 ```{r, out.width = '90%'}
 ggplot(data = model_res, aes(x = fitted, y = residuals)) + 
@@ -194,7 +194,7 @@ ggplot(data = model_res, aes(x = fitted, y = residuals)) +
   labs(x = 'Angepasste Werte', y = 'Residuen')
 ```
 
-Diese Darstellung der Residuen gegen angepasste Werte nennt man Residualplot. Darin können wir erkennen, dass unsere Residuen um die Null schwanken. Die erste Annahme ist also schon einmal erfüllt. Die Homoskedastizität ist nicht ganz erfüllt. Bei höheren angepassten Werten scheinen die Residuen stärker zu schwanken. Allerdings gibt es nur sehr wenige Werte < 250 Minuten. Daher ist es schwierig, daraus eine echte Heteorskedastizität abzuleiten. Wichtig ist, dass wir keine systematische Zunahme oder Abnahme der Variabilität beobachten und auch keine sonstigen Muster in den Residuen. Die zweite Modellannahme können wir auch als erfüllt abhaken. Wir können plausibel davon ausgehen, dass die Residuen unabhängig sind. Denn wir haben weder eine Zeitreihe gemessen, noch Leute mehrfach befragt.
+Diese Darstellung der Residuen gegen angepasste Werte nennt man Residualplot. Darin können wir erkennen, dass unsere Residuen um die Null schwanken. Die erste Annahme ist also schon einmal erfüllt. Die Homoskedastizität ist nicht ganz erfüllt. Bei größeren angepassten Werten scheinen die Residuen stärker zu schwanken. Allerdings gibt es nur sehr wenige Werte < 250 Minuten. Daher ist es schwierig, daraus eine echte Heteroskedastizität abzuleiten. Wichtig ist, dass wir keine systematische Zunahme oder Abnahme der Variabilität beobachten und auch keine sonstigen Muster in den Residuen. Die zweite Modellannahme können wir auch als erfüllt abhaken. Wir können plausibel davon ausgehen, dass die Residuen unabhängig sind. Denn wir haben weder eine Zeitreihe gemessen, noch Leute mehrfach befragt.
 
 
 Die Zusammenfassung des linearen Modells bietet noch weiter Informationen.
@@ -206,7 +206,7 @@ Hier gibt es noch die Spalten
 - `std_error`: Standardfehler der Schätzung des jeweiligen Modellparameters (intercept oder anreise)
 - `statistics`: Wert der $t$-Statistik für einen Hypothesentest, der überfüft, ob der jeweilige Modellparameter Null ist. Die Nullhypothese lautet $\beta_0 = 0$ für den $y$-Achsenabschnitt bzw. $\beta_1 = 0$ für die Steigung. Die Alternativhypothese lautet, dass der jeweilige Modellparameter ungleich Null ist.
 - `p-value`: p-Wert des Hypothesentests
-- `lower_ci`, `upper_ci`: unterer und oberer Wert des Konfidentintervalls (Standardeinstellung 95%) 
+- `lower_ci`, `upper_ci`: unterer und oberer Wert des Konfidenzintervalls (Standardeinstellung 95%) 
 
 Für die Berechnung des Standardfehlers, des Hypothesentests und der Konfidenzintervalle wird, zusätzlich zu den oben genannten Annahmen, vorausgesetzt, dass die Residuen normalverteilt sind. Nur wenn sie es tatsächlich sind, sind diese Berechnungen und der Hypothesentest korrekt, sonst möglicherweise nicht. Deswegen müssen wir, bevor wir diese Spalten interpretieren, überprüfen, ob die Residuen normalverteilt sind. Das machen wir mit einem QQ-Plot. Sie dürfen auch noch einen formalen `shapiro.test()` machen, wenn Sie möchten.
 
@@ -221,7 +221,7 @@ ggplot(model_res, aes(sample = residuals)) +
 Wenn die Residuen normalverteilt sind, dann liegen sie nahe der Geraden im QQ-Plot. Das ist hier der Fall. Die Annahme der Normalverteilung der Residuen ist also erfüllt und wir dürfen den Standardfehler, den p-Wert und die Konfidenzintervalle interpretieren.
 
 ### Modell interpretieren
-In unserem fiktiven Datensatz, nimmt die Arbeitseit in der Bibliothek mit der Anreisezeit ab. Wir haben bereits die Schätzungen des $y$-Achsenabschnitts (intercept) und der Steigung (anreise) interpretiert. Jetzt können wir zusätzlich sagen, wie gut wir geschätzt haben. Der $y$-Achsenabschnitt gibt die Anreisezeit in der Bibliothek an, wenn die Anreisezeit Null wäre. Das ist zwar die korrekte Interpretation, aber eine Extrapolation außerhalb unseres Messbereichs der Anreisezeit. Daher sollte man den $y$-Achsenabschnitt nicht überinterpretieren. Er ist erst einmal ein Modellparameter, der gut geschätzt wurde mit einem Konfidenzintervall von [297.594, 306.594]. Ob die Studierenden tatsächlich diese Zeit in der Bibliothek verbringen würden, wenn sie quasi auf dem Campus wohnen würden, ist eine Spekulation.
+In unserem fiktiven Datensatz nimmt die Arbeitszeit in der Bibliothek mit der Anreisezeit ab. Wir haben bereits die Schätzungen des $y$-Achsenabschnitts (intercept) und der Steigung (anreise) interpretiert. Jetzt können wir zusätzlich sagen, wie gut wir geschätzt haben. Der $y$-Achsenabschnitt gibt die Anreisezeit in der Bibliothek an, wenn die Anreisezeit Null wäre. Das ist zwar die korrekte Interpretation, aber eine Extrapolation außerhalb unseres Messbereichs der Anreisezeit. Daher sollte man den $y$-Achsenabschnitt nicht überinterpretieren. Er ist erst einmal ein Modellparameter, der gut geschätzt wurde, mit einem Konfidenzintervall von [297.594, 306.594]. Ob die Studierenden tatsächlich diese Zeit in der Bibliothek verbringen würden, wenn sie gewissermaßen auf dem Campus wohnen würden, ist eine Spekulation.
 
 Einfacher und sinnvoller ist die Interpretation der Steigung. Ihr Konfidenzintervall lautet [-0.867, -0.665]. Es ist eine gute Schätzung, da das Konfidenzintervall schmal ist. Pro zusätzlicher Anreiseminute sinkt die Arbeitszeit in der Bibliothek um einen Wert in diesem Konfidenzintervall.
 
@@ -245,10 +245,10 @@ Kapitel 5 in @ModernDive
 ## Aufgaben
 
 ### Kategorielle Variable als Prädiktor
-Arbeiten Sie selbständig das Beispiel in Kapitel 5.2 in @ModernDive durch.
+Arbeiten Sie selbstständig das Beispiel in Kapitel 5.2 in @ModernDive durch.
 
 <!-- ## Ihre Arbeit einreichen -->
 <!-- - Speichern Sie Ihr Notebook ab und laden Sie nur die .Rmd Datei vom Server. -->
-<!-- - Laden Sie Ihre .Rmd Datei in ILIAS hoch. **Beachten Sie die Deadline!** -->
+<!-- - Laden Sie Ihre .Rmd Datei in ILIAS hoch. **Beachten Sie die Frist!** -->
 <!-- - Sie erhalten die Musterlösung nach dem Hochladen. -->
 

@@ -239,10 +239,10 @@ Zum Schluss noch die wichtigsten Take-Home Messages.
 
 
 ## Lesestoff
-Kapitel 5 in @ModernDive
+Kapitel 5 in @ModernDive. Arbeiten Sie die Beispiele in diesem Kapitel durch.
 
 
-## Aufgaben
+<!-- ## Aufgaben -->
 
 ### Kategorielle Variable als Prädiktor
 Arbeiten Sie selbstständig das Beispiel in Kapitel 5.2 in @ModernDive durch.

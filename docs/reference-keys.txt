@@ -142,7 +142,6 @@ modellergebnisse-ansehen
 modellannahmen-überprüfen
 modell-interpretieren
 lesestoff-11
-aufgaben-9
 kategorielle-variable-als-prädiktor
 regression-inferenz
 zurück-zum-beispiel-anreisezeit-und-arbeitszeit-in-der-bilbiothek
@@ -151,7 +150,7 @@ wie-gut-ist-das-modell
 bootstrap-mit-infer-konfidenzintervall-für-steigung
 bootstrap-mit-rsample-konfidenzintervalle-für-steigung-und-y-achsenabschnitt
 lesestoff-12
-aufgaben-10
+aufgaben-9
 artenreichtum-auf-den-galapagosinseln
 artenreichtum-auf-den-galapagosinseln-revisited
 ihre-arbeit-einreichen-7

@@ -246,8 +246,9 @@ In der Lösung zu dieser Aufgabe erhalten Sie auch weitere Tipps zur Darstellung
 
 
 ## Ihre Arbeit einreichen
-- Speichern Sie Ihr Notebook ab und laden Sie nur die .Rmd Datei vom Server.
+- Speichern Sie Ihr Notebook ab.
 - Laden Sie Ihre .Rmd Datei in ILIAS hoch. **Beachten Sie die Frist!**
 - Sie erhalten die Musterlösung nach dem Hochladen.
+
 
 <!-- ## Weiterführende Literatur -->

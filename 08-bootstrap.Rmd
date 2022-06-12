@@ -251,9 +251,10 @@ Wiederholen Sie die Analyse für den Mittelwert der Anreisezeit für eine Stichp
 
 
 ## Ihre Arbeit einreichen
-- Speichern Sie Ihr Notebook ab und laden Sie nur die .Rmd Datei vom Server.
+- Speichern Sie Ihr Notebook ab.
 - Laden Sie Ihre .Rmd Datei in ILIAS hoch. **Beachten Sie die Frist!**
 - Sie erhalten die Musterlösung nach dem Hochladen.
+
 
 ## Weiterführende Literatur
 Kapitel 17.3 in @Sauer2019

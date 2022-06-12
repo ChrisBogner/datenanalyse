@@ -150,9 +150,10 @@ Wir sehen uns erneut die Daten der Weltbank aus der Aufgabe \@ref(world-bank) an
 
 
 ## Ihre Arbeit einreichen
-- Speichern Sie Ihr Notebook ab und laden Sie nur die .Rmd Datei vom Server.
-- Laden Sie Ihre .Rmd Datei in ILIAS hoch. **Beachten Sie die Deadline!**
+- Speichern Sie Ihr Notebook ab.
+- Laden Sie Ihre .Rmd Datei in ILIAS hoch. **Beachten Sie die Frist!**
 - Sie erhalten die Musterlösung nach dem Hochladen.
+
 
 ## Weitere Infos
 - Vignette von `dabestr`: https://cran.r-project.org/web/packages/dabestr/vignettes/using-dabestr.html

@@ -7,7 +7,7 @@
 - Konfidenzintervalle für nicht normalverteilte Residuen berechnen
 ```
 
-Im letzten Kapitel haben wir die einfache Normalregression kennen gelernt. Bevor wir die geschätzten Parameter und deren Konfidenzintervalle interpretieren, müssen wir die Annahmen der Normalregression überprüfen (vor allem grafisch). Diese Annahmen sind:
+Im letzten Kapitel haben wir die einfache Normalregression kennengelernt. Bevor wir die geschätzten Parameter und deren Konfidenzintervalle interpretieren, müssen wir die Annahmen der Normalregression überprüfen (hauptsächlich grafisch). Diese Annahmen sind:
 
 1. Der Zusammenhang zwischen der abhängigen und den erklärenden Variablen ist linear.
 1. Residuen sind unabhängig.
@@ -21,9 +21,9 @@ In diesem Kapitel beschäftigen wir uns mit folgenden Fragen:
 - Wie gut ist das Modell?
 - Was macht man, wenn die Residuen nicht normalverteilt sind?
 
-## Zurück zum Beispiel: Anreisezeit und Arbeitszeit in der Bilbiothek
+## Zurück zum Beispiel: Anreisezeit und Arbeitszeit in der Bibliothek
 
-### Parameter und Kofidenzinetervalle schätzen
+### Parameter und Konfidenzintervalle schätzen
 ```{r, message = F, warning = F}
 library(tidyverse)
 library(infer)
@@ -76,7 +76,7 @@ lin_mod <- lm(zeit_bib ~ anreise, data = befragung)
 get_regression_table(lin_mod) %>% kable()
 ```
 
-Eine sehr oft verwendete Methode, die Modellparameter zu schätzen, heißt **Methode der kleinsten Quadrate** (KQ). Sie beruht auf der Idee, dass diejenigen Modellparameter, $y$-Achsenabschnitt und die Steigung, die besten sind, bei denen die Summe der quadrierten Residuen die kleinste ist. Formal schreibt man:
+Eine häufig verwendete Methode, die Modellparameter zu schätzen, heißt **Methode der kleinsten Quadrate** (KQ). Sie beruht auf der Idee, dass diejenigen Modellparameter, $y$-Achsenabschnitt und die Steigung, die besten sind, bei denen die Summe der quadrierten Residuen die kleinste ist. Formal schreibt man:
 
 ```{block, type='rmddef'}
 Gegeben sei das lineare Regressionsmodell
@@ -188,7 +188,7 @@ Zurück zu unserem Beispiel. Wie viel Streuung erklärt nun unser Modell? Wir se
 get_regression_summaries(lin_mod) %>% kable()
 ```
 
-- `r_squared`: Bestimmtheimtsmaß $R^2$
+- `r_squared`: Bestimmtheitsmaß $R^2$
 - `adj_r_squared`: adjustiertes Bestimmtheitsmaß $R^2_\text{ajd}$
 - `mse`: mittlerer quadratischer Fehler, berechnet als `mean(residuals(lin_mod)^2)`
 - `rmse`: Wurzel aus `mse`
@@ -201,10 +201,10 @@ get_regression_summaries(lin_mod) %>% kable()
 Somit erklärt unser Modell 53% der Varianz der Daten.
 
 ## Bootstrap mit `infer`: Konfidenzintervall für Steigung
-Die $t$-Verteilung der Schätzungen gilt *asymptotisch*, d.h. bei großen Datensäzten, auch für nicht-normalverteilte Residuen (unter bestimmten Bedingungen, s. @Fahrmeir2009). Allerdings erfordern 
-**nicht-normalverteilte Residuen große Stichproben oder aber alternative Methoden** zum Berechnen der Konfidenzintervalle. Auch heteroskedastische Residuen führen zu falschen Konfidenzintervallen und Hypothesentests. Bootstrap ist robust gegen die Verletzung beider Annahmen (Normalvereilung und Homoskedastizität der Residuen). Allerdings müssen die Daten nach wie vor unabhängig sein (keine wiederholten Messungen, keine Zeitreihen!), damit Bootstrap korrekt arbeitet.
+Die $t$-Verteilung der Schätzungen gilt *asymptotisch*, d.h. bei großen Datensätzen, auch für nicht-normalverteilte Residuen (unter bestimmten Bedingungen, s. @Fahrmeir2009). Allerdings erfordern 
+**nicht-normalverteilte Residuen, große Stichproben oder aber alternative Methoden** zum Berechnen der Konfidenzintervalle. Auch heteroskedastische Residuen führen zu falschen Konfidenzintervallen und Hypothesentests. Bootstrap ist robust gegen die Verletzung beider Annahmen (Normalverteilung und Homoskedastizität der Residuen). Allerdings müssen die Daten auch hierfür unabhängig sein (keine wiederholten Messungen, keine Zeitreihen!), damit Bootstrap korrekt arbeitet.
 
-Bei einer Einfachregression, d.h. wenn es nur einen Prädiktor gibt, ist die Steigung häufig der interessante Parameter. Wenn wir uns also nicht für den $y$-Achsenabschnitt interessieren, dann können wir das altbekannte Framework von `infer` für das Bootstrap-Konfidenzintervall für die Steigung verwenden. Für unser Beispiel ginge es so:
+Bei einer Einfachregression, d.h., wenn es nur einen Prädiktor gibt, ist die Steigung häufig der interessante Parameter. Wenn wir uns also nicht für den $y$-Achsenabschnitt interessieren, dann können wir das altbekannte Framework von `infer` für das Bootstrap-Konfidenzintervall für die Steigung verwenden. Für unser Beispiel ginge es so:
 
 **Schritt 1: Bootstrap-Stichproben generieren und Statistik "Steigung" berechnen**
 ```{r}
@@ -279,7 +279,7 @@ Um Konfidenzintervalle sowohl für den $y$-Achsenabschnitt als auch für die Ste
 
 **Schritt 1: Bootstrapstichproben aus `befragung` generieren**
 
-Wir generieren 10000 Bootstrap-Stichproben aus dem Datensatz `befragung` mit Hilfe der Funktion `bootstraps()` aus der Bibliothek `rsample`.
+Wir generieren 10000 Bootstrap-Stichproben aus dem Datensatz `befragung` mithilfe der Funktion `bootstraps()` aus der Bibliothek `rsample`.
 ```{r}
 set.seed(123)
 
@@ -301,7 +301,7 @@ Wir sehen uns so eine Bootstrap-Stichprobe mal an. Dazu nutzen wir die Funktion 
 analysis(my_bootstraps$splits[[1]])
 ```
 
-Wie viele Studierende wurden mehrfach gezogen? Wir sehen uns als Beispiel die erste Bootstrap-Stichproben an.
+Wie viele Studierende wurden mehrfach gezogen? Wir sehen uns als Beispiel die erste Bootstrap-Stichprobe an.
 ```{r}
 analysis(my_bootstraps$splits[[1]]) %>%
   group_by(student_id) %>%
@@ -311,7 +311,7 @@ analysis(my_bootstraps$splits[[1]]) %>%
 
 **Schritt 2: Modell auf den Bootstrap-Stichproben anpassen**
 
-Um unser ursprüngliches lineares Modell anzupassen, benutzen wir eine selbstgeschriebene Funktion, inspiriert von der Hilfe zu `rsample` (?int_pctl). Die Funktion `lm_est()` passt auf einer Bootstrap-Stichprobe das lineare Modell `zeit_bib ~ anreise` an. Um die Berechnung auf allen Bootstrap-Stichproben effizient zu machen, nutze ich die Funktion `map()`, die sich eine Bootstrap-Stichprobe nach der anderen vornimmt und das lineare Modell anpasst. Wir kommen in einer spätere Stunde auf solche effizienten Funktionen zurück.
+Um unser ursprüngliches lineares Modell anzupassen, benutzen wir eine selbst geschriebene Funktion, inspiriert von der Hilfe zu `rsample` (?int_pctl). Die Funktion `lm_est()` passt auf einer Bootstrap-Stichprobe das lineare Modell `zeit_bib ~ anreise` an. Um die Berechnung auf allen Bootstrap-Stichproben effizient zu machen, nutze ich die Funktion `map()`, die sich eine Bootstrap-Stichprobe nach der anderen vornimmt und das lineare Modell anpasst. Wir kommen in einer späteren Stunde auf solche effizienten Funktionen zurück.
 ```{r}
 lm_est <- function(split, ...) {
   lm(zeit_bib ~ anreise, data = analysis(split)) %>%
@@ -360,7 +360,7 @@ percentile_ci %>% kable()
 standard_ci %>% kable()
 ```
 
-Wir plotten alle Ergebnisse nun zusammen. Das müssen wir "händisch" machen, da uns ja nicht die tolle Funktion `visualize()` aus `infer` zur Verfügung steht. Wir fügen die Konfidenzintervalle als vertikale Linien zu den Histogrammen der Bootstrapverteilungen hinzu.
+Wir plotten alle Ergebnisse jetzt zusammen. Das müssen wir "händisch" machen, da uns ja nicht die tolle Funktion `visualize()` aus `infer` zur Verfügung steht. Wir fügen die Konfidenzintervalle als vertikale Linien zu den Histogrammen der Bootstrapverteilungen hinzu.
 ```{r, out.width = '90%'}
 ggplot(model_coeffs, aes(x = estimate, group = term)) + 
   geom_histogram(col = "white", nbins = 30) +
@@ -373,7 +373,7 @@ ggplot(model_coeffs, aes(x = estimate, group = term)) +
   theme(legend.position = 'bottom')
 ```
 
-In diesem Beispiel ähneln sich die Konfidenzintervalle, da die Annahmen der Normalregression erfüllt sind. Das wird in den Aufgaben (s.u.), die Sie selbständig bearbeiten werden, nicht mehr der Fall sein. Selbstverständlich sollen Sie im Falle von erfüllten Annahmen einfach die Standardkonfidenzintervalle nutzen und brauchen kein Bootstrap. Sie werden aber sehen, dass beim Modellieren mit richtigen Daten die Annahmen der Normalverteilung und der Homoskedastizität häufig verletzt sind. Mit dem Bootstrap sind Sie jetzt dafür gerüstet `r emo::ji('smile')`.
+In diesem Beispiel ähneln sich die Konfidenzintervalle, da die Annahmen der Normalregression erfüllt sind. Das wird in den Aufgaben (s.u.), die Sie selbstständig bearbeiten werden, nicht mehr der Fall sein. Selbstverständlich sollen Sie im Falle von erfüllten Annahmen einfach die Standardkonfidenzintervalle nutzen und brauchen kein Bootstrap. Sie werden aber sehen, dass beim Modellieren mit richtigen Daten die Annahmen der Normalverteilung und der Homoskedastizität häufig verletzt sind. Mit dem Bootstrap sind Sie jetzt dafür gerüstet `r emo::ji('smile')`.
 
 
 ## Lesestoff
@@ -388,16 +388,15 @@ Wir beschäftigen uns mit dem Datensatz `gala` aus der Bibliothek `faraway`.
 1. Laden Sie den Datensatz und lesen Sie in der Hilfe nach, um was es sich dabei handelt.
 2. Untersuchen Sie die Hypothese, dass die Anzahl der endemischen Arten linear von der Gesamtartenzahl abhängt.
 3. Überprüfen Sie die Annahmen des linearen Modells.
-4. Vergleichen Sie das Konfidenzintervall, das auf der Normalverteilungsannahme beruht mit dem Bootstrap-Konfidenzintervall.
+4. Vergleichen Sie das Konfidenzintervall, das auf der Normalverteilungsannahme beruht, mit dem Bootstrap-Konfidenzintervall.
 1. Führen Sie den Hypothesentest analog zum Beispiel oben mit `infer` durch.
 1. Interpretieren Sie das Modell.
 
 ### Artenreichtum auf den Galapagosinseln, revisited
-Wiederholen Sie die obere Aufgabe nun mit Hilfe der Bibliothek `rasample`. Tip: Wandeln Sie die Inselnamen, die nur als Zeilennamen existieren, in eine richtige Spalte um `gala <- gala %>% rownames_to_column(var = "island")`.
+Wiederholen Sie die obere Aufgabe nun mithilfe der Bibliothek `rasample`. Tipp: Wandeln Sie die Inselnamen, die nur als Zeilennamen existieren, in eine richtige Spalte um `gala <- gala %>% rownames_to_column(var = "island")`.
 
 ## Ihre Arbeit einreichen
 
-- Speichern Sie Ihr Notebook ab und laden Sie nur die .Rmd Datei vom Server.
-- Laden Sie Ihre .Rmd Datei in ILIAS hoch. **Beachten Sie die Deadline!**
+- Speichern Sie Ihr Notebook ab.
+- Laden Sie Ihre .Rmd Datei in ILIAS hoch. **Beachten Sie die Frist!**
 - Sie erhalten die Musterlösung nach dem Hochladen.
-

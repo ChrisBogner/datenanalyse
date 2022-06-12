@@ -212,9 +212,10 @@ Vielleicht können Sie sich noch erinnern, dass wir in einer der früheren Stund
 Überprüfen Sie nun, ob es einen Zusammenhang gibt zwischen der Wahl des Verkehrsmittels und dem Wohnort der befragten Studierenden. Tipps: `specify(formula = wohnort ~ verkehrsmittel)` und `calculate(stat = "Chisq")`. Auch hier lohnt ein Blick auf die Webseite von `infer` (s.u.).
 
 ## Ihre Arbeit einreichen
-- Speichern Sie Ihr Notebook ab und laden Sie nur die .Rmd Datei vom Server.
-- Laden Sie Ihre .Rmd Datei in ILIAS hoch. **Beachten Sie die Deadline!**
+- Speichern Sie Ihr Notebook ab.
+- Laden Sie Ihre .Rmd Datei in ILIAS hoch. **Beachten Sie die Frist!**
 - Sie erhalten die Musterlösung nach dem Hochladen.
+
 
 ## Weiterführende Literatur und Videos
 Webseite von `infer`: https://infer.netlify.app/

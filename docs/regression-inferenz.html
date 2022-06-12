@@ -122,7 +122,7 @@ berechnen
 </li>
 </ul>
 </div>
-<p>Im letzten Kapitel haben wir die einfache Normalregression kennen gelernt. Bevor wir die geschätzten Parameter und deren Konfidenzintervalle interpretieren, müssen wir die Annahmen der Normalregression überprüfen (vor allem grafisch). Diese Annahmen sind:</p>
+<p>Im letzten Kapitel haben wir die einfache Normalregression kennengelernt. Bevor wir die geschätzten Parameter und deren Konfidenzintervalle interpretieren, müssen wir die Annahmen der Normalregression überprüfen (hauptsächlich grafisch). Diese Annahmen sind:</p>
 <ol style="list-style-type: decimal">
 <li>Der Zusammenhang zwischen der abhängigen und den erklärenden Variablen ist linear.</li>
 <li>Residuen sind unabhängig.</li>
@@ -136,13 +136,13 @@ berechnen
 <li>Wie gut ist das Modell?</li>
 <li>Was macht man, wenn die Residuen nicht normalverteilt sind?</li>
 </ul>
-<div id="zurück-zum-beispiel-anreisezeit-und-arbeitszeit-in-der-bilbiothek" class="section level2" number="12.1">
+<div id="zurück-zum-beispiel-anreisezeit-und-arbeitszeit-in-der-bibliothek" class="section level2" number="12.1">
 <h2>
-<span class="header-section-number">12.1</span> Zurück zum Beispiel: Anreisezeit und Arbeitszeit in der Bilbiothek<a class="anchor" aria-label="anchor" href="#zur%C3%BCck-zum-beispiel-anreisezeit-und-arbeitszeit-in-der-bilbiothek"><i class="fas fa-link"></i></a>
+<span class="header-section-number">12.1</span> Zurück zum Beispiel: Anreisezeit und Arbeitszeit in der Bibliothek<a class="anchor" aria-label="anchor" href="#zur%C3%BCck-zum-beispiel-anreisezeit-und-arbeitszeit-in-der-bibliothek"><i class="fas fa-link"></i></a>
 </h2>
-<div id="parameter-und-kofidenzinetervalle-schätzen" class="section level3" number="12.1.1">
+<div id="parameter-und-konfidenzintervalle-schätzen" class="section level3" number="12.1.1">
 <h3>
-<span class="header-section-number">12.1.1</span> Parameter und Kofidenzinetervalle schätzen<a class="anchor" aria-label="anchor" href="#parameter-und-kofidenzinetervalle-sch%C3%A4tzen"><i class="fas fa-link"></i></a>
+<span class="header-section-number">12.1.1</span> Parameter und Konfidenzintervalle schätzen<a class="anchor" aria-label="anchor" href="#parameter-und-konfidenzintervalle-sch%C3%A4tzen"><i class="fas fa-link"></i></a>
 </h3>
 <div class="sourceCode" id="cb213"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
@@ -227,7 +227,7 @@ anreise
 </tr>
 </tbody>
 </table></div>
-<p>Eine sehr oft verwendete Methode, die Modellparameter zu schätzen, heißt <strong>Methode der kleinsten Quadrate</strong> (KQ). Sie beruht auf der Idee, dass diejenigen Modellparameter, <span class="math inline">\(y\)</span>-Achsenabschnitt und die Steigung, die besten sind, bei denen die Summe der quadrierten Residuen die kleinste ist. Formal schreibt man:</p>
+<p>Eine häufig verwendete Methode, die Modellparameter zu schätzen, heißt <strong>Methode der kleinsten Quadrate</strong> (KQ). Sie beruht auf der Idee, dass diejenigen Modellparameter, <span class="math inline">\(y\)</span>-Achsenabschnitt und die Steigung, die besten sind, bei denen die Summe der quadrierten Residuen die kleinste ist. Formal schreibt man:</p>
 <div class="rmddef">
 <p>
 Gegeben sei das lineare Regressionsmodell
@@ -376,7 +376,7 @@ nobs
 </table></div>
 <ul>
 <li>
-<code>r_squared</code>: Bestimmtheimtsmaß <span class="math inline">\(R^2\)</span>
+<code>r_squared</code>: Bestimmtheitsmaß <span class="math inline">\(R^2\)</span>
 </li>
 <li>
 <code>adj_r_squared</code>: adjustiertes Bestimmtheitsmaß <span class="math inline">\(R^2_\text{ajd}\)</span>
@@ -406,9 +406,9 @@ nobs
 <h2>
 <span class="header-section-number">12.2</span> Bootstrap mit <code>infer</code>: Konfidenzintervall für Steigung<a class="anchor" aria-label="anchor" href="#bootstrap-mit-infer-konfidenzintervall-f%C3%BCr-steigung"><i class="fas fa-link"></i></a>
 </h2>
-<p>Die <span class="math inline">\(t\)</span>-Verteilung der Schätzungen gilt <em>asymptotisch</em>, d.h. bei großen Datensäzten, auch für nicht-normalverteilte Residuen (unter bestimmten Bedingungen, s. <span class="citation">Fahrmeir, Kneib, and Lang (<a href="literatur.html#ref-Fahrmeir2009" role="doc-biblioref">2009</a>)</span>). Allerdings erfordern
-<strong>nicht-normalverteilte Residuen große Stichproben oder aber alternative Methoden</strong> zum Berechnen der Konfidenzintervalle. Auch heteroskedastische Residuen führen zu falschen Konfidenzintervallen und Hypothesentests. Bootstrap ist robust gegen die Verletzung beider Annahmen (Normalvereilung und Homoskedastizität der Residuen). Allerdings müssen die Daten nach wie vor unabhängig sein (keine wiederholten Messungen, keine Zeitreihen!), damit Bootstrap korrekt arbeitet.</p>
-<p>Bei einer Einfachregression, d.h. wenn es nur einen Prädiktor gibt, ist die Steigung häufig der interessante Parameter. Wenn wir uns also nicht für den <span class="math inline">\(y\)</span>-Achsenabschnitt interessieren, dann können wir das altbekannte Framework von <code>infer</code> für das Bootstrap-Konfidenzintervall für die Steigung verwenden. Für unser Beispiel ginge es so:</p>
+<p>Die <span class="math inline">\(t\)</span>-Verteilung der Schätzungen gilt <em>asymptotisch</em>, d.h. bei großen Datensätzen, auch für nicht-normalverteilte Residuen (unter bestimmten Bedingungen, s. <span class="citation">Fahrmeir, Kneib, and Lang (<a href="literatur.html#ref-Fahrmeir2009" role="doc-biblioref">2009</a>)</span>). Allerdings erfordern
+<strong>nicht-normalverteilte Residuen, große Stichproben oder aber alternative Methoden</strong> zum Berechnen der Konfidenzintervalle. Auch heteroskedastische Residuen führen zu falschen Konfidenzintervallen und Hypothesentests. Bootstrap ist robust gegen die Verletzung beider Annahmen (Normalverteilung und Homoskedastizität der Residuen). Allerdings müssen die Daten auch hierfür unabhängig sein (keine wiederholten Messungen, keine Zeitreihen!), damit Bootstrap korrekt arbeitet.</p>
+<p>Bei einer Einfachregression, d.h., wenn es nur einen Prädiktor gibt, ist die Steigung häufig der interessante Parameter. Wenn wir uns also nicht für den <span class="math inline">\(y\)</span>-Achsenabschnitt interessieren, dann können wir das altbekannte Framework von <code>infer</code> für das Bootstrap-Konfidenzintervall für die Steigung verwenden. Für unser Beispiel ginge es so:</p>
 <p><strong>Schritt 1: Bootstrap-Stichproben generieren und Statistik “Steigung” berechnen</strong></p>
 <div class="sourceCode" id="cb216"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">bootstrap_distn_slope</span> <span class="op">&lt;-</span> <span class="va">befragung</span> <span class="op"><a href="https://infer.tidymodels.org/reference/pipe.html">%&gt;%</a></span> 
@@ -535,7 +535,7 @@ anreise
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rsample.tidymodels.org">rsample</a></span><span class="op">)</span></code></pre></div>
 <p>Um Konfidenzintervalle sowohl für den <span class="math inline">\(y\)</span>-Achsenabschnitt als auch für die Steigung zu bekommen, generieren wir Bootstrap-Stichproben aus der <code>befragung</code>, passen dann an jede solche Stichprobe unser lineares Modell an. Jedes dieser Modelle liefert uns einen <span class="math inline">\(y\)</span>-Achsenabschnitt und eine Steigung. Dadurch bekommen wir Bootstrapverteilungen dieser Modellparameter, so wie sonst auch, wenn wir Bootstrap benutzt haben. Aus diesen Bootstrapverteilungen berechnen wir dann mit der Methode der Quantile unsere Konfidenzintervalle.</p>
 <p><strong>Schritt 1: Bootstrapstichproben aus <code>befragung</code> generieren</strong></p>
-<p>Wir generieren 10000 Bootstrap-Stichproben aus dem Datensatz <code>befragung</code> mit Hilfe der Funktion <code><a href="https://rsample.tidymodels.org/reference/bootstraps.html">bootstraps()</a></code> aus der Bibliothek <code>rsample</code>.</p>
+<p>Wir generieren 10000 Bootstrap-Stichproben aus dem Datensatz <code>befragung</code> mithilfe der Funktion <code><a href="https://rsample.tidymodels.org/reference/bootstraps.html">bootstraps()</a></code> aus der Bibliothek <code>rsample</code>.</p>
 <div class="sourceCode" id="cb230"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
@@ -581,7 +581,7 @@ anreise
 ##  9         1       2672 w          stadt   zu_fuss          10.8      313.
 ## 10         1       5395 w          stadt   bus              25.9      297.
 ## # … with 190 more rows</code></pre>
-<p>Wie viele Studierende wurden mehrfach gezogen? Wir sehen uns als Beispiel die erste Bootstrap-Stichproben an.</p>
+<p>Wie viele Studierende wurden mehrfach gezogen? Wir sehen uns als Beispiel die erste Bootstrap-Stichprobe an.</p>
 <div class="sourceCode" id="cb237"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rsample.tidymodels.org/reference/as.data.frame.rsplit.html">analysis</a></span><span class="op">(</span><span class="va">my_bootstraps</span><span class="op">$</span><span class="va">splits</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">)</span> <span class="op"><a href="https://infer.tidymodels.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">student_id</span><span class="op">)</span> <span class="op"><a href="https://infer.tidymodels.org/reference/pipe.html">%&gt;%</a></span>
@@ -602,7 +602,7 @@ anreise
 ## 10       5971     3
 ## # … with 118 more rows</code></pre>
 <p><strong>Schritt 2: Modell auf den Bootstrap-Stichproben anpassen</strong></p>
-<p>Um unser ursprüngliches lineares Modell anzupassen, benutzen wir eine selbstgeschriebene Funktion, inspiriert von der Hilfe zu <code>rsample</code> (?int_pctl). Die Funktion <code>lm_est()</code> passt auf einer Bootstrap-Stichprobe das lineare Modell <code>zeit_bib ~ anreise</code> an. Um die Berechnung auf allen Bootstrap-Stichproben effizient zu machen, nutze ich die Funktion <code><a href="https://purrr.tidyverse.org/reference/map.html">map()</a></code>, die sich eine Bootstrap-Stichprobe nach der anderen vornimmt und das lineare Modell anpasst. Wir kommen in einer spätere Stunde auf solche effizienten Funktionen zurück.</p>
+<p>Um unser ursprüngliches lineares Modell anzupassen, benutzen wir eine selbst geschriebene Funktion, inspiriert von der Hilfe zu <code>rsample</code> (?int_pctl). Die Funktion <code>lm_est()</code> passt auf einer Bootstrap-Stichprobe das lineare Modell <code>zeit_bib ~ anreise</code> an. Um die Berechnung auf allen Bootstrap-Stichproben effizient zu machen, nutze ich die Funktion <code><a href="https://purrr.tidyverse.org/reference/map.html">map()</a></code>, die sich eine Bootstrap-Stichprobe nach der anderen vornimmt und das lineare Modell anpasst. Wir kommen in einer späteren Stunde auf solche effizienten Funktionen zurück.</p>
 <div class="sourceCode" id="cb239"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">lm_est</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">split</span>, <span class="va">...</span><span class="op">)</span> <span class="op">{</span>
   <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">zeit_bib</span> <span class="op">~</span> <span class="va">anreise</span>, data <span class="op">=</span> <span class="fu"><a href="https://rsample.tidymodels.org/reference/as.data.frame.rsplit.html">analysis</a></span><span class="op">(</span><span class="va">split</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://infer.tidymodels.org/reference/pipe.html">%&gt;%</a></span>
@@ -809,7 +809,7 @@ anreise
 </tr>
 </tbody>
 </table></div>
-<p>Wir plotten alle Ergebnisse nun zusammen. Das müssen wir “händisch” machen, da uns ja nicht die tolle Funktion <code><a href="https://infer.tidymodels.org/reference/visualize.html">visualize()</a></code> aus <code>infer</code> zur Verfügung steht. Wir fügen die Konfidenzintervalle als vertikale Linien zu den Histogrammen der Bootstrapverteilungen hinzu.</p>
+<p>Wir plotten alle Ergebnisse jetzt zusammen. Das müssen wir “händisch” machen, da uns ja nicht die tolle Funktion <code><a href="https://infer.tidymodels.org/reference/visualize.html">visualize()</a></code> aus <code>infer</code> zur Verfügung steht. Wir fügen die Konfidenzintervalle als vertikale Linien zu den Histogrammen der Bootstrapverteilungen hinzu.</p>
 <div class="sourceCode" id="cb249"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">model_coeffs</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">estimate</span>, group <span class="op">=</span> <span class="va">term</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>col <span class="op">=</span> <span class="st">"white"</span>, nbins <span class="op">=</span> <span class="fl">30</span><span class="op">)</span> <span class="op">+</span>
@@ -823,7 +823,7 @@ anreise
 <pre><code>## Warning: Ignoring unknown parameters: nbins</code></pre>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
 <div class="inline-figure"><img src="datenanalyse_files/figure-html/unnamed-chunk-198-1.png" width="90%"></div>
-<p>In diesem Beispiel ähneln sich die Konfidenzintervalle, da die Annahmen der Normalregression erfüllt sind. Das wird in den Aufgaben (s.u.), die Sie selbständig bearbeiten werden, nicht mehr der Fall sein. Selbstverständlich sollen Sie im Falle von erfüllten Annahmen einfach die Standardkonfidenzintervalle nutzen und brauchen kein Bootstrap. Sie werden aber sehen, dass beim Modellieren mit richtigen Daten die Annahmen der Normalverteilung und der Homoskedastizität häufig verletzt sind. Mit dem Bootstrap sind Sie jetzt dafür gerüstet 😄.</p>
+<p>In diesem Beispiel ähneln sich die Konfidenzintervalle, da die Annahmen der Normalregression erfüllt sind. Das wird in den Aufgaben (s.u.), die Sie selbstständig bearbeiten werden, nicht mehr der Fall sein. Selbstverständlich sollen Sie im Falle von erfüllten Annahmen einfach die Standardkonfidenzintervalle nutzen und brauchen kein Bootstrap. Sie werden aber sehen, dass beim Modellieren mit richtigen Daten die Annahmen der Normalverteilung und der Homoskedastizität häufig verletzt sind. Mit dem Bootstrap sind Sie jetzt dafür gerüstet 😄.</p>
 </div>
 <div id="lesestoff-12" class="section level2" number="12.4">
 <h2>
@@ -844,7 +844,7 @@ anreise
 <li>Laden Sie den Datensatz und lesen Sie in der Hilfe nach, um was es sich dabei handelt.</li>
 <li>Untersuchen Sie die Hypothese, dass die Anzahl der endemischen Arten linear von der Gesamtartenzahl abhängt.</li>
 <li>Überprüfen Sie die Annahmen des linearen Modells.</li>
-<li>Vergleichen Sie das Konfidenzintervall, das auf der Normalverteilungsannahme beruht mit dem Bootstrap-Konfidenzintervall.</li>
+<li>Vergleichen Sie das Konfidenzintervall, das auf der Normalverteilungsannahme beruht, mit dem Bootstrap-Konfidenzintervall.</li>
 <li>Führen Sie den Hypothesentest analog zum Beispiel oben mit <code>infer</code> durch.</li>
 <li>Interpretieren Sie das Modell.</li>
 </ol>
@@ -853,7 +853,7 @@ anreise
 <h3>
 <span class="header-section-number">12.5.2</span> Artenreichtum auf den Galapagosinseln, revisited<a class="anchor" aria-label="anchor" href="#artenreichtum-auf-den-galapagosinseln-revisited"><i class="fas fa-link"></i></a>
 </h3>
-<p>Wiederholen Sie die obere Aufgabe nun mit Hilfe der Bibliothek <code>rasample</code>. Tip: Wandeln Sie die Inselnamen, die nur als Zeilennamen existieren, in eine richtige Spalte um <code>gala &lt;- gala %&gt;% rownames_to_column(var = "island")</code>.</p>
+<p>Wiederholen Sie die obere Aufgabe nun mithilfe der Bibliothek <code>rasample</code>. Tipp: Wandeln Sie die Inselnamen, die nur als Zeilennamen existieren, in eine richtige Spalte um <code>gala &lt;- gala %&gt;% rownames_to_column(var = "island")</code>.</p>
 </div>
 </div>
 <div id="ihre-arbeit-einreichen-7" class="section level2" number="12.6">
@@ -861,8 +861,8 @@ anreise
 <span class="header-section-number">12.6</span> Ihre Arbeit einreichen<a class="anchor" aria-label="anchor" href="#ihre-arbeit-einreichen-7"><i class="fas fa-link"></i></a>
 </h2>
 <ul>
-<li>Speichern Sie Ihr Notebook ab und laden Sie nur die .Rmd Datei vom Server.</li>
-<li>Laden Sie Ihre .Rmd Datei in ILIAS hoch. <strong>Beachten Sie die Deadline!</strong>
+<li>Speichern Sie Ihr Notebook ab.</li>
+<li>Laden Sie Ihre .Rmd Datei in ILIAS hoch. <strong>Beachten Sie die Frist!</strong>
 </li>
 <li>Sie erhalten die Musterlösung nach dem Hochladen.</li>
 </ul>
@@ -879,8 +879,8 @@ anreise
       <ul class="nav navbar-nav">
 <li><a class="nav-link" href="#regression-inferenz"><span class="header-section-number">12</span> Inferenz in linearer Regression</a></li>
 <li>
-<a class="nav-link" href="#zur%C3%BCck-zum-beispiel-anreisezeit-und-arbeitszeit-in-der-bilbiothek"><span class="header-section-number">12.1</span> Zurück zum Beispiel: Anreisezeit und Arbeitszeit in der Bilbiothek</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#parameter-und-kofidenzinetervalle-sch%C3%A4tzen"><span class="header-section-number">12.1.1</span> Parameter und Kofidenzinetervalle schätzen</a></li>
+<a class="nav-link" href="#zur%C3%BCck-zum-beispiel-anreisezeit-und-arbeitszeit-in-der-bibliothek"><span class="header-section-number">12.1</span> Zurück zum Beispiel: Anreisezeit und Arbeitszeit in der Bibliothek</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#parameter-und-konfidenzintervalle-sch%C3%A4tzen"><span class="header-section-number">12.1.1</span> Parameter und Konfidenzintervalle schätzen</a></li>
 <li><a class="nav-link" href="#wie-gut-ist-das-modell"><span class="header-section-number">12.1.2</span> Wie gut ist das Modell?</a></li>
 </ul>
 </li>
@@ -911,7 +911,7 @@ anreise
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Datenanalyse mit R</strong>: SoSe 2022" was written by Christina Bogner. It was last built on 2022-05-31.</p>
+    <p>"<strong>Datenanalyse mit R</strong>: SoSe 2022" was written by Christina Bogner. It was last built on 2022-06-12.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

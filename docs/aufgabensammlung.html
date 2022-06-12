@@ -122,7 +122,7 @@
 </h3>
 <p>Unsere <strong>Grundgesamtheit</strong> sind alle 12000 Studierende von der Uni Werdeschlau. Wir erstellen uns in diesem Beispiel selbst unsere Grundgesamtheit aus der Gleichverteilung. Die Regeln dazu sind absolut frei erfunden. Die meisten Studierenden sind zwischen 5 und 40 Minuten unterwegs; 20% jedoch haben eine längere Anreise zwischen 60 und 120 Minuten.</p>
 <p><em>Lassen Sie den Code laufen.</em></p>
-<div class="sourceCode" id="cb252"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb250"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="va">anreise</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">12000</span> <span class="op">*</span> <span class="fl">0.8</span>, min <span class="op">=</span> <span class="fl">5</span>, max <span class="op">=</span> <span class="fl">40</span><span class="op">)</span>,
@@ -143,7 +143,7 @@
 <span class="va">zeit_bib</span> <span class="op">&lt;-</span> <span class="fl">5</span> <span class="op">*</span> <span class="fl">60</span> <span class="op">-</span> <span class="fl">0.7</span> <span class="op">*</span> <span class="va">anreise</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">anreise</span><span class="op">)</span>, <span class="fl">0</span>, <span class="fl">20</span><span class="op">)</span></code></pre></div>
 <p>Wir setzen <code>geschlecht</code>, <code>wohnort</code>, <code>verkehrsmittel</code>, <code>anreise</code> und <code>zeit_bib</code> zu einer Datenmatrix (<code>tibble</code>) zusammen und nennen das Objekt <code>grundgesamtheit</code>.</p>
 <p><em>Lassen Sie den folgenden Code laufen.</em></p>
-<div class="sourceCode" id="cb253"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb251"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">grundgesamtheit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span><span class="va">geschlecht</span>, <span class="va">wohnort</span>, <span class="va">verkehrsmittel</span>, <span class="va">anreise</span>, <span class="va">zeit_bib</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="befragung-simulieren" class="section level3" number="14.1.2">
@@ -161,7 +161,7 @@
 <p><br></p>
 <p>Um unsere Stichprobe zu erstellen, ziehen wir ohne Zurücklegen aus unserer Grundgesamtheit. Sagen wir mal, die Kapazitäten der Befragenden reichen für 200 Befragungen.</p>
 <p><em>Lassen Sie den folgenden Code laufen.</em></p>
-<div class="sourceCode" id="cb254"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb252"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">befragung</span> <span class="op">&lt;-</span> <span class="va">grundgesamtheit</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">grundgesamtheit</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, size <span class="op">=</span> <span class="fl">200</span>, replace <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>, <span class="op">]</span></code></pre></div>
 </div>
 <div id="kurze-explorative-datenanalyse" class="section level3" number="14.1.3">
@@ -170,7 +170,7 @@
 </h3>
 <p>Von hier an arbeiten wir mit unserer Stichprobe <code>befragung</code>. Sehen wir uns mal die empirische Verteilung, d.h. die Verteilung in der Stichprobe an.</p>
 <p>Plotten Sie ein Histogramm der Anreisezeiten in unserer Stichprobe. <em>Lassen Sie den Code laufen und passen Sie die bins sinnvoll an.</em></p>
-<div class="sourceCode" id="cb255"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb253"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">befragung</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">anreise</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>bins <span class="op">=</span> <span class="fl">5</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="st">'Tagliche Anreise (min)'</span><span class="op">)</span> <span class="op">+</span>
@@ -181,7 +181,7 @@
 <span class="header-section-number">B.1.4</span> Lage- und Streuungsmaße<a class="anchor" aria-label="anchor" href="#lage--und-streuungsma%C3%9Fe"><i class="fas fa-link"></i></a>
 </h3>
 <p>Erstellen Sie die Fünf-Punkte-Zusammenfassung der Stichprobe. <em>Lassen Sie den Code laufen.</em></p>
-<div class="sourceCode" id="cb256"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb254"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">befragung</span><span class="op">)</span></code></pre></div>
 <p>Wie Sie sehen können, behandelt R die kategorischen Daten anders als numerische. Kategorische Variablen werden als absolute Häufigkeiten pro Kategorie dargestellt (d.h. ausgezählt).</p>
 <p>Wir vergleichen nun gewöhnliche und robuste Lage- und Streuungsmaße. Zu gewöhnlichen gehören der Mittelwert (genauer arithmetisches Mittel) und die Standardabwechung.</p>
@@ -190,7 +190,7 @@
 <p><em>Berechnen Sie den Median der Stichprobe.</em></p>
 <p>Den Interquartilabstand bekommt man mit Hilfe der Funtion <code>quantile</code>, die die Quantile berechnet.</p>
 <p><em>Lassen Sie den folgenden Code laufen.</em></p>
-<div class="sourceCode" id="cb257"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb255"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">befragung</span><span class="op">$</span><span class="va">anreise</span>, probs <span class="op">=</span> <span class="fl">0.75</span><span class="op">)</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">befragung</span><span class="op">$</span><span class="va">anreise</span>, probs <span class="op">=</span> <span class="fl">0.25</span><span class="op">)</span></code></pre></div>
 <p>Der Interquartilabstand kann auch direkt mit der Funktion <code><a href="https://rdrr.io/r/stats/IQR.html">IQR()</a></code> berechnet werden und MAD mit <code><a href="https://rdrr.io/r/stats/mad.html">mad()</a></code>.</p>
 <p><em>Berechnen Sie den Interquartilabstand und MAD der Stichprobe.</em></p>
@@ -203,7 +203,7 @@
 </h3>
 <p>Wir haben unsere Befragten rein zufällig ausgewählt. D.h. die Kenngrößen hängen von dieser zufälligen Auswahl ab. Wie würden sie sich verändern, wenn wir eine andere Stichprobe ausgesucht hätten?</p>
 <p>Wir simulieren eine wiederholte Befragung und sehen uns an, wie sich der Mittelwert und der Median entwickeln. <em>Lassen Sie den Code laufen.</em></p>
-<div class="sourceCode" id="cb258"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb256"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">anzahl_der_befragungen</span> <span class="op">&lt;-</span> <span class="fl">100</span>
 
 <span class="co"># Leere Vektoren erstellen, in die später die Ergebnisse geschrieben werden.</span>
@@ -219,13 +219,13 @@
 
 <span class="va">kennzahlen</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span><span class="va">mean_all</span>, <span class="va">median_all</span><span class="op">)</span></code></pre></div>
 <p>Stellen Sie die Mittelwerte <code>mean_all</code> als Histogramm dar. <em>Lassen Sie den Code laufen und passen Sie die bins sinnvoll an.</em></p>
-<div class="sourceCode" id="cb259"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb257"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">kennzahlen</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">mean_all</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>bins <span class="op">=</span> <span class="fl">5</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="st">'Mittelwerte der taglichen Anreise (min)'</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="st">'Häufigkeit'</span><span class="op">)</span></code></pre></div>
 <p>Stellen Sie die Mediane <code>median_all</code> als Histogramm dar. <em>Lassen Sie den Code laufen und passen Sie die bins sinnvoll an.</em></p>
-<div class="sourceCode" id="cb260"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb258"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">kennzahlen</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">median_all</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>bins <span class="op">=</span> <span class="fl">5</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="st">'Mediane der taglichen Anreise (min)'</span><span class="op">)</span> <span class="op">+</span>
@@ -238,11 +238,11 @@
 <p>Gibt es Präferenzen für bestimmte Verkehrsmittel je nach Geschlecht?
 Wir sehen uns die Kontingenztabelle dazu an.</p>
 <p><em>Lassen Sie den folgenden Code laufen.</em></p>
-<div class="sourceCode" id="cb261"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb259"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">befragung</span><span class="op">$</span><span class="va">geschlecht</span>, <span class="va">befragung</span><span class="op">$</span><span class="va">verkehrsmittel</span><span class="op">)</span></code></pre></div>
 <p>Nun berechnen wir die Zusammenhangsmaße auf dieser Tabelle. Dazu nutzen wir die Bibliothek vcd (Visualizing Categorical Data), sehr empfehlenswert, wenn Sie kategorische Daten analysieren wollen.</p>
 <p><em>Lassen Sie den folgenden Code laufen.</em></p>
-<div class="sourceCode" id="cb262"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb260"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">vcd</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/pkg/vcd/man/assocstats.html">assocstats</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">befragung</span><span class="op">$</span><span class="va">geschlecht</span>, <span class="va">befragung</span><span class="op">$</span><span class="va">verkehrsmittel</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p>Der Phi-Koeffizient ist NA, weil er nur auf <span class="math inline">\(2 \times 2\)</span>-Tabellen definiert ist. Die beiden anderen, Contingency Coeff. (Pearson Koeffizient K) und Cramer’s V zeigen unterschiedliche Werte an, je nachdem, wie unsere zufällige Stichprobe ausfällt. Aber der Zusammenhang sollte eher klein sein.</p>
@@ -251,10 +251,10 @@ Wir sehen uns die Kontingenztabelle dazu an.</p>
 <p>Gibt es einen Zusammenhang zwischen dem Wohnort und dem ausgesuchten Verkehrsmittel?</p>
 <p><em>Berechnen Sie die Kontingenztabelle. Nutzen Sie die Funktion <code><a href="https://rdrr.io/r/base/table.html">table()</a></code> auf den Spalten <code>wohnort</code> und <code>verkehrsmittel</code> im Datensatz <code>befragung</code>.</em></p>
 <p>Berechnen Sie die Zusammenhangsmaße. <em>Lassen Sie den Code laufen.</em></p>
-<div class="sourceCode" id="cb263"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb261"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/vcd/man/assocstats.html">assocstats</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">befragung</span><span class="op">$</span><span class="va">wohnort</span>, <span class="va">befragung</span><span class="op">$</span><span class="va">verkehrsmittel</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p>Gibt es eine Präferenz für den Wohnort je Geschlecht? <em>Lassen Sie den Code laufen.</em></p>
-<div class="sourceCode" id="cb264"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb262"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/vcd/man/assocstats.html">assocstats</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">befragung</span><span class="op">$</span><span class="va">wohnort</span>, <span class="va">befragung</span><span class="op">$</span><span class="va">geschlecht</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p>Da Sie ja genau wissen, wie die Daten erstellt wurden, sollten Ihnen die Antworten nicht zu schwer fallen.</p>
 </div>
@@ -265,7 +265,7 @@ Wir sehen uns die Kontingenztabelle dazu an.</p>
 <p>Zum Schluss wenden wir uns den beiden numerischen Variablen, <code>anreise</code> und <code>zeit_bib</code>. Besteht hier eine Korrelation?</p>
 <p>Zuerst stellen wir die Daten dar.</p>
 <p><em>Lassen Sie den folgenden Code laufen.</em></p>
-<div class="sourceCode" id="cb265"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb263"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">befragung</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">anreise</span>, y <span class="op">=</span> <span class="va">zeit_bib</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="st">'Tägliche Anreise (min)'</span><span class="op">)</span> <span class="op">+</span>
@@ -273,7 +273,7 @@ Wir sehen uns die Kontingenztabelle dazu an.</p>
 <p>Der Zusammenhang zwischen den beiden Variablen ist (ziemlich) linear und negativ.</p>
 <p>Wir berechnen beide Korrelationsmaße, den Pearson Korrelationskoeffizienten für lineare Zusammenhänge und den Spearman Korrelationskoeffizient für monotone Zusammenhänge.</p>
 <p><em>Lassen Sie den Code laufen.</em></p>
-<div class="sourceCode" id="cb266"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb264"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Pearson Korrelationskoeffizient</span>
 <span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">befragung</span><span class="op">$</span><span class="va">anreise</span>, <span class="va">befragung</span><span class="op">$</span><span class="va">zeit_bib</span>, method <span class="op">=</span> <span class="st">'pearson'</span><span class="op">)</span>
 
@@ -281,7 +281,7 @@ Wir sehen uns die Kontingenztabelle dazu an.</p>
 <span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">befragung</span><span class="op">$</span><span class="va">anreise</span>, <span class="va">befragung</span><span class="op">$</span><span class="va">zeit_bib</span>, method <span class="op">=</span> <span class="st">'spearman'</span><span class="op">)</span></code></pre></div>
 <p>Beide Koeffizienten sind nah dran an dem Faktor 0.7, den wir zum Simulieren unserer Daten verwendet haben. Man darf hier beide verwenden. Wichtig ist es zu berichten, welchen Sie verwenden. D.h. es ist nicht genug, zu schreiben, dass Sie eine Korrelation berechnet haben.</p>
 <p><strong>Gut gemacht! Lassen Sie den Code laufen.</strong></p>
-<div class="sourceCode" id="cb267"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb265"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/GuangchuangYu/emojifont">emojifont</a></span><span class="op">)</span>
 <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/pkg/emojifont/man/geom_fontawesome.html">geom_fontawesome</a></span><span class="op">(</span><span class="st">"fa-coffee"</span>, color<span class="op">=</span><span class="st">'lightblue'</span>, size <span class="op">=</span> <span class="fl">80</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_void</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span><span class="st">"It's time for coffee"</span><span class="op">)</span></code></pre></div>
@@ -449,7 +449,7 @@ Wir sehen uns die Kontingenztabelle dazu an.</p>
 <span class="header-section-number">B.4.1</span> Iterationen im Kapitel <a href="stichproben.html#stichproben">7</a><a class="anchor" aria-label="anchor" href="#iterationen-im-kapitel-refstichproben"><i class="fas fa-link"></i></a>
 </h3>
 <p>Im Kapitel <a href="stichproben.html#stichproben">7</a> haben wir die Funktion <code>calculate_props()</code> definiert. Schreiben Sie den folgenden Code mit Hilfe der Funktion <code><a href="https://purrr.tidyverse.org/reference/map.html">map()</a></code> um:</p>
-<div class="sourceCode" id="cb268"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb266"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
 <span class="co"># Stichprobengröße 25</span>

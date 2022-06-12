@@ -655,14 +655,12 @@ anreise
 <p>Jetzt können wir sehen, dass das Objekt <code>model_coeffs</code> die beiden Modellparameter, <span class="math inline">\(y\)</span>-Achsenabschnitt und die Steigung, enthält und das jeweils so häufig, wie wir eben Bootstrap-Stichproben generiert haben. Somit haben wir jetzt eine Bootstrapverteilung dieser Modellparameter, die wir nun plotten können.</p>
 <div class="sourceCode" id="cb244"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">model_coeffs</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">estimate</span>, group <span class="op">=</span> <span class="va">term</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>col <span class="op">=</span> <span class="st">"white"</span>, nbins <span class="op">=</span> <span class="fl">30</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>col <span class="op">=</span> <span class="st">"white"</span>, bins <span class="op">=</span> <span class="fl">30</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span><span class="op">~</span> <span class="va">term</span>, scales <span class="op">=</span> <span class="st">"free_x"</span><span class="op">)</span></code></pre></div>
-<pre><code>## Warning: Ignoring unknown parameters: nbins</code></pre>
-<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
 <div class="inline-figure"><img src="datenanalyse_files/figure-html/unnamed-chunk-196-1.png" width="90%"></div>
 <p><strong>Schritt 3: Konfidenzintervalle berechnen</strong></p>
 <p>Die Verteilungen sind symmetrisch, weil ja die Annahmen der Normalregression erfüllt sind. Jetzt fehlen uns noch die Konfidenzintervalle, von denen wir erwarten, dass sie den Standardkonfidenzintervallen ähnlich sein werden.</p>
-<div class="sourceCode" id="cb247"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb245"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Konfidenzintervalle mit Bootstrap</span>
 <span class="va">percentile_ci</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rsample.tidymodels.org/reference/int_pctl.html">int_pctl</a></span><span class="op">(</span><span class="va">model_res</span>, <span class="va">results</span><span class="op">)</span>
 
@@ -734,7 +732,7 @@ percentile
 </tr>
 </tbody>
 </table></div>
-<div class="sourceCode" id="cb248"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb246"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">standard_ci</span> <span class="op"><a href="https://infer.tidymodels.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <div class="inline-table"><table class="table table-sm">
 <thead><tr>
@@ -810,7 +808,7 @@ anreise
 </tbody>
 </table></div>
 <p>Wir plotten alle Ergebnisse jetzt zusammen. Das müssen wir “händisch” machen, da uns ja nicht die tolle Funktion <code><a href="https://infer.tidymodels.org/reference/visualize.html">visualize()</a></code> aus <code>infer</code> zur Verfügung steht. Wir fügen die Konfidenzintervalle als vertikale Linien zu den Histogrammen der Bootstrapverteilungen hinzu.</p>
-<div class="sourceCode" id="cb249"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb247"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">model_coeffs</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">estimate</span>, group <span class="op">=</span> <span class="va">term</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>col <span class="op">=</span> <span class="st">"white"</span>, nbins <span class="op">=</span> <span class="fl">30</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_vline</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">percentile_ci</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>xintercept <span class="op">=</span> <span class="va">.lower</span>, group <span class="op">=</span> <span class="va">term</span>, col <span class="op">=</span> <span class="st">'percentile_ci_lower'</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>

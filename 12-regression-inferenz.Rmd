@@ -341,7 +341,7 @@ model_coeffs
 Jetzt können wir sehen, dass das Objekt `model_coeffs` die beiden Modellparameter, $y$-Achsenabschnitt und die Steigung, enthält und das jeweils so häufig, wie wir eben Bootstrap-Stichproben generiert haben. Somit haben wir jetzt eine Bootstrapverteilung dieser Modellparameter, die wir nun plotten können.
 ```{r, out.width = '90%'}
 ggplot(model_coeffs, aes(x = estimate, group = term)) + 
-  geom_histogram(col = "white", nbins = 30) +
+  geom_histogram(col = "white", bins = 30) +
   facet_wrap(~ term, scales = "free_x")
 ```
 
@@ -363,7 +363,7 @@ standard_ci %>% kable()
 Wir plotten alle Ergebnisse jetzt zusammen. Das müssen wir "händisch" machen, da uns ja nicht die tolle Funktion `visualize()` aus `infer` zur Verfügung steht. Wir fügen die Konfidenzintervalle als vertikale Linien zu den Histogrammen der Bootstrapverteilungen hinzu.
 ```{r, out.width = '90%'}
 ggplot(model_coeffs, aes(x = estimate, group = term)) + 
-  geom_histogram(col = "white", nbins = 30) +
+  geom_histogram(col = "white", bins = 30) +
   geom_vline(data = percentile_ci, aes(xintercept = .lower, group = term, col = 'percentile_ci_lower')) +
   geom_vline(data = percentile_ci, aes(xintercept = .upper, group = term), col = 'blue') +
   geom_vline(data = standard_ci, aes(xintercept = conf.low, group = term, col = 'conf.low')) +

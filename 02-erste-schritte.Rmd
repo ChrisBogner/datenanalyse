@@ -8,7 +8,7 @@
 - erste Funktionen aufrufen
 - Objekte mit eckigen Klammern [ ] ansprechen
 - R-Hilfeseiten aufrufen
-- Ihren ersten Olot erstellen
+- Ihren ersten Plot erstellen
 ```
 
 
